@@ -64,16 +64,31 @@ include_graphics("../img/abacus.png")
 
 (ref:capybc) A simple abacus. Source: @hogben_1983.
 
-From this we learn that the columns of the abacus are the positions of the digits, which also signify the power of 10 with which the digit is multiplied with: \\( 139 = (9 \\times 10^0) + (3 \\times 10^1) + (1 \\times 10^2) \\).^[Starting with position/power 0.] In addition, a base of 10 means that the system is based on 10 different signs (0, 1, ..., 9), with which we distuingish one-digit numbers. Further, we recognize that each column in the abacus has 10 beads.
+From this we learn that the columns of the abacus are the positions of the digits, which also signify the power of 10 with which the digit is multiplied: \\( 139 =  (1 \\times 10^2) + (3 \\times 10^1) +  (9 \\times 10^0) \\).^[Starting with position/power 0.] In addition, a base of 10 means that the system is based on 10 different signs (0, 1, ..., 9), with which we distuingish one-digit numbers. Further, we recognize that each column in the abacus has 10 beads.
 
 The numeral system with base 10 (the 'Decimal system') is what we use to measure, count, quantify things in our everyday life. Moreover, it is what we normally work with in applied math and statistics (at least in the realm of undergraduate economics). However, the simple but very useful concept of the counting frame also works well for numeral systems with other bases. Historically, numeral systems with other bases existed in various cultures. For example, ancient cultures in Mesopotamia used different forms of a sexagesimal systems (base 60). Which, therefore, consisted of 60 different signs to distinguish 'one-digit' numbers. This logic holds both ways: if a numeral system only consists of two different signs, it follows that the system has to be of base 2 (i.e., a 'Binary system'). As it turns out, this is exactly the kind of numeral system that gets relevant once we replace the abacus with a microprocessor, i.e., a digital computer. 
 
 Anything related to electronically processing (and storing) *digital data*, has to be build on a binary system. The reason is that a microprocessor (similar to a light switch) can only represent two signs (states): on and off. We usually refer to 'off' with the sign '0' and to 'on' with the sign '1'. A numeral system consisting only of the signs 0 and 1 thus must be of base 2. It follows that an abacus of this binary system has columns \\( 2^0=1 \\), \\( 2^1=2 \\), \\( 2^3=4 \\), and so forth. Moreover, each column has only one bead (1) or none (0). Nevertheless we can express all numbers we know from the decimal system. For example, the number 139 that we above expressed with the 'decimal abacus', would be expressed as follows with the binary abacus:
 
+\\[ (1 \\times 2^7) + (1 \\times 2^3) + (1 \\times 2^1) + (1 \\times 2^0) = 139 \\].
 
-\\[ (1 \\times 2^0) + (1 \\times 2^1) + (1 \\times 2^3) + (1 \\times 2^7) = 139 \\]
+If we were to indicate each column of our binary system abacus (that is, including all the columns with 0), we would get the following:
+
+\\[ (1 \\times 2^7) + (0 \\times 2^6) +  (0 \\times 2^5) +  (0 \\times 2^4) + (1 \\times 2^3) + (0 \\times 2^2) + (1 \\times 2^1) +  (1 \\times 2^0)  = 139 \\].
 
 
+Now, compare this with the abacus in the decimal system above. There, we've set the third column to 1, the second column to 3 and the first column (from the right) to 9: 139. If we do the same in the binary system (takem from the example right above), we get 10001011. That is, the number 139 in the decimal system corresponds to 10001011 in the binary system. How can a computer know that? The only way a computer correctly prints the three symbols `139` to our computer screen when dealing with the binary expression `10001011`, is that the 'binary abacus' is hard-coded into the computer. Since a computer can only understand binary expressions (1s and 0s), we have to define a *standard* how 0s and 1s correspond to symbols, colors, etc. that we see on the screen. In simple terms, our binary abacus hard-coded into a computer is exactly such a standard to work with numbers in the decimal system on a computer. Any digital data processing is in the end happing in the binary system. But, in order to avoid having to work with a keyboard consisting only of an on/off (1/0) switch, these low-level standards help us to interact with the computer. It makes it easier to enter data and commands into the computer and understand the output (i.e., the result of a calculation performed on the computer) on the screen. In simple terms, the standard defining how our number symbols in the decimal system correspond to binary numbers (again, reflecting the idea of an abacus) can be illustrated in the following table:
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
+2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0
+3  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  1
+139 = | 1   |  0 | 0  |  0 |  1 |  0 | 1  |  1    
+
+
+Importantly, such standards are simply derived from a law of nature. Somebody simply has to define them at some point (and hopefully everybody agrees to them lateron).We would probably all agree on that defining the standard to translate binary numbers to the decimal system and back along the lines of our concept of a binary abacus makes a lot of sense. However, when it comes to defining how alphabetical letters should be expressed in binary numbers, many choices might seem reasonable. 
 
 
 ### Storing data
