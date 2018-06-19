@@ -1,0 +1,13 @@
+
+Summary
+Big data is a term for data sets that are so large or complex that traditional data processing application software is inadequate to deal with them. Big data challenges include capturing data, data storage, data analysis, search, sharing, transfer, visualization, querying, updating and information privacy.
+
+
+Background
+Data sets grow rapidly - in part because they are increasingly gathered by cheap and numerous information-sensing Internet of things devices such as mobile devices, aerial (remote sensing), software logs, cameras, microphones, radio-frequency identification (RFID) readers and wireless sensor networks.The world's technological per-capita capacity to store information has roughly doubled every 40 months since the 1980s; as of 2012, every day 2.5 exabytes (2.5x1018) of data are generated. One question for large enterprises is determining who should own big-data initiatives that affect the entire organization.
+
+Growth of and digitization of global information-storage capacity
+
+
+References
+Wikipedia: "Big Data", https://en.wikipedia.org/wiki/Big_data

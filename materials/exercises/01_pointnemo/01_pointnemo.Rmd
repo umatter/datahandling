@@ -1,0 +1,126 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: 'Exercise 1: Point Nemo'
+author: "Ulrich Matter"
+date: "20/09/2018"
+output:
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../../style/notes.css
+bibliography: ../../references/datahandling.bib
+---
+
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+```
+
+# Read raw ASCII data (Update of Murrell, Chaper 1)
+
+## Set Up 
+
+1. Go to [NASA's Earth System Data Explorer](https://mynasadata.larc.nasa.gov/EarthSystemLAS/UI.vm)
+2. Click on Data Set, select `Temperatures/Monthly Near-Surface Air Temperature (ISCCP)`. 
+3. In the lower left corner of the dashboard under 'Line Plots' select `Time`.
+4. Enter the coordinats `48.9 S`/`123.4 W` (Point Nemo)
+5. Click 'Update Plot' in the upper left corner.
+
+The screenshot below depicts what you should see on your screen.
+
+
+```{r nasa, echo=FALSE, fig.align='center', fig.cap="(ref:capnasa)", out.width="75%", purl=FALSE}
+include_graphics("../../img/nasa_las.png")
+```
+
+(ref:capnasa) NASA's Earth System Data Explorer (Live Access Server), coordinates set to the Pacific Pole of Inaccessibility ('Point Nemo').
+
+## Download and data import
+
+1. Click on `Save As...`.
+2. In the new tab select `ASCII` from the `Select a Data Format:`-dropdown menu, and
+3. select the time frame from January 1994 to December 1997.
+4. Click `Save`.
+
+The downloaded ASCII-file containing the raw data should open in a new tab. Inspect the data and save it as `PointNemo.txt` in your current R working directory (`File/Save Page As...`) or another directory dedicated to store data.
+
+Now we can read the data into R, following @murrell_2009, p. 5:
+
+
+
+```{r echo=FALSE, purl = FALSE}
+# read the data
+point_nemo <- 
+  read.table("../../../data/PointNemo.txt", skip = 8,
+           colClasses = c("character",
+                          "NULL", "numeric"),
+           col.names = c("date", "",  "temp"))
+```
+
+
+```{r eval=FALSE }
+# read the data
+point_nemo <- 
+  read.table("PointNemo.txt", skip = 8,
+           colClasses = c("character",
+                          "NULL", "numeric"),
+           col.names = c("date", "",  "temp"))
+
+```
+
+```{r}
+# inspect the first rows
+head(point_nemo)
+
+```
+
+
+
+
+
+Now, repeat what we've just done for a different point on earth: the Eurasian Pole of Inaccessibility (46.17 N, 86.4 E). Once we have stored the raw ASCII data in the same folder as `Eurasia.txt`, we can simply reuse piece of code from before to load the data into R. The only thing we have to change is the file name.
+
+
+
+```{r echo=FALSE}
+# read the data
+eurasia <- 
+  read.table("../../../data/Eurasia.txt", skip = 8,
+           colClasses = c("character",
+                          "NULL", "numeric"),
+           col.names = c("date", "",  "temp"))
+
+
+```
+
+```{r eval=FALSE, purl=FALSE}
+# read the data
+eurasia <- 
+  read.table("Eurasia.txt", skip = 8,
+           colClasses = c("character",
+                          "NULL", "numeric"),
+           col.names = c("date", "",  "temp"))
+
+```
+
+
+```{r}
+
+# inspect the first rows
+head(eurasia)
+
+```
+
+
+
+# Writing Computer Code
+
+@murrell_2009: Chapter 2
+
+# References
