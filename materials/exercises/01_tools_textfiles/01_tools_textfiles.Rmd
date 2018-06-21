@@ -1,8 +1,8 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: 'Exercise 1: Point Nemo'
+subtitle: 'Exercise/Workshop 1: Tools, Working with Text Files'
 author: "Ulrich Matter"
-date: "20/09/2018"
+date: "27/09/2018"
 output:
   html_document:
     highlight: tango
@@ -22,12 +22,12 @@ library(knitr)
 library(bookdown)
 ```
 
-# Read raw ASCII data (Update of Murrell, Chaper 1)
+# Read raw text data (Update of Murrell, Chaper 1)
 
 ## Set Up 
 
 1. Go to [NASA's Earth System Data Explorer](https://mynasadata.larc.nasa.gov/EarthSystemLAS/UI.vm)
-2. Click on Data Set, select `Temperatures/Monthly Near-Surface Air Temperature (ISCCP)`. 
+2. Click on Data Set, select `Atmosphere/Temperatures/Monthly Near-Surface Air Temperature (ISCCP)`. 
 3. In the lower left corner of the dashboard under 'Line Plots' select `Time`.
 4. Enter the coordinats `48.9 S`/`123.4 W` (Point Nemo)
 5. Click 'Update Plot' in the upper left corner.
@@ -117,10 +117,5 @@ head(eurasia)
 
 ```
 
-
-
-# Writing Computer Code
-
-@murrell_2009: Chapter 2
 
 # References

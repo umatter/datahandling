@@ -1,0 +1,183 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: 'Lecture 11: Visualization and Dynamic Documents'
+author: "Prof. Dr. Ulrich Matter"
+date: "13/12/2018"
+output:
+  pdf_document:
+    pandoc_args:
+    - --filter
+    - ../../code/math.py
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../style/notes.css
+bibliography: ../references/datahandling.bib
+
+---
+
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+knitr::opts_chunk$set(fig.pos = 'htb!')
+```
+
+
+# Data display
+- overview of last step in Data Science process
+  - low level: display data in R @murrell_2009 9.10, only key aspects (use the practical aspects of this to start the workshop)
+  - visualization: plotting with gg (again, maybe part of the code examples in exercises)
+  - dynamic documents (partly last part of @murrell_2009 9.10, rest from webmining: tables etc.), basics of markdown (focus particularly on this in exercises)
+
+
+
+
+
+# Workshop: Visualization with R (`ggplot2`)
+
+## 'Grammer of Graphics'
+
+## add more theory here
+
+```{r echo= FALSE, out.width= "65%", fig.align="center", fig.cap="Source: http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html"}
+include_graphics("../img/gog.png")
+```
+
+
+## `ggplot2`
+
+```{r echo= FALSE, out.width= "25%", fig.align="center"}
+include_graphics("../img/ggplot2.png")
+```
+
+## `ggplot2` basics
+- Data must be stored in a `data.frame`
+- Basic function/starting point of a plot: `ggplot`
+- First line of plot code declares the data and the 'aesthetics' (what variables are mapped to the x-/y-axes):
+
+```{r echo=TRUE, eval=FALSE}
+ggplot(data = my_dataframe, aes(x= xvar, y= yvar))
+```
+
+
+## Example data set: `swiss`
+
+```{r echo=TRUE}
+# load the R package
+library(ggplot2)
+# load the data
+data(swiss)
+# get details about the data set
+# ?swiss
+# inspect the data
+head(swiss)
+```
+
+
+## Add indicator variable
+```{r}
+# code province as 'Catholic' if more than 50% are catholic
+swiss$Religion <- 'Protestant'
+swiss$Religion[50 < swiss$Catholic] <- 'Catholic'
+swiss$Religion <- as.factor(swiss$Religion)
+
+```
+
+
+
+## Data and aesthetics
+
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination))
+
+```
+
+
+## Geometries (~the type of plot)
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point()
+
+```
+
+
+## Facets
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point() +
+     facet_wrap(~Religion)
+
+```
+
+
+## Additional layers and statistics
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point() +
+     geom_smooth(method = 'loess') +
+     facet_wrap(~Religion)
+
+```
+
+
+## Additional layers and statistics
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point() +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion)
+
+```
+
+## Additional aesthetics
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion)
+
+```
+
+
+## Change coordinates
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion) +
+     coord_flip()
+
+```
+
+
+## Themes
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion) +
+     theme_minimal()
+
+```
+
+## Themes
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion) +
+     theme_dark()
+
+```
+
+
+# Dynamic Documents: basic idea (focus on HTML because they already know it)
+
+
+# References

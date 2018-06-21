@@ -1,0 +1,105 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: 'Lecture 5: Programming with Data'
+author: "Prof. Dr. Ulrich Matter"
+date: "18/10/2018"
+output:
+  pdf_document:
+    pandoc_args:
+    - --filter
+    - ../../code/math.py
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../style/notes.css
+bibliography: ../references/datahandling.bib
+
+---
+
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+knitr::opts_chunk$set(fig.pos = 'htb!')
+```
+
+
+Programming: Murrell chapter 9.11
+- Go through key concepts (maybe extend a bit, take some from cs50)
+- Go through the case study (maybe update needed here)
+
+
+
+
+## Working with Data in R: Data Structures and Indeces
+(Practical part is important here, they should get an overview, should recall data structures in objects etc.)
+
+### Vectors and Lists
+```{r}
+# A vector containing numeric (or integer) values
+numeric_vector <- 10:20
+numeric_vector[2]
+numeric_vector[2:5]
+
+# A string vector ('a vector containing text')
+string_vector <- c("a", "b", "c")
+string_vector[-3]
+
+# Lists
+# A list can contain different types of elements, for example a numeric vector and a string_vector
+mylist <- list(numbers = numeric_vector, letters = string_vector)
+mylist
+
+# We can access the elements of a list in various ways
+# with the element's name
+mylist$numbers
+mylist["numbers"]
+# via the index
+mylist[1]
+# with [[]] we can access directly the content of the element
+mylist[[1]]
+
+# lists can also be nested (list of lists of lists....)
+mynestedlist <- list(a = mylist, b = 1:5)
+```
+
+### Matrices and Data Frames
+```{r}
+
+# matrices
+mymatrix <- matrix(numeric_vector, nrow = 4)
+# get the second row
+mymatrix[2,]
+# get the first two columns
+mymatrix[, 1:2]
+
+# data frames ("lists as columns")
+mydf <- data.frame(Name = c("Alice", "Betty", "Claire"), Age = c(20, 30, 45))
+mydf
+# select the age column
+mydf$Age
+mydf[, "Age"]
+mydf[, 2]
+# select the second row
+mydf[2,]
+
+
+```
+
+### Classes and Data Structure
+```{r}
+# have a look at what kind of object you are dealing with
+class(mydf)
+class(mymatrix)
+
+# have a closer look at the data structure
+str(mydf)
+```
+
+
+# References

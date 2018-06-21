@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <customers>
+  <person>
+    <name>John Doe</name>
+     <orders>
+     <product> x </product>
+     <product> y </product>
+     </orders>
+  </person>
+  <person>
+    <name>Peter Pan</name>
+     <orders>
+     <product> a </product>
+     <product> x </product>
+     </orders>
+  </person>
+ </customers>

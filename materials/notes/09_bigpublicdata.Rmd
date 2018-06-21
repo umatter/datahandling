@@ -1,0 +1,35 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: 'Lecture 9: Case Study: The Programmable Web, Big Public Data, and Political Economics'
+author: "Prof. Dr. Ulrich Matter"
+date: "29/11/2018"
+output:
+  pdf_document:
+    pandoc_args:
+    - --filter
+    - ../../code/math.py
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../style/notes.css
+bibliography: ../references/datahandling.bib
+
+---
+
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+knitr::opts_chunk$set(fig.pos = 'htb!')
+```
+
+
+
+# Header1
+
+# References
