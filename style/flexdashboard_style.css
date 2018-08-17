@@ -1,0 +1,49 @@
+
+
+.bg-primary {
+  background-color: darkgreen;
+}
+
+.storyboard-nav .sbframelist ul li.active {
+  background-color: darkgreen;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: darkgreen;
+}
+
+.bg-info {
+  background-color: darkgreen;
+}
+
+
+.nav-tabs-custom > .nav-tabs > li > a {
+  border-top-color: darkgreen;
+  border-right-color: darkgreen;
+  border-left-color: darkgreen;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: darkgreen;
+}
+
+.bg-warning {
+  background-color: rgba(255, 117, 24, 0.7);
+}
+
+.bg-danger {
+  background-color: rgba(255, 0, 57, 0.7);
+}
+
+.bg-success {
+  background-color: rgba(63, 182, 24, 0.7);
+}
+
+.chart-title {
+  font-weight: 500;
+}
+
+.nav-tabs-custom > .nav-tabs > li > a,
+.nav-tabs-custom > .nav-tabs > li > a:active {
+  font-weight: 500;
+}

@@ -119,9 +119,6 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -163,23 +160,23 @@ $(document).ready(function () {
 <p>In the simplest case, what we want to store is literally a text. For example, we store the following phrase</p>
 <p><code>Hello World!</code></p>
 <p>in a text file named <code>helloworld.txt</code>. The ending <code>.txt</code> indicates to the operating system of our computer what kind of data is stored in this file. When clicking on the file’s symbol, the operating system will open the file (read it into memory) with the default program assigned to open <code>.txt</code>-files (in this course, usually <a href="https://atom.io/">atom</a> or <a href="https://www.rstudio.com/">RStudio</a>). If the text editor displays <code>Hello World!</code> as the content of this file, the program uses the correct character encoding to convert the raw <code>0</code>s and <code>1</code>s yet again to symbols that we can read more easily. Similarly we can show the content of the file in the command-line terminal (here OSX or Linux):</p>
-<pre><code>## Hello World!</code></pre>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cat</span> helloworld.txt<span class="kw">;</span> <span class="bu">echo</span></code></pre></div>
+<pre><code>## Hello World!</code></pre>
 <p>However, we can also use a command-line program (here, <code>xxd</code>) to display the content of <code>helloworld.txt</code> without actually ‘translating’ it into ASCII characters.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> That is, we can directly look at how the content looks like as <code>0</code>s and <code>1</code>s:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">xxd</span> -b ../../data/helloworld.txt</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">xxd</span> -b helloworld.txt</code></pre></div>
 <pre><code>## 00000000: 01001000 01100101 01101100 01101100 01101111 00100000  Hello 
 ## 00000006: 01010111 01101111 01110010 01101100 01100100 00100001  World!</code></pre>
 <p>Similarly we can display the content in hexadecimal values:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">xxd</span>  ../../data/helloworld.txt</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">xxd</span>  data/helloworld.txt</code></pre></div>
 <pre><code>## 00000000: 4865 6c6c 6f20 576f 726c 6421            Hello World!</code></pre>
 <p>Now consider another text file <code>hastamanana.txt</code> which was written and stored with another character encoding. When looking at the content, assuming the now common UTF-8 encoding, the content seems a little odd:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cat</span> ../../data/hastamanana.txt<span class="kw">;</span> <span class="bu">echo</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cat</span> hastamanana.txt<span class="kw">;</span> <span class="bu">echo</span></code></pre></div>
 <pre><code>## Hasta Ma?ana!</code></pre>
 <p>We see that it is a short phrase written in Spanish. But oddly, it contains the character <code>?</code> in the middle of a word. The occurrence of special characters in unusual places of text files is an indication of using the wrong character encoding to display the text. Let’s check what the file’s encoding is.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">file</span> -bi ../../data/hastamanana.txt</code></pre></div>
-<pre><code>## regular file</code></pre>
-<p>This tells us that the file is encoded with iso-8859-1 (‘Latin1’), a character set for several Latin languages (including Spanish). Knowing this, we can check how the content looks like when we change the encoding to UTF-8 (which then properly displays the content on the screen)<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">iconv</span> -f iso-8859-1 -t utf-8 ../../data/hastamanana.txt <span class="kw">|</span> <span class="fu">cat</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">file</span> -b data/hastamanana.txt</code></pre></div>
+<pre><code>## ISO-8859 text</code></pre>
+<p>This tells us that the file is encoded with ISO-8859 (‘Latin1’), a character set for several Latin languages (including Spanish). Knowing this, we can check how the content looks like when we change the encoding to UTF-8 (which then properly displays the content on the screen)<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">iconv</span> -f iso-8859-1 -t utf-8 hastamanana.txt <span class="kw">|</span> <span class="fu">cat</span></code></pre></div>
 <pre><code>## Hasta Mañana!</code></pre>
 <p>When working with data, we thus have to make sure that we use the proper standards to translate the binary coded values into a character/text-representation that is easier to understand and work with. In recent years, much more general (or even ‘universal’) standards have been developed and adopted around the world, particularly UTF-8. Thus, if we deal with recently generated data sets, we usually can expect that they are encoded in UTF-8, independent of the data’s country of origin. However, when working on a research project where slightly older data sets from different sources are involved, encoding issues still occur quite frequently. It is thus crucial to understand early on what the origin of the problem is, when the data seem to display weird characters. Encoding issues are among the most basic problems that can occur when importing data.</p>
 <p>So far, we have only looked at very simple examples of data stored in text files, essentially only containing short phrases of text. Nevertheless, most common formats of storing and transferring data (CSV, XML, JSON, etc.) build on exactly the same principle: characters in a text-file. The difference between such formats and the simple examples above is that their content is structured in a very specific way. That is, on top of the lower-level conversion of <code>0</code>s and <code>1</code>s into characters/text we add another standard, a data format, giving the data more <em>structure</em>, making it even simpler to interpret and work with the data on a computer. Once we understand how data is represented at the low level (the topic of the sections above), it is much easier to understand and distinguish different forms of storing structured data.</p>

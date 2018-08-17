@@ -280,4 +280,140 @@ plot(function(t)dnorm(t), -4, 4, main = "Normal density")
 Note how the histogram is getting closer to a normal distribution with increasing sample size. 
 
 
+
+
+# Basic Statistics and Econometrics with R^[From @umatter_2018]
+
+In the previous part we have learned how to implement basic statistics functions in R, as well as notices that for most of these statistics R already has a build-in function.
+
+For example, mean and median: 
+```{r}
+# initiate sample
+a <- c(10,22,33, 22, 40)
+names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva")
+
+# compute the mean
+mean(a)
+# compute the median
+median(a)
+
+```
+
+...as well as different measures of variability,
+```{r, echo=TRUE}
+range(a)
+var(a)
+sd(a)
+
+```
+
+and test statistics such as the t-test.
+```{r}
+# define size of sample
+n <- 100
+# draw the random sample from a normal distribution with mean 10 and sd 2
+sample <- rnorm(n, mean = 10, sd = 2)
+
+# Test H0: mean of population = 10 
+t.test(sample, mu = 10)
+
+```
+
+
+## Regression analysis with R
+
+Finally, R and additional R packages offer functions for almost all models and tests in modern applied econometrics. While the syntax and return values of these functions are note 100% consistent (due to the fact that many different authors contributed some of these functions), applying them is usually quite similar. Functions for econometric models typically have the two main parameters `data` (the dataset to use in the estimation, in `data.frame`-format) and `formula` (a symbolic description of the model to be fitted, following a defined convention). Typically, the following three steps are involved when running regressions in R (assuming the data is already loaded and prepared):
+
+1. In `formula`, we define the model we want to fit as an object of class 'formula'. For example, we want to regress `Examination` on `Education` with the `swiss`-dataset used above. 
+
+```{r}
+model1 <- Examination~Education
+```
+
+2. Fit the model with the respective estimator. Here we use `lm()` the R workhorse for linear models to fit the model with OLS:
+
+```{r}
+fit1 <- lm(formula = model1, data = swiss)
+```
+
+3. Get summary statistics with the generic `summary()`. In the case of an object of class `lm` (the output of `lm()`), this amounts to the typical coefficient t-statistics an p-values shown in regression tables:
+
+```{r}
+summary(fit1)
+```
+
+
+## Linear model
+Putting the pieces together, we can write a simple script to analyse the `swiss`-dataset (in spirit of the data visualization above):
+
+
+```{r}
+# load data
+data(swiss)
+
+# linear regression with one variable
+# estimate coefficients
+model_fit <- lm(Examination~Education, data = swiss)
+# t-tests of coefficients (and additional statistics)
+summary(model_fit)
+
+```
+
+Specifying the linear model differently can be done by simply changing the formula of the model. For example, we might want to control for the share of agricultural occupation.
+
+```{r}
+# multiple linear regression
+# estimate coefficients
+model_fit2 <- lm(Examination~Education + Catholic + Agriculture, data = swiss)
+# t-tests of coefficients (and additional statistics)
+summary(model_fit2)
+
+```
+
+## Other econometric models
+Various additional packages provide all kind of functions to estimate diverse economietric models. Many generalized linear models can be fitted with the `glm()`-function (`formula` and `data` used as in `lm()`):
+
+- Probit model: `glm(..., family = binomial(link = "probit"))`.
+- Logit model: `glm(..., family = "binomial")`.
+- Poisson regression (count data): `glm(..., family="poisson")`.
+
+Other frequently used packages for econometric regression analysis:
+- Panel data econometrics: package `plm`.
+- Time-series econometrics: package `tseries`.
+- Basic IV regression: `ivreg()` in package `AER`.
+- Generalized methods of moments: package `gmm`.
+- Generalized additive models: package `gam`.
+- Lasso regression: package `glmnet`.
+- Survival analysis: package `survival`.
+
+See also the [CRAN Econometrics Task View](https://cran.r-project.org/web/views/Econometrics.html)
+
+
+## Regression tables
+Economists typically present regression results in detailed regression tables, with regression coefficients in rows and model specifications in columns. The package `stargazer` provides some functions to generate such tables very easily for outputs of the most common regression functions (`lm()`, `glm()`, etc.):
+
+
+
+```{r}
+# load packages
+library(stargazer)
+
+# print regression results as text
+stargazer(model_fit, model_fit2, type = "text")
+```
+
+Alternatively the regression table can be directly generated as LaTeX table:
+
+```{r}
+# load packages
+library(stargazer)
+
+# print regression results as text
+stargazer(model_fit, model_fit2, type = "latex")
+```
+
+
+
+
+
 # References

@@ -22,6 +22,151 @@ library(knitr)
 library(bookdown)
 ```
 
+
+
+
+
+# Why R?^[From @umatter_2018]
+
+## The 'data language'
+The programming language and open-source statistical computing environment [R](www.r-project.org) has over the last decade become a core tool for data science in industry and academia. It was originally designed as a tool for statistical analysis. Many characteristics of the language make R particularly useful to work with data. With the rise of the 'data economy' and 'data science', R is increasingly used in various domains, going well beyond the traditional applications of academic research.  
+
+## High-level language, relatively easy to learn
+R is a relatively easy computer language to learn for people with no previous programming experience. The syntax is rather intuitive and error messages not too cryptic to understand (facilitates learning by doing). Moreover, with R's recent stark rise in popularity, there are plenty of freely accessible resources online that help beginners to learn the language.
+
+## Free, open source, large community
+Due to its vast base of contributors, R serves as a valuable tool for users in various fields related to data analysis and computation (economics/econometrics, biomedicine, business analytics, etc.). R users have direct access to thousands of freely available 'R-packages' (small software libraries written in R), covering diverse aspects of data analysis, statistics, data preparation, and data import.
+
+Hence, a lot of people using R as a tool in their daily work do not actually 'write programs' (in the traditional sense of the word), but apply those packages. Applied econometrics with R is a good example of this. Almost any function a modern commercial computing environment with a focus on statistics and econometrics (such as [STATA](http://www.stata.com/)) is offering, can also be found within the R environment. Furthermore, there are R packages covering all the areas of modern data analytics, including natural language processing, machine learning, big data analytics, etc. (see the [CRAN Task Views](https://cran.r-project.org/web/views/) for an overview). We thus do not actually have to write a program for many tasks we perform with R. Instead, we can build on already existing and reliable packages.
+
+
+
+# The tools: R/RStudio
+
+R is the high-level (meaning 'more user friendly') programming language for statistical computing. Once we have installed R on our computer, we can run it...
+
+ a. ...directly from the command line, by typing `R` and hit enter (here in the OSX terminal):
+
+```{r terminal, echo=FALSE, fig.align='center', fig.cap="(ref:rterminal)", out.width="60%", purl=FALSE}
+include_graphics("../img/r_terminal.png")
+```
+(ref:rterminal) Running R in the Mac/OSX terminal.
+
+
+ b. ...with the simple [Integrated Development Environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment) delivered with the basic R installation
+
+```{r ide, echo=FALSE, fig.align='center', fig.cap="(ref:ride)", out.width="75%", purl=FALSE}
+include_graphics("../img/r_ide.png")
+```
+(ref:ride) Running R in the original R GUI/IDE.
+
+
+ c. ...with the more elaborated and user-friendly IDE called *RStudio*:
+
+```{r rstudio, echo=FALSE, fig.align='center', fig.cap="(ref:rstudio)", out.width="75%", purl=FALSE}
+include_graphics("../img/rstudio_panels.png")
+```
+(ref:rstudio) Running R in RStudio (IDE).
+
+The latter is what we will do throughout this course. It is a very helpful tool for simple data analysis with R, writing R scripts (short R programs), or even for developing R packages (software written in R), building interactive documents, presentations, etc. Moreover, it offers many options to change its own appearance (Pane Layout, Code Highlighting, etc.).
+
+In the following, we have a look at each of the main panels we will use in this course.
+
+
+## The R-Console
+
+When working in an interactive session, we simply type R commands directly into the R console. Typically, the output R returns, when we give it a command this way, is printed in the console as well.
+
+```{r console, echo=FALSE, fig.align='center', fig.cap="(ref:console)", out.width="75%", purl=FALSE}
+include_graphics("../img/rstudio_console.png")
+```
+(ref:console) Running R in the Mac/OSX terminal.
+
+For example, we can tell R to print the phrase `Hello world` to the console, by typing to following command in the console and hit enter:
+
+```{r}
+print("Hello world")
+```
+
+
+## R-Scripts
+
+Apart from very short interactive sessions, it usually makes sense to write R code not directly in the command line, but to a R-script in the script panel. This way, execute several lines at once, comment the code (to explain what it does), save it on our hard disk, and further develop the code later on.
+
+```{r rscript, echo=FALSE, fig.align='center', fig.cap="(ref:script)", out.width="75%", purl=FALSE}
+include_graphics("../img/rstudio_script.png")
+```
+(ref:script) The R Script window in RStudio.
+
+
+
+## R Environment
+
+The environment pane shows what variables, objects, and data are loaded in our current R session. Moreover, it offers functions to open documents and import data.
+
+```{r renvironment, echo=FALSE, fig.align='center', fig.cap="(ref:environment)", out.width="50%", purl=FALSE}
+include_graphics("../img/rstudio_environment.png")
+```
+(ref:environment) The environment window in RStudio.
+
+
+
+## File Browser
+
+With the File browser window we can navigate through the folder structure and files on our computer's hard disk, modify files, and set the working directory of our current R session. Moreover, it has a pane to show plots generated in R and a pane with help pages and R documentation.
+
+```{r rfiles, echo=FALSE, fig.align='center', fig.cap="(ref:files)", out.width="50%", purl=FALSE}
+include_graphics("../img/rstudio_files.png")
+```
+(ref:files) The file browser window in RStudio.
+
+
+# Exercises
+
+## Exercise A: Setting up a Working Environment
+
+ 1. Open RStudio and get familiar with the file browser pane on the lower right. Navigate to a folder on your hard disk in which you want to work throughout this course (and store all the code you write in this course).
+
+ 2. Use the 'New Folder'-button to create a new folder. Name this new folder `r_course`.
+
+ 3. You should see the new folder listed in the file browser. Click on it to navigate to its contents (so far empty). Now, click on the 'More' button and select 'Set as Working Directory' in the drop-down menu.
+
+ 4. Again, use the 'New Folder'-button in order to create two new folders called `data` and `code`.
+
+ 5. Finally, click on the project button in the top-right corner of the RStudio window (![](../img/rproject.png)) and select 'New Project' in the drop-down menu. In the pop-up window, select 'Existing directory', browse to and select your `r_course` folder, then click 'Create Project'.
+
+Now you know how to set up a meaningful basic folder structure and working environment for an R project. The next exercise teaches you how to write R scripts in this environment.
+
+
+## Exercise B: R Scripts
+
+1. Switch to the R console and type the following line of code and hit enter (see example from above).
+
+```{r eval=FALSE, purl=FALSE}
+print("Hello world")
+```
+You should see the words `"Hello world"` printed on screen. This is the usual way of working with R in an interactive session. However, as pointed out above, in most circumstances it makes sense to write the R code to an R script (in order to store and document it) and then execute the code from there.
+
+2. In the RStudio Menu-bar select `File/New File/R Script` to create a new file, shown/opened in the Script pane.
+
+3. Type `print("Hello world")` to the first line of the script, and click on 'Run' (![](../img/run.png)) to execute the code in the console.
+
+4. Save the file as `hello_world.R` (`File/Save As...`) in the sub folder `code` (created in the previous exercise).
+
+5. Type the following command into the command line and hit enter:
+```{r eval=FALSE}
+source("code/hello_world.R")
+```
+
+```{r echo=FALSE, purl=FALSE}
+source("../exercises/r_course/code/hello_world.R")
+```
+
+Now you know how to execute R code directly in the console (interactive session), how to execute lines of code written to an R script, as well as how to execute the entire R script (stored on disk) from the command line.
+
+
+
+
 # Read raw text data (Update of Murrell, Chaper 1)
 
 ## Set Up 

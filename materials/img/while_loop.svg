@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>File:While-loop-diagram.svg - Wikipedia</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgCanonicalNamespace":"File","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":6,"wgPageName":"File:While-loop-diagram.svg","wgTitle":"While-loop-diagram.svg","wgCurRevisionId":0,"wgRevisionId":0,"wgArticleId":0,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"File:While-loop-diagram.svg","wgRelevantArticleId":0,"wgRequestId":"WduQNApAMEoAAKxh9IUAAAAL","wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionCreate":[],"wgRestrictionUpload":[],"wgFlaggedRevsParams":{"tags":{}},"wgStableRevisionId":null,"wgWikiEditorEnabledModules":{"toolbar":true,"preview":false,"publish":false},"wgBetaFeaturesFeatures":[],"wgMediaViewerOnClick":true,"wgMediaViewerEnabledByDefault":false,"wgPopupsShouldSendModuleToUser":false,"wgPopupsConflictsWithNavPopupGadget":false,"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","pageVariantFallbacks":"en","usePageImages":true,"usePageDescriptions":true},"wgPreferredVariant":"en","wgMFExpandAllSectionsUserOption":false,"wgMFDisplayWikibaseDescriptions":{"search":true,"nearby":true,"watchlist":true,"tagline":false},"wgRelatedArticles":null,"wgRelatedArticlesUseCirrusSearch":true,"wgRelatedArticlesOnlyUseCirrusSearch":false,"wgULSCurrentAutonym":"English","wgNoticeProject":"wikipedia","wgCentralNoticeCookiesToDelete":[],"wgCentralNoticeCategoriesUsingLegacy":["Fundraising","fundraising"],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}","wgCentralAuthMobileDomain":false,"wgCodeMirrorEnabled":false,"wgVisualEditorToolbarScrollOffset":0,"wgVisualEditorUnsupportedEditParams":["undo","undoafter","veswitched"],"wgEditSubmitButtonLabelPublish":false});mw.loader.state({"ext.gadget.charinsert-styles":"ready","ext.globalCssJs.user.styles":"ready","ext.globalCssJs.site.styles":"ready","site.styles":"ready","noscript":"ready","user.styles":"ready","user":"ready","user.options":"ready","user.tokens":"loading","filepage":"ready","mediawiki.action.view.filepage":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.uls.interlanguage":"ready","ext.wikimediaBadges":"ready","mediawiki.legacy.shared":"ready","mediawiki.legacy.commonPrint":"ready","mediawiki.sectionAnchor":"ready","mediawiki.skinning.interface":"ready","skins.vector.styles":"ready","ext.globalCssJs.user":"ready","ext.globalCssJs.site":"ready"});mw.loader.implement("user.tokens@1dqfd7l",function ( $, jQuery, require, module ) {
+mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});/*@nomin*/
+
+});mw.loader.load(["mediawiki.action.view.metadata","site","mediawiki.page.startup","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.gadget.teahouse","ext.gadget.ReferenceTooltips","ext.gadget.watchlist-notice","ext.gadget.DRN-wizard","ext.gadget.charinsert","ext.gadget.refToolbar","ext.gadget.extra-toolbar-buttons","ext.gadget.switcher","ext.centralauth.centralautologin","mmv.head","mmv.bootstrap.autostart","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.eventLogging.subscriber","ext.wikimediaEvents","ext.navigationTiming","ext.uls.eventlogger","ext.uls.init","ext.uls.interface","ext.centralNotice.geoIP","ext.centralNotice.startUp","skins.vector.js"]);});</script>
+<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=ext.uls.interlanguage%7Cext.visualEditor.desktopArticleTarget.noscript%7Cext.wikimediaBadges%7Cmediawiki.action.view.filepage%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.interface%7Cskins.vector.styles&amp;only=styles&amp;skin=vector"/>
+<script async="" src="/w/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector"></script>
+<link rel="stylesheet" href="https://commons.wikimedia.org/w/index.php?title=MediaWiki:Filepage.css&amp;action=raw&amp;maxage=1209600&amp;usemsgcache=yes&amp;ctype=text%2Fcss&amp;smaxage=1209600"/>
+<meta name="ResourceLoaderDynamicStyles" content=""/>
+<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=ext.gadget.charinsert-styles&amp;only=styles&amp;skin=vector"/>
+<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector"/>
+<meta name="generator" content="MediaWiki 1.31.0-wmf.2"/>
+<meta name="referrer" content="origin-when-cross-origin"/>
+<link rel="apple-touch-icon" href="/static/apple-touch/wikipedia.png"/>
+<link rel="shortcut icon" href="/static/favicon/wikipedia.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="Wikipedia (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="//en.wikipedia.org/w/api.php?action=rsd"/>
+<link rel="license" href="//creativecommons.org/licenses/by-sa/3.0/"/>
+<link rel="alternate" type="application/atom+xml" title="Wikipedia Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+<link rel="canonical" href="https://commons.wikimedia.org/wiki/File:While-loop-diagram.svg"/>
+<link rel="dns-prefetch" href="//login.wikimedia.org"/>
+<link rel="dns-prefetch" href="//meta.wikimedia.org" />
+<!--[if lt IE 9]><script src="/resources/lib/html5shiv/html5shiv.min.js"></script><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-6 ns-subject page-File_While-loop-diagram_svg rootpage-File_While-loop-diagram_svg vector-nav-directionality skin-vector action-view">		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+
+							<div id="siteNotice" class="mw-body-content"><!-- CentralNotice --></div>
+						<div class="mw-indicators mw-body-content">
+<div id="mw-indicator-commons-icon" class="mw-indicator"><a href="https://commons.wikimedia.org/wiki/File:While-loop-diagram.svg" title="This is a file from the Wikimedia Commons"><img alt="This is a file from the Wikimedia Commons" src="//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/15px-Commons-logo.svg.png" width="15" height="20" srcset="//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/22px-Commons-logo.svg.png 1.5x, //upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png 2x" data-file-width="1024" data-file-height="1376" /></a></div>
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en">File:While-loop-diagram.svg</h1>
+									<div id="bodyContent" class="mw-body-content">
+									<div id="siteSub" class="noprint">From Wikipedia, the free encyclopedia</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="#mw-head">navigation</a>, 					<a href="#p-search">search</a>
+				</div>
+				<div id="mw-content-text"><ul id="filetoc"><li><a href="#file">File</a></li>
+<li><a href="#filehistory">File history</a></li>
+<li><a href="#filelinks">File usage</a></li>
+<li><a href="#globalusage">Global file usage</a></li>
+<li><a href="#metadata">Metadata</a></li></ul><div class="fullImageLink" id="file"><a href="//upload.wikimedia.org/wikipedia/commons/4/43/While-loop-diagram.svg"><img alt="File:While-loop-diagram.svg" src="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/While-loop-diagram.svg/271px-While-loop-diagram.svg.png" width="271" height="343" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/While-loop-diagram.svg/407px-While-loop-diagram.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/43/While-loop-diagram.svg/542px-While-loop-diagram.svg.png 2x" data-file-width="271" data-file-height="343" /></a><div class="mw-filepage-resolutioninfo">Size of this PNG preview of this SVG file: <a href="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/While-loop-diagram.svg/271px-While-loop-diagram.svg.png" class="mw-thumbnail-link">271 × 343 pixels</a>. <span class="mw-filepage-other-resolutions">Other resolutions: <a href="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/While-loop-diagram.svg/190px-While-loop-diagram.svg.png" class="mw-thumbnail-link">190 × 240 pixels</a> | <a href="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/While-loop-diagram.svg/379px-While-loop-diagram.svg.png" class="mw-thumbnail-link">379 × 480 pixels</a> | <a href="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/While-loop-diagram.svg/474px-While-loop-diagram.svg.png" class="mw-thumbnail-link">474 × 600 pixels</a> | <a href="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/While-loop-diagram.svg/607px-While-loop-diagram.svg.png" class="mw-thumbnail-link">607 × 768 pixels</a> | <a href="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/While-loop-diagram.svg/809px-While-loop-diagram.svg.png" class="mw-thumbnail-link">809 × 1,024 pixels</a>.</span></div></div>
+<div class="fullMedia"><a href="//upload.wikimedia.org/wikipedia/commons/4/43/While-loop-diagram.svg" class="internal" title="While-loop-diagram.svg">Original file</a> &#8206;<span class="fileInfo">(SVG file, nominally 271 × 343 pixels, file size: 10 KB)</span>
+</div>
+<div class="sharedUploadNotice">
+<table id="mw-sharedupload" class="plainlinks fmbox fmbox-system" role="presentation"><tr><td class="mbox-image"><img alt="" src="//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png" title="Wikimedia Commons logo" width="30" height="40" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/45px-Commons-logo.svg.png 1.5x, //upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/59px-Commons-logo.svg.png 2x" data-file-width="1024" data-file-height="1376" /></td><td class="mbox-text" style="text-align: center;">This is a file from the <a href="https://commons.wikimedia.org/wiki/Main_Page" class="extiw" title="commons:Main Page">Wikimedia Commons</a>. Information from its <b><a href="https://commons.wikimedia.org/wiki/File:While-loop-diagram.svg" class="extiw" title="commons:File:While-loop-diagram.svg">description page there</a></b> is shown below.<br/><span style="font-size: smaller;">Commons is a freely licensed media file repository. <a href="https://commons.wikimedia.org/wiki/Commons:Welcome" class="extiw" title="commons:Commons:Welcome">You can help</a>.</span></td></tr></table>
+</div>
+<div id="shared-image-desc"><div class="mw-parser-output"><h2><span class="mw-headline" id="Summary">Summary</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="//commons.wikimedia.org/w/index.php?title=File:While-loop-diagram.svg&amp;action=edit&amp;section=1" title="Edit section: Summary">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="hproduct commons-file-information-table">
+<table class="fileinfotpl-type-information toccolours vevent mw-content-ltr" style="width: 100%; direction: ltr;" cellpadding="4">
+<tr style="vertical-align: top">
+<td id="fileinfotpl_desc" class="fileinfo-paramfield" lang="en">Description<span class="summary fn" style="display:none">While-loop-diagram.svg</span></td>
+<td class="description">
+<p>While loop diagram in <a href="https://en.wikipedia.org/wiki/UML" class="extiw" title="w:UML">UML</a></p>
+</td>
+</tr>
+<tr style="vertical-align: top">
+<td id="fileinfotpl_date" class="fileinfo-paramfield" lang="en">Date</td>
+<td lang="en"><span style="white-space:nowrap"><time class="dtstart" datetime="2005-06-25">25 June 2005</time></span></td>
+</tr>
+<tr style="vertical-align: top">
+<td id="fileinfotpl_src" class="fileinfo-paramfield" lang="en">Source</td>
+<td>own work created using <a href="https://en.wikipedia.org/wiki/Dia" class="extiw" title="w:Dia">Dia</a></td>
+</tr>
+<tr style="vertical-align: top">
+<td id="fileinfotpl_aut" class="fileinfo-paramfield" lang="en">Author</td>
+<td>P. Kemp</td>
+</tr>
+</table>
+</div>
+<h2><span class="mw-headline" id="Licensing">Licensing</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="//commons.wikimedia.org/w/index.php?title=File:While-loop-diagram.svg&amp;action=edit&amp;section=2" title="Edit section: Licensing">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table cellspacing="8" cellpadding="0" style="clear:both; margin:0.5em auto; background-color:#f0f0f0; border:2px solid #e0e0e0; direction: ltr;" class="licensetpl_wrapper">
+<tr>
+<td>
+<div class="center"><b><span lang="en" class="description en">I, the copyright holder of this work, hereby publish it under the following license:</span></b></div>
+<table style="width:100%; clear:both; text-align:center; margin:0.5em auto; background-color:#f9f9f9; border:2px solid #e0e0e0; padding: 0; border-spacing: 8px;" class="layouttemplate licensetpl mw-content-ltr" lang="en">
+<tr>
+<td style="width:90px;" rowspan="2"><img alt="Creative Commons" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Cc.logo.circle.svg/28px-Cc.logo.circle.svg.png" title="Creative Commons" width="28" height="28" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Cc.logo.circle.svg/42px-Cc.logo.circle.svg.png 1.5x, https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Cc.logo.circle.svg/56px-Cc.logo.circle.svg.png 2x" data-file-width="64" data-file-height="64" />&#160;<img alt="CC-Zero" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Cc-zero.svg/28px-Cc-zero.svg.png" title="CC-Zero" width="28" height="28" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Cc-zero.svg/42px-Cc-zero.svg.png 1.5x, https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Cc-zero.svg/56px-Cc-zero.svg.png 2x" data-file-width="64" data-file-height="64" /></td>
+<td>This file is made available under the <a href="https://en.wikipedia.org/wiki/en:Creative_Commons" class="extiw" title="w:en:Creative Commons">Creative Commons</a> <a rel="nofollow" class="external text" href="//creativecommons.org/publicdomain/zero/1.0/deed.en">CC0 1.0 Universal Public Domain Dedication</a>.</td>
+</tr>
+<tr style="text-align:left;">
+<td>The person who associated a work with this deed has dedicated the work to the <a href="https://en.wikipedia.org/wiki/en:public_domain" class="extiw" title="w:en:public domain">public domain</a> by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.
+<p><span class="licensetpl_link" style="display:none;">http://creativecommons.org/publicdomain/zero/1.0/deed.en</span><span class="licensetpl_short" style="display:none;">CC0</span><span class="licensetpl_long" style="display:none;">Creative Commons Zero, Public Domain Dedication</span><span class="licensetpl_link_req" style="display:none;">false</span><span class="licensetpl_attr_req" style="display:none;">false</span></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+
+<!-- 
+NewPP limit report
+Parsed by mw1322
+Cached time: 20171002215807
+Cache expiry: 86400
+Dynamic content: true
+CPU time usage: 0.060 seconds
+Real time usage: 0.080 seconds
+Preprocessor visited node count: 725/1000000
+Preprocessor generated node count: 0/1500000
+Post‐expand include size: 7842/2097152 bytes
+Template argument size: 571/2097152 bytes
+Highest expansion depth: 10/40
+Expensive parser function count: 1/500
+Lua time usage: 0.011/10.000 seconds
+Lua memory usage: 828 KB/50 MB
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   71.043      1 -total
+ 79.19%   56.257      1 Template:Information
+ 36.61%   26.007      1 Template:ISOdate
+ 20.43%   14.512      1 Template:Self
+ 12.98%    9.218      1 Template:Years_since
+  7.35%    5.221      1 Template:Cc-zero
+  6.94%    4.928      1 Template:IfNum
+  5.56%    3.948      1 Template:Parse_source
+  4.53%    3.219      5 Template:Dir
+  3.83%    2.721      1 Template:CC-Layout
+-->
+</div>
+<!-- Saved in parser cache with key commonswiki:pcache:idhash:894438-1!canonical and timestamp 20171002215807 and revision id 232902115
+ -->
+</div>
+<h2 id="filehistory">File history</h2>
+<div id="mw-imagepage-section-filehistory">
+<p>Click on a date/time to view the file as it appeared at that time.
+</p>(newest | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;dir=prev#filehistory" class="mw-lastlink" title="File:While-loop-diagram.svg">oldest</a>) View (newer 10 |  <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=20060626185733#filehistory" class="mw-nextlink" title="File:While-loop-diagram.svg" rel="next">older 10</a>) (<a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=10#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">10</a> | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=20#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">20</a> | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=50#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">50</a> | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=100#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">100</a> | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=250#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">250</a> | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=500#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">500</a>)
+<table class="wikitable filehistory">
+<tr><th></th><th>Date/Time</th><th>Thumbnail</th><th>Dimensions</th><th>User</th><th>Comment</th></tr>
+<tr><td>current</td><td class='filehistory-selected' style='white-space: nowrap;'><a href="//upload.wikimedia.org/wikipedia/commons/4/43/While-loop-diagram.svg">06:20, 9 February 2017</a></td><td><a href="//upload.wikimedia.org/wikipedia/commons/4/43/While-loop-diagram.svg"><img alt="Thumbnail for version as of 06:20, 9 February 2017" src="//upload.wikimedia.org/wikipedia/commons/thumb/4/43/While-loop-diagram.svg/95px-While-loop-diagram.svg.png" width="95" height="120" data-file-width="271" data-file-height="343" /></a></td><td>271 × 343 <span style="white-space: nowrap;">(10 KB)</span></td><td>Cedar101</td><td dir="ltr">Reverted to version as of 17:20, 4 August 2011 (UTC)</td></tr>
+<tr><td></td><td  style='white-space: nowrap;'><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20170209062012%21While-loop-diagram.svg">06:34, 14 October 2016</a></td><td><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20170209062012%21While-loop-diagram.svg"><img alt="Thumbnail for version as of 06:34, 14 October 2016" src="//upload.wikimedia.org/wikipedia/commons/thumb/archive/4/43/20170209062012%21While-loop-diagram.svg/95px-While-loop-diagram.svg.png" width="95" height="120" data-file-width="271" data-file-height="343" /></a></td><td>271 × 343 <span style="white-space: nowrap;">(3 KB)</span></td><td>Crashed greek</td><td dir="ltr">Reverted to version as of 17:22, 4 August 2011 (UTC)</td></tr>
+<tr><td></td><td  style='white-space: nowrap;'><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20161014063419%21While-loop-diagram.svg">06:31, 14 October 2016</a></td><td><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20161014063419%21While-loop-diagram.svg"><img alt="Thumbnail for version as of 06:31, 14 October 2016" src="//upload.wikimedia.org/wikipedia/commons/thumb/archive/4/43/20161014063419%21While-loop-diagram.svg/95px-While-loop-diagram.svg.png" width="95" height="120" data-file-width="271" data-file-height="343" /></a></td><td>271 × 343 <span style="white-space: nowrap;">(6 KB)</span></td><td>Crashed greek</td><td dir="ltr">standardised shape for processing in a flow chart.</td></tr>
+<tr><td></td><td  style='white-space: nowrap;'><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20161014063103%21While-loop-diagram.svg">17:22, 4 August 2011</a></td><td><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20161014063103%21While-loop-diagram.svg"><img alt="Thumbnail for version as of 17:22, 4 August 2011" src="//upload.wikimedia.org/wikipedia/commons/thumb/archive/4/43/20161014063103%21While-loop-diagram.svg/95px-While-loop-diagram.svg.png" width="95" height="120" data-file-width="271" data-file-height="343" /></a></td><td>271 × 343 <span style="white-space: nowrap;">(3 KB)</span></td><td>Pluke</td><td dir="ltr">optimised</td></tr>
+<tr><td></td><td  style='white-space: nowrap;'><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20110804172202%21While-loop-diagram.svg">17:20, 4 August 2011</a></td><td><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20110804172202%21While-loop-diagram.svg"><img alt="Thumbnail for version as of 17:20, 4 August 2011" src="//upload.wikimedia.org/wikipedia/commons/thumb/archive/4/43/20110804172202%21While-loop-diagram.svg/95px-While-loop-diagram.svg.png" width="95" height="120" data-file-width="271" data-file-height="343" /></a></td><td>271 × 343 <span style="white-space: nowrap;">(10 KB)</span></td><td>Pluke</td><td dir="ltr">surely this time after a complete rewrite?</td></tr>
+<tr><td></td><td  style='white-space: nowrap;'><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20110804172029%21While-loop-diagram.svg">17:06, 4 August 2011</a></td><td><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20110804172029%21While-loop-diagram.svg"><img alt="Thumbnail for version as of 17:06, 4 August 2011" src="//upload.wikimedia.org/wikipedia/commons/thumb/archive/4/43/20110804172029%21While-loop-diagram.svg/51px-While-loop-diagram.svg.png" width="51" height="120" data-file-width="319" data-file-height="744" /></a></td><td>319 × 744 <span style="white-space: nowrap;">(7 KB)</span></td><td>Pluke</td><td dir="ltr">this time?</td></tr>
+<tr><td></td><td  style='white-space: nowrap;'><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20110804170610%21While-loop-diagram.svg">16:59, 4 August 2011</a></td><td><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20110804170610%21While-loop-diagram.svg"><img alt="Thumbnail for version as of 16:59, 4 August 2011" src="//upload.wikimedia.org/wikipedia/commons/thumb/archive/4/43/20110804170610%21While-loop-diagram.svg/51px-While-loop-diagram.svg.png" width="51" height="120" data-file-width="319" data-file-height="744" /></a></td><td>319 × 744 <span style="white-space: nowrap;">(8 KB)</span></td><td>Pluke</td><td dir="ltr">fixed the font - finally!</td></tr>
+<tr><td></td><td  style='white-space: nowrap;'><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20110804165929%21While-loop-diagram.svg">19:39, 21 April 2008</a></td><td><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20110804165929%21While-loop-diagram.svg"><img alt="Thumbnail for version as of 19:39, 21 April 2008" src="//upload.wikimedia.org/wikipedia/commons/thumb/archive/4/43/20110804165929%21While-loop-diagram.svg/51px-While-loop-diagram.svg.png" width="51" height="120" data-file-width="319" data-file-height="744" /></a></td><td>319 × 744 <span style="white-space: nowrap;">(6 KB)</span></td><td>Pluke</td><td dir="ltr"></td></tr>
+<tr><td></td><td  style='white-space: nowrap;'><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20080421193915%21While-loop-diagram.svg">19:01, 26 June 2006</a></td><td><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20080421193915%21While-loop-diagram.svg"><img alt="Thumbnail for version as of 19:01, 26 June 2006" src="//upload.wikimedia.org/wikipedia/commons/thumb/archive/4/43/20080421193915%21While-loop-diagram.svg/51px-While-loop-diagram.svg.png" width="51" height="120" data-file-width="319" data-file-height="744" /></a></td><td>319 × 744 <span style="white-space: nowrap;">(3 KB)</span></td><td>Pluke</td><td dir="ltr"></td></tr>
+<tr><td></td><td  style='white-space: nowrap;'><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20060626190110%21While-loop-diagram.svg">18:57, 26 June 2006</a></td><td><a href="//upload.wikimedia.org/wikipedia/commons/archive/4/43/20060626190110%21While-loop-diagram.svg"><img alt="Thumbnail for version as of 18:57, 26 June 2006" src="//upload.wikimedia.org/wikipedia/commons/thumb/archive/4/43/20060626190110%21While-loop-diagram.svg/51px-While-loop-diagram.svg.png" width="51" height="120" data-file-width="319" data-file-height="744" /></a></td><td>319 × 744 <span style="white-space: nowrap;">(6 KB)</span></td><td>Pluke</td><td dir="ltr"></td></tr>
+</table>
+(newest | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;dir=prev#filehistory" class="mw-lastlink" title="File:While-loop-diagram.svg">oldest</a>) View (newer 10 |  <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=20060626185733#filehistory" class="mw-nextlink" title="File:While-loop-diagram.svg" rel="next">older 10</a>) (<a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=10#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">10</a> | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=20#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">20</a> | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=50#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">50</a> | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=100#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">100</a> | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=250#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">250</a> | <a href="/w/index.php?title=File:While-loop-diagram.svg&amp;offset=&amp;limit=500#filehistory" class="mw-numlink" title="File:While-loop-diagram.svg">500</a>)
+</div>
+<h2 id="filelinks">File usage</h2>
+<div id='mw-imagepage-section-linkstoimage'>
+<div class="linkstoimage" id="linkstoimage">The following pages on the English Wikipedia link to this file (pages on other projects are not listed):</div>
+<ul class="mw-imagepage-linkstoimage">
+<li class="mw-imagepage-linkstoimage-ns0"><a href="/wiki/While_loop" title="While loop">While loop</a></li>
+</ul>
+</div>
+<h2 id="globalusage">Global file usage</h2>
+<div id="mw-imagepage-section-globalusage"><p>The following other wikis use this file:
+</p><ul>
+<li class='mw-gu-onwiki-bg_wikipedia_org'>Usage on bg.wikipedia.org
+<ul>	<li><a class="external" href="//bg.wikipedia.org/wiki/%D0%A6%D0%B8%D0%BA%D1%8A%D0%BB_(%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%B8%D1%80%D0%B0%D0%BD%D0%B5)">Цикъл (програмиране)</a></li>
+</ul></li>
+<li class='mw-gu-onwiki-ca_wikipedia_org'>Usage on ca.wikipedia.org
+<ul>	<li><a class="external" href="//ca.wikipedia.org/wiki/Bucle_While">Bucle While</a></li>
+</ul></li>
+<li class='mw-gu-onwiki-el_wikipedia_org'>Usage on el.wikipedia.org
+<ul>	<li><a class="external" href="//el.wikipedia.org/wiki/%CE%92%CF%81%CF%8C%CF%87%CE%BF%CF%82_While">Βρόχος While</a></li>
+</ul></li>
+<li class='mw-gu-onwiki-en_wikibooks_org'>Usage on en.wikibooks.org
+<ul>	<li><a class="external" href="//en.wikibooks.org/wiki/A-level_Computing_2009/AQA/Computer_Systems,_Programming_and_Network_Concepts/Introduction_to_Programming">A-level Computing 2009/AQA/Computer Systems, Programming and Network Concepts/Introduction to Programming</a></li>
+	<li><a class="external" href="//en.wikibooks.org/wiki/A-level_Computing_2009/AQA/Problem_Solving,_Programming,_Data_Representation_and_Practical_Exercise/Fundamentals_of_Programming/Iteration">A-level Computing 2009/AQA/Problem Solving, Programming, Data Representation and Practical Exercise/Fundamentals of Programming/Iteration</a></li>
+	<li><a class="external" href="//en.wikibooks.org/wiki/A-level_Computing_2009/AQA/Problem_Solving,_Programming,_Data_Representation_and_Practical_Exercise/Problem_Solving/Algorithm_design">A-level Computing 2009/AQA/Problem Solving, Programming, Data Representation and Practical Exercise/Problem Solving/Algorithm design</a></li>
+	<li><a class="external" href="//en.wikibooks.org/wiki/A-level_Computing_2009/AQA/Print_version/Unit_1">A-level Computing 2009/AQA/Print version/Unit 1</a></li>
+	<li><a class="external" href="//en.wikibooks.org/wiki/A-level_Computing/AQA/Paper_1/Fundamentals_of_programming/Iteration">A-level Computing/AQA/Paper 1/Fundamentals of programming/Iteration</a></li>
+	<li><a class="external" href="//en.wikibooks.org/wiki/A-level_Computing/AQA/Problem_Solving,_Programming,_Data_Representation_and_Practical_Exercise/Problem_Solving/Algorithm_design">A-level Computing/AQA/Problem Solving, Programming, Data Representation and Practical Exercise/Problem Solving/Algorithm design</a></li>
+	<li><a class="external" href="//en.wikibooks.org/wiki/A-level_Computing/AQA/Print_version/Unit_1">A-level Computing/AQA/Print version/Unit 1</a></li>
+</ul></li>
+<li class='mw-gu-onwiki-es_wikipedia_org'>Usage on es.wikipedia.org
+<ul>	<li><a class="external" href="//es.wikipedia.org/wiki/Bucle_while">Bucle while</a></li>
+	<li><a class="external" href="//es.wikipedia.org/wiki/Usuario:Kwargsito/Taller">Usuario:Kwargsito/Taller</a></li>
+</ul></li>
+<li class='mw-gu-onwiki-hu_wikipedia_org'>Usage on hu.wikipedia.org
+<ul>	<li><a class="external" href="//hu.wikipedia.org/wiki/Ciklus_(programoz%C3%A1s)">Ciklus (programozás)</a></li>
+</ul></li>
+<li class='mw-gu-onwiki-ko_wikipedia_org'>Usage on ko.wikipedia.org
+<ul>	<li><a class="external" href="//ko.wikipedia.org/wiki/While_%EB%A3%A8%ED%94%84">While 루프</a></li>
+</ul></li>
+<li class='mw-gu-onwiki-sr_wikipedia_org'>Usage on sr.wikipedia.org
+<ul>	<li><a class="external" href="//sr.wikipedia.org/wiki/%D0%92%D0%B8%D0%BA%D0%B8%D0%BF%D0%B5%D0%B4%D0%B8%D1%98%D0%B0:%D0%92%D0%B8%D0%BA%D0%B8_%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D1%98%D0%B0%D0%BB%D0%B0%D1%86/While_i_repeat_petlja">Википедија:Вики гимназијалац/While i repeat petlja</a></li>
+	<li><a class="external" href="//sr.wikipedia.org/wiki/While_%D0%BF%D0%B5%D1%82%D1%99%D0%B0">While петља</a></li>
+</ul></li>
+<li class='mw-gu-onwiki-zh_wikipedia_org'>Usage on zh.wikipedia.org
+<ul>	<li><a class="external" href="//zh.wikipedia.org/wiki/While%E8%BF%B4%E5%9C%88">While迴圈</a></li>
+	<li><a class="external" href="//zh.wikipedia.org/wiki/%E5%89%8D%E6%B8%AC%E5%BE%AA%E7%92%B0">前測循環</a></li>
+</ul></li>
+</ul>
+</div><h2 id="metadata">Metadata</h2>
+<div class="mw-imagepage-section-metadata">This file contains additional information, probably added from the digital camera or scanner used to create or digitize it.
+If the file has been modified from its original state, some details may not fully reflect the modified file.<table id="mw_metadata" class="mw_metadata">
+<tr class="exif-imagewidth collapsable"><th>Width</th><td>270.95624</td></tr><tr class="exif-imagelength collapsable"><th>Height</th><td>343.05521</td></tr></table>
+</div>
+<noscript><img src="//en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1" alt="" title="" width="1" height="1" style="border: none; position: absolute;" /></noscript></div>					<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="https://en.wikipedia.org/wiki/File:While-loop-diagram.svg">https://en.wikipedia.org/wiki/File:While-loop-diagram.svg</a>"					</div>
+				<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>				<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-anonuserpage">Not logged in</li><li id="pt-anontalk"><a href="/wiki/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n">Talk</a></li><li id="pt-anoncontribs"><a href="/wiki/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y">Contributions</a></li><li id="pt-createaccount"><a href="/w/index.php?title=Special:CreateAccount&amp;returnto=File%3AWhile-loop-diagram.svg" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li><li id="pt-login"><a href="/w/index.php?title=Special:UserLogin&amp;returnto=File%3AWhile-loop-diagram.svg" title="You're encouraged to log in; however, it's not mandatory. [o]" accesskey="o">Log in</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+														<li id="ca-nstab-image" class="selected"><span><a href="/wiki/File:While-loop-diagram.svg" title="View the file page [c]" accesskey="c">File</a></span></li>
+							<li id="ca-talk" class="new"><span><a href="/w/index.php?title=File_talk:While-loop-diagram.svg&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Talk</a></span></li>
+						</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h3 id="p-variants-label">
+							<span>Variants</span>
+						</h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+														<li id="ca-view" class="collapsible selected"><span><a href="/wiki/File:While-loop-diagram.svg">Read</a></span></li>
+							<li id="ca-view-foreign" class="collapsible"><span><a href="https://commons.wikimedia.org/wiki/File:While-loop-diagram.svg">View on Commons</a></span></li>
+						</ul>
+					</div>
+										<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+						<h3 id="p-cactions-label"><span>More</span></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+
+						<form action="/w/index.php" id="searchform">
+							<div id="simpleSearch">
+							<input type="search" name="search" placeholder="Search Wikipedia" title="Search Wikipedia [f]" accesskey="f" id="searchInput"/><input type="hidden" value="Special:Search" name="title"/><input type="submit" name="fulltext" value="Search" title="Search Wikipedia for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton"/><input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchButton" class="searchButton"/>							</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="/wiki/Main_Page"  title="Visit the main page"></a></div>
+						<div class="portal" role="navigation" id='p-navigation' aria-labelledby='p-navigation-label'>
+			<h3 id='p-navigation-label'>Navigation</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-mainpage-description"><a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z">Main page</a></li><li id="n-contents"><a href="/wiki/Portal:Contents" title="Guides to browsing Wikipedia">Contents</a></li><li id="n-featuredcontent"><a href="/wiki/Portal:Featured_content" title="Featured content – the best of Wikipedia">Featured content</a></li><li id="n-currentevents"><a href="/wiki/Portal:Current_events" title="Find background information on current events">Current events</a></li><li id="n-randompage"><a href="/wiki/Special:Random" title="Load a random article [x]" accesskey="x">Random article</a></li><li id="n-sitesupport"><a href="https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=C13_en.wikipedia.org&amp;uselang=en" title="Support us">Donate to Wikipedia</a></li><li id="n-shoplink"><a href="//shop.wikimedia.org" title="Visit the Wikipedia store">Wikipedia store</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-interaction' aria-labelledby='p-interaction-label'>
+			<h3 id='p-interaction-label'>Interaction</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-help"><a href="/wiki/Help:Contents" title="Guidance on how to use and edit Wikipedia">Help</a></li><li id="n-aboutsite"><a href="/wiki/Wikipedia:About" title="Find out about Wikipedia">About Wikipedia</a></li><li id="n-portal"><a href="/wiki/Wikipedia:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li><li id="n-recentchanges"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li><li id="n-contactpage"><a href="//en.wikipedia.org/wiki/Wikipedia:Contact_us" title="How to contact Wikipedia">Contact page</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+			<h3 id='p-tb-label'>Tools</h3>
+
+			<div class="body">
+									<ul>
+						<li id="t-whatlinkshere"><a href="/wiki/Special:WhatLinksHere/File:While-loop-diagram.svg" title="List of all English Wikipedia pages containing links to this page [j]" accesskey="j">What links here</a></li><li id="t-upload"><a href="/wiki/Wikipedia:File_Upload_Wizard" title="Upload files [u]" accesskey="u">Upload file</a></li><li id="t-specialpages"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li><li id="t-info"><a href="/w/index.php?title=File:While-loop-diagram.svg&amp;action=info" title="More information about this page">Page information</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-lang' aria-labelledby='p-lang-label'>
+			<h3 id='p-lang-label'>Languages</h3>
+
+			<div class="body">
+									<ul>
+											</ul>
+							</div>
+		</div>
+				</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="https://wikimediafoundation.org/wiki/Privacy_policy" class="extiw" title="wmf:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/wiki/Wikipedia:About" title="Wikipedia:About">About Wikipedia</a></li>
+											<li id="footer-places-disclaimer"><a href="/wiki/Wikipedia:General_disclaimer" title="Wikipedia:General disclaimer">Disclaimers</a></li>
+											<li id="footer-places-contact"><a href="//en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact Wikipedia</a></li>
+											<li id="footer-places-developers"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute">Developers</a></li>
+											<li id="footer-places-cookiestatement"><a href="https://wikimediafoundation.org/wiki/Cookie_statement">Cookie statement</a></li>
+											<li id="footer-places-mobileview"><a href="//en.m.wikipedia.org/w/index.php?title=File:While-loop-diagram.svg&amp;mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Mobile view</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-copyrightico">
+							<a href="https://wikimediafoundation.org/"><img src="/static/images/wikimedia-button.png" srcset="/static/images/wikimedia-button-1.5x.png 1.5x, /static/images/wikimedia-button-2x.png 2x" width="88" height="31" alt="Wikimedia Foundation"/></a>						</li>
+											<li id="footer-poweredbyico">
+							<a href="//www.mediawiki.org/"><img src="/static/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/static/images/poweredby_mediawiki_132x47.png 1.5x, /static/images/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>						</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":127,"wgHostname":"mw1239"});});</script>
+	</body>
+</html>

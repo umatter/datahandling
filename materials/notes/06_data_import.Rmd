@@ -37,6 +37,10 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
   - Still often found: Excel for whatever reason
   - Other Stat software: binary (other stat software, etc.) --> find good examples
   - Web: XML, JSON, (HTML)
+  
+  
+
+
 
 # Data gathering procedure
 - organize script: beginning of pipeline!
@@ -49,7 +53,112 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 @murrell_2009 chapter 9.7: w/o databases, own XML/JSON version, and WiGr chapter 11 (consider WiGr in exercises as well)
 
 
+# Practical Basics of Loading/Importing Data^[Taken from @umatter_2018]
 
+There are many ways to import data into R from various sources. Here, we look at how to import data from the most common sources when you use R for basic data analysis or econometric exercises.
+
+## Loading built-in datasets
+The basic R installation provides some example data sets to try out R's statistics functions. In the introduction to visualization techniques with R as well as in the statistics examples further below, we will rely on some of these datasets for sake of simplicity. Note that the usage of these simple datasets shipped with basic R are very helpful when practicing/learning R on your own. Many R packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and tutorials online also use these datasets (see, for example the [ggplot2 documentation](https://ggplot2.tidyverse.org/)). And, they are very useful when searching help on [Stackoverflow](https://stackoverflow.com/questions/tagged/r) in the context of data analysis/manipulation with R, as you should provide a code example based on some data that everybody can easily load and access.
+
+In order to load such datasets, simply use the `data()`-function:
+
+```{r eval=TRUE}
+data(swiss)
+```
+
+In this case, we load a dataset called `swiss`. After loading it, the data is stored in a variable of the same name as the dataset (here '`swiss`'). We can inspect it and have a look at the first few rows:
+
+```{r eval=TRUE}
+# inspect the structure
+str(swiss)
+
+# look at the first few rows
+head(swiss)
+```
+
+To get a list of all the built-in datasets simply type `data()` into the console and hit enter. To get more information about a given dataset use the help function (for example, `?swiss`)
+
+
+
+## Importing data from files
+In most cases of applying R for econometrics and data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as 'Comma Separated Values' (CSV). In economics one also frequently encounters data being stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data (e.g., for your Master Thesis) on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into R (in some cases, additional packages have to be loaded, though).
+
+### Comma Separated Values (CSV)
+A most common format to store and transfer datasets is CSV. In this format data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code-block shows how the first two rows of the `swiss`-dataset would look like when stored in a CSV:
+
+```{}
+"","Fertility","Agriculture","Examination","Education","Catholic","Infant.Mortality"
+"Courtelary",80.2,17,15,12,9.96,22.2
+```
+
+The function `read.csv()` imports such files from disk into R (in the form of a `data.frame`). In this example the `swiss`-dataset is stored locally on our disk in the folder `data`:
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+swiss_imported <- read.csv("../../data/swiss.csv")
+```
+
+
+```{r eval=FALSE, purl=FALSE}
+swiss_imported <- read.csv("data/swiss.csv")
+```
+
+
+### Spreadsheets/Excel
+In order to read excel spreadsheets we need to install an additional R package called `readxl`.
+
+```{r eval=FALSE}
+# install the package 
+install.packages("readxl")
+```
+
+Then we load this additional package ('library') and use the package's `read_excel()`-function to import data from an excel-sheet. In the example below, the same data as above is stored in an excel-sheet called `swiss.xlsx`, again in a folder called `data`.
+
+
+```{r echo=FALSE, purl=FALSE}
+# load the package
+library(readxl)
+
+# import data from a spreadsheet
+swiss_imported <- read_excel("../../data/swiss.xlsx")
+```
+
+
+```{r eval=FALSE}
+# load the package
+library(readxl)
+
+# import data from a spreadsheet
+swiss_imported <- read_excel("data/swiss.xlsx")
+```
+
+### Data from other data analysis software 
+The R packages `foreign` and `haven` contain functions to import data from formats used in other statistics/data analysis software, such as SPSS and STATA.
+
+In the following example we use `haven`'s `read_spss()` function to import a version of the `swiss`-dataset stored in SPSS' `.sav`-format (again stored in the folder called `data`). 
+
+```{r echo=FALSE, purl=FALSE}
+# install the package (if not yet installed):
+# install.packages("haven")
+
+# load the package
+library(haven)
+
+# read the data
+swiss_imported <- read_spss("../../data/swiss.sav")
+
+```
+
+```{r eval=FALSE}
+# install the package (if not yet installed):
+# install.packages("haven")
+
+# load the package
+library(haven)
+
+# read the data
+swiss_imported <- read_spss("data/swiss.sav")
+
+```
 
 #### XML in R (from Webmining)
 
@@ -84,7 +193,7 @@ xml_text(customer_names)
 
 ```
 
-## JSON in R (from Webining)
+## JSON in R (from Webmining)
 
 Again, we can rely on an R package (`jsonlite`) providing high-level functions to read, manipulate, and extract data when working with JSON-documents in R. An important difference to working with XML- and HTML-documents is that XPath is not compatible with JSON. However, as `jsonlite` represents parsed JSON as R objects of class `list` and/or `data-frame`, we can simply work with the parsed document as with any other R-object of the same class. The following example illustrates this point.
 

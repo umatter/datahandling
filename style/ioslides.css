@@ -757,7 +757,7 @@ table.rmdtable {
 /* line 479, ../scss/default.scss */
 table.rmdtable tr > td:first-child, table th {
   font-weight: 600;
-  color: #515151;
+  color: white;
 }
 /* line 484, ../scss/default.scss */
 table.rmdtable tr:nth-child(odd) {
@@ -787,6 +787,7 @@ table.rmdtable td.highlight {
   background: -o-linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
   background: linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
 }
+
 /* line 504, ../scss/default.scss */
 table.rmdtable.rows {
   border-bottom: none;
@@ -834,7 +835,7 @@ article.smaller p, article.smaller ul, article.smaller ol {
 }
 /* line 541, ../scss/default.scss */
 article.smaller table td, article.smaller table th {
-  font-size: 14px;
+  font-size: 19px;
 }
 /* line 545, ../scss/default.scss */
 article.smaller pre {
@@ -888,14 +889,14 @@ article.smaller q:before, article.smaller q:after {
 .prettyprint .str,
 .prettyprint .atv {
   /* a markup attribute value */
-  color: #8dff0a;
+  color: #8DFF0A;
 }
 
 /* line 597, ../scss/default.scss */
 .prettyprint .kwd,
 .prettyprint .tag {
   /* a markup tag name */
-  color: #0066cc;
+  color: #FC6F09;
 }
 
 /* line 600, ../scss/default.scss */
@@ -908,14 +909,21 @@ article.smaller q:before, article.smaller q:after {
 /* line 604, ../scss/default.scss */
 .prettyprint .lit {
   /* a literal value */
-  color: #7f0000;
+  color: #58C554;
+}
+
+
+/* line 604, ../scss/default.scss */
+.prettyprint .builtin {
+  /* a boolean value (added by UM)*/
+  color: #FDC251;
 }
 
 /* line 609, ../scss/default.scss */
 .prettyprint .pun,
 .prettyprint .opn,
 .prettyprint .clo {
-  color: #a3a1a1;
+  color: #E6E1DC;
 }
 
 /* line 615, ../scss/default.scss */
