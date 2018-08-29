@@ -9,7 +9,6 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Prof. Dr. Ulrich Matter" />
 
 
 <title>Data Handling: Import, Cleaning and Visualisation</title>
@@ -118,6 +117,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -147,7 +149,8 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Data Handling: Import, Cleaning and Visualisation</h1>
 <h3 class="subtitle"><em>Lecture 6: Data Sources, Data Gathering, Data Import</em></h3>
-<h4 class="author"><em>Prof. Dr. Ulrich Matter</em></h4>
+<h4 class="author"><em><div style="white-space: pre-line;">Prof. Dr. Ulrich Matter
+(University of St. Gallen)</div></em></h4>
 <h4 class="date"><em>25/10/2018</em></h4>
 
 </div>
@@ -179,8 +182,73 @@ $(document).ready(function () {
 <ul>
 <li>build on/recap concepts <span class="citation">Murrell (2009)</span> chapter 9.7: w/o databases, own XML/JSON version, and WiGr chapter 11 (consider WiGr in exercises as well)</li>
 </ul>
+</div>
+<div id="practical-basics-of-loadingimporting-data" class="section level1">
+<h1><span class="header-section-number">4</span> Practical Basics of Loading/Importing Data<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h1>
+<p>There are many ways to import data into R from various sources. Here, we look at how to import data from the most common sources when you use R for basic data analysis or econometric exercises.</p>
+<div id="loading-built-in-datasets" class="section level2">
+<h2><span class="header-section-number">4.1</span> Loading built-in datasets</h2>
+<p>The basic R installation provides some example data sets to try out R’s statistics functions. In the introduction to visualization techniques with R as well as in the statistics examples further below, we will rely on some of these datasets for sake of simplicity. Note that the usage of these simple datasets shipped with basic R are very helpful when practicing/learning R on your own. Many R packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and tutorials online also use these datasets (see, for example the <a href="https://ggplot2.tidyverse.org/">ggplot2 documentation</a>). And, they are very useful when searching help on <a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a> in the context of data analysis/manipulation with R, as you should provide a code example based on some data that everybody can easily load and access.</p>
+<p>In order to load such datasets, simply use the <code>data()</code>-function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(swiss)</code></pre></div>
+<p>In this case, we load a dataset called <code>swiss</code>. After loading it, the data is stored in a variable of the same name as the dataset (here ‘<code>swiss</code>’). We can inspect it and have a look at the first few rows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># inspect the structure</span>
+<span class="kw">str</span>(swiss)</code></pre></div>
+<pre><code>## 'data.frame':    47 obs. of  6 variables:
+##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
+##  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
+##  $ Examination     : int  15 6 5 12 17 9 16 14 12 16 ...
+##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
+##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
+##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># look at the first few rows</span>
+<span class="kw">head</span>(swiss)</code></pre></div>
+<pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality
+## Courtelary        80.2        17.0          15        12     9.96             22.2
+## Delemont          83.1        45.1           6         9    84.84             22.2
+## Franches-Mnt      92.5        39.7           5         5    93.40             20.2
+## Moutier           85.8        36.5          12         7    33.77             20.3
+## Neuveville        76.9        43.5          17        15     5.16             20.6
+## Porrentruy        76.1        35.3           9         7    90.57             26.6</code></pre>
+<p>To get a list of all the built-in datasets simply type <code>data()</code> into the console and hit enter. To get more information about a given dataset use the help function (for example, <code>?swiss</code>)</p>
+</div>
+<div id="importing-data-from-files" class="section level2">
+<h2><span class="header-section-number">4.2</span> Importing data from files</h2>
+<p>In most cases of applying R for econometrics and data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as ‘Comma Separated Values’ (CSV). In economics one also frequently encounters data being stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data (e.g., for your Master Thesis) on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into R (in some cases, additional packages have to be loaded, though).</p>
+<div id="comma-separated-values-csv" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Comma Separated Values (CSV)</h3>
+<p>A most common format to store and transfer datasets is CSV. In this format data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code-block shows how the first two rows of the <code>swiss</code>-dataset would look like when stored in a CSV:</p>
+<pre><code>&quot;&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;
+&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2</code></pre>
+<p>The function <code>read.csv()</code> imports such files from disk into R (in the form of a <code>data.frame</code>). In this example the <code>swiss</code>-dataset is stored locally on our disk in the folder <code>data</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">swiss_imported &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</code></pre></div>
+</div>
+<div id="spreadsheetsexcel" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Spreadsheets/Excel</h3>
+<p>In order to read excel spreadsheets we need to install an additional R package called <code>readxl</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install the package </span>
+<span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</code></pre></div>
+<p>Then we load this additional package (‘library’) and use the package’s <code>read_excel()</code>-function to import data from an excel-sheet. In the example below, the same data as above is stored in an excel-sheet called <code>swiss.xlsx</code>, again in a folder called <code>data</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the package</span>
+<span class="kw">library</span>(readxl)
+
+<span class="co"># import data from a spreadsheet</span>
+swiss_imported &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/swiss.xlsx&quot;</span>)</code></pre></div>
+</div>
+<div id="data-from-other-data-analysis-software" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Data from other data analysis software</h3>
+<p>The R packages <code>foreign</code> and <code>haven</code> contain functions to import data from formats used in other statistics/data analysis software, such as SPSS and STATA.</p>
+<p>In the following example we use <code>haven</code>‘s <code>read_spss()</code> function to import a version of the <code>swiss</code>-dataset stored in SPSS’ <code>.sav</code>-format (again stored in the folder called <code>data</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install the package (if not yet installed):</span>
+<span class="co"># install.packages(&quot;haven&quot;)</span>
+
+<span class="co"># load the package</span>
+<span class="kw">library</span>(haven)
+
+<span class="co"># read the data</span>
+swiss_imported &lt;-<span class="st"> </span><span class="kw">read_spss</span>(<span class="st">&quot;data/swiss.sav&quot;</span>)</code></pre></div>
 <div id="xml-in-r-from-webmining" class="section level4">
-<h4><span class="header-section-number">3.0.0.1</span> XML in R (from Webmining)</h4>
+<h4><span class="header-section-number">4.2.3.1</span> XML in R (from Webmining)</h4>
 <p>Luckily for us, there are several XML-parsers already implemented in R packages specifically written for working with XML data. We thus do not have to understand the XML syntax in every detail in order to work with this data format in R. The already familiar package <code>xml2</code> (automatically loaded when loading <code>rvest</code>) provides the <code>read_xml()</code> function which we can use to read the exemplary XML-document shown above into R.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load packages</span>
 <span class="kw">library</span>(xml2)
@@ -212,8 +280,10 @@ customer_names &lt;-<span class="st"> </span><span class="kw">xml_find_all</span
 <span class="kw">xml_text</span>(customer_names)</code></pre></div>
 <pre><code>## [1] &quot;John Doe&quot;  &quot;Peter Pan&quot;</code></pre>
 </div>
-<div id="json-in-r-from-webining" class="section level2">
-<h2><span class="header-section-number">3.1</span> JSON in R (from Webining)</h2>
+</div>
+</div>
+<div id="json-in-r-from-webmining" class="section level2">
+<h2><span class="header-section-number">4.3</span> JSON in R (from Webmining)</h2>
 <p>Again, we can rely on an R package (<code>jsonlite</code>) providing high-level functions to read, manipulate, and extract data when working with JSON-documents in R. An important difference to working with XML- and HTML-documents is that XPath is not compatible with JSON. However, as <code>jsonlite</code> represents parsed JSON as R objects of class <code>list</code> and/or <code>data-frame</code>, we can simply work with the parsed document as with any other R-object of the same class. The following example illustrates this point.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load packages</span>
 <span class="kw">library</span>(jsonlite)</code></pre></div>
@@ -259,10 +329,19 @@ json_doc<span class="op">$</span>gender<span class="op">$</span>type</code></pre
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 <div id="refs" class="references">
+<div id="ref-umatter_2018">
+<p>Matter, Ulrich. 2018. “A Brief Introduction to Programming with R.” Lecture notes. St. Gallen: University of St. Gallen.</p>
+</div>
 <div id="ref-murrell_2009">
 <p>Murrell, Paul. 2009. <em>Introduction to Data Technologies</em>. London, UK: CRC Press.</p>
 </div>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Taken from <span class="citation">Matter (2018)</span><a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
 
 

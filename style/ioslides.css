@@ -1023,7 +1023,7 @@ article.smaller q:before, article.smaller q:after {
 /* line 666, ../scss/default.scss */
 .with-notes.popup slide {
   overflow: visible;
-  background: white;
+  background: black;
   -webkit-transition: none;
   -moz-transition: none;
   -o-transition: none;

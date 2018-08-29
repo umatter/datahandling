@@ -263,7 +263,7 @@ Column {.sidebar}
 
 ```{r}
 selectInput("majors", label = "Select Particpants' Major",
-            choices = majors, selected = 'BWL')
+            choices = majors, selected = '')
 ```
 
 Column
@@ -272,7 +272,7 @@ Column
 ```{r}
 renderPlot({
     # Subset data
-    data_sub <- subset(student_data, majors == input$majors)
+    data_sub <- subset(student_data, degree == input$majors)
     
     # Find major counts
     r_exp <- table(data_sub$computer_literacy)

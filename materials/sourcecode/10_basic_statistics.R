@@ -168,3 +168,72 @@ hist(ts[[3]], main = "Sample size: 100", xlab = "T-value")
 # finally have a look at the actual standard normol distribution as a reference point
 plot(function(t)dnorm(t), -4, 4, main = "Normal density")
 
+## ------------------------------------------------------------------------
+# initiate sample
+a <- c(10,22,33, 22, 40)
+names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva")
+
+# compute the mean
+mean(a)
+# compute the median
+median(a)
+
+
+## ---- echo=TRUE----------------------------------------------------------
+range(a)
+var(a)
+sd(a)
+
+
+## ------------------------------------------------------------------------
+# define size of sample
+n <- 100
+# draw the random sample from a normal distribution with mean 10 and sd 2
+sample <- rnorm(n, mean = 10, sd = 2)
+
+# Test H0: mean of population = 10 
+t.test(sample, mu = 10)
+
+
+## ------------------------------------------------------------------------
+model1 <- Examination~Education
+
+## ------------------------------------------------------------------------
+fit1 <- lm(formula = model1, data = swiss)
+
+## ------------------------------------------------------------------------
+summary(fit1)
+
+## ------------------------------------------------------------------------
+# load data
+data(swiss)
+
+# linear regression with one variable
+# estimate coefficients
+model_fit <- lm(Examination~Education, data = swiss)
+# t-tests of coefficients (and additional statistics)
+summary(model_fit)
+
+
+## ------------------------------------------------------------------------
+# multiple linear regression
+# estimate coefficients
+model_fit2 <- lm(Examination~Education + Catholic + Agriculture, data = swiss)
+# t-tests of coefficients (and additional statistics)
+summary(model_fit2)
+
+
+## ------------------------------------------------------------------------
+# load packages
+library(stargazer)
+
+# print regression results as text
+stargazer(model_fit, model_fit2, type = "text")
+
+## ------------------------------------------------------------------------
+# load packages
+library(stargazer)
+
+# print regression results as text
+stargazer(model_fit, model_fit2, type = "latex")
+

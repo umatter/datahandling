@@ -1,56 +1,101 @@
 ## ------------------------------------------------------------------------
-# A vector containing numeric (or integer) values
-numeric_vector <- 10:20
-numeric_vector[2]
-numeric_vector[2:5]
+# vector to be summed up
+numbers <- c(1,2.1,3.5,4.8,5)
+# initiate total
+total_sum <- 0
+# number of iterations
+n <- length(numbers)
+# start loop
+for (i in 1:n) {
+     total_sum <- total_sum + numbers[i]
+}
 
-# A string vector ('a vector containing text')
-string_vector <- c("a", "b", "c")
-string_vector[-3]
+# check result
+total_sum
+# compare with result of sum() function
+sum(numbers)
 
-# Lists
-# A list can contain different types of elements, for example a numeric vector and a string_vector
-mylist <- list(numbers = numeric_vector, letters = string_vector)
-mylist
 
-# We can access the elements of a list in various ways
-# with the element's name
-mylist$numbers
-mylist["numbers"]
-# via the index
-mylist[1]
-# with [[]] we can access directly the content of the element
-mylist[[1]]
+## ------------------------------------------------------------------------
+# matrix to be summed up
+numbers_matrix <- matrix(1:20, ncol = 4)
+numbers_matrix
 
-# lists can also be nested (list of lists of lists....)
-mynestedlist <- list(a = mylist, b = 1:5)
 
 ## ------------------------------------------------------------------------
 
-# matrices
-mymatrix <- matrix(numeric_vector, nrow = 4)
-# get the second row
-mymatrix[2,]
-# get the first two columns
-mymatrix[, 1:2]
-
-# data frames ("lists as columns")
-mydf <- data.frame(Name = c("Alice", "Betty", "Claire"), Age = c(20, 30, 45))
-mydf
-# select the age column
-mydf$Age
-mydf[, "Age"]
-mydf[, 2]
-# select the second row
-mydf[2,]
+# number of iterations for outer loop
+m <- ncol(numbers_matrix)
+# number of iterations for inner loop
+n <- nrow(numbers_matrix)
+# start outer loop (loop over columns of matrix)
+for (j in 1:m) {
+     # start inner loop
+     # initiate total
+     total_sum <- 0
+     for (i in 1:n) {
+          total_sum <- total_sum + numbers_matrix[i, j]
+          }
+     print(total_sum)
+     }
 
 
 
 ## ------------------------------------------------------------------------
-# have a look at what kind of object you are dealing with
-class(mydf)
-class(mymatrix)
+# initiate starting value
+total <- 0
+# start loop
+while (total <= 20) {
+     total <- total + 1.12
+}
 
-# have a closer look at the data structure
-str(mydf)
+# check the result
+total
+
+
+## ------------------------------------------------------------------------
+2+2 == 4
+3+3 == 7
+
+condition <- TRUE
+if (condition) {
+     print("This is true!")
+} else {
+     print("This is false!")
+}
+
+condition <- FALSE
+if (condition) {
+     print("This is true!")
+} else {
+     print("This is false!")
+}
+
+
+
+## ------------------------------------------------------------------------
+# a simle integer vector, for which we want to compute the Mean
+a <- c(5.5, 7.5)
+# desired functionality and output:
+# my_mean(a)
+# 6.5
+
+## ------------------------------------------------------------------------
+sum(a)/length(a)
+
+## ------------------------------------------------------------------------
+# define our own function to compute the mean, given a numeric vector
+my_mean <- function(x) {
+     x_bar <- sum(x) / length(x)
+     return(x_bar)
+}
+
+## ------------------------------------------------------------------------
+# test it
+my_mean(a)
+
+## ------------------------------------------------------------------------
+b <- c(4,5,2,5,5,7)
+my_mean(b) # our own implementation
+mean(b) # the built_in function
 

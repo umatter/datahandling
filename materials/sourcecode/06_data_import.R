@@ -1,3 +1,35 @@
+## ----eval=TRUE-----------------------------------------------------------
+data(swiss)
+
+## ----eval=TRUE-----------------------------------------------------------
+# inspect the structure
+str(swiss)
+
+# look at the first few rows
+head(swiss)
+
+## ----eval=FALSE----------------------------------------------------------
+## # install the package
+## install.packages("readxl")
+
+## ----eval=FALSE----------------------------------------------------------
+## # load the package
+## library(readxl)
+## 
+## # import data from a spreadsheet
+## swiss_imported <- read_excel("data/swiss.xlsx")
+
+## ----eval=FALSE----------------------------------------------------------
+## # install the package (if not yet installed):
+## # install.packages("haven")
+## 
+## # load the package
+## library(haven)
+## 
+## # read the data
+## swiss_imported <- read_spss("data/swiss.sav")
+## 
+
 ## ------------------------------------------------------------------------
 # load packages
 library(xml2)

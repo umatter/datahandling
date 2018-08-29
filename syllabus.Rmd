@@ -1,6 +1,8 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-author: "Prof. Dr. Ulrich Matter"
+author: |
+     | Prof. Dr. Ulrich Matter
+     | (University of St. Gallen)
 date: "20/09/2018"
 output:
   pdf_document:

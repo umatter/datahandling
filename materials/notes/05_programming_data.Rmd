@@ -1,7 +1,9 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 5: Programming with Data'
-author: "Prof. Dr. Ulrich Matter"
+author: |
+     | Prof. Dr. Ulrich Matter
+     | (University of St. Gallen)
 date: "18/10/2018"
 output:
   pdf_document:
@@ -36,77 +38,7 @@ Programming: Murrell chapter 9.11
 
 
 
-# Data Structures and Indeces
-R provides different object classes to work with data. In simple terms, they differ with regard to how data is structured when saved in a variable. This, in turn, defines how we can access different parts of the data in this variable. For example, if we store a bunch of numbers in a numeric vector, we can then access each of these numbers individually, by telling R to give us the first, second, nth element of this vector. If we store data in a two-dimensional structure such as a matrix, we can then access the data column-wise, row-wise, or cell-wise. Depending on the task, one or the other object class is preferable to store and work with data.
 
-## Vectors and Lists
-```{r}
-# A vector containing numeric (or integer) values
-numeric_vector <- 10:20
-numeric_vector[2]
-numeric_vector[2:5]
-
-# A string vector ('a vector containing text')
-string_vector <- c("a", "b", "c")
-string_vector[-3]
-
-# Lists
-# A list can contain different types of elements, for example a numeric vector and a string_vector
-mylist <- list(numbers = numeric_vector, letters = string_vector)
-mylist
-
-# We can access the elements of a list in various ways
-# with the element's name
-mylist$numbers
-mylist["numbers"]
-# via the index
-mylist[1]
-# with [[]] we can access directly the content of the element
-mylist[[1]]
-
-# lists can also be nested (list of lists of lists....)
-mynestedlist <- list(a = mylist, b = 1:5)
-```
-
-## Matrices and Data Frames
-```{r}
-
-# matrices
-mymatrix <- matrix(numeric_vector, nrow = 4)
-# get the second row
-mymatrix[2,]
-# get the first two columns
-mymatrix[, 1:2]
-
-# data frames ("lists as columns")
-mydf <- data.frame(Name = c("Alice", "Betty", "Claire"), Age = c(20, 30, 45))
-mydf
-# select the age column
-mydf$Age
-mydf[, "Age"]
-mydf[, 2]
-# select the second row
-mydf[2,]
-
-
-```
-
-## Classes and Data Structure
-When importing data to R, using a new R-package, or extracting data from web sources, it is imperative to understand how the data is structured in the R-object (variable) one is working with. A lot of errors occur due to giving R functions input in the wrong format/structure. Having a close look at how the data stored in a variable that we want to work with further can help avoid such errors.^[Note that basic R functions as well as functions distributed via R packages are usually very well documented (look up documentation with `help(FUNCTION-NAME)` or `?FUNCTION-NAME`. An important part of such documentations is what class the input arguments of a function must have and what the class of the returned object is. See, for example the documentation of `mean()` by typing `?mean` into the R-console and hit enter.] The function `class()` returns the class(es) of an R object:
-
-```{r}
-# have a look at what kind of object you are dealing with
-class(mydf)
-class(mymatrix)
-
-```
-
-To get a clear idea of the structure of data stored in a specific variable, we can call the function `str()` (for structure) with the object of interest as the only function argument. This is particularly helpful when dealing with a complex/nested data structure. 
-
-```{r}
-# have a closer look at the data structure
-str(mydf)
-```
 
 
 <!-- ## Working with Text -->
@@ -261,25 +193,64 @@ When we open RStudio, all basic functions are already loaded automatically. This
 
 
 
-### Compute the mean
+### Tutorial: Compute the mean
+
+In order to illustrate the point of how functions work in R and how we can write our own functions in R (building on already existing R functions), the following code-example illustrates how to implement a function that computes the mean/average value, given a numeric vector.
+
+First, we initiate a simple numeric vector which we then will use as an example to test the function. Whenever you implement a function, it is very useful to first define a simple example of an input for which you know what the output should be.
 
 ```{r}
-# own implementation: use R-function for summing up the elements in a vector
-# and getting the number of elements in a vector
-sum(a) / length(a)
+# a simle integer vector, for which we want to compute the Mean
+a <- c(5.5, 7.5)
+# desired functionality and output:
+# my_mean(a)
+# 6.5
+```
 
-# or use the function delivered with the R installation
-mean(a)
+In this example, we would thus expect the output to be `6.5`. Later, we will compare the output of our function with this in order to check whether our function works as desired. 
 
+In addition to defining a simple example and the desired output, it obviously makes sense to also think about *how* the function is in simple terms expected to produce this output. When implementing functions related to statistics (such as the mean), it usually makes sense to have a look at the mathematical definition:
+
+$\bar{x} = \frac{1}{n}\left (\sum_{i=1}^n{x_i}\right ) = \frac{x_1+x_2+\cdots +x_n}{n}$.
+
+Now, we can start thinking about how to implement the function based on built-in R functions. From looking at the mathematical definition of the mean ($\bar{x}$), we recognize that there are two main components to computing the mean:
+
+ - $\sum_{i=1}^n{x_i}$: the sum of all the elements in vector $x$
+ - and $n$, the number of elements in vector $x$.
+ 
+Once we know how to get these two components, computing the mean is straightforward. In R, there are two built-in functions that deliver exactly these two component: 
+
+ - `sum()` returns the sum of all the values in i ts arguments (i.e., if `x` is a numeric vector, `sum(x)` returns the sum of all elements in `x`).
+ - `length()` returns the length of a given vector.
+
+With the following short line of code we thus get the mean of the elements in vector `a`.
+```{r}
+sum(a)/length(a)
+```
+
+all that is left to do is to pack all this into the function body of our newly defined `my_mean()` function:
+
+```{r}
 # define our own function to compute the mean, given a numeric vector
 my_mean <- function(x) {
      x_bar <- sum(x) / length(x)
      return(x_bar)
 }
+```
 
+Now we can test it based on our example:
+
+```{r}
 # test it
 my_mean(a)
+```
 
+Moreover, we can test it by comparing it with the built-in `mean()` function:
+
+```{r}
+b <- c(4,5,2,5,5,7)
+my_mean(b) # our own implementation
+mean(b) # the built_in function
 ```
 
 

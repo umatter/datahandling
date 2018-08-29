@@ -124,7 +124,6 @@ include_graphics("../img/AIrevolution.png")
 include_graphics("../img/bd_ai.png")
 ```
 
------
 
 
 
@@ -132,7 +131,47 @@ include_graphics("../img/bd_ai.png")
 
 # Course Structure
 
----
+
+## Course Concept
+
+- Lectures (every Thursday morning)
+    - Background/Concepts
+    - Live demonstrations of concepts
+    - Illustration of 'hands-on' approaches
+    
+<!-- - Workshops/Exercises (bi-weekly evening sessions) -->
+<!--     - Guided tutorials -->
+<!--     - Discussion of homework exercises -->
+<!--     - Recap of theoretical concepts -->
+<!-- - Guest Lectures -->
+
+
+## Course Concept
+
+- Lectures (every Thursday morning)
+    - Background/Concepts
+    - Live demonstrations of concepts
+    - Illustration of 'hands-on' approaches
+    
+- Workshops/Exercises (bi-weekly evening sessions)
+    - Guided tutorials
+    - Discussion of homework exercises
+    - Recap of theoretical concepts
+<!-- - Guest Lectures -->
+
+
+## Course Concept
+
+- Lectures (every Thursday morning)
+    - Background/Concepts
+    - Live demonstrations of concepts
+    - Illustration of 'hands-on' approaches
+    
+- Workshops/Exercises (bi-weekly evening sessions)
+    - Guided tutorials
+    - Discussion of homework exercises
+    - Recap of theoretical concepts
+- Guest Lectures
 
 ## 15/11/2018: Guest Lecture by Dr. Michael Zehnder
 
@@ -149,7 +188,7 @@ Co-Founder & CEO Swiss Data Labs AG
 
 
 
-### Part I: Data (Science) Fundamentals {.smaller}
+## Part I: Data (Science) Fundamentals {.smaller}
 
 ```{r echo = FALSE}
 library(readxl)
@@ -162,19 +201,15 @@ sched <- read_xlsx("../../admin/schedule.xlsx", col_types = "text")
 kable(sched[1:6, c(1,5)], format = "markdown")
 ```
 
-----
 
-### Part II: Data Gathering and Preparation {.smaller}
+## Part II: Data Gathering and Preparation {.smaller}
 
 ```{r echo = FALSE}
 kable(sched[7:13, c(1,5)], format = "markdown") 
 ```
 
 
-----
-
-
-### Part III: Analysis, Visualisation, Output {.smaller}
+## Part III: Analysis, Visualisation, Output {.smaller}
 
 ```{r echo = FALSE}
 kable(sched[14:nrow(sched), c(1,5)], format = "markdown") 
@@ -183,8 +218,6 @@ kable(sched[14:nrow(sched), c(1,5)], format = "markdown")
 
 
 
-
-## Literature
 
 
 ## Main textbooks

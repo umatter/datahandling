@@ -1,12 +1,3 @@
-## ----echo= FALSE, out.width= "65%", fig.align="center", fig.cap="Source: http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html"----
-include_graphics("../img/gog.png")
-
-## ----echo= FALSE, out.width= "25%", fig.align="center"-------------------
-include_graphics("../img/ggplot2.png")
-
-## ----echo=TRUE, eval=FALSE-----------------------------------------------
-## ggplot(data = my_dataframe, aes(x= xvar, y= yvar))
-
 ## ----echo=TRUE-----------------------------------------------------------
 # load the R package
 library(ggplot2)
@@ -66,6 +57,14 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_smooth(method = 'lm') +
      facet_wrap(~Religion) +
      coord_flip()
+
+
+## ----echo=TRUE, out.width="85%"------------------------------------------
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion) +
+     theme(legend.position = "bottom", axis.text=element_text(size=12) ) 
 
 
 ## ----echo=TRUE, out.width="85%"------------------------------------------

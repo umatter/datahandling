@@ -1,23 +1,24 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 1: Introduction'
-author: "Prof. Dr. Ulrich Matter"
+author: |
+     | Prof. Dr. Ulrich Matter
+     | (University of St. Gallen)
 date: "20/09/2018"
 output:
-  pdf_document:
-    pandoc_args:
-    - --filter
-    - ../../code/math.py
   html_document:
     highlight: tango
     theme: cerulean
     mathjax: "http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  pdf_document:
+    pandoc_args:
+    - --filter
+    - ../../code/math.py
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
-css: ../../style/notes.css
+css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
-
 ---
 
 
@@ -40,7 +41,7 @@ include_graphics("../img/comp_costs.png")
 
 (ref:capcomprise) Source: http://radar.oreilly.com/2011/08/building-data-startups.html.
 
-The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of ['Data Science'](https://en.wikipedia.org/wiki/Data_science) as well as an increasing demand for 'Data Scientists'. While nothing within Data Science is particularly new on its own, it is the combination of skills and insights from different fields (particularly Computer Science and Statistics) that has proven to be very productive in meeting new challenges posed by a data-driven economy. In that sense, Data Science is rather a craft than a scientific field. As such, it presupposes a more practical and broader understanding of the matter at hand (i.e., data) than traditional Computer Science and Statistics from which Data Science borrows its methods. The various facets of this new new craft are often illustrated in the 'Data Science' Venn-Diagram (see Figure \@ref(fig:dsdiagram)), reflecting the combination of knowledge and skills from Mathematics/Statistics, substantive expertise in the particular scientific field in which Data Science is applied, and 'hacking skills', that is, the skills necessary for *acquiring, cleaning, and manipulating* massive amounts of electronic data. It is exactly this skill-set our course will focus on. 
+The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of ['Data Science'](https://en.wikipedia.org/wiki/Data_science) as well as an increasing demand for 'Data Scientists'. While nothing within Data Science is particularly new on its own, it is the combination of skills and insights from different fields (particularly Computer Science and Statistics) that has proven to be very productive in meeting new challenges posed by a data-driven economy. In that sense, Data Science is rather a craft than a scientific field. As such, it presupposes a more practical and broader understanding of the matter at hand (i.e., data) than traditional Computer Science and Statistics from which Data Science borrows its methods. The various facets of this new craft are often illustrated in the 'Data Science' Venn-Diagram (see Figure \@ref(fig:dsdiagram)), reflecting the combination of knowledge and skills from Mathematics/Statistics, substantive expertise in the particular scientific field in which Data Science is applied, and 'hacking skills', that is, the skills necessary for *acquiring, cleaning, and manipulating* massive amounts of electronic data. It is exactly this skill-set our course will focus on. 
 
 
 ```{r dsdiagram, echo=FALSE, out.width = "75%", fig.align='center', fig.cap= "(ref:capdsdiagram)", purl=FALSE}
@@ -50,10 +51,7 @@ include_graphics("../img/hacking_skills.png")
 (ref:capdsdiagram) The 'Data Science Venn Diagram'. Source: http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/.
 
 
-Moreover, this course will revisit and apply/integrate concepts learned in the introductory Statistics course (3,222), and will generally presuppose 'substantive expertise' in undergraduate economics. 
-
-
-# Fields of application...
+Moreover, this course will revisit and apply/integrate concepts learned in the introductory Statistics course (3,222), and will generally presuppose 'substantive expertise' in undergraduate economics. Finally, the aim is to give you first practical insights into each part of the data science pipeline.
 
 
 

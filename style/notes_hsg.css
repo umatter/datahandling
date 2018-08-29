@@ -1,0 +1,46 @@
+
+.author {
+  color: #02934a;
+}
+
+.date {
+  color: #02934a;
+}
+.title {
+  color: #02934a;
+}
+h1 { /* Header 1 */
+  color: #02934a;
+}
+h2 { /* Header 2 */
+  color: #02934a;
+}
+h3 { /* Header 3 */
+  color: #02934a;
+}
+
+/* links */
+a {
+  color: #02934a;
+  text-decoration: none;
+}
+a:visited {
+  color: #02934a;
+  text-decoration: none;
+}
+
+a:active {
+  color: #02934a;
+  text-decoration: none;
+}
+
+/* active links */
+a:hover {
+  color: #02934a;
+  border-bottom: 1px solid #02934a;
+  text-decoration: none;
+
+}
+
+
+

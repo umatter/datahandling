@@ -167,7 +167,7 @@ Now you know how to execute R code directly in the console (interactive session)
 
 
 
-# Read raw text data (Update of Murrell, Chaper 1)
+# Read raw text data (Update of @murrell_2009, Chaper 1)
 
 ## Set Up 
 
