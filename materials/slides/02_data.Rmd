@@ -6,6 +6,7 @@ date: "27/09/2018"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
+    mathjax: "default"
 logo: ../img/logo.png
 bibliography: ../references/datahandling.bib
 ---

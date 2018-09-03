@@ -31,7 +31,7 @@ for (i in 1:length(file_paths)) {
      # self contained html page
      cat(paste0("Rendering ", f, " as HTML\n"))
      rmarkdown::render(input = f, output_format = NULL,
-                       output_dir = "materials/slides/html", quiet = TRUE)
+                       output_dir = "materials/slides/html", quiet = TRUE, )
      
 }
 

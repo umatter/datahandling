@@ -91,7 +91,7 @@ We see that it is a short phrase written in Spanish. But oddly, it contains the 
 
 
 ```{bash eval = FALSE}
-file -b data/hastamanana.txt
+file -b hastamanana.txt
 ```
 
 
@@ -155,8 +155,8 @@ CSV files are very commonly used to transfer and store data in a table-like form
 
 The comma is clearly visible when looking at the raw text content of `ch_gdp.csv`. However, how does the computer know that a line is ending? By default most programs to edit with text do not show an explicit symbol for line endings but instead display the text on the next line. Under the hood, these line endings are, however, non-printable characters. We can see this when investigating `ch_gdp.csv` in the command-line terminal (via `xxd`):
 
-```{bash eval = FALSE}
-xxd ../../data/ch_gdp.csv
+```{bash eval = FALSE, purl=FALSE}
+xxd ch_gdp.csv
 ```
 
 ```{bash echo = FALSE}
