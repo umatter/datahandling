@@ -1,4 +1,65 @@
 ## ------------------------------------------------------------------------
+# a simle integer vector
+a <- c(10,22,33, 22, 40)
+
+# give names to vector elements
+names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva")
+a
+
+# indexing either via number of vector element (start count with 1)
+# or by element name
+a[3]
+a["Claire"]
+
+# Inspect the object you are working with
+class(a) # returns the class(es) of the object
+str(a) # returns the structure of the object ("what is in variable a?")
+
+
+## ------------------------------------------------------------------------
+# basic arithmetic 
+2+2
+sum_result <- 2+2
+sum_result
+sum_result -2
+4*5
+20/5
+
+# order of operations
+2+2*3
+(2+2)*3
+(5+5)/(2+3)
+
+# work with variables
+a <- 20
+b <- 10
+a/b
+
+# arithmetic with vectors
+a <- c(1,4,6)
+a * 2
+
+b <- c(10,40,80)
+a * b
+a + b 
+
+
+# other common math operators and functions
+4^2
+sqrt(4^2)
+log(2)
+exp(10)
+log(exp(10))
+
+# special numbers
+# Euler's number
+exp(1)
+# Pi
+pi
+
+
+
+## ------------------------------------------------------------------------
 # vector to be summed up
 numbers <- c(1,2.1,3.5,4.8,5)
 # initiate total

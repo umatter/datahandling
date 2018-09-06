@@ -12,15 +12,13 @@
 
 ## cat hastamanana.txt; echo
 
-## file -b data/hastamanana.txt
+## file -b hastamanana.txt
 
 ## file -b ../../data/hastamanana.txt
 
 ## iconv -f iso-8859-1 -t utf-8 hastamanana.txt | cat
 
 ## iconv -f iso-8859-1 -t utf-8 ../../data/hastamanana.txt | cat
-
-## xxd ../../data/ch_gdp.csv
 
 ## xxd ../../data/ch_gdp.csv
 

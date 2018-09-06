@@ -336,12 +336,7 @@ year,gdp_chfb
 *How does the computer know that the end of a line is reached?*
 </center>
 
-## CSVs and fixed-width format
-&nbsp;
 
-<center>
-*How does the computer know that the end of a line is reached?*
-</center>
 
 <!-- - Let's investigate! -->
 

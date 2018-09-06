@@ -22,5 +22,9 @@ library(knitr)
 library(bookdown)
 ```
 
+# Part I: recycle exercises from ishta 
+See link below
+# PartII: go through more advanced stuff with students
 
 # References
+http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html

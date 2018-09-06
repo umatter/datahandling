@@ -11,7 +11,7 @@ output:
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
-css: ../../../style/notes.css
+css: ../../../style/notes_hsg.css
 bibliography: ../../references/datahandling.bib
 ---
 
@@ -48,7 +48,7 @@ R is the high-level (meaning 'more user friendly') programming language for stat
  a. ...directly from the command line, by typing `R` and hit enter (here in the OSX terminal):
 
 ```{r terminal, echo=FALSE, fig.align='center', fig.cap="(ref:rterminal)", out.width="60%", purl=FALSE}
-include_graphics("../img/r_terminal.png")
+include_graphics("../../img/r_terminal.png")
 ```
 (ref:rterminal) Running R in the Mac/OSX terminal.
 
@@ -56,7 +56,7 @@ include_graphics("../img/r_terminal.png")
  b. ...with the simple [Integrated Development Environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment) delivered with the basic R installation
 
 ```{r ide, echo=FALSE, fig.align='center', fig.cap="(ref:ride)", out.width="75%", purl=FALSE}
-include_graphics("../img/r_ide.png")
+include_graphics("../../img/r_ide.png")
 ```
 (ref:ride) Running R in the original R GUI/IDE.
 
@@ -64,7 +64,7 @@ include_graphics("../img/r_ide.png")
  c. ...with the more elaborated and user-friendly IDE called *RStudio*:
 
 ```{r rstudio, echo=FALSE, fig.align='center', fig.cap="(ref:rstudio)", out.width="75%", purl=FALSE}
-include_graphics("../img/rstudio_panels.png")
+include_graphics("../../img/rstudio_panels.png")
 ```
 (ref:rstudio) Running R in RStudio (IDE).
 
@@ -78,7 +78,7 @@ In the following, we have a look at each of the main panels we will use in this 
 When working in an interactive session, we simply type R commands directly into the R console. Typically, the output R returns, when we give it a command this way, is printed in the console as well.
 
 ```{r console, echo=FALSE, fig.align='center', fig.cap="(ref:console)", out.width="75%", purl=FALSE}
-include_graphics("../img/rstudio_console.png")
+include_graphics("../../img/rstudio_console.png")
 ```
 (ref:console) Running R in the Mac/OSX terminal.
 
@@ -94,7 +94,7 @@ print("Hello world")
 Apart from very short interactive sessions, it usually makes sense to write R code not directly in the command line, but to a R-script in the script panel. This way, execute several lines at once, comment the code (to explain what it does), save it on our hard disk, and further develop the code later on.
 
 ```{r rscript, echo=FALSE, fig.align='center', fig.cap="(ref:script)", out.width="75%", purl=FALSE}
-include_graphics("../img/rstudio_script.png")
+include_graphics("../../img/rstudio_script.png")
 ```
 (ref:script) The R Script window in RStudio.
 
@@ -105,7 +105,7 @@ include_graphics("../img/rstudio_script.png")
 The environment pane shows what variables, objects, and data are loaded in our current R session. Moreover, it offers functions to open documents and import data.
 
 ```{r renvironment, echo=FALSE, fig.align='center', fig.cap="(ref:environment)", out.width="50%", purl=FALSE}
-include_graphics("../img/rstudio_environment.png")
+include_graphics("../../img/rstudio_environment.png")
 ```
 (ref:environment) The environment window in RStudio.
 
@@ -116,7 +116,7 @@ include_graphics("../img/rstudio_environment.png")
 With the File browser window we can navigate through the folder structure and files on our computer's hard disk, modify files, and set the working directory of our current R session. Moreover, it has a pane to show plots generated in R and a pane with help pages and R documentation.
 
 ```{r rfiles, echo=FALSE, fig.align='center', fig.cap="(ref:files)", out.width="50%", purl=FALSE}
-include_graphics("../img/rstudio_files.png")
+include_graphics("../../img/rstudio_files.png")
 ```
 (ref:files) The file browser window in RStudio.
 
@@ -133,7 +133,7 @@ include_graphics("../img/rstudio_files.png")
 
  4. Again, use the 'New Folder'-button in order to create two new folders called `data` and `code`.
 
- 5. Finally, click on the project button in the top-right corner of the RStudio window (![](../img/rproject.png)) and select 'New Project' in the drop-down menu. In the pop-up window, select 'Existing directory', browse to and select your `r_course` folder, then click 'Create Project'.
+ 5. Finally, click on the project button in the top-right corner of the RStudio window (![](../../img/rproject.png)) and select 'New Project' in the drop-down menu. In the pop-up window, select 'Existing directory', browse to and select your `r_course` folder, then click 'Create Project'.
 
 Now you know how to set up a meaningful basic folder structure and working environment for an R project. The next exercise teaches you how to write R scripts in this environment.
 
@@ -149,7 +149,7 @@ You should see the words `"Hello world"` printed on screen. This is the usual wa
 
 2. In the RStudio Menu-bar select `File/New File/R Script` to create a new file, shown/opened in the Script pane.
 
-3. Type `print("Hello world")` to the first line of the script, and click on 'Run' (![](../img/run.png)) to execute the code in the console.
+3. Type `print("Hello world")` to the first line of the script, and click on 'Run' (![](../../img/run.png)) to execute the code in the console.
 
 4. Save the file as `hello_world.R` (`File/Save As...`) in the sub folder `code` (created in the previous exercise).
 
@@ -159,7 +159,7 @@ source("code/hello_world.R")
 ```
 
 ```{r echo=FALSE, purl=FALSE}
-source("../exercises/r_course/code/hello_world.R")
+source("r_course/code/hello_world.R")
 ```
 
 Now you know how to execute R code directly in the console (interactive session), how to execute lines of code written to an R script, as well as how to execute the entire R script (stored on disk) from the command line.

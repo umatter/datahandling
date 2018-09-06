@@ -1,7 +1,9 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 7: Data preparation'
-author: "Prof. Dr. Ulrich Matter"
+author: |
+     | Prof. Dr. Ulrich Matter
+     | (University of St. Gallen)
 date: "15/11/2018"
 output:
   pdf_document:
@@ -15,7 +17,7 @@ output:
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
-css: ../../style/notes.css
+css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
 
 ---

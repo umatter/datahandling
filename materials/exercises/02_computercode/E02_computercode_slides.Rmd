@@ -5,9 +5,9 @@ author: "Prof. Dr. Ulrich Matter"
 date: "27/09/2018"
 output:   
   ioslides_presentation:
-    css: ../../style/ioslides.css
-logo: ../img/logo.png
-bibliography: ../references/datahandling.bib
+    css: ../../../style/ioslides.css
+logo: ../../img/logo.png
+bibliography: ../../references/datahandling.bib
 ---
 
 
@@ -102,6 +102,7 @@ max     11.7      26.60001
 
 
 ## HTML Syntax: start tag and end tag
+``` {html }
 
 <div align="CENTER">
 <table cellpadding="3">
@@ -122,17 +123,19 @@ max     11.7      26.60001
 </tr>
 </tbody></table>
 </div>
+```
 
 
 ## HTML Syntax: Start tag and end tag
 
 ```{r echo=FALSE, fig.align="center", out.width="80%", fig.cap="Source: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics"}
-include_graphics("../img/html_tags.png")
+include_graphics("../../img/html_tags.png")
 ```
 
 
 
 ## HTML Syntax: Attributes
+``` {html }
 
 <div align="CENTER">
 <table cellpadding="3">
@@ -163,11 +166,12 @@ include_graphics("../img/html_tags.png")
 </tr>
 </tbody></table>
 </div>
+```
 
 ## HTML Syntax: Attributes
 
 ```{r echo=FALSE, fig.align="center", out.width="80%", fig.cap="Source: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics"}
-include_graphics("../img/html_attributes.png")
+include_graphics("../../img/html_attributes.png")
 ```
 
 
@@ -194,11 +198,12 @@ include_graphics("../img/html_attributes.png")
 ## HTML Syntax: Element order
 
 ```{r echo=FALSE, fig.align="center", out.width="80%", fig.cap="HTML tree diagram. Source: http://www.webreference.com/programming/css_utopia/chap3/3-1.jpg"}
-include_graphics("../img/html_tree.jpg")
+include_graphics("../../img/html_tree.jpg")
 ```
 
 
 ## HTML Syntax: Special Characters
+``` {html }
 
 <div align="CENTER">
 <table cellpadding="3">
@@ -224,6 +229,7 @@ include_graphics("../img/html_tree.jpg")
 </tr>
 </tbody></table>
 </div>
+```
 
 
 ## Escape Sequences

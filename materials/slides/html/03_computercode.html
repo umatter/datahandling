@@ -309,7 +309,13 @@ Basic components of a standard computing environment. Figure by <span class="cit
 
 <p>Read the file again, this time with the correct encoding</p>
 
-<pre class = 'prettyprint lang-bash'>iconv -f iso-8859-1 -t utf-8 hastamanana.txt | cat</pre>
+<style>
+.lit {
+  color: white;
+}
+</style>
+
+<pre class = 'prettyprint lang-eval'>iconv -f iso-8859-1 -t utf-8 hastamanana.txt | cat</pre>
 
 <pre >## Hasta Mañana!</pre>
 
@@ -445,16 +451,6 @@ Basic components of a standard computing environment. Figure by <span class="cit
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>CSVs and fixed-width format</h2></hgroup><article  id="csvs-and-fixed-width-format-2">
-
-<p> </p>
-
-<center>
-
-<em>How does the computer know that the end of a line is reached?</em>
-
-</center>
-
-</article></slide><slide class=""><hgroup><h2>CSVs and fixed-width format</h2></hgroup><article  id="csvs-and-fixed-width-format-3">
 
 <p> </p>
 
@@ -766,6 +762,16 @@ my_list</pre>
 slides > slide { overflow: scroll; }
 slides > slide:not(.nobackground):after {
   content: '';
+}
+
+
+code {
+  color: white;
+}
+
+
+pre {
+  color: white;
 }
 </style>
 

@@ -1,3 +1,62 @@
+## ------------------------------------------------------------------------
+#######################################################################
+# Data Handling Course: Example Script for Data Gathering and Import
+#
+# Imports data from ...
+# Input: links to data sources (data comes in ... format)
+# Output: cleaned data as CSV
+# 
+# U. Matter, St. Gallen, 2018
+#######################################################################
+
+
+## ----eval=FALSE----------------------------------------------------------
+## #######################################################################
+## # Data Handling Course: Example Script for Data Gathering and Import
+## #
+## # Imports data from ...
+## # Input: links to data sources (data comes in ... format)
+## # Output: cleaned data as CSV
+## #
+## # U. Matter, St. Gallen, 2018
+## #######################################################################
+## 
+## 
+## # SET UP --------------
+## # load packages
+## library(tidyr)
+## 
+## # set fix variables
+## INPUT_PATH <- "/rawdata"
+## OUTPUT_FILE <- "/final_data/datafile.csv"
+## 
+
+## ----eval=FALSE----------------------------------------------------------
+## #######################################################################
+## # Project XY: Data Gathering and Import
+## #
+## # This script is the first part of the data pipeline of project XY.
+## # It imports data from ...
+## # Input: links to data sources (data comes in ... format)
+## # Output: cleaned data as CSV
+## #
+## # U. Matter, St. Gallen, 2018
+## #######################################################################
+## 
+## 
+## # SET UP --------------
+## # load packages
+## library(tidyr)
+## 
+## # set fix variables
+## INPUT_PATH <- "/rawdata"
+## OUTPUT_FILE <- "/final_data/datafile.csv"
+## 
+## 
+## # IMPORT RAW DATA FROM CSVs -------------
+## 
+## 
+
 ## ----eval=TRUE-----------------------------------------------------------
 data(swiss)
 
@@ -29,6 +88,29 @@ head(swiss)
 ## # read the data
 ## swiss_imported <- read_spss("data/swiss.sav")
 ## 
+
+## ------------------------------------------------------------------------
+library(readr)
+
+read_csv('"District","Fertility","Agriculture","Examination","Education","Catholic","Infant.Mortality"
+"Courtelary",80.2,17,15,12,9.96,22.2')
+
+
+## ----eval=FALSE----------------------------------------------------------
+## swiss <- read_csv("data/swiss.csv")
+
+## ------------------------------------------------------------------------
+swiss
+
+## ------------------------------------------------------------------------
+read_csv('A,B
+         12:00, 12:00
+         14:30, midnight
+         20:01, noon')
+
+## ------------------------------------------------------------------------
+guess_parser(c("12:00", "midnight", "noon"))
+guess_parser(c("12:00", "14:30", "20:01"))
 
 ## ------------------------------------------------------------------------
 # load packages

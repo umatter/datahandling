@@ -1,7 +1,9 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 11: Visualization and Dynamic Documents'
-author: "Prof. Dr. Ulrich Matter"
+author: |
+     | Prof. Dr. Ulrich Matter
+     | (University of St. Gallen)
 date: "13/12/2018"
 output:
   pdf_document:
@@ -15,7 +17,7 @@ output:
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
-css: ../../style/notes.css
+css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
 
 ---

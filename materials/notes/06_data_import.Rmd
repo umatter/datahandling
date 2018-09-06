@@ -30,37 +30,112 @@ library(bookdown)
 knitr::opts_chunk$set(fig.pos = 'htb!')
 ```
 
+# Putting it All Together
 
-# Data sources
-- give overview
-- assign learned concepts to source domains:
-  - Sources with data prepared for research: flat representations
-  - Archives, large data: Zip
-  - Still often found: Excel for whatever reason
-  - Other Stat software: binary (other stat software, etc.) --> find good examples
-  - Web: XML, JSON, (HTML)
+In this lecture we put the key concepts learned so far (text-files for data storage, parsers, encoding, data structures) together and apply them in order to master the first key bottleneck in the data pipeline: how to *import* raw data from various sources and *export/store* them for further processing in the pipeline. 
+
+## Sources/formats
+
+In the first two lectures, we have learned how data is stored in text-files and how different data structures/formats/syntaxes help to organize the data in these files. Along the way, we have encountered key data formats that are used in various settings to store and transfer data:
+
+- CSV (typical for rectangular/table-like data)
+- Variants of CSV (tab-delimited, fix length etc.)
+- XML and JSON (useful for complex/high-dimensional data sets)
+- HTML (a markup language to define the structure and layout of webpages)
+- Unstructured text
+
+Depending on the *data source*, data might come in one or the other form. With the increasing importance of the Internet as a data source for economic research, handling XML, JSON, and HTML properly is becoming more important. However, in applied economic research various other, and more specific formats can be encountered:
+
+- Excel spreadsheets (`.xls`)
+- Formats specific to statistical software packages (SPSS: `.sav`, STATA: `.dat`, etc.)
+- Built-in R datasets
+- Binary formats
+
+While we will cover/revisit how to import all of these formats here, it is important to keep in mind that the learned fundamental concepts are as important (or more important) than knowing which function to call in R for each of these cases. New formats might evolve and become more relevant in the future for which no R function yet exists. However, the underlying logic of how formats to structure data work will hardly change.
+
   
-  
-
-
 
 # Data gathering procedure
-- organize script: beginning of pipeline!
-- Things to keep in mind:
-  - encoding
-  - format
 
-# Import/Export basics 
-- build on/recap concepts
-@murrell_2009 chapter 9.7: w/o databases, own XML/JSON version, and WiGr chapter 11 (consider WiGr in exercises as well)
+Before we set out to gather/import data from diverse sources, we should start organizing the procedure in an R script. This script will be the begining of our pipeline!
+
+First, open a new R script in RStudio and save it as `import_data.R` in your `code` folder. Take your time to meaningfully describe what the script is all about in the first few lines of the file:
 
 
-# Practical Basics of Loading/Importing Data^[Taken from @umatter_2018]
+```{r}
+#######################################################################
+# Data Handling Course: Example Script for Data Gathering and Import
+#
+# Imports data from ...
+# Input: links to data sources (data comes in ... format)
+# Output: cleaned data as CSV
+# 
+# U. Matter, St. Gallen, 2018
+#######################################################################
 
-There are many ways to import data into R from various sources. Here, we look at how to import data from the most common sources when you use R for basic data analysis or econometric exercises.
+```
+
+RStudio recognizes different sections in a script, whereby section headers are indicated by ` ----------`. This helps to further organize the script into different tasks. Usually, it makes sense to start with a 'meta' section in which all necessary packages are loaded and fix variables are initiated.
+
+
+```{r eval=FALSE}
+#######################################################################
+# Data Handling Course: Example Script for Data Gathering and Import
+#
+# Imports data from ...
+# Input: links to data sources (data comes in ... format)
+# Output: cleaned data as CSV
+# 
+# U. Matter, St. Gallen, 2018
+#######################################################################
+
+
+# SET UP --------------
+# load packages
+library(tidyr)
+
+# set fix variables
+INPUT_PATH <- "/rawdata"
+OUTPUT_FILE <- "/final_data/datafile.csv"
+
+```
+
+
+Finally we add sections with the actual code (in the case of a data import script, maybe one section per data source)
+
+```{r eval=FALSE}
+#######################################################################
+# Project XY: Data Gathering and Import
+#
+# This script is the first part of the data pipeline of project XY.
+# It imports data from ...
+# Input: links to data sources (data comes in ... format)
+# Output: cleaned data as CSV
+# 
+# U. Matter, St. Gallen, 2018
+#######################################################################
+
+
+# SET UP --------------
+# load packages
+library(tidyr)
+
+# set fix variables
+INPUT_PATH <- "/rawdata"
+OUTPUT_FILE <- "/final_data/datafile.csv"
+
+
+# IMPORT RAW DATA FROM CSVs -------------
+
+
+```
+
+
+
+# Loading/Importing Rectangular Data^[This section is based on @umatter_2018]
 
 ## Loading built-in datasets
-The basic R installation provides some example data sets to try out R's statistics functions. In the introduction to visualization techniques with R as well as in the statistics examples further below, we will rely on some of these datasets for sake of simplicity. Note that the usage of these simple datasets shipped with basic R are very helpful when practicing/learning R on your own. Many R packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and tutorials online also use these datasets (see, for example the [ggplot2 documentation](https://ggplot2.tidyverse.org/)). And, they are very useful when searching help on [Stackoverflow](https://stackoverflow.com/questions/tagged/r) in the context of data analysis/manipulation with R, as you should provide a code example based on some data that everybody can easily load and access.
+We start with the simplest case of loading/importing data. The basic R installation provides some example data sets to try out R's statistics functions. In the introduction to visualization techniques with R as well as in the statistics examples in the lectures to come, we will rely on some of these datasets for sake of simplicity. Note that the usage of these simple datasets shipped with basic R are very helpful when practicing/learning R on your own. Many R packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and tutorials online also use these datasets (see, for example the [ggplot2 documentation](https://ggplot2.tidyverse.org/)). And, they are very useful when searching help on [Stackoverflow](https://stackoverflow.com/questions/tagged/r) in the context of data analysis/manipulation with R, as you should provide a code example based on some data that everybody can easily load and access.
 
 In order to load such datasets, simply use the `data()`-function:
 
@@ -82,14 +157,14 @@ To get a list of all the built-in datasets simply type `data()` into the console
 
 
 
-## Importing data from files
-In most cases of applying R for econometrics and data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as 'Comma Separated Values' (CSV). In economics one also frequently encounters data being stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data (e.g., for your Master Thesis) on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into R (in some cases, additional packages have to be loaded, though).
+## Importing rectangular data from text-files
+In most cases of applying R for data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as 'Comma Separated Values' (CSV). In economics one also frequently encounters data being stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into R (in some cases, additional packages have to be loaded, though). Thereby, what happens 'under the hood' is essentially the same for all of these formats. Somebody has implemented the respective *parser* as an R function which accepts a character string with the path or url to the data source as input. 
 
 ### Comma Separated Values (CSV)
-A most common format to store and transfer datasets is CSV. In this format data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code-block shows how the first two rows of the `swiss`-dataset would look like when stored in a CSV:
+Recall how in this format, data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code-block shows how the first two rows of the `swiss`-dataset would look like when stored in a CSV:
 
 ```{}
-"","Fertility","Agriculture","Examination","Education","Catholic","Infant.Mortality"
+"District","Fertility","Agriculture","Examination","Education","Catholic","Infant.Mortality"
 "Courtelary",80.2,17,15,12,9.96,22.2
 ```
 
@@ -104,6 +179,7 @@ swiss_imported <- read.csv("../../data/swiss.csv")
 swiss_imported <- read.csv("data/swiss.csv")
 ```
 
+Alternatively, we could use the newer `read_csv()` function which would return a `tibble`. 
 
 ### Spreadsheets/Excel
 In order to read excel spreadsheets we need to install an additional R package called `readxl`.
@@ -162,9 +238,68 @@ swiss_imported <- read_spss("data/swiss.sav")
 
 ```
 
-#### XML in R (from Webmining)
 
-Luckily for us, there are several XML-parsers already implemented in R packages specifically written for working with XML data. We thus do not have to understand the XML syntax in every detail in order to work with this data format in R. The already familiar package `xml2` (automatically loaded when loading `rvest`) provides the `read_xml()` function which we can use to read the exemplary XML-document shown above into R.
+# Import and Parsing with `readr`^[This is a summary of Chapter 8 in @wickham_grolemund2017]
+
+The `readr` package is automatically installed and loaded with the installation/loading of `tidyverse`. It provides a set of functions to read different types of rectangular data formats and is usually more robust and faster than similar functions provided in the basic R distribution. Each of these functions basically expects either a character string with path pointing to a file or a character string directly containing the data.
+
+## Basic usage of `readr` functions
+
+For example, we can parse the first lines of the swiss dataset directly like this
+
+```{r}
+library(readr)
+
+read_csv('"District","Fertility","Agriculture","Examination","Education","Catholic","Infant.Mortality"
+"Courtelary",80.2,17,15,12,9.96,22.2')
+
+```
+
+or read the entire `swiss` dataset by pointing to the file
+```{r eval=FALSE}
+swiss <- read_csv("data/swiss.csv")
+```
+
+
+```{r echo=FALSE, purl=FALSE}
+swiss <- read_csv("../../data/swiss.csv")
+```
+
+
+In either case, the result is a `tibble`: 
+```{r}
+swiss
+```
+
+The other `readr` functions have practically the same syntax and behavior. They are used for fixed-width files or csv-type files with other delimiters than commas. 
+
+## Parsing and data types
+
+From inspecting the `swiss` tibble printed out above, we recognize that `read_csv` not only correctly recognizes observations and columns (parses the csv correctly) but also automatically guesses the data type of the values in each column. The first column is of type double, the second one of type integer, etc. That is, `read_csv` also parses each column-vector of the data set with the aim of recognizing which data type it is. For example, the data value `"12:00"` could be interpreted simply as a character string. Alternatively, it could also be interpreted as a `time` format. 
+
+If `"12:00"` is an element of the vector `c("12:00", "midnight", "noon")` it must be simply interpreted as a character string. If however it is an element of the vector `c("12:00", "14:30", "20:01")` we probably want R to import this as a `time` format. Now, how can `readr` handle the two cases? In simple terms, the package first guesses for each column vector which type is most appropriate. Then, it uses a couple of lower-level parsing functions (one written for each possible data type) in order to parse each column according to the respective guessed type. We can demonstrate this for the two example vectors above.
+
+```{r}
+read_csv('A,B
+         12:00, 12:00
+         14:30, midnight
+         20:01, noon')
+```
+
+Under the hood `read_csv()` used the `guess_parser()`- function to determine which type the two vectors likely contain:
+
+```{r}
+guess_parser(c("12:00", "midnight", "noon"))
+guess_parser(c("12:00", "14:30", "20:01"))
+```
+
+
+
+# Importing Web Data Formats
+
+## XML in R^[This section is based on @umatter_2018b]
+
+Luckily for us, there are several XML-parsers already implemented in R packages specifically written for working with XML data. We thus do not have to understand the XML syntax in every detail in order to work with this data format in R. The already familiar package `xml2` (automatically loaded when loading `rvest`) provides the `read_xml()` function which we can use to read the exemplary XML-document.
 
 ```{r}
 # load packages
@@ -195,7 +330,7 @@ xml_text(customer_names)
 
 ```
 
-## JSON in R (from Webmining)
+## JSON in R^[This section is based on @umatter_2018b]
 
 Again, we can rely on an R package (`jsonlite`) providing high-level functions to read, manipulate, and extract data when working with JSON-documents in R. An important difference to working with XML- and HTML-documents is that XPath is not compatible with JSON. However, as `jsonlite` represents parsed JSON as R objects of class `list` and/or `data-frame`, we can simply work with the parsed document as with any other R-object of the same class. The following example illustrates this point.
 
@@ -217,6 +352,12 @@ json_doc$gender$type
 
 
 ```
+
+
+
+
+
+
 
 
 # References

@@ -17,7 +17,7 @@ output:
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
-css: ../../style/notes.css
+css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
 
 ---
@@ -31,43 +31,77 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 ```
 
 
-Programming: Murrell chapter 9.11
-- Go through key concepts (maybe extend a bit, take some from cs50)
-- Go through the case study (maybe update needed here)
+# First steps with R^[The following sections and examples are based on @umatter_2018.]
+
+Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier.^[In fact, since R is an open source environment, you can directly look at already implemented programs in order to learn how they work.] 
 
 
 
+## Variables and Vectors
+```{r}
+# a simle integer vector
+a <- c(10,22,33, 22, 40)
+
+# give names to vector elements
+names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva")
+a
+
+# indexing either via number of vector element (start count with 1)
+# or by element name
+a[3]
+a["Claire"]
+
+# Inspect the object you are working with
+class(a) # returns the class(es) of the object
+str(a) # returns the structure of the object ("what is in variable a?")
+
+```
+
+## Math Operators
+R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.
+```{r}
+# basic arithmetic 
+2+2
+sum_result <- 2+2
+sum_result
+sum_result -2
+4*5
+20/5
+
+# order of operations
+2+2*3
+(2+2)*3
+(5+5)/(2+3)
+
+# work with variables
+a <- 20
+b <- 10
+a/b
+
+# arithmetic with vectors
+a <- c(1,4,6)
+a * 2
+
+b <- c(10,40,80)
+a * b
+a + b 
 
 
+# other common math operators and functions
+4^2
+sqrt(4^2)
+log(2)
+exp(10)
+log(exp(10))
+
+# special numbers
+# Euler's number
+exp(1)
+# Pi
+pi
 
 
-<!-- ## Working with Text -->
-
-<!-- ```{r} -->
-<!-- # store a string in a variable -->
-<!-- astring <- "Hello, world" -->
-<!-- class(astring) -->
-
-<!-- # string operations -->
-<!-- # split  -->
-<!-- strsplit(astring, ", ") -->
-<!-- # paste -->
-<!-- paste(astring, "! How are you?", sep = "") -->
-<!-- # count number of characters -->
-<!-- nchar(astring) -->
-
-<!-- # character vectors -->
-<!-- stringvec <- c("Apple", "Banana", "Orange") -->
-<!-- stringvec -->
-<!-- # search patterns -->
-<!-- grep(pattern = "A", x = stringvec) -->
-<!-- grep(pattern = "an", x = stringvec) -->
-<!-- # operations with vectors -->
-<!-- paste0(stringvec, "!", sep="") -->
-
-<!-- ``` -->
-
-
+```
 
 
 # Basic programming concepts in R
@@ -218,7 +252,7 @@ Now, we can start thinking about how to implement the function based on built-in
  - $\sum_{i=1}^n{x_i}$: the sum of all the elements in vector $x$
  - and $n$, the number of elements in vector $x$.
  
-Once we know how to get these two components, computing the mean is straightforward. In R, there are two built-in functions that deliver exactly these two component: 
+Once we know how to get these two components, computing the mean is straightforward. In R, there are two built-in functions that deliver exactly these two components: 
 
  - `sum()` returns the sum of all the values in i ts arguments (i.e., if `x` is a numeric vector, `sum(x)` returns the sum of all elements in `x`).
  - `length()` returns the length of a given vector.

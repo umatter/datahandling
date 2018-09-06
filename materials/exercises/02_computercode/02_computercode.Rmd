@@ -11,7 +11,7 @@ output:
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
-css: ../../../style/notes.css
+css: ../../../style/notes_hsg.css
 bibliography: ../../references/datahandling.bib
 ---
 
@@ -52,7 +52,7 @@ In the previous workshop we have looked at what kind of computer code websites c
 
 3. Click on the file in the RStudio file browser and select `View in Web Browser`. The webpage should open in your default web browser. Inspect the webpage's content and compare it with the raw source code. Figure our which part of the source code is resulting in which part displayed in browser, by changing the text in the source code (change the text in the source code, save the file, reopen it in the web browser, etc.).
 
-4. Visit the following documentation on the `<html>`-element:  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title . Based on the description and the examples shown there, add the title `My Website` to your webpage by modifying/extending the source code accordingly. Verify your solution by checking whether the page's title is displayed in the browser tab/window.
+4. Visit the following documentation on the `<title>`-element:  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title . Based on the description and the examples shown there, add the title `My Website` to your webpage by modifying/extending the source code accordingly. Verify your solution by checking whether the page's title is displayed in the browser tab/window.
 
 
 
