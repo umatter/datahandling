@@ -57,11 +57,6 @@ In the previous workshop we have looked at what kind of computer code websites c
 
 
 
-# Guided Workshop: Data Storage, the Big Picture
-
-This workshop exercise is based on @murrell_2009: Chapter 5.1.
-
-
 # Repetition: Data Structures in R
 
 R provides different object classes to work with data. In simple terms, they differ with regard to how data is structured when saved in a variable. This, in turn, defines how we can access different parts of the data in this variable. For example, if we store a bunch of numbers in a numeric vector, we can then access each of these numbers individually, by telling R to give us the first, second, nth element of this vector. If we store data in a two-dimensional structure such as a matrix, we can then access the data column-wise, row-wise, or cell-wise. Depending on the task, one or the other object class is preferable to store and work with data.

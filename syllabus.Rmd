@@ -67,6 +67,7 @@ library(magrittr)
 library(kableExtra)
 
 sched <- read_xlsx("admin/schedule.xlsx", col_types = "text")
+sched[is.na(sched)] <-""
 
 kable(sched[1:6,1:6], format = "latex", booktabs = TRUE) %>%
   kable_styling(full_width = F) %>%
@@ -84,7 +85,7 @@ kable(sched[7:13,1:6], format = "latex", booktabs = TRUE) %>%
   column_spec(6, width = "4cm")
 ```
 
-## Part III: Visualization, and storage of large datasets
+## Part III: Visualization and basic analysis
 
 ```{r echo = FALSE}
 kable(sched[14:nrow(sched),1:6], format = "latex", booktabs = TRUE) %>%

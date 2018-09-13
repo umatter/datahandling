@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 4:<br>"Big Data" from the Web'
 author: "Prof. Dr. Ulrich Matter"
-date: "04/10/2018"
+date: "11/10/2018"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -18,7 +18,11 @@ options(width = 100)
 library(knitr)
 ```
 
-
+<style>
+pre {
+  font-size: 21px;
+}
+</style>
 
 # Recap: Computer Code and Data Storage
 
@@ -26,15 +30,15 @@ library(knitr)
 
   - Instructions to a computer, in a language it understands... (R)
   - Code is written to *text files*
-  - Text is 'translated' into 0s and 1s which the CPU can process.
+  - Code is 'translated' into 0s and 1s which the CPU can process.
 
 ## Data storage
 
-- Data usually stored in *text files*
+- Data is usually stored in *text files*.
+    - Read data from text files: data import.
+    - Write data to text files: data export.
+- Code is written to *text files*.
 
-  - Code is written to *text files*
-  - Read data from text files: data import.
-  - Write data to text files: data export.
 
 
 
@@ -65,6 +69,25 @@ xxd -b ../../data/helloworld.txt
 ```
 
 
+## Inspect a text file
+
+Directly looking at the `0`s and `1`s...
+
+```{bash eval = FALSE}
+xxd -b helloworld.txt
+```
+
+```{bash echo = FALSE}
+xxd -b ../../data/helloworld.txt
+```
+
+
+<center>
+*How does the computer know that `01001000` is `H`?*
+</center>
+
+
+
 
 ## Encoding issues
 
@@ -78,7 +101,7 @@ cat hastamanana.txt; echo
 
 ## UTF encodings
   - 'Universal' standards.
-  - Contain broad variaty of symbols (various languages).
+  - Contain broad variety of symbols (various languages).
   - Less problems with newer data sources...
 
 
@@ -105,7 +128,7 @@ cat hastamanana.txt; echo
   - Natural format/structure when data represents a table.
 
 
-# Units of Information/Data Storage: Bit, Byte, Word
+## Units of Information/Data Storage: Bit, Byte, Word
 
 ```{r bitbyteword, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Bit, Byte, Word. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
 include_graphics("../img/store-bitbyteword.png")
@@ -123,8 +146,8 @@ include_graphics("../img/store-bitbyteword.png")
 
 We distinguish two basic characteristics:
 
-  1. Data **types**: integers; real numbers ('numeric values', floating point numbers); text ('string', 'character values').
-  2. Basic **data structures** in RAM:
+  1. Data *types*: integers; real numbers ('numeric values', floating point numbers); text ('string', 'character values').
+  2. Basic *data structures* in RAM:
     - *Vectors*
     - *Factors*
     - *Arrays/Matrices*
@@ -134,9 +157,7 @@ We distinguish two basic characteristics:
 
 # Complex Data Structures
 
-So far, we have only looked at data structured in a flat/table-like representation (for example, CSV files). In applied econometrics/statistics it is quite common to only work with data sets stored in such formats. The main reason is that data manipulation, filtering, aggregation, etc. anyway presupposes/expects data in a table-like or matrix format. Hence, it makes perfectly sense to already store the data in this format.
-
-However, as we have observed in the previous lecture, when representing more complex data in one text file, the CSV structure has some disadvantages. Particularly, if the data contains nested observations (i.e., hierarchical structures). While a representation in a CSV file is theoretically possible, it is often far from practical to use other formats for such data. On the one hand, it is likely less intuitive to read the data correctly. On the other hand, storing the data in a CSV file would likely introduce a lot of redundency. That is, the identical values of some variables would have to be repeated again and again in the same column. The following code block illustrates this point for a data set on two families ([@murrell_2009], p. 116).
+## A rectangular data set
 
 ```
 father mother  name     age  gender
@@ -152,12 +173,89 @@ David  Debbie  Dianne    12  female
 
 ```
 
-From simply looking at the data we will eventually be able to make a best guess which observations belong together (are one family). However, the implied hierarchy is not apparent at first sight. While it might not matter too much that several values have to be repeated several times in this format, given that this data set is so small, the repeated values can become a problem when the data set is much larger. For each time `John` is repeated in the `father`-column, we use up 4 bytes of memory. If there are millions of people in this data set and/or if we have to transfer this data set very often over a computer network, these repetitions can become quite costly (as we would need more storage capacity and network resources).
+<center>
+*What is the data about?*
+</center>
 
-All the issues popping up here, complex/hierarchical data (with several observation types), intuitive human readability (self-describing), and efficiency in storage as well as transfer are of great importance in the Web. In course of the development of the Internet several data formats have been put forward to address these issues. Here, we discuss the two most prominent of these formats: [Extensible Markup Language (XML)](https://en.wikipedia.org/wiki/XML) and [JavaScript Object Notation (JSON)](https://en.wikipedia.org/wiki/JSON).
+
+## A rectangular data set
+
+```
+father mother  name     age  gender
+               John      33  male
+               Julia     32  female
+John   Julia   Jack       6  male
+John   Julia   Jill       4  female
+John   Julia   John jnr   2  male
+               David     45  male
+               Debbie    42  female
+David  Debbie  Donald    16  male
+David  Debbie  Dianne    12  female
+
+```
+<center>
+*Which observations belong together?*
+</center>
+
+
+## A rectangular data set
+
+```
+father mother  name     age  gender
+               John      33  male
+               Julia     32  female
+John   Julia   Jack       6  male
+John   Julia   Jill       4  female
+John   Julia   John jnr   2  male
+               David     45  male
+               Debbie    42  female
+David  Debbie  Donald    16  male
+David  Debbie  Dianne    12  female
+
+```
+<center>
+*Can a parser understand which observations belong together?*
+</center>
+
+
+## Limitations of rectangular data
+
+- Only *two dimensions*.
+    - Observations (rows)
+    - Characteristics/variables (columns)
+
+## Limitations of rectangular data
+
+- Only *two dimensions*.
+    - Observations (rows)
+    - Characteristics/variables (columns)
+- Hard to represent hierarchical structures.
+    - Might introduce redundancies.
+    - Machine-readability suffers (standard parsers won't recognize it).
+  
+
+  
+## Alternative formats
+
+- [JavaScript Object Notation (JSON)](https://en.wikipedia.org/wiki/JSON)
+- [Extensible Markup Language (XML)](https://en.wikipedia.org/wiki/XML)
+- and more...
+
+## Alternative formats
+
+- [JavaScript Object Notation (JSON)](https://en.wikipedia.org/wiki/JSON)
+- [Extensible Markup Language (XML)](https://en.wikipedia.org/wiki/XML)
+- (and more...)
+- Origin and most common domain of application: The Web!
+    - Need to *transfer* complex data (between machines).
+    - Need to *embed* complex data (in human friendly layout).
+
+
+
 
 # Deciphering XML
-Before going into the more technical details, let's try to figure out the basic logic behind the XML format by simply looking at some raw example data. For this, we turn again to the Point Nemo case study. The following code block shows the upper part of the data set we have downloaded from NASA's LAS server (here in a CSV-type format).
+
+## Revisiting Point Nemo
 
 ```
              VARIABLE : Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)
@@ -174,8 +272,7 @@ Before going into the more technical details, let's try to figure out the basic 
 16-APR-1994 00	8.100006
 ```
 
-
-Below, the same data is now displayed in XML-format. Note that in both cases, the data is simply stored in a text file. However, it is stored in a format that imposes a different *structure* on the data.
+## Revisiting Point Nemo (in XML!)
 
 
 ```
@@ -198,9 +295,37 @@ Below, the same data is now displayed in XML-format. Note that in both cases, th
 </temperatures>
 ```
 
-What features does the format have? What is it's logic? Is there room for improvement?
 
-By using indentation and code highlighting, the XML data structure becomes even more apparent.
+
+## Revisiting Point Nemo (in XML!)
+
+
+```
+<?xml version="1.0"?>
+<temperatures>
+<variable>Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)</variable>
+<filename>ISCCPMonthly_avg.nc</filename>
+<filepath>/usr/local/fer_data/data/</filepath>
+<badflag>-1.E+34</badflag>
+
+<subset>48 points (TIME)</subset>
+<longitude>123.8W(-123.8)</longitude>
+<latitude>48.8S</latitude>
+<case date="16-JAN-1994" temperature="9.200012" />
+<case date="16-FEB-1994" temperature="10.70001" />
+<case date="16-MAR-1994" temperature="7.5" />
+<case date="16-APR-1994" temperature="8.100006" />
+
+...
+</temperatures>
+```
+
+<center>
+*What features does the format have? What is it's logic/syntax?*
+</center>
+
+
+## XML Syntax
 
 
 ```{xml}
@@ -222,14 +347,20 @@ By using indentation and code highlighting, the XML data structure becomes even 
   </temperatures>
 ```
 
-First, note how special characters are used to define the structure of the document. We notice that `<` and `>`, containing some text label seem to play a key role in defining the structure. These building blocks are called 'XML-tags' and function very similarly to the HTML-tags on which webpages are built. Unlike in the case of HTML, we are free to choose what tags we want to use. In essence, we can define them ourselves to most properly describe the data. Moreover, the example data reveals the flexibility of XML to depict hierarchical structures: 
 
-The actual content we know from the csv-type example above is nested between the '`temperatures`'-tags, indicating to somebody unfamiliar with this data set what the data is about. 
+
+## XML Syntax
+
+The actual content we know from the csv-type example above is nested between the '`temperatures`'-tags:
+
 ```{xml}
   <temperatures>
 ...
   </temperatures>
 ```
+
+
+## XML Syntax
 
 Comparing the actual content between these tags with the csv-type format above, we further recognize that there are two principal ways to link variable names to values.
 ```{xml}
@@ -246,8 +377,16 @@ Comparing the actual content between these tags with the csv-type format above, 
     <case date="16-APR-1994" temperature="8.100006" />
 ```
 
-Either we define opening and closing xml-tags with the variable name and surround the value with them, such as in `<filename>ISCCPMonthly_avg.nc</filename>`. Or, we encapsule the values within one tag by defining tag-attributes such as in `<case date="16-JAN-1994" temperature="9.200012" />`. In many situations, both approaches can make sense. For example, the way the temperature measurements are encoded in the example data set is based on the tag-attributes approach:
 
+## XML Syntax
+
+
+1. Define opening and closing XML-tags with the variable name and surround the value with them, such as in `<filename>ISCCPMonthly_avg.nc</filename>`.
+2. Encapsulate the values within one tag by defining tag-attributes such as in `<case date="16-JAN-1994" temperature="9.200012" />`. 
+
+## XML Syntax
+
+Attributes-based:
 ```{xml}
     <case date="16-JAN-1994" temperature="9.200012" />
     <case date="16-FEB-1994" temperature="10.70001" />
@@ -255,7 +394,9 @@ Either we define opening and closing xml-tags with the variable name and surroun
     <case date="16-APR-1994" temperature="8.100006" />
 ```
 
-We could rewrite this by only using XML tags and no attributes:
+## XML Syntax
+
+Tag-based:
 
 ```{xml}
   <cases>    
@@ -278,19 +419,79 @@ We could rewrite this by only using XML tags and no attributes:
   <cases/>
 ```
 
-As long as we follow the basic XML syntax both versions are valid and XML parsers can read them equally well.
+
+
+## Insights: CSV vs. XML
 
 Note the key differences of storing data in XML format in contrast to a flat, table-like format such as CSV:
 
- - Storing both the actual data and metadata in the same file is straightforward (as the above example illustrates). Storing metadata in the first lines of a CSV-file (such as in the example above) is theoretically possible. However, by doing so we break the csv syntax and a usual parser to read csvs would likely break when reading such a file (recall the simple csv parsing algorithm). More generally, we can represent much more *complex (multi-dimensional)* data in XML-files than what is possible in CSVs. In fact, the nesting structure can be arbitrarily complex, as long as the XML syntax is valid. 
- - The XML syntax is largely self-explanatory and thus both *machine-readable and human-readable*. That is, not only can parsers/computers more easily handle complex data structures, human readers can intuitively understand what the data is all about just by looking at the raw XML file.
+ - Represent much more *complex (multi-dimensional)* data in XML-files than what is possible in CSVs. 
+    - Arbitrarily complex nesting structure.
+    - Flexibility to label tags.
 
-A potential drawback of storing data in XML format is that variable names (in tags) are repeated again and again. Since each tag consists of a couple of bytes, this can be highly inefficient when compared to a table-like format where variable names are only defined once. Typically, this means that if the data at hand is only two-dimensional (observations/variables), a CSV format makes more sense.
+    
+## Insights: CSV vs. XML
+
+Note the key differences of storing data in XML format in contrast to a flat, table-like format such as CSV:
+
+ - Self-explanatory syntax: *machine-readable and human-readable*. 
+    - Parsers/computers can more easily handle complex data structures.
+    - Humans can intuitively understand what the data is all about just by looking at the raw XML file.
+
+## Insights: CSV vs. XML
+  
+Potential drawback of XML: *inefficient* storage.
+
+  - Tags are part of the syntax, thus, part of the actual file.
+      - Tags (variable labels) are *repeated* again and again!
+      - CSV: variable labels are mentioned once.
+      - Potential solution: data compression (e.g., zip).
+  - If the data is actually two dimensional, a CSV is more practical.
+  
 
 # Deciphering JSON
 
-In many web applications, JSON serves the same purpose as XML (programs running on the server side are frequently capable of returning the same data in either format). An obvious difference between the two conventions is that JSON does not use tags but attribute-value pairs to annotate data. The following code example shows how the same data can be represented in XML or in JSON (example code taken from https://en.wikipedia.org/wiki/JSON):
+## JSON Syntax
+  
+  - Key difference to XML: no tags, but *attribute-value pairs*.
+  - A substitute for XML (often encountered in similar usage domains).
 
+
+
+----
+
+<div class="columns-1">
+*XML:*
+```{xml}
+<person>
+  <firstName>John</firstName>
+  <lastName>Smith</lastName>
+  <age>25</age>
+  <address>
+    <streetAddress>21 2nd Street</streetAddress>
+    <city>New York</city>
+    <state>NY</state>
+    <postalCode>10021</postalCode>
+  </address>
+  <phoneNumber>
+    <type>home</type>
+    <number>212 555-1234</number>
+  </phoneNumber>
+  <phoneNumber>
+    <type>fax</type>
+    <number>646 555-4567</number>
+  </phoneNumber>
+  <gender>
+    <type>male</type>
+  </gender>
+</person>
+
+```
+
+
+----
+
+<div class="columns-2">
 *XML:*
 ```{xml}
 <person>
@@ -347,32 +548,131 @@ In many web applications, JSON serves the same purpose as XML (programs running 
 ```
 
 
-Note that despite the differences of the syntax, the similarities regarding the nesting structure are visible in both formats. For example, `postalCode` is embedded in `address`, `firstname` and `lastname` are at the same nesting level, etc.
-
-
-
-## HTML: Computer Code Meets Data
-<!-- The [HyperText Markup Language (HTML)](https://en.wikipedia.org/wiki/HTML) is commonly used to define webpages to be read in a web browser. Thus, HTML is predominantly designed for browsers, not for programatic data collection with the aim of data mining or data analysis. In principle, HTML is used to annotate content and define the hierarchy of content in a document in order to tell the browser how to display ('render') this document on the computer screen. -->
-
-<!-- ## Write a simple webpage with HTML -->
-<!-- Let's illustrate the basics of HTML with an example in which we write our own website. In order to do so we open a new text file in RStudio (File->New File->TextFile). On the first line, we tell the browser what kind of document this is with the `<!DOCTYPE>` declaration set to `html`. In addition, the content of the whole HTML document must be put within `<html>` and `</html>`, which represents the 'root' of the HTML document.  In this you already recognize the typical annotation style in HTML with so-called HTML tags, starting with `<` and ending with `>` or `/>` in the case of the closing tag, respectively. What is defined between two tags is either another HTML tag, or the actual content. A HTML document usually consists of two main components: the head (everything between `<head>` and `</head>` ) and the body. The head usually contains meta data describing the whole document, for example, the title of the document:`<title>hello, world</title>`. The body (everything between `<body>` and `</body>`) contains all kind of specific content: text, images, tables, links, etc. In our very simple example, we just add a few words of plain text. We can now save this text document as `mysite.html` and open it in a web browser. -->
-
 ----
 
-```{r echo=FALSE, fig.align="center", out.width="80%", fig.cap="Source: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics"}
-include_graphics("../img/html_tags.png")
+<div class="columns-2">
+*XML:*
+```{xml}
+<person>
+  <firstName>John</firstName>
+  <lastName>Smith</lastName>
+ 
+</person>
+
+```
+
+*JSON:*
+```{json}
+{"firstName": "John",
+  "lastName": "Smith",
+
+}
+
+```
+
+</div>
+
+
+
+
+# Parsing XML and JSON in R
+
+## Parsing XML in R
+
+The following examples are based on the example code shown above (the two text-files `persons.json` and `persons.xml`)
+
+
+```{r eval=FALSE, purl=FALSE }
+# load packages
+library(xml2)
+
+# parse XML, represent XML document as R object
+xml_doc <- read_xml("persons.xml")
+xml_doc
+
 ```
 
 
------
+```{r echo=FALSE, purl=FALSE }
+# load packages
+library(xml2)
 
-```{r echo=FALSE, fig.align="center", out.width="80%", fig.cap="Source: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics"}
-include_graphics("../img/html_attributes.png")
+# parse XML, represent XML document as R object
+xml_doc <- read_xml("../../data/persons.xml")
+xml_doc
+
+```
+
+## Parsing JSON in R
+
+
+```{r eval=FALSE, purl=TRUE}
+# load packages
+library(jsonlite)
+
+# parse the JSON-document shown in the example above
+json_doc <- fromJSON("persons.json")
+
+# check the structure
+str(json_doc)
+
+```
+
+
+```{r echo=FALSE, purl=FALSE}
+# load packages
+library(jsonlite)
+
+# parse the JSON-document shown in the example above
+json_doc <- fromJSON("../../data/persons.json")
+
+# check the structure
+str(json_doc)
+
 ```
 
 
 
-## A simple example
+
+# HTML: Computer Code Meets Data
+
+## HTML: Code to build webpages
+
+[HyperText Markup Language (HTML)](https://en.wikipedia.org/wiki/HTML), designed to be read by a web browser. 
+
+
+```{r echo=FALSE, fig.align="center", out.width="60%"}
+include_graphics("../img/website_screen.jpg")
+```
+
+## HTML: Code to build webpages
+
+```{r echo=FALSE, fig.align="center", out.width="85%"}
+include_graphics("../img/website_screen.jpg")
+```
+
+
+## HTML documents contain data!
+
+```{r echo=FALSE, fig.align="center", out.width="85%"}
+include_graphics("../img/website_data.png")
+```
+
+
+## HTML documents: Code and Data!
+
+  - Web designer's perspective: "HTML is a tool to design the layout of a webpage (and the resulting HTML document is *code*)." 
+  - From a data scientist's perspective: "HTML gives the *data* contained in a webpage (the actual content) a certain degree of structure which can be exploited to systematically extract the data from the webpage."
+
+
+## HTML documents: Code and Data!
+
+HTML documents/webpages consist of *'semi-structured data'*: 
+  
+  - A webpage can contain a HTML-table (*structured data*)...
+  - ...but likely also contains just raw text (*unstructured data*).
+
+----
 
 ```{html}
      <!DOCTYPE html>
@@ -387,18 +687,42 @@ include_graphics("../img/html_attributes.png")
      </html>
 ```
 
+<center>
+*Similarities to other formats?*
+</center>
+
+
+
 ##  Characteristics of HTML
-1. Annotate/'mark up' data/text (with tags)
-     -  Defines structure and hierarchy
+1. *Annotate/'mark up'* data/text (with tags)
+     -  Defines *structure* and hierarchy
      -  Defines content (pictures, media)
 
-2. Nesting principle
+
+##  Characteristics of HTML
+1. *Annotate/'mark up'* data/text (with tags)
+     -  Defines *structure* and hierarchy
+     -  Defines content (pictures, media)
+
+2. *Nesting* principle
+     - `head` and `body` are nested within the `html` document
+     - Within the `head`, we define the `title`, etc.
+     
+
+     
+##  Characteristics of HTML
+1. *Annotate/'mark up'* data/text (with tags)
+     -  Defines *structure* and hierarchy
+     -  Defines content (pictures, media)
+
+2. *Nesting* principle
      - `head` and `body` are nested within the `html` document
      - Within the `head`, we define the `title`, etc.
      
 3. Expresses what is what in a document. 
      - Doesn't explicitly 'tell' the computer what to do
-     - HTML is a markup language, not a programming language
+     - HTML is a markup language, not a programming language.
+     
      
 
 ## HTML document as a 'tree'
@@ -406,252 +730,116 @@ include_graphics("../img/html_attributes.png")
 - 'Children' of the root node: `<head>...</head>`, `<body>...</body>`
 - 'Siblings' of each other: `<head>...</head>`, `<body>...</body>`
 
-----
+## HTML document as a 'tree'
 
-```{r echo=FALSE, fig.align="center", out.width="80%", fig.cap="HTML tree diagram. Source: http://www.webreference.com/programming/css_utopia/chap3/3-1.jpg"}
-include_graphics("../img/html_tree.jpg")
+```{r dom, echo=FALSE, fig.align="center", out.width="50%", fig.cap="HTML (DOM) tree diagram (by Lubaochuan 2014, licensed under the [Creative Commons Attribution-Share Alike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license)."}
+include_graphics("../img/dom_tree_white.png")
+```
+
+
+## Two ways to read a webpage into R
+
+In this example, we look at [Wikipedia's Economy of Switzerland page](https://en.wikipedia.org/wiki/Economy_of_Switzerland).
+
+```{r swiss, echo=FALSE, out.width = "50%", fig.align='center', fig.cap= "Source: https://en.wikipedia.org/wiki/Economy_of_Switzerland."}
+include_graphics("../img/1_SwissGDP.png")
 ```
 
 
 
+## Read the HTML line-by-line
 
-# Advanced: Exploring Computer Code
-
-## Hypertext Markup Language (HTML) 
-
-``` {html }
-<!DOCTYPE HTML>
-
-<html>
-  <head>
-     <title>Poles of Inaccessibility</title>
-  </head>
-  <body>
-    <h3>
-    Temperatures at the Pacific and Eurasian
-    <a href="http://wikipedia.org/wiki/Pole_of_inaccessibility"
-       style="font-style: italic">
-    Poles of Inaccessibility</a>
-    </h3>
-
-    <hr>
-    <p>
-    The Eurasion Pole of Inaccessibility experiences a much
-    wider range of temperatures than the Pacific Pole of
-    Inaccessibility.
-    </p>
-
-    <pre>
-    pacific eurasian
-min     4.3      -19.10001
-max     11.7      26.60001
-    </pre>
-
-    <p>
-    This reflects the fact that large bodies of water tend to
-    absorb and release heat more slowly compared to large
-    land masses.
-    Temperatures also depend on the time of the year and which
-    hemisphere the pole is located in.
-    </p>
-
-    <img src="poleplot.png">
-
-    <hr>
-    <p>
-    Source:  NASA's
-    <a href="http://mynasadata.larc.nasa.gov/LASintro.html"
-       style="font-style: italic">
-    Live Access Server</a>.
-    </p>
-  </body>
-</html>
-
+```{r}
+swiss_econ <- readLines("https://en.wikipedia.org/wiki/Economy_of_Switzerland")
 ```
 
 
-## HTML Documents
-
-``` {html }
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-    </body>
-</html>
+```{r}
+head(swiss_econ)
 ```
 
 
-## HTML Syntax
+## Navigate the raw HTML
 
-``` {html }
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-    <head>
-        <title>Poles of Inaccessibility</title>
-    </head>
-    <body>
-    </body>
-</html>
+Search for specific content
+
+```{r}
+line_number <- grep('US Dollar Exchange', swiss_econ)
+```
+
+```{r}
+line_number
+```
+
+```{r}
+swiss_econ[line_number]
 ```
 
 
-## HTML Syntax: start tag and end tag
-``` {html }
+<center>
+*What are we missing here?*
+</center>
 
-<div align="CENTER">
-<table cellpadding="3">
-<tbody><tr><td align="LEFT">start tag: </td>
-<td align="RIGHT"><tt>
-<font color="white">
-<font color="red"><span id="txt843">&lt;title&gt;</span></font>Poles of Inaccessibility&lt;/title&gt;</font></tt></td>
-</tr>
-<tr><td align="LEFT">content:</td>
-<td align="LEFT"><tt>
-<font color="white">&lt;title&gt;
-<font color="red"><span id="txt846">Poles of Inaccessibility</span></font>&lt;/title&gt;</font></tt></td>
-</tr>
-<tr><td align="LEFT">end tag: </td>
-<td align="LEFT"><tt>
-<font color="white">&lt;title&gt;Poles of Inaccessibility
-<font color="red"><span id="txt849">&lt;/title&gt;</span></font></font></tt></td>
-</tr>
-</tbody></table>
-</div>
+
+## Parse the HTML!
+
+- Navigate the document like an XML document!
+  - Same logic (but tags are pre-defined)...
+  - Traverse the tree.
+- Access specific parts of the contained data directly.
+
+<center>
+*Make use of the structure!*
+</center>
+
+## Parsing a Webpage with R
+
+
+```{r echo=FALSE}
+# install package if not yet installed
+# install.packages("rvest")
+
+# load the package
+library(rvest)
 ```
 
 
-## HTML Syntax: Start tag and end tag
+```{r eval=FALSE, purl=FALSE}
+# install package if not yet installed
+# install.packages("rvest")
 
-```{r echo=FALSE, fig.align="center", out.width="80%", fig.cap="Source: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics"}
-include_graphics("../../img/html_tags.png")
+# load the package
+library(rvest)
 ```
 
 
-
-## HTML Syntax: Attributes
-``` {html }
-
-<div align="CENTER">
-<table cellpadding="3">
-<tbody><tr><td align="LEFT">HTML tag:</td>
-<td align="RIGHT"><tt>
-<font color="white">
-<font color="red"><span id="txt890">&lt;img src="poleplot.png"&gt;</span></font></font></tt></td>
-</tr>
-<tr><td align="LEFT">element name:</td>
-<td align="RIGHT"><tt>
-<font color="white">&lt;
-<font color="red"><span id="txt893">img</span></font> src="poleplot.png"&gt;</font></tt></td>
-</tr>
-<tr><td align="LEFT">attribute:</td>
-<td align="RIGHT"><tt>
-<font color="white">&lt;img 
-<font color="red"><span id="txt896">src="poleplot.png"</span></font>&gt;</font></tt></td>
-</tr>
-<tr><td align="LEFT">attribute name:</td>
-<td align="RIGHT"><tt>
-<font color="white">&lt;img 
-<font color="red"><span id="txt899">src</span></font>="poleplot.png"&gt;</font></tt></td>
-</tr>
-<tr><td align="LEFT">attribute value:</td>
-<td align="RIGHT"><tt>
-<font color="white">&lt;img src="
-<font color="red"><span id="txt902">poleplot.png</span></font>"&gt;</font></tt></td>
-</tr>
-</tbody></table>
-</div>
+```{r}
+# parse the webpage, show the content
+swiss_econ_parsed <- read_html("https://en.wikipedia.org/wiki/Economy_of_Switzerland")
+swiss_econ_parsed
 ```
 
-## HTML Syntax: Attributes
+## Parsing a Webpage with R
 
-```{r echo=FALSE, fig.align="center", out.width="80%", fig.cap="Source: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics"}
-include_graphics("../../img/html_attributes.png")
+Now we can easily separate the data/text from the html code. For example, we can extract the HTML table containing the data we are interested in as a `data.frames`.
+
+```{r}
+tab_node <- html_node(swiss_econ_parsed, xpath = "//*[@id='mw-content-text']/div/table[3]")
+tab <- html_table(tab_node)
+tab
 ```
 
 
-## HTML Syntax: Element order
+## Why should we care?
 
-``` {html }
-<head>
-    <title>
-    Poles of Inaccessibility
-</head>
-    </title>
-```
-
-## HTML Syntax: Element order
-
-``` {html }
-<head>
-    <title>
-    Poles of Inaccessibility
-    </title>
-</head>
-```
-
-## HTML Syntax: Element order
-
-```{r echo=FALSE, fig.align="center", out.width="80%", fig.cap="HTML tree diagram. Source: http://www.webreference.com/programming/css_utopia/chap3/3-1.jpg"}
-include_graphics("../../img/html_tree.jpg")
+```{r webdata, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= "Source: https://www.sciencefocus.com/future-technology/how-much-data-is-on-the-internet/."}
+include_graphics("../img/data_internet.png")
 ```
 
 
-## HTML Syntax: Special Characters
-``` {html }
+## Why should we care?
 
-<div align="CENTER">
-<table cellpadding="3">
-<tbody><tr><td align="LEFT"></td>
-<td align="CENTER"><tt>
-<font color="white">
-<font color="red"><span id="txt858">&lt;</span></font>title
-<font color="red"><span id="txt860">&gt;</span></font>Poles of Inaccessibility
-<font color="red"><span id="txt862">&lt;/</span></font>title
-<font color="red"><span id="txt864">&gt;</span></font></font></tt></td>
-</tr>
-</tbody></table>
-</div>
-
-<div align="CENTER">
-<table cellpadding="3">
-<tbody><tr><td align="LEFT"></td>
-<td align="CENTER"><tt>
-<font color="white">
-<font color="red"><span id="txt910">&lt;</span></font>img src
-<font color="red"><span id="txt912">="</span></font>poleplot.png
-<font color="red"><span id="txt914">"&gt;</span></font></font></tt></td>
-</tr>
-</tbody></table>
-</div>
-```
-
-
-## Escape Sequences
-
-- When writing HTML code, `<` cannot be used for its normal meaning of 'less than'.
-- Instead, we have to type `&lt;`.
-- `&lt;` is an example of what we call an **'escape sequence'**.
-
-
-
-##  Recap: Characteristics of HTML
-1. Annotate/'mark up' data/text (with tags)
-     -  Defines structure and hierarchy
-     -  Defines content (pictures, media)
-
-2. Nesting principle
-     - `head` and `body` are nested within the `html` document
-     - Within the `head`, we define the `title`, etc.
-     
-3. Expresses what is what in a document. 
-     - Doesn't explicitly 'tell' the computer what to do
-     - HTML is a markup language, not a programming language
-     
-
-
+"One way to answer this question is to consider the sum total of data held by all the big online storage and service companies like Google, Amazon, Microsoft and Facebook. Estimates are that *the big four store at least 1,200 petabytes* between them. That is *1.2 million terabytes (one terabyte is 1,000 gigabytes)*."
 
 
 # Q&A

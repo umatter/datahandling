@@ -23,6 +23,10 @@ library(bookdown)
 ```
 
 
+# Prerequisites
+
+- Install the latest R version. R is open source and freely available from here: https://stat.ethz.ch/CRAN/. Click on the respective link for your operating system (Windows, Mac, Linux), and follow the instructions.
+- Once R is installed, install RStudio from here: https://www.rstudio.com/products/rstudio/download/#download. Under "Installers for Supported Platforms", click on the respective installer for your operating system (Windows, Mac, etc.) and follow the instructions.
 
 
 
@@ -166,10 +170,152 @@ Now you know how to execute R code directly in the console (interactive session)
 
 
 
+# Part II: First steps with R
 
-# Read raw text data (Update of @murrell_2009, Chaper 1)
+Before introducing some of the key functions and packages for data analysis with R, we should understand how such programs basically work and how we can write them in R. Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier.^[In fact, since R is an open source environment, you can directly look at already implemented programs in order to learn how they work.] 
 
-## Set Up 
+
+
+## Variables and Vectors
+```{r}
+# a simle integer vector
+a <- c(10,22,33, 22, 40)
+
+# give names to vector elements
+names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva")
+a
+
+# indexing either via number of vector element (start count with 1)
+# or by element name
+a[3]
+a["Claire"]
+
+# Inspect the object you are working with
+class(a) # returns the class(es) of the object
+str(a) # returns the structure of the object ("what is in variable a?")
+
+```
+
+## Math Operators
+R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.
+```{r}
+# basic arithmetic 
+2+2
+sum_result <- 2+2
+sum_result
+sum_result -2
+4*5
+20/5
+
+# order of operations
+2+2*3
+(2+2)*3
+(5+5)/(2+3)
+
+# work with variables
+a <- 20
+b <- 10
+a/b
+
+# arithmetic with vectors
+a <- c(1,4,6)
+a * 2
+
+b <- c(10,40,80)
+a * b
+a + b 
+
+
+# other common math operators and functions
+4^2
+sqrt(4^2)
+log(2)
+exp(10)
+log(exp(10))
+
+# special numbers
+# Euler's number
+exp(1)
+# Pi
+pi
+
+
+```
+
+
+# Part III: Data processing illustration
+
+## Downloading/accessing a website
+
+```{r htmldownload, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Components involved in 'visiting' a website. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
+include_graphics("../../img/script-htmldownload.png")
+```
+
+
+## Downloading/accessing a website
+
+```{r htmldownloaddata, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "Data involved involved in 'visiting a website'. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
+include_graphics("../../img/script-htmldownloaddata.png")
+```
+
+
+## How can we do this in R? 
+
+Download the website (read its source code into RAM)
+
+```{r}
+clockHTML <- readLines("https://www.census.gov/popclock/")
+```
+
+Have a look at the first lines of the webpage's source code:
+
+```{r}
+head(clockHTML)
+```
+
+
+
+## Searching/filtering the webpage
+
+Search the source code for the line that contains the part of the website with the world population counter:
+
+```{r}
+line_number <- grep('id="world-pop-container"', clockHTML)
+```
+
+We can now check on which line the text was found.
+
+```{r}
+line_number
+```
+
+## Searching/filtering the webpage
+
+
+```{r ramcalc, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Accessing data in RAM, processing it, and storing the result in RAM. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
+include_graphics("../../img/script-ramcalc.png")
+```
+
+
+## Output to local hard drive
+
+
+```{r eval=FALSE}
+writeLines(clockHTML, "clock.html")
+```
+
+
+## Output to local hard drive
+
+
+```{r htmlstore, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Writing data stored in RAM to a Mass Storage device (hard drive). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
+include_graphics("../../img/script-htmlstore.png")
+```
+
+
+# Part IV: Point Nemo Tutorial (read raw text data)
+
+## Set Up (Update of @murrell_2009, Chaper 1)
 
 1. Go to [NASA's Earth System Data Explorer](https://mynasadata.larc.nasa.gov/EarthSystemLAS/UI.vm)
 2. Click on Data Set, select `Atmosphere/Temperatures/Monthly Near-Surface Air Temperature (ISCCP)`. 
@@ -227,7 +373,7 @@ head(point_nemo)
 
 
 
-
+## Exercise C
 
 Now, repeat what we've just done for a different point on earth: the Eurasian Pole of Inaccessibility (46.17 N, 86.4 E). Once we have stored the raw ASCII data in the same folder as `Eurasia.txt`, we can simply reuse piece of code from before to load the data into R. The only thing we have to change is the file name.
 

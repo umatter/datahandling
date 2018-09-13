@@ -107,8 +107,72 @@ You should see the words `"Hello world"` printed on screen. This is the usual wa
 3. Type `print("Hello world")` to the first line of the script, and click on 'Run' (![](../../img/run.png)) to execute the code in the console.
 
 
+# Part II: First Steps in R
 
-# Part II: Data processing illustration
+## Variables and Vectors
+'Asign the numeric value `2` to variable `a`':
+```{r}
+a <- 2
+```
+Type `a` and hit enter (Prints the value of a variable to screen)
+```{r}
+a
+```
+
+## Variables and Vectors
+Initiate an integer vector `a`
+```{r}
+a <- c(10, 22, 33, 22, 40)
+```
+Give names to the vector's elements
+```{r}
+names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva")
+```
+
+
+
+## Indexing
+By number of element (R starts counting with 1!) 
+```{r}
+a[3]
+```
+By the element's name
+```{r}
+a["Claire"]
+```
+
+## Inspect variables/vectors ('R objects')
+See what 'class' an object belongs to
+```{r}
+class(a)
+```
+Get a summary of its structure
+```{r}
+str(a)
+```
+
+
+## Math Operators
+
+| Math Symbol | R Syntax|
+|:-------------:|:----------:|
+| $+$ | `+` |
+| $-$ | `-` |
+| $\times$ |  `*`|
+| $\div$  | `/`|
+
+## More Math
+| Math Symbol | R Syntax|
+|:-------------:|:----------:|
+|$a^n$| `a^n`|
+|$\sqrt{a}$| `sqrt(a)`|
+|$\ln{a}$| `log(a)`|
+|$e^n$| `exp(n)`|
+|Euler's number| `exp(1)`|
+|$\pi$| `pi`|
+
+
+# Part III: Data processing illustration
 
 ## Downloading/accessing a website
 
@@ -183,7 +247,7 @@ include_graphics("../../img/script-htmlstore.png")
 
 
 
-# Part III: Point Nemo
+# Part IV: Point Nemo
 
 ## Set Up  {.smaller}
 
