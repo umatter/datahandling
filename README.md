@@ -7,8 +7,32 @@
 install.packages("tidyverse")
 install.packages("knitr")
 install.packages("bookdown")
+install.packages("pacman")
+install.packages("qdapRegex")
 ```
 As well as all the packages used in the code examples.
+
+
+```{r}
+
+# get a list of all rmd files (slides and notes)
+notes_files <- list.files("materials/notes", pattern = "\\.Rmd", full.names =TRUE)
+slides_files <- list.files("materials/slides", pattern = "\\.Rmd", full.names = TRUE)
+all_files <- c(notes_files, slides_files)
+
+# parse the rmds, extract a list of package dependencies
+rmds <- lapply(all_files, readLines)
+to_install <- lapply(rmds, qdapRegex::rm_between, 
+                     left = c("library(", "require("),
+                     right = c(")", ")"),
+                     extract = TRUE)
+to_install <-  unique(na.omit(unlist(to_install)))
+to_install <- to_install[! to_install %in% c("PACKAGE-NAME",  "<PACKAGE NAME>")]
+
+# install all missing packages
+pacman::p_load(char = to_install)
+```
+
 
 
 # About
