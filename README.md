@@ -1,4 +1,16 @@
 
+# About
+Lecture materials for the SEPS-HSG (University of St. Gallen) course 'Data Handling: Import, Cleaning and Visualisation' (BA, Major in Economics). The materials consist of two parts:
+
+ - Lecture notes: `materials/notes/`
+ - Lecture slides: `materials/slides/`
+
+# How to contribute
+
+- Open issues:
+  - report bugs
+  - suggest enhancements
+- Resolve open issues with a pull request
 
 
 # Prerequisites
@@ -34,14 +46,6 @@ pacman::p_load(char = to_install)
 ```
 
 
-
-# About
-Lecture materials for the SEPS-HSG (University of St. Gallen) course 'Data Handling: Import, Cleaning and Visualisation' (BA, Major in Economics). The materials consist of two parts:
-
- - Lecture notes: `materials/notes/`
- - Lecture slides: `materials/slides/`
-
-
 # Compillation of materials
 
 Run the following in the terminal:
@@ -49,12 +53,5 @@ Run the following in the terminal:
 sh makeall_datahandling.sh
 ```
 This tests all the R code, compiles notes as html (`materials/notes/html`) and pdf (`materials/notes/pdf`), slides as html/ioslides (`materials/slides/html`), and outputs the sourcecode of code examples in the notes to an R script (`materials/sourcecode`).
-
-# How to contribute
-
-- Open issues:
-  - report bugs
-  - suggest enhancements
-- Resolve open issues with a pull request
 
 
