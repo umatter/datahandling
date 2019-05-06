@@ -18,5 +18,4 @@ Rscript code/render_slides.R
 rm materials/notes/*.html
 rm materials/notes/*.pdf
 rm materials/slides/*.html
-
-
+rm materials/sourcecode/*Conflict*.R

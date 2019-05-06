@@ -4,7 +4,6 @@
   <title>Data Handling: Import, Cleaning and Visualisation</title>
 
   <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="generator" content="pandoc" />
 
@@ -260,7 +259,6 @@ background: black;
 }
 
 slides > slide {
-display: none;
 font-family: 'Open Sans', Arial, sans-serif;
 font-size: 26px;
 color: #797979;
@@ -281,17 +279,19 @@ transition: all 0.6s ease-in-out;
 }
 
 slides > slide.far-past {
-display: none;
 }
 
 slides > slide.past {
-display: block;
 opacity: 0;
 }
 
 slides > slide.current {
 display: block;
 opacity: 1;
+z-index: 1;
+}
+slides > slide:not(.current) {
+z-index: 0;
 }
 
 slides > slide.current .auto-fadein {
@@ -306,13 +306,11 @@ background-size: 100% 100%;
 }
 
 slides > slide.next {
-display: block;
 opacity: 0;
 pointer-events: none;
 }
 
 slides > slide.far-next {
-display: none;
 }
 
 slides > slide.dark {
@@ -384,8 +382,6 @@ width: 1100px;
 
 slides.layout-widescreen > slide.far-past,
 slides.layout-faux-widescreen > slide.far-past {
-display: block;
-display: none;
 -webkit-transform: translate(-2260px);
 -moz-transform: translate(-2260px);
 -ms-transform: translate(-2260px);
@@ -419,8 +415,6 @@ pointer-events: none;
 
 slides.layout-widescreen > slide.far-next,
 slides.layout-faux-widescreen > slide.far-next {
-display: block;
-display: none;
 -webkit-transform: translate(2260px);
 -moz-transform: translate(2260px);
 -ms-transform: translate(2260px);
@@ -1351,6 +1345,13 @@ opacity: 1;
 
 .overview .slide-area {
 display: none;
+}
+slides > slide {
+background: linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
+background-color: white;
+}
+slides > slide {
+opacity: 0;
 }
 @media print {
 
@@ -3077,6 +3078,10 @@ if (document.readyState !== "loading" &&
       font-style: italic;
     }
 
+    summary {
+      display: list-item;
+    }
+
     slides > slide {
       -webkit-transition: all 0.4s ease-in-out;
       -moz-transition: all 0.4s ease-in-out;
@@ -3092,6 +3097,10 @@ if (document.readyState !== "loading" &&
       transition: opacity 0.6s ease-in 0.4s;
       opacity: 0;
     }
+/* https://github.com/ropensci/plotly/pull/524#issuecomment-468142578 */
+slide:not(.current) .plotly.html-widget{
+  display: block;
+}
 
     slides > slide:not(.nobackground):before {
       font-size: 12pt;
@@ -4541,7 +4550,7 @@ pre {
 <li>Room: 01-U121</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Part II: Data Gathering and Preparation</h2></hgroup><article  id="part-ii-data-gathering-and-preparation" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Part II: Data Gathering and Preparation</h2></hgroup><article  class="smaller" id="part-ii-data-gathering-and-preparation">
 
 <table class = 'rmdtable'>
 <col width="11.827957%" />
@@ -4564,7 +4573,7 @@ pre {
 </tr>
 </table>
 
-</article></slide><slide class=""><hgroup><h2>Part III: Analysis, Visualisation, Output</h2></hgroup><article  id="part-iii-analysis-visualisation-output" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Part III: Analysis, Visualisation, Output</h2></hgroup><article  class="smaller" id="part-iii-analysis-visualisation-output">
 
 <table class = 'rmdtable'>
 <col width="13.750000%" />
@@ -4672,7 +4681,7 @@ OUTPUT_FILE &lt;- &quot;/final_data/datafile.csv&quot;
 
 <pre >## # A tibble: 47 x 7
 ##    District     Fertility Agriculture Examination Education Catholic Infant.Mortality
-##    &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt;    &lt;dbl&gt;            &lt;dbl&gt;
+##    &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;
 ##  1 Courtelary        80.2        17            15        12     9.96             22.2
 ##  2 Delemont          83.1        45.1           6         9    84.8              22.2
 ##  3 Franches-Mnt      92.5        39.7           5         5    93.4              20.2
@@ -4683,7 +4692,7 @@ OUTPUT_FILE &lt;- &quot;/final_data/datafile.csv&quot;
 ##  8 Glane             92.4        67.8          14         8    97.2              24.9
 ##  9 Gruyere           82.4        53.3          12         7    97.7              21  
 ## 10 Sarine            82.9        45.2          16        13    91.4              24.4
-## # ... with 37 more rows</pre>
+## # … with 37 more rows</pre>
 
 <center>
 
@@ -4797,9 +4806,9 @@ pre {
 }
 </style>
 
-</article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  id="references" class="unnumbered smaller">
+</article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  class="unnumbered smaller" id="references">
 
-<div id="refs" class="references">
+<div class="references" id="refs">
 <div id="ref-wickham_2014">
 <p>Wickham, Hadley. 2014. “Tidy Data.” <em>Journal of Statistical Software, Articles</em> 59 (10): 1–23. <a href='https://doi.org/10.18637/jss.v059.i10' title=''>https://doi.org/10.18637/jss.v059.i10</a>.</p></div>
 

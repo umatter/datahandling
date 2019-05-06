@@ -40,7 +40,7 @@ library(knitr)
 library(magrittr)
 library(kableExtra)
 
-sched <- read_xlsx("../../admin/schedule.xlsx", col_types = "text")
+sched <- read_xlsx("../misc/schedule.xlsx", col_types = "text")
 
 ```
 
