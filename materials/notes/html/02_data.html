@@ -191,7 +191,7 @@ window.buildTabsets = function(tocID) {
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
@@ -252,7 +252,29 @@ code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
 code span.vs { color: #4e9a06; } /* VerbatimString */
 code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -327,9 +349,7 @@ text-decoration: none;
 }
 </style>
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -354,22 +374,92 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -379,10 +469,10 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Data Handling: Import, Cleaning and Visualisation</h1>
-<h3 class="subtitle"><em>Lecture 2: A Brief Introduction to Data and Data Processing</em></h3>
-<h4 class="author"><em><div class="line-block">Prof. Dr. Ulrich Matter<br />
-(University of St. Gallen)</div></em></h4>
-<h4 class="date"><em>27/09/2018</em></h4>
+<h3 class="subtitle">Lecture 2: A Brief Introduction to Data and Data Processing</h3>
+<h4 class="author"><div class="line-block">Prof. Dr. Ulrich Matter<br />
+(University of St. Gallen)</div></h4>
+<h4 class="date">27/09/2018</h4>
 
 </div>
 
@@ -609,9 +699,9 @@ Figure 5.4: Data involved involved in ‘visiting a website’. Figure by <span 
 </div>
 
 <p>What we just did with our browser can also be done via R. First, we tell R to download the webpage and read its source code into RAM:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">clockHTML &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;https://www.census.gov/popclock/&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">clockHTML &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;https://www.census.gov/popclock/&quot;</span>)</code></pre>
 <p>And we can have a look at the first lines of the webpage’s source code:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">head</span>(clockHTML)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(clockHTML)</code></pre>
 <pre><code>## [1] &quot;&lt;!DOCTYPE html&gt;&quot;                   &quot;&lt;html lang=\&quot;en\&quot;&gt;&quot;               
 ## [3] &quot;&lt;head&gt;&quot;                            &quot;\t&lt;title&gt;Population Clock&lt;/title&gt;&quot;
 ## [5] &quot;        &lt;meta charset=\&quot;UTF-8\&quot;&gt;&quot;  &quot;\t&quot;</code></pre>
@@ -620,10 +710,10 @@ Figure 5.4: Data involved involved in ‘visiting a website’. Figure by <span 
 <div id="searchingfiltering-the-webpage" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> Searching/filtering the webpage</h3>
 <p>Having the webpage loaded into RAM (in a format that R can work with), we can now process this data in different ways via R. For example, we can search the source code for the line that contains the part of the website with the world population counter:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">line_number &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">'id=&quot;world-pop-container&quot;'</span>, clockHTML)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">line_number &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">'id=&quot;world-pop-container&quot;'</span>, clockHTML)</code></pre>
 <p>That is, we ask R on which line in <code>clockHTML</code> (the source code stored in RAM) the text <code>id=&quot;world-pop-container&quot;</code> is and store the answer (the line number) in RAM under the variable name <code>line_number</code>.</p>
 <p>We can now check on which line the text was found.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">line_number</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">line_number</code></pre>
 <pre><code>## [1] 4610</code></pre>
 <p>Again, we can illustrate with a simple diagram which computer components were involved in this task. First we entered an R command with the keyboard, the CPU is processing it and as a result accesses <code>clockHTML</code> in RAM, executes the search, returns the line number, and stores it in a new variable called <code>line_number</code> in RAM. In our current R session, we thus have now two ‘objects’ stored in RAM: <code>clockHTML</code> and <code>line_number</code>, which we can further process with R.</p>
 <div class="figure" style="text-align: center"><span id="fig:ramcalc"></span>
@@ -634,7 +724,7 @@ Figure 5.5: Accessing data in RAM, processing it, and storing the result in RAM.
 </div>
 
 <p>Finally, we can tell R to store the source code of the downloaded webpage on our local hard drive.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">writeLines</span>(clockHTML, <span class="st">&quot;clock.html&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">writeLines</span>(clockHTML, <span class="st">&quot;clock.html&quot;</span>)</code></pre>
 <p>This means we tell R to access the data stored in <code>clockHTML</code> in RAM and write this data to a text-file called “clock.html” on our local hard drive (in the current working directory of our R session). The following diagram again illustrates the hardware components involved in these steps.</p>
 <div class="figure" style="text-align: center"><span id="fig:htmlstore"></span>
 <img src="data:image/png;base64,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" alt="Writing data stored in RAM to a Mass Storage device (hard drive). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="40%" />

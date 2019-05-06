@@ -15,32 +15,40 @@ df_p <- data.frame(id = 1:4,
                    profession = c("Economist", "Data Scientist", "Data Scientist", "Economist"))
 df_p
 
+
 ## ------------------------------------------------------------------------
 df_merged <- merge(df_p, df_c, by="id")
 df_merged
+
 
 ## ------------------------------------------------------------------------
 df_merged2 <- merge(df_p, df_c, by="id", all = TRUE)
 df_merged2
 
+
 ## ------------------------------------------------------------------------
 df_selection <- select(df_merged, id, year, money_spent, currency)
 df_selection
 
+
 ## ------------------------------------------------------------------------
 filter(df_selection, year == 2018)
 
+
 ## ------------------------------------------------------------------------
 filter(df_selection, year == 2018, money_spent < 5000, currency=="EUR")
+
 
 ## ------------------------------------------------------------------------
 exchange_rates <- data.frame(exchange_rate= c(0.9, 1, 1.2),
                              currency=c("USD", "CHF", "EUR"), stringsAsFactors = FALSE)
 df_selection <- merge(df_selection, exchange_rates, by="currency")
 
+
 ## ------------------------------------------------------------------------
 df_mutated <- mutate(df_selection, money_spent_chf = money_spent * exchange_rate)
 df_mutated
+
 
 ## ------------------------------------------------------------------------
 summarise(df_mutated, 
@@ -48,6 +56,7 @@ summarise(df_mutated,
           standard_deviation = sd(money_spent_chf),
           median = median(money_spent_chf),
           N = n())
+
 
 ## ------------------------------------------------------------------------
 by_year <- group_by(df_mutated, year)
@@ -57,21 +66,26 @@ summarise(by_year,
           median = median(money_spent_chf),
           N = n())
 
+
 ## ------------------------------------------------------------------------
 # load data
 data("swiss")
 
+
 ## ------------------------------------------------------------------------
 sapply(swiss, mean)
+
 
 ## ------------------------------------------------------------------------
 summarise(swiss, 
           Fertility = mean(Fertility),
           Agriculture = mean(Agriculture)) # etc.
 
+
 ## ------------------------------------------------------------------------
 normal_distr <- rnorm(1000)
 hist(normal_distr)
+
 
 ## ---- echo=TRUE----------------------------------------------------------
 # draw a random sample from a normal distribution with a large standard deviation
@@ -85,12 +99,14 @@ plot(density(littlevar), col = "blue",
 lines(density(largevar), col = "red")
 
 
+
 ## ---- echo=TRUE----------------------------------------------------------
 # Install the R-package called "moments" with the following command (if not installed yet):
 # install.packages("moments")
 
 # load the package
 library(moments)
+
 
 
 ## ---- echo=TRUE----------------------------------------------------------
@@ -119,6 +135,7 @@ skewness(sample)
 #
 
 
+
 ## ------------------------------------------------------------------------
 # draw a random sample of simulated data from a normal distribution
 # the sample is of size 1000 (hence, n = 1000)
@@ -140,6 +157,7 @@ kurtosis(sample)
 # as expected, the kurtosis has now a lower value
 
 
+
 ## ---- echo=TRUE----------------------------------------------------------
 # own implementation
 sum((sample-mean(sample))^3) / ((length(sample)-1) * sd(sample)^3)
@@ -147,12 +165,14 @@ sum((sample-mean(sample))^3) / ((length(sample)-1) * sd(sample)^3)
 # implementation in moments package
 skewness(sample)
 
+
 ## ---- echo=TRUE----------------------------------------------------------
 # own implementation
 sum((sample-mean(sample))^4) / ((length(sample)-1) * sd(sample)^4)
 
 # implementation in moments package
 kurtosis(sample)
+
 
 ## ----dice10, echo=TRUE---------------------------------------------------
 # first we define the potential values a die can take
@@ -166,12 +186,14 @@ results <- sample( x = dvalues, size = n, replace = TRUE)
 # compute the mean
 mean(results)
 
+
 ## ----dice100, echo=TRUE--------------------------------------------------
 n <- 100
 # draw the random sample: 'roll the die n times and record each result'
 results <- sample( x = dvalues, size = n, replace = TRUE)
 # compute the mean
 mean(results)
+
 
 ## ----lln, echo=TRUE------------------------------------------------------
 # Essentially, what we are doing here is repeating the experiment above many times, each time increasing n.
@@ -194,6 +216,7 @@ plot(ns, unlist(means),
      cex = .6)
 abline(h = 3.5, col = "red")
 
+
 ## ----t-test--------------------------------------------------------------
 
 # First we roll the die like above
@@ -212,9 +235,11 @@ t <- (sample_mean - 3.5) / mean_se
 t
 
 
+
 ## ----p-value-------------------------------------------------------------
 # calculate the p-value associated with the t-value calculated above
 2*pnorm(-abs(t))
+
 
 ## ----clt-----------------------------------------------------------------
 # define the set of sample sizes

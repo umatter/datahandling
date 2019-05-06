@@ -191,7 +191,7 @@ window.buildTabsets = function(tocID) {
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
@@ -252,7 +252,29 @@ code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
 code span.vs { color: #4e9a06; } /* VerbatimString */
 code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -327,9 +349,7 @@ text-decoration: none;
 }
 </style>
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -354,22 +374,92 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -379,10 +469,10 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Data Handling: Import, Cleaning and Visualisation</h1>
-<h3 class="subtitle"><em>Lecture 6: Data Sources, Data Gathering, Data Import</em></h3>
-<h4 class="author"><em><div class="line-block">Prof. Dr. Ulrich Matter<br />
-(University of St. Gallen)</div></em></h4>
-<h4 class="date"><em>25/10/2018</em></h4>
+<h3 class="subtitle">Lecture 6: Data Sources, Data Gathering, Data Import</h3>
+<h4 class="author"><div class="line-block">Prof. Dr. Ulrich Matter<br />
+(University of St. Gallen)</div></h4>
+<h4 class="date">25/10/2018</h4>
 
 </div>
 
@@ -414,57 +504,57 @@ $(document).ready(function () {
 <h1><span class="header-section-number">2</span> Data gathering procedure</h1>
 <p>Before we set out to gather/import data from diverse sources, we should start organizing the procedure in an R script. This script will be the begining of our pipeline!</p>
 <p>First, open a new R script in RStudio and save it as <code>import_data.R</code> in your <code>code</code> folder. Take your time to meaningfully describe what the script is all about in the first few lines of the file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Imports data from ...</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># Input: links to data sources (data comes in ... format)</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># Output: cleaned data as CSV</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"># </span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"># U. Matter, St. Gallen, 2018</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#######################################################################</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#######################################################################</span>
+<span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span>
+<span class="co">#</span>
+<span class="co"># Imports data from ...</span>
+<span class="co"># Input: links to data sources (data comes in ... format)</span>
+<span class="co"># Output: cleaned data as CSV</span>
+<span class="co"># </span>
+<span class="co"># U. Matter, St. Gallen, 2018</span>
+<span class="co">#######################################################################</span></code></pre>
 <p>RStudio recognizes different sections in a script, whereby section headers are indicated by <code>----------</code>. This helps to further organize the script into different tasks. Usually, it makes sense to start with a ‘meta’ section in which all necessary packages are loaded and fix variables are initiated.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># Imports data from ...</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co"># Input: links to data sources (data comes in ... format)</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># Output: cleaned data as CSV</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># </span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co"># U. Matter, St. Gallen, 2018</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co"># SET UP --------------</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co"># set fix variables</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">INPUT_PATH &lt;-<span class="st"> &quot;/rawdata&quot;</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">OUTPUT_FILE &lt;-<span class="st"> &quot;/final_data/datafile.csv&quot;</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#######################################################################</span>
+<span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span>
+<span class="co">#</span>
+<span class="co"># Imports data from ...</span>
+<span class="co"># Input: links to data sources (data comes in ... format)</span>
+<span class="co"># Output: cleaned data as CSV</span>
+<span class="co"># </span>
+<span class="co"># U. Matter, St. Gallen, 2018</span>
+<span class="co">#######################################################################</span>
+
+
+<span class="co"># SET UP --------------</span>
+<span class="co"># load packages</span>
+<span class="kw">library</span>(tidyr)
+
+<span class="co"># set fix variables</span>
+INPUT_PATH &lt;-<span class="st"> &quot;/rawdata&quot;</span>
+OUTPUT_FILE &lt;-<span class="st"> &quot;/final_data/datafile.csv&quot;</span></code></pre>
 <p>Finally we add sections with the actual code (in the case of a data import script, maybe one section per data source)</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># Project XY: Data Gathering and Import</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># This script is the first part of the data pipeline of project XY.</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co"># It imports data from ...</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co"># Input: links to data sources (data comes in ... format)</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co"># Output: cleaned data as CSV</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co"># </span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co"># U. Matter, St. Gallen, 2018</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co"># SET UP --------------</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co"># set fix variables</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18">INPUT_PATH &lt;-<span class="st"> &quot;/rawdata&quot;</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19">OUTPUT_FILE &lt;-<span class="st"> &quot;/final_data/datafile.csv&quot;</span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co"># IMPORT RAW DATA FROM CSVs -------------</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#######################################################################</span>
+<span class="co"># Project XY: Data Gathering and Import</span>
+<span class="co">#</span>
+<span class="co"># This script is the first part of the data pipeline of project XY.</span>
+<span class="co"># It imports data from ...</span>
+<span class="co"># Input: links to data sources (data comes in ... format)</span>
+<span class="co"># Output: cleaned data as CSV</span>
+<span class="co"># </span>
+<span class="co"># U. Matter, St. Gallen, 2018</span>
+<span class="co">#######################################################################</span>
+
+
+<span class="co"># SET UP --------------</span>
+<span class="co"># load packages</span>
+<span class="kw">library</span>(tidyr)
+
+<span class="co"># set fix variables</span>
+INPUT_PATH &lt;-<span class="st"> &quot;/rawdata&quot;</span>
+OUTPUT_FILE &lt;-<span class="st"> &quot;/final_data/datafile.csv&quot;</span>
+
+
+<span class="co"># IMPORT RAW DATA FROM CSVs -------------</span></code></pre>
 </div>
 <div id="loadingimporting-rectangular-data" class="section level1">
 <h1><span class="header-section-number">3</span> Loading/Importing Rectangular Data<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></h1>
@@ -472,10 +562,10 @@ $(document).ready(function () {
 <h2><span class="header-section-number">3.1</span> Loading built-in datasets</h2>
 <p>We start with the simplest case of loading/importing data. The basic R installation provides some example data sets to try out R’s statistics functions. In the introduction to visualization techniques with R as well as in the statistics examples in the lectures to come, we will rely on some of these datasets for sake of simplicity. Note that the usage of these simple datasets shipped with basic R are very helpful when practicing/learning R on your own. Many R packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and tutorials online also use these datasets (see, for example the <a href="https://ggplot2.tidyverse.org/">ggplot2 documentation</a>). And, they are very useful when searching help on <a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a> in the context of data analysis/manipulation with R, as you should provide a code example based on some data that everybody can easily load and access.</p>
 <p>In order to load such datasets, simply use the <code>data()</code>-function:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">data</span>(swiss)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(swiss)</code></pre>
 <p>In this case, we load a dataset called <code>swiss</code>. After loading it, the data is stored in a variable of the same name as the dataset (here ‘<code>swiss</code>’). We can inspect it and have a look at the first few rows:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># inspect the structure</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">str</span>(swiss)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># inspect the structure</span>
+<span class="kw">str</span>(swiss)</code></pre>
 <pre><code>## 'data.frame':    47 obs. of  6 variables:
 ##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
 ##  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
@@ -483,8 +573,8 @@ $(document).ready(function () {
 ##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
 ##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
 ##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># look at the first few rows</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">head</span>(swiss)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># look at the first few rows</span>
+<span class="kw">head</span>(swiss)</code></pre>
 <pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality
 ## Courtelary        80.2        17.0          15        12     9.96             22.2
 ## Delemont          83.1        45.1           6         9    84.84             22.2
@@ -503,33 +593,35 @@ $(document).ready(function () {
 <pre><code>&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;
 &quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2</code></pre>
 <p>The function <code>read.csv()</code> imports such files from disk into R (in the form of a <code>data.frame</code>). In this example the <code>swiss</code>-dataset is stored locally on our disk in the folder <code>data</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">swiss_imported &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">swiss_imported &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</code></pre>
 <p>Alternatively, we could use the newer <code>read_csv()</code> function which would return a <code>tibble</code>.</p>
 </div>
 <div id="spreadsheetsexcel" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Spreadsheets/Excel</h3>
 <p>In order to read excel spreadsheets we need to install an additional R package called <code>readxl</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># install the package </span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install the package </span>
+<span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</code></pre>
 <p>Then we load this additional package (‘library’) and use the package’s <code>read_excel()</code>-function to import data from an excel-sheet. In the example below, the same data as above is stored in an excel-sheet called <code>swiss.xlsx</code>, again in a folder called <code>data</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># load the package</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co"># import data from a spreadsheet</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">swiss_imported &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/swiss.xlsx&quot;</span>)</a></code></pre></div>
+<pre><code>## New names:
+## * `` -&gt; ...1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the package</span>
+<span class="kw">library</span>(readxl)
+
+<span class="co"># import data from a spreadsheet</span>
+swiss_imported &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/swiss.xlsx&quot;</span>)</code></pre>
 </div>
 <div id="data-from-other-data-analysis-software" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Data from other data analysis software</h3>
 <p>The R packages <code>foreign</code> and <code>haven</code> contain functions to import data from formats used in other statistics/data analysis software, such as SPSS and STATA.</p>
 <p>In the following example we use <code>haven</code>‘s <code>read_spss()</code> function to import a version of the <code>swiss</code>-dataset stored in SPSS’ <code>.sav</code>-format (again stored in the folder called <code>data</code>).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># install the package (if not yet installed):</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># install.packages(&quot;haven&quot;)</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co"># load the package</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw">library</span>(haven)</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co"># read the data</span></a>
-<a class="sourceLine" id="cb13-8" data-line-number="8">swiss_imported &lt;-<span class="st"> </span><span class="kw">read_spss</span>(<span class="st">&quot;data/swiss.sav&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install the package (if not yet installed):</span>
+<span class="co"># install.packages(&quot;haven&quot;)</span>
+
+<span class="co"># load the package</span>
+<span class="kw">library</span>(haven)
+
+<span class="co"># read the data</span>
+swiss_imported &lt;-<span class="st"> </span><span class="kw">read_spss</span>(<span class="st">&quot;data/swiss.sav&quot;</span>)</code></pre>
 </div>
 </div>
 </div>
@@ -539,35 +631,35 @@ $(document).ready(function () {
 <div id="basic-usage-of-readr-functions" class="section level2">
 <h2><span class="header-section-number">4.1</span> Basic usage of <code>readr</code> functions</h2>
 <p>For example, we can parse the first lines of the swiss dataset directly like this</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">library</span>(readr)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)</code></pre>
 <pre><code>## 
 ## Attaching package: 'readr'</code></pre>
 <pre><code>## The following object is masked from 'package:rvest':
 ## 
 ##     guess_encoding</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">read_csv</span>(<span class="st">'&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2'</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">'&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;</span>
+<span class="st">&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2'</span>)</code></pre>
 <pre><code>## # A tibble: 1 x 7
 ##   District   Fertility Agriculture Examination Education Catholic Infant.Mortality
-##   &lt;chr&gt;          &lt;dbl&gt;       &lt;int&gt;       &lt;int&gt;     &lt;int&gt;    &lt;dbl&gt;            &lt;dbl&gt;
+##   &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;
 ## 1 Courtelary      80.2          17          15        12     9.96             22.2</code></pre>
 <p>or read the entire <code>swiss</code> dataset by pointing to the file</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">swiss &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">swiss &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   District = col_character(),
 ##   Fertility = col_double(),
 ##   Agriculture = col_double(),
-##   Examination = col_integer(),
-##   Education = col_integer(),
+##   Examination = col_double(),
+##   Education = col_double(),
 ##   Catholic = col_double(),
 ##   Infant.Mortality = col_double()
 ## )</code></pre>
 <p>In either case, the result is a <code>tibble</code>:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">swiss</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">swiss</code></pre>
 <pre><code>## # A tibble: 47 x 7
 ##    District     Fertility Agriculture Examination Education Catholic Infant.Mortality
-##    &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt;    &lt;dbl&gt;            &lt;dbl&gt;
+##    &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;
 ##  1 Courtelary        80.2        17            15        12     9.96             22.2
 ##  2 Delemont          83.1        45.1           6         9    84.8              22.2
 ##  3 Franches-Mnt      92.5        39.7           5         5    93.4              20.2
@@ -578,17 +670,17 @@ $(document).ready(function () {
 ##  8 Glane             92.4        67.8          14         8    97.2              24.9
 ##  9 Gruyere           82.4        53.3          12         7    97.7              21  
 ## 10 Sarine            82.9        45.2          16        13    91.4              24.4
-## # ... with 37 more rows</code></pre>
+## # … with 37 more rows</code></pre>
 <p>The other <code>readr</code> functions have practically the same syntax and behavior. They are used for fixed-width files or csv-type files with other delimiters than commas.</p>
 </div>
 <div id="parsing-and-data-types" class="section level2">
 <h2><span class="header-section-number">4.2</span> Parsing and data types</h2>
 <p>From inspecting the <code>swiss</code> tibble printed out above, we recognize that <code>read_csv</code> not only correctly recognizes observations and columns (parses the csv correctly) but also automatically guesses the data type of the values in each column. The first column is of type double, the second one of type integer, etc. That is, <code>read_csv</code> also parses each column-vector of the data set with the aim of recognizing which data type it is. For example, the data value <code>&quot;12:00&quot;</code> could be interpreted simply as a character string. Alternatively, it could also be interpreted as a <code>time</code> format.</p>
 <p>If <code>&quot;12:00&quot;</code> is an element of the vector <code>c(&quot;12:00&quot;, &quot;midnight&quot;, &quot;noon&quot;)</code> it must be simply interpreted as a character string. If however it is an element of the vector <code>c(&quot;12:00&quot;, &quot;14:30&quot;, &quot;20:01&quot;)</code> we probably want R to import this as a <code>time</code> format. Now, how can <code>readr</code> handle the two cases? In simple terms, the package first guesses for each column vector which type is most appropriate. Then, it uses a couple of lower-level parsing functions (one written for each possible data type) in order to parse each column according to the respective guessed type. We can demonstrate this for the two example vectors above.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">read_csv</span>(<span class="st">'A,B</span></a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">         12:00, 12:00</span></a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">         14:30, midnight</span></a>
-<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="st">         20:01, noon'</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read_csv</span>(<span class="st">'A,B</span>
+<span class="st">         12:00, 12:00</span>
+<span class="st">         14:30, midnight</span>
+<span class="st">         20:01, noon'</span>)</code></pre>
 <pre><code>## # A tibble: 3 x 2
 ##   A      B       
 ##   &lt;time&gt; &lt;chr&gt;   
@@ -596,9 +688,9 @@ $(document).ready(function () {
 ## 2 14:30  midnight
 ## 3 20:01  noon</code></pre>
 <p>Under the hood <code>read_csv()</code> used the <code>guess_parser()</code>- function to determine which type the two vectors likely contain:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">guess_parser</span>(<span class="kw">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;midnight&quot;</span>, <span class="st">&quot;noon&quot;</span>))</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">guess_parser</span>(<span class="kw">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;midnight&quot;</span>, <span class="st">&quot;noon&quot;</span>))</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">guess_parser</span>(<span class="kw">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;14:30&quot;</span>, <span class="st">&quot;20:01&quot;</span>))</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">guess_parser</span>(<span class="kw">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;14:30&quot;</span>, <span class="st">&quot;20:01&quot;</span>))</code></pre>
 <pre><code>## [1] &quot;time&quot;</code></pre>
 </div>
 </div>
@@ -607,47 +699,47 @@ $(document).ready(function () {
 <div id="xml-in-r" class="section level2">
 <h2><span class="header-section-number">5.1</span> XML in R<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></h2>
 <p>Luckily for us, there are several XML-parsers already implemented in R packages specifically written for working with XML data. We thus do not have to understand the XML syntax in every detail in order to work with this data format in R. The already familiar package <code>xml2</code> (automatically loaded when loading <code>rvest</code>) provides the <code>read_xml()</code> function which we can use to read the exemplary XML-document.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">library</span>(xml2)</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="co"># parse XML, represent XML document as R object</span></a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">xml_doc &lt;-<span class="st"> </span><span class="kw">read_xml</span>(<span class="st">&quot;../../data/customers.xml&quot;</span>)</a>
-<a class="sourceLine" id="cb29-6" data-line-number="6">xml_doc</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load packages</span>
+<span class="kw">library</span>(xml2)
+
+<span class="co"># parse XML, represent XML document as R object</span>
+xml_doc &lt;-<span class="st"> </span><span class="kw">read_xml</span>(<span class="st">&quot;../../data/customers.xml&quot;</span>)
+xml_doc</code></pre>
 <pre><code>## {xml_document}
 ## &lt;customers&gt;
 ## [1] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; x &lt;/product&gt;\n    &lt;product&gt; y &lt;/ ...
 ## [2] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; a &lt;/product&gt;\n    &lt;product&gt; x &lt; ...</code></pre>
 <p>The same package also comes with various functions to access, extract, and manipulate data from a parsed XML document. In the following code example, we have a look at the most useful functions for our purposes (see the package’s <a href="https://cran.r-project.org/web/packages/xml2/vignettes/modification.html">vignette</a> for more details).</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># navigate through the XML document (recall the tree-like nested structure similar to HTML)</span></a>
-<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="co"># navigate downwards</span></a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="co"># 'customers' is the root-node, persons are it's 'children'</span></a>
-<a class="sourceLine" id="cb31-4" data-line-number="4">persons &lt;-<span class="st"> </span><span class="kw">xml_children</span>(xml_doc) </a>
-<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="co"># navigate sidewards</span></a>
-<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="kw">xml_siblings</span>(persons)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># navigate through the XML document (recall the tree-like nested structure similar to HTML)</span>
+<span class="co"># navigate downwards</span>
+<span class="co"># 'customers' is the root-node, persons are it's 'children'</span>
+persons &lt;-<span class="st"> </span><span class="kw">xml_children</span>(xml_doc) 
+<span class="co"># navigate sidewards</span>
+<span class="kw">xml_siblings</span>(persons)</code></pre>
 <pre><code>## {xml_nodeset (2)}
 ## [1] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; a &lt;/product&gt;\n    &lt;product&gt; x &lt; ...
 ## [2] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; x &lt;/product&gt;\n    &lt;product&gt; y &lt;/ ...</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># navigate upwards</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">xml_parents</span>(persons)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># navigate upwards</span>
+<span class="kw">xml_parents</span>(persons)</code></pre>
 <pre><code>## {xml_nodeset (1)}
 ## [1] &lt;customers&gt;\n  &lt;person&gt;\n    &lt;name&gt;John Doe&lt;/name&gt;\n    &lt;orders&gt;\n      &lt;product&gt; x &lt;/product ...</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># find data via XPath</span></a>
-<a class="sourceLine" id="cb35-2" data-line-number="2">customer_names &lt;-<span class="st"> </span><span class="kw">xml_find_all</span>(xml_doc, <span class="dt">xpath =</span> <span class="st">&quot;.//name&quot;</span>)</a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co"># extract the data as text</span></a>
-<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="kw">xml_text</span>(customer_names)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># find data via XPath</span>
+customer_names &lt;-<span class="st"> </span><span class="kw">xml_find_all</span>(xml_doc, <span class="dt">xpath =</span> <span class="st">&quot;.//name&quot;</span>)
+<span class="co"># extract the data as text</span>
+<span class="kw">xml_text</span>(customer_names)</code></pre>
 <pre><code>## [1] &quot;John Doe&quot;  &quot;Peter Pan&quot;</code></pre>
 </div>
 <div id="json-in-r" class="section level2">
 <h2><span class="header-section-number">5.2</span> JSON in R<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></h2>
 <p>Again, we can rely on an R package (<code>jsonlite</code>) providing high-level functions to read, manipulate, and extract data when working with JSON-documents in R. An important difference to working with XML- and HTML-documents is that XPath is not compatible with JSON. However, as <code>jsonlite</code> represents parsed JSON as R objects of class <code>list</code> and/or <code>data-frame</code>, we can simply work with the parsed document as with any other R-object of the same class. The following example illustrates this point.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">library</span>(jsonlite)</a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="co"># parse the JSON-document shown in the example above</span></a>
-<a class="sourceLine" id="cb37-5" data-line-number="5">json_doc &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;../../data/person.json&quot;</span>)</a>
-<a class="sourceLine" id="cb37-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb37-7" data-line-number="7"><span class="co"># look at the structure of the document</span></a>
-<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="kw">str</span>(json_doc)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load packages</span>
+<span class="kw">library</span>(jsonlite)
+
+<span class="co"># parse the JSON-document shown in the example above</span>
+json_doc &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;../../data/person.json&quot;</span>)
+
+<span class="co"># look at the structure of the document</span>
+<span class="kw">str</span>(json_doc)</code></pre>
 <pre><code>## List of 6
 ##  $ firstName  : chr &quot;John&quot;
 ##  $ lastName   : chr &quot;Smith&quot;
@@ -662,9 +754,9 @@ $(document).ready(function () {
 ##   ..$ number: chr [1:2] &quot;212 555-1234&quot; &quot;646 555-4567&quot;
 ##  $ gender     :List of 1
 ##   ..$ type: chr &quot;male&quot;</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># navigate the nested lists, extract data</span></a>
-<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="co"># extract the address part</span></a>
-<a class="sourceLine" id="cb39-3" data-line-number="3">json_doc<span class="op">$</span>address</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># navigate the nested lists, extract data</span>
+<span class="co"># extract the address part</span>
+json_doc<span class="op">$</span>address</code></pre>
 <pre><code>## $streetAddress
 ## [1] &quot;21 2nd Street&quot;
 ## 
@@ -676,8 +768,8 @@ $(document).ready(function () {
 ## 
 ## $postalCode
 ## [1] &quot;10021&quot;</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># extract the gender (type)</span></a>
-<a class="sourceLine" id="cb41-2" data-line-number="2">json_doc<span class="op">$</span>gender<span class="op">$</span>type</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extract the gender (type)</span>
+json_doc<span class="op">$</span>gender<span class="op">$</span>type</code></pre>
 <pre><code>## [1] &quot;male&quot;</code></pre>
 </div>
 </div>

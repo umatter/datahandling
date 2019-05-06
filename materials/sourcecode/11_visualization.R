@@ -12,14 +12,19 @@ swiss_summary <-
 swiss_summary
 
 
+
 ## ------------------------------------------------------------------------
 swiss_summary_rounded <- round(swiss_summary, 2)
 swiss_summary_rounded
+
 
 ## ------------------------------------------------------------------------
 
 swiss_summary_formatted <- format(swiss_summary_rounded, decimal.mark=",")
 swiss_summary_formatted 
+
+
+
 
 ## ----echo=TRUE-----------------------------------------------------------
 # load the R package
@@ -31,6 +36,7 @@ data(swiss)
 # inspect the data
 head(swiss)
 
+
 ## ------------------------------------------------------------------------
 # code province as 'Catholic' if more than 50% are catholic
 swiss$Religion <- 'Protestant'
@@ -38,8 +44,10 @@ swiss$Religion[50 < swiss$Catholic] <- 'Catholic'
 swiss$Religion <- as.factor(swiss$Religion)
 
 
+
 ## ----echo=TRUE, out.width="85%"------------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination))
+
 
 
 ## ----echo=TRUE, out.width="85%"------------------------------------------
@@ -47,10 +55,12 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_point()
 
 
+
 ## ----echo=TRUE, out.width="85%"------------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      facet_wrap(~Religion)
+
 
 
 ## ----echo=TRUE, out.width="85%"------------------------------------------
@@ -60,6 +70,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
      facet_wrap(~Religion)
 
 
+
 ## ----echo=TRUE, out.width="85%"------------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
@@ -67,11 +78,13 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
      facet_wrap(~Religion)
 
 
+
 ## ----echo=TRUE, out.width="85%"------------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
      facet_wrap(~Religion)
+
 
 
 ## ----echo=TRUE, out.width="85%"------------------------------------------
@@ -82,6 +95,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
      coord_flip()
 
 
+
 ## ----echo=TRUE, out.width="85%"------------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
@@ -90,12 +104,14 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
      theme(legend.position = "bottom", axis.text=element_text(size=12) ) 
 
 
+
 ## ----echo=TRUE, out.width="85%"------------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
      facet_wrap(~Religion) +
      theme_minimal()
+
 
 
 ## ----echo=TRUE, out.width="85%"------------------------------------------

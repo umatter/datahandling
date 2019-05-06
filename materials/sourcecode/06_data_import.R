@@ -10,6 +10,7 @@
 #######################################################################
 
 
+
 ## ----eval=FALSE----------------------------------------------------------
 ## #######################################################################
 ## # Data Handling Course: Example Script for Data Gathering and Import
@@ -30,6 +31,7 @@
 ## INPUT_PATH <- "/rawdata"
 ## OUTPUT_FILE <- "/final_data/datafile.csv"
 ## 
+
 
 ## ----eval=FALSE----------------------------------------------------------
 ## #######################################################################
@@ -57,8 +59,10 @@
 ## 
 ## 
 
+
 ## ----eval=TRUE-----------------------------------------------------------
 data(swiss)
+
 
 ## ----eval=TRUE-----------------------------------------------------------
 # inspect the structure
@@ -67,9 +71,17 @@ str(swiss)
 # look at the first few rows
 head(swiss)
 
+
+
+
+
+
 ## ----eval=FALSE----------------------------------------------------------
 ## # install the package
 ## install.packages("readxl")
+
+
+
 
 ## ----eval=FALSE----------------------------------------------------------
 ## # load the package
@@ -77,6 +89,9 @@ head(swiss)
 ## 
 ## # import data from a spreadsheet
 ## swiss_imported <- read_excel("data/swiss.xlsx")
+
+
+
 
 ## ----eval=FALSE----------------------------------------------------------
 ## # install the package (if not yet installed):
@@ -89,6 +104,7 @@ head(swiss)
 ## swiss_imported <- read_spss("data/swiss.sav")
 ## 
 
+
 ## ------------------------------------------------------------------------
 library(readr)
 
@@ -96,11 +112,16 @@ read_csv('"District","Fertility","Agriculture","Examination","Education","Cathol
 "Courtelary",80.2,17,15,12,9.96,22.2')
 
 
+
 ## ----eval=FALSE----------------------------------------------------------
 ## swiss <- read_csv("data/swiss.csv")
 
+
+
+
 ## ------------------------------------------------------------------------
 swiss
+
 
 ## ------------------------------------------------------------------------
 read_csv('A,B
@@ -108,9 +129,11 @@ read_csv('A,B
          14:30, midnight
          20:01, noon')
 
+
 ## ------------------------------------------------------------------------
 guess_parser(c("12:00", "midnight", "noon"))
 guess_parser(c("12:00", "14:30", "20:01"))
+
 
 ## ------------------------------------------------------------------------
 # load packages
@@ -119,6 +142,7 @@ library(xml2)
 # parse XML, represent XML document as R object
 xml_doc <- read_xml("../../data/customers.xml")
 xml_doc
+
 
 
 ## ------------------------------------------------------------------------
@@ -135,6 +159,7 @@ xml_parents(persons)
 customer_names <- xml_find_all(xml_doc, xpath = ".//name")
 # extract the data as text
 xml_text(customer_names)
+
 
 
 ## ------------------------------------------------------------------------
