@@ -1,6 +1,6 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: 'Lecture 5:<br>"Big Data" from the Web'
+subtitle: 'Lecture 5:<br>Programming with Data'
 author: "Prof. Dr. Ulrich Matter"
 date: "18/10/2018"
 output:   
@@ -253,7 +253,7 @@ swiss_econ_parsed
 Now we can easily separate the data/text from the html code. For example, we can extract the HTML table containing the data we are interested in as a `data.frames`.
 
 ```{r}
-tab_node <- html_node(swiss_econ_parsed, xpath = "//*[@id='mw-content-text']/div/table[3]")
+tab_node <- html_node(swiss_econ_parsed, xpath = "//*[@id='mw-content-text']/div/table[2]")
 tab <- html_table(tab_node)
 tab
 ```
@@ -466,7 +466,7 @@ library(<PACKAGE NAME>)
 
 ```{r}
 # Example:
-# a simlpe integer vector, for which we want to compute the mean
+# a simlpe numeric vector, for which we want to compute the mean
 # a <- c(5.5, 7.5)
 # desired functionality and output:
 # my_mean(a)
@@ -490,7 +490,7 @@ library(<PACKAGE NAME>)
 $\bar{x} = \frac{1}{n}\left (\sum_{i=1}^n{x_i}\right ) = \frac{x_1+x_2+\cdots +x_n}{n}$.
 </center>
 
-## 2. Split the problem in several smaller problems
+## 2. Split the problem into several smaller problems
 
 From looking at the mathematical definition of the mean ($\bar{x}$), we recognize that there are two main components to computing the mean:
 

@@ -1,25 +1,24 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: 'Lecture 11: Visualization and Dynamic Documents'
+subtitle: 'Lecture 11: Visualisation and Dynamic Documents'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St. Gallen)
 date: "13/12/2018"
 output:
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
   pdf_document:
     pandoc_args:
     - --filter
     - ../../code/math.py
-  html_document:
-    highlight: tango
-    theme: cerulean
-    mathjax: "http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
 css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
-
 ---
 
 
@@ -31,27 +30,66 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 ```
 
 
-# Data display
-- overview of last step in Data Science process
-  - low level: display data in R @murrell_2009 9.10, only key aspects (use the practical aspects of this to start the workshop)
-  - visualization: plotting with gg (again, maybe part of the code examples in exercises)
-  - dynamic documents (partly last part of @murrell_2009 9.10, rest from webmining: tables etc.), basics of markdown (focus particularly on this in exercises)
+# Data Display
+
+In the last part of a data pipeline we are typically dealing with the visualisation of data and statistical results for presentation/communication. Typical output formats are reports, a thesis (BA, MA, Dissertation chapter), interactive dashboards, and websites. R (and particularly RStudio) provide a very flexible framework to manage the steps involved in visualisation/presentation for all of these output formats. A first (low-level) step in preparing data/results for publication is the formatting data values for publication. Typically, this involves some string operations to make numbers and text look nicer before we show them in a table or graph. 
+
+Consider, for example, the following summary statistics.
+
+```{r message=FALSE}
+# load packages and data
+library(tidyverse)
+data("swiss")
+# compute summary statistics
+swiss_summary <-
+  summarise(swiss, 
+          avg_education = mean(Education, na.rm = TRUE),
+          avg_fertility = mean(Fertility, na.rm = TRUE),
+          N = n()
+          )
+swiss_summary
+
+```
+
+Quite likely, we do not want to present these numbers with that many decimal places. The function `round()` can take care of this.
+
+```{r}
+swiss_summary_rounded <- round(swiss_summary, 2)
+swiss_summary_rounded
+```
+
+More specific formatting of numeric values is easier when coercing the numbers to character strings (text).^[Note that this step only makes sense if we are sure that the numeric values won't be further analyzed or used in a plot (except for labels).] For example, depending on the audience (country/region) to which we want to communicate our results, different standards of how to format numbers are expected. In the English-speaking world it is quite common to use `.` as decimal mark, in the German-speaking world it is rather common to use `,`. The `format()`-function provides an easy way to format numbers in this way (once they are coerced to character).
+
+```{r}
+
+swiss_summary_formatted <- format(swiss_summary_rounded, decimal.mark=",")
+swiss_summary_formatted 
+```
 
 
 
-# Data Visualization with R (`ggplot2`)
 
-## 'Grammer of Graphics'
-A few years back, Leland Wilkinson (statistician and computer scientist) wrote an influential book called 'The Grammar of Graphics'. In the book, Wilkinson develops a formal description ('grammar') of graphics used in statistics, illustrating how different types of plots (bar plot, histogram, etc.) are special cases of an underlying framework. Particularly, that we can think of graphics as consisting of different design-layers and that we can build and describe them layer by layer (see [here](http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html) for an illustration of this idea. 
+# Data Visualisation with `ggplot2`
 
-This framework got implemented in R with the very prominent `ggplot2`-package, building on the already very powerful R graphic engine. The result is a user-friendly environment to visualize data with R with enormous potential to plot almost any graphic illustrating data.
+A key technique to convincingly communicate statistical results and insights from data is visualisation. How can we visualise raw data and insights gained from statistical models with R? It turns out that R is a really useful tool for data visualisation, thanks to its very powerful graphics engine (i.e., the underlying low-level R functions that handle things like colors, shapes, etc.). Building on this graphics engine, there are particularly three R packages with a variety of high-level functions to plot data in R:
+
+- The original `graphics` package (@r_2018[]; shipped with the base R installation).
+- The `lattice` package [@lattice_2008], an implementation of the original Bell Labs 'Trellis' system.
+- The `ggplot2` package [@wickham_2016], an implementation of Leland Wilkinson's 'Grammar of Graphics'.
+
+While all of these packages provide well-documented high-level R functions to plot data, their syntax differs in some important ways. For R beginners it thus makes sense to first learn how to generate plots in R with *one* of these packages. Here, we focus on `ggplot2` as it is part of the `tidyverse`.
+
+## 'Grammar of Graphics'
+A few years back, Leland Wilkinson (statistician and computer scientist) wrote an influential book called 'The Grammar of Graphics'. In the book, Wilkinson develops a formal description ('grammar') of graphics used in statistics, illustrating how different types of plots (bar plot, histogram, etc.) are special cases of an underlying framework. In short, his idea was that we can think of graphics as consisting of different design-layers and thus can build and describe graphics/plots layer by layer (see [here](http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html) for an illustration of this idea). 
+
+This framework got implemented in R with the very prominent `ggplot2`-package, building on the already very powerful R graphics engine. The result is a user-friendly environment to visualise data with enormous potential to plot almost any graphic illustrating data.
 
 ## `ggplot2` basics
 Using `ggplot2` to generate a basic plot in R is quite simple. Basically, it involves three key points:
 
-1. The data must be stored in a `data.frame`
-2. The starting point of a plot is always the function `ggplot()`
-3. The first line of plot code declares the data and the 'aesthetics' (what variables are mapped to the x-/y-axes):
+1. The data must be stored in a `data.frame`/`tibble` (in tidy format!). 
+2. The starting point of a plot is always the function `ggplot()`.
+3. The first line of plot code declares the data and the 'aesthetics' (e.g., which variables are mapped to the x-/y-axes):
 
 ```{r echo=TRUE, eval=FALSE, purl=FALSE}
 ggplot(data = my_dataframe, aes(x= xvar, y= yvar))
@@ -60,7 +98,7 @@ ggplot(data = my_dataframe, aes(x= xvar, y= yvar))
 
 ## Tutorial
 
-In the following, we learn the basic functionality of `ggplot` by applying it to the `swiss` dataset introduced above.
+In the following, we learn the basic functionality of `ggplot` by applying it to the `swiss` dataset.
 
 ### Loading/preparing the data
 
@@ -78,7 +116,7 @@ head(swiss)
 ```
 
 
-As we do not only want to use this continuous measure in the data visualization, we generate an additional factor variable called `Religion` which has either the value `'Protestant'` or `'Catholic'` depending on whether more then 50 percent of the inhabitants of the province are Catholics.
+As we do not only want to use this continuous measure in the data visualisation, we generate an additional factor variable called `Religion` which has either the value `'Protestant'` or `'Catholic'` depending on whether more then 50 percent of the inhabitants of the province are Catholics.
 
 ```{r}
 # code province as 'Catholic' if more than 50% are catholic
@@ -98,10 +136,10 @@ ggplot(data = swiss, aes(x = Education, y = Examination))
 
 ```
 
-As we have not yet defined according to what rules the data shall be visualized, all we get is an empty 'canvas' and the axes (with the respective label and ticks indicating the range of the values).
+As we have not yet defined according to what rules the data shall be visualised, all we get is an empty 'canvas' and the axes (with the respective label and ticks indicating the range of the values).
 
 ## Geometries (~the type of plot)
-To actually plot the data we have to define the 'geometries', defining according to which function the data should be mapped/visualized. In other words, geometries define which 'type of plot' we use to visualize the data (histogram, lines, points, etc.). In the example code below, we use `geom_point()` to get a simple point plot.
+In order to actually plot the data we have to define the 'geometries', defining according to which function the data should be mapped/visualised. In other words, geometries define which 'type of plot' we use to visualise the data (histogram, lines, points, etc.). In the example code below, we use `geom_point()` to get a simple point plot.
 
 ```{r echo=TRUE, out.width="85%"}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
@@ -125,7 +163,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 Draftees from protestant districts tend to do generally better (which might be an indication of better primary schools, or a generally stronger focus on scholastic achievements of Protestant children). However, the relationship between education (beyond primary schools) and examination success seems to hold for either type of districts.
 
 ### Additional layers and statistics
-Let's visualize this relationship more clearly by drawing  trend-lines through the scatter diagrams. Once with the non-parametric 'loess'-approach and once forcing a linear model on the relationship between the two variables.
+Let's visualise this relationship more clearly by drawing  trend-lines through the scatter diagrams. Once with the non-parametric 'loess'-approach and once forcing a linear model on the relationship between the two variables.
 
 ```{r echo=TRUE, out.width="85%"}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
@@ -209,7 +247,18 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 ```
 
-# Dynamic Documents: basic idea (focus on HTML because they already know it)
+# Dynamic Documents
+
+Dynamic documents are a way to directly/dynamically integrate results of an analysis in R (numbers, tables, plots) in written text (a report, thesis, slide set, website, etc.). That is, we can write a report in so-called 'R-Markdown' format and place directly in the same document 'chunks' of R code which we want to be executed each time we 'knit' the report. Knitting the document means the following steps are executed under the hood:
+
+1. The code in the R chunks is executed and the results cached and formatted for print.
+2. The formatted R output is embedded in a so-called 'Markdown'-file (`.md`).
+3. The markdown-file is rendered as either a PDF, HTML, or Word-file (with additional formatting options, depending on the output format).
+
+The entire procedure from importing, cleaning, analyzing, and visualising data can thus be combined in one document, based on which we can generate a nicely rendered output to communicate our results (in fact, the initial dashboard example, as well as all notes and slides of this course are generated in this way). 
+
+
+
 
 
 # References

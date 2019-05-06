@@ -148,11 +148,11 @@ We distinguish two basic characteristics:
 
   1. Data *types*: integers; real numbers ('numeric values', floating point numbers); text ('string', 'character values').
   2. Basic *data structures* in RAM:
-    - *Vectors*
-    - *Factors*
-    - *Arrays/Matrices*
-    - *Lists*
-    - *Data frames* (very `R`-specific)
+      - *Vectors*
+      - *Factors*
+      - *Arrays/Matrices*
+      - *Lists*
+      - *Data frames* (very `R`-specific)
 
 
 # Complex Data Structures
@@ -245,7 +245,6 @@ David  Debbie  Dianne    12  female
 
 - [JavaScript Object Notation (JSON)](https://en.wikipedia.org/wiki/JSON)
 - [Extensible Markup Language (XML)](https://en.wikipedia.org/wiki/XML)
-- (and more...)
 - Origin and most common domain of application: The Web!
     - Need to *transfer* complex data (between machines).
     - Need to *embed* complex data (in human friendly layout).

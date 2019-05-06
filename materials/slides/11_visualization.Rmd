@@ -1,0 +1,353 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: 'Lecture 11:<br>Visualisation and Dynamic Documents' 
+author: "Prof. Dr. Ulrich Matter"
+date: "13/12/2018"
+output:   
+  ioslides_presentation:
+    css: ../../style/ioslides.css
+    mathjax: "default"
+logo: ../img/logo.png
+bibliography: ../references/datahandling.bib
+---
+
+
+
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 100)
+library(knitr)
+```
+
+<style>
+pre {
+  font-size: 21px;
+}
+</style>
+
+
+# Updates
+
+## Week 12
+
+- Thursday, 20 December, *morning*
+    - final exercise session (Mock Exam and visualisation exercises)
+    - Feedback
+    - Q&A 
+- Thursday, 20 December, *afternoon*
+    - Decentral exam for exchange students!
+
+## Mock exam answer sheet
+
+- Example of scan in StudyNet
+- Questions?
+
+## Mock exam answer sheet: Student ID (Matr.-Nr.)
+```{r echo=FALSE, purl=FALSE, out.width="60%"}
+include_graphics("../img/mock_exam_scan.png")
+```
+
+# Data Display
+
+
+## Data display
+
+- Formatting data values for publication.
+- Typical: String operations to make numbers and text look nicer.
+    - Before creating a table or figure...
+
+## Data display
+
+```{r message=FALSE}
+# load packages and data
+library(tidyverse)
+data("swiss")
+# compute summary statistics
+swiss_summary <-
+  summarise(swiss, 
+          avg_education = mean(Education, na.rm = TRUE),
+          avg_fertility = mean(Fertility, na.rm = TRUE),
+          N = n()
+          )
+swiss_summary
+
+```
+
+*Problems?*
+
+
+## Data display: round numeric values
+
+```{r}
+swiss_summary_rounded <- round(swiss_summary, 2)
+swiss_summary_rounded
+```
+
+## Data display: detailed formatting of numbers
+
+- Coerce to text.
+- String operations.
+- Decimal marks, units (e.g., currencies), other special characters for special formats (e.g. coordinates).
+- *`format()`*-function
+
+## Data display: `format()` example
+
+```{r}
+
+swiss_form <- format(swiss_summary_rounded,
+                     decimal.mark=",")
+swiss_form 
+```
+
+
+
+
+# Data Visualisation with R (`ggplot2`)
+
+
+## Data visualisation
+
+- Final step of data pipeline/data science procedure!
+    - Convincingly communicating insights from data.
+- *R* is a very powerful tool to do this!
+    - (Very powerful graphics engine)
+
+## Data visualisation in R
+
+Three main approaches:
+
+1. The original `graphics` package ([@r_2018]; shipped with the base R installation).
+
+
+## Data visualisation in R
+
+Three main approaches:
+
+1. The original `graphics` package ([@r_2018]; shipped with the base R installation).
+2. The `lattice` package [@lattice_2008], an implementation of the original Bell Labs 'Trellis' system.
+
+
+## Data visualisation in R
+
+Three main approaches:
+
+1. The original `graphics` package ([@r_2018]; shipped with the base R installation).
+2. The `lattice` package [@lattice_2008], an implementation of the original Bell Labs 'Trellis' system.
+3. The *`ggplot2`* package [@wickham_2016], an implementation of Leland Wilkinson's 'Grammar of Graphics'.
+
+
+## 'Grammer of Graphics'
+
+```{r echo= FALSE, out.width= "65%", fig.align="center", fig.cap="Source: http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html"}
+include_graphics("../img/gog.png")
+```
+
+## `ggplot2`
+
+```{r echo= FALSE, out.width= "25%", fig.align="center"}
+include_graphics("../img/ggplot2.png")
+```
+
+
+## `ggplot2` basics
+
+Using `ggplot2` to generate a basic plot in R is quite simple. Basically, it involves three key points:
+
+  1. The data must be stored in a `data.frame`/`tibble` (in tidy format!). 
+
+
+## `ggplot2` basics
+
+Using `ggplot2` to generate a basic plot in R is quite simple. Basically, it involves three key points:
+
+  1. The data must be stored in a `data.frame`/`tibble` (in tidy format!). 
+  2. The starting point of a plot is always the function `ggplot()`.
+
+
+## `ggplot2` basics
+
+Using `ggplot2` to generate a basic plot in R is quite simple. Basically, it involves three key points:
+
+  1. The data must be stored in a `data.frame`/`tibble` (in tidy format!). 
+  2. The starting point of a plot is always the function `ggplot()`.
+  3. The first line of plot code declares the data and the 'aesthetics' (e.g., which variables are mapped to the x-/y-axes):
+
+
+
+
+## `ggplot2` basics
+
+Using `ggplot2` to generate a basic plot in R is quite simple. Basically, it involves three key points:
+
+  1. The data must be stored in a `data.frame`/`tibble` (in tidy format!). 
+  2. The starting point of a plot is always the function `ggplot()`.
+  3. The first line of plot code declares the data and the 'aesthetics' (e.g., which variables are mapped to the x-/y-axes):
+
+```{r echo=TRUE, eval=FALSE}
+ggplot(data = my_dataframe, aes(x= xvar, y= yvar))
+```
+
+
+
+## Example data set: `swiss`
+
+```{r echo=TRUE}
+# load the R package
+library(tidyverse) # automatically loads ggplot2
+# load the data
+data(swiss)
+# get details about the data set
+# ?swiss
+# inspect the data
+head(swiss)
+```
+
+
+## Add indicator variable
+
+Code a province as 'Catholic' if more than 50% of the inhabitants are catholic:
+```{r}
+
+# via tidyverse/mutate
+swiss <- mutate(swiss, 
+                Religion = 
+                  ifelse(50 < Catholic, 'Catholic', 'Protestant'))
+
+# 'old school' alternative
+swiss$Religion <- 'Protestant'
+swiss$Religion[50 < swiss$Catholic] <- 'Catholic'
+
+# set to factor
+swiss$Religion <- as.factor(swiss$Religion)
+
+```
+
+
+
+## Data and aesthetics
+
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination))
+
+```
+
+
+## Geometries (~the type of plot)
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point()
+
+```
+
+
+## Facets
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point() +
+     facet_wrap(~Religion)
+
+```
+
+
+## Additional layers and statistics
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point() +
+     geom_smooth(method = 'loess') +
+     facet_wrap(~Religion)
+
+```
+
+
+## Additional layers and statistics
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point() +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion)
+
+```
+
+## Additional aesthetics
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion)
+
+```
+
+
+## Change coordinates
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion) +
+     coord_flip()
+
+```
+
+## Themes
+
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion) +
+     theme(legend.position = "bottom", axis.text=element_text(size=12) ) 
+
+```
+
+
+## Themes
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion) +
+     theme_minimal()
+
+```
+
+## Themes
+```{r echo=TRUE, out.width="85%"}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion) +
+     theme_dark()
+
+```
+
+
+
+
+
+# Dynamic Documents
+
+
+
+
+
+# Q&A
+
+
+<style>
+slides > slide { overflow: scroll; }
+slides > slide:not(.nobackground):after {
+  content: '';
+}
+
+
+code {
+  color: white;
+}
+
+
+pre {
+  color: white;
+}
+</style>
+
+## References {.smaller}
+

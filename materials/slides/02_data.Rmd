@@ -18,6 +18,45 @@ options(width = 100)
 library(knitr)
 ```
 
+# Updates
+
+<!-- ## Course assistants -->
+
+<!-- - Julian Leopold -->
+<!-- - Sebastian Kuhn -->
+
+<!-- <center> *Thanks a lot!* </center> -->
+
+<!-- ## Course evaluation: Focus Group -->
+
+<!-- - We have found three volunteers!  -->
+<!-- - (Still place for one more person) -->
+
+<!-- <center> *Thanks a lot!* </center> -->
+
+## Exam for exchange students
+
+- Exchange students who need to take the exam before the central exam block:
+    - Notify me until end of September: *ulrich.matter@unisg.ch*!
+    - Option for a decentral exam during the term (probably the day of the last lecture).
+    
+
+
+# Recap: Data Science, Data Pipeline
+
+## Class Survey >>> Final Output
+
+## The Data Pipeline
+
+- Research report/paper (e.g., BA Thesis)
+- Presentation/Slides
+- Website
+- Web application (interactive; alas the introductory example)
+- Dashboard for management
+- Recommender system (i.e., a trained machine learning algorithm)
+- ...
+
+
 
 
 # Data in Human History
@@ -45,29 +84,56 @@ include_graphics("../img/sales_contract.jpg")
 ```
 
 
+
 ## Ancient data records
 
 - Measuring, quantifying, and keeping record of our social and natural environments.
-- Keep track of time, seasons.
-- Property rights: define/quantify land areas.
-- Quantify harvest/yield.
+    - Keep track of time, seasons.
+    - Property rights: define/quantify land areas.
+    - Quantify harvest/yield.
 
 ## Economic growth and data
 
 More advanced economy:
 
-- More sophisticated division of labor
-- More complex property rights
+- More sophisticated division of labor.
+- More complex property rights.
 - More need to keep track of everything.
 
 ## Economic growth and data
 
-More advanced economy: more data to handle
+More advanced economy: *more data to handle!*
 
-  - How to keep track of calculations with large numbers?
-  - Mechanical aids: pebbles, shells, etc.
-  - Devices: invention of the *counting frame ('abacus')*
+## Economic growth and data
 
+More advanced economy: *more data to handle!*
+
+- How to keep track of calculations with large numbers?
+
+---
+
+```{r pebbles, echo=FALSE, out.width = "75%", fig.align='center', purl=FALSE}
+include_graphics("../img/pebbles.jpg")
+```
+
+
+---
+
+```{r shells, echo=FALSE, out.width = "95%", fig.align='center', purl=FALSE}
+include_graphics("../img/shells.jpg")
+```
+
+---
+
+```{r ancientabacus, echo=FALSE, out.width = "95%", fig.align='center', purl=FALSE}
+include_graphics("../img/ancient_abacus_white.png")
+```
+
+----
+
+```{r newabacus, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
+include_graphics("../img/new_abacus.jpg")
+```
 
 
 # Processing Data
@@ -92,7 +158,7 @@ include_graphics("../img/abacus.png")
 The example in more detail:
 
 - Columns reflect the positions of the digits
-- and signify the power of 10 which which the digit is multiplied:
+- and signify the power of 10 with which the digit is multiplied:
 
 $139=(1 \times 10^{2}) + (3 \times 10^{1}) + (9 \times 10^{0})$
 
@@ -103,6 +169,8 @@ $139=(1 \times 10^{2}) + (3 \times 10^{1}) + (9 \times 10^{0})$
 - What we work with in everyday life.
 - What we encounter in undergraduate math, statistics, etc.
 - However, not the relevant base once we use electronic tools.
+
+
 
 ## Recall the data processing 'blackbox'
 
@@ -127,8 +195,12 @@ include_graphics("../img/on_off.png")
 
 - Only two signs: `0`, `1`.
 - Base 2.
-- Columns: $2^0=1$, $2^1=2$, $2^3=4$, and so forth.
+- Columns: $2^0=1$, $2^1=2$, $2^2=4$, and so forth.
 
+
+## The binary counting frame
+
+- Sufficient to represent all *natural* numbers in the decimal system.
 
 ## The binary counting frame
 
@@ -196,6 +268,53 @@ include_graphics("../img/binary_keyboard.jpg")
 
 Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
 -----|-----|----|----|----|----|----|----|----
+
+
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+
+
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
+
+
+
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
+2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0
+
+
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
+2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0
+3  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  1
+
+
+
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
 0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
 1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
 2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0
@@ -205,23 +324,27 @@ Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1
 
 
 
-## The hexadecimal system
-
-- Binary numbers can become quite long rather quickly.
-- Computer Science: refer to binary numbers with the *hexadecimal* system.
-
 
 ## The hexadecimal system
 
 - Binary numbers can become quite long rather quickly.
 - Computer Science: refer to binary numbers with the *hexadecimal* system.
-- 16 symbols: 
 
-  - `0`-`9` (used like in the decimal system)...
-  - and `A`-`F` (for the numbers 10 to 15).
+
+## The hexadecimal system
+
+- *16 symbols*: 
+    - `0`-`9` (used like in the decimal system)...
+    - and `A`-`F` (for the numbers 10 to 15).
   
-- 16 symbols: base 16: each digit represents an increasing power of 16 ($16^{0}$, $16^{1}$, etc.).
 
+## The hexadecimal system
+
+- *16 symbols*: 
+    - `0`-`9` (used like in the decimal system)...
+    - and `A`-`F` (for the numbers 10 to 15).
+  
+- *16 symbols >>> base 16*: each digit represents an increasing power of 16 ($16^{0}$, $16^{1}$, etc.).
 
 
 
@@ -280,7 +403,7 @@ Advantages (when working with binary numbers)
 </center>
 
 ## The hexadecimal system
-Advantages (when working with binary numbers)... Why?
+Advantages (when working with binary numbers)... 
 
 - Hexadecimal digits can always be represented in four-digit binary equivalent.
 -  $8=1000$, $B=11=1011$, thus...
@@ -303,12 +426,18 @@ How can a computer understand text if it only understands `0`s and `1`s?
 - *Standards* define how `0`s and `1`s correspond to specific letters/characters of different human languages.
 - These standards are usually called *character encodings*.
 - Coded character sets that map unique numbers (in the end in binary coded values) to each character in the set.
+
+## Computers and text
+How can a computer understand text if it only understands `0`s and `1`s?
+
+- *Standards* define how `0`s and `1`s correspond to specific letters/characters of different human languages.
+- These standards are usually called *character encodings*.
+- Coded character sets that map unique numbers (in the end in binary coded values) to each character in the set.
 - For example, ASCII (American Standard Code for Information Interchange).
 
 ```{r ascii, echo=FALSE, out.width = "30%", fig.align='center', fig.cap='ASCII logo. (public domain).', purl=FALSE}
 include_graphics("../img/ascii.gif")
 ```
-
 
 
 
@@ -325,6 +454,8 @@ Binary  | Hexadecimal | Decimal | Character
 
 
 ## Character encodings: why should we care?
+
+## Character encodings: why should we care?
  
  - In practice, Data Science means handling digital data of all formats and shapes.
     - Diverse sources.
@@ -332,6 +463,8 @@ Binary  | Hexadecimal | Decimal | Character
     - *read*/*store* data.
     
  - At the lowest level, this means understanding/handling encodings.
+
+
 
 
 
@@ -357,12 +490,17 @@ In both of these domains we mainly work with one simple type of document: *text 
 ## Text-files
 
  - A *collection of characters* stored in a designated part of the computer memory/hard drive.
- - A easy to read representation of the underlying information (`0`s and `1`s)!
+ - An easy to read representation of the underlying information (`0`s and `1`s)!
+
+ 
+## Text-files
+
+ - A *collection of characters* stored in a designated part of the computer memory/hard drive.
+ - An easy to read representation of the underlying information (`0`s and `1`s)!
  - Common device to store data:
     - Structured data (tables)
     - Semi-structured data (websites)
     - Unstructured data (plain text)
- 
  - Typical device to store computer code.
 
 
@@ -389,7 +527,7 @@ Install Atom from [here](https://flight-manual.atom.io/getting-started/sections/
 
 
 
-# Data processing basics
+# Data Processing Basics
 
 ----
 
@@ -493,7 +631,7 @@ Recall the initial example (survey) of this course.
 
   1. Access a website (over the Internet), use keyboard to enter data into a website (a Google sheet in that case). 
 
-  2. R program accesses the data of the Google sheet (again over the Internet), download the data, and load it into RAM.
+  2. R program accesses the data of the Google sheet (again over the Internet), downloads the data, and loads it into RAM.
 
   3. Data processing: produce output (in the form of statistics/plots), output on screen.
 

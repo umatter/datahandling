@@ -1,3 +1,74 @@
+## ----message=FALSE-------------------------------------------------------
+# load packages
+library(tidyverse)
+
+# initiate data frame on persons personal spending
+df_c <- data.frame(id = c(1:3,1:3),
+                   money_spent= c(1000, 2000, 6000, 1500, 3000, 5500),
+                   currency = c("CHF", "CHF", "USD", "EUR", "CHF", "USD"),
+                   year=c(2017,2017,2017,2018,2018,2018))
+df_c
+
+# initiate data frame on persons' characteristics
+df_p <- data.frame(id = 1:4,
+                   first_name = c("Anna", "Betty", "Claire", "Diane"),
+                   profession = c("Economist", "Data Scientist", "Data Scientist", "Economist"))
+df_p
+
+## ------------------------------------------------------------------------
+df_merged <- merge(df_p, df_c, by="id")
+df_merged
+
+## ------------------------------------------------------------------------
+df_merged2 <- merge(df_p, df_c, by="id", all = TRUE)
+df_merged2
+
+## ------------------------------------------------------------------------
+df_selection <- select(df_merged, id, year, money_spent, currency)
+df_selection
+
+## ------------------------------------------------------------------------
+filter(df_selection, year == 2018)
+
+## ------------------------------------------------------------------------
+filter(df_selection, year == 2018, money_spent < 5000, currency=="EUR")
+
+## ------------------------------------------------------------------------
+exchange_rates <- data.frame(exchange_rate= c(0.9, 1, 1.2),
+                             currency=c("USD", "CHF", "EUR"), stringsAsFactors = FALSE)
+df_selection <- merge(df_selection, exchange_rates, by="currency")
+
+## ------------------------------------------------------------------------
+df_mutated <- mutate(df_selection, money_spent_chf = money_spent * exchange_rate)
+df_mutated
+
+## ------------------------------------------------------------------------
+summarise(df_mutated, 
+          mean = mean(money_spent_chf),
+          standard_deviation = sd(money_spent_chf),
+          median = median(money_spent_chf),
+          N = n())
+
+## ------------------------------------------------------------------------
+by_year <- group_by(df_mutated, year)
+summarise(by_year, 
+          mean = mean(money_spent_chf),
+          standard_deviation = sd(money_spent_chf),
+          median = median(money_spent_chf),
+          N = n())
+
+## ------------------------------------------------------------------------
+# load data
+data("swiss")
+
+## ------------------------------------------------------------------------
+sapply(swiss, mean)
+
+## ------------------------------------------------------------------------
+summarise(swiss, 
+          Fertility = mean(Fertility),
+          Agriculture = mean(Agriculture)) # etc.
+
 ## ------------------------------------------------------------------------
 normal_distr <- rnorm(1000)
 hist(normal_distr)
@@ -105,7 +176,7 @@ mean(results)
 ## ----lln, echo=TRUE------------------------------------------------------
 # Essentially, what we are doing here is repeating the experiment above many times, each time increasing n.
 # define the set of sample sizes
-ns <- seq(from = 10, to = 50000, by = 10)
+ns <- seq(from = 10, to = 10000, by = 10)
 # initiate an empty list to record the results
 means <- list()
 length(means) <- length(ns)
@@ -154,7 +225,7 @@ length(ts) <- length(ns)
 # iterate through each sample size: 'repeat the die experiment for each sample size'
 for (i in 1:length(ns)) {
      
-     samples.i <- sapply(1:500000, function(j) sample( x = dvalues, size = ns[i], replace = TRUE))
+     samples.i <- sapply(1:100000, function(j) sample( x = dvalues, size = ns[i], replace = TRUE))
      ts[[i]] <- apply(samples.i, function(x) (mean(x) - 3.5) / sd(x), MARGIN = 2)
 }
 
@@ -167,73 +238,4 @@ hist(ts[[3]], main = "Sample size: 100", xlab = "T-value")
 
 # finally have a look at the actual standard normol distribution as a reference point
 plot(function(t)dnorm(t), -4, 4, main = "Normal density")
-
-## ------------------------------------------------------------------------
-# initiate sample
-a <- c(10,22,33, 22, 40)
-names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva")
-
-# compute the mean
-mean(a)
-# compute the median
-median(a)
-
-
-## ---- echo=TRUE----------------------------------------------------------
-range(a)
-var(a)
-sd(a)
-
-
-## ------------------------------------------------------------------------
-# define size of sample
-n <- 100
-# draw the random sample from a normal distribution with mean 10 and sd 2
-sample <- rnorm(n, mean = 10, sd = 2)
-
-# Test H0: mean of population = 10 
-t.test(sample, mu = 10)
-
-
-## ------------------------------------------------------------------------
-model1 <- Examination~Education
-
-## ------------------------------------------------------------------------
-fit1 <- lm(formula = model1, data = swiss)
-
-## ------------------------------------------------------------------------
-summary(fit1)
-
-## ------------------------------------------------------------------------
-# load data
-data(swiss)
-
-# linear regression with one variable
-# estimate coefficients
-model_fit <- lm(Examination~Education, data = swiss)
-# t-tests of coefficients (and additional statistics)
-summary(model_fit)
-
-
-## ------------------------------------------------------------------------
-# multiple linear regression
-# estimate coefficients
-model_fit2 <- lm(Examination~Education + Catholic + Agriculture, data = swiss)
-# t-tests of coefficients (and additional statistics)
-summary(model_fit2)
-
-
-## ------------------------------------------------------------------------
-# load packages
-library(stargazer)
-
-# print regression results as text
-stargazer(model_fit, model_fit2, type = "text")
-
-## ------------------------------------------------------------------------
-# load packages
-library(stargazer)
-
-# print regression results as text
-stargazer(model_fit, model_fit2, type = "latex")
 

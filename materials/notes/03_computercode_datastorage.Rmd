@@ -6,14 +6,14 @@ author: |
      | (University of St. Gallen)
 date: "04/10/2018"
 output:
-  html_document:
-    highlight: tango
-    theme: cerulean
-    mathjax: "http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
   pdf_document:
     pandoc_args:
     - --filter
     - ../../code/math.py
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
@@ -68,7 +68,7 @@ Similarly we can display the content in hexadecimal values:
 
 
 ```{bash eval = FALSE}
-xxd  data/helloworld.txt
+xxd  helloworld.txt
 ```
 
 ```{bash echo = FALSE}
@@ -149,11 +149,11 @@ Consider the usefulness of this algorithm. It would certainly work quite well fo
 
 ## CSVs and fixed-width format
 
-Incidentally, the example we are looking at here is in line with such a standard, i.e., Comma-Separated Values (CSV, therefore `.csv`). In technical terms, this simple algorithm is a CSV [parser](https://en.wikipedia.org/wiki/Parsing#Computer_languages). A CSV parser is a software component which takes a text file with CSV standard structure as input and builds a data structure in the form of a table. If the input file does not follow the agreed on CSV standard, the parser will likely fail to properly 'parse' (read/translate) the input. 
+Incidentally, the example we are looking at here is in line with such a standard, i.e., Comma-Separated Values (CSV, therefore `.csv`). In technical terms, the simple algorithm outlined above is a CSV [parser](https://en.wikipedia.org/wiki/Parsing#Computer_languages). A CSV parser is a software component which takes a text file with CSV standard structure as input and builds a data structure in the form of a table (represented in RAM). If the input file does not follow the agreed on CSV standard, the parser will likely fail to properly 'parse' (read/translate) the input. 
 
 CSV files are very commonly used to transfer and store data in a table-like format. They essentially are based on two rules defining the structure of the data: commas delimit values/fields in a row and the end of a line indicates the end of a row.^[In addition, if a field contains itself a comma (the comma is part of the data), the field needs to be surrounded by double-quotes (`"`). If a field contains double-quotes it also has to be surrounded by double-quotes, and the double quotes in the field must be preceded by an additional double-quote.]
 
-The comma is clearly visible when looking at the raw text content of `ch_gdp.csv`. However, how does the computer know that a line is ending? By default most programs to edit with text do not show an explicit symbol for line endings but instead display the text on the next line. Under the hood, these line endings are, however, non-printable characters. We can see this when investigating `ch_gdp.csv` in the command-line terminal (via `xxd`):
+The comma is clearly visible when looking at the raw text content of `ch_gdp.csv`. However, how does the computer know that a line is ending? By default most programs to work with text files do not show an explicit symbol for line endings but instead display the text on the next line. Under the hood, these line endings are, however, non-printable characters. We can see this when investigating `ch_gdp.csv` in the command-line terminal (via `xxd`):
 
 ```{bash eval = FALSE, purl=FALSE}
 xxd ch_gdp.csv
@@ -174,7 +174,7 @@ While CSV files have become a very common way to store 'flat'/table-like data in
 
 With the question of how to store digital data on computers, we obviously also raise the question of storage capacity. How much can be stored on a computer and how do we quantify the size of a data set?
 
-Because every type of digital data can in the end only be stored as `0`s and `1`s, it makes perfectly sense to define the smallest unit of information in computing as consisting of either a `0` or a `1`. We call this basic unit  a *bit* (from *bi*nary dig*it*; abbrev. 'b'). Recall that the decimal number `139` corresponds to the binary number `10001011`. In order to store this number on a hard disk, we require a capacity of 8 bits, or one *byte* (1 byte = 8 bits; abbrev. 'B'). Historically, one byte encoded a single character of text (i.e., in the ASCII character encoding system). 4 bytes (or 32 bits) are called a *word*. The following Figure  @\ref(fig:bitbyteword) illustrates this point.
+Because every type of digital data can in the end only be stored as `0`s and `1`s, it makes perfectly sense to define the smallest unit of information in computing as consisting of either a `0` or a `1`. We call this basic unit  a *bit* (from *bi*nary dig*it*; abbrev. 'b'). Recall that the decimal number `139` corresponds to the binary number `10001011`. In order to store this number on a hard disk, we require a capacity of 8 bits, or one *byte* (1 byte = 8 bits; abbrev. 'B'). Historically, one byte encoded a single character of text (i.e., in the ASCII character encoding system). 4 bytes (or 32 bits) are called a *word*. The following Figure illustrates this point.
 
 ```{r bitbyteword, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "(ref:capbitbyteword)", purl=FALSE}
 include_graphics("../img/store-bitbyteword.png")
@@ -186,15 +186,14 @@ include_graphics("../img/store-bitbyteword.png")
 
 Bigger units for storage capacity usually build on bytes:
 
- - $1 \text{ kilobyte (KB)} = 1000^{1} \text{ bytes}$
- - $1 \text{ megabyte (MB)} = 1000^{2} \text{ bytes}$
- - $1 \text{ gigabyte (GB)} = 1000^{3} \text{ bytes}$
- 
-Similarly, the data-transfer rate, that is, the speed with which data can be transferred in a network is commonly measured in units of bits per second (bit/s):
+ - $1 \text{ kilobyte (KB)} = 2^{10} ~ 1000^{1} \text{ bytes}$
+ - $1 \text{ megabyte (MB)} = 2^{20} ~ 1000^{2} \text{ bytes}$
+ - $1 \text{ gigabyte (GB)} = 2^{30} ~ 1000^{3} \text{ bytes}$
+ - $1 \text{ terabyte (TB)} = 2^{40} ~ 1000^{4} \text{ bytes}$
+ - $1 \text{ petabyte (PB)} = 2^{50} ~ 1000^{5} \text{ bytes}$
+ - $1 \text{ exabyte (EB)} = 2^{60} ~ 1000^{6} \text{ bytes}$
+ - $1 \text{ exabyte (ZB)} = 2^{70} ~ 1000^{7} \text{ bytes}$
 
- - $1 \text{ kilobit per second (kbit/s)} = 1000^{1} \text{ bit/s}$
- - $1 \text{ megabit per second (mbit/s)} = 1000^{2} \text{ bit/s}$
- - $1 \text{ gigabit per second (gbit/s)} = 1000^{3} \text{ bit/s}$
 
 
 
@@ -279,7 +278,7 @@ Vectors are collections of values of the same type. They can contain either all 
 include_graphics("../img/numvec.png")
 ```
 
-(ref:numvec) Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
+(ref:capnumvec) Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
 
 For example, we can initiate a character vector containing the names of persons.
 ```{r}
@@ -301,7 +300,7 @@ Factors are sets of categories. Thus, the values come from a fixed set of possib
 include_graphics("../img/factor.png")
 ```
 
-(ref:factor) Illustration of a factor (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
+(ref:capfactor) Illustration of a factor (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
 
 For example, we might want to initiate a factor that indicates the gender of a number of people.
 
@@ -319,7 +318,7 @@ Matrices are two-dimensional collections of values, arrays higher-dimensional co
 include_graphics("../img/matrix.png")
 ```
 
-(ref:matrix) Illustration of a numeric matrix (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
+(ref:capmatrix) Illustration of a numeric matrix (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
 
 For example, we can initiate a three-row/two-column numeric matrix as follows
 
@@ -346,7 +345,7 @@ include_graphics("../img/df.png")
 ```
 
 
-(ref:df) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
+(ref:capdf) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
 
 The historical implementation of data frames in R is not very comfortable to work with large data sets.^[In the early days of R this was not really an issue because data sets that are rather large by today's standards (in the Gigabytes) could not have been handled properly by normal computers anyhow (due to a lack of RAM).] Now, there are new implementations of the data frame concept in R provided by different packages, that aim to make data processing based on 'data frames' faster. One is called `tibbles`,  implemented and used in the `tidyverse` packages. The other is called `data table`, implemented in the `data.table`-package. In this course we will encounter primarily the classical `data.frame` and `tibble` (however, there will also be some hints to tutorials with `data.table`. In any case, once we understand data frames in general, working with `tibble` and `data.table` is quite easy because functions that accept classical data frames as arguments also accept those newer implementations.
 
@@ -366,7 +365,7 @@ Similar to data frames, lists can contain different types of data in each elemen
 include_graphics("../img/list.png")
 ```
 
-(ref:list) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
+(ref:caplist) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
 
 This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:
 

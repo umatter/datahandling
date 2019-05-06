@@ -1,25 +1,24 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: 'Lecture 10: Understanding Basic Statistics with R'
+subtitle: 'Lecture 10: Data Analysis and Basic Statistics with R'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St. Gallen)
 date: "06/12/2018"
 output:
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
   pdf_document:
     pandoc_args:
     - --filter
     - ../../code/math.py
-  html_document:
-    highlight: tango
-    theme: cerulean
-    mathjax: "http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
 css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
-
 ---
 
 
@@ -28,6 +27,140 @@ options(width = 100)
 library(knitr)
 library(bookdown)
 knitr::opts_chunk$set(fig.pos = 'htb!')
+```
+
+# Data Analysis with R
+
+In the first part of this lecture we take a look at some key functions for applied data analysis in R. At this point of our data science procedure, we have already implemented the collecting/importing and cleaning of the raw data. The analysis part can be thought of as a collection of tasks with the aim of making sense of the data. In practice, this can be explorative (discovering interesting patterns in the data) or inductive (testing of a specific hypothesis). Moreover it typically involves both functions for actual statistical analysis as well as various functions to select, combine, filter, and aggregate data. Similar to the topic of data cleaning/preparation, covering all aspects of applied data analysis with R goes well beyond the scope of one lecture. The aim is thus to give a practical overview of some of the basic concepts and their corresponding R functions (here from `tidyverse`).  
+
+## Merging datasets
+
+The following two data sets contain data on persons' characteristics as well as their consumption spending. Both are cleaned datasets. But, for analysis purposes we have to combine the two datasets in one. There are several ways to do this in R but most commonly (for `data.frames` as well as `tibbles`) we can use the `merge()`-function.
+
+```{r message=FALSE}
+# load packages
+library(tidyverse)
+
+# initiate data frame on persons personal spending
+df_c <- data.frame(id = c(1:3,1:3),
+                   money_spent= c(1000, 2000, 6000, 1500, 3000, 5500),
+                   currency = c("CHF", "CHF", "USD", "EUR", "CHF", "USD"),
+                   year=c(2017,2017,2017,2018,2018,2018))
+df_c
+
+# initiate data frame on persons' characteristics
+df_p <- data.frame(id = 1:4,
+                   first_name = c("Anna", "Betty", "Claire", "Diane"),
+                   profession = c("Economist", "Data Scientist", "Data Scientist", "Economist"))
+df_p
+```
+
+Our aim is to compute the average spending by profession. Therefore, we want to link `money_spent` with `profession`. Luckily, the datasets contain a unique identifier `id` which we can use to link the observations via `merge()`.
+
+```{r}
+df_merged <- merge(df_p, df_c, by="id")
+df_merged
+```
+
+Note how only the exact matches are merged. The observation of `"Diane"` is not part of the merged data frame because there is no corresponding row in `df_c` with her spending information. If for some reason we would like to have all persons in the merged dataset, we can specify the `merge()`-call accordingly:
+
+
+```{r}
+df_merged2 <- merge(df_p, df_c, by="id", all = TRUE)
+df_merged2
+```
+
+## Selecting subsets 
+
+For the next steps of our analysis, we actually do not need to have all columns. Via the `select()`-function provided in `tidyverse` we can easily select the columns of interest
+
+
+```{r}
+df_selection <- select(df_merged, id, year, money_spent, currency)
+df_selection
+```
+
+
+## Filtering datasets
+
+In a next step, we want to select only observations with specific characteristics. Say, we want to select only observations from 2018. Again there are several ways to do this in R but a most comfortable way is to use the `filter()` function provided in `tidyverse`.
+
+```{r}
+filter(df_selection, year == 2018)
+```
+
+We can use several filtering conditions simultaneously:
+
+```{r}
+filter(df_selection, year == 2018, money_spent < 5000, currency=="EUR")
+```
+
+## Mutating datasets
+
+Before we compute aggregate statistics based on our selected dataset, we have to deal with the fact that the `money_spent`-variable is not really tidy. It does describe a characteristic of each observation but it is measured in different units (here, different currencies) across some of these observations. If the aim was to have a perfectly tidy dataset, we could address the issue with `spread()`. However, in this context it could be more helpful to add an additional variable/column with a normalized amount of money spent. That is, we want to have every value converted to one currency (given a certain exchange rate). In order to do so, we use the `mutate()` function (again provided in `tidyverse`).
+
+First, we look up the USD/CHF and EUR/CHF exchange rates and add those as a variable (CHF/CHF exchange rates are equal to 1, of course). 
+
+```{r}
+exchange_rates <- data.frame(exchange_rate= c(0.9, 1, 1.2),
+                             currency=c("USD", "CHF", "EUR"), stringsAsFactors = FALSE)
+df_selection <- merge(df_selection, exchange_rates, by="currency")
+```
+
+Now we can define an additional variable with the money spent in CHF via `mutate()`:
+
+```{r}
+df_mutated <- mutate(df_selection, money_spent_chf = money_spent * exchange_rate)
+df_mutated
+```
+
+
+## Aggregation and summary statistics
+
+Now we can start analyzing the dataset. Quite typically, the first step of analyzing a dataset is to get an overview by computing some summary statistics. This helps to better understand the dataset at hand. Key summary statistics of the variables of interest are the mean, standard deviation, median, and number of observations. Together, they give a first idea of how the variables of interest are distributed. 
+
+As you know from previous lectures, there are several built-in functions shipped with R that help us do this. In practice, these basic functions are often combined with functions implemented particularly for this step of the analysis, such as `summarise()` provided in `tidyverse`. 
+
+As a first output in our report we want to show the key characteristics of the spending data in one table.
+
+```{r}
+summarise(df_mutated, 
+          mean = mean(money_spent_chf),
+          standard_deviation = sd(money_spent_chf),
+          median = median(money_spent_chf),
+          N = n())
+```
+
+Moreover we can compute the same statistics grouped by certain observation characteristics. For example, we can compute the same summary statistics per year of observation.
+
+```{r}
+by_year <- group_by(df_mutated, year)
+summarise(by_year, 
+          mean = mean(money_spent_chf),
+          standard_deviation = sd(money_spent_chf),
+          median = median(money_spent_chf),
+          N = n())
+```
+
+Alternatively to the more user-friendly (but less flexible) `summarise` function, we can use lower-level functions to compute aggregate statistics, provided in the basic R distribution. A good example for such a function is `sapply()`. In simple terms, `sapply()` takes a list as input and applies a function to the content of each element in this list (here: compute a statistic for each column). To illustrate this point, we load the already familiar `swiss` dataset.
+
+```{r}
+# load data
+data("swiss")
+```
+
+Now we want to compute the mean for each of the variables in this dataset. Technically speaking, a data frame is a list, where each list element is a column of the same length. Thus, we can use `sapply()` to 'apply' the function `mean()` to each of the columns in `swiss`.
+
+```{r}
+sapply(swiss, mean)
+```
+
+By default, `sapply()` returns a vector or a matrix.^[The related function `lapply()`, returns a list (see `lapply(swiss, mean)`).] We can get a very similar result by using `summarise()`. However, we would have to explicitly mention which variables we want as input.
+
+```{r}
+summarise(swiss, 
+          Fertility = mean(Fertility),
+          Agriculture = mean(Agriculture)) # etc.
 ```
 
 
@@ -60,6 +193,7 @@ plot(density(littlevar), col = "blue",
 lines(density(largevar), col = "red")
 
 ```
+
 **Note:** the red curve illustrates the distribution of the sample with a large standard deviation (a lot of variability) whereas the blue curve illustrates the one with a rather small standard deviation.
 
 
@@ -79,7 +213,7 @@ Recall Day 1's slides on Skewness and Kurtosis. A helpful way to memorize what a
 
 ### Skewness
 
-Skewness refers to how symetric the frequency distribution of a variable is. For example, a distribution can be 'positively skewed' meaning it has a long tail on the right and a lot of 'mass' (observations) on the left. We can see that when visualizing the distribution in a histogram or a density plot. Lets have a look at this in R (note the comments in the code explaing what each line does):
+Skewness refers to how symmetric the frequency distribution of a variable is. For example, a distribution can be 'positively skewed' meaning it has a long tail on the right and a lot of 'mass' (observations) on the left. We can see that when visualizing the distribution in a histogram or a density plot. Lets have a look at this in R (note the comments in the code explaining what each line does):
 
 ```{r, echo=TRUE}
 # draw a random sample of simulated data from a normal distribution
@@ -109,7 +243,7 @@ skewness(sample)
 ```
 
 ### Kurtosis
-Kurtosis refers to how much 'mass' a distribution has in its 'tails'. It thus tells us something about whether a distribution tends to have a lot of outliers. Again, plotting the data can help us understand this concept of kurtosis. Lets have a look at this in R (note the comments in the code explaing what each line does):
+Kurtosis refers to how much 'mass' a distribution has in its 'tails'. It thus tells us something about whether a distribution tends to have a lot of outliers. Again, plotting the data can help us understand this concept of kurtosis. Lets have a look at this in R (note the comments in the code explaining what each line does):
 
 ```{r}
 # draw a random sample of simulated data from a normal distribution
@@ -191,12 +325,12 @@ results <- sample( x = dvalues, size = n, replace = TRUE)
 mean(results)
 ```
 
-We are getting closer to 3.5! Now let's scale up these comparisons and show how the sample means are getting closer to 3.5 when increasing the number of times we roll the die up to 50'000.
+We are getting closer to 3.5! Now let's scale up these comparisons and show how the sample means are getting closer to 3.5 when increasing the number of times we roll the die up to 10'000.
 
 ```{r lln, echo=TRUE}
 # Essentially, what we are doing here is repeating the experiment above many times, each time increasing n.
 # define the set of sample sizes
-ns <- seq(from = 10, to = 50000, by = 10)
+ns <- seq(from = 10, to = 10000, by = 10)
 # initiate an empty list to record the results
 means <- list()
 length(means) <- length(ns)
@@ -251,7 +385,7 @@ At this point you might wonder what the use of t is if the underlying data is no
 # calculate the p-value associated with the t-value calculated above
 2*pnorm(-abs(t))
 ```
-In that case we could not reject the null hypothesis of a fair die. However, as pointed out above, the t-statistic is only assymptotically (meaning with very large samples) normally distributed. We might not want to trust this hypothesis test too much because we were using a sample of only 100 observations.
+In that case we could not reject the null hypothesis of a fair die. However, as pointed out above, the t-statistic is only asymptotically (meaning with very large samples) normally distributed. We might not want to trust this hypothesis test too much because we were using a sample of only 100 observations.
 
 Let's turn back to R in order to illustrate the CLT at work. Similar to the illustration of the LLN above, we will repeatedly compute the t-statistic of our dice play experiment and for each trial increase the number of observations. 
 
@@ -264,7 +398,7 @@ length(ts) <- length(ns)
 # iterate through each sample size: 'repeat the die experiment for each sample size'
 for (i in 1:length(ns)) {
      
-     samples.i <- sapply(1:500000, function(j) sample( x = dvalues, size = ns[i], replace = TRUE))
+     samples.i <- sapply(1:100000, function(j) sample( x = dvalues, size = ns[i], replace = TRUE))
      ts[[i]] <- apply(samples.i, function(x) (mean(x) - 3.5) / sd(x), MARGIN = 2)
 }
 
@@ -284,135 +418,135 @@ Note how the histogram is getting closer to a normal distribution with increasin
 
 
 
-# Basic Statistics and Econometrics with R^[From @umatter_2018]
+<!-- # Basic Statistics and Econometrics with R -->
 
-In the previous part we have learned how to implement basic statistics functions in R, as well as notices that for most of these statistics R already has a build-in function.
+<!-- In the previous part we have learned how to implement basic statistics functions in R, as well as notices that for most of these statistics R already has a build-in function. -->
 
-For example, mean and median: 
-```{r}
-# initiate sample
-a <- c(10,22,33, 22, 40)
-names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva")
+<!-- For example, mean and median:  -->
+<!-- ```{r} -->
+<!-- # initiate sample -->
+<!-- a <- c(10,22,33, 22, 40) -->
+<!-- names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva") -->
 
-# compute the mean
-mean(a)
-# compute the median
-median(a)
+<!-- # compute the mean -->
+<!-- mean(a) -->
+<!-- # compute the median -->
+<!-- median(a) -->
 
-```
+<!-- ``` -->
 
-...as well as different measures of variability,
-```{r, echo=TRUE}
-range(a)
-var(a)
-sd(a)
+<!-- ...as well as different measures of variability, -->
+<!-- ```{r, echo=TRUE} -->
+<!-- range(a) -->
+<!-- var(a) -->
+<!-- sd(a) -->
 
-```
+<!-- ``` -->
 
-and test statistics such as the t-test.
-```{r}
-# define size of sample
-n <- 100
-# draw the random sample from a normal distribution with mean 10 and sd 2
-sample <- rnorm(n, mean = 10, sd = 2)
+<!-- and test statistics such as the t-test. -->
+<!-- ```{r} -->
+<!-- # define size of sample -->
+<!-- n <- 100 -->
+<!-- # draw the random sample from a normal distribution with mean 10 and sd 2 -->
+<!-- sample <- rnorm(n, mean = 10, sd = 2) -->
 
-# Test H0: mean of population = 10 
-t.test(sample, mu = 10)
+<!-- # Test H0: mean of population = 10  -->
+<!-- t.test(sample, mu = 10) -->
 
-```
-
-
-## Regression analysis with R
-
-Finally, R and additional R packages offer functions for almost all models and tests in modern applied econometrics. While the syntax and return values of these functions are note 100% consistent (due to the fact that many different authors contributed some of these functions), applying them is usually quite similar. Functions for econometric models typically have the two main parameters `data` (the dataset to use in the estimation, in `data.frame`-format) and `formula` (a symbolic description of the model to be fitted, following a defined convention). Typically, the following three steps are involved when running regressions in R (assuming the data is already loaded and prepared):
-
-1. In `formula`, we define the model we want to fit as an object of class 'formula'. For example, we want to regress `Examination` on `Education` with the `swiss`-dataset used above. 
-
-```{r}
-model1 <- Examination~Education
-```
-
-2. Fit the model with the respective estimator. Here we use `lm()` the R workhorse for linear models to fit the model with OLS:
-
-```{r}
-fit1 <- lm(formula = model1, data = swiss)
-```
-
-3. Get summary statistics with the generic `summary()`. In the case of an object of class `lm` (the output of `lm()`), this amounts to the typical coefficient t-statistics an p-values shown in regression tables:
-
-```{r}
-summary(fit1)
-```
+<!-- ``` -->
 
 
-## Linear model
-Putting the pieces together, we can write a simple script to analyse the `swiss`-dataset (in spirit of the data visualization above):
+<!-- ## Regression analysis with R -->
+
+<!-- Finally, R and additional R packages offer functions for almost all models and tests in modern applied econometrics. While the syntax and return values of these functions are note 100% consistent (due to the fact that many different authors contributed some of these functions), applying them is usually quite similar. Functions for econometric models typically have the two main parameters `data` (the dataset to use in the estimation, in `data.frame`-format) and `formula` (a symbolic description of the model to be fitted, following a defined convention). Typically, the following three steps are involved when running regressions in R (assuming the data is already loaded and prepared): -->
+
+<!-- 1. In `formula`, we define the model we want to fit as an object of class 'formula'. For example, we want to regress `Examination` on `Education` with the `swiss`-dataset used above.  -->
+
+<!-- ```{r} -->
+<!-- model1 <- Examination~Education -->
+<!-- ``` -->
+
+<!-- 2. Fit the model with the respective estimator. Here we use `lm()` the R workhorse for linear models to fit the model with OLS: -->
+
+<!-- ```{r} -->
+<!-- fit1 <- lm(formula = model1, data = swiss) -->
+<!-- ``` -->
+
+<!-- 3. Get summary statistics with the generic `summary()`. In the case of an object of class `lm` (the output of `lm()`), this amounts to the typical coefficient t-statistics an p-values shown in regression tables: -->
+
+<!-- ```{r} -->
+<!-- summary(fit1) -->
+<!-- ``` -->
 
 
-```{r}
-# load data
-data(swiss)
-
-# linear regression with one variable
-# estimate coefficients
-model_fit <- lm(Examination~Education, data = swiss)
-# t-tests of coefficients (and additional statistics)
-summary(model_fit)
-
-```
-
-Specifying the linear model differently can be done by simply changing the formula of the model. For example, we might want to control for the share of agricultural occupation.
-
-```{r}
-# multiple linear regression
-# estimate coefficients
-model_fit2 <- lm(Examination~Education + Catholic + Agriculture, data = swiss)
-# t-tests of coefficients (and additional statistics)
-summary(model_fit2)
-
-```
-
-## Other econometric models
-Various additional packages provide all kind of functions to estimate diverse economietric models. Many generalized linear models can be fitted with the `glm()`-function (`formula` and `data` used as in `lm()`):
-
-- Probit model: `glm(..., family = binomial(link = "probit"))`.
-- Logit model: `glm(..., family = "binomial")`.
-- Poisson regression (count data): `glm(..., family="poisson")`.
-
-Other frequently used packages for econometric regression analysis:
-- Panel data econometrics: package `plm`.
-- Time-series econometrics: package `tseries`.
-- Basic IV regression: `ivreg()` in package `AER`.
-- Generalized methods of moments: package `gmm`.
-- Generalized additive models: package `gam`.
-- Lasso regression: package `glmnet`.
-- Survival analysis: package `survival`.
-
-See also the [CRAN Econometrics Task View](https://cran.r-project.org/web/views/Econometrics.html)
+<!-- ## Linear model -->
+<!-- Putting the pieces together, we can write a simple script to analyse the `swiss`-dataset (in spirit of the data visualization above): -->
 
 
-## Regression tables
-Economists typically present regression results in detailed regression tables, with regression coefficients in rows and model specifications in columns. The package `stargazer` provides some functions to generate such tables very easily for outputs of the most common regression functions (`lm()`, `glm()`, etc.):
+<!-- ```{r} -->
+<!-- # load data -->
+<!-- data(swiss) -->
+
+<!-- # linear regression with one variable -->
+<!-- # estimate coefficients -->
+<!-- model_fit <- lm(Examination~Education, data = swiss) -->
+<!-- # t-tests of coefficients (and additional statistics) -->
+<!-- summary(model_fit) -->
+
+<!-- ``` -->
+
+<!-- Specifying the linear model differently can be done by simply changing the formula of the model. For example, we might want to control for the share of agricultural occupation. -->
+
+<!-- ```{r} -->
+<!-- # multiple linear regression -->
+<!-- # estimate coefficients -->
+<!-- model_fit2 <- lm(Examination~Education + Catholic + Agriculture, data = swiss) -->
+<!-- # t-tests of coefficients (and additional statistics) -->
+<!-- summary(model_fit2) -->
+
+<!-- ``` -->
+
+<!-- ## Other econometric models -->
+<!-- Various additional packages provide all kind of functions to estimate diverse economietric models. Many generalized linear models can be fitted with the `glm()`-function (`formula` and `data` used as in `lm()`): -->
+
+<!-- - Probit model: `glm(..., family = binomial(link = "probit"))`. -->
+<!-- - Logit model: `glm(..., family = "binomial")`. -->
+<!-- - Poisson regression (count data): `glm(..., family="poisson")`. -->
+
+<!-- Other frequently used packages for econometric regression analysis: -->
+<!-- - Panel data econometrics: package `plm`. -->
+<!-- - Time-series econometrics: package `tseries`. -->
+<!-- - Basic IV regression: `ivreg()` in package `AER`. -->
+<!-- - Generalized methods of moments: package `gmm`. -->
+<!-- - Generalized additive models: package `gam`. -->
+<!-- - Lasso regression: package `glmnet`. -->
+<!-- - Survival analysis: package `survival`. -->
+
+<!-- See also the [CRAN Econometrics Task View](https://cran.r-project.org/web/views/Econometrics.html) -->
+
+
+<!-- ## Regression tables -->
+<!-- Economists typically present regression results in detailed regression tables, with regression coefficients in rows and model specifications in columns. The package `stargazer` provides some functions to generate such tables very easily for outputs of the most common regression functions (`lm()`, `glm()`, etc.): -->
 
 
 
-```{r}
-# load packages
-library(stargazer)
+<!-- ```{r} -->
+<!-- # load packages -->
+<!-- library(stargazer) -->
 
-# print regression results as text
-stargazer(model_fit, model_fit2, type = "text")
-```
+<!-- # print regression results as text -->
+<!-- stargazer(model_fit, model_fit2, type = "text") -->
+<!-- ``` -->
 
-Alternatively the regression table can be directly generated as LaTeX table:
+<!-- Alternatively the regression table can be directly generated as LaTeX table: -->
 
-```{r}
-# load packages
-library(stargazer)
+<!-- ```{r} -->
+<!-- # load packages -->
+<!-- library(stargazer) -->
 
-# print regression results as text
-stargazer(model_fit, model_fit2, type = "latex")
-```
+<!-- # print regression results as text -->
+<!-- stargazer(model_fit, model_fit2, type = "latex") -->
+<!-- ``` -->
 
 
 

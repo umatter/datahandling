@@ -19,9 +19,9 @@ library(knitr)
 
 ## Welcome to Data Handling: I.C.V. 2018!
 <!-- bitly should point to: https://docs.google.com/spreadsheets/d/1P_z7HbNrsif3U2RLR0BLNXiaojcTPCm2KpgbvPVdZ6k/edit?usp=sharing -->
-- Fire up your notebooks!
-- Go to this page: http://bit.ly/datahandling2018 
-- Use one row to respond to the questions in the column headers (see the first two rows for examples).
+<!-- - Fire up your notebooks! -->
+<!-- - Go to this page: http://bit.ly/datahandling2018  -->
+<!-- - Use one row to respond to the questions in the column headers (see the first two rows for examples). -->
 
 
 # Introductory Example
@@ -32,13 +32,13 @@ library(knitr)
 include_graphics("../img/cpu_blackbox.png")
 ```
 
-## The Data Science Pipeline/Workflow
+## The Data Pipeline
 
 ```{r datascience, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Data Science workflow. Source: @wickham_grolemund2017"}
 include_graphics("../img/data-science.png")
 ```
 
-## The Data Science Pipeline/Workflow
+## The Data Pipeline
 
 ```{r datascience2, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Data Science workflow. Source: @wickham_grolemund2017"}
 include_graphics("../img/data-science.png")
@@ -47,7 +47,7 @@ include_graphics("../img/data-science.png")
 What could be the *output* of all this?
 
 
-## The Data Science Pipeline/Workflow
+## The Data Pipeline
 
 - Research report/paper (e.g., BA Thesis)
 - Presentation/Slides
@@ -56,6 +56,23 @@ What could be the *output* of all this?
 - Dashboard for management
 - Recommender system (i.e., a trained machine learning algorithm)
 - ...
+
+## 'Data Science'?
+
+
+
+## 'Data Science'?
+
+*"This coupling of scientific discovery and practice involves the collection, management, processing, analysis, visualization, and interpretation of vast amounts of heterogeneous data associated with a diverse array of scientific, translational, and inter-disciplinary applications."*
+
+University of Michigan 'Data Science Initiative', 2015
+
+
+## But, what about Statistics?!
+
+*"Seemingly, statistics is being marginalized here; the implicit message is that statistics is a part of what goes on in data science but not a very big part. At the same time, many of the concrete descriptions of what the DSI will actually do will seem to statisticians to be bread-and-butter statistics. Statistics is apparently the word that dare not speak its name in connection with such an initiative!"*
+
+David Donoho (2015). __50 years of Data Science__
 
 
 ---
@@ -66,7 +83,34 @@ include_graphics("../img/hacking_skills.png")
 
 
 
+---
+
+```{r ds_skills, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= "The 'Data Science Venn Diagram'. Source: http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/", purl=FALSE}
+include_graphics("../img/ds_skills.png")
+```
+
+
+
 # Background
+
+## What's new about all this?
+
+*"All in all, I have come to feel that my central interest is in data analysis, which I take to include, among other things: ..."*
+
+## What's new about all this?
+
+*"All in all, I have come to feel that my central interest is in data analysis, which I take to include, among other things: procedures for analyzing data, techniques for interpreting the results of such procedures, ways of planning the gathering of data to make its analysis easier, more precise or more accurate, and all the machinery and results of (mathematical) statistics which apply to analyzing data."*
+
+## What's new about all this?
+
+```{r tukey1, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
+include_graphics("../img/tukey.jpg")
+```
+<center>
+John Tukey (_The Future of Data Analysis_, 1962!)
+</center>
+
+
 
 ## Technological change
 
@@ -125,6 +169,29 @@ include_graphics("../img/bd_ai.png")
 ```
 
 
+# Organization of the Course
+
+---
+
+```{r help, echo=FALSE, out.width = "85%", fig.align='center',  purl=FALSE}
+include_graphics("../img/help_wanted.jpg")
+```
+
+## Help Wanted
+- Experienced R user?
+- Assist fellow students during exercises in class
+- Disclaimer: this is not an official TA position!
+
+## Help Wanted
+- Experienced R user?
+- Assist fellow students during exercises in class
+- Disclaimer: this is not an official TA position!
+- *Interested?* 
+    - Approach me at the end of today's lecture!
+    - Or send me an email: ulrich.matter@unisg.ch
+
+## Course evaluation: Focus Group
+
 
 
 
@@ -139,12 +206,6 @@ include_graphics("../img/bd_ai.png")
     - Live demonstrations of concepts
     - Illustration of 'hands-on' approaches
     
-<!-- - Workshops/Exercises (bi-weekly evening sessions) -->
-<!--     - Guided tutorials -->
-<!--     - Discussion of homework exercises -->
-<!--     - Recap of theoretical concepts -->
-<!-- - Guest Lectures -->
-
 
 ## Course Concept
 
@@ -171,7 +232,29 @@ include_graphics("../img/bd_ai.png")
     - Guided tutorials
     - Discussion of homework exercises
     - Recap of theoretical concepts
+    - *First Exercises (set up R/RStudio) is available on StudyNet today*
+
+
+
+## Course Concept
+
+- Lectures (every Thursday morning)
+    - Background/Concepts
+    - Live demonstrations of concepts
+    - Illustration of 'hands-on' approaches
+    
+- Workshops/Exercises (bi-weekly evening sessions)
+    - Guided tutorials
+    - Discussion of homework exercises
+    - Recap of theoretical concepts
+    - *First Exercises (set up R/RStudio) is available on StudyNet today*
 - Guest Lectures
+
+## Course Concept
+- Strongly encouraged: Learning groups!
+    - Workshops/Exercises-Sessions will provide opportunity.
+    - Tackle the tricky exercises together!
+
 
 ## 15/11/2018: Guest Lecture by Dr. Michael Zehnder
 
@@ -184,7 +267,6 @@ include_graphics("../img/mzehnder.png")
 Co-Founder & CEO Swiss Data Labs AG
 <center/>
 
-## Guest Lecture: Dr. Christian Ulbrich?
 
 
 
@@ -220,17 +302,38 @@ kable(sched[14:nrow(sched), c(1,5)], format = "markdown")
 
 
 
+## Core Course Resources
+
+- Course materials: [umatter.github.io/courses](https://umatter.github.io/courses.html)
+- Exercises will be uploaded to the StudyNet room!
+
+
 ## Main textbooks
 [Murrell, Paul (2009). *Introduction to Data Technologies*, London: Chapman & Hall/CRC.](https://www.stat.auckland.ac.nz/~paul/ItDT/)
 
 [Wickham, Hadley and Garred Grolemund (2017). *R for Data Science*, 1st Edition. Sebastopol, CA: O’Reilly.](http://r4ds.had.co.nz/)
 
 
+## Further resources
+
+- [Stackoverflow](www.stackoverflow.com)
+- [Get inspired in the R blogsphere](www.r-bloggers.com)
+
 
 ## Exam Information
 - Central, written examination.
 - Multiple choice questions.
 - Theoretical concepts and practical applications in R (questions based on code examples).
+
+## Exam Information II
+- Exercises towards the end of the term will contain sample questions.
+    - Get familiar with style of questions.
+- Exchange students who need to take the exam before the central exam block:
+    - Notify me until end of September: *ulrich.matter@unisg.ch*!
+    - Option for a decentral exam during the term (probably the day of the last lecture).
+    
+
+
 
 
 

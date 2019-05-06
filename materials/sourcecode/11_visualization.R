@@ -1,3 +1,26 @@
+## ----message=FALSE-------------------------------------------------------
+# load packages and data
+library(tidyverse)
+data("swiss")
+# compute summary statistics
+swiss_summary <-
+  summarise(swiss, 
+          avg_education = mean(Education, na.rm = TRUE),
+          avg_fertility = mean(Fertility, na.rm = TRUE),
+          N = n()
+          )
+swiss_summary
+
+
+## ------------------------------------------------------------------------
+swiss_summary_rounded <- round(swiss_summary, 2)
+swiss_summary_rounded
+
+## ------------------------------------------------------------------------
+
+swiss_summary_formatted <- format(swiss_summary_rounded, decimal.mark=",")
+swiss_summary_formatted 
+
 ## ----echo=TRUE-----------------------------------------------------------
 # load the R package
 library(ggplot2)

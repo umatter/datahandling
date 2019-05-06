@@ -59,7 +59,7 @@ swiss_econ_parsed <- read_html("https://en.wikipedia.org/wiki/Economy_of_Switzer
 swiss_econ_parsed
 
 ## ------------------------------------------------------------------------
-tab_node <- html_node(swiss_econ_parsed, xpath = "//*[@id='mw-content-text']/div/table[3]")
+tab_node <- html_node(swiss_econ_parsed, xpath = "//*[@id='mw-content-text']/div/table[2]")
 tab <- html_table(tab_node)
 tab
 

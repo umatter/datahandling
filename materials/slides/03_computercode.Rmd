@@ -38,7 +38,7 @@ include_graphics("../img/on_off.png")
 
 - Only two signs: `0`, `1`.
 - Base 2.
-- Columns: $2^0=1$, $2^1=2$, $2^3=4$, and so forth.
+- Columns: $2^0=1$, $2^1=2$, $2^2=4$, and so forth.
 
 
 ## The hexadecimal system
@@ -293,25 +293,23 @@ year,gdp_chfb
 
   1.  Start with an empty table consisting of one cell (1 row/column).
   2.  While the end of the input file is not yet reached, do the following:
-    - Read characters from the input file, and add them one-by-one to the current cell.
+      - Read characters from the input file, and add them one-by-one to the current cell.
         
 
 ## A simple parser algorithm
 
   1.  Start with an empty table consisting of one cell (1 row/column).
   2.  While the end of the input file is not yet reached, do the following:
-    - Read characters from the input file, and add them one-by-one to the current cell.
-        
-        -If you encounter the character '`,`', ignore it, create a new field, and jump to the new field.
+      - Read characters from the input file, and add them one-by-one to the current cell.
+         - If you encounter the character '`,`', ignore it, create a new field, and jump to the new field.
 
 ## A simple parser algorithm
 
   1.  Start with an empty table consisting of one cell (1 row/column).
   2.  While the end of the input file is not yet reached, do the following:
-    - Read characters from the input file, and add them one-by-one to the current cell.
-        
-        -If you encounter the character '`,`', ignore it, create a new field, and jump to the new field.
-    - If you encounter the end of the line, create a new row and jump to the new row.
+      - Read characters from the input file, and add them one-by-one to the current cell.
+         - If you encounter the character '`,`', ignore it, create a new field, and jump to the new field.
+      - If you encounter the end of the line, create a new row and jump to the new row.
 
 
 ## CSVs and fixed-width format
@@ -326,7 +324,7 @@ year,gdp_chfb
 
   - Common format to store and transfer data.
     - Very common in a data analysis context.
-  - Natural format/structure when data represents a table.
+  - Natural format/structure when the dataset can be thought of as a table.
 
 
 ## CSVs and fixed-width format
@@ -412,7 +410,7 @@ include_graphics("../img/store-bitbyteword.png")
 
 
 
-# Data structures and data types in R
+# Data Structures and Data Types in R
 
 ## Structures to work with...
 
@@ -434,11 +432,11 @@ We distinguish two basic characteristics:
 
   1. Data **types**: integers; real numbers ('numeric values', floating point numbers); text ('string', 'character values').
   2. Basic **data structures** in RAM:
-    - *Vectors*
-    - *Factors*
-    - *Arrays/Matrices*
-    - *Lists*
-    - *Data frames* (very `R`-specific)
+      - *Vectors*
+      - *Factors*
+      - *Arrays/Matrices*
+      - *Lists*
+      - *Data frames* (very `R`-specific)
 
 
 ## Data types: numeric
@@ -574,7 +572,7 @@ df
 
 ## Data structures: Lists
 
-```{r list, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
+```{r list, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "Illustration of a list (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
 include_graphics("../img/list.png")
 ```
 

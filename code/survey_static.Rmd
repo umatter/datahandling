@@ -159,15 +159,16 @@ r_skills <- 1:10
 student_data$computer_literacy <- factor(student_data$computer_literacy, levels = r_skills)
 
 # Majors
-majors <- c('BWL', 'VWL', 'BIA', 'BLaw', 'BLE','other')
+majors <- c('VWL', 'BWL', 'BIA', 'BLaw', 'BLE','other')
 student_data$degree <- factor(student_data$degree, levels = majors)
 
 # Find hometown longitude and latitude -----
 hometowns <- student_data$hometown
 hometowns <- hometowns[!is.na(hometowns)]
 register_google(key = "AIzaSyCy1Gjqz-WNaXxtrNLrfMoSLLqOKF3Q6_Q")
-hometown_coords <- geocode(hometowns[c(1,length(hometowns))]) # problem: might reach limit!
+hometown_coords <- geocode(hometowns) # problem: might reach limit!
 
+hometown_coords <- na.omit(hometown_coords)
 ```
 
 
@@ -191,11 +192,11 @@ leaflet() %>% addTiles() %>%
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Close (<= 1,000 km) Hometowns Network
+### Close (<= 100 km) Hometowns Network
 
 ```{r}
 # Maximum distance for relationship
-max_distance <- 1000000 # in meters
+max_distance <- 100000 # in meters
 
 # Find distances between each home town
 distances <- vector()
@@ -217,7 +218,7 @@ distances <- subset(distances, id != other_id)
 distances <- subset(distances, distance <= max_distance)
 
 # Plot network
-simpleNetwork(distances[, 1:2], zoom = TRUE, linkColour = "#02934a", nodeColour = "#02934a")
+simpleNetwork(distances, zoom = FALSE, linkColour = "#02934a", nodeColour = "#02934a", charge = 0)
 ```
 
 ### Hometown Countries

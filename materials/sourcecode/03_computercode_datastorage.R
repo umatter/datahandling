@@ -6,7 +6,7 @@
 
 ## xxd -b ../../data/helloworld.txt
 
-## xxd  data/helloworld.txt
+## xxd  helloworld.txt
 
 ## xxd  ../../data/helloworld.txt
 
