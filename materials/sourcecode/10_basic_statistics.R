@@ -1,4 +1,4 @@
-## ----message=FALSE-------------------------------------------------------
+## ----message=FALSE, warning=FALSE----------------------------------------
 # load packages
 library(tidyverse)
 
