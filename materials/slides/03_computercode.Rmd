@@ -6,6 +6,7 @@ date: "04/10/2018"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
+    template: ../../style/nologo_template.html
     mathjax: "default"
 logo: ../img/logo.png
 bibliography: ../references/datahandling.bib
@@ -13,7 +14,7 @@ bibliography: ../references/datahandling.bib
 
 
 
-```{r set-options, echo=FALSE, cache=FALSE}
+```{r set-options, echo=FALSE, cache=FALSE, warning=FALSE}
 options(width = 100)
 library(knitr)
 ```
