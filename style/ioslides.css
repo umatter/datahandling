@@ -86,7 +86,9 @@ body {
   min-height: 740px;
   width: 100%;
   overflow: hidden;
-  color: #fff;
+  background:black;
+  background-color:black;
+  color: black;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -ms-font-smoothing: antialiased;
@@ -148,12 +150,16 @@ slides > slide {
   display: block;
   position: absolute;
   overflow: hidden;
+  background:black;
+  background-color:black;
   left: 50%;
   top: 50%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+
 
 /* Slide styles */
 /*article.fill iframe {
@@ -242,6 +248,7 @@ slide.fill img {
 /* line 58, ../scss/default.scss */
 body {
   background: black;
+  background-color: black;
 }
 
 /* line 62, ../scss/default.scss */
