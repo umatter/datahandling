@@ -22,7 +22,7 @@ bibliography: ../references/datahandling.bib
 ---
 
 
-```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
 options(width = 100)
 library(knitr)
 library(bookdown)
@@ -37,7 +37,7 @@ In the first part of this lecture we take a look at some key functions for appli
 
 The following two data sets contain data on persons' characteristics as well as their consumption spending. Both are cleaned datasets. But, for analysis purposes we have to combine the two datasets in one. There are several ways to do this in R but most commonly (for `data.frames` as well as `tibbles`) we can use the `merge()`-function.
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 # load packages
 library(tidyverse)
 

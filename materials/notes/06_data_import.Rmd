@@ -22,8 +22,7 @@ bibliography: ../references/datahandling.bib
 
 ---
 
-
-```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
 options(width = 100)
 library(knitr)
 library(bookdown)

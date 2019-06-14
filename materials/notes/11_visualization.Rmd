@@ -22,7 +22,7 @@ bibliography: ../references/datahandling.bib
 ---
 
 
-```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
 options(width = 100)
 library(knitr)
 library(bookdown)
@@ -36,7 +36,7 @@ In the last part of a data pipeline we are typically dealing with the visualisat
 
 Consider, for example, the following summary statistics.
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 # load packages and data
 library(tidyverse)
 data("swiss")

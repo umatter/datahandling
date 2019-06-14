@@ -22,10 +22,9 @@ bibliography: ../references/datahandling.bib
 ---
 
 
-```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
 options(width = 100)
 library(knitr)
-#library(kableExtra)
 library(bookdown)
 knitr::opts_chunk$set(fig.pos = 'htb!')
 ```
@@ -41,7 +40,7 @@ Recall that most of the data we read into R for analytic purposes is essentially
 
 As we will rely on functions provided in the `tidyverse`, we first load this package.
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
 
