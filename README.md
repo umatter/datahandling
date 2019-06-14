@@ -4,11 +4,22 @@ Lecture materials for the SEPS-HSG (University of St. Gallen) course 'Data Handl
 
  - Lecture notes: `materials/notes/`
  - Lecture slides: `materials/slides/`
+ 
+Additional materials related to notes and slides:
+
+ - Sourcecode of examples used in slides/notes: `materials/notes/`
+ - Images used in slides/notes: `materials/img`
+ - References used in slides/notes: `materials/references`
+
+Code and data:
+
+ - `code/` contains r-scripts with additional examples as well as utility functions to curate/maintain and compile the lecture materials.
+ - `data/` contains data files used in the code examples.
 
 # How to contribute
 
 - Open issues:
-  - report bugs
+  - report bugs and typos
   - suggest enhancements
 - Resolve open issues with a pull request
 
