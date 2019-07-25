@@ -3,8 +3,8 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 3: Data Storage and Data Structures'
 author: |
      | Prof. Dr. Ulrich Matter
-     | (University of St. Gallen)
-date: "04/10/2018"
+     | (University of St.Gallen)
+date: "03/10/2019"
 output:
   pdf_document:
     pandoc_args:
@@ -35,7 +35,7 @@ A core part of the practical skills taught in this course has to do with writing
 
 # Unstructured data in text files
 
-In the simplest case, what we want to store is literally a text. For example, we store the following phrase
+In the simplest case we want to literally store a text. For example, we store the following phrase
 
 `Hello World!`
 
@@ -74,7 +74,7 @@ xxd  ../../data/helloworld.txt
 ```
 
 
-Now consider another text file `hastamanana.txt` which was written and stored with another character encoding. When looking at the content, assuming the now common UTF-8 encoding, the content seems a little odd:
+Next, consider the text file `hastamanana.txt` which was written and stored with another character encoding. When looking at the content, assuming the now common UTF-8 encoding, the content seems a little odd:
 
 ```{bash eval=FALSE}
 cat hastamanana.txt; echo
@@ -85,7 +85,7 @@ cat hastamanana.txt; echo
 ```
 
 
-We see that it is a short phrase written in Spanish. But oddly, it contains the character `?` in the middle of a word. The occurrence of special characters in unusual places of text files is an indication of using the wrong character encoding to display the text. Let's check what the file's encoding is.
+We see that it is a short phrase written in Spanish. Strangely it contains the character `?` in the middle of a word. The occurrence of special characters in unusual places of text files is an indication of using the wrong character encoding to display the text. Let's check what the file's encoding is.
 
 
 ```{bash eval = FALSE}
@@ -97,7 +97,7 @@ file -b hastamanana.txt
 file -b ../../data/hastamanana.txt
 ```
 
-This tells us that the file is encoded with ISO-8859 ('Latin1'), a character set for several Latin languages (including Spanish). Knowing this, we can check how the content looks like when we change the encoding to UTF-8 (which then properly displays the content on the screen)^[Note that changing the encoding in this way only works well if we actually know what the original encoding of the file is (i.e., the encoding used when the file was initially created)]:
+This tells us that the file is encoded with ISO-8859 ('Latin1'), a character set for several Latin languages (including Spanish). Knowing this, we can check how the content looks like when we change the encoding to UTF-8 (which then properly displays the content on the screen)^[Note that changing the encoding in this way only works well if we actually know what the original encoding of the file is (i.e., the encoding used when the file was initially created).]:
 
 ```{bash eval = FALSE}
 iconv -f iso-8859-1 -t utf-8 hastamanana.txt | cat
@@ -108,14 +108,14 @@ iconv -f iso-8859-1 -t utf-8 ../../data/hastamanana.txt | cat
 ```
 
 
-When working with data, we thus have to make sure that we use the proper standards to translate the binary coded values into a character/text-representation that is easier to understand and work with. In recent years, much more general (or even 'universal') standards have been developed and adopted around the world, particularly UTF-8. Thus, if we deal with recently generated data sets, we usually can expect that they are encoded in UTF-8, independent of the data's country of origin. However, when working on a research project where slightly older data sets from different sources are involved, encoding issues still occur quite frequently. It is thus crucial to understand early on what the origin of the problem is, when the data seem to display weird characters. Encoding issues are among the most basic problems that can occur when importing data. 
+When working with data, we must therefore ensure that we apply the proper standards to translate the binary coded values into a character/text-representation that is easier to understand and work with. In recent years, much more general (or even 'universal') standards have been developed and adopted around the world, particularly UTF-8. Thus, if we deal with recently generated data sets, we usually can expect that they are encoded in UTF-8, independent of the data's country of origin. However, when working on a research project where slightly older data sets from different sources are involved, encoding issues still occur quite frequently. It is thus crucial to understand early on what the origin of the problem is, when the data seem to display weird characters. Encoding issues are among the most basic problems that can occur when importing data. 
 
-So far, we have only looked at very simple examples of data stored in text files, essentially only containing short phrases of text. Nevertheless, most common formats of storing and transferring data (CSV, XML, JSON, etc.) build on exactly the same principle: characters in a text-file. The difference between such formats and the simple examples above is that their content is structured in a very specific way. That is, on top of the lower-level conversion of `0`s and `1`s into characters/text we add another standard, a data format, giving the data more *structure*, making it even simpler to interpret and work with the data on a computer. Once we understand how data is represented at the low level (the topic of the previous lecture), it is much easier to understand and distinguish different forms of storing structured data.
+So far we have only looked at very simple examples of data stored in text files, essentially only containing short phrases of text. Nevertheless, most common formats of storing and transferring data (CSV, XML, JSON, etc.) build on exactly the same principle: characters in a text-file. The difference between such formats and the simple examples above is that their content is structured in a very specific way. That is, on top of the lower-level conversion of `0`s and `1`s into characters/text we add another standard, a data format, giving the data more *structure*, making it even simpler to interpret and work with the data on a computer. Once we understand how data is represented at the low level (the topic of the previous lecture), it is much easier to understand and distinguish different forms of storing structured data.
 
 
 # Structured data formats
 
-As nicely pointed out by @murrell_2009, most commonly used software today is designed in a very 'user-friendly' way, leading to situations in which we as users are 'told' by the computer what to do (rather than the other way around). A prominent symptom of this phenomenon is that specific software is automatically assigned to open files of specific formats, so we don't have to bother about what the file's format actually is but simply have to click on the icon representing the file. 
+As nicely pointed out by @murrell_2009, most commonly used software today is designed in a very 'user-friendly' way, leading to situations in which we as users are 'told' by the computer what to do (rather than the other way around). A prominent symptom of this phenomenon is that specific software is automatically assigned to open files of specific formats, so we don't have to bother about what the file's format actually is but only have to click on the icon representing the file. 
 
 However, if we actually want to engage seriously with a world driven by data we have to go beyond the habit of simply clicking on (data-)files and let the computer choose what to do with it. Since most common formats to store data are in essence text files (in research contexts usually in ASCII or UTF-8 encoding), a good way to start engaging with a data set is to look at the raw text file containing the data in order to get an idea of how the data is structured.
 
@@ -131,9 +131,9 @@ year,gdp_chfb
 2005,464
 ```
 
-At first sight, the file contains a collection of numbers and characters. Having a closer look, certain structural features become apparent. The content is distributed over several rows, with each row containing a comma character (`,`). Moreover, the first row seems systematically different from the following rows: it is the only row containing alphabetical characters, all the other rows contain numbers. Rather intuitively, we recognize that the specific way in which the data in this file is structured might in fact represent a table with two columns: one with the variable `year` describing the year of each observation (row), the other with the variable `gdp_chfb` with numerical values describing another characteristic of each observation/row (we can guess that this variable is somehow related to GDP and CHF/Swiss franks). 
+At first sight, the file contains a collection of numbers and characters. Having a closer look, certain structural features become apparent. The content is distributed over several rows, with each row containing a comma character (`,`). Moreover, the first row seems systematically different from the following rows: it is the only row containing alphabetical characters, all the other rows contain numbers. Rather intuitively, we recognize that the specific way in which the data in this file is structured might in fact represent a table with two columns: one with the variable `year` describing the year of each observation (row), the other with the variable `gdp_chfb` with numerical values describing another characteristic of each observation/row (we can guess that this variable is somehow related to GDP and CHF/Swiss francs). 
 
-Now, how can we work with these data? Recall that this is simply a text file. All the information stored in it is displayed above. How could we explain the computer that this is actually a table with two columns, containing two variables describing six observations? We would have to come up with a sequence of instructions/rules (i.e., an algorithm) of how to distinguish columns and rows, when all that a computer can do is sequentially read one character after the other (more precisely one `0`/`1` after the other, representing characters).
+The question arises, how do we work with this data? Recall that it is simply a text file. All the information stored in it is displayed above. How could we explain the computer that this is actually a table with two columns, containing two variables describing six observations? We would have to come up with a sequence of instructions/rules (i.e., an algorithm) of how to distinguish columns and rows, when all that a computer can do is sequentially read one character after the other (more precisely one `0`/`1` after the other, representing characters).
 
 This algorithm could be something along the lines of:
 
@@ -149,7 +149,7 @@ Consider the usefulness of this algorithm. It would certainly work quite well fo
 
 Incidentally, the example we are looking at here is in line with such a standard, i.e., Comma-Separated Values (CSV, therefore `.csv`). In technical terms, the simple algorithm outlined above is a CSV [parser](https://en.wikipedia.org/wiki/Parsing#Computer_languages). A CSV parser is a software component which takes a text file with CSV standard structure as input and builds a data structure in the form of a table (represented in RAM). If the input file does not follow the agreed on CSV standard, the parser will likely fail to properly 'parse' (read/translate) the input. 
 
-CSV files are very commonly used to transfer and store data in a table-like format. They essentially are based on two rules defining the structure of the data: commas delimit values/fields in a row and the end of a line indicates the end of a row.^[In addition, if a field contains itself a comma (the comma is part of the data), the field needs to be surrounded by double-quotes (`"`). If a field contains double-quotes it also has to be surrounded by double-quotes, and the double quotes in the field must be preceded by an additional double-quote.]
+CSV files are very often used to transfer and store data in a table-like format. They essentially are based on two rules defining the structure of the data: commas delimit values/fields in a row and the end of a line indicates the end of a row.^[In addition, if a field contains itself a comma (the comma is part of the data), the field needs to be surrounded by double-quotes (`"`). If a field contains double-quotes it also has to be surrounded by double-quotes, and the double quotes in the field must be preceded by an additional double-quote.]
 
 The comma is clearly visible when looking at the raw text content of `ch_gdp.csv`. However, how does the computer know that a line is ending? By default most programs to work with text files do not show an explicit symbol for line endings but instead display the text on the next line. Under the hood, these line endings are, however, non-printable characters. We can see this when investigating `ch_gdp.csv` in the command-line terminal (via `xxd`):
 
@@ -163,14 +163,14 @@ xxd ../../data/ch_gdp.csv
 
 
 
-When comparing the hexadecimal values with the characters they represent on the right, we recognize that right before every year, a full stop (`.`) is printed to the output. Moreover, when inspecting the hexadecimal code, we recognize that this `.` corresponds to `0d` in the hexadecimal code. `0d` is indeed the sequence of `0`s and `1` indicating the end of a line. Because this character does not actually correspond to a symbol printed on the screen, it is replaced by `.` in the printed output of the text.^[The same applies to other sequences of `0`s and `1`s that do not correspond to a printable character.] 
+When comparing the hexadecimal values with the characters they represent on the right side, we recognize that right before every year, a full stop (`.`) is printed to the output. Moreover, when inspecting the hexadecimal code, we recognize that this `.` corresponds to `0d` in the hexadecimal code. `0d` is indeed the sequence of `0`s and `1` indicating the end of a line. Because this character does not actually correspond to a symbol printed on the screen, it is replaced by `.` in the printed output of the text.^[The same applies to other sequences of `0`s and `1`s that do not correspond to a printable character.] 
 
 While CSV files have become a very common way to store 'flat'/table-like data in plain text files, several similar formats can be encountered in practice. Most commonly they either use a different delimiter (for example, tabs/white space) to separate fields in a row, or fields are defined to consist of a fixed number of characters (so-called fixed-width formats). In addition, various more complex standards to store and transfer digital data are widely used to store data. Particularly in the context of web data (data stored and transferred online), files storing data in these formats (e.g., XML, JSON, YAML, etc.) are in the end just plain text files. However, they contain a larger set of special characters/delimiters (or combinations of these) to indicate the structure of the data stored in them.
 
 
 # Units of information/data storage
 
-With the question of how to store digital data on computers, we obviously also raise the question of storage capacity. How much can be stored on a computer and how do we quantify the size of a data set?
+The question of how to store digital data on computers, also raises the question of storage capacity.
 
 Because every type of digital data can in the end only be stored as `0`s and `1`s, it makes perfectly sense to define the smallest unit of information in computing as consisting of either a `0` or a `1`. We call this basic unit  a *bit* (from *bi*nary dig*it*; abbrev. 'b'). Recall that the decimal number `139` corresponds to the binary number `10001011`. In order to store this number on a hard disk, we require a capacity of 8 bits, or one *byte* (1 byte = 8 bits; abbrev. 'B'). Historically, one byte encoded a single character of text (i.e., in the ASCII character encoding system). 4 bytes (or 32 bits) are called a *word*. The following Figure illustrates this point.
 
@@ -200,11 +200,11 @@ Bigger units for storage capacity usually build on bytes:
 
 # Data structures and data types in R
 
-So far, we have focused on how data is stored on the hard disk. That is, we discovered how `0`s and `1`s correspond to characters (following specific standards: character encodings), how a sequence of characters in a text file is a useful way to store data on a hard disk, and how specific standards are used to structure the data (with the help of special characters) in a meaningful way. When thinking about how to store data on a hard disk, we usually are concerned with how much space (in bytes) the data set needs, how well it is transferable/understandable, and how well we can retrieve information from it. All of these aspects go into the decision of what structure/format to choose etc.
+So far, we have focused on how data is stored on the hard disk. That is, we discovered how `0`s and `1`s correspond to characters (following specific standards: character encodings), how a sequence of characters in a text file is a useful way to store data on a hard disk, and how specific standards are used to structure the data (with the help of special characters) in a meaningful way. When thinking about how to store data on a hard disk, we are usually concerned with how much space (in bytes) the data set needs, how well it is transferable/understandable, and how well we can retrieve information from it. All of these aspects go into the decision of what structure/format to choose etc.
 
-However, none of this is actually taking into consideration how data structures relate to how we actively work with the data. For example, when we want to sum up the `gdp_chfb` column in `ch_gdp.csv` (the table example above), do we actually work within the CSV data structure? The answer is usually no.
+However, none of these is actually taking into consideration how data structures relate to how we actively work with the data. For example, when we want to sum up the `gdp_chfb` column in `ch_gdp.csv` (the table example above), do we actually work within the CSV data structure? The answer is usually no.
 
-Recall from the basics of data processing that data stored on the hard disk is loaded into RAM to work with (analysis, manipulation, cleaning, etc.). Now, the question is, how is the data structured in RAM? That is, what data structures/formats are used to actively work with the data? 
+Recall from the basics of data processing that data stored on the hard disk is loaded into RAM to work with (analysis, manipulation, cleaning, etc.). The question arises as to how data is structured in RAM? That is, what data structures/formats are used to actively work with the data? 
 
 We distinguish two basic characteristics:
 
@@ -212,7 +212,7 @@ We distinguish two basic characteristics:
   2. Basic **data structures** in RAM:
     - *Vectors*
     - *Factors*
-    - *Arrays/Matrices*
+    - *Arrays/matrices*
     - *Lists*
     - *Data frames* (very `R`-specific)
 
@@ -278,13 +278,13 @@ include_graphics("../img/numvec.png")
 
 (ref:capnumvec) Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
 
-For example, we can initiate a character vector containing the names of persons.
+For example, we can initiate a character vector containing the names of persons:
 ```{r}
 persons <- c("Andy", "Brian", "Claire")
 persons
 ```
 
-and we can initiate a numeric vector with the age of these persons.
+and we can initiate a numeric vector with the age of these persons:
 ```{r}
 ages <- c(24, 50, 30)
 ages
@@ -345,7 +345,7 @@ include_graphics("../img/df.png")
 
 (ref:capdf) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
 
-The historical implementation of data frames in R is not very comfortable to work with large data sets.^[In the early days of R this was not really an issue because data sets that are rather large by today's standards (in the Gigabytes) could not have been handled properly by normal computers anyhow (due to a lack of RAM).] Now, there are new implementations of the data frame concept in R provided by different packages, that aim to make data processing based on 'data frames' faster. One is called `tibbles`,  implemented and used in the `tidyverse` packages. The other is called `data table`, implemented in the `data.table`-package. In this course we will encounter primarily the classical `data.frame` and `tibble` (however, there will also be some hints to tutorials with `data.table`. In any case, once we understand data frames in general, working with `tibble` and `data.table` is quite easy because functions that accept classical data frames as arguments also accept those newer implementations.
+The historical implementation of data frames in R is not very appropriate to work with large datasets.^[In the early days of R this was not really an issue because datasets that are rather large by today's standards (in the Gigabytes) could not have been handled properly by normal computers anyhow (due to a lack of RAM).] These days there are new implementations of the data frame concept in R provided by different packages, which aim at making data processing based on 'data frames' faster. One is called `tibbles`,  implemented and used in the `tidyverse` packages. The other is called `data table`, implemented in the `data.table`-package. In this course we will encounter primarily the classical `data.frame` and `tibble` (however, there will also be some hints to tutorials with `data.table`). In any case, once we understand data frames in general, working with `tibble` and `data.table` is quite easy because functions that accept classical data frames as arguments also accept those newer implementations.
 
 Here is how we define a data frame in R, based on the examples of vectors and factors shown above.
 
