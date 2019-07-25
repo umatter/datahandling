@@ -3,8 +3,8 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 10: Data Analysis and Basic Statistics with R'
 author: |
      | Prof. Dr. Ulrich Matter
-     | (University of St. Gallen)
-date: "06/12/2018"
+     | (University of St.Gallen)
+date: "05/12/2018"
 output:
   html_document:
     highlight: tango
@@ -29,9 +29,9 @@ library(bookdown)
 knitr::opts_chunk$set(fig.pos = 'htb!')
 ```
 
-# Data Analysis with R
+# Data analysis with R
 
-In the first part of this lecture we take a look at some key functions for applied data analysis in R. At this point of our data science procedure, we have already implemented the collecting/importing and cleaning of the raw data. The analysis part can be thought of as a collection of tasks with the aim of making sense of the data. In practice, this can be explorative (discovering interesting patterns in the data) or inductive (testing of a specific hypothesis). Moreover it typically involves both functions for actual statistical analysis as well as various functions to select, combine, filter, and aggregate data. Similar to the topic of data cleaning/preparation, covering all aspects of applied data analysis with R goes well beyond the scope of one lecture. The aim is thus to give a practical overview of some of the basic concepts and their corresponding R functions (here from `tidyverse`).  
+In the first part of this lecture we take a look at some key functions for applied data analysis in R. At this point, we have already implemented the collecting/importing and cleaning of the raw data. The analysis part can be thought of as a collection of tasks with the aim of making sense of the data. In practice, this can be explorative (discovering interesting patterns in the data) or inductive (testing of a specific hypothesis). Moreover it typically involves both functions for actual statistical analysis as well as various functions to select, combine, filter, and aggregate data. Similar to the topic of data cleaning/preparation, covering all aspects of applied data analysis with R goes well beyond the scope of one lecture. The aim is thus to give a practical overview of some of the basic concepts and their corresponding R functions (here from `tidyverse`).  
 
 ## Merging datasets
 
@@ -41,7 +41,7 @@ The following two data sets contain data on persons' characteristics as well as 
 # load packages
 library(tidyverse)
 
-# initiate data frame on persons personal spending
+# initiate data frame on persons' personal spending
 df_c <- data.frame(id = c(1:3,1:3),
                    money_spent= c(1000, 2000, 6000, 1500, 3000, 5500),
                    currency = c("CHF", "CHF", "USD", "EUR", "CHF", "USD"),
@@ -55,7 +55,7 @@ df_p <- data.frame(id = 1:4,
 df_p
 ```
 
-Our aim is to compute the average spending by profession. Therefore, we want to link `money_spent` with `profession`. Luckily, the datasets contain a unique identifier `id` which we can use to link the observations via `merge()`.
+Our aim is to compute the average spending by profession. Therefore, we want to link `money_spent` with `profession`. Both datasets contain a unique identifier `id` which we can use to link the observations via `merge()`.
 
 ```{r}
 df_merged <- merge(df_p, df_c, by="id")
@@ -119,7 +119,7 @@ df_mutated
 
 Now we can start analyzing the dataset. Quite typically, the first step of analyzing a dataset is to get an overview by computing some summary statistics. This helps to better understand the dataset at hand. Key summary statistics of the variables of interest are the mean, standard deviation, median, and number of observations. Together, they give a first idea of how the variables of interest are distributed. 
 
-As you know from previous lectures, there are several built-in functions shipped with R that help us do this. In practice, these basic functions are often combined with functions implemented particularly for this step of the analysis, such as `summarise()` provided in `tidyverse`. 
+As you know from previous lectures, R has several built-in functions that help us do this. In practice, these basic functions are often combined with functions implemented particularly for this step of the analysis, such as `summarise()` provided in `tidyverse`. 
 
 As a first output in our report we want to show the key characteristics of the spending data in one table.
 
@@ -165,13 +165,13 @@ summarise(swiss,
 
 
 
-# Unterstanding Statistics and Probability with Code
+# Unterstanding statistics and probability with code
 
 
 
 
 
-## Random Draws and Distributions
+## Random draws and distributions
 
 ```{r}
 normal_distr <- rnorm(1000)
@@ -179,7 +179,7 @@ hist(normal_distr)
 ```
 
 
-## Illustration of Variability
+## Illustration of variability
 
 ```{r, echo=TRUE}
 # draw a random sample from a normal distribution with a large standard deviation
@@ -213,7 +213,7 @@ Recall Day 1's slides on Skewness and Kurtosis. A helpful way to memorize what a
 
 ### Skewness
 
-Skewness refers to how symmetric the frequency distribution of a variable is. For example, a distribution can be 'positively skewed' meaning it has a long tail on the right and a lot of 'mass' (observations) on the left. We can see that when visualizing the distribution in a histogram or a density plot. Lets have a look at this in R (note the comments in the code explaining what each line does):
+Skewness refers to how symmetric the frequency distribution of a variable is. For example, a distribution can be 'positively skewed' meaning it has a long tail on the right and a lot of 'mass' (observations) on the left. We can see that when visualizing the distribution in a histogram or a density plot. In R this looks as follow (consider the comments in the code explaining what each line does):
 
 ```{r, echo=TRUE}
 # draw a random sample of simulated data from a normal distribution
@@ -222,7 +222,7 @@ sample <- rnorm(n = 1000)
 
 # plot a histogram and a density plot of that sample
 # note that the distribution is neither strongly positively nor negatively skewed
-# (this is to be expected, as we have drawn a sample from a normal distribution!)
+# (this is to be expected, as we have drawn a sample from a normal distribution)
 hist(sample)
 plot(density(sample))
 
@@ -243,7 +243,7 @@ skewness(sample)
 ```
 
 ### Kurtosis
-Kurtosis refers to how much 'mass' a distribution has in its 'tails'. It thus tells us something about whether a distribution tends to have a lot of outliers. Again, plotting the data can help us understand this concept of kurtosis. Lets have a look at this in R (note the comments in the code explaining what each line does):
+Kurtosis refers to how much 'mass' a distribution has in its 'tails'. It thus tells us something about whether a distribution tends to have a lot of outliers. Again, plotting the data can help us understand this concept of kurtosis. Lets have a look at this in R (consider the comments in the code explaining what each line does):
 
 ```{r}
 # draw a random sample of simulated data from a normal distribution
@@ -258,7 +258,7 @@ kurtosis(sample)
 # we thus intentionally alter the distribution to have less mass in its tails
 sample <- sample[ sample > -0.6 & sample < 0.6]
 
-# plot the distribution again and see how the tails of it (and thus the kurtosis has changed)
+# plot the distribution again and see how the tails of it (and thus the kurtosis) has changed
 plot(density(sample))
 
 # re-calculate the kurtosis
@@ -325,10 +325,11 @@ results <- sample( x = dvalues, size = n, replace = TRUE)
 mean(results)
 ```
 
-We are getting closer to 3.5! Now let's scale up these comparisons and show how the sample means are getting closer to 3.5 when increasing the number of times we roll the die up to 10'000.
+We are already close to 3.5! Now let's scale up these comparisons and show how the sample means are getting even closer to 3.5 when increasing the number of times we roll the die up to 10'000.
 
 ```{r lln, echo=TRUE}
-# Essentially, what we are doing here is repeating the experiment above many times, each time increasing n.
+# Essentially, what we are doing here is repeating the experiment above many times, 
+# each time increasing n.
 # define the set of sample sizes
 ns <- seq(from = 10, to = 10000, by = 10)
 # initiate an empty list to record the results
@@ -356,7 +357,7 @@ We observe that with smaller sample sizes the sample means are broadly spread ar
 
 The Central Limit Theorem (CLT) is an almost miraculous statistical property enabling us to test the statistical significance of a statistic such as the mean. In essence, the CLT states that as long as we have a large enough sample, the t-statistic (applied, e.g., to test whether the mean is equal to a particular value) is approximately standard normal distributed. This holds independently of how the underlying data is distributed.
 
-Consider the dice play example above. We might want to statistically test whether we are indeed playing with a fair die (which would imply an expected mean value of 3.5!). In order to test that we would roll the die 100 times and record each resulting value. We would then compute the sample mean and standard deviation in order to assess how likely it was to observe the mean we observe if the population mean actually is 3.5 (thus our H0 would be pop_mean = 3.5, or in plain English 'the die is fair'). However, the distribution of the resulting die values are not standard normal distributed. So how can we interpret the sample standard deviation and the sample mean in the context of our hypothesis?
+Consider the dice-play-example above. We might want to statistically test whether we are indeed playing with a fair die. In order to test that we would roll the die 100 times and record each resulting value. We would then compute the sample mean and standard deviation in order to assess how likely it was to observe the mean we observe if the population mean actually is 3.5 (thus our H0 would be pop_mean = 3.5, or in plain English 'the die is fair'). However, the distribution of the resulting die values are not standard normal distributed. So how can we interpret the sample standard deviation and the sample mean in the context of our hypothesis?
 
 The simplest way to interpret these measures is by means of a *t-statistic*. A t-statistic for the sample mean under our working hypothesis that pop_mean = 3.5 is constructed as `t(3.5) = (sample_mean - 3.5) / (sample_sd/sqrt(n))`. Let's illustrate this in R:
 
@@ -379,7 +380,7 @@ t
 
 ```
 
-At this point you might wonder what the use of t is if the underlying data is not drawn from a normal distribution. In other words: what is the use of t if we cannot interpret it as a value that tells us how likely it is to observe this sample mean, given our null hypothesis? Well, actually we can. And here is where the magic of the CLT comes in: It turns out that there is a mathematical proof (i.e. the CLT) which states that the t-statistic itself can arbitrarily well be approximated by the standard normal distribution. This is true independent of the distribution of the underlying data in our sample! That is, if we have a large enough sample, we can simply compute the t-statistic and look up how likely it is to observe a value at least as large as t, given the null hypothesis is true (-> the p-value):
+At this point you might wonder what the use of `t` is if the underlying data is not drawn from a normal distribution. In other words: what is the use of `t` if we cannot interpret it as a value that tells us how likely it is to observe this sample mean, given our null hypothesis? Well, actually we can. And here is where the magic of the CLT comes in: It turns out that there is a mathematical proof (i.e. the CLT) which states that the t-statistic itself can arbitrarily well be approximated by the standard normal distribution. This is true independent of the distribution of the underlying data in our sample! That is, if we have a large enough sample, we can simply compute the t-statistic and look up how likely it is to observe a value at least as large as t, given the null hypothesis is true (-> the p-value):
 
 ```{r p-value}
 # calculate the p-value associated with the t-value calculated above
@@ -552,4 +553,4 @@ Note how the histogram is getting closer to a normal distribution with increasin
 
 
 
-# References
+<!-- # References -->
