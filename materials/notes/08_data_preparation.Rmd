@@ -1,10 +1,10 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: 'Lecture 8: Data preparation'
+subtitle: 'Lecture 8: Data Preparation'
 author: |
      | Prof. Dr. Ulrich Matter
-     | (University of St. Gallen)
-date: "22/11/2018"
+     | (University of St.Gallen)
+date: "21/11/2018"
 output:
   pdf_document:
     pandoc_args:
@@ -33,7 +33,7 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 
 # Wrangling with data
 
-Importing a dataset properly is just the first of several milestones until an analysis-ready dataset is generated. In some cases, cleaning the raw data is a necessary step to facilitate/enable proper parsing of the data set in order to import it. However, most of the cleaning/preparing ('wrangling') with the data follows after the proper parsing of structured data. Many aspects of data wrangling are specific to certain datasets and an entire curriculum could be filled with different aproaches and tools to address specific problems. Moreover, proficiency in data wrangling is generally a matter of experience in working with data, gained over many years. Here, we focus on two quite general and broadly applicable techniques that are central to cleaning and preparing a dataset for analysis: Simple string operations (find/replace parts of text strings) and reshaping rectangular data (wide to long/long to wide). The former is focused on individual variables at a time the latter typically happens at the level of the entire dataset.
+Importing a dataset properly is just the first of several milestones until an analysis-ready dataset is generated. In some cases, cleaning the raw data is a necessary step to facilitate/enable proper parsing of the data set in order to import it. However, most of the cleaning/preparing ('wrangling') with the data follows after the proper parsing of structured data. Many aspects of data wrangling are specific to certain datasets and an entire curriculum could be filled with different approaches and tools to address specific problems. Moreover, proficiency in data wrangling is generally a matter of experience in working with data, gained over many years. Here, we focus on two quite general and broadly applicable techniques that are central to cleaning and preparing a dataset for analysis: Simple string operations (find/replace parts of text strings) and reshaping rectangular data (wide to long/long to wide). The former is focused on individual variables at a time, while the latter typically happens at the level of the entire dataset.
 
 ## Cleaning data with basic string operations
 Recall that most of the data we read into R for analytic purposes is essentially a collection of raw text (structured with special characters). When parsing the data in order to read it into R with high-level functions such as the ones provided in the `readr`-package, both the structure and the types of the data are considered. The resulting `data.frame`/`tibble` might thus contain variables (different columns) of type `character`, `factor`, or `integer`, etc. At this stage it often happens that the raw data is not clean enough for the parser to recognize the data types in each column correctly, and it resorts to just parsing it as `character`. Indeed, if we have to deal with a very messy dataset it can make a lot of sense to constrain the parser such that it reads each column as `character`. 
@@ -45,7 +45,7 @@ library(tidyverse)
 ```
 
 
-Let's create a sample dataset to illustrate some of the typical issues regarding unclean data that we might encounter in empirical economic research (and many similar domains of data analysis).^[The option `stringsAsFactors = FALSE` ensures that all of the columns in this data frame are of type `character`]
+Let's create a sample dataset to illustrate some of the typical issues regarding unclean data that we might encounter in empirical economic research (and many similar domains of data analysis).^[The option `stringsAsFactors = FALSE` ensures that all of the columns in this data frame are of type `character`.]
 
 ```{r}
 messy_df <- data.frame(last_name = c("Wayne", "Trump", "Karl Marx"),
@@ -55,9 +55,9 @@ messy_df <- data.frame(last_name = c("Wayne", "Trump", "Karl Marx"),
                        income = c("150,000", "250000", "10000"), stringsAsFactors = FALSE)
 ```
 
-Assuming we have managed to read in this dataset from a local file (with all columns as type `character`), the next step is to clean each of the columns such that the dataset is ready for analysis. Thereby, we want to make sure that each variable (column) is set to a meaningful data type, once it is cleaned. Thus, the *cleaning* of the parsed data is often easier to do when the data is of type `character`. Once it is cleaned, we can set it to a type that is more meaningful for the analysis part. For example, in the final dataset a column containing numeric values should be stored as `numeric` or `integer`, so we can perform math operations on it later on (compute sums, means, etc.).
+Assuming we have managed to read in this dataset from a local file (with all columns as type `character`), the next step is to clean each of the columns such that the dataset is ready for analysis. Thereby we want to make sure that each variable (column) is set to a meaningful data type, once it is cleaned. The *cleaning* of the parsed data is often easier to do when the data is of type `character`. Once it is cleaned, however, we can set it to a type that is more useful for the analysis part. For example, in the final dataset a column containing numeric values should be stored as `numeric` or `integer`, so we can perform math operations on it later on (compute sums, means, etc.).
 
-### Find/Replace character strings/recode factor levels
+### Find/replace character strings/recode factor levels
 Our dataset contains a typical categorical variable: `gender`. In R it is good practice to store such variables as type `factor`. Without really looking at the data values, we might thus be inclined to do the following:
 
 ```{r}
@@ -65,15 +65,15 @@ messy_df$gender <- as.factor(messy_df$gender)
 messy_df$gender
 ```
 
-The column is now of type `factor`. And we see that R defined the factor variable such that an observation can be one of three categories ('levels'): `female`, `male`, or `Man`. In terms of content, that probably does not make too much sense. If we were to analyze the data lateron and compute the share of males in the sample, we would only count one instead of two. Hence, we better *recode* the gender variable of male subjects as `male` and not `Man`. How can this be done programatically?
+The column is now of type `factor`. And we see that R defined the factor variable such that an observation can be one of three categories ('levels'): `female`, `male`, or `Man`. In terms of content, that probably does not make too much sense. If we were to analyze the data later on and compute the share of males in the sample, we would only count one instead of two. Hence, we better *recode* the gender variable of male subjects as `male` and not `Man`. How can this be done programatically?
 
 One approach is to select all entries in `messy_df$gender` that are equal to `"Man"` and replace these entries with `"male"`. 
 ```{r}
-messy_df$gender[messy_df$gender== "Man"] <- "male"
+messy_df$gender[messy_df$gender == "Man"] <- "male"
 messy_df$gender
 ```
 
-Note, however, that this approach is not really perfect, because R still considers `Man` as a valid possible category in this column. This can have consequences for certain types of analyses we might want to run on this dataset lateron.^[If we perform the same operation on this variable *before* coercing it to a `factor`, this problem does not occur] Alternatively, we can use a function `fct_recode()` (provided in `tidyverse`), specifically made for such operations with factors.
+Note, however, that this approach is not really perfect, because R still considers `Man` as a valid possible category in this column. This can have consequences for certain types of analyses we might want to run on this dataset later on.^[If we perform the same operation on this variable *before* coercing it to a `factor`, this problem does not occur.] Alternatively, we can use a function `fct_recode()` (provided in `tidyverse`), specifically made for such operations with factors.
 
 ```{r}
 messy_df$gender <- fct_recode(messy_df$gender, "male" = "Man")
@@ -130,7 +130,7 @@ messy_df
 
 ### Parsing dates
 
-Finally, we have a look at the `date`-column of our dataset. For many data preparation steps as well as visualization and analysis, it is advantageous to have times and dates properly parsed as type `Date`. In practice, dates and times are also the data columns causing a lot of headaches. They are often particularly messy because no unique standard has been used to define the date format in the data collection phase. This seems also to be the case in our dataset. In order to work with dates, we load the `lubridate` package.
+Finally, we take a look at the `date`-column of our dataset. For many data preparation steps as well as visualization and analysis, it is advantageous to have times and dates properly parsed as type `Date`. In practice, dates and times are often particularly messy because no unique standard has been used to define the format in the data collection phase. This seems also to be the case in our dataset. In order to work with dates, we load the `lubridate` package.
 
 ```{r message=FALSE}
 library(lubridate)
@@ -230,11 +230,16 @@ As we want to adhere to the 'tidy' paradigm of keeping our data in long format, 
 
 
 ```{r}
-weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx", "Wayne", "Trump", "Marx", "Wayne", "Trump", "Marx"),
-                       first_name = c("John", "Melania", "Karl", "John", "Melania", "Karl", "John", "Melania", "Karl"),
-                       gender = c("male", "female", "male", "male", "female", "male", "male", "female", "male"),
-                       value = c("150000", "250000", "10000", "2000000", "5000000", "NA", "50", "25", "NA"),
-                      variable = c( "income", "income", "income", "assets", "assets", "assets", "age", "age", "age"), stringsAsFactors = FALSE)
+weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx", "Wayne", "Trump", "Marx", 
+                                        "Wayne", "Trump", "Marx"),
+                       first_name = c("John", "Melania", "Karl", "John", "Melania", "Karl", 
+                                        "John", "Melania", "Karl"),
+                       gender = c("male", "female", "male", "male", "female", "male", 
+                                        "male", "female", "male"),
+                       value = c("150000", "250000", "10000", "2000000", "5000000", "NA", 
+                                        "50", "25", "NA"),
+                       variable = c( "income", "income", "income", "assets", "assets", "assets", 
+                                        "age", "age", "age"), stringsAsFactors = FALSE)
 weird_df
 ```
 
