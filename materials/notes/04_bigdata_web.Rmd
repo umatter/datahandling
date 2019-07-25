@@ -3,8 +3,8 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 4: "Big Data" from the Web'
 author: |
      | Prof. Dr. Ulrich Matter
-     | (University of St. Gallen)
-date: "11/10/2018"
+     | (University of St.Gallen)
+date: "10/10/2019"
 output:
   pdf_document:
     pandoc_args:
@@ -29,9 +29,9 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 ```
 
 
-So far, we have only looked at data structured in a flat/table-like representation (for example, CSV files). In applied econometrics/statistics it is quite common to only work with data sets stored in such formats. The main reason is that data manipulation, filtering, aggregation, etc. anyway presupposes/expects data in a table-like format (i.e. matrices). Hence, it makes perfectly sense to already store the data in this format.
+So far, we have only looked at data structured in a flat/table-like representation (e.g., CSV files). In applied econometrics/statistics it is quite common to only work with data sets stored in such formats. The main reason is that data manipulation, filtering, aggregation, etc. presuppose/expect data in a table-like format (i.e. matrices). Hence, it makes perfectly sense to already store the data in this format.
 
-However, as we have observed in the previous lecture, when representing more complex data in one text file, the CSV structure has some disadvantages. Particularly, if the data contains nested observations (i.e., hierarchical structures). While a representation in a CSV file is theoretically possible, it is often far from practical to use other formats for such data. On the one hand, it is likely less intuitive to read the data correctly. On the other hand, storing the data in a CSV file would likely introduce a lot of redundency. That is, the identical values of some variables would have to be repeated again and again in the same column. The following code block illustrates this point for a data set on two families ([@murrell_2009], p. 116).
+However, as we have observed in the previous lecture, when representing more complex data in one text file, the CSV structure has some disadvantages. Particularly, if the data contains nested observations (i.e., hierarchical structures). While a representation in a CSV file is theoretically possible, it is often far from practical to use other formats for such data. On the one hand, it is likely less intuitive to read the data correctly. On the other hand, storing the data in a CSV file might introduce a lot of redundancy. That is, the identical values of some variables would have to be repeated again and again in the same column. The following code block illustrates this point for a data set on two families ([@murrell_2009], p. 116).
 
 ```
 father mother  name     age  gender
@@ -52,7 +52,7 @@ From simply looking at the data we can make a best guess which observations belo
 All the issues popping up here, complex/hierarchical data (with several observation types), intuitive human readability (self-describing), and efficiency in storage as well as transfer are of great importance in the Web. In course of the development of the Internet several data formats have been put forward to address these issues. Here, we discuss the two most prominent of these formats: [Extensible Markup Language (XML)](https://en.wikipedia.org/wiki/XML) and [JavaScript Object Notation (JSON)](https://en.wikipedia.org/wiki/JSON).
 
 # Deciphering XML
-Before going into the more technical details, let's try to figure out the basic logic behind the XML format by simply looking at some raw example data. For this, we turn again to the Point Nemo case study. The following code block shows the upper part of the data set we have downloaded from NASA's LAS server (here in a CSV-type format).
+Before going into more technical details, let's try to figure out the basic logic behind the XML format by simply looking at some raw example data. For this, we turn again to the Point Nemo case study. The following code block shows the upper part of the data set we have downloaded from NASA's LAS server (here in a CSV-type format).
 
 ```
              VARIABLE : Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)
@@ -93,7 +93,7 @@ Below, the same data is now displayed in XML-format. Note that in both cases, th
 </temperatures>
 ```
 
-What features does the format have? What is it's logic? Is there room for improvement? By using indentation and code highlighting, the XML data structure becomes more apparent.
+What features does the format have? What is its logic? Is there room for improvement? By using indentation and code highlighting, the XML data structure becomes more apparent.
 
 
 ```{xml}
