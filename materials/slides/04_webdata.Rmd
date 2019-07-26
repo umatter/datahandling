@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 4:<br>"Big Data" from the Web'
 author: "Prof. Dr. Ulrich Matter"
-date: "11/10/2018"
+date: "10/10/2019"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -641,6 +641,7 @@ str(json_doc)
 
 [HyperText Markup Language (HTML)](https://en.wikipedia.org/wiki/HTML), designed to be read by a web browser. 
 
+<!-- License: Fig in public domain? -->
 
 ```{r echo=FALSE, fig.align="center", out.width="60%"}
 include_graphics("../img/website_screen.jpg")
@@ -648,12 +649,16 @@ include_graphics("../img/website_screen.jpg")
 
 ## HTML: Code to build webpages
 
+<!-- License: Fig in public domain? -->
+
 ```{r echo=FALSE, fig.align="center", out.width="85%"}
 include_graphics("../img/website_screen.jpg")
 ```
 
 
 ## HTML documents contain data!
+
+<!-- License: Fig in public domain? -->
 
 ```{r echo=FALSE, fig.align="center", out.width="85%"}
 include_graphics("../img/website_data.png")
@@ -832,6 +837,8 @@ tab
 
 
 ## Why should we care?
+
+<!-- License: Fig from istock - however, here reference primarily to article and not to fig itself? -->
 
 ```{r webdata, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= "Source: https://www.sciencefocus.com/future-technology/how-much-data-is-on-the-internet/."}
 include_graphics("../img/data_internet.png")
