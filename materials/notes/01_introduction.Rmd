@@ -22,11 +22,11 @@ bibliography: ../references/datahandling.bib
 ---
 
 
-```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning = F, message = F}
 options(width = 100)
 library(knitr)
 library(bookdown)
-knitr::opts_chunk$set(fig.pos = 'htb!')
+knitr::opts_chunk$set(fig.pos = 'htb!', warning = F, message = F, echo = F)
 ```
 
 # The recent rise of big data and data science
