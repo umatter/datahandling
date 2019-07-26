@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 1 :<br>Introduction'
 author: "Prof. Dr. Ulrich Matter"
-date: "20/09/2018"
+date: "19/09/2019"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -41,7 +41,7 @@ include_graphics("../img/data-science.png")
 
 ## The Data Pipeline
 
-```{r datascience2, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Data Science workflow. Source: @wickham_grolemund2017"}
+```{r datascience2, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Data Science workflow. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license)"}
 include_graphics("../img/data-science.png")
 ```
 
@@ -137,7 +137,7 @@ include_graphics("../img/google_crawler.jpg")
 
 ----
 
-```{r fb, echo=FALSE, out.width = "98%", fig.align='center', fig.cap="Source: Source: statista.com.", purl=FALSE}
+```{r fb, echo=FALSE, out.width = "98%", fig.align='center', fig.cap="Source: statista.com.", purl=FALSE}
 include_graphics("../img/facebook_users.png")
 ```
 
