@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 11:<br>Visualisation and Dynamic Documents' 
 author: "Prof. Dr. Ulrich Matter"
-date: "13/12/2018"
+date: "12/12/2019"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -138,6 +138,8 @@ Three main approaches:
 
 
 ## 'Grammer of Graphics'
+
+<!-- License: No similar figure with public domain found -->
 
 ```{r echo= FALSE, out.width= "65%", fig.align="center", fig.cap="Source: http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html"}
 include_graphics("../img/gog.png")
