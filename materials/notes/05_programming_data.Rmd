@@ -110,7 +110,7 @@ pi
 A loop is typically a sequence of statements that is executed a specific number of times. How often the code 'inside' the loop is executed depends on a clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called 'for-loop'. If the number of iterations is not clearly known before executing the code, we typically write a so-called 'while-loop'. The following subsections illustrate both of these concepts in R.
 
 ### For-loops
-In simple terms, a for-loop tells the computer to execute a sequence of commands 'for each case in a set of n cases'. The flow-chart in Figure \@ref(capfor) illustrates the concept.
+In simple terms, a for-loop tells the computer to execute a sequence of commands 'for each case in a set of n cases'. The flow-chart in Figure \@ref(for) illustrates the concept.
 
 ```{r for, echo= FALSE, fig.align="center", out.width="40%", fig.cap="(ref:for)", purl=FALSE}
 include_graphics("../img/forloop.png")
@@ -172,6 +172,8 @@ for (j in 1:m) {
 
 ### While-loop
 In a situation where a program has to repeatedly run a sequence of commands but we don't know in advance how many iterations we need in order to reach the intended goal, a while-loop can help. In simple terms, a while loop keeps executing a sequence of commands as long as a certain logical statement is true. The flow chart in Figure \@ref(fig:while) illustrates this point.
+
+<!-- License: No similar figure with public domain found -->
 
 ```{r while, echo= FALSE, fig.align="center", out.width="65%", fig.cap="(ref:capwhile)", purl=FALSE}
 include_graphics("../img/while_loop.png")
