@@ -115,7 +115,7 @@ In simple terms, a for-loop tells the computer to execute a sequence of commands
 ```{r for, echo= FALSE, fig.align="center", out.width="40%", fig.cap="(ref:for)", purl=FALSE}
 include_graphics("../img/forloop.png")
 ```
-(ref:capfor) Foor-loop illustration. 
+(ref:capfor) For-loop illustration. 
 
 
 For example, a for-loop could be used to sum up each of the elements in a numeric vector of fix length (thus the number of iterations is clearly defined). In plain English, the for-loop would state something like: "Start with 0 as the current total value, for each of the elements in the vector add the value of this element to the current total value." Note how this logically implies that the loop will 'stop' once the value of the last element in the vector is added to the total. Let's illustrate this in R. Take the numeric vector `c(1,2,3,4,5)`. A for loop to sum up all elements can be implemented as follows:
@@ -176,9 +176,9 @@ In a situation where a program has to repeatedly run a sequence of commands but 
 <!-- License: No similar figure with public domain found -->
 
 ```{r while, echo= FALSE, fig.align="center", out.width="65%", fig.cap="(ref:capwhile)", purl=FALSE}
-include_graphics("../img/while_loop.png")
+include_graphics("../img/while-loop.png")
 ```
-(ref:capwhile) While-loop illustration. Source: https://en.wikipedia.org/wiki/While_loop#/media/File:While-loop-diagram.svg.
+(ref:capwhile) While-loop illustration.
 
 For example, a while-loop in plain English could state something like "start with 0 as the total, add 1.12 to the total until the total is larger than 20." We can implement this in R as follows.
 
