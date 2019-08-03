@@ -44,8 +44,8 @@ include_graphics("../img/forloop_black.png")
 
 ## while-loop
 
-```{r while, echo= FALSE, fig.align="center", out.width="80%", fig.cap="Source: https://en.wikipedia.org/wiki/While_loop#/media/File:While-loop-diagram.svg."}
-include_graphics("../img/while_loop.png")
+```{r while, echo= FALSE, fig.align="center", out.width="80%"}
+include_graphics("../img/while_loop_black_own.png")
 ```
 
 
