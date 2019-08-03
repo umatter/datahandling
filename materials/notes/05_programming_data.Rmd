@@ -173,10 +173,9 @@ for (j in 1:m) {
 ### While-loop
 In a situation where a program has to repeatedly run a sequence of commands but we don't know in advance how many iterations we need in order to reach the intended goal, a while-loop can help. In simple terms, a while loop keeps executing a sequence of commands as long as a certain logical statement is true. The flow chart in Figure \@ref(fig:while) illustrates this point.
 
-<!-- License: No similar figure with public domain found -->
 
 ```{r while, echo= FALSE, fig.align="center", out.width="65%", fig.cap="(ref:capwhile)", purl=FALSE}
-include_graphics("../img/while-loop.png")
+include_graphics("../img/while_loop_own.png")
 ```
 (ref:capwhile) While-loop illustration.
 
