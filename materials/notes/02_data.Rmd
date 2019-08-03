@@ -40,13 +40,11 @@ Throughout human history, the recording and storage of data has primarily been m
 # Processing data: simple calculations in numeral systems
 In order to keep track of calculations with large numbers, humans started to use mechanical aids such as pebbles or shells and later developed the [counting frame ('abacus')](https://en.wikipedia.org/wiki/Abacus).^[See @hogben_1983, Chapter 1 for a detailed account of the abacus' origin and usage.] We can understand the counting frame as a simple mechanical tool to process numbers (data). In order to use the abacus properly, we have to agree on a standard regarding what each column of the frame represents, as well as how many beads each column can contain. In other words, we have to define what the *base* of the frame's numeral system is. For example, the Roman numeral system is essentially of base 10, with 'I' representing one, 'X' representing ten, 'C' representing one hundred, and 'M' representing one thousand. Figure \@ref(fig:abacus) illustrates how a counting frame based on this numeral system works (examples are written out in Arabic numbers). The first column on the right represents units of $10^0=1$, the second $10^1=10$, and so forth. 
 
-<!-- License: No similar figure with public domain found -->
-
 ```{r abacus, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "(ref:capabacus)", purl=FALSE}
-include_graphics("../img/abacus.png")
+include_graphics("../img/abacus_own.png")
 ```
 
-(ref:capabacus) A simple abacus. Source: @hogben_1983.
+(ref:capabacus) A simple abacus.
 
 From inspecting Figure \@ref(fig:abacus) we recognize that the columns of the abacus are the positions of the digits, which also denote the power of 10 with which the digit is multiplied: $139=(1 \times 10^{2}) + (3 \times 10^{1}) + (9 \times 10^{0})$. In addition, a base of 10 means that the system is based on 10 different signs (0, 1, ..., 9) with which we distinguish one-digit numbers. Further, we recognize that each column in the abacus has 10 beads.
 
