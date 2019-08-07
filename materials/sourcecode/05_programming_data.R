@@ -11,7 +11,7 @@ a
 a[3]
 a["Claire"]
 
-# Inspect the object you are working with
+# inspect the object you are working with
 class(a) # returns the class(es) of the object
 str(a) # returns the structure of the object ("what is in variable a?")
 
@@ -36,7 +36,7 @@ a <- 20
 b <- 10
 a/b
 
-# arithmetic with vectors
+# arithmetics with vectors
 a <- c(1,4,6)
 a * 2
 
