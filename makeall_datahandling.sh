@@ -16,6 +16,7 @@ Rscript code/render_slides.R
 
 # clean intermediate results (from interactive sessions)
 rm materials/notes/*.html
+rm materials/notes/*.log
 rm materials/notes/*.pdf
 rm materials/slides/*.html
 rm -r materials/slides/html/*_files
