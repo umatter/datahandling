@@ -6,20 +6,19 @@ author: |
      | (University of St.Gallen)
 date: "19/10/2019"
 output:
-  pdf_document:
-    pandoc_args:
-    - --filter
-    - ../../code/math.py
   html_document:
     highlight: tango
     theme: cerulean
     mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
+  pdf_document:
+    pandoc_args:
+    - --filter
+    - ../../code/math.py
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
 css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
-
 ---
 
 
@@ -112,7 +111,7 @@ A loop is typically a sequence of statements that is executed a specific number 
 ### For-loops
 In simple terms, a for-loop tells the computer to execute a sequence of commands 'for each case in a set of n cases'. The flow-chart in Figure \@ref(for) illustrates the concept.
 
-```{r for, echo= FALSE, fig.align="center", out.width="40%", fig.cap="(ref:for)", purl=FALSE}
+```{r for, echo= FALSE, fig.align="center", out.width="40%", fig.cap="(ref:capfor)", purl=FALSE}
 include_graphics("../img/forloop.png")
 ```
 (ref:capfor) For-loop illustration. 
@@ -174,7 +173,7 @@ for (j in 1:m) {
 In a situation where a program has to repeatedly run a sequence of commands but we don't know in advance how many iterations we need in order to reach the intended goal, a while-loop can help. In simple terms, a while loop keeps executing a sequence of commands as long as a certain logical statement is true. The flow chart in Figure \@ref(fig:while) illustrates this point.
 
 
-```{r while, echo= FALSE, fig.align="center", out.width="65%", fig.cap="(ref:capwhile)", purl=FALSE}
+```{r while, echo= FALSE, fig.align="center", out.width="40%", fig.cap="(ref:capwhile)", purl=FALSE}
 include_graphics("../img/while_loop_own.png")
 ```
 (ref:capwhile) While-loop illustration.
