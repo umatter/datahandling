@@ -6,14 +6,14 @@ author: |
      | (University of St. Gallen)
 date: "20/09/2018"
 output:
-  html_document:
-    highlight: tango
-    theme: cerulean
-    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
   pdf_document:
     pandoc_args:
     - --filter
     - ../../code/math.py
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
@@ -22,7 +22,7 @@ bibliography: ../references/datahandling.bib
 ---
 
 
-```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
 options(width = 100)
 library(knitr)
 library(bookdown)
