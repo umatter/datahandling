@@ -2,7 +2,7 @@
 # load packages
 library(tidyverse)
 
-# initiate data frame on persons personal spending
+# initiate data frame on persons' personal spending
 df_c <- data.frame(id = c(1:3,1:3),
                    money_spent= c(1000, 2000, 6000, 1500, 3000, 5500),
                    currency = c("CHF", "CHF", "USD", "EUR", "CHF", "USD"),
@@ -116,7 +116,7 @@ sample <- rnorm(n = 1000)
 
 # plot a histogram and a density plot of that sample
 # note that the distribution is neither strongly positively nor negatively skewed
-# (this is to be expected, as we have drawn a sample from a normal distribution!)
+# (this is to be expected, as we have drawn a sample from a normal distribution)
 hist(sample)
 plot(density(sample))
 
@@ -149,7 +149,7 @@ kurtosis(sample)
 # we thus intentionally alter the distribution to have less mass in its tails
 sample <- sample[ sample > -0.6 & sample < 0.6]
 
-# plot the distribution again and see how the tails of it (and thus the kurtosis has changed)
+# plot the distribution again and see how the tails of it (and thus the kurtosis) has changed
 plot(density(sample))
 
 # re-calculate the kurtosis
@@ -196,7 +196,8 @@ mean(results)
 
 
 ## ----lln, echo=TRUE------------------------------------------------------
-# Essentially, what we are doing here is repeating the experiment above many times, each time increasing n.
+# Essentially, what we are doing here is repeating the experiment above many times, 
+# each time increasing n.
 # define the set of sample sizes
 ns <- seq(from = 10, to = 10000, by = 10)
 # initiate an empty list to record the results

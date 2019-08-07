@@ -6,7 +6,7 @@
 # Input: links to data sources (data comes in ... format)
 # Output: cleaned data as CSV
 # 
-# U. Matter, St. Gallen, 2018
+# U. Matter, St.Gallen, 2019
 #######################################################################
 
 
@@ -19,7 +19,7 @@
 ## # Input: links to data sources (data comes in ... format)
 ## # Output: cleaned data as CSV
 ## #
-## # U. Matter, St. Gallen, 2018
+## # U. Matter, St.Gallen, 2019
 ## #######################################################################
 ## 
 ## 
@@ -42,7 +42,7 @@
 ## # Input: links to data sources (data comes in ... format)
 ## # Output: cleaned data as CSV
 ## #
-## # U. Matter, St. Gallen, 2018
+## # U. Matter, St.Gallen, 2019
 ## #######################################################################
 ## 
 ## 
@@ -148,7 +148,7 @@ xml_doc
 ## ------------------------------------------------------------------------
 # navigate through the XML document (recall the tree-like nested structure similar to HTML)
 # navigate downwards
-# 'customers' is the root-node, persons are it's 'children'
+# 'customers' is the root-node, persons are their'children'
 persons <- xml_children(xml_doc) 
 # navigate sidewards
 xml_siblings(persons)

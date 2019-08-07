@@ -16,7 +16,7 @@ messy_df$gender
 
 
 ## ------------------------------------------------------------------------
-messy_df$gender[messy_df$gender== "Man"] <- "male"
+messy_df$gender[messy_df$gender == "Man"] <- "male"
 messy_df$gender
 
 
@@ -99,11 +99,16 @@ long_df
 
 
 ## ------------------------------------------------------------------------
-weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx", "Wayne", "Trump", "Marx", "Wayne", "Trump", "Marx"),
-                       first_name = c("John", "Melania", "Karl", "John", "Melania", "Karl", "John", "Melania", "Karl"),
-                       gender = c("male", "female", "male", "male", "female", "male", "male", "female", "male"),
-                       value = c("150000", "250000", "10000", "2000000", "5000000", "NA", "50", "25", "NA"),
-                      variable = c( "income", "income", "income", "assets", "assets", "assets", "age", "age", "age"), stringsAsFactors = FALSE)
+weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx", "Wayne", "Trump", "Marx", 
+                                        "Wayne", "Trump", "Marx"),
+                       first_name = c("John", "Melania", "Karl", "John", "Melania", "Karl", 
+                                        "John", "Melania", "Karl"),
+                       gender = c("male", "female", "male", "male", "female", "male", 
+                                        "male", "female", "male"),
+                       value = c("150000", "250000", "10000", "2000000", "5000000", "NA", 
+                                        "50", "25", "NA"),
+                       variable = c( "income", "income", "income", "assets", "assets", "assets", 
+                                        "age", "age", "age"), stringsAsFactors = FALSE)
 weird_df
 
 
