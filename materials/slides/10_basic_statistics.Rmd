@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 10:<br>Data Analysis and Basic Statistics with R'
 author: "Prof. Dr. Ulrich Matter"
-date: "06/12/2018"
+date: "05/12/2019"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -51,20 +51,20 @@ Following @wickham_2014:
 
 ## Tidy data
 
-```{r tidydata, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Tidy data. Source: @wickham_grolemund2017"}
+```{r tidydata, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Tidy data. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license)"}
 include_graphics("../img/tidy-1.png")
 ```
 
 
 # Data Analysis with R
 
-## Merging (Joining) Datasets
+## Merging (Joining) datasets
 
 - Combine data of two datasets in one dataset.
     - Why?
 - Needed: Unique identifiers for observations ('keys').
 
-## Merging (Joining) Datasets: Example
+## Merging (joining) datasets: example
 
 ```{r message=FALSE}
 # load packages
@@ -80,7 +80,7 @@ df_c
 ```
 
 
-## Merging (Joining) Datasets: Example
+## Merging (joining) datasets: example
 
 ```{r message=FALSE}
 # initiate data frame on persons' characteristics
@@ -90,7 +90,7 @@ df_p <- data.frame(id = 1:4,
 df_p
 ```
 
-## Merging (Joining) Datasets: Example
+## Merging (joining) Datasets: Example
 
 ```{r}
 df_merged <- merge(df_p, df_c, by="id")
@@ -98,66 +98,66 @@ df_merged
 ```
 
 
-## Merging (Joining) Datasets: Concept
+## Merging (joining) datasets: concept
 
 
-```{r setupjoin, echo=FALSE, out.width = "70%", fig.align='center', fig.cap= 'Join setup. Source: @wickham_grolemund2017.', purl=FALSE}
+```{r setupjoin, echo=FALSE, out.width = "70%", fig.align='center', fig.cap= 'Join setup. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-setup.png")
 ```
 
 
-## Merging (Joining) Datasets: Concept
+## Merging (joining) datasets: concept
 
 
-```{r setupjoin2, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Join setup. Source: @wickham_grolemund2017.', purl=FALSE}
+```{r setupjoin2, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Join setup. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-setup2.png")
 ```
 
 
 
 
-## Merging (Joining) Datasets: Concept
+## Merging (joining) datasets: concept
 
 *Merge: Inner join*
-```{r innerjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Inner join. Source: @wickham_grolemund2017.', purl=FALSE}
+```{r innerjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Inner join. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-inner.png")
 ```
 
 
-## Merging (Joining) Datasets: Concept
+## Merging (joining) datasets: concept
 
 *Merge all x: Left join*
-```{r leftjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Outer join. Source: @wickham_grolemund2017.', purl=FALSE}
+```{r leftjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Outer join. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-left.png")
 ```
 
 
-## Merging (Joining) Datasets: Concept
+## Merging (joining) datasets: concept
 
 *Merge all y: Right join*
-```{r rightjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Outer join. Source: @wickham_grolemund2017.', purl=FALSE}
+```{r rightjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Outer join. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-right.png")
 ```
 
 
-## Merging (Joining) Datasets: Concept
+## Merging (joining) datasets: concept
 
 *Merge all x and all y: Full join*
-```{r fulljoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Outer join. Source: @wickham_grolemund2017.', purl=FALSE}
+```{r fulljoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Outer join. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-full.png")
 ```
 
 
 
-## Merging (Joining) Datasets: Concept
+## Merging (joining) datasets: concept
 
 
-```{r vennjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Join Venn Diagramm. Source: @wickham_grolemund2017.', purl=FALSE}
+```{r vennjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Join Venn Diagramm. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-venn.png")
 ```
 
 
-## Merging (Joining) Datasets: R
+## Merging (joining) datasets: R
 
 Overview by @wickham_grolemund2017:
 
@@ -172,7 +172,7 @@ dplyr (tidyverse)  | base::merge
 
 # Data Summaries: Selecting, Filtering, and Mutating
 
-## Data Summaries
+## Data summaries
 
 - First step of analysis.
 - Get overview over dataset.
@@ -180,13 +180,13 @@ dplyr (tidyverse)  | base::merge
   - Inform your own statistical analysis.
   - Inform audience (helps understand advanced analytics parts)
 
-## Data Summaries: First steps
+## Data summaries: first steps
 
 - *Select* subset of variables (e.g., for comparisons).
 - *Filter* the dataset (some observations not needed in _this_ analysis).
 - *Mutate* the dataset: additional values needed
 
-## Select, Filter, Mutate in R (tidyverse)
+## Select, filter, mutate in R (tidyverse)
 
 - `select()`
 - `filter()`
@@ -195,7 +195,7 @@ dplyr (tidyverse)  | base::merge
 
 # Data Summaries: Aggregate Statistics
 
-## Descriptive/Aggregate Statistics
+## Descriptive/aggregate statistics
 
 - Overview of key characteristics of main variables used in analysis.
 - Key characteristics:
@@ -204,14 +204,14 @@ dplyr (tidyverse)  | base::merge
   - No. of observations
   - etc.
 
-## Aggregate Statistics in R
+## Aggregate statistics in R
 
 1. Function to compute statistic (`mean()`).
 2. Function to *apply* the statistics function to one or several colums in a tidy dataset.
   - All values.
   - By group (observation categories, e.g. by gender)
 
-## Aggregate Statistics in R
+## Aggregate statistics in R
 
 - `summarise()` (in `tidyverse`)
 - `group_by()` (in `tidyverse`)
@@ -220,13 +220,13 @@ dplyr (tidyverse)  | base::merge
 
 # Unterstanding Statistics and Probability with Code
 
-## Random Numbers and Computation
+## Random numbers and computation
 <center>
-*Can Computers Generate Random Numbers?!*
+*Can computers generate random numbers?!*
 </center>
 
 
-## Random Draws and Distributions
+## Random draws and distributions
 
 ```{r}
 normal_distr <- rnorm(1000)
@@ -236,7 +236,7 @@ hist(normal_distr)
 
 
 
-## Illustration of Variability
+## Illustration of variability
 
 ```{r, echo=TRUE}
 # draw a random sample from a normal distribution with a large standard deviation
@@ -246,7 +246,7 @@ littlevar <- rnorm(10000, mean = 5000, sd = 1)
 ```
 
 
-## Illustration of Variability
+## Illustration of variability
 
 ```{r, echo=TRUE}
 # visualize the distributions of both samples with a density plot
@@ -258,10 +258,10 @@ lines(density(largevar), col = "red")
 **Note:** the red curve illustrates the distribution of the sample with a large standard deviation (a lot of variability) whereas the blue curve illustrates the one with a rather small standard deviation.
 
 
-## Skewness and Kurtosis
+## Skewness and kurtosis
 
 ```{r, echo=TRUE}
-# Install the R-package called "moments" with the following command (if not installed yet):
+# install the R-package called "moments" with the following command (if not installed yet):
 # install.packages("moments")
 
 # load the package
@@ -275,7 +275,7 @@ library(moments)
 - Skewness refers to how symetric the frequency distribution of a variable is. 
 - For example, a distribution can be *'positively skewed'* meaning it has a *long tail on the right* and a lot of 'mass' (observations) on the left. 
 
-## Skewness: R Example
+## Skewness: R example
 
 ```{r, echo=TRUE}
 # draw a random sample of simulated data from a normal distribution
@@ -291,7 +291,7 @@ hist(sample)
 ```
 
 
-## Skewness: R Example
+## Skewness: R example
 
 ```{r, echo=TRUE}
 
@@ -300,14 +300,14 @@ skewness(sample)
 
 ```
 
-## Skewness: R Example
+## Skewness: R example
 
 ```{r, echo=TRUE}
-# Now we intentionally change our sample to be strongly positively skewed
-# We do that by adding some outliers (observations with very high values) to the sample 
+# now we intentionally change our sample to be strongly positively skewed
+# we do that by adding some outliers (observations with very high values) to the sample 
 sample <- c(sample, (rnorm(200) + 2), (rnorm(200) + 3))
 
-# Have a look at the distribution and re-calculate the skewness
+# have a look at the distribution and re-calculate the skewness
 hist(sample)
 skewness(sample)
 
@@ -315,11 +315,11 @@ skewness(sample)
 ```
 
 
-## Skewness: R Example
+## Skewness: R example
 
 ```{r, echo=TRUE}
 
-# Have a look at the distribution and re-calculate the skewness
+# have a look at the distribution and re-calculate the skewness
 hist(sample)
 skewness(sample)
 
@@ -335,7 +335,7 @@ skewness(sample)
 
 
 
-## Kurtosis: R Example
+## Kurtosis: R example
 ```{r}
 # draw a random sample of simulated data from a normal distribution
 # the sample is of size 1000 (hence, n = 1000)
@@ -347,7 +347,7 @@ hist(sample)
 ```
 
 
-## Kurtosis: R Example
+## Kurtosis: R example
 ```{r}
 
 # compute the kurtosis
@@ -356,7 +356,7 @@ kurtosis(sample)
 ```
 
 
-## Kurtosis: R Example
+## Kurtosis: R example
 ```{r}
 
 # now lets remove observations from the extremes in this distribution
@@ -367,7 +367,7 @@ sample <- sample[ sample > -0.6 & sample < 0.6]
 
 
 
-## Kurtosis: R Example
+## Kurtosis: R example
 ```{r}
 
 
@@ -417,13 +417,13 @@ kurtosis(sample)
 - Essentially describes how the behavior of *sample averages* is related to *sample size*.
 - States that the *sample mean* can come arbitrarily close to the *population mean* by increasing the sample size $N$.
 
-## The Law of Large Numbers (LLN): Playing dice
+## The Law of Large Numbers (LLN): playing dice
 
 - Roll a fair die, record result: either  1, 2, 3, 4, 5, or 6.
 - Probability of each possible outcome is $1/6$.
 
 
-## The Law of Large Numbers (LLN): Playing dice
+## The Law of Large Numbers (LLN): playing dice
 
 - Roll a fair die, record result: either  1, 2, 3, 4, 5, or 6.
 - Probability of each possible outcome is $1/6$.
@@ -431,7 +431,7 @@ kurtosis(sample)
 
 
 
-## The Law of Large Numbers (LLN): Playing dice
+## The Law of Large Numbers (LLN): playing dice
 
 - Roll a fair die, record result: either  1, 2, 3, 4, 5, or 6.
 - Probability of each possible outcome is $1/6$.
@@ -469,7 +469,7 @@ mean(results)
 ## LLN in R
 
 ```{r lln, echo=TRUE}
-# Essentially, what we are doing here is repeating the experiment above many times, each time increasing n.
+# essentially, what we are doing here is repeating the experiment above many times, each time increasing n
 # define the set of sample sizes
 ns <- seq(from = 10, to = 10000, by = 10)
 # initiate an empty list to record the results

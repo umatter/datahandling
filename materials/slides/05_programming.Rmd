@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 5:<br>Programming with Data'
 author: "Prof. Dr. Ulrich Matter"
-date: "18/10/2018"
+date: "17/10/2019"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -194,7 +194,7 @@ str(json_doc)
 
 
 
-## HTML documents: Code and Data!
+## HTML documents: code and data!
 
 HTML documents/webpages consist of *'semi-structured data'*: 
   
@@ -329,7 +329,7 @@ for (i in 1:n) {
 
 ## while-loop
 
-```{r while, echo= FALSE, fig.align="center", out.width="80%"}
+```{r while, echo= FALSE, fig.align="center", out.width="45%"}
 include_graphics("../img/while_loop_black_own.png")
 ```
 
@@ -359,7 +359,7 @@ while (total <= 20) {
 ```
 
 
-## Booleans and Logical Statements
+## Booleans and logical statements
 ```{r}
 2+2 == 4
 3+3 == 7
@@ -368,7 +368,7 @@ while (total <= 20) {
 ```
 
 
-## Booleans and Logical Statements
+## Booleans and logical statements
 ```{r}
 
 condition <- TRUE
@@ -383,7 +383,7 @@ if (condition) {
 ```
 
 
-## Booleans and Logical Statements
+## Booleans and logical statements
 ```{r}
 
 condition <- FALSE
@@ -401,14 +401,14 @@ if (condition) {
 
 
 
-## R Functions
+## R functions
 
 - $f:X \rightarrow Y$
 - 'Take a variable/parameter value $X$ as input and provide value $Y$ as output'
 - For example, $2\times X = Y$.
 - R functions take 'parameter values' as input, process those values according to a predefined program, and 'return' the results.
 
-## R Functions
+## R functions
 
 - Many functions are provided with R.
 - More can be loaded by installing and loading packages.
@@ -421,7 +421,7 @@ library(<PACKAGE NAME>)
 ```
 
 
-# Tutorial: A function to compute the mean
+# Tutorial: A Function to Compute the Mean
 
 ## Preparation
 

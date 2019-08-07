@@ -18,7 +18,7 @@ options(width = 100)
 library(knitr)
 ```
 
-## Welcome to Data Handling: I.C.V. 2018!
+## Welcome to Data Handling: I.C.V. 2019!
 <!-- bitly should point to: https://docs.google.com/spreadsheets/d/1P_z7HbNrsif3U2RLR0BLNXiaojcTPCm2KpgbvPVdZ6k/edit?usp=sharing -->
 <!-- - Fire up your notebooks! -->
 <!-- - Go to this page: http://bit.ly/datahandling2018  -->
@@ -35,13 +35,13 @@ include_graphics("../img/cpu_blackbox.png")
 
 ## The Data Pipeline
 
-```{r datascience, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Data Science workflow. Source: @wickham_grolemund2017"}
+```{r datascience, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Data Science workflow. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license."}
 include_graphics("../img/data-science.png")
 ```
 
 ## The Data Pipeline
 
-```{r datascience2, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Data Science workflow. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license)"}
+```{r datascience2, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Data Science workflow. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license."}
 include_graphics("../img/data-science.png")
 ```
 
@@ -69,27 +69,11 @@ What could be the *output* of all this?
 University of Michigan 'Data Science Initiative', 2015
 
 
-## But, what about Statistics?!
+## But, what about statistics?!
 
 *"Seemingly, statistics is being marginalized here; the implicit message is that statistics is a part of what goes on in data science but not a very big part. At the same time, many of the concrete descriptions of what the DSI will actually do will seem to statisticians to be bread-and-butter statistics. Statistics is apparently the word that dare not speak its name in connection with such an initiative!"*
 
 David Donoho (2015). __50 years of Data Science__
-
-
----
-
-```{r dsdiagram, echo=FALSE, out.width = "98%", fig.align='center', fig.cap= "The 'Data Science Venn Diagram'. Source: http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/", purl=FALSE}
-include_graphics("../img/hacking_skills.png")
-```
-
-
-
----
-
-```{r ds_skills, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= "The 'Data Science Venn Diagram'. Source: http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/", purl=FALSE}
-include_graphics("../img/ds_skills.png")
-```
-
 
 
 # Background
@@ -122,13 +106,6 @@ include_graphics("../img/computers.jpg")
 
 
 ## Technological change
-
-```{r comprise, echo=FALSE, out.width = "75%", fig.align='center', fig.cap= "Source: http://radar.oreilly.com/2011/08/building-data-startups.html", purl=FALSE}
-include_graphics("../img/comp_costs.png")
-```
-
-
-----
 
 ```{r google, echo=FALSE, out.width = "90%", fig.align='center', fig.cap="Source: https://techxerl.net.", purl=FALSE}
 include_graphics("../img/google_crawler.jpg")
@@ -178,12 +155,12 @@ include_graphics("../img/bd_ai.png")
 include_graphics("../img/help_wanted.jpg")
 ```
 
-## Help Wanted
+## Help wanted
 - Experienced R user?
 - Assist fellow students during exercises in class
 - Disclaimer: this is not an official TA position!
 
-## Help Wanted
+## Help wanted
 - Experienced R user?
 - Assist fellow students during exercises in class
 - Disclaimer: this is not an official TA position!
@@ -191,7 +168,7 @@ include_graphics("../img/help_wanted.jpg")
     - Approach me at the end of today's lecture!
     - Or send me an email: ulrich.matter@unisg.ch
 
-## Course evaluation: Focus Group
+## Course evaluation: Focus group
 
 
 
@@ -200,7 +177,7 @@ include_graphics("../img/help_wanted.jpg")
 # Course Structure
 
 
-## Course Concept
+## Course concept
 
 - Lectures (every Thursday morning)
     - Background/Concepts
@@ -208,7 +185,7 @@ include_graphics("../img/help_wanted.jpg")
     - Illustration of 'hands-on' approaches
     
 
-## Course Concept
+## Course concept
 
 - Lectures (every Thursday morning)
     - Background/Concepts
@@ -222,7 +199,7 @@ include_graphics("../img/help_wanted.jpg")
 <!-- - Guest Lectures -->
 
 
-## Course Concept
+## Course concept
 
 - Lectures (every Thursday morning)
     - Background/Concepts
@@ -237,7 +214,7 @@ include_graphics("../img/help_wanted.jpg")
 
 
 
-## Course Concept
+## Course concept
 
 - Lectures (every Thursday morning)
     - Background/Concepts
@@ -251,13 +228,13 @@ include_graphics("../img/help_wanted.jpg")
     - *First Exercises (set up R/RStudio) is available on StudyNet today*
 - Guest Lectures
 
-## Course Concept
+## Course concept
 - Strongly encouraged: Learning groups!
     - Workshops/Exercises-Sessions will provide opportunity.
     - Tackle the tricky exercises together!
 
 
-## 15/11/2018: Guest Lecture by Dr. Michael Zehnder
+## 15/11/2018: Guest lecture by Dr. Michael Zehnder
 
 ```{r mzehnder, echo=FALSE, out.width = "65%", fig.align='center',  purl=FALSE}
 include_graphics("../img/mzehnder.png")
@@ -271,7 +248,7 @@ Co-Founder & CEO Swiss Data Labs AG
 
 
 
-## Part I: Data (Science) Fundamentals {.smaller}
+## Part I: Data (Science) fundamentals {.smaller}
 
 ```{r echo = FALSE}
 library(readxl)
@@ -285,14 +262,14 @@ kable(sched[1:6, c(1,5)], format = "markdown")
 ```
 
 
-## Part II: Data Gathering and Preparation {.smaller}
+## Part II: Data gathering and preparation {.smaller}
 
 ```{r echo = FALSE}
 kable(sched[7:13, c(1,5)], format = "markdown") 
 ```
 
 
-## Part III: Analysis, Visualisation, Output {.smaller}
+## Part III: Analysis, visualisation, output {.smaller}
 
 ```{r echo = FALSE}
 kable(sched[14:nrow(sched), c(1,5)], format = "markdown") 
@@ -303,7 +280,7 @@ kable(sched[14:nrow(sched), c(1,5)], format = "markdown")
 
 
 
-## Core Course Resources
+## Core course resources
 
 - Course materials: [umatter.github.io/courses](https://umatter.github.io/courses.html)
 - Exercises will be uploaded to the StudyNet room!
@@ -321,12 +298,12 @@ kable(sched[14:nrow(sched), c(1,5)], format = "markdown")
 - [Get inspired in the R blogsphere](www.r-bloggers.com)
 
 
-## Exam Information
+## Exam information
 - Central, written examination.
 - Multiple choice questions.
 - Theoretical concepts and practical applications in R (questions based on code examples).
 
-## Exam Information II
+## Exam information II
 - Exercises towards the end of the term will contain sample questions.
     - Get familiar with style of questions.
 - Exchange students who need to take the exam before the central exam block:

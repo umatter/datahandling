@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 2:<br>A Brief Introduction to Data and Data Processing'
 author: "Prof. Dr. Ulrich Matter"
-date: "27/09/2018"
+date: "26/09/2019"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -45,7 +45,7 @@ library(knitr)
 
 # Recap: Data Science, Data Pipeline
 
-## Class Survey >>> Final Output
+## Class survey >>> Final output
 
 ## The Data Pipeline
 

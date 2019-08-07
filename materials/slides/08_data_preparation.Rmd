@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 8:<br>Data Preparation'
 author: "Prof. Dr. Ulrich Matter"
-date: "22/11/2018"
+date: "21/11/2019"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -29,7 +29,7 @@ pre {
 
 # Updates
 
-## Updates: Decentral Exam (Exchange Students)
+## Updates: decentral exam (exchange students)
 
 - Date/Time: 20.12.2018, 16:15.
 - Room: 01-U121
@@ -47,14 +47,14 @@ sched <- read_xlsx("../misc/schedule.xlsx", col_types = "text")
 ```
 
 
-## Part II: Data Gathering and Preparation {.smaller}
+## Part II: data gathering and preparation {.smaller}
 
 ```{r echo = FALSE}
 kable(sched[11:13, c(1,5)], format = "markdown") 
 ```
 
 
-## Part III: Analysis, Visualisation, Output {.smaller}
+## Part III: analysis, visualisation, output {.smaller}
 
 ```{r echo = FALSE}
 kable(sched[14:nrow(sched), c(1,5)], format = "markdown") 
@@ -90,7 +90,7 @@ kable(sched[14:nrow(sched), c(1,5)], format = "markdown")
 # Input: links to data sources (data comes in ... format)
 # Output: cleaned data as CSV
 # 
-# U. Matter, St. Gallen, 2018
+# U. Matter, St.Gallen, 2019
 #######################################################################
 
 
@@ -117,8 +117,8 @@ Finally we add sections with the actual code (in the case of a data import scrip
 # It imports data from ...
 # Input: links to data sources (data comes in ... format)
 # Output: cleaned data as CSV
-# 
-# U. Matter, St. Gallen, 2018
+#
+# U. Matter, St.Gallen, 2019
 #######################################################################
 
 
@@ -210,7 +210,7 @@ Following @wickham_2014:
 
 ## Tidy data
 
-```{r tidydata, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Tidy data. Source: @wickham_grolemund2017"}
+```{r tidydata, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE, fig.cap="Tidy data. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license."}
 include_graphics("../img/tidy-1.png")
 ```
 

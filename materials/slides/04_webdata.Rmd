@@ -130,7 +130,7 @@ cat hastamanana.txt; echo
   - Natural format/structure when data represents a table.
 
 
-## Units of Information/Data Storage: Bit, Byte, Word
+## Units of information/data storage: Bit, Byte, Word
 
 ```{r bitbyteword, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Bit, Byte, Word. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
 include_graphics("../img/store-bitbyteword.png")
@@ -326,7 +326,7 @@ David  Debbie  Dianne    12  female
 </center>
 
 
-## XML Syntax
+## XML syntax
 
 
 ```{xml}
@@ -350,7 +350,7 @@ David  Debbie  Dianne    12  female
 
 
 
-## XML Syntax
+## XML syntax
 
 The actual content we know from the csv-type example above is nested between the '`temperatures`'-tags:
 
@@ -361,7 +361,7 @@ The actual content we know from the csv-type example above is nested between the
 ```
 
 
-## XML Syntax
+## XML syntax
 
 Comparing the actual content between these tags with the csv-type format above, we further recognize that there are two principal ways to link variable names to values.
 ```{xml}
@@ -379,13 +379,13 @@ Comparing the actual content between these tags with the csv-type format above, 
 ```
 
 
-## XML Syntax
+## XML syntax
 
 
 1. Define opening and closing XML-tags with the variable name and surround the value with them, such as in `<filename>ISCCPMonthly_avg.nc</filename>`.
 2. Encapsulate the values within one tag by defining tag-attributes such as in `<case date="16-JAN-1994" temperature="9.200012" />`. 
 
-## XML Syntax
+## XML syntax
 
 Attributes-based:
 ```{xml}
@@ -395,7 +395,7 @@ Attributes-based:
     <case date="16-APR-1994" temperature="8.100006" />
 ```
 
-## XML Syntax
+## XML syntax
 
 Tag-based:
 
@@ -452,7 +452,7 @@ Potential drawback of XML: *inefficient* storage.
 
 # Deciphering JSON
 
-## JSON Syntax
+## JSON syntax
   
   - Key difference to XML: no tags, but *attribute-value pairs*.
   - A substitute for XML (often encountered in similar usage domains).
@@ -665,13 +665,13 @@ include_graphics("../img/website_data.png")
 ```
 
 
-## HTML documents: Code and Data!
+## HTML documents: code and data!
 
   - Web designer's perspective: "HTML is a tool to design the layout of a webpage (and the resulting HTML document is *code*)." 
   - From a data scientist's perspective: "HTML gives the *data* contained in a webpage (the actual content) a certain degree of structure which can be exploited to systematically extract the data from the webpage."
 
 
-## HTML documents: Code and Data!
+## HTML documents: code and data!
 
 HTML documents/webpages consist of *'semi-structured data'*: 
   

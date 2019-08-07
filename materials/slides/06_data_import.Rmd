@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 6:<br>Data Sources, Data Gathering, Data Import'
 author: "Prof. Dr. Ulrich Matter"
-date: "25/10/2018"
+date: "24/10/2019"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -44,14 +44,14 @@ include_graphics("../img/forloop_black.png")
 
 ## while-loop
 
-```{r while, echo= FALSE, fig.align="center", out.width="80%"}
+```{r while, echo= FALSE, fig.align="center", out.width="45%"}
 include_graphics("../img/while_loop_black_own.png")
 ```
 
 
 
 
-## Booleans and Logical Statements
+## Booleans and logical statements
 ```{r}
 2+2 == 4
 3+3 == 7
@@ -60,7 +60,7 @@ include_graphics("../img/while_loop_black_own.png")
 ```
 
 
-## Booleans and Logical Statements
+## Booleans and logical statements
 ```{r}
 
 condition <- TRUE
@@ -76,14 +76,14 @@ if (condition) {
 
 
 
-## R Functions
+## R functions
 
 - $f:X \rightarrow Y$
 - 'Take a variable/parameter value $X$ as input and provide value $Y$ as output'
 - For example, $2\times X = Y$.
 - R functions take 'parameter values' as input, process those values according to a predefined program, and 'return' the results.
 
-## R Functions
+## R functions
 
 ```{r}
 # define our own function to compute the mean, given a numeric vector
@@ -97,7 +97,7 @@ my_mean <- function(x) {
 
 # Today: Putting it All Together
 
-## Putting it all togetther
+## Putting it all together
 
   - You know what *'data'* is...
   - You know how digital data is *stored*...
@@ -145,7 +145,7 @@ The first key bottleneck in the data pipeline:
 
   
 
-# Data gathering procedure
+# Data Gathering Procedure
 
 ## Organize your data pipeline!
 
@@ -258,7 +258,7 @@ head(swiss)
 
 
 
-# Importing rectangular data from text-files
+# Importing Rectangular Data from Text-Files
 
 
 ## Comma Separated Values (CSV)
@@ -306,7 +306,7 @@ swiss_imported <- read_csv("data/swiss.csv")
 ```
 
 
-## Import and Parsing with `readr`^[This is a summary of Chapter 8 in @wickham_grolemund2017]
+## Import and parsing with `readr`^[This is a summary of chapter 8 in @wickham_grolemund2017]
 
 - Why `readr`?
   - Functions for all common rectangular data formats.
@@ -426,7 +426,7 @@ guess_parser(c("12:00", "14:30", "20:01"))
 ```
 
 
-# Other common rectangular formats
+# Other Common Rectangular Formats
 
 ## Spreadsheets/Excel
 

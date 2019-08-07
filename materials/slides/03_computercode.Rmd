@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 3:<br>Data Storage and Data Structures'
 author: "Prof. Dr. Ulrich Matter"
-date: "04/10/2018"
+date: "03/10/2019"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -490,13 +490,13 @@ a + b
 
 
 
-## Data structures: Vectors
+## Data structures: vectors
 
 ```{r numvec, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:numvec) Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
 include_graphics("../img/numvec.png")
 ```
 
-## Data structures: Vectors
+## Data structures: vectors
 
 Example:
 
@@ -511,13 +511,13 @@ ages
 ```
 
 
-## Data structures: Factors
+## Data structures: factors
 
 ```{r factor, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "Illustration of a factor (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
 include_graphics("../img/factor.png")
 ```
 
-## Data structures: Factors
+## Data structures: factors
 
 Example:
 
@@ -528,14 +528,14 @@ gender
 
 
 
-## Data structures: Matrices/Arrays
+## Data structures: matrices/arrays
 
 ```{r matrix, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "Illustration of a numeric matrix (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
 include_graphics("../img/matrix.png")
 ```
 
 
-## Data structures: Matrices/Arrays
+## Data structures: matrices/arrays
 
 Example:
 
@@ -571,14 +571,14 @@ df
 ```
 
 
-## Data structures: Lists
+## Data structures: lists
 
 ```{r list, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "Illustration of a list (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
 include_graphics("../img/list.png")
 ```
 
 
-## Data structures: Lists
+## Data structures: lists
 
 Example:
 

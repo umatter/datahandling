@@ -43,7 +43,7 @@ pre {
 - Example of scan in StudyNet
 - Questions?
 
-## Mock exam answer sheet: Student ID (Matr.-Nr.)
+## Mock exam answer sheet: student ID (matr.-nr.)
 ```{r echo=FALSE, purl=FALSE, out.width="60%"}
 include_graphics("../img/mock_exam_scan.png")
 ```
@@ -136,14 +136,6 @@ Three main approaches:
 2. The `lattice` package [@lattice_2008], an implementation of the original Bell Labs 'Trellis' system.
 3. The *`ggplot2`* package [@wickham_2016], an implementation of Leland Wilkinson's 'Grammar of Graphics'.
 
-
-## 'Grammer of Graphics'
-
-<!-- License: No similar figure with public domain found -->
-
-```{r echo= FALSE, out.width= "65%", fig.align="center", fig.cap="Source: http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html"}
-include_graphics("../img/gog.png")
-```
 
 ## `ggplot2`
 
