@@ -57,7 +57,7 @@ pacman::p_load(char = to_install)
 ```
 
 
-# Compillation of materials
+# Compilation of materials
 
 Run the following in the terminal:
 ```{bash}

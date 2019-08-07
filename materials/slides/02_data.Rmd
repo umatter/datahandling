@@ -150,8 +150,8 @@ How does the abacus work?
 
 ## The Roman abacus (base 10)
 
-```{r abacus, echo=FALSE, out.width = "55%", fig.align='center', fig.cap= "A simple abacus. Source: @hogben_1983.", purl=FALSE}
-include_graphics("../img/abacus.png")
+```{r abacus, echo=FALSE, out.width = "55%", fig.align='center', purl=FALSE}
+include_graphics("../img/abacus_own.png")
 ```
 
 

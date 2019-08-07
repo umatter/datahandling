@@ -3,8 +3,8 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 11: Visualisation and Dynamic Documents'
 author: |
      | Prof. Dr. Ulrich Matter
-     | (University of St. Gallen)
-date: "13/12/2018"
+     | (University of St.Gallen)
+date: "12/12/2019"
 output:
   html_document:
     highlight: tango
@@ -30,9 +30,9 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 ```
 
 
-# Data Display
+# Data display
 
-In the last part of a data pipeline we are typically dealing with the visualisation of data and statistical results for presentation/communication. Typical output formats are reports, a thesis (BA, MA, Dissertation chapter), interactive dashboards, and websites. R (and particularly RStudio) provide a very flexible framework to manage the steps involved in visualisation/presentation for all of these output formats. A first (low-level) step in preparing data/results for publication is the formatting data values for publication. Typically, this involves some string operations to make numbers and text look nicer before we show them in a table or graph. 
+In the last part of a data pipeline we are typically dealing with the visualisation of data and statistical results for presentation/communication. Typical output formats are reports, a thesis (BA, MA, Dissertation chapter), interactive dashboards, and websites. R (and particularly RStudio) provides a very flexible framework to manage the steps involved in visualisation/presentation for all of these output formats. A first (low-level) step in preparing data/results for publication is the formatting data values for publication. Typically, this involves some string operations to make numbers and text look nicer before we show them in a table or graph. 
 
 Consider, for example, the following summary statistics.
 
@@ -69,7 +69,7 @@ swiss_summary_formatted
 
 
 
-# Data Visualisation with `ggplot2`
+# Data visualisation with `ggplot2`
 
 A key technique to convincingly communicate statistical results and insights from data is visualisation. How can we visualise raw data and insights gained from statistical models with R? It turns out that R is a really useful tool for data visualisation, thanks to its very powerful graphics engine (i.e., the underlying low-level R functions that handle things like colors, shapes, etc.). Building on this graphics engine, there are particularly three R packages with a variety of high-level functions to plot data in R:
 
@@ -77,17 +77,17 @@ A key technique to convincingly communicate statistical results and insights fro
 - The `lattice` package [@lattice_2008], an implementation of the original Bell Labs 'Trellis' system.
 - The `ggplot2` package [@wickham_2016], an implementation of Leland Wilkinson's 'Grammar of Graphics'.
 
-While all of these packages provide well-documented high-level R functions to plot data, their syntax differs in some important ways. For R beginners it thus makes sense to first learn how to generate plots in R with *one* of these packages. Here, we focus on `ggplot2` as it is part of the `tidyverse`.
+While all of these packages provide well-documented high-level R functions to plot data, their syntax differs in some important ways. For R beginners it thus makes sense to first learn how to generate plots in R with *one* of these packages. Here, we focus on `ggplot2` because it is part of the `tidyverse`.
 
 ## 'Grammar of Graphics'
-A few years back, Leland Wilkinson (statistician and computer scientist) wrote an influential book called 'The Grammar of Graphics'. In the book, Wilkinson develops a formal description ('grammar') of graphics used in statistics, illustrating how different types of plots (bar plot, histogram, etc.) are special cases of an underlying framework. In short, his idea was that we can think of graphics as consisting of different design-layers and thus can build and describe graphics/plots layer by layer (see [here](http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html) for an illustration of this idea). 
+A few years back, Leland Wilkinson (statistician and computer scientist) wrote an influential book called 'The Grammar of Graphics'. In this book, Wilkinson develops a formal description ('grammar') of graphics used in statistics, illustrating how different types of plots (bar plot, histogram, etc.) are special cases of an underlying framework. In short, his idea was that we can think of graphics as consisting of different design-layers and thus can build and describe graphics/plots layer by layer (see [here](http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html) for an illustration of this idea). 
 
-This framework got implemented in R with the very prominent `ggplot2`-package, building on the already very powerful R graphics engine. The result is a user-friendly environment to visualise data with enormous potential to plot almost any graphic illustrating data.
+This framework got implemented in R with the prominent `ggplot2`-package, building on the already powerful R graphics engine. The result is a user-friendly environment to visualise data with enormous potential to plot almost any graphic illustrating data.
 
 ## `ggplot2` basics
 Using `ggplot2` to generate a basic plot in R is quite simple. Basically, it involves three key points:
 
-1. The data must be stored in a `data.frame`/`tibble` (in tidy format!). 
+1. The data must be stored in a `data.frame`/`tibble` (in tidy format). 
 2. The starting point of a plot is always the function `ggplot()`.
 3. The first line of plot code declares the data and the 'aesthetics' (e.g., which variables are mapped to the x-/y-axes):
 
@@ -129,7 +129,7 @@ swiss$Religion <- as.factor(swiss$Religion)
 
 
 ### Data and aesthetics
-We initiate the most basic plot with `ggplot()` by defining which data we want to use and in the plot aesthetics which variable we want to use on the x and y axes. Here, we are interested in whether the level of education beyond primary school in a given district is related with how well draftees from the same district do in a standardized army examination (% of draftees that get the highest mark in the examination). 
+We initiate the most basic plot with `ggplot()` by defining which data to use and in the plot aesthetics which variable to use on the x and y axes. Here, we are interested in whether the level of education beyond primary school in a given district is related with how well draftees from the same district do in a standardized army examination (% of draftees that get the highest mark in the examination). 
 
 ```{r echo=TRUE, out.width="85%"}
 ggplot(data = swiss, aes(x = Education, y = Examination))
@@ -138,7 +138,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination))
 
 As we have not yet defined according to what rules the data shall be visualised, all we get is an empty 'canvas' and the axes (with the respective label and ticks indicating the range of the values).
 
-## Geometries (~the type of plot)
+## Geometries (~ type of plot)
 In order to actually plot the data we have to define the 'geometries', defining according to which function the data should be mapped/visualised. In other words, geometries define which 'type of plot' we use to visualise the data (histogram, lines, points, etc.). In the example code below, we use `geom_point()` to get a simple point plot.
 
 ```{r echo=TRUE, out.width="85%"}
@@ -247,15 +247,15 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 ```
 
-# Dynamic Documents
+# Dynamic documents
 
-Dynamic documents are a way to directly/dynamically integrate results of an analysis in R (numbers, tables, plots) in written text (a report, thesis, slide set, website, etc.). That is, we can write a report in so-called 'R-Markdown' format and place directly in the same document 'chunks' of R code which we want to be executed each time we 'knit' the report. Knitting the document means the following steps are executed under the hood:
+Dynamic documents are a way to directly/dynamically integrate results of an analysis in R (numbers, tables, plots) in written text (a report, thesis, slide set, website, etc.). That is, we can write a report in so-called 'R-Markdown' format and place directly in the same document 'chunks' of R code which we want to be executed each time we 'knit' the report. Knitting the document means that the following steps are executed under the hood:
 
 1. The code in the R chunks is executed and the results cached and formatted for print.
 2. The formatted R output is embedded in a so-called 'Markdown'-file (`.md`).
 3. The markdown-file is rendered as either a PDF, HTML, or Word-file (with additional formatting options, depending on the output format).
 
-The entire procedure from importing, cleaning, analyzing, and visualising data can thus be combined in one document, based on which we can generate a nicely rendered output to communicate our results (in fact, the initial dashboard example, as well as all notes and slides of this course are generated in this way). 
+The entire procedure from importing, cleaning, analyzing, and visualising data can thus be combined in one document, based on which we can generate a meaningful output to communicate our results (in fact, the initial dashboard example, as well as all notes and slides of this course are generated in this way). 
 
 
 

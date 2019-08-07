@@ -3,8 +3,8 @@ title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 5: Programming with Data'
 author: |
      | Prof. Dr. Ulrich Matter
-     | (University of St. Gallen)
-date: "18/10/2018"
+     | (University of St.Gallen)
+date: "19/10/2019"
 output:
   pdf_document:
     pandoc_args:
@@ -37,7 +37,7 @@ Once we understand the basics of the R language and how to write simple programs
 
 
 
-## Variables and Vectors
+## Variables and vectors
 ```{r}
 # a simle integer vector
 a <- c(10,22,33, 22, 40)
@@ -51,13 +51,13 @@ a
 a[3]
 a["Claire"]
 
-# Inspect the object you are working with
+# inspect the object you are working with
 class(a) # returns the class(es) of the object
 str(a) # returns the structure of the object ("what is in variable a?")
 
 ```
 
-## Math Operators
+## Math operators
 R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.
 ```{r}
 # basic arithmetic 
@@ -78,7 +78,7 @@ a <- 20
 b <- 10
 a/b
 
-# arithmetic with vectors
+# arithmetics with vectors
 a <- c(1,4,6)
 a * 2
 
@@ -107,18 +107,18 @@ pi
 # Basic programming concepts in R
 
 ## Loops
-A loop is typically a sequence of statements that is executed a specific number of times. How often the code 'inside' the loop is executed depends on a (hopefully) clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called 'for-loop'. If the number of iterations is not clearly known before executing the code, we typically write a so-called 'while-loop'. The following subsections illustrate both of these concepts in R.
+A loop is typically a sequence of statements that is executed a specific number of times. How often the code 'inside' the loop is executed depends on a clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called 'for-loop'. If the number of iterations is not clearly known before executing the code, we typically write a so-called 'while-loop'. The following subsections illustrate both of these concepts in R.
 
 ### For-loops
-In simple terms, a for-loop tells the computer to execute a sequence of commands 'for each case in a set of n cases'. The following flow-chart illustrates the concept.
+In simple terms, a for-loop tells the computer to execute a sequence of commands 'for each case in a set of n cases'. The flow-chart in Figure \@ref(for) illustrates the concept.
 
-```{r for, echo= FALSE, fig.align="center", out.width="40%", fig.cap="(ref:capfor)", purl=FALSE}
+```{r for, echo= FALSE, fig.align="center", out.width="40%", fig.cap="(ref:for)", purl=FALSE}
 include_graphics("../img/forloop.png")
 ```
-(ref:capfor) Foor-loop illustration. 
+(ref:capfor) For-loop illustration. 
 
 
-For example, a for-loop could be used to sum up each of the elements in a numeric vector of fix length (thus the number of iterations is clearly defined). In plain English, the for-loop would state something like:"Start with 0 as the current total value, for each of the elements in the vector add the value of this element to the current total value." Note how this logically implies that the loop will 'stop' once the value of the last element in the vector is added to the total. Let's illustrate this in R. Take the numeric vector `c(1,2,3,4,5)`. A for loop to sum up all elements can be implemented as follows:
+For example, a for-loop could be used to sum up each of the elements in a numeric vector of fix length (thus the number of iterations is clearly defined). In plain English, the for-loop would state something like: "Start with 0 as the current total value, for each of the elements in the vector add the value of this element to the current total value." Note how this logically implies that the loop will 'stop' once the value of the last element in the vector is added to the total. Let's illustrate this in R. Take the numeric vector `c(1,2,3,4,5)`. A for loop to sum up all elements can be implemented as follows:
 
 ```{r}
 # vector to be summed up
@@ -173,10 +173,11 @@ for (j in 1:m) {
 ### While-loop
 In a situation where a program has to repeatedly run a sequence of commands but we don't know in advance how many iterations we need in order to reach the intended goal, a while-loop can help. In simple terms, a while loop keeps executing a sequence of commands as long as a certain logical statement is true. The flow chart in Figure \@ref(fig:while) illustrates this point.
 
+
 ```{r while, echo= FALSE, fig.align="center", out.width="65%", fig.cap="(ref:capwhile)", purl=FALSE}
-include_graphics("../img/while_loop.png")
+include_graphics("../img/while_loop_own.png")
 ```
-(ref:capwhile) While-loop illustration. Source: https://en.wikipedia.org/wiki/While_loop#/media/File:While-loop-diagram.svg.
+(ref:capwhile) While-loop illustration.
 
 For example, a while-loop in plain English could state something like "start with 0 as the total, add 1.12 to the total until the total is larger than 20." We can implement this in R as follows.
 
@@ -194,7 +195,7 @@ total
 ```
 
 
-## Booleans and Logical Statements
+## Booleans and logical statements
 ```{r}
 2+2 == 4
 3+3 == 7
@@ -217,9 +218,9 @@ if (condition) {
 ```
 
 
-## R Functions
+## R functions
 
-R programs heavily rely on functions. Conceptually, 'functions' in R are very similar to what we know as 'functions' in math (i.e., $f:X \rightarrow Y$). A function can thus, e.g., take a variable $X$ as input and provide value $Y$ as output. The actual calculation of $Y$ based on $X$ can be something as simple as $2\times X = Y$. But, it could also be a very complex algorithm or an operation that has not directly anything to do with numbers and arithmetic.^[Of course, on the very low level, everything that happens in a microprocessor can in the end be expressed in some formal way using math. However, the point here is, that at the level we work with R, a function could simply process different text strings (i.e., stack them together). Thus for us as programmers, R functions do not necessarily have to do anything with arithmetic and numbers but could serve all kind of purposes, including the parsing of HTML code, etc.]
+R programs heavily rely on functions. Conceptually, 'functions' in R are very similar to what we know as 'functions' in math (i.e., $f:X \rightarrow Y$). A function can thus, e.g., take a variable $X$ as input and provide value $Y$ as output. The actual calculation of $Y$ based on $X$ can be something as simple as $2\times X = Y$. But it could also be a very complex algorithm or an operation that has not directly anything to do with numbers and arithmetic.^[Of course, on the very low level, everything that happens in a microprocessor can in the end be expressed in some formal way using math. However, the point here is, that at the level we work with R, a function could simply process different text strings (i.e., stack them together). Thus for us as programmers, R functions do not necessarily have to do anything with arithmetic and numbers but could serve all kind of purposes, including the parsing of HTML code, etc.]
 
 In R—and many other programming languages—functions take 'parameter values' as input, process those values according to a predefined program, and 'return' the result. For example, a function could take a numeric vector as input and return the sum of all the individual numeric values in the input vector.
 
@@ -229,9 +230,9 @@ When we open RStudio, all basic functions are already loaded automatically. This
 
 ### Tutorial: Compute the mean
 
-In order to illustrate the point of how functions work in R and how we can write our own functions in R (building on already existing R functions), the following code-example illustrates how to implement a function that computes the mean/average value, given a numeric vector.
+In order to illustrate the point of how functions work in R and how we can write our own functions in R, the following code-example illustrates how to implement a function that computes the mean/average value, given a numeric vector.
 
-First, we initiate a simple numeric vector which we then will use as an example to test the function. Whenever you implement a function, it is very useful to first define a simple example of an input for which you know what the output should be.
+First, we initiate a simple numeric vector which we then use as an example to test the function. Whenever you implement a function, it is very useful to first define a simple example of an input for which you know what the output should be.
 
 ```{r}
 # a simle integer vector, for which we want to compute the Mean
@@ -243,16 +244,16 @@ a <- c(5.5, 7.5)
 
 In this example, we would thus expect the output to be `6.5`. Later, we will compare the output of our function with this in order to check whether our function works as desired. 
 
-In addition to defining a simple example and the desired output, it obviously makes sense to also think about *how* the function is in simple terms expected to produce this output. When implementing functions related to statistics (such as the mean), it usually makes sense to have a look at the mathematical definition:
+In addition to defining a simple example and the desired output, it makes sense to also think about *how* the function is expected to produce this output. When implementing functions related to statistics (such as the mean), it usually makes sense to have a look at the mathematical definition:
 
 $\bar{x} = \frac{1}{n}\left (\sum_{i=1}^n{x_i}\right ) = \frac{x_1+x_2+\cdots +x_n}{n}$.
 
 Now, we can start thinking about how to implement the function based on built-in R functions. From looking at the mathematical definition of the mean ($\bar{x}$), we recognize that there are two main components to computing the mean:
 
  - $\sum_{i=1}^n{x_i}$: the sum of all the elements in vector $x$
- - and $n$, the number of elements in vector $x$.
+ - $n$: the number of elements in vector $x$.
  
-Once we know how to get these two components, computing the mean is straightforward. In R, there are two built-in functions that deliver exactly these two components: 
+Once we know how to get these two components, computing the mean is straightforward. In R there are two built-in functions that deliver exactly these two components: 
 
  - `sum()` returns the sum of all the values in i ts arguments (i.e., if `x` is a numeric vector, `sum(x)` returns the sum of all elements in `x`).
  - `length()` returns the length of a given vector.
@@ -262,7 +263,7 @@ With the following short line of code we thus get the mean of the elements in ve
 sum(a)/length(a)
 ```
 
-all that is left to do is to pack all this into the function body of our newly defined `my_mean()` function:
+All that is left to do is to pack all this into the function body of our newly defined `my_mean()` function:
 
 ```{r}
 # define our own function to compute the mean, given a numeric vector
