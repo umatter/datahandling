@@ -138,10 +138,10 @@ This section briefly gives a summary of the key components of processing data wi
 Figure \@ref(fig:components) illustrates the key components of a standard computing environment (PC, notebook, tablet, etc.) with which we can process data. A programming language (such as R) allows us to work with these hardware components (i.e., control them) in order to perform our tasks (e.g., cleaning/analyzing data).
 
 ```{r components, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "(ref:components)", purl=FALSE}
-include_graphics("../img/script-hardware.png")
+include_graphics("../img/script-hardware_w.jpg")
 ```
 
-(ref:components) Basic components of a standard computing environment. Figure by @murrell_2009 (Figure 9.1, licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
+(ref:components) Basic components of a standard computing environment.
 
 
 - The component actually *processing* data is the Central Processing Unit (CPU). When using R to process data, R commands are translated into complex combinations of a small set of basic operations which the *CPU* then executes. 
@@ -174,10 +174,10 @@ First, we use our keyboard to enter the address of a website in the address-bar 
 
 
 ```{r htmldownload, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "(ref:htmldownload)", purl=FALSE}
-include_graphics("../img/script-htmldownload.png")
+include_graphics("../img/script-htmldownload_w.jpg")
 ```
 
-(ref:htmldownload) Components involved in 'visiting a website'. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
+(ref:htmldownload) Components involved in visiting a website.
 
 
 In this simple task of accessing/visiting a website, several parts of data are involved as shown in \@ref(fig:htmldownloaddata): 
@@ -188,11 +188,11 @@ In this simple task of accessing/visiting a website, several parts of data are i
 
 3. The HTML-document (the website) stored in the RAM
 
-```{r htmldownloaddata, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "(ref:htmldownloaddata)", purl=FALSE}
-include_graphics("../img/script-htmldownloaddata.png")
+```{r htmldownloaddata, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "(ref:htmldownloaddata)", purl=FALSE}
+include_graphics("../img/script-htmldownloaddata_w.jpg")
 ```
 
-(ref:htmldownloaddata) Data involved in 'visiting a website'. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
+(ref:htmldownloaddata) Data involved in visiting a website.
 
 What we just did with our browser can also be done via R. First, we tell R to download the webpage and read its source code into RAM:
 
@@ -229,10 +229,10 @@ Again, we can illustrate with a simple diagram which computer components were in
 
 
 ```{r ramcalc, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "(ref:ramcalc)", purl=FALSE}
-include_graphics("../img/script-ramcalc.png")
+include_graphics("../img/script-ramcalc_w.jpg")
 ```
 
-(ref:ramcalc) Accessing data in RAM, processing it, and storing the result in RAM. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
+(ref:ramcalc) Accessing data in RAM, processing it, and storing the result in RAM.
 
 
 Finally, we can tell R to store the source code of the downloaded webpage on our local hard drive.
@@ -245,10 +245,10 @@ That means we tell R to access the data stored in `clockHTML` in RAM and write t
 
 
 ```{r htmlstore, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "(ref:htmlstore)", purl=FALSE}
-include_graphics("../img/script-htmlstore.png")
+include_graphics("../img/script-htmlstore_w.jpg")
 ```
 
-(ref:htmlstore) Writing data stored in RAM to a Mass Storage device (hard drive). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).
+(ref:htmlstore) Writing data stored in RAM to a Mass Storage device (hard drive).
 
 
 
