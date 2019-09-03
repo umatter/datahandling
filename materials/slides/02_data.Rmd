@@ -544,8 +544,8 @@ include_graphics("../img/cpu_blackbox.png")
 
 &nbsp;
 
-```{r components, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Basic components of a standard computing environment. Figure by @murrell_2009 (Figure 9.1, licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
-include_graphics("../img/script-hardware.png")
+```{r components, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Basic components of a standard computing environment.", purl=FALSE}
+include_graphics("../img/script-hardware.jpg")
 ```
 
 ## Central Processing Unit

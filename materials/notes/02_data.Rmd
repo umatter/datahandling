@@ -251,7 +251,4 @@ include_graphics("../img/script-htmlstore_w.jpg")
 (ref:htmlstore) Writing data stored in RAM to a Mass Storage device (hard drive).
 
 
-
-
-
 # References
