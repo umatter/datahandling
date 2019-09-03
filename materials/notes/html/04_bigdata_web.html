@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -193,9 +194,9 @@ window.buildTabsets = function(tocID) {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -205,14 +206,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -221,9 +224,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -268,7 +271,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -364,7 +367,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -437,18 +439,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -527,63 +517,63 @@ David  Debbie  Dianne    12  female
 ...
 &lt;/temperatures&gt;</code></pre>
 <p>What features does the format have? What is its logic? Is there room for improvement? By using indentation and code highlighting, the XML data structure becomes more apparent.</p>
-<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot;<span class="kw">?&gt;</span>
-  <span class="kw">&lt;temperatures&gt;</span>
-    <span class="kw">&lt;variable&gt;</span>Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)<span class="kw">&lt;/variable&gt;</span>
-    <span class="kw">&lt;filename&gt;</span>ISCCPMonthly_avg.nc<span class="kw">&lt;/filename&gt;</span>
-    <span class="kw">&lt;filepath&gt;</span>/usr/local/fer_data/data/<span class="kw">&lt;/filepath&gt;</span>
-    <span class="kw">&lt;badflag&gt;</span>-1.E+34<span class="kw">&lt;/badflag&gt;</span>
-    <span class="kw">&lt;subset&gt;</span>48 points (TIME)<span class="kw">&lt;/subset&gt;</span>
-    <span class="kw">&lt;longitude&gt;</span>123.8W(-123.8)<span class="kw">&lt;/longitude&gt;</span>
-    <span class="kw">&lt;latitude&gt;</span>48.8S<span class="kw">&lt;/latitude&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-JAN-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;9.200012&quot;</span> <span class="kw">/&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-FEB-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;10.70001&quot;</span> <span class="kw">/&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-MAR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;7.5&quot;</span> <span class="kw">/&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-APR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;8.100006&quot;</span> <span class="kw">/&gt;</span>
-
-...
-  <span class="kw">&lt;/temperatures&gt;</span></code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">&lt;?xml</span> version=&quot;1.0&quot;<span class="kw">?&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="kw">&lt;temperatures&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">&lt;variable&gt;</span>Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)<span class="kw">&lt;/variable&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="kw">&lt;filename&gt;</span>ISCCPMonthly_avg.nc<span class="kw">&lt;/filename&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="kw">&lt;filepath&gt;</span>/usr/local/fer_data/data/<span class="kw">&lt;/filepath&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="kw">&lt;badflag&gt;</span>-1.E+34<span class="kw">&lt;/badflag&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="kw">&lt;subset&gt;</span>48 points (TIME)<span class="kw">&lt;/subset&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="kw">&lt;longitude&gt;</span>123.8W(-123.8)<span class="kw">&lt;/longitude&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="kw">&lt;latitude&gt;</span>48.8S<span class="kw">&lt;/latitude&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-JAN-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;9.200012&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-FEB-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;10.70001&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-MAR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;7.5&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-APR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;8.100006&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15"></a>...</span>
+<span id="cb4-16"><a href="#cb4-16"></a>  <span class="kw">&lt;/temperatures&gt;</span></span></code></pre></div>
 <p>First, note how special characters are used to define the structure of the document. We notice that <code>&lt;</code> and <code>&gt;</code>, containing some text label seem to play a key role in defining the structure. These building blocks are called ‘XML-tags’. We are free to choose what tags we want to use. In essence, we can define them ourselves in order to most properly describe the data. Moreover, the example data reveals the flexibility of XML to depict hierarchical structures.</p>
 <p>The actual content we know from the csv-type example above is nested between the ‘<code>temperatures</code>’-tags, indicating what the data is about.</p>
-<pre class="sourceCode xml"><code class="sourceCode xml">  <span class="kw">&lt;temperatures&gt;</span>
-...
-  <span class="kw">&lt;/temperatures&gt;</span></code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1"></a>  <span class="kw">&lt;temperatures&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>...</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="kw">&lt;/temperatures&gt;</span></span></code></pre></div>
 <p>Comparing the actual content between these tags with the csv-type format above, we further recognize that there are two principal ways to link variable names to values.</p>
-<pre class="sourceCode xml"><code class="sourceCode xml">    <span class="kw">&lt;variable&gt;</span>Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)<span class="kw">&lt;/variable&gt;</span>
-    <span class="kw">&lt;filename&gt;</span>ISCCPMonthly_avg.nc<span class="kw">&lt;/filename&gt;</span>
-    <span class="kw">&lt;filepath&gt;</span>/usr/local/fer_data/data/<span class="kw">&lt;/filepath&gt;</span>
-    <span class="kw">&lt;badflag&gt;</span>-1.E+34<span class="kw">&lt;/badflag&gt;</span>
-    <span class="kw">&lt;subset&gt;</span>48 points (TIME)<span class="kw">&lt;/subset&gt;</span>
-    <span class="kw">&lt;longitude&gt;</span>123.8W(-123.8)<span class="kw">&lt;/longitude&gt;</span>
-    <span class="kw">&lt;latitude&gt;</span>48.8S<span class="kw">&lt;/latitude&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-JAN-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;9.200012&quot;</span> <span class="kw">/&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-FEB-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;10.70001&quot;</span> <span class="kw">/&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-MAR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;7.5&quot;</span> <span class="kw">/&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-APR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;8.100006&quot;</span> <span class="kw">/&gt;</span></code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb6-1"><a href="#cb6-1"></a>    <span class="kw">&lt;variable&gt;</span>Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)<span class="kw">&lt;/variable&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="kw">&lt;filename&gt;</span>ISCCPMonthly_avg.nc<span class="kw">&lt;/filename&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="kw">&lt;filepath&gt;</span>/usr/local/fer_data/data/<span class="kw">&lt;/filepath&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="kw">&lt;badflag&gt;</span>-1.E+34<span class="kw">&lt;/badflag&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="kw">&lt;subset&gt;</span>48 points (TIME)<span class="kw">&lt;/subset&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="kw">&lt;longitude&gt;</span>123.8W(-123.8)<span class="kw">&lt;/longitude&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="kw">&lt;latitude&gt;</span>48.8S<span class="kw">&lt;/latitude&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-JAN-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;9.200012&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-FEB-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;10.70001&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-MAR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;7.5&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-APR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;8.100006&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
 <p>One way is to define opening and closing xml-tags with the variable name and surround the value with them, such as in <code>&lt;filename&gt;ISCCPMonthly_avg.nc&lt;/filename&gt;</code>. Another way would be to encapsule the values within one tag by defining tag-attributes such as in <code>&lt;case date=&quot;16-JAN-1994&quot; temperature=&quot;9.200012&quot; /&gt;</code>. In many situations, both approaches can make sense. For example, the way the temperature measurements are encoded in the example data set is based on the tag-attributes approach:</p>
-<pre class="sourceCode xml"><code class="sourceCode xml">    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-JAN-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;9.200012&quot;</span> <span class="kw">/&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-FEB-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;10.70001&quot;</span> <span class="kw">/&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-MAR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;7.5&quot;</span> <span class="kw">/&gt;</span>
-    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-APR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;8.100006&quot;</span> <span class="kw">/&gt;</span></code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb7-1"><a href="#cb7-1"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-JAN-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;9.200012&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-FEB-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;10.70001&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-MAR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;7.5&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="kw">&lt;case</span><span class="ot"> date=</span><span class="st">&quot;16-APR-1994&quot;</span><span class="ot"> temperature=</span><span class="st">&quot;8.100006&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
 <p>We could rewrite this by only using XML tags and no attributes:</p>
-<pre class="sourceCode xml"><code class="sourceCode xml">  <span class="kw">&lt;cases&gt;</span>    
-    <span class="kw">&lt;case&gt;</span>
-      <span class="kw">&lt;date&gt;</span>16-JAN-1994<span class="kw">&lt;date/&gt;</span>
-      <span class="kw">&lt;temperature&gt;</span>9.200012<span class="kw">&lt;temperature/&gt;</span>
-    <span class="kw">&lt;case/&gt;</span>
-    <span class="kw">&lt;case&gt;</span>
-      <span class="kw">&lt;date&gt;</span>16-FEB-1994<span class="kw">&lt;date/&gt;</span>
-      <span class="kw">&lt;temperature&gt;</span>10.70001<span class="kw">&lt;temperature/&gt;</span>
-    <span class="kw">&lt;case/&gt;</span>
-    <span class="kw">&lt;case&gt;</span>
-      <span class="kw">&lt;date&gt;</span>16-MAR-1994<span class="kw">&lt;date/&gt;</span>
-      <span class="kw">&lt;temperature&gt;</span>7.5<span class="kw">&lt;temperature/&gt;</span>
-    <span class="kw">&lt;case/&gt;</span>
-    <span class="kw">&lt;case&gt;</span>
-      <span class="kw">&lt;date&gt;</span>16-APR-1994<span class="kw">&lt;date/&gt;</span>
-      <span class="kw">&lt;temperature&gt;</span>8.100006<span class="kw">&lt;temperature/&gt;</span>
-    <span class="kw">&lt;case/&gt;</span>
-  <span class="kw">&lt;cases/&gt;</span></code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb8-1"><a href="#cb8-1"></a>  <span class="kw">&lt;cases&gt;</span>    </span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="kw">&lt;case&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>      <span class="kw">&lt;date&gt;</span>16-JAN-1994<span class="kw">&lt;date/&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>      <span class="kw">&lt;temperature&gt;</span>9.200012<span class="kw">&lt;temperature/&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="kw">&lt;case/&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="kw">&lt;case&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>      <span class="kw">&lt;date&gt;</span>16-FEB-1994<span class="kw">&lt;date/&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>      <span class="kw">&lt;temperature&gt;</span>10.70001<span class="kw">&lt;temperature/&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="kw">&lt;case/&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="kw">&lt;case&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>      <span class="kw">&lt;date&gt;</span>16-MAR-1994<span class="kw">&lt;date/&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>      <span class="kw">&lt;temperature&gt;</span>7.5<span class="kw">&lt;temperature/&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="kw">&lt;case/&gt;</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="kw">&lt;case&gt;</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>      <span class="kw">&lt;date&gt;</span>16-APR-1994<span class="kw">&lt;date/&gt;</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>      <span class="kw">&lt;temperature&gt;</span>8.100006<span class="kw">&lt;temperature/&gt;</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>    <span class="kw">&lt;case/&gt;</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>  <span class="kw">&lt;cases/&gt;</span></span></code></pre></div>
 <p>As long as we follow the basic XML syntax both versions are valid and XML parsers can read them equally well.</p>
 <p>Note the key differences of storing data in XML format in contrast to a flat, table-like format such as CSV:</p>
 <ul>
@@ -596,64 +586,64 @@ David  Debbie  Dianne    12  female
 <h1><span class="header-section-number">2</span> Deciphering JSON</h1>
 <p>In many web applications, JSON serves the same purpose as XML<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. An obvious difference between the two conventions is that JSON does not use tags but attribute-value pairs to annotate data. The following code example shows how the same data can be represented in XML or in JSON (example code taken from <a href="https://en.wikipedia.org/wiki/JSON" class="uri">https://en.wikipedia.org/wiki/JSON</a>):</p>
 <p><em>XML:</em></p>
-<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;person&gt;</span>
-  <span class="kw">&lt;firstName&gt;</span>John<span class="kw">&lt;/firstName&gt;</span>
-  <span class="kw">&lt;lastName&gt;</span>Smith<span class="kw">&lt;/lastName&gt;</span>
-  <span class="kw">&lt;age&gt;</span>25<span class="kw">&lt;/age&gt;</span>
-  <span class="kw">&lt;address&gt;</span>
-    <span class="kw">&lt;streetAddress&gt;</span>21 2nd Street<span class="kw">&lt;/streetAddress&gt;</span>
-    <span class="kw">&lt;city&gt;</span>New York<span class="kw">&lt;/city&gt;</span>
-    <span class="kw">&lt;state&gt;</span>NY<span class="kw">&lt;/state&gt;</span>
-    <span class="kw">&lt;postalCode&gt;</span>10021<span class="kw">&lt;/postalCode&gt;</span>
-  <span class="kw">&lt;/address&gt;</span>
-  <span class="kw">&lt;phoneNumber&gt;</span>
-    <span class="kw">&lt;type&gt;</span>home<span class="kw">&lt;/type&gt;</span>
-    <span class="kw">&lt;number&gt;</span>212 555-1234<span class="kw">&lt;/number&gt;</span>
-  <span class="kw">&lt;/phoneNumber&gt;</span>
-  <span class="kw">&lt;phoneNumber&gt;</span>
-    <span class="kw">&lt;type&gt;</span>fax<span class="kw">&lt;/type&gt;</span>
-    <span class="kw">&lt;number&gt;</span>646 555-4567<span class="kw">&lt;/number&gt;</span>
-  <span class="kw">&lt;/phoneNumber&gt;</span>
-  <span class="kw">&lt;gender&gt;</span>
-    <span class="kw">&lt;type&gt;</span>male<span class="kw">&lt;/type&gt;</span>
-  <span class="kw">&lt;/gender&gt;</span>
-<span class="kw">&lt;/person&gt;</span></code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">&lt;person&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="kw">&lt;firstName&gt;</span>John<span class="kw">&lt;/firstName&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="kw">&lt;lastName&gt;</span>Smith<span class="kw">&lt;/lastName&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="kw">&lt;age&gt;</span>25<span class="kw">&lt;/age&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="kw">&lt;address&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="kw">&lt;streetAddress&gt;</span>21 2nd Street<span class="kw">&lt;/streetAddress&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="kw">&lt;city&gt;</span>New York<span class="kw">&lt;/city&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="kw">&lt;state&gt;</span>NY<span class="kw">&lt;/state&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="kw">&lt;postalCode&gt;</span>10021<span class="kw">&lt;/postalCode&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="kw">&lt;/address&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a>  <span class="kw">&lt;phoneNumber&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>    <span class="kw">&lt;type&gt;</span>home<span class="kw">&lt;/type&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>    <span class="kw">&lt;number&gt;</span>212 555-1234<span class="kw">&lt;/number&gt;</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>  <span class="kw">&lt;/phoneNumber&gt;</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>  <span class="kw">&lt;phoneNumber&gt;</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>    <span class="kw">&lt;type&gt;</span>fax<span class="kw">&lt;/type&gt;</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>    <span class="kw">&lt;number&gt;</span>646 555-4567<span class="kw">&lt;/number&gt;</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a>  <span class="kw">&lt;/phoneNumber&gt;</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a>  <span class="kw">&lt;gender&gt;</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a>    <span class="kw">&lt;type&gt;</span>male<span class="kw">&lt;/type&gt;</span></span>
+<span id="cb9-21"><a href="#cb9-21"></a>  <span class="kw">&lt;/gender&gt;</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a><span class="kw">&lt;/person&gt;</span></span></code></pre></div>
 <p><em>JSON:</em></p>
-<pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span><span class="dt">&quot;firstName&quot;</span><span class="fu">:</span> <span class="st">&quot;John&quot;</span><span class="fu">,</span>
-  <span class="dt">&quot;lastName&quot;</span><span class="fu">:</span> <span class="st">&quot;Smith&quot;</span><span class="fu">,</span>
-  <span class="dt">&quot;age&quot;</span><span class="fu">:</span> <span class="dv">25</span><span class="fu">,</span>
-  <span class="dt">&quot;address&quot;</span><span class="fu">:</span> <span class="fu">{</span>
-    <span class="dt">&quot;streetAddress&quot;</span><span class="fu">:</span> <span class="st">&quot;21 2nd Street&quot;</span><span class="fu">,</span>
-    <span class="dt">&quot;city&quot;</span><span class="fu">:</span> <span class="st">&quot;New York&quot;</span><span class="fu">,</span>
-    <span class="dt">&quot;state&quot;</span><span class="fu">:</span> <span class="st">&quot;NY&quot;</span><span class="fu">,</span>
-    <span class="dt">&quot;postalCode&quot;</span><span class="fu">:</span> <span class="st">&quot;10021&quot;</span>
-  <span class="fu">},</span>
-  <span class="dt">&quot;phoneNumber&quot;</span><span class="fu">:</span> <span class="ot">[</span>
-    <span class="fu">{</span>
-      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;home&quot;</span><span class="fu">,</span>
-      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;212 555-1234&quot;</span>
-    <span class="fu">}</span><span class="ot">,</span>
-    <span class="fu">{</span>
-      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;fax&quot;</span><span class="fu">,</span>
-      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;646 555-4567&quot;</span>
-    <span class="fu">}</span>
-  <span class="ot">]</span><span class="fu">,</span>
-  <span class="dt">&quot;gender&quot;</span><span class="fu">:</span> <span class="fu">{</span>
-    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;male&quot;</span>
-  <span class="fu">}</span>
-<span class="fu">}</span></code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">{</span><span class="dt">&quot;firstName&quot;</span><span class="fu">:</span> <span class="st">&quot;John&quot;</span><span class="fu">,</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="dt">&quot;lastName&quot;</span><span class="fu">:</span> <span class="st">&quot;Smith&quot;</span><span class="fu">,</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="dt">&quot;age&quot;</span><span class="fu">:</span> <span class="dv">25</span><span class="fu">,</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="dt">&quot;address&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>    <span class="dt">&quot;streetAddress&quot;</span><span class="fu">:</span> <span class="st">&quot;21 2nd Street&quot;</span><span class="fu">,</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>    <span class="dt">&quot;city&quot;</span><span class="fu">:</span> <span class="st">&quot;New York&quot;</span><span class="fu">,</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>    <span class="dt">&quot;state&quot;</span><span class="fu">:</span> <span class="st">&quot;NY&quot;</span><span class="fu">,</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>    <span class="dt">&quot;postalCode&quot;</span><span class="fu">:</span> <span class="st">&quot;10021&quot;</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">},</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="dt">&quot;phoneNumber&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>    <span class="fu">{</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;home&quot;</span><span class="fu">,</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;212 555-1234&quot;</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>    <span class="fu">{</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;fax&quot;</span><span class="fu">,</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a>      <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="st">&quot;646 555-4567&quot;</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="fu">}</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a>  <span class="dt">&quot;gender&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a>    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;male&quot;</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a>  <span class="fu">}</span></span>
+<span id="cb10-23"><a href="#cb10-23"></a><span class="fu">}</span></span></code></pre></div>
 <p>Note that despite the differences of the syntax, the similarities regarding the nesting structure are visible in both formats. For example, <code>postalCode</code> is embedded in <code>address</code>, <code>firstname</code> and <code>lastname</code> are at the same nesting level, etc.</p>
 <p>Both XML and JSON are predominantly used to store rather complex, multi-dimensional data. Because they are both human- and machine-readable, these formats are often used to transfer data between different applications and users on the Web. Therefore, we encounter these data fromats particularly often when we collect data from online sources. Moreover, in the economics/social science context, large and complex data sets (‘Big Data’) often come along in these formats, exactly because of the increasing importance of the Internet as a data source for empirical research in these disciplines.</p>
 </div>
 <div id="parsing-xml-and-json-in-r" class="section level1">
 <h1><span class="header-section-number">3</span> Parsing XML and JSON in R</h1>
 <p>As in the case of CSV-like formats, there are several parsers in R that we can use to read XML and JSON data. The following examples are based on the example code shown above (the two text-files <code>persons.json</code> and <code>persons.xml</code>)</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load packages</span>
-<span class="kw">library</span>(xml2)
-
-<span class="co"># parse XML, represent XML document as R object</span>
-xml_doc &lt;-<span class="st"> </span><span class="kw">read_xml</span>(<span class="st">&quot;persons.xml&quot;</span>)
-xml_doc</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># load packages</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">library</span>(xml2)</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co"># parse XML, represent XML document as R object</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>xml_doc &lt;-<span class="st"> </span><span class="kw">read_xml</span>(<span class="st">&quot;persons.xml&quot;</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>xml_doc</span></code></pre></div>
 <pre><code>## {xml_document}
 ## &lt;person&gt;
 ## [1] &lt;firstName&gt;John&lt;/firstName&gt;
@@ -663,14 +653,14 @@ xml_doc</code></pre>
 ## [5] &lt;phoneNumber&gt;\n  &lt;type&gt;home&lt;/type&gt;\n  &lt;number&gt;212 555-1234&lt;/number&gt;\n&lt;/phoneNumber&gt;
 ## [6] &lt;phoneNumber&gt;\n  &lt;type&gt;fax&lt;/type&gt;\n  &lt;number&gt;646 555-4567&lt;/number&gt;\n&lt;/phoneNumber&gt;
 ## [7] &lt;gender&gt;\n  &lt;type&gt;male&lt;/type&gt;\n&lt;/gender&gt;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load packages</span>
-<span class="kw">library</span>(jsonlite)
-
-<span class="co"># parse the JSON-document shown in the example above</span>
-json_doc &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;persons.json&quot;</span>)
-
-<span class="co"># check the structure</span>
-<span class="kw">str</span>(json_doc)</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># load packages</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">library</span>(jsonlite)</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co"># parse the JSON-document shown in the example above</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>json_doc &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;persons.json&quot;</span>)</span>
+<span id="cb13-6"><a href="#cb13-6"></a></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="co"># check the structure</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="kw">str</span>(json_doc)</span></code></pre></div>
 <pre><code>## List of 6
 ##  $ firstName  : chr &quot;John&quot;
 ##  $ lastName   : chr &quot;Smith&quot;
@@ -680,7 +670,7 @@ json_doc &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span cl
 ##   ..$ city         : chr &quot;New York&quot;
 ##   ..$ state        : chr &quot;NY&quot;
 ##   ..$ postalCode   : chr &quot;10021&quot;
-##  $ phoneNumber:'data.frame': 2 obs. of  2 variables:
+##  $ phoneNumber:&#39;data.frame&#39;: 2 obs. of  2 variables:
 ##   ..$ type  : chr [1:2] &quot;home&quot; &quot;fax&quot;
 ##   ..$ number: chr [1:2] &quot;212 555-1234&quot; &quot;646 555-4567&quot;
 ##  $ gender     :List of 1
@@ -693,16 +683,16 @@ json_doc &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span cl
 <div id="write-a-simple-webpage-with-html" class="section level2">
 <h2><span class="header-section-number">4.1</span> Write a simple webpage with HTML</h2>
 <p>We start by opening a new text-file in RStudio (File-&gt;New File-&gt;TextFile). On the first line, we tell the browser what kind of document this is with the <code>&lt;!DOCTYPE&gt;</code> declaration set to <code>html</code>. In addition, the content of the whole HTML document must be put within <code>&lt;html&gt;</code> and <code>&lt;/html&gt;</code>, which represents the ‘root’ of the HTML document. In this you already recognize the typical (XML-like) annotation style in HTML with so-called HTML tags, starting with <code>&lt;</code> and ending with <code>&gt;</code> or <code>/&gt;</code> in the case of the closing tag, respectively. What is defined between two tags is either another HTML tag or the actual content. A HTML document usually consists of two main components: the head (everything between <code>&lt;head&gt;</code> and <code>&lt;/head&gt;</code> ) and the body. The head typically contains meta data describing the whole document like the title of the document: <code>&lt;title&gt;hello, world&lt;/title&gt;</code>. The body (everything between <code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code>) contains all kind of specific content: text, images, tables, links, etc. In our very simple example, we just add a few words of plain text. We can now save this text document as <code>mysite.html</code> and open it in a web browser.</p>
-<pre class="sourceCode html"><code class="sourceCode html">     <span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
-
-     <span class="kw">&lt;html&gt;</span>
-         <span class="kw">&lt;head&gt;</span>
-             <span class="kw">&lt;title&gt;</span>hello, world<span class="kw">&lt;/title&gt;</span>
-         <span class="kw">&lt;/head&gt;</span>
-         <span class="kw">&lt;body&gt;</span>
-             <span class="kw">&lt;h2&gt;</span> hello, world <span class="kw">&lt;/h2&gt;</span>
-         <span class="kw">&lt;/body&gt;</span>
-     <span class="kw">&lt;/html&gt;</span></code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1"></a>     <span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a>     <span class="kw">&lt;html&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>         <span class="kw">&lt;head&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>             <span class="kw">&lt;title&gt;</span>hello, world<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>         <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>         <span class="kw">&lt;body&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>             <span class="kw">&lt;h2&gt;</span> hello, world <span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>         <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a>     <span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <p>From this example we can learn a few important characteristics of HTML:</p>
 <ol style="list-style-type: decimal">
 <li>It becomes apparent how HTML is used to annotate/‘mark up’ data/text (with tags) in order to define the document’s content, structure, and hierarchy. Thus if we want to know what the title of this document is, we have to look for the <code>&lt;title&gt;</code>-tag.</li>
@@ -731,43 +721,43 @@ Figure 4.2: Source: <a href="https://en.wikipedia.org/wiki/Economy_of_Switzerlan
 </div>
 
 <p>As in the example shown in the data processing lecture (‘world population clock’), we first tell R to read the lines of text from the HTML document that constitutes the webpage.</p>
-<pre class="sourceCode r"><code class="sourceCode r">swiss_econ &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/Economy_of_Switzerland&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>swiss_econ &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/Economy_of_Switzerland&quot;</span>)</span></code></pre></div>
 <p>And we can check if everything worked out well by having a look at the first lines of the webpage’s HTML code:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(swiss_econ)</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">head</span>(swiss_econ)</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;!DOCTYPE html&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 ## [2] &quot;&lt;html class=\&quot;client-nojs\&quot; lang=\&quot;en\&quot; dir=\&quot;ltr\&quot;&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 ## [3] &quot;&lt;head&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 ## [4] &quot;&lt;meta charset=\&quot;UTF-8\&quot;/&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 ## [5] &quot;&lt;title&gt;Economy of Switzerland - Wikipedia&lt;/title&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-## [6] &quot;&lt;script&gt;document.documentElement.className=document.documentElement.className.replace(/(^|\\s)client-nojs(\\s|$)/,\&quot;$1client-js$2\&quot;);RLCONF={\&quot;wgCanonicalNamespace\&quot;:\&quot;\&quot;,\&quot;wgCanonicalSpecialPageName\&quot;:!1,\&quot;wgNamespaceNumber\&quot;:0,\&quot;wgPageName\&quot;:\&quot;Economy_of_Switzerland\&quot;,\&quot;wgTitle\&quot;:\&quot;Economy of Switzerland\&quot;,\&quot;wgCurRevisionId\&quot;:909013338,\&quot;wgRevisionId\&quot;:909013338,\&quot;wgArticleId\&quot;:27465,\&quot;wgIsArticle\&quot;:!0,\&quot;wgIsRedirect\&quot;:!1,\&quot;wgAction\&quot;:\&quot;view\&quot;,\&quot;wgUserName\&quot;:null,\&quot;wgUserGroups\&quot;:[\&quot;*\&quot;],\&quot;wgCategories\&quot;:[\&quot;CS1 maint: Archived copy as title\&quot;,\&quot;CS1 German-language sources (de)\&quot;,\&quot;Articles with German-language external links\&quot;,\&quot;Webarchive template wayback links\&quot;,\&quot;Articles with French-language external links\&quot;,\&quot;Wikipedia articles needing clarification from January 2019\&quot;,\&quot;Articles containing potentially dated statements from 2006\&quot;,\&quot;All articles containing potentially dated statements\&quot;,\&quot;Articles containing potentially dated statements from 2012\&quot;,\&quot;Articles needing more viewpoints from January 2011\&quot;,\&quot;Commons category link from Wikidata\&quot;&quot;</code></pre>
+## [6] &quot;&lt;script&gt;document.documentElement.className=document.documentElement.className.replace(/(^|\\s)client-nojs(\\s|$)/,\&quot;$1client-js$2\&quot;);RLCONF={\&quot;wgCanonicalNamespace\&quot;:\&quot;\&quot;,\&quot;wgCanonicalSpecialPageName\&quot;:!1,\&quot;wgNamespaceNumber\&quot;:0,\&quot;wgPageName\&quot;:\&quot;Economy_of_Switzerland\&quot;,\&quot;wgTitle\&quot;:\&quot;Economy of Switzerland\&quot;,\&quot;wgCurRevisionId\&quot;:913726744,\&quot;wgRevisionId\&quot;:913726744,\&quot;wgArticleId\&quot;:27465,\&quot;wgIsArticle\&quot;:!0,\&quot;wgIsRedirect\&quot;:!1,\&quot;wgAction\&quot;:\&quot;view\&quot;,\&quot;wgUserName\&quot;:null,\&quot;wgUserGroups\&quot;:[\&quot;*\&quot;],\&quot;wgCategories\&quot;:[\&quot;CS1 maint: Archived copy as title\&quot;,\&quot;CS1 German-language sources (de)\&quot;,\&quot;Articles with German-language external links\&quot;,\&quot;Webarchive template wayback links\&quot;,\&quot;Articles with French-language external links\&quot;,\&quot;Wikipedia articles needing clarification from January 2019\&quot;,\&quot;Articles containing potentially dated statements from 2006\&quot;,\&quot;All articles containing potentially dated statements\&quot;,\&quot;Articles containing potentially dated statements from 2012\&quot;,\&quot;Articles needing more viewpoints from January 2011\&quot;,\&quot;Commons category link from Wikidata\&quot;&quot;</code></pre>
 <p>The next thing we do is to look at how we can filter the webpage for certain information. For example, we search in the source code the line that contains the part of the webpage with the table, showing data on the Swiss GDP:</p>
-<pre class="sourceCode r"><code class="sourceCode r">line_number &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">'US Dollar Exchange'</span>, swiss_econ)</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>line_number &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&#39;US Dollar Exchange&#39;</span>, swiss_econ)</span></code></pre></div>
 <p>Recall: we ask R on which line in <code>swiss_econ</code> (the source code stored in RAM) the text <code>US Dollar Exchange</code> is and store the answer (the line number) in RAM under the variable name <code>line_number</code>.</p>
 <p>Then, we check on which line the text was found.</p>
-<pre class="sourceCode r"><code class="sourceCode r">line_number</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>line_number</span></code></pre></div>
 <pre><code>## [1] 197</code></pre>
 <p>Knowing that the R object <code>swiss_econ</code> is a character vector (with each element containing one line of HTML code as a character string), we can look at this particular code:</p>
-<pre class="sourceCode r"><code class="sourceCode r">swiss_econ[line_number]</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>swiss_econ[line_number]</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;th&gt;US Dollar Exchange&quot;</code></pre>
 <p>Note that this rather primitive approach is ok to extract a cetain chunk of code from an HTML document, it is far from practical when we want to extract specific parts of data (the actual content, not including HTML code). In fact, so far we have completely ignored that the HTML-tags actually give some structure to the data in this document. That is, we simply have read the entire document line by line, not making a difference between code and data. The approach to filter the document could have equally well been taken for a plain text file.</p>
 <p>If we want to exploit the structure given by HTML, we need to <em>parse</em> the HTML when reading the webpage into R. We can do this with the help of functions provided in the <code>rvest</code> package:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install package if not yet installed</span>
-<span class="co"># install.packages(&quot;rvest&quot;)</span>
-
-<span class="co"># load the package</span>
-<span class="kw">library</span>(rvest)</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># install package if not yet installed</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="co"># install.packages(&quot;rvest&quot;)</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co"># load the package</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="kw">library</span>(rvest)</span></code></pre></div>
 <p>After loading the package, we read the webpage into R, but this time using a function that parses the HTML code:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># parse the webpage, show the content</span>
-swiss_econ_parsed &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/Economy_of_Switzerland&quot;</span>)
-swiss_econ_parsed</code></pre>
-<pre><code>## {xml_document}
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># parse the webpage, show the content</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>swiss_econ_parsed &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/Economy_of_Switzerland&quot;</span>)</span>
+<span id="cb25-3"><a href="#cb25-3"></a>swiss_econ_parsed</span></code></pre></div>
+<pre><code>## {html_document}
 ## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
 ## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;meta charset=&quot;U ...
 ## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject mw-editable page-Eco ...</code></pre>
 <p>Now we can easily separate the data/text from the html code. For example, we can extract the HTML table containing the data we are interested in as a <code>data.frames</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">tab_node &lt;-<span class="st"> </span><span class="kw">html_node</span>(swiss_econ_parsed, <span class="dt">xpath =</span> <span class="st">&quot;//*[@id='mw-content-text']/div/table[2]&quot;</span>)
-tab &lt;-<span class="st"> </span><span class="kw">html_table</span>(tab_node)
-tab</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>tab_node &lt;-<span class="st"> </span><span class="kw">html_node</span>(swiss_econ_parsed, <span class="dt">xpath =</span> <span class="st">&quot;//*[@id=&#39;mw-content-text&#39;]/div/table[2]&quot;</span>)</span>
+<span id="cb27-2"><a href="#cb27-2"></a>tab &lt;-<span class="st"> </span><span class="kw">html_table</span>(tab_node)</span>
+<span id="cb27-3"><a href="#cb27-3"></a>tab</span></code></pre></div>
 <pre><code>##    Year GDP (billions of CHF) US Dollar Exchange
 ## 1  1980                   184        1.67 Francs
 ## 2  1985                   244        2.43 Francs
@@ -801,8 +791,8 @@ tab</code></pre>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Not that programs running on the server side are frequently capable of returning the same data in either format<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>The systematic collection and extraction of data from such web sources (often referred to as Web Data Mining) goes well beyond the scope of this course.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Not that programs running on the server side are frequently capable of returning the same data in either format<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>The systematic collection and extraction of data from such web sources (often referred to as Web Data Mining) goes well beyond the scope of this course.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -823,6 +813,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
