@@ -307,20 +307,30 @@ for (i in 1:n) {
 
 ## Nested `for`-loops
 
+```{r}
+# matrix to be summed up
+numbers_matrix <- matrix(1:20, ncol = 4)
+numbers_matrix
+
+```
+
+## Nested `for`-loops
+
 ```{r eval=FALSE}
-# number of iterations in outer loop
-n <- 100
-# start outer loop
-for (i in 1:n) {
-
-     # number of iterations in inner loop
-     m <- 4
+# number of iterations for outer loop
+m <- ncol(numbers_matrix)
+# number of iterations for inner loop
+n <- nrow(numbers_matrix)
+# start outer loop (loop over columns of matrix)
+for (j in 1:m) {
      # start inner loop
-     for (j in 1:m) {
-
-          # BODY
+     # initiate total
+     total_sum <- 0
+     for (i in 1:n) {
+          total_sum <- total_sum + numbers_matrix[i, j]
+          }
+     print(total_sum)
      }
-}
 
 ```
 
