@@ -20,5 +20,6 @@ rm materials/notes/*.log
 rm materials/notes/*.pdf
 rm materials/slides/*.html
 rm -r materials/slides/html/*_files
+rm -r materials/slides/*_files
 rm -r materials/notes/*_files
 rm materials/sourcecode/*Conflict*.R
