@@ -39,9 +39,8 @@ library(knitr)
 ## Exam for exchange students
 
 - Exchange students who need to take the exam before the central exam block:
-    - Notify me until end of September: *ulrich.matter@unisg.ch*!
-    - Option for a decentral exam during the term (probably the day of the last lecture).
-    
+    - Notify the course TA's until the end of September: *philine.widmer@unisg.ch*, *mirjam.baechli@unisg.ch*!
+    - Decentral exam for exchange students: *19 December 2019*.
 
 
 # Recap: Data Science, Data Pipeline
@@ -81,7 +80,7 @@ include_graphics("../img/domestication.jpg")
 
 ----
 
-```{r contract, echo=FALSE, out.width = "70%", fig.align='center', fig.cap= "Sumerian contract: selling of a field and a house. Shuruppak, pre-cuneiform script. Shuruppak, 2600 BC.  (Picture by Marie-Lan Nguyen 2005, public domain).", purl=FALSE}
+```{r contract, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Sumerian contract: selling of a field and a house. Shuruppak, pre-cuneiform script. Shuruppak, 2600 BC.  (Picture by Marie-Lan Nguyen 2005, public domain).", purl=FALSE}
 include_graphics("../img/sales_contract.jpg")
 ```
 
@@ -114,26 +113,26 @@ More advanced economy: *more data to handle!*
 
 ---
 
-```{r pebbles, echo=FALSE, out.width = "75%", fig.align='center', purl=FALSE}
+```{r pebbles, echo=FALSE, out.width = "55%", fig.align='center', purl=FALSE}
 include_graphics("../img/pebbles.jpg")
 ```
 
 
 ---
 
-```{r shells, echo=FALSE, out.width = "95%", fig.align='center', purl=FALSE}
+```{r shells, echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
 include_graphics("../img/shells.jpg")
 ```
 
 ---
 
-```{r ancientabacus, echo=FALSE, out.width = "95%", fig.align='center', purl=FALSE}
+```{r ancientabacus, echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
 include_graphics("../img/ancient_abacus_white.png")
 ```
 
 ----
 
-```{r newabacus, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
+```{r newabacus, echo=FALSE, out.width = "80%", fig.align='center', purl=FALSE}
 include_graphics("../img/new_abacus.jpg")
 ```
 
@@ -508,7 +507,7 @@ In both of these domains we mainly work with one simple type of document: *text 
 
 ## Text-editors: RStudio
 
-```{r echo=FALSE, fig.align='center', out.width="55%"}
+```{r echo=FALSE, fig.align='center', out.width="45%"}
 
 include_graphics("../img/rstudio.png")
 
@@ -520,7 +519,7 @@ Install RStudio from [here](https://www.rstudio.com/products/rstudio/download/#d
 
 ## Text-editors: Atom
 
-```{r echo=FALSE, fig.align='center', out.width="55%"}
+```{r echo=FALSE, fig.align='center', out.width="45%"}
 
 include_graphics("../img/atom.png")
 
@@ -611,6 +610,10 @@ include_graphics("../img/harddrive.jpg")
 
 ```{r output, echo=FALSE, out.width = "10%", fig.align='center', purl=FALSE}
 include_graphics("../img/script-screen.png")
+```
+
+```{r screen, echo=FALSE, out.width = "55%", fig.align='center', purl=FALSE}
+include_graphics("../img/screen.png")
 ```
 
 
