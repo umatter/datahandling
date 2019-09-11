@@ -101,7 +101,7 @@ df_merged
 ## Merging (joining) datasets: concept
 
 
-```{r setupjoin, echo=FALSE, out.width = "70%", fig.align='center', fig.cap= 'Join setup. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
+```{r setupjoin, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= 'Join setup. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-setup.png")
 ```
 
@@ -109,7 +109,7 @@ include_graphics("../img/join-setup.png")
 ## Merging (joining) datasets: concept
 
 
-```{r setupjoin2, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Join setup. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
+```{r setupjoin2, echo=FALSE, out.width = "70%", fig.align='center', fig.cap= 'Join setup. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-setup2.png")
 ```
 
@@ -119,6 +119,10 @@ include_graphics("../img/join-setup2.png")
 ## Merging (joining) datasets: concept
 
 *Merge: Inner join*
+
+<br>
+
+
 ```{r innerjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Inner join. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-inner.png")
 ```
@@ -127,6 +131,9 @@ include_graphics("../img/join-inner.png")
 ## Merging (joining) datasets: concept
 
 *Merge all x: Left join*
+
+<br>
+
 ```{r leftjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Outer join. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-left.png")
 ```
@@ -135,6 +142,9 @@ include_graphics("../img/join-left.png")
 ## Merging (joining) datasets: concept
 
 *Merge all y: Right join*
+
+<br>
+
 ```{r rightjoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Outer join. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-right.png")
 ```
@@ -143,6 +153,10 @@ include_graphics("../img/join-right.png")
 ## Merging (joining) datasets: concept
 
 *Merge all x and all y: Full join*
+
+<br>
+
+
 ```{r fulljoin, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= 'Outer join. Source: @wickham_grolemund2017, licensed under the [Creative Commons Attribution-Share Alike 3.0 United States](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) license.', purl=FALSE}
 include_graphics("../img/join-full.png")
 ```
@@ -371,7 +385,7 @@ sample <- sample[ sample > -0.6 & sample < 0.6]
 ```{r}
 
 
-# plot the distribution again and see how the tails of it (and thus the kurtosis has changed)
+# plot the distribution again and see how the tails have changed
 hist(sample)
 
 # re-calculate the kurtosis
@@ -469,7 +483,8 @@ mean(results)
 ## LLN in R
 
 ```{r lln, echo=TRUE}
-# essentially, what we are doing here is repeating the experiment above many times, each time increasing n
+# essentially, what we are doing here is repeating the experiment above many times,
+# each time increasing n
 # define the set of sample sizes
 ns <- seq(from = 10, to = 10000, by = 10)
 # initiate an empty list to record the results
