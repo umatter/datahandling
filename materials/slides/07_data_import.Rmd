@@ -1,6 +1,6 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: 'Lecture 6:<br>Data Sources, Data Gathering, Data Import'
+subtitle: 'Lecture 7:<br>Data Sources, Data Gathering, Data Import'
 author: "Prof. Dr. Ulrich Matter"
 date: "24/10/2019"
 output:   
