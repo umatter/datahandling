@@ -38,7 +38,7 @@ pre {
 
 ## for-loop
 
-```{r echo=FALSE, fig.align='center', out.width="45%"}
+```{r echo=FALSE, fig.align='center', out.width="40%"}
 include_graphics("../img/forloop_black.png")
 ```
 
@@ -131,7 +131,6 @@ The first key bottleneck in the data pipeline:
 - XML and JSON (useful for complex/high-dimensional data sets)
 - HTML (a markup language to define the structure and layout of webpages)
 - Unstructured text
-
 
 ## Sources/formats in economics
 
@@ -306,7 +305,7 @@ swiss_imported <- read_csv("data/swiss.csv")
 ```
 
 
-## Import and parsing with `readr`^[This is a summary of chapter 8 in @wickham_grolemund2017]
+## Import and parsing with `readr`
 
 - Why `readr`?
   - Functions for all common rectangular data formats.
@@ -432,7 +431,7 @@ guess_parser(c("12:00", "14:30", "20:01"))
 
 Needs additional R-package: `readxl`.
 
-```{r eval=FALSE}
+```{r eval=FALSE, warning=FALSE}
 # install the package 
 install.packages("readxl")
 ```
@@ -442,7 +441,7 @@ install.packages("readxl")
 Then we load this additional package ('library') and use the package's `read_excel()`-function to import data from an excel-sheet. 
 
 
-```{r echo=FALSE, purl=FALSE}
+```{r echo=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
 # load the package
 library(readxl)
 
@@ -471,7 +470,7 @@ swiss_imported <- read_excel("data/swiss.xlsx")
 
 ## Data from other data analysis software 
 
-```{r echo=FALSE, purl=FALSE}
+```{r echo=FALSE, purl=FALSE, warning=FALSE}
 # install the package (if not yet installed):
 # install.packages("haven")
 
@@ -502,7 +501,7 @@ swiss_imported <- read_spss("data/swiss.sav")
 
 ## XML in R
 
-```{r}
+```{r echo=FALSE}
 # load packages
 library(xml2)
 
@@ -511,6 +510,17 @@ xml_doc <- read_xml("../../data/customers.xml")
 xml_doc
 
 ```
+
+```{r eval=FALSE}
+# load packages
+library(xml2)
+
+# parse XML, represent XML document as R object
+xml_doc <- read_xml("../../data/customers.xml")
+xml_doc
+
+```
+
 
 ## XML in R: tree-structure
 
@@ -566,7 +576,19 @@ xml_text(customer_names)
 
 ## JSON in R
 
-```{r}
+```{r echo=FALSE}
+# load packages
+library(jsonlite)
+
+# parse the JSON-document shown in the example above
+json_doc <- fromJSON("../../data/person.json")
+
+# look at the structure of the document
+str(json_doc)
+
+```
+
+```{r eval=FALSE}
 # load packages
 library(jsonlite)
 
