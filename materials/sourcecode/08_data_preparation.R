@@ -7,7 +7,8 @@ messy_df <- data.frame(last_name = c("Wayne", "Trump", "Karl Marx"),
                        first_name = c("John", "Melania", ""),
                        gender = c("male", "female", "Man"),
                        date = c("2018-11-15", "2018.11.01", "2018/11/02"),
-                       income = c("150,000", "250000", "10000"), stringsAsFactors = FALSE)
+                       income = c("150,000", "250000", "10000"),
+                       stringsAsFactors = FALSE)
 
 
 ## ------------------------------------------------------------------------
@@ -84,7 +85,8 @@ wide_df <- data.frame(last_name = c("Wayne", "Trump", "Marx"),
                        first_name = c("John", "Melania", "Karl"),
                        gender = c("male", "female", "male"),
                        income.2018 = c("150000", "250000", "10000"),
-                      income.2017 = c( "140000", "230000", "15000"),stringsAsFactors = FALSE)
+                      income.2017 = c( "140000", "230000", "15000"),
+                      stringsAsFactors = FALSE)
 wide_df
 
 
@@ -99,16 +101,22 @@ long_df
 
 
 ## ------------------------------------------------------------------------
-weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx", "Wayne", "Trump", "Marx", 
-                                        "Wayne", "Trump", "Marx"),
-                       first_name = c("John", "Melania", "Karl", "John", "Melania", "Karl", 
-                                        "John", "Melania", "Karl"),
-                       gender = c("male", "female", "male", "male", "female", "male", 
-                                        "male", "female", "male"),
-                       value = c("150000", "250000", "10000", "2000000", "5000000", "NA", 
-                                        "50", "25", "NA"),
-                       variable = c( "income", "income", "income", "assets", "assets", "assets", 
-                                        "age", "age", "age"), stringsAsFactors = FALSE)
+weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx",
+                                     "Wayne", "Trump", "Marx",
+                                     "Wayne", "Trump", "Marx"),
+                       first_name = c("John", "Melania", "Karl",
+                                      "John", "Melania", "Karl",
+                                      "John", "Melania", "Karl"),
+                       gender = c("male", "female", "male",
+                                  "male", "female", "male",
+                                  "male", "female", "male"),
+                       value = c("150000", "250000", "10000",
+                                 "2000000", "5000000", "NA",
+                                 "50", "25", "NA"),
+                       variable = c("income", "income", "income",
+                                    "assets", "assets", "assets",
+                                    "age", "age", "age"),
+                       stringsAsFactors = FALSE)
 weird_df
 
 

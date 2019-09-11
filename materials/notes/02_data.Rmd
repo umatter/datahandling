@@ -6,14 +6,14 @@ author: |
      | (University of St.Gallen)
 date: "26/09/2019"
 output:
-  html_document:
-    highlight: tango
-    theme: cerulean
-    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
   pdf_document:
     pandoc_args:
     - --filter
     - ../../code/math.py
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
@@ -40,7 +40,7 @@ Throughout human history, the recording and storage of data has primarily been m
 # Processing data: simple calculations in numeral systems
 In order to keep track of calculations with large numbers, humans started to use mechanical aids such as pebbles or shells and later developed the [counting frame ('abacus')](https://en.wikipedia.org/wiki/Abacus).^[See @hogben_1983, Chapter 1 for a detailed account of the abacus' origin and usage.] We can understand the counting frame as a simple mechanical tool to process numbers (data). In order to use the abacus properly, one must agree on a standard regarding what each column of the frame represents, as well as how many beads each column can contain. In other words, one has to define what the *base* of the frame's numeral system is. For example, the Roman numeral system is essentially of base 10, with 'I' representing one, 'X' representing ten, 'C' representing one hundred, and 'M' representing one thousand. Figure \@ref(fig:abacus) illustrates how a counting frame based on this numeral system works (examples are written out in Arabic numbers). The first column on the right represents units of $10^0=1$, the second $10^1=10$, and so forth. 
 
-```{r abacus, echo=FALSE, out.width = "50%", fig.align='center', fig.cap= "(ref:capabacus)", purl=FALSE}
+```{r abacus, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "(ref:capabacus)", purl=FALSE}
 include_graphics("../img/abacus_own.png")
 ```
 
@@ -122,7 +122,7 @@ From our every-day use of computers (notebooks, smartphones, etc.) we are accust
 
 Recall the 'blackbox'-illustration from the first lecture:
 ```{r dsdiagram, echo=FALSE, out.width = "75%", fig.align='center', fig.cap= "(ref:capdsdiagram)", purl=FALSE}
-include_graphics("../img/cpu_blackbox.png")
+include_graphics("../img/cpu_blackbox_white.png")
 ```
 
 (ref:capdsdiagram) The 'blackbox' of data processing.

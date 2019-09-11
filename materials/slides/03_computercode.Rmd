@@ -105,8 +105,8 @@ In both of these domains we mainly work with one simple type of document: *text 
 
 &nbsp;
 
-```{r components, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Basic components of a standard computing environment. Figure by @murrell_2009 (Figure 9.1, licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
-include_graphics("../img/script-hardware.png")
+```{r components, echo=FALSE, out.width = "80%", fig.align='center', purl=FALSE}
+include_graphics("../img/script-hardware.jpg")
 ```
 
 
@@ -275,9 +275,9 @@ year,gdp_chfb
 ## Table-like formats
 
 - What is the reocurring pattern? 
-  - Special character `,`
-  - New lines
-- Table is visible from structure in raw text file...
+<!--   - Special character `,` -->
+<!--   - New lines -->
+<!-- - Table is visible from structure in raw text file... -->
 
 <center>
 *How can we instruct a computer to read this text as a table?*
@@ -361,7 +361,7 @@ xxd ch_gdp.csv
 xxd ../../data/ch_gdp.csv
 ```
 
-- `.` (`0d`): indicates end of line!
+<!-- - `.` (`0d`): indicates end of line! -->
 
 ## Related formats
  

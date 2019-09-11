@@ -272,7 +272,7 @@ tab
 
 ## for-loop
 
-```{r echo=FALSE, fig.align='center', out.width="45%"}
+```{r echo=FALSE, fig.align='center', out.width="40%"}
 include_graphics("../img/forloop_black.png")
 ```
 
@@ -316,7 +316,7 @@ for (i in 1:n) {
      # number of iterations in inner loop
      m <- 4
      # start inner loop
-     for (j in 1:n) {
+     for (j in 1:m) {
 
           # BODY
      }

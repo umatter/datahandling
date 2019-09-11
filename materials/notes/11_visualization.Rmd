@@ -6,14 +6,14 @@ author: |
      | (University of St.Gallen)
 date: "12/12/2019"
 output:
-  html_document:
-    highlight: tango
-    theme: cerulean
-    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
   pdf_document:
     pandoc_args:
     - --filter
     - ../../code/math.py
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
@@ -131,7 +131,7 @@ swiss$Religion <- as.factor(swiss$Religion)
 ### Data and aesthetics
 We initiate the most basic plot with `ggplot()` by defining which data to use and in the plot aesthetics which variable to use on the x and y axes. Here, we are interested in whether the level of education beyond primary school in a given district is related with how well draftees from the same district do in a standardized army examination (% of draftees that get the highest mark in the examination). 
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination))
 
 ```
@@ -141,7 +141,7 @@ As we have not yet defined according to what rules the data shall be visualised,
 ## Geometries (~ type of plot)
 In order to actually plot the data we have to define the 'geometries', defining according to which function the data should be mapped/visualised. In other words, geometries define which 'type of plot' we use to visualise the data (histogram, lines, points, etc.). In the example code below, we use `geom_point()` to get a simple point plot.
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point()
 
@@ -153,7 +153,7 @@ The result indicates that there is a positive correlation between the level of e
 
 According to a popular thesis, the protestant reformation and the spread of the protestant movement in Europe was driving the development of compulsory schooling. It would thus be reasonable to hypothesize that the picture we see is partly driven by differences in schooling between Catholic and Protestant districts. In order to make such differences visible in the data, we use 'facets' to show the same plot again, but this time separating observations from Catholic and Protestant districts:
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      facet_wrap(~Religion)
@@ -165,7 +165,7 @@ Draftees from protestant districts tend to do generally better (which might be a
 ### Additional layers and statistics
 Let's visualise this relationship more clearly by drawing  trend-lines through the scatter diagrams. Once with the non-parametric 'loess'-approach and once forcing a linear model on the relationship between the two variables.
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      geom_smooth(method = 'loess') +
@@ -174,7 +174,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ```
 
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      geom_smooth(method = 'lm') +
@@ -187,7 +187,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 Knowing a little bit about Swiss history and geography, we realize that particularly rural cantons in mountain regions remained Catholic during the reformation. In addition, cantonal school systems historically took into account that children have to help their parents on the farms during the summers. Thus in some rural cantons schools were closed from spring until autumn. Hence, we might want to indicate in the plot which point refers to a predominantly agricultural district. We use the aesthetics of the point geometry to color the points according to the '`Agriculture`'-variable (the % of males involved in agriculture as occupation).
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -203,7 +203,7 @@ The resulting picture is in line with what we have expected. Overall, the distri
 
 Finally, there are countless options to further refine the plot. For example, we can easily change the orientation/coordinates of the plot:
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -216,7 +216,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 In addition, the `theme()`-function allows to change almost every aspect of the plot (margins, font face, font size, etc.). For example, we might prefer to have the plot legend at the bottom and have larger axis labels.
 
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -229,7 +229,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 Moreover, several theme-templates offer ready-made designs for plots:
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -238,7 +238,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 ```
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +

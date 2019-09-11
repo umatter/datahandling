@@ -52,7 +52,8 @@ messy_df <- data.frame(last_name = c("Wayne", "Trump", "Karl Marx"),
                        first_name = c("John", "Melania", ""),
                        gender = c("male", "female", "Man"),
                        date = c("2018-11-15", "2018.11.01", "2018/11/02"),
-                       income = c("150,000", "250000", "10000"), stringsAsFactors = FALSE)
+                       income = c("150,000", "250000", "10000"),
+                       stringsAsFactors = FALSE)
 ```
 
 Assuming we have managed to read in this dataset from a local file (with all columns as type `character`), the next step is to clean each of the columns such that the dataset is ready for analysis. Thereby we want to make sure that each variable (column) is set to a meaningful data type, once it is cleaned. The *cleaning* of the parsed data is often easier to do when the data is of type `character`. Once it is cleaned, however, we can set it to a type that is more useful for the analysis part. For example, in the final dataset a column containing numeric values should be stored as `numeric` or `integer`, so we can perform math operations on it later on (compute sums, means, etc.).
@@ -205,7 +206,8 @@ wide_df <- data.frame(last_name = c("Wayne", "Trump", "Marx"),
                        first_name = c("John", "Melania", "Karl"),
                        gender = c("male", "female", "male"),
                        income.2018 = c("150000", "250000", "10000"),
-                      income.2017 = c( "140000", "230000", "15000"),stringsAsFactors = FALSE)
+                      income.2017 = c( "140000", "230000", "15000"),
+                      stringsAsFactors = FALSE)
 wide_df
 ```
 
@@ -230,16 +232,22 @@ As we want to adhere to the 'tidy' paradigm of keeping our data in long format, 
 
 
 ```{r}
-weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx", "Wayne", "Trump", "Marx", 
-                                        "Wayne", "Trump", "Marx"),
-                       first_name = c("John", "Melania", "Karl", "John", "Melania", "Karl", 
-                                        "John", "Melania", "Karl"),
-                       gender = c("male", "female", "male", "male", "female", "male", 
-                                        "male", "female", "male"),
-                       value = c("150000", "250000", "10000", "2000000", "5000000", "NA", 
-                                        "50", "25", "NA"),
-                       variable = c( "income", "income", "income", "assets", "assets", "assets", 
-                                        "age", "age", "age"), stringsAsFactors = FALSE)
+weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx",
+                                     "Wayne", "Trump", "Marx",
+                                     "Wayne", "Trump", "Marx"),
+                       first_name = c("John", "Melania", "Karl",
+                                      "John", "Melania", "Karl",
+                                      "John", "Melania", "Karl"),
+                       gender = c("male", "female", "male",
+                                  "male", "female", "male",
+                                  "male", "female", "male"),
+                       value = c("150000", "250000", "10000",
+                                 "2000000", "5000000", "NA",
+                                 "50", "25", "NA"),
+                       variable = c("income", "income", "income",
+                                    "assets", "assets", "assets",
+                                    "age", "age", "age"),
+                       stringsAsFactors = FALSE)
 weird_df
 ```
 

@@ -12,7 +12,8 @@ df_c
 # initiate data frame on persons' characteristics
 df_p <- data.frame(id = 1:4,
                    first_name = c("Anna", "Betty", "Claire", "Diane"),
-                   profession = c("Economist", "Data Scientist", "Data Scientist", "Economist"))
+                   profession = c("Economist", "Data Scientist",
+                                  "Data Scientist", "Economist"))
 df_p
 
 
@@ -206,7 +207,9 @@ length(means) <- length(ns)
 # iterate through each sample size: 'repeat the die experiment for each sample size'
 for (i in 1:length(ns)) {
      
-     means[[i]] <- mean(sample( x = dvalues, size = ns[i], replace = TRUE))
+     means[[i]] <- mean(sample( x = dvalues,
+                                size = ns[i],
+                                replace = TRUE))
 }
 
 # visualize the result: plot sample means against sample size
@@ -251,7 +254,9 @@ length(ts) <- length(ns)
 # iterate through each sample size: 'repeat the die experiment for each sample size'
 for (i in 1:length(ns)) {
      
-     samples.i <- sapply(1:100000, function(j) sample( x = dvalues, size = ns[i], replace = TRUE))
+     samples.i <- sapply(1:100000, function(j) sample( x = dvalues,
+                                                       size = ns[i],
+                                                       replace = TRUE))
      ts[[i]] <- apply(samples.i, function(x) (mean(x) - 3.5) / sd(x), MARGIN = 2)
 }
 
