@@ -27,20 +27,20 @@ pre {
 </style>
 
 
-# Updates
+<!-- # Updates -->
 
-## Week 12
+<!-- ## Week 12 -->
 
-- Thursday, 20 December, *morning*
-    - final exercise session (Mock Exam and visualisation exercises)
-    - Feedback
-    - Q&A 
-- Thursday, 20 December, *afternoon*
-    - Decentral exam for exchange students!
+<!-- - Thursday, 20 December, *morning* -->
+<!--     - final exercise session (Mock Exam and visualisation exercises) -->
+<!--     - Feedback -->
+<!--     - Q&A  -->
+<!-- - Thursday, 20 December, *afternoon* -->
+<!--     - Decentral exam for exchange students! -->
 
 ## Mock exam answer sheet
 
-- Example of scan in StudyNet
+- Example of scan in Studynet/Canvas
 - Questions?
 
 ## Mock exam answer sheet: student ID (matr.-nr.)
@@ -221,14 +221,14 @@ swiss$Religion <- as.factor(swiss$Religion)
 
 ## Data and aesthetics
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination))
 
 ```
 
 
 ## Geometries (~the type of plot)
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point()
 
@@ -236,7 +236,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 ## Facets
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      facet_wrap(~Religion)
@@ -245,7 +245,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 ## Additional layers and statistics
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      geom_smooth(method = 'loess') +
@@ -255,7 +255,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 ## Additional layers and statistics
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      geom_smooth(method = 'lm') +
@@ -264,7 +264,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ```
 
 ## Additional aesthetics
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -274,7 +274,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 ## Change coordinates
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -285,7 +285,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 ## Themes
 
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -296,7 +296,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 ## Themes
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -306,7 +306,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ```
 
 ## Themes
-```{r echo=TRUE, out.width="85%"}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
