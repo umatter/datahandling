@@ -1,0 +1,295 @@
+---
+title: "Who is in this class?"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+<style> 
+
+
+.section.sidebar {
+background-color: #e6fff2;
+}
+selectize-control.single{
+background-color: #0da861;
+border-color: #0da861;
+
+}
+
+.navbar-inverse {
+  background-color: #02934a;
+  border-color: #0da861;
+}
+.navbar-inverse .navbar-brand {
+  color: #ffffff;
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: #ffffff;
+  background-color: none;
+}
+.navbar-inverse .navbar-text {
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #ffffff;
+  background-color: #0da861;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #0da861;
+}
+.navbar-inverse .navbar-nav > .disabled > a,
+.navbar-inverse .navbar-nav > .disabled > a:hover,
+.navbar-inverse .navbar-nav > .disabled > a:focus {
+  color: #ffffff;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-toggle {
+  border-color: transparent;
+}
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #0da861;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border-color: #1a6ecc;
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #0da861;
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
+    border-color: #0da861;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+    background-color: #0da861;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffffff;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+    background-color: #0da861;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #0da861;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #ffffff;
+    background-color: transparent;
+  }
+}
+.navbar-inverse .navbar-link {
+  color: #ffffff;
+}
+.navbar-inverse .navbar-link:hover {
+  color: #ffffff;
+}
+
+.navbar-inverse .btn-link {
+  color: #ffffff;
+}
+.navbar-inverse .btn-link:hover,
+.navbar-inverse .btn-link:focus {
+  color: #ffffff;
+}
+.navbar-inverse .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-inverse .btn-link:hover,
+.navbar-inverse .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-inverse .btn-link:focus {
+  color: #ffffff;
+}
+
+</style>      
+
+```{r setup, include=FALSE}
+# This code is based on Christopher Gandrud's Shiny examples:
+# https://github.com/christophergandrud/datafest2017_dashboard_shiny/tree/3256125240d09bac933ed359c879036fcbeb9be5
+
+
+# Load required packages. Install if needed.
+library(flexdashboard)
+library(gsheet)
+library(ggmap)
+library(dplyr)
+library(leaflet)
+library(sp)
+library(rworldmap)
+library(networkD3)
+library(geosphere)
+library(plotly)
+library(shiny)
+
+# Download survey data
+# Download data
+URL <- 'https://docs.google.com/spreadsheets/d/1FlXVRsp1Ov7kOiFumrSoLOg73R2eCFut6U5p9vF6DG8/edit?usp=sharing'
+student_data <- gsheet2tbl(URL)
+
+
+
+# Simplify variable names
+names(student_data) <- c('username', 'degree', 'computer_literacy', 
+                         'hometown')
+
+# Relevel factors
+r_skills <- 1:10
+student_data$computer_literacy <- factor(student_data$computer_literacy, levels = r_skills)
+
+# Majors
+majors <- c('VWL', 'BWL', 'BIA', 'BLaw', 'BLE','other')
+student_data$degree <- factor(student_data$degree, levels = majors)
+
+# Find hometown longitude and latitude -----
+hometowns <- student_data$hometown
+hometowns <- hometowns[!is.na(hometowns)]
+register_google(key = "AIzaSyCy1Gjqz-WNaXxtrNLrfMoSLLqOKF3Q6_Q")
+hometown_coords <- geocode(hometowns) # problem: might reach limit!
+
+hometown_coords <- na.omit(hometown_coords)
+```
+
+
+
+
+Geography
+===========
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Map of Hometowns
+
+```{r hometown-map}
+# Map student hometowns
+leaflet() %>% addTiles() %>%
+    addCircleMarkers(data = hometown_coords, lng = ~lon, lat = ~lat, color = "#02934a")
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Close (<= 100 km) Hometowns Network
+
+```{r}
+# Maximum distance for relationship
+max_distance <- 100000 # in meters
+
+# Find distances between each home town
+distances <- vector()
+for (i in 1:nrow(hometown_coords)) {
+    temp_indv <- hometown_coords[i, ]
+    
+    temp_distances <- distm(hometown_coords, temp_indv) %>% data.frame
+    temp_distances$id <- i
+    temp_distances$other_id <- 1:nrow(hometown_coords)
+    names(temp_distances)[1] <- 'distance'
+    distances <- rbind(distances, temp_distances)
+}
+distances <- distances[, c(2, 3, 1)]
+
+# Remove self-self edges
+distances <- subset(distances, id != other_id)
+
+# Keep only nodes that are within 1,000 km of each other
+if (any(distances$distance <= max_distance)) {
+distances <- subset(distances, distance <= max_distance)
+}
+
+# Plot network
+simpleNetwork(distances, zoom = FALSE, linkColour = "#02934a", nodeColour = "#02934a", charge = 0)
+```
+
+### Hometown Countries
+
+```{r}
+# Function to find countries that each hometown is in
+coords2country = function(points)
+{  
+    # Function from: http://stackoverflow.com/a/14342127
+    countriesSP <- getMap(resolution='low')
+
+    #setting CRS directly to that from rworldmap
+    pointsSP = SpatialPoints(points, proj4string=CRS(proj4string(countriesSP)))  
+
+    # use 'over' to get indices of the Polygons object containing each point 
+    indices = over(pointsSP, countriesSP)
+
+    # return the ADMIN names of each country
+    indices$ISO3  
+}
+countries <- coords2country(na.omit(hometown_coords))
+
+# Find country counts
+countries_count <- table(countries)
+countries_count <- countries_count[countries_count > 0] 
+countries_count <- data.frame(countries_count)
+
+# Plot counts
+plot_ly(data = countries_count, x = ~countries, y = ~Freq, color = I("#02934a")) %>%
+    layout(xaxis = list(title = ''),
+           yaxis = list(title = 'Frequency'))
+```
+
+
+
+Computer Literacy
+=================
+
+
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+selectInput("majors", label = "Select Particpants' Major",
+            choices = majors, selected = '')
+```
+
+Column
+------------------------------------------
+
+```{r}
+renderPlot({
+    # Subset data
+    data_sub <- subset(student_data, degree == input$majors)
+    
+    # Find major counts
+    r_exp <- table(data_sub$computer_literacy)
+    
+    # Bar plot
+    barplot(r_exp)
+    
+})
+```
+
+
+
+
+
+
+
+
