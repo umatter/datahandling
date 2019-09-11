@@ -55,7 +55,7 @@ to_install <- to_install[! to_install %in% c("PACKAGE-NAME",  "<PACKAGE NAME>")]
 # install all missing packages
 pacman::p_load(char = to_install)
 ```
-
+In addition to the standard pandoc installation (should be installed with RStudio) you will have to install the `pandocfilters` library (in OSX: `pip install --user pandocfilters`).
 
 # Compilation of materials
 
