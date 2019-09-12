@@ -275,9 +275,9 @@ year,gdp_chfb
 ## Table-like formats
 
 - What is the reocurring pattern? 
-<!--   - Special character `,` -->
-<!--   - New lines -->
-<!-- - Table is visible from structure in raw text file... -->
+  - Special character `,`
+  - New lines
+- Table is visible from structure in raw text file...
 
 <center>
 *How can we instruct a computer to read this text as a table?*
@@ -361,7 +361,7 @@ xxd ch_gdp.csv
 xxd ../../data/ch_gdp.csv
 ```
 
-<!-- - `.` (`0d`): indicates end of line! -->
+ - `.` (`0d`): indicates end of line! 
 
 ## Related formats
  

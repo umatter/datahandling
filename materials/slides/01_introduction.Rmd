@@ -19,7 +19,7 @@ library(knitr)
 ```
 
 ## Welcome to Data Handling: I.C.V. 2019!
-<!-- bitly should point to: https://docs.google.com/spreadsheets/d/1P_z7HbNrsif3U2RLR0BLNXiaojcTPCm2KpgbvPVdZ6k/edit?usp=sharing -->
+
 - Fire up your notebooks!
 - Go to this page: http://bit.ly/datahandling-2019
 - Use one row to respond to the questions in the column headers (see the first two rows for examples).
@@ -51,11 +51,11 @@ What could be the *output* of all this?
 ## The Data Pipeline
 
 - Research report/paper (e.g., BA Thesis)
-<!-- - Presentation/Slides -->
-<!-- - Website -->
-<!-- - Web application (interactive; alas the introductory example) -->
-<!-- - Dashboard for management -->
-<!-- - Recommender system (i.e., a trained machine learning algorithm) -->
+- Presentation/Slides
+- Website
+- Web application (interactive; alas the introductory example)
+- Dashboard for management
+- Recommender system (i.e., a trained machine learning algorithm)
 - ...
 
 ## 'Data Science'?
@@ -202,7 +202,7 @@ include_graphics("../img/help_wanted.jpg")
     - Guided tutorials
     - Discussion of homework exercises
     - Recap of theoretical concepts
-<!-- - Guest Lectures -->
+    - (Guest Lecture)
 
 
 ## Course concept
