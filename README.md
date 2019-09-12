@@ -7,7 +7,7 @@ Lecture materials for the SEPS-HSG (University of St. Gallen) course 'Data Handl
  
 Additional materials related to notes and slides:
 
- - Sourcecode of examples used in slides/notes: `materials/notes/`
+ - Sourcecode of examples used in slides/notes: `materials/sourcecode/`
  - Images used in slides/notes: `materials/img`
  - References used in slides/notes: `materials/references`
 
