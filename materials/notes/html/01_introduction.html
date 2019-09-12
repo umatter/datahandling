@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -348,6 +347,18 @@ summary {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 
 
@@ -390,10 +401,10 @@ summary {
 <h1>References</h1>
 <div id="refs" class="references">
 <div id="ref-einav_levin2014">
-<p>Einav, Liran, and Jonathan Levin. 2014. “Economics in the Age of Big Data.” <em>Science</em> 346 (6210): 1243089–1–1243089–6. <a href="https://doi.org/10.1126/science.1243089">https://doi.org/10.1126/science.1243089</a>.</p>
+<p>Einav, Liran, and Jonathan Levin. 2014. “Economics in the Age of Big Data.” <em>Science</em> 346 (6210): 1243089–1–1243089–6. <a href="https://doi.org/10.1126/science.1243089" class="uri">https://doi.org/10.1126/science.1243089</a>.</p>
 </div>
 <div id="ref-matter_stutzer2015">
-<p>Matter, Ulrich, and Alois Stutzer. 2015. “pvsR: An Open Source Interface to Big Data on the American Political Sphere.” <em>PLOS ONE</em> 10 (7). Public Library of Science: 1–21. <a href="https://doi.org/10.1371/journal.pone.0130501">https://doi.org/10.1371/journal.pone.0130501</a>.</p>
+<p>Matter, Ulrich, and Alois Stutzer. 2015. “pvsR: An Open Source Interface to Big Data on the American Political Sphere.” <em>PLOS ONE</em> 10 (7). Public Library of Science: 1–21. <a href="https://doi.org/10.1371/journal.pone.0130501" class="uri">https://doi.org/10.1371/journal.pone.0130501</a>.</p>
 </div>
 </div>
 </div>
@@ -415,23 +426,6 @@ $(document).ready(function () {
 
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
