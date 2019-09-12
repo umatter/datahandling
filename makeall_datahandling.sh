@@ -23,3 +23,4 @@ rm -r materials/slides/html/*_files
 rm -r materials/slides/*_files
 rm -r materials/notes/*_files
 rm materials/sourcecode/*Conflict*.R
+rm materials/notes/*.log
