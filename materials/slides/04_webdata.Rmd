@@ -641,7 +641,6 @@ str(json_doc)
 
 [HyperText Markup Language (HTML)](https://en.wikipedia.org/wiki/HTML), designed to be read by a web browser. 
 
-<!-- License: Fig in public domain? -->
 
 ```{r echo=FALSE, fig.align="center", out.width="60%"}
 include_graphics("../img/website_screen.jpg")
@@ -649,18 +648,16 @@ include_graphics("../img/website_screen.jpg")
 
 ## HTML: Code to build webpages
 
-<!-- License: Fig in public domain? -->
 
-```{r echo=FALSE, fig.align="center", out.width="85%"}
+```{r echo=FALSE, fig.align="center", out.width="70%"}
 include_graphics("../img/website_screen.jpg")
 ```
 
 
 ## HTML documents contain data!
 
-<!-- License: Fig in public domain? -->
 
-```{r echo=FALSE, fig.align="center", out.width="85%"}
+```{r echo=FALSE, fig.align="center", out.width="70%"}
 include_graphics("../img/website_data.png")
 ```
 
@@ -841,14 +838,14 @@ tab
 <!-- License: Fig from istock - however, here reference primarily to article and not to fig itself? -->
 
 ```{r webdata, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= "Source: https://www.sciencefocus.com/future-technology/how-much-data-is-on-the-internet/."}
-include_graphics("../img/data_internet.png")
+include_graphics("https://images.immediate.co.uk/production/volatile/sites/4/2018/08/fe-iStock_000070297009_Large-bf0cc85.jpg?")
 ```
 
 
 ## Why should we care?
 
 "One way to answer this question is to consider the sum total of data held by all the big online storage and service companies like Google, Amazon, Microsoft and Facebook. Estimates are that *the big four store at least 1,200 petabytes* between them. That is *1.2 million terabytes (one terabyte is 1,000 gigabytes)*."
-
+(Gareth Mitchell, __ScienceFocus__)
 
 # Q&A
 
