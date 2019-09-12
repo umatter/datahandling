@@ -62,7 +62,7 @@ if (knitr::is_latex_output()) {
 ___
 
 
-# Flat vs. Hierarchical Data
+# Flat vs. hierarchical data
 
 So far, we have only looked at data structured in a flat/table-like representation (e.g., CSV files). In applied econometrics/statistics it is common to only work with data sets stored in such formats. The main reason is that data manipulation, filtering, aggregation, etc. presuppose/expect data in a table-like format (i.e. matrices). Hence, it makes perfectly sense to already store the data in this format.
 
