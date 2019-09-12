@@ -22,6 +22,7 @@ Code and data:
   - report bugs and typos
   - suggest enhancements
 - Resolve open issues with a pull request
+- Contribute to the wiki
 
 
 # Prerequisites
