@@ -47,33 +47,3 @@ render_all <-
      }
 
 
-# read part2 solutions
-# x path to a text file with the solutions
-# n numeric, indicating the number of responses (according to instructions/exercise)
-read_part2 <-
-     function(x, n=10) {
-          require(stringr)
-          # read text
-          text <- readLines(x)
-          # keep lines mentioning TRUE or FALSE, check if file complete
-          tf <- text[grepl("TRUE", text) | grepl("FALSE", text) ]
-          stopifnot(length(tf)==n)
-          
-          # clean responses
-          tf <- as.logical(unlist(str_extract_all(string = tf, pattern = "(TRUE|FALSE)")))
-          
-          return(tf)
-
-     }
-
-# compare part2 solutions
-# off_sol, stud_sol locigal vectors containing the official and student's solution, respectively
-compare_part2 <-
-     function(stud_sol, off_sol) {
-          corr <- as.numeric(off_sol == stud_sol)
-          
-          return(corr)
-          
-     }
-
-
