@@ -12,7 +12,7 @@ library(pvsR)
 library(tidyverse)
 
 # load api key
-pvs.key <- read_file("../../../../Projects/influence/keys/pvs.txt")
+pvs.key <- read_file("../../../../Projects/influence/keys/pvs.txt") # key UM
 
 
 # BASIC EXAMPLES -----------

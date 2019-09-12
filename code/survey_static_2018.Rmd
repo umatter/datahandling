@@ -143,6 +143,10 @@ library(geosphere)
 library(plotly)
 library(shiny)
 
+# fix vars
+#  API key needed here
+KEY <- readLines("../../../Admin/keys/datahandling_survey_static.txt") # key UM
+
 # Download survey data
 # Download data
 URL <- 'https://docs.google.com/spreadsheets/d/1P_z7HbNrsif3U2RLR0BLNXiaojcTPCm2KpgbvPVdZ6k/edit?usp=sharing'
