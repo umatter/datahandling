@@ -169,7 +169,7 @@ student_data$degree <- factor(student_data$degree, levels = majors)
 # Find hometown longitude and latitude -----
 hometowns <- student_data$hometown
 hometowns <- hometowns[!is.na(hometowns)]
-register_google(key = "AIzaSyCy1Gjqz-WNaXxtrNLrfMoSLLqOKF3Q6_Q")
+register_google(key = KEY)
 hometown_coords <- geocode(hometowns) # problem: might reach limit!
 
 hometown_coords <- na.omit(hometown_coords)
