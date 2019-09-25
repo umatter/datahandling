@@ -107,6 +107,19 @@ include_graphics("../img/computers.jpg")
 
 ## Technological change
 
+```{r echo=FALSE, warning=FALSE, message=FALSE, purl=FALSE, out.width="90%", fig.cap="Data source: http://www.mkomo.com/cost-per-gigabyte", fig.align='center'}
+source("../../code/fig_storage_costs.R")
+storage_cost_plot_dark
+```
+
+## Technological change
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, purl=FALSE, out.width="90%", fig.cap="Data source: http://www.mkomo.com/cost-per-gigabyte", fig.align='center'}
+storage_cost_plot_dark_ln
+```
+
+----
+
 ```{r google, echo=FALSE, out.width = "85%", fig.align='center', fig.cap="Source: https://techxerl.net.", purl=FALSE}
 include_graphics("../img/google_crawler.jpg")
 ```
@@ -202,7 +215,6 @@ include_graphics("../img/help_wanted.jpg")
     - Guided tutorials
     - Discussion of homework exercises
     - Recap of theoretical concepts
-    - (Guest Lecture)
 
 
 ## Course concept
@@ -256,7 +268,7 @@ include_graphics("../img/help_wanted.jpg")
 
 ## Part I: Data (Science) fundamentals {.smaller}
 
-```{r echo = FALSE}
+```{r echo = FALSE, warning=FALSE}
 library(readxl)
 library(knitr)
 library(magrittr)
@@ -301,8 +313,8 @@ kable(sched[15:nrow(sched), c(1,5)], format = "markdown")
 
 ## Further resources
 
-- [Stackoverflow](www.stackoverflow.com)
-- [Get inspired in the R blogsphere](www.r-bloggers.com)
+- [Stackoverflow](https://stackoverflow.com/questions)
+- [Get inspired in the R blogsphere](https://www.r-bloggers.com)
 
 
 ## Exam information
@@ -316,7 +328,7 @@ kable(sched[15:nrow(sched), c(1,5)], format = "markdown")
     - Get familiar with the style/format of questions.
 - Exchange students who need to take the exam before the central exam block:
     - Notify the course TA's until the end of September: *philine.widmer@unisg.ch*, *mirjam.baechli@unisg.ch*!
-    - Decentral exam for exchange students: *19 December 2019*.
+    - Decentral exam for exchange students: *20 December 2019*.
     
 
 

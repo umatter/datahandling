@@ -39,15 +39,23 @@ library(knitr)
 ## Exam for exchange students
 
 - Exchange students who need to take the exam before the central exam block:
-    - Notify the course TA's until the end of September: *philine.widmer@unisg.ch*, *mirjam.baechli@unisg.ch*!
-    - Decentral exam for exchange students: *19 December 2019*.
+    - Decentral exam for __exchange students__: *20 December 2019, 14:15-15:45*.
+    - Location: SIAW Institute (Bodanstrasse 8), conference room on thetop floor.
 
 
 # Recap: Data Science, Data Pipeline
 
 ## Class survey >>> Final output
 
-## The Data Pipeline
+## Data pipeline
+
+
+```{r domestication, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= "Old Egyptian hieroglyphic painting showing an early instance of a domesticated animal. (public domain).", purl=FALSE}
+include_graphics("../img/data_pipeline.png")
+```
+
+
+## 'Data products'
 
 - Research report/paper (e.g., BA Thesis)
 - Presentation/Slides
@@ -57,7 +65,7 @@ library(knitr)
 - Recommender system (i.e., a trained machine learning algorithm)
 - ...
 
-
+## 
 
 
 # Data in Human History
