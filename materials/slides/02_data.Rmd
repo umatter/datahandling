@@ -39,19 +39,28 @@ library(knitr)
 ## Exam for exchange students
 
 - Exchange students who need to take the exam before the central exam block:
-    - Decentral exam for __exchange students__: *20 December 2019, 14:15-15:45*.
-    - Location: SIAW Institute (Bodanstrasse 8), conference room on thetop floor.
+    - Decentral exam for *exchange students: 20 December 2019, 14:15-15:45.*
+    - Location: SIAW Institute (Bodanstrasse 8), conference room on the top floor.
 
+## Course resources
+
+- Canvas page
+- umatter.github.io/courses
+- *GitHub repo*: https://github.com/umatter/datahandling
+     - Source code of slides/notes
+     - Code used in examples
+          - Clone/fork: e.g., extend notes etc.
+          - Open issues/report bugs 
+          
 
 # Recap: Data Science, Data Pipeline
 
 ## Class survey >>> Final output
 
-## Data pipeline
+---
 
-
-```{r domestication, echo=FALSE, out.width = "90%", fig.align='center', fig.cap= "Old Egyptian hieroglyphic painting showing an early instance of a domesticated animal. (public domain).", purl=FALSE}
-include_graphics("../img/data_pipeline.png")
+```{r pipeline, echo=FALSE, out.width = "85%", fig.align='center',  purl=FALSE}
+include_graphics("../img/data_science_pipeline.png")
 ```
 
 
@@ -65,7 +74,13 @@ include_graphics("../img/data_pipeline.png")
 - Recommender system (i.e., a trained machine learning algorithm)
 - ...
 
-## 
+## Data Science skill set
+
+
+```{r venn, echo=FALSE, out.width = "60%", fig.align='center',  purl=FALSE}
+include_graphics("../img/venn_diagramm.png")
+```
+
 
 
 # Data in Human History
@@ -499,7 +514,7 @@ In both of these domains we mainly work with one simple type of document: *text 
 ## Text-files
 
  - A *collection of characters* stored in a designated part of the computer memory/hard drive.
- - An easy to read representation of the underlying information (`0`s and `1`s)!
+ - An easy-to-read representation of the underlying information (`0`s and `1`s)!
 
  
 ## Text-files
