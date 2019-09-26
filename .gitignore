@@ -26,3 +26,4 @@ materials/slides/09_polecon_ds.pdf
 materials/slides/09_polecon_ds.tex
 materials/slides/preamble.tex
 style/*.eps
+*.DS_Store
