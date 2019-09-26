@@ -178,8 +178,6 @@ hometown_coords <- na.omit(hometown_coords)
 ```
 
 
-
-
 Geography
 ===========
 
