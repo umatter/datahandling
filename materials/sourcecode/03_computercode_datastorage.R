@@ -23,7 +23,7 @@ if (knitr::is_latex_output()) {
 }
 
 
-## cat helloworld.txt; echo
+## cat helloworld.txt
 
 
 ## cat ../../data/helloworld.txt; echo
@@ -41,7 +41,7 @@ if (knitr::is_latex_output()) {
 ## xxd  ../../data/helloworld.txt
 
 
-## cat hastamanana.txt; echo
+## cat hastamanana.txt
 
 
 ## file -b hastamanana.txt
