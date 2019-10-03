@@ -75,7 +75,7 @@ in a text file named `helloworld.txt`. Technically, this means that we allocate 
 
 
 ```{bash eval=FALSE}
-cat helloworld.txt; echo
+cat helloworld.txt
 ```
 
 ```{bash echo=FALSE}
@@ -109,7 +109,7 @@ xxd  ../../data/helloworld.txt
 Next, consider the text file `hastamanana.txt` which was written and stored with another character encoding. When looking at the content, assuming the now common UTF-8 encoding, the content seems a little odd:
 
 ```{bash eval=FALSE}
-cat hastamanana.txt; echo
+cat hastamanana.txt
 ```
 
 ```
@@ -216,14 +216,15 @@ include_graphics("../img/store-bitbyteword.png")
 
 Bigger units for storage capacity usually build on bytes:
 
- - $1 \text{ kilobyte (KB)} = 2^{10} ~ 1000^{1} \text{ bytes}$
- - $1 \text{ megabyte (MB)} = 2^{20} ~ 1000^{2} \text{ bytes}$
- - $1 \text{ gigabyte (GB)} = 2^{30} ~ 1000^{3} \text{ bytes}$
- - $1 \text{ terabyte (TB)} = 2^{40} ~ 1000^{4} \text{ bytes}$
- - $1 \text{ petabyte (PB)} = 2^{50} ~ 1000^{5} \text{ bytes}$
- - $1 \text{ exabyte (EB)} = 2^{60} ~ 1000^{6} \text{ bytes}$
- - $1 \text{ exabyte (ZB)} = 2^{70} ~ 1000^{7} \text{ bytes}$
+ - $1 \text{ kilobyte (KB)} = 1000^{1}   \approx 2^{10}   \text{ bytes}$
+ - $1 \text{ megabyte (MB)} = 1000^{2}   \approx 2^{20}   \text{ bytes}$
+ - $1 \text{ gigabyte (GB)} = 1000^{3}   \approx 2^{30}   \text{ bytes}$
+ - $1 \text{ terabyte (TB)} = 1000^{4}   \approx 2^{40}   \text{ bytes}$
+ - $1 \text{ petabyte (PB)} = 1000^{5}   \approx 2^{50}   \text{ bytes}$
+ - $1 \text{ exabyte (EB)} = 1000^{6}    \approx 2^{60}   \text{ bytes}$
+ - $1 \text{ zettabyte (ZB)} = 1000^{7}  \approx 2^{70}   \text{ bytes}$
 
+$1 ZB = 1000000000000000000000\text{ bytes} = 1 \text{ billion terabytes} = 1 \text{ trillion gigabytes}.$
 
 
 
@@ -250,26 +251,26 @@ We distinguish two basic characteristics:
 
 Depending on what data structure/format the data is stored in on the hard disk, the data will be more or less usefully represented in one of the above structures in RAM. For example, in the `R` language it is quite common to represent data stored in CSVs on disk as data frames in RAM. Similarly, it is quite common to represent a more complex format on disk, such as XML, as a nested list in RAM. 
 
-Importing data from the hard disk (or another mass storage device) into RAM in order to work with it in `R`, essentially means reading the sequence of characters (in the end, of course, `0`s and `1`s) and mapping them, given the structure they are stored in, into one of these structures for representation in RAM.^[In the lecture on data gathering and data import, we will cover this crucial step in detail.].
+Importing data from the hard disk (or another mass storage device) into RAM in order to work with it in `R` essentially means reading the sequence of characters (in the end, of course, `0`s and `1`s) and mapping them, given the structure they are stored in, into one of these structures for representation in RAM.^[In the lecture on data gathering and data import, we will cover this crucial step in detail.].
 
 
 ## Data types
 
-From the previous lectures we know that digital data (`0`s and `1`s) can be interpreted in different ways depending on the *format* it is stored in. Similarly, data loaded into RAM can be interpreted differently by R depending on the data *type*. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the integer values `1.5` and `3` in the variables `a` and `b`, respectively.
+From the previous lectures we know that digital data (`0`s and `1`s) can be interpreted in different ways depending on the *format* it is stored in. Similarly, data loaded into RAM can be interpreted differently by R depending on the data *type*. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the numeric values `1.5` and `3` in the variables `a` and `b`, respectively.
 
 ```{r}
 a <- 1.5
 b <- 3
 ```
 
-R interprets this data as type `double` (class 'numeric'):
+R interprets this data as type `double` (class 'numeric'; a 'double precision floating point number'):
 
 ```{r}
 typeof(a)
 class(a)
 ```
 
-Given that these bytes of data are interpreted as numeric, we can use operators (here: math operators) that can work with such functions:
+Given that these bytes of data are interpreted as numeric, we can use operators (here: math operators) that can work with such types:
 
 ```{r}
 a + b
