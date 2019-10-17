@@ -26,6 +26,26 @@ pre {
 }
 </style>
 
+# Updates
+
+## Part I: Data (Science) fundamentals {.smaller}
+
+```{r echo = FALSE, warning=FALSE}
+library(readxl)
+library(knitr)
+library(magrittr)
+library(kableExtra)
+
+sched <- read_xlsx("../../../admin/2019/schedule.xlsx", col_types = "text")
+
+kable(sched[1:7, c(1,5)], format = "markdown")
+```
+
+## Next Week (24.10.2019)
+
+ - *No lecture in the morning!* (no rooms available)
+ - *The exercise session in the afternoon is not affected by this (will take place as scheduled)!*
+
 # Recap: "Big Data" from the Web
 
 ## Limitations of rectangular data

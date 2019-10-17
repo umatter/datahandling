@@ -39,8 +39,6 @@ pre {
 - Data is usually stored in *text files*.
     - Read data from text files: data import.
     - Write data to text files: data export.
-- Code is written to *text files*.
-
 
 
 
@@ -827,7 +825,8 @@ swiss_econ_parsed
 Now we can easily separate the data/text from the html code. For example, we can extract the HTML table containing the data we are interested in as a `data.frames`.
 
 ```{r}
-tab_node <- html_node(swiss_econ_parsed, xpath = "//*[@id='mw-content-text']/div/table[3]")
+tab_node <- html_node(swiss_econ_parsed,
+                      xpath = "//*[@id='mw-content-text']/div/table[2]")
 tab <- html_table(tab_node)
 tab
 ```
@@ -842,7 +841,7 @@ include_graphics("https://images.immediate.co.uk/production/volatile/sites/4/201
 ```
 
 
-## Why should we care?
+## How much data is stored on the Web?
 
 "One way to answer this question is to consider the sum total of data held by all the big online storage and service companies like Google, Amazon, Microsoft and Facebook. Estimates are that *the big four store at least 1,200 petabytes* between them. That is *1.2 million terabytes (one terabyte is 1,000 gigabytes)*."
 (Gareth Mitchell, __ScienceFocus__)
