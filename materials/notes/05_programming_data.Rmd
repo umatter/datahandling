@@ -36,7 +36,7 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 
 ___
 
-```{r, echo=FALSE, results='asis', warning=FALSE}
+```{r, echo=FALSE, results='asis', warning=FALSE, purl=FALSE}
 # conditional on the output format of the whole document,
 # generate and render a HTML or a LaTeX table.
 if (knitr::is_latex_output()) {
