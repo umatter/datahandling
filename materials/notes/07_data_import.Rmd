@@ -234,7 +234,7 @@ swiss_imported <- read_excel("../../data/swiss.xlsx")
 ```
 
 
-```{r eval=FALSE}
+```{r eval=FALSE, warning=FALSE}
 # load the package
 library(readxl)
 
@@ -247,7 +247,7 @@ The R packages `foreign` and `haven` contain functions to import data from forma
 
 In the following example we use `haven`'s `read_spss()` function to import a version of the `swiss`-dataset stored in SPSS' `.sav`-format (again stored in the folder called `data`). 
 
-```{r echo=FALSE, purl=FALSE}
+```{r echo=FALSE, purl=FALSE, warning=FALSE}
 # install the package (if not yet installed):
 # install.packages("haven")
 
@@ -334,7 +334,18 @@ guess_parser(c("12:00", "14:30", "20:01"))
 
 There are several XML-parsers already implemented in R packages specifically written for working with XML data. We thus do not have to understand the XML syntax in every detail in order to work with this data format in R. The already familiar package `xml2` (automatically loaded when loading `rvest`) provides the `read_xml()` function which we can use to read the exemplary XML-document.
 
-```{r}
+```{r eval=FALSE}
+# load packages
+library(xml2)
+
+# parse XML, represent XML document as R object
+xml_doc <- read_xml("data/customers.xml")
+xml_doc
+
+```
+
+
+```{r echo=FALSE, purl=FALSE}
 # load packages
 library(xml2)
 
@@ -367,7 +378,28 @@ xml_text(customer_names)
 
 Again, we can rely on an R package (`jsonlite`) providing high-level functions to read, manipulate, and extract data when working with JSON-documents in R. An important difference to working with XML- and HTML-documents is that XPath is not compatible with JSON. However, as `jsonlite` represents parsed JSON as R objects of class `list` and/or `data-frame`, we can work with the parsed document as with any other R-object of the same class. The following example illustrates this point.
 
-```{r}
+
+```{r eval=FALSE}
+# load packages
+library(jsonlite)
+
+# parse the JSON-document shown in the example above
+json_doc <- fromJSON("data/person.json")
+
+# look at the structure of the document
+str(json_doc)
+
+# navigate the nested lists, extract data
+# extract the address part
+json_doc$address
+# extract the gender (type)
+json_doc$gender$type
+
+
+```
+
+
+```{r echo=FALSE, purl=FALSE}
 # load packages
 library(jsonlite)
 
