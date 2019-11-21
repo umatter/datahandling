@@ -87,9 +87,9 @@ messy_df <- data.frame(last_name = c("Wayne", "Trump", "Karl Marx"),
                        stringsAsFactors = FALSE)
 ```
 
-Assuming we have managed to read in this dataset from a local file (with all columns as type `character`), the next step is to clean each of the columns such that the dataset is ready for analysis. Thereby we want to make sure that each variable (column) is set to a meaningful data type, once it is cleaned. The *cleaning* of the parsed data is often easier to do when the data is of type `character`. Once it is cleaned, however, we can set it to a type that is more useful for the analysis part. For example, in the final dataset a column containing numeric values should be stored as `numeric` or `integer`, so we can perform math operations on it later on (compute sums, means, etc.).
+Assuming we have managed to read this dataset from a local file (with all columns as type `character`), the next step is to clean each of the columns such that the dataset is ready for analysis. Thereby we want to make sure that each variable (column) is set to a meaningful data type, once it is cleaned. The *cleaning* of the parsed data is often easier to do when the data is of type `character`. Once it is cleaned, however, we can set it to a type that is more useful for the analysis part. For example, in the final dataset a column containing numeric values should be stored as `numeric` or `integer`, so we can perform math operations on it later on (compute sums, means, etc.).
 
-### Find/replace character strings/recode factor levels
+### Find/replace character strings, recode factor levels
 Our dataset contains a typical categorical variable: `gender`. In R it is good practice to store such variables as type `factor`. Without really looking at the data values, we might thus be inclined to do the following:
 
 ```{r}
@@ -97,7 +97,7 @@ messy_df$gender <- as.factor(messy_df$gender)
 messy_df$gender
 ```
 
-The column is now of type `factor`. And we see that R defined the factor variable such that an observation can be one of three categories ('levels'): `female`, `male`, or `Man`. In terms of content, that probably does not make too much sense. If we were to analyze the data later on and compute the share of males in the sample, we would only count one instead of two. Hence, we better *recode* the gender variable of male subjects as `male` and not `Man`. How can this be done programatically?
+The column is now of type `factor`. And we see that R defined the factor variable such that an observation can be one of three categories ('levels'): `female`, `male`, or `Man`. In terms of content, that probably does not make too much sense. If we were to analyze the data later on and compute the share of males in the sample, we would only count one instead of two. Hence, we better *recode* the gender variable of male subjects as `male` and not `Man`. How can this be done programmatically?
 
 One approach is to select all entries in `messy_df$gender` that are equal to `"Man"` and replace these entries with `"male"`. 
 ```{r}
@@ -128,7 +128,7 @@ R is warning us that something did not go well when executing this code. We see 
 ```{r}
 messy_df$income <- str_replace(messy_df$income, pattern = ",", replacement = "")
 ```
-Now we can succesfully set the column as type ingeger.
+Now we can successfully set the column as type integer.
 
 ```{r}
 messy_df$income <- as.integer(messy_df$income)
@@ -139,7 +139,7 @@ messy_df$income <- as.integer(messy_df$income)
 
 From looking at the `last_name` and `first_name` columns of our messy dataset, it becomes clear that the last row is not accurately coded. `Karl` should show up in the `first_name` column. In order to correct this, we have to extract a part of one string and store this sub-string in another variable. There are several ways to do this. Here, it probably makes sense to split the original string into two parts, as the white space between `Karl` and `Marx` indicates the separation of first and last name. For this, we can use the function `str_split()`.
 
-First, we split the strings at every occurence of white space (`" "`). Setting the option `simplify=TRUE`, we get a matrix containing the individual sub-strings after the splitting.
+First, we split the strings at every occurrence of white space (`" "`). Setting the option `simplify=TRUE`, we get a matrix containing the individual sub-strings after the splitting.
 ```{r}
 splitnames <- str_split(messy_df$last_name, pattern = " ", simplify = TRUE)
 splitnames
@@ -168,7 +168,7 @@ Finally, we take a look at the `date`-column of our dataset. For many data prepa
 library(lubridate)
 ```
 
-This package provides several functions to parse and manipulate date and time data. From looking at the `date`-column we see that the format is basicall year, month, day. We can thus use the `ymd()`-function provided in the `lubridate`-package in order to parse the column as `Date` type.
+This package provides several functions to parse and manipulate date and time data. From looking at the `date`-column we see that the format is basically year, month, day. We can thus use the `ymd()`-function provided in the `lubridate`-package in order to parse the column as `Date` type.
 
 ```{r}
 messy_df$date <- ymd(messy_df$date)

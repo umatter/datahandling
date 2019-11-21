@@ -121,7 +121,7 @@ swiss
 ## Parsing CSVs
 
 - Recall the introduction to data structures and data types in R
-- How does R represent data in RAM
+- How does R represent data in RAM?
     - *Structure*: `data.frame`/`tibble`, etc.
     - *Types*: `character`, `numeric`, etc.
 - Parsers in `read_csv()` guess the data *types*.
@@ -176,7 +176,7 @@ Following @wickham_2014:
 - *Dataset*: Collection of *values* (numbers and strings).
 - Every value belongs to a *variable* and an *observation*.
 - *Variable*: Contains all values that measure the same underlying attribute across units.
-- *Observation*: Cointains all values measured on the same unit (e.g., a person).
+- *Observation*: Contains all values measured on the same unit (e.g., a person).
 
 
 ## Tidy data
