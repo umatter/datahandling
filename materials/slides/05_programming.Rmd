@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 5:<br>Programming with Data'
 author: "Prof. Dr. Ulrich Matter"
-date: "17/10/2019"
+date: "15/10/2020"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -36,15 +36,10 @@ library(knitr)
 library(magrittr)
 library(kableExtra)
 
-sched <- read_xlsx("../../../admin/2019/schedule.xlsx", col_types = "text")
+sched <- read_xlsx("../../../admin/2020/schedule.xlsx", col_types = "text")
 
 kable(sched[1:7, c(1,5)], format = "markdown")
 ```
-
-## Next Week (24.10.2019)
-
- - *No lecture in the morning!* (no rooms available)
- - *The exercise session in the afternoon is not affected by this (will take place as scheduled)!*
 
 # Recap: "Big Data" from the Web
 
@@ -601,5 +596,5 @@ pre {
 }
 </style>
 
-## References {.smaller}
+<!-- ## References {.smaller} -->
 

@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Prof. Dr. Ulrich Matter"
-date: "26/09/2019"
+date: "24/09/2020"
 output:
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -39,13 +39,12 @@ library(knitr)
 ## Exam for exchange students
 
 - Exchange students who need to take the exam before the central exam block:
-    - Decentral exam for *exchange students: 20 December 2019, 14:15-15:45.*
-    - Location: SIAW Institute (Bodanstrasse 8), conference room on the top floor.
+    - Decentral exam for *exchange students: 18 December 2020, 14:15-15:45.*
+    - Location: TBD
 
 ## Course resources
 
 - Canvas page
-- umatter.github.io/courses
 - *GitHub repo*: https://github.com/umatter/datahandling
      - Source code of slides/notes
      - Code used in examples

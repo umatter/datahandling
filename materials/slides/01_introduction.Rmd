@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 1 :<br>Introduction'
 author: "Prof. Dr. Ulrich Matter"
-date: "19/09/2019"
+date: "17/09/2020"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -18,10 +18,10 @@ options(width = 100)
 library(knitr)
 ```
 
-## Welcome to Data Handling: I.C.V. 2019!
+## Welcome to Data Handling: I.C.V. 2020!
 
 - Fire up your notebooks!
-- Go to this page: http://bit.ly/datahandling-2019
+- Go to this page: http://bit.ly/datahandling-2020
 - Use one row to respond to the questions in the column headers (see the first two rows for examples).
 
 
@@ -152,12 +152,12 @@ include_graphics("../img/AIrevolution.png")
 ```
 
 
-----
+<!-- ---- -->
 
 
-```{r bd_ai, echo=FALSE, out.width = "70%", fig.align='center', fig.cap="Top: Number of mentions of the terms 'Big Data' or 'Artificial Intelligence' in academic and media sources, 1980-2016. Bottom: Number of mentions in The New York Times and The Wall Street Journal, used as proxies for U.S. mainstream media and business media. Note logarithmic y-axis scale. Source: @katz_2017.",  purl=FALSE}
-include_graphics("../img/bd_ai.png")
-```
+<!-- ```{r bd_ai, echo=FALSE, out.width = "70%", fig.align='center', fig.cap="Top: Number of mentions of the terms 'Big Data' or 'Artificial Intelligence' in academic and media sources, 1980-2016. Bottom: Number of mentions in The New York Times and The Wall Street Journal, used as proxies for U.S. mainstream media and business media. Note logarithmic y-axis scale. Source: @katz_2017.",  purl=FALSE} -->
+<!-- include_graphics("../img/bd_ai.png") -->
+<!-- ``` -->
 
 
 # Organization of the Course
@@ -166,10 +166,10 @@ include_graphics("../img/bd_ai.png")
 ## Our Team - At Your Service
 
 
-|   |   |   |
-|:-:|:-:|:-:|
-| ![](https://tools.unisg.ch/handlers/Public/PortraitStreamer.ashx?HSGEntitiyId=f06fcc31-d82a-4cc9-a5a8-f2a0a7d5c49c)  | ![](https://tools.unisg.ch/handlers/Public/PortraitStreamer.ashx?HSGEntitiyId=f4b75b0a-e300-4f81-bd66-12090047f2c5)  |  ![](../img/u_matter.jpg) | 
-| Mirjam Bächli  |  Philine Widmer  | Ulrich Matter  |
+|   |   |
+|:-:|:-:|
+|  ![](https://tools.unisg.ch/handlers/Public/PortraitStreamer.ashx?HSGEntitiyId=f4b75b0a-e300-4f81-bd66-12090047f2c5)  |  ![](../img/u_matter.jpg) | 
+|  Philine Widmer  | Ulrich Matter  |
 
 ---
 
@@ -177,18 +177,20 @@ include_graphics("../img/bd_ai.png")
 include_graphics("../img/help_wanted.jpg")
 ```
 
-## Help wanted
-- Experienced R user?
-- Assist fellow students during exercises in class
-- Disclaimer: this is not an official TA position!
 
-## Help wanted
-- Experienced R user?
-- Assist fellow students during exercises in class
-- Disclaimer: this is not an official TA position!
-- *Interested?* 
-    - Approach us at the end of today's lecture!
-    - Or send us an email: philine.widmer@unisg.ch
+
+<!-- ## Help wanted -->
+<!-- - Experienced R user? -->
+<!-- - Assist fellow students during exercises in class -->
+<!-- - Disclaimer: this is not an official TA position! -->
+
+<!-- ## Help wanted -->
+<!-- - Experienced R user? -->
+<!-- - Assist fellow students during exercises in class -->
+<!-- - Disclaimer: this is not an official TA position! -->
+<!-- - *Interested?*  -->
+<!--     - Approach us at the end of today's lecture! -->
+<!--     - Or send us an email: philine.widmer@unisg.ch -->
 
 
 
@@ -198,7 +200,7 @@ include_graphics("../img/help_wanted.jpg")
 
 ## Course concept
 
-- Lectures (every Thursday morning)
+- Lectures (Thursday morning)
     - Background/Concepts
     - Live demonstrations of concepts
     - Illustration of 'hands-on' approaches
@@ -244,11 +246,11 @@ include_graphics("../img/help_wanted.jpg")
     - Discussion of homework exercises
     - Recap of theoretical concepts
     - *First Exercises (set up R/RStudio) is available on StudyNet/Canvas today*
-- Guest Lectures
+- Guest lecture and research insights
 
 ## Course concept
-- Strongly encouraged: Learning groups!
-    - Workshops/Exercises-Sessions will provide opportunity.
+- Strongly encouraged: (virtual) learning groups!
+    - Biweekly exercises provide opportunity.
     - Tackle the tricky exercises together!
 
 
@@ -274,7 +276,7 @@ library(knitr)
 library(magrittr)
 library(kableExtra)
 
-sched <- read_xlsx("../../../admin/2019/schedule.xlsx", col_types = "text")
+sched <- read_xlsx("../../../admin/2020/schedule.xlsx", col_types = "text")
 
 kable(sched[1:7, c(1,5)], format = "markdown")
 ```
@@ -300,10 +302,9 @@ kable(sched[15:nrow(sched), c(1,5)], format = "markdown")
 
 ## Core course resources
 
-- Course materials: [umatter.github.io/courses](https://umatter.github.io/courses.html)
-- All information (course sheet, syllabus, etc.) always also available on StudyNet/Canvas.
+- All information and materials (notes, slides, course sheet, syllabus, etc.) available on StudyNet/Canvas.
 - Exercises will be uploaded to Assignments in StudyNet/Canvas!
-
+- This course is *open souce*: all raw materials (code, source code for slides, notes, etc.) are freely available on [GitHub](https://github.com/umatter/datahandling)
 
 ## Main textbooks
 [Murrell, Paul (2009). *Introduction to Data Technologies*, London: Chapman & Hall/CRC.](https://www.stat.auckland.ac.nz/~paul/ItDT/)
@@ -327,8 +328,8 @@ kable(sched[15:nrow(sched), c(1,5)], format = "markdown")
 - Exercises towards the end of the term will contain sample questions.
     - Get familiar with the style/format of questions.
 - Exchange students who need to take the exam before the central exam block:
-    - Notify the course TA's until the end of September: *philine.widmer@unisg.ch*, *mirjam.baechli@unisg.ch*!
-    - Decentral exam for exchange students: *20 December 2019*.
+    - Notify the course TA until the end of September: *philine.widmer@unisg.ch*!
+    - Decentral exam for exchange students: *18 December 2020*.
     
 
 

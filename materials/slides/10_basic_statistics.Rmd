@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 10:<br>Data Analysis and Basic Statistics with R'
 author: "Prof. Dr. Ulrich Matter"
-date: "05/12/2019"
+date: "03/12/2020"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -269,7 +269,7 @@ plot(density(littlevar), col = "blue",
 lines(density(largevar), col = "red")
 
 ```
-**Note:** the red curve illustrates the distribution of the sample with a large standard deviation (a lot of variability) whereas the blue curve illustrates the one with a rather small standard deviation.
+<!-- **Note:** the red curve illustrates the distribution of the sample with a large standard deviation (a lot of variability) whereas the blue curve illustrates the one with a rather small standard deviation. -->
 
 
 ## Skewness and kurtosis

@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 11:<br>Visualisation and Dynamic Documents' 
 author: "Prof. Dr. Ulrich Matter"
-date: "12/12/2019"
+date: "10/12/2020"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -27,26 +27,36 @@ pre {
 </style>
 
 
-<!-- # Updates -->
+# Updates
 
-<!-- ## Week 12 -->
+## Week 12
 
-<!-- - Thursday, 20 December, *morning* -->
-<!--     - final exercise session (Mock Exam and visualisation exercises) -->
-<!--     - Feedback -->
-<!--     - Q&A  -->
-<!-- - Thursday, 20 December, *afternoon* -->
-<!--     - Decentral exam for exchange students! -->
+- Thursday, 17 December
+    - Wrap up
+    - Exam info
+    - Feedback
+    - Q&A (send questions until tomorrow! *ulrich.matter@unisg.ch*)
+- Friday, 18 December
+    - Decentral exam for *exchange students*!
+    - See Canvas for details on place/time.
 
-## Mock exam answer sheet
+## Mock exam
 
-- Example of scan in Studynet/Canvas
-- Questions?
+- On Studynet/Canvas today
+  - Mock exam
+  - Solutions
+  - Answersheet
+  - Answersheet example
 
-## Mock exam answer sheet: student ID (matr.-nr.)
-```{r echo=FALSE, purl=FALSE, out.width="60%"}
-include_graphics("../img/mock_exam_scan.png")
-```
+<!-- ## Mock exam answer sheet: student ID (matr.-nr.) -->
+<!-- ```{r echo=FALSE, purl=FALSE, out.width="60%"} -->
+<!-- include_graphics("../img/mock_exam_scan.png") -->
+<!-- ``` -->
+
+<!-- ## Job opening! -->
+
+<!-- http://direktlink.prospective.ch/?view=63bb2b6b-b9c6-4fb2-85d5-27a653ea6650 -->
+
 
 # Data Display
 

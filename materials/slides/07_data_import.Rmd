@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 7:<br>Data Sources, Data Gathering, Data Import'
 author: "Prof. Dr. Ulrich Matter"
-date: "24/10/2019"
+date: "12/11/2020"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -25,6 +25,38 @@ pre {
   font-size: 21px;
 }
 </style>
+
+# Welcome back!
+
+# Updates
+
+
+## Part II: Data gathering and preparation {.smaller}
+
+```{r echo = FALSE, warning=FALSE}
+library(readxl)
+library(knitr)
+library(magrittr)
+library(kableExtra)
+
+sched <- read_xlsx("../../../admin/2020/schedule.xlsx", col_types = "text")
+
+#kable(sched[1:7, c(1,5)], format = "markdown")
+```
+
+
+
+```{r echo = FALSE}
+kable(sched[12:14, c(1,5)], format = "markdown") 
+```
+
+## Part III: Analysis, visualisation, output {.smaller}
+
+```{r echo = FALSE}
+kable(sched[15:nrow(sched), c(1,5)], format = "markdown") 
+```
+
+
 
 # Recap: Programming with Data
 
@@ -114,10 +146,10 @@ my_mean <- function(x) {
 
 ## We are ready to start the data science journey
 
-The first key bottleneck in the data pipeline:
-<center>
-*Gather and import the data!*
-</center>
+```{r echo=FALSE, fig.align='center', out.width="95%"}
+include_graphics("../img/data_science_pipeline.png")
+```
+
 
 
 ## Sources/formats in economics

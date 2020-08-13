@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 3:<br>Data Storage and Data Structures'
 author: "Prof. Dr. Ulrich Matter"
-date: "03/10/2019"
+date: "01/10/2020"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -552,7 +552,7 @@ my_matrix
 ```
 
 ```{r}
-my_array <- array(c(1,2,3,4,5,6), dim = 3)
+my_array <- array(c(1,2,3,4,5,6,7,8), dim = c(2,2,2))
 my_array
 
 ```
