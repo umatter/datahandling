@@ -61,6 +61,7 @@ In addition to the standard pandoc installation (should be installed with RStudi
 # Compilation of materials
 
 Run the following in the terminal:
+
 ```{bash}
 sh makeall_datahandling.sh
 ```
