@@ -10,9 +10,8 @@
 
 
 
-<meta name="date" content="2020-12-11" />
 
-<title>Data Handling: Import, Cleaning and Visualisation</title>
+<title>Working Directory</title>
 
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
@@ -457,337 +456,42 @@ summary {
 
 
 
-<h1 class="title toc-ignore">Data Handling: Import, Cleaning and Visualisation</h1>
-<h3 class="subtitle">Lecture 7: Data Sources, Data Gathering, Data Import</h3>
-<h4 class="author"><div class="line-block">Prof. Dr. Ulrich Matter<br />
+<h1 class="title toc-ignore">Working Directory</h1>
+<h3 class="subtitle">Setting the Working Directory</h3>
+<h4 class="author"><div class="line-block">Prof. Dr. Ulrich Matter, Mirjam Baechli<br />
 (University of St.Gallen)</div></h4>
-<h4 class="date">12/11/2020</h4>
+<h4 class="date">3/12/2020</h4>
 
 </div>
 
 
-<hr />
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAMAAABUFvrSAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAEZ0FNQQAAsY58+1GTAAAAAXNSR0IB2cksfwAAAf5QTFRF////////////////8fHx7+/v6Ofn4+Pj4N/g39/f1tXV09bS0tXS0tXR0dTR0dTQ0NTQ0NPPz9PPztLOztHNzdHNzdHMz8/PzdDMzNDMzNDLzM/Ly8/Ly8/Ky87Kys3Jyc3Jyc3Iy8rLyMzIyMzHx8vHxsrGycjIxsrFxcnFyMfHxcnExMnExMjDw8jDxMfDw8fCwsfCwcXAwMXAwMW/wMS/v8S+v8O+vsO+vsK9vcK9vcK8v7+/vMG8vMG7vMC8u8C7u8C6ur+6ur+5ub65ub64uL23t7y2urm5tru1tbq0tLqztLmzs7iysrixtbW1srexsbewsLavsLWvr7Wur7SusLOvrrStrrOtr7KvrbOsrLKrr6+vq7GqrKurpqqmo6ijoqaho6Ghn6OenqCdn5+fnp2dn5aampiZlpmWlZmUmJaXk5iTkZSRkZORkY+Pj4+PiYyJjIqLjoeLh4aHhIaEhIWEgoWChIGCf4F+gICAfX98fH98fnt8en15eXx5eHV2dnN0dXJzcHJvcHBwbmxsaGVmY19hYGBgXV5dWldYUFFQUFBQQ0RDQEBAPj8+Pzs8Pzc5NTY1MjMxMjExMDAwMS0uLS0tKioqKSopKSkpKCkoKCgoKicnKCUmJCQkIx8gICAgHxscGxsbGRkZEBAQDg4ODQ4NDQwNAAAA4LK4NQAAAAN0Uk5TAAoO5yEBUwAAA+1JREFUeNq1lot3GkUUxlcviEDS7bYbKxC2oaWKSUmRpkkrSBvzIMGkJjGamoSobROtNqRVWyOppli0NBBSHxst+JiYUvr9l57dheVx8ESpncOeOfvbnW92vjv3DtyzeCqN44BIeCh02t/tcXdIDpvN4Tzs9nj9faHBcGR88u2Z2dm56H9vAIdIeCBwyudxOUWBb7FaW/YJYrvL4+sJDCjK0zOzc00pcwgPBE56j0kif3OzqCyiuHmDP+h0H/e/NhCOnJ+avjA7t55THuTWK+P2JOAwFDjpdduF2G7FoN1lwebq8gcGw2MTUzOf5IFsMpkF8le1UVf3JuAQOuV12/g0gEIqHgzGUwUA6RMvuI73hIZGxyc/fISMmYjInMEjddSlf0HA4bTvmF3RLcSNpLXFApA/YXP7+vqHIxM5pIgIUB4grwzKq2Rlo46YOjtNOgEHv0cS0oBsJr0ZZSAtOD3+wNDoGjKWsjBlsB6NruPnj4lWHj5OmHSSsdBFxhgbKRFFuPuoGANkI1Gt8vJBl7e3P/wAVTOakYtGc/iD3f8e8S+woBMzdbIf7iYYW9GIIuxx8rsoHKKaZixgl2/3+F8fQla5T0FdPmURjSL77W3GWMJkqRAyfMQ+J1pi2xpRhN1tN4E41bVF4Ibo9p0ZQJJUJzQvkopMkqgzASBhqRDDn+w3IhNjz6lEEe44sImCkSiYyWbjWneNiArYFA57e/sbCxOZEtuMbYzo5K1fgqrw87qwxBeVZQbVHZydV7uUsvjiPmdXz7lGVhCRYYksSrTul8nIxZeJFhirWOFoBa4RydgxB3cWZcjm+Z1F1YsWh8cf+lULnvbBeqhog21vI7Hw9V9lssTY6urv7NNK8OxWIKiMjGsCJbuDgNX2kj/0FTJUv90yRKbVh49XDNVkVVnAd4bKdttDePhBJUGS1Qny2UYdObKwYNFJjRXGQztxGbLSVawYfr/ZlC4FrxQ1PXhJFHmpq+fc8Jsf5AA5lZQrJedSfk+ibrc0CqRvt/ms2tEONoUOb+8b4bHJd75pqmy622KqF40S5NUzg6PjUzNNHCLg8Iqa0uZ/SunI+WaFu4+KlxsVoZjo6u7rD49NTF+Ya0oYtyThHiBXlSGzWjalL5/omAZwx7G/utAb4wXgR95+C08qjDXb/nt1RxP/4hX9HS0/oF0a0S4i1L1EtcJYcwiXqw/TmGC/UjWm9KMqldJ9zVQ1QBPGHUnkY+Xjf5kXpWofymWzeiqqmag8F1G9MH56z9l2gG+1Wlt5QWx/d6tmTJ0RZRuohtUtgdP51vWzksNud0hnr2/VxqHRF9d7XI5DA+H/+1/hM09J92+7pmyRGJsTpgAAAABJRU5ErkJggg==" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
-<hr />
-<div id="putting-it-all-together" class="section level1">
-<h1><span class="header-section-number">1</span> Putting it all together</h1>
-<p>In this lecture we put the key concepts learned so far (text-files for data storage, parsers, encoding, data structures) together and apply them in order to master the first key bottleneck in the data pipeline: how to <em>import</em> raw data from various sources and <em>export/store</em> them for further processing in the pipeline.</p>
-<div id="sourcesformats" class="section level2">
-<h2><span class="header-section-number">1.1</span> Sources/formats</h2>
-<p>In the first two lectures we have learned how data is stored in text-files and how different data structures/formats/syntaxes help to organize the data in these files. Along the way, we have encountered key data formats that are used in various settings to store and transfer data:</p>
-<ul>
-<li>CSV (typical for rectangular/table-like data)</li>
-<li>Variants of CSV (tab-delimited, fix length, etc.)</li>
-<li>XML and JSON (useful for complex/high-dimensional data sets)</li>
-<li>HTML (a markup language to define the structure and layout of webpages)</li>
-<li>Unstructured text</li>
-</ul>
-<p>Depending on the <em>data source</em>, data might come in one or the other form. With the increasing importance of the Internet as a data source for economic research, handling XML, JSON, and HTML properly is becoming more important. However, in applied economic research various other, and more specific formats can be encountered:</p>
-<ul>
-<li>Excel spreadsheets (<code>.xls</code>)</li>
-<li>Formats specific to statistical software packages (SPSS: <code>.sav</code>, STATA: <code>.dat</code>, etc.)</li>
-<li>Built-in R datasets</li>
-<li>Binary formats</li>
-</ul>
-<p>While we will cover/revisit how to import all of these formats here, it is important to keep in mind that the learned fundamental concepts are as important (or even more important) than knowing which function to call in R for each of these cases. New formats might evolve and become more relevant in the future for which no R function yet exists. However, the underlying logic of how formats to structure data work will hardly change.</p>
-</div>
-</div>
-<div id="data-gathering-procedure" class="section level1">
-<h1><span class="header-section-number">2</span> Data gathering procedure</h1>
-<p>Before we set out to gather/import data from diverse sources, we should start organizing the procedure in a R script. This script will be the beginning of our pipeline!</p>
-<p>First, open a new R script in RStudio and save it as <code>import_data.R</code> in your <code>code</code> folder. Take your time to meaningfully describe what the script is all about in the first few lines of the file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co">#</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Imports data from ...</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co"># Input: links to data sources (data comes in ... format)</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="co"># Output: cleaned data as CSV</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="co"># </span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="co"># U. Matter, St.Gallen, 2019</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="co">#######################################################################</span></a></code></pre></div>
-<p>RStudio recognizes different sections in a script, whereby section headers are indicated by <code>----------</code>. This helps to further organize the script into different tasks. Usually, it makes sense to start with a ‘meta’ section in which all necessary packages are loaded and fix variables initiated.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co">#</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co"># Imports data from ...</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co"># Input: links to data sources (data comes in ... format)</span></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="co"># Output: cleaned data as CSV</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co"># </span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co"># U. Matter, St.Gallen, 2019</span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb2-10" title="10"></a>
-<a class="sourceLine" id="cb2-11" title="11"></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co"># SET UP --------------</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb2-15" title="15"></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co"># set fix variables</span></a>
-<a class="sourceLine" id="cb2-17" title="17">INPUT_PATH &lt;-<span class="st"> &quot;/rawdata&quot;</span></a>
-<a class="sourceLine" id="cb2-18" title="18">OUTPUT_FILE &lt;-<span class="st"> &quot;/final_data/datafile.csv&quot;</span></a></code></pre></div>
-<p>Finally we add sections with the actual code (in the case of a data import script, maybe one section per data source).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co"># Project XY: Data Gathering and Import</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">#</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co"># This script is the first part of the data pipeline of project XY.</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co"># It imports data from ...</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co"># Input: links to data sources (data comes in ... format)</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co"># Output: cleaned data as CSV</span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co"># </span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co"># U. Matter, St.Gallen, 2019</span></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb3-11" title="11"></a>
-<a class="sourceLine" id="cb3-12" title="12"></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co"># SET UP --------------</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb3-16" title="16"></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="co"># set fix variables</span></a>
-<a class="sourceLine" id="cb3-18" title="18">INPUT_PATH &lt;-<span class="st"> &quot;/rawdata&quot;</span></a>
-<a class="sourceLine" id="cb3-19" title="19">OUTPUT_FILE &lt;-<span class="st"> &quot;/final_data/datafile.csv&quot;</span></a>
-<a class="sourceLine" id="cb3-20" title="20"></a>
-<a class="sourceLine" id="cb3-21" title="21"></a>
-<a class="sourceLine" id="cb3-22" title="22"><span class="co"># IMPORT RAW DATA FROM CSVs -------------</span></a></code></pre></div>
-</div>
-<div id="loadingimporting-rectangular-data" class="section level1">
-<h1><span class="header-section-number">3</span> Loading/importing rectangular data<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></h1>
-<div id="loading-built-in-datasets" class="section level2">
-<h2><span class="header-section-number">3.1</span> Loading built-in datasets</h2>
-<p>We start with the simplest case of loading/importing data. The basic R installation provides some example datasets to try out R’s statistics functions. In the introduction to visualization techniques with R as well as in the statistics examples in the lectures to come, we will rely on some of these datasets for the sake of simplicity. Note that the usage of these simple datasets shipped with basic R are very helpful when practicing/learning R on your own. Many R packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and tutorials online also use these datasets (see for example the <a href="https://ggplot2.tidyverse.org/">ggplot2 documentation</a>). And, they are very useful when searching help on <a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a> in the context of data analysis/manipulation with R, as you should provide a code example based on some data that everybody can easily load and access.</p>
-<p>In order to load such datasets, simply use the <code>data()</code>-function:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">data</span>(swiss)</a></code></pre></div>
-<p>In this case, we load a dataset called <code>swiss</code>. After loading it, the data is stored in a variable of the same name as the dataset (here ‘<code>swiss</code>’). We can inspect it and have a look at the first few rows:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># inspect the structure</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw">str</span>(swiss)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    47 obs. of  6 variables:
-##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
-##  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
-##  $ Examination     : int  15 6 5 12 17 9 16 14 12 16 ...
-##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
-##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
-##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># look at the first few rows</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">head</span>(swiss)</a></code></pre></div>
-<pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality
-## Courtelary        80.2        17.0          15        12     9.96             22.2
-## Delemont          83.1        45.1           6         9    84.84             22.2
-## Franches-Mnt      92.5        39.7           5         5    93.40             20.2
-## Moutier           85.8        36.5          12         7    33.77             20.3
-## Neuveville        76.9        43.5          17        15     5.16             20.6
-## Porrentruy        76.1        35.3           9         7    90.57             26.6</code></pre>
-<p>To get a list of all the built-in datasets simply type <code>data()</code> into the console and hit enter. To get more information about a given dataset use the help function (e.g., <code>?swiss</code>)</p>
-</div>
-<div id="importing-rectangular-data-from-text-files" class="section level2">
-<h2><span class="header-section-number">3.2</span> Importing rectangular data from text-files</h2>
-<p>In most cases of applying R for data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as ‘Comma Separated Values’ (CSV). In economics one also frequently encounters data being stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into R (in some cases, additional packages have to be loaded, though). Thereby, what happens ‘under the hood’ is essentially the same for all of these formats. Somebody has implemented the respective <em>parser</em> as an R function which accepts a character string with the path or url to the data source as input.</p>
-<div id="comma-separated-values-csv" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> Comma Separated Values (CSV)</h3>
-<p>Recall how in this format data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code-block shows how the first two rows of the <code>swiss</code>-dataset would look like when stored in a CSV:</p>
-<pre><code>&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;
-&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2</code></pre>
-<p>The function <code>read.csv()</code> imports such files from disk into R (in the form of a <code>data.frame</code>). In this example the <code>swiss</code>-dataset is stored locally on our disk in the folder <code>data</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">swiss_imported &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</a></code></pre></div>
-<p>Alternatively, we could use the newer <code>read_csv()</code> function which would return a <code>tibble</code>.</p>
-</div>
-<div id="spreadsheetsexcel" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> Spreadsheets/Excel</h3>
-<p>In order to read excel spreadsheets we need to install an additional R package called <code>readxl</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># install the package </span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</a></code></pre></div>
-<p>Then we load this additional package (‘library’) and use the package’s <code>read_excel()</code>-function to import data from an excel-sheet. In the example below, the same data as above is stored in an excel-sheet called <code>swiss.xlsx</code>, again in a folder called <code>data</code>.</p>
-<pre><code>## New names:
-## * `` -&gt; ...1</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># load the package</span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb13-3" title="3"></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="co"># import data from a spreadsheet</span></a>
-<a class="sourceLine" id="cb13-5" title="5">swiss_imported &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/swiss.xlsx&quot;</span>)</a></code></pre></div>
-</div>
-<div id="data-from-other-data-analysis-software" class="section level3">
-<h3><span class="header-section-number">3.2.3</span> Data from other data analysis software</h3>
-<p>The R packages <code>foreign</code> and <code>haven</code> contain functions to import data from formats used in other statistics/data analysis software, such as SPSS and STATA.</p>
-<p>In the following example we use <code>haven</code>‘s <code>read_spss()</code> function to import a version of the <code>swiss</code>-dataset stored in SPSS’ <code>.sav</code>-format (again stored in the folder called <code>data</code>).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># install the package (if not yet installed):</span></a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="co"># install.packages(&quot;haven&quot;)</span></a>
-<a class="sourceLine" id="cb14-3" title="3"></a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="co"># load the package</span></a>
-<a class="sourceLine" id="cb14-5" title="5"><span class="kw">library</span>(haven)</a>
-<a class="sourceLine" id="cb14-6" title="6"></a>
-<a class="sourceLine" id="cb14-7" title="7"><span class="co"># read the data</span></a>
-<a class="sourceLine" id="cb14-8" title="8">swiss_imported &lt;-<span class="st"> </span><span class="kw">read_spss</span>(<span class="st">&quot;data/swiss.sav&quot;</span>)</a></code></pre></div>
-</div>
-</div>
-</div>
-<div id="import-and-parsing-with-readr" class="section level1">
-<h1><span class="header-section-number">4</span> Import and parsing with <code>readr</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></h1>
-<p>The <code>readr</code> package is automatically installed and loaded with the installation/loading of <code>tidyverse</code>. It provides a set of functions to read different types of rectangular data formats and is usually more robust and faster than similar functions provided in the basic R distribution. Each of these functions basically expects either a character string with path pointing to a file or a character string directly containing the data.</p>
-<div id="basic-usage-of-readr-functions" class="section level2">
-<h2><span class="header-section-number">4.1</span> Basic usage of <code>readr</code> functions</h2>
-<p>For example, we can parse the first lines of the swiss dataset directly like this</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">library</span>(readr)</a></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;readr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:rvest&#39;:
-## 
-##     guess_encoding</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">read_csv</span>(<span class="st">&#39;&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="st">&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2&#39;</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 1 x 7
-##   District   Fertility Agriculture Examination Education Catholic Infant.Mortality
-##   &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;
-## 1 Courtelary      80.2          17          15        12     9.96             22.2</code></pre>
-<p>or read the entire <code>swiss</code> dataset by pointing to the file</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">swiss &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</a></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   District = col_character(),
-##   Fertility = col_double(),
-##   Agriculture = col_double(),
-##   Examination = col_double(),
-##   Education = col_double(),
-##   Catholic = col_double(),
-##   Infant.Mortality = col_double()
-## )</code></pre>
-<p>In either case, the result is a <code>tibble</code>:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">swiss</a></code></pre></div>
-<pre><code>## # A tibble: 47 x 7
-##    District     Fertility Agriculture Examination Education Catholic Infant.Mortality
-##    &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;
-##  1 Courtelary        80.2        17            15        12     9.96             22.2
-##  2 Delemont          83.1        45.1           6         9    84.8              22.2
-##  3 Franches-Mnt      92.5        39.7           5         5    93.4              20.2
-##  4 Moutier           85.8        36.5          12         7    33.8              20.3
-##  5 Neuveville        76.9        43.5          17        15     5.16             20.6
-##  6 Porrentruy        76.1        35.3           9         7    90.6              26.6
-##  7 Broye             83.8        70.2          16         7    92.8              23.6
-##  8 Glane             92.4        67.8          14         8    97.2              24.9
-##  9 Gruyere           82.4        53.3          12         7    97.7              21  
-## 10 Sarine            82.9        45.2          16        13    91.4              24.4
-## # … with 37 more rows</code></pre>
-<p>The other <code>readr</code> functions have practically the same syntax and behavior. They are used for fixed-width files or csv-type files with other delimiters than commas.</p>
-</div>
-<div id="parsing-and-data-types" class="section level2">
-<h2><span class="header-section-number">4.2</span> Parsing and data types</h2>
-<p>From inspecting the <code>swiss</code> tibble printed out above, we recognize that <code>read_csv</code> not only correctly recognizes observations and columns (parses the csv correctly) but also automatically guesses the data type of the values in each column. The first column is of type double, the second one of type integer, etc. That is, <code>read_csv</code> also parses each column-vector of the data set with the aim of recognizing which data type it is. For example, the data value <code>&quot;12:00&quot;</code> could be interpreted simply as a character string. Alternatively, it could also be interpreted as a <code>time</code> format.</p>
-<p>If <code>&quot;12:00&quot;</code> is an element of the vector <code>c(&quot;12:00&quot;, &quot;midnight&quot;, &quot;noon&quot;)</code> it must be interpreted as a character string. If however it is an element of the vector <code>c(&quot;12:00&quot;, &quot;14:30&quot;, &quot;20:01&quot;)</code> we probably want R to import this as a <code>time</code> format. Now, how can <code>readr</code> handle the two cases? In simple terms, the package first guesses for each column vector which type is most appropriate. Then, it uses a couple of lower-level parsing functions (one written for each possible data type) in order to parse each column according to the respective guessed type. We can demonstrate this for the two example vectors above.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">read_csv</span>(<span class="st">&#39;A,B</span></a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="st">         12:00, 12:00</span></a>
-<a class="sourceLine" id="cb24-3" title="3"><span class="st">         14:30, midnight</span></a>
-<a class="sourceLine" id="cb24-4" title="4"><span class="st">         20:01, noon&#39;</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 3 x 2
-##   A      B       
-##   &lt;time&gt; &lt;chr&gt;   
-## 1 12:00  12:00   
-## 2 14:30  midnight
-## 3 20:01  noon</code></pre>
-<p>Under the hood <code>read_csv()</code> used the <code>guess_parser()</code>- function to determine which type the two vectors likely contain:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">guess_parser</span>(<span class="kw">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;midnight&quot;</span>, <span class="st">&quot;noon&quot;</span>))</a></code></pre></div>
-<pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">guess_parser</span>(<span class="kw">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;14:30&quot;</span>, <span class="st">&quot;20:01&quot;</span>))</a></code></pre></div>
-<pre><code>## [1] &quot;time&quot;</code></pre>
-</div>
-</div>
-<div id="importing-web-data-formats" class="section level1">
-<h1><span class="header-section-number">5</span> Importing web data formats</h1>
-<div id="xml-in-r" class="section level2">
-<h2><span class="header-section-number">5.1</span> XML in R<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></h2>
-<p>There are several XML-parsers already implemented in R packages specifically written for working with XML data. We thus do not have to understand the XML syntax in every detail in order to work with this data format in R. The already familiar package <code>xml2</code> (automatically loaded when loading <code>rvest</code>) provides the <code>read_xml()</code> function which we can use to read the exemplary XML-document.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="kw">library</span>(xml2)</a>
-<a class="sourceLine" id="cb30-3" title="3"></a>
-<a class="sourceLine" id="cb30-4" title="4"><span class="co"># parse XML, represent XML document as R object</span></a>
-<a class="sourceLine" id="cb30-5" title="5">xml_doc &lt;-<span class="st"> </span><span class="kw">read_xml</span>(<span class="st">&quot;data/customers.xml&quot;</span>)</a>
-<a class="sourceLine" id="cb30-6" title="6">xml_doc</a></code></pre></div>
-<pre><code>## {xml_document}
-## &lt;customers&gt;
-## [1] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; x &lt;/product&gt;\n    &lt;product&gt; y &lt;/ ...
-## [2] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; a &lt;/product&gt;\n    &lt;product&gt; x &lt; ...</code></pre>
-<p>The same package also comes with various functions to access, extract, and manipulate data from a parsed XML document. In the following code example, we have a look at the most useful functions for our purposes (see the package’s <a href="https://cran.r-project.org/web/packages/xml2/vignettes/modification.html">vignette</a> for more details).</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># navigate through the XML document (recall the tree-like nested structure similar to HTML)</span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="co"># navigate downwards</span></a>
-<a class="sourceLine" id="cb32-3" title="3"><span class="co"># &#39;customers&#39; is the root-node, persons are their&#39;children&#39;</span></a>
-<a class="sourceLine" id="cb32-4" title="4">persons &lt;-<span class="st"> </span><span class="kw">xml_children</span>(xml_doc) </a>
-<a class="sourceLine" id="cb32-5" title="5"><span class="co"># navigate sidewards</span></a>
-<a class="sourceLine" id="cb32-6" title="6"><span class="kw">xml_siblings</span>(persons)</a></code></pre></div>
-<pre><code>## {xml_nodeset (2)}
-## [1] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; a &lt;/product&gt;\n    &lt;product&gt; x &lt; ...
-## [2] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; x &lt;/product&gt;\n    &lt;product&gt; y &lt;/ ...</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># navigate upwards</span></a>
-<a class="sourceLine" id="cb34-2" title="2"><span class="kw">xml_parents</span>(persons)</a></code></pre></div>
-<pre><code>## {xml_nodeset (1)}
-## [1] &lt;customers&gt;\n  &lt;person&gt;\n    &lt;name&gt;John Doe&lt;/name&gt;\n    &lt;orders&gt;\n      &lt;product&gt; x &lt;/product ...</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># find data via XPath</span></a>
-<a class="sourceLine" id="cb36-2" title="2">customer_names &lt;-<span class="st"> </span><span class="kw">xml_find_all</span>(xml_doc, <span class="dt">xpath =</span> <span class="st">&quot;.//name&quot;</span>)</a>
-<a class="sourceLine" id="cb36-3" title="3"><span class="co"># extract the data as text</span></a>
-<a class="sourceLine" id="cb36-4" title="4"><span class="kw">xml_text</span>(customer_names)</a></code></pre></div>
-<pre><code>## [1] &quot;John Doe&quot;  &quot;Peter Pan&quot;</code></pre>
-</div>
-<div id="json-in-r" class="section level2">
-<h2><span class="header-section-number">5.2</span> JSON in R<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></h2>
-<p>Again, we can rely on an R package (<code>jsonlite</code>) providing high-level functions to read, manipulate, and extract data when working with JSON-documents in R. An important difference to working with XML- and HTML-documents is that XPath is not compatible with JSON. However, as <code>jsonlite</code> represents parsed JSON as R objects of class <code>list</code> and/or <code>data-frame</code>, we can work with the parsed document as with any other R-object of the same class. The following example illustrates this point.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb38-2" title="2"><span class="kw">library</span>(jsonlite)</a>
-<a class="sourceLine" id="cb38-3" title="3"></a>
-<a class="sourceLine" id="cb38-4" title="4"><span class="co"># parse the JSON-document shown in the example above</span></a>
-<a class="sourceLine" id="cb38-5" title="5">json_doc &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;data/person.json&quot;</span>)</a>
-<a class="sourceLine" id="cb38-6" title="6"></a>
-<a class="sourceLine" id="cb38-7" title="7"><span class="co"># look at the structure of the document</span></a>
-<a class="sourceLine" id="cb38-8" title="8"><span class="kw">str</span>(json_doc)</a>
-<a class="sourceLine" id="cb38-9" title="9"></a>
-<a class="sourceLine" id="cb38-10" title="10"><span class="co"># navigate the nested lists, extract data</span></a>
-<a class="sourceLine" id="cb38-11" title="11"><span class="co"># extract the address part</span></a>
-<a class="sourceLine" id="cb38-12" title="12">json_doc<span class="op">$</span>address</a>
-<a class="sourceLine" id="cb38-13" title="13"><span class="co"># extract the gender (type)</span></a>
-<a class="sourceLine" id="cb38-14" title="14">json_doc<span class="op">$</span>gender<span class="op">$</span>type</a></code></pre></div>
-<pre><code>## List of 6
-##  $ firstName  : chr &quot;John&quot;
-##  $ lastName   : chr &quot;Smith&quot;
-##  $ age        : int 25
-##  $ address    :List of 4
-##   ..$ streetAddress: chr &quot;21 2nd Street&quot;
-##   ..$ city         : chr &quot;New York&quot;
-##   ..$ state        : chr &quot;NY&quot;
-##   ..$ postalCode   : chr &quot;10021&quot;
-##  $ phoneNumber:&#39;data.frame&#39;: 2 obs. of  2 variables:
-##   ..$ type  : chr [1:2] &quot;home&quot; &quot;fax&quot;
-##   ..$ number: chr [1:2] &quot;212 555-1234&quot; &quot;646 555-4567&quot;
-##  $ gender     :List of 1
-##   ..$ type: chr &quot;male&quot;</code></pre>
-<pre><code>## $streetAddress
-## [1] &quot;21 2nd Street&quot;
-## 
-## $city
-## [1] &quot;New York&quot;
-## 
-## $state
-## [1] &quot;NY&quot;
-## 
-## $postalCode
-## [1] &quot;10021&quot;</code></pre>
-<pre><code>## [1] &quot;male&quot;</code></pre>
-</div>
-</div>
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-<div id="refs" class="references">
-<div id="ref-umatter_2018">
-<p>Matter, Ulrich. 2018a. “A Brief Introduction to Programming with R.” Lecture notes. St. Gallen: University of St. Gallen.</p>
-</div>
-<div id="ref-umatter_2018b">
-<p>———. 2018b. “Introduction to Web Data Mining for Social Scientists.” Lecture notes. St. Gallen: University of St. Gallen.</p>
-</div>
-<div id="ref-wickham_grolemund2017">
-<p>Wickham, Hadley, and Garrett Grolemund. 2017. Sebastopol, CA: O’Reilly. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.</p>
-</div>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>This section is based on <span class="citation">Matter (2018a)</span>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>This is a summary of Chapter 8 in <span class="citation">Wickham and Grolemund (2017)</span>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>This section is based on <span class="citation">Matter (2018b)</span>.<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>This section is based on <span class="citation">Matter (2018b)</span>.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<p>This is a note on how to read data that is saved in a folder on the hard disk. We distinguish two cases how to set the working directory.</p>
+<div id="working-with-rstudio-project-environments" class="section level1">
+<h1><span class="header-section-number">1</span> Working with RStudio project environments</h1>
+<p>Referring to the first exercise session, you have set up the following working environment:</p>
+<ol style="list-style-type: decimal">
+<li>Open a folder with the name <code>r_course</code></li>
+<li>In the File pane in RStudio (the part at the bottom right) you can navigate to this new folder <code>r_course</code>.</li>
+<li>Click on the ‘More’-button and choose “Set As Working Directory” in the drop-down menu.</li>
+<li>Create two new folders – <code>data</code> and <code>code</code></li>
+<li>Click on the ‘Project’-button in the toolbar in the the top-right corner of the RStudio window (or on ‘File’ in the menu in the top left corner) and select ‘New Project’ in the drop-down menu. In the pop-up window, select ‘Existing directory’, browse to and select your <code>r_course</code> folder. Finally, click ‘Create Project’.</li>
 </ol>
+<p>In order to work with the project environment that you have set up, you have several ways to open it. (1) Double click on the Rproj file in the folder on your hard disk. (2) Click on ‘File’ in the top left corner in RStudio, choose ‘Open Project’ and browse for and select an existing project. (3) Click on ‘File’, choose ‘Recent Projects’ and select the project from there. Options (2) and (3) are also available from the ‘Project’ button in the toolbar in the top right corner.</p>
+<p>If you work in the just defined environment and your data is available in the subfolder <code>data</code> as described above, then you can read a dataset (named ‘taxes.csv’ in this example) as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">taxes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/taxes.csv&quot;</span>)</a></code></pre></div>
+<p>Imagine your data is in the subfolder <code>exercise5</code> of the folder <code>data</code>. You can read your data with the following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">taxes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/exercise5/taxes.csv&quot;</span>)</a></code></pre></div>
+<p>Another example is when the data is not stored in a subfolder relative to where your working directory is set but in another branch of the folder structure. In this case, you can go one level up in the folder structure with <code>../</code> (or two levels with <code>../../</code>, etc.) and then choose the relevant subfolder <code>data</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">taxes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;../data/taxes.csv&quot;</span>)</a></code></pre></div>
+<p>Setting the working directory by defining a project gives you a flexible structure that especially pays off in multiple work contexts. For example, if you move your folder <code>r_course</code> to another drive, the working environment stays attached and no manual adjustment of the working directory is needed. Similarly, when you have a co-authored project working with a common folder structure, all parties can run the file without individually adjust the working directory.</p>
+</div>
+<div id="setting-the-working-directory-manually" class="section level1">
+<h1><span class="header-section-number">2</span> Setting the working directory manually</h1>
+<p>Another way to define the working directory is to set it explicitly in the beginning of the file with the code:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">setwd</span>(<span class="st">&quot;C:/Documents/r_course&quot;</span>)</a></code></pre></div>
+<p>The sample text within the quotation marks is the path that leads to the main folder. The path is visible in the relevant folder in the (Windows-) explorer. Alternatively, you can browse to the folder that you would like to take as working directory in the File pane in RStudio, click on the ‘More’-Button and choose “Set As Working Directory”. Afterwards, you can copy the working directory from the console to the top of the file.</p>
+<p>Reading the data with <code>read_csv()</code> is consistent with the instructions given for the project environment.</p>
+<p>Setting the working directory manually is especially convenient for projects with a simple structure or for temporary files. Note that if you move your folder to another drive, you would need to adjust the path within <code>setwd()</code>.</p>
 </div>
 
 

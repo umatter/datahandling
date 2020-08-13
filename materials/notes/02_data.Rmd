@@ -4,7 +4,7 @@ subtitle: 'Lecture 2: A Brief Introduction to Data and Data Processing'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "26/09/2019"
+date: "24/09/2020"
 output:
   pdf_document:
     pandoc_args:
@@ -20,7 +20,7 @@ header-includes:
 - \usepackage{float}
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
-- \rhead{\textcopyright \enspace 2019 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
+- \rhead{\textcopyright \enspace 2020 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
 css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
 ---
@@ -79,7 +79,7 @@ include_graphics("../img/abacus_own.png")
 
 (ref:capabacus) A simple abacus.
 
-From inspecting Figure \@ref(fig:abacus) we recognize that the columns of the abacus are the positions of the digits, which also denote the power of 10 with which the digit is multiplied: $139=(1 \times 10^{2}) + (3 \times 10^{1}) + (9 \times 10^{0})$. In addition, a base of 10 means that the system is based on 10 different signs (0, 1, ..., 9) with which we distinguish one-digit numbers. Further, we recognize that each column in the abacus has 10 beads.
+From inspecting Figure \@ref(fig:abacus) we recognize that the columns of the abacus are the positions of the digits, which also denote the power of 10 with which the digit is multiplied: $139=(1 \times 10^{2}) + (3 \times 10^{1}) + (9 \times 10^{0})$. In addition, a base of 10 means that the system is based on 10 different signs (0, 1, ..., 9) with which we distinguish one-digit numbers. Further, we recognize that each column in the abacus has 9 beads (when we agree on the standard that a column without any bead represents the sign 0).
 
 The numeral system with base 10 (the 'decimal system') is what we use to measure/count/quantify things in our everyday life. Moreover, it is what we normally work with in applied math and statistics. However, the simple but very useful concept of the counting frame also works well for numeral systems with other bases. Historically, numeral systems with other bases existed in various cultures. For example, ancient cultures in Mesopotamia used different forms of a sexagesimal system (base 60), consisting of 60 different signs to distinguish 'one-digit' numbers. 
 
@@ -101,7 +101,7 @@ Now, compare this with the abacus in the decimal system above. There, we have se
 
 How can a computer know that? In order to correctly print the three symbols `139` to our computer screen when dealing with the binary expression `10001011`, the computer needs to rely on a predefined mapping between binary coded values and the symbols for (Arabic) decimal numbers like `3`. Since a computer can only understand binary expressions, we have to define a *standard* of how `0`s and `1`s correspond to symbols, colors, etc. that we see on the screen. 
 
-Of course, this does not change the fact that any digital data processing is in the end happening in the binary system. But in order to avoid having to work with a keyboard consisting only of an on/off (1/0) switch, low-level standards that define how symbols like `3`, `A`, `#`, etc. correspond to expressions in 0s and 1s help us to interact with the computer. It makes it easier to enter data and commands into the computer as well as understand the output (i.e., the result of a calculation performed on the computer) on the screen. The standard defining how our number symbols in the decimal system correspond to binary numbers (again, reflecting the idea of an abacus) can be illustrated in the following table:
+Of course, this does not change the fact that any digital data processing is in the end happening in the binary system. But in order to avoid having to work with a keyboard consisting only of an on/off (1/0) switch, low-level standards that define how symbols like `3`, `A`, `#`, etc. correspond to expressions in 0s and 1s help us to interact with the computer. It makes it easier to enter data and commands into the computer as well as understand the output (i.e., the result of a calculation performed on the computer) on the screen. A standard defining how our number symbols in the decimal system correspond to binary numbers (again, reflecting the idea of an abacus) can be illustrated in the following table:
 
 Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
 -----|-----|----|----|----|----|----|----|----
@@ -137,7 +137,7 @@ Binary  | Hexadecimal | Decimal | Character
 0100 0001 | 41   |  65 | `A`  
 0110 0010 | 62  |  98 | `b`
 
-Note that the convention that `0100 0001` corresponds to `A` is only true by definition of the ASCII character encoding.^[Each character digit is expressed in 1 byte (8 `0`/`1` digits). The ASCII character set thus consists of $2^{8}=256$ different characters.] It does not follow from any law of nature or fundamental logic. Somebody simply defined this standard at some point. To have such standards (and widely accept them) is paramount to have functioning software and meaningful data sets that can be used and shared across many users and computers. If we write a text and store it in a file based on the ASCII standard and that text (which, under the hood, only consists of `0`s and `1`s) is read on another computer only capable of mapping the binary code to another character set, the output would likely be complete gibberish. 
+The convention that `0100 0001` corresponds to `A` is only true by definition of the ASCII character encoding.^[Each character digit is expressed in 1 byte (8 `0`/`1` digits). The ASCII character set thus consists of $2^{8}=256$ different characters.] It does not follow from any law of nature or fundamental logic. Somebody simply defined this standard at some point. To have such standards (and widely accept them) is paramount to have functioning software and meaningful data sets that can be used and shared across many users and computers. If we write a text and store it in a file based on the ASCII standard and that text (which, under the hood, only consists of `0`s and `1`s) is read on another computer only capable of mapping the binary code to another character set, the output would likely be complete gibberish. 
 
 In practice, the software we use to write emails, browse the Web, or conduct statistical analyses all have some of these standards built into them and usually we do not have to worry about encoding issues when simply interacting with a computer through such programs. The practical relevance of such standards becomes much more relevant once we *store* or *read* previously stored data/computer code.
 
@@ -183,7 +183,7 @@ include_graphics("../img/script-hardware_w.jpg")
 
 - The *Keyboard* is the typical *input* hardware. It is the key tool we need to interact with the computer in this course (note that, in contrast, in a course on graphic design this would rather be the mouse). 
 
-- *Mass Storage* refers to the type of computer memory we use to store data in the long run. Typically this is what we call the *hard drive* or *hard disk*. In these days, the relevant hard disk is actually often not the one physically built into our computer but a hard disk 'in the cloud' (built into a server to which we connect over the Internet).
+- *Mass Storage* refers to the type of computer memory we use to store data in the long run. Typically this is what we call the *hard drive* or *hard disk*. In these days, the relevant hard disk for storing and accessing data is actually often not the one physically built into our computer but a hard disk 'in the cloud' (built into a server to which we connect over the Internet).
 
 - The *Screen* is our primary output hardware that is key to interact with the computer. 
 
@@ -195,7 +195,7 @@ Note how understanding the role of these components helps us to capture what hap
 
 2. My R program has accessed the data you have entered into the Google sheet (again over the Internet), downloaded the data, and loaded it into the RAM on my notebook.
 
-3. There it has been processed in order to produce an output (in the form of statistics/plots) which then has been shown on the screen.
+3. There, the data has been processed in order to produce an output (in the form of statistics/plots), which in the end has been shown on the screen.
 
 In the following, we look at a related example (taken from @murrell_2009, Chapter 9), illustrating how which hardware components are involved when extracting data from a website.
 

@@ -4,7 +4,7 @@ subtitle: 'Lecture 10: Data Analysis and Basic Statistics with R'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "05/12/2019"
+date: "03/12/2020"
 output:
   html_document:
     highlight: tango
@@ -20,7 +20,7 @@ header-includes:
 - \usepackage{float}
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
-- \rhead{\textcopyright \enspace 2019 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
+- \rhead{\textcopyright \enspace 2020 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
 css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
 ---
@@ -592,5 +592,4 @@ Note how the histogram is getting closer to a normal distribution with increasin
 
 
 
- # References 
- 
+

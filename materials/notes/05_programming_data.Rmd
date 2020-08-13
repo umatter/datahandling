@@ -4,7 +4,7 @@ subtitle: 'Lecture 5: Programming with Data'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "19/10/2019"
+date: "15/10/2020"
 output:
   pdf_document:
     pandoc_args:
@@ -20,7 +20,7 @@ header-includes:
 - \usepackage{float}
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
-- \rhead{\textcopyright \enspace 2019 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
+- \rhead{\textcopyright \enspace 2020 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
 css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
 ---
@@ -142,7 +142,7 @@ pi
 A loop is typically a sequence of statements that is executed a specific number of times. How often the code 'inside' the loop is executed depends on a clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called 'for-loop'. If the number of iterations is not clearly known before executing the code, we typically write a so-called 'while-loop'. The following subsections illustrate both of these concepts in R.
 
 ### For-loops
-In simple terms, a for-loop tells the computer to execute a sequence of commands 'for each case in a set of n cases'. The flow-chart in Figure \@ref(for) illustrates the concept.
+In simple terms, a for-loop tells the computer to execute a sequence of commands 'for each case in a set of n cases'. The flow-chart in Figure \@ref(fig:for) illustrates the concept.
 
 ```{r for, echo= FALSE, fig.align="center", out.width="40%", fig.cap="(ref:capfor)", purl=FALSE}
 include_graphics("../img/forloop.png")

@@ -4,7 +4,7 @@ subtitle: 'Lecture 11: Visualisation and Dynamic Documents'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "12/12/2019"
+date: "10/12/2020"
 output:
   pdf_document:
     pandoc_args:
@@ -20,7 +20,7 @@ header-includes:
 - \usepackage{float}
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
-- \rhead{\textcopyright \enspace 2019 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
+- \rhead{\textcopyright \enspace 2020 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
 css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
 ---
@@ -66,7 +66,7 @@ ___
 
 # Data display
 
-In the last part of a data pipeline we are typically dealing with the visualisation of data and statistical results for presentation/communication. Typical output formats are reports, a thesis (BA, MA, Dissertation chapter), interactive dashboards, and websites. R (and particularly RStudio) provides a very flexible framework to manage the steps involved in visualisation/presentation for all of these output formats. A first (low-level) step in preparing data/results for publication is the formatting data values for publication. Typically, this involves some string operations to make numbers and text look nicer before we show them in a table or graph. 
+In the last part of a data pipeline we are typically dealing with the visualisation of data and statistical results for presentation/communication. Typical output formats are reports, a thesis (BA, MA, Dissertation chapter), interactive dashboards, and websites. R (and particularly RStudio) provides a very flexible framework to manage the steps involved in visualisation/presentation for all of these output formats. A first (low-level) step in preparing data/results for publication is the formatting of data values for publication. Typically, this involves some string operations to make numbers and text look nicer before we show them in a table or graph. 
 
 Consider, for example, the following summary statistics.
 

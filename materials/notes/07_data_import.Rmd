@@ -1,10 +1,10 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: 'Lecture 6: Data Sources, Data Gathering, Data Import'
+subtitle: 'Lecture 7: Data Sources, Data Gathering, Data Import'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "24/10/2019"
+date: "12/11/2020"
 output:
   pdf_document:
     pandoc_args:
@@ -20,7 +20,7 @@ header-includes:
 - \usepackage{float}
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
-- \rhead{\textcopyright \enspace 2019 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
+- \rhead{\textcopyright \enspace 2020 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
 css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
 

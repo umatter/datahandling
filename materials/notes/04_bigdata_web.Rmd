@@ -4,7 +4,7 @@ subtitle: 'Lecture 4: "Big Data" from the Web'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "10/10/2019"
+date: "08/10/2020"
 output:
   pdf_document:
     pandoc_args:
@@ -20,7 +20,7 @@ header-includes:
 - \usepackage{float}
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
-- \rhead{\textcopyright \enspace 2019 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
+- \rhead{\textcopyright \enspace 2020 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
 css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
 ---
@@ -87,7 +87,7 @@ From simply looking at the data we can make a best guess which observations belo
 Issues with complex/hierarchical data (with several observation types), intuitive human readability (self-describing), and efficiency in storage as well as transfer are all of great importance in the Web. In course of the development of the Internet several data formats have been put forward to address these issues. Here, we discuss the two most prominent of these formats: [Extensible Markup Language (XML)](https://en.wikipedia.org/wiki/XML) and [JavaScript Object Notation (JSON)](https://en.wikipedia.org/wiki/JSON).
 
 # Deciphering XML
-Before going into more technical details, let's try to figure out the basic logic behind the XML format by simply looking at some raw example data. For this, we turn again to the Point Nemo case study. The following code block shows the upper part of the data set we have downloaded from NASA's LAS server (here in a CSV-type format).
+Before going into more technical details, let's try to figure out the basic logic behind the XML format by simply looking at some raw example data. For this, we turn to the Point Nemo case study in [@murrell_2009]. The following code block shows the upper part of the data set downloaded from NASA's LAS server (here in a CSV-type format).
 
 ```
              VARIABLE : Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)
@@ -367,9 +367,10 @@ What to do with the HTML document is thus in the hands of the person who works w
 
 One way to think about an HTML document is to imagine it as a tree-diagram, with `<html>..</html>` as the 'root', `<head>...</head>` and `<body>...</body>` as the 'children' of `<html>..</html>` (and 'siblings' of each other), `<title>...</title>` as the child of `<head>...</head>`, etc. Figure \@ref(fig:html) illustrates this point.
 
-```{r echo=FALSE, fig.align="center", out.width="50%", fig.cap="(ref:caphtml)"}
+```{r html, echo=FALSE, fig.align="center", out.width="50%", fig.cap="(ref:caphtml)"}
 include_graphics("../img/dom_tree.png")
 ```
+
 (ref:caphtml) HTML (DOM) tree diagram (by Lubaochuan 2014, licensed under the [Creative Commons Attribution-Share Alike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license).
 
 The illustration of the nested structure can help to understand, how we can instruct the computer to find/extract a specific part of the data from such a document. In the following exercise we revisit the example shown in the lecture on data processing to do exactly this.

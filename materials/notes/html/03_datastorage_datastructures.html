@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2020-12-11" />
+<meta name="date" content="2020-01-10" />
 
 <title>Data Handling: Import, Cleaning and Visualisation</title>
 
@@ -458,10 +458,10 @@ summary {
 
 
 <h1 class="title toc-ignore">Data Handling: Import, Cleaning and Visualisation</h1>
-<h3 class="subtitle">Lecture 7: Data Sources, Data Gathering, Data Import</h3>
+<h3 class="subtitle">Lecture 3: Data Storage and Data Structures</h3>
 <h4 class="author"><div class="line-block">Prof. Dr. Ulrich Matter<br />
 (University of St.Gallen)</div></h4>
-<h4 class="date">12/11/2020</h4>
+<h4 class="date">01/10/2020</h4>
 
 </div>
 
@@ -469,324 +469,282 @@ summary {
 <hr />
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="data:image/png;base64,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" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 <hr />
-<div id="putting-it-all-together" class="section level1">
-<h1><span class="header-section-number">1</span> Putting it all together</h1>
-<p>In this lecture we put the key concepts learned so far (text-files for data storage, parsers, encoding, data structures) together and apply them in order to master the first key bottleneck in the data pipeline: how to <em>import</em> raw data from various sources and <em>export/store</em> them for further processing in the pipeline.</p>
-<div id="sourcesformats" class="section level2">
-<h2><span class="header-section-number">1.1</span> Sources/formats</h2>
-<p>In the first two lectures we have learned how data is stored in text-files and how different data structures/formats/syntaxes help to organize the data in these files. Along the way, we have encountered key data formats that are used in various settings to store and transfer data:</p>
+<p>A core part of the practical skills taught in this course has to do with writing, executing, and storing <em>computer code</em> (i.e., instructions to a computer, in a language that it understands) as well as storing and reading <em>data</em>. The way data is typically stored on a computer follows quite naturally from the outlined principles of how computers process data (both technically speaking and in terms of practical applications). Based on a given standard of how <code>0</code>s and <code>1</code>s are translated into the more meaningful symbols we see on our keyboard, we simply write data (or computer code) to a <em>text file</em> and save this file on the hard-disk drive of our computer. Again, what is stored on disk is in the end only consisting of <code>0</code>s and <code>1</code>s. But, given the standards outlined in the previous lecture, these <code>0</code>s and <code>1</code>s properly map to characters that we can understand when reading the file again from disk and look at its content on our computer screen.</p>
+<div id="unstructured-data-in-text-files" class="section level1">
+<h1><span class="header-section-number">1</span> Unstructured data in text files</h1>
+<p>In the simplest case we want to literally store a text. For example, we store the following phrase</p>
+<p><code>Hello World!</code></p>
+<p>in a text file named <code>helloworld.txt</code>. Technically, this means that we allocate a block of computer memory to <code>helloworld.txt</code> (a ‘file’ is in the end a block of computer memory). The ending <code>.txt</code> indicates to the operating system of our computer what kind of data is stored in this file. When clicking on the file’s symbol, the operating system will open the file (read it into RAM) with the default program assigned to open <code>.txt</code>-files (in this course, usually <a href="https://atom.io/">Atom</a> or <a href="https://www.rstudio.com/">RStudio</a>). That is the <em>format</em> of a file says something about how to interpret the <code>0</code>s and <code>1</code>s. If the text editor displays <code>Hello World!</code> as the content of this file, the program correctly interprets the <code>0</code>s and <code>1</code>s as representing plain text and uses the correct character encoding to convert the raw <code>0</code>s and <code>1</code>s yet again to symbols that we can read more easily. Similarly, we can show the content of the file in the command-line terminal (here OSX or Linux):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">cat</span> helloworld.txt</a></code></pre></div>
+<pre><code>## Hello World!</code></pre>
+<p>However, we can also use a command-line program (here, <code>xxd</code>) to display the content of <code>helloworld.txt</code> without actually ‘translating’ it into ASCII characters.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> That is, we can directly look at how the content looks like as <code>0</code>s and <code>1</code>s:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">xxd</span> -b helloworld.txt</a></code></pre></div>
+<pre><code>## 00000000: 01001000 01100101 01101100 01101100 01101111 00100000  Hello 
+## 00000006: 01010111 01101111 01110010 01101100 01100100 00100001  World!</code></pre>
+<p>Similarly we can display the content in hexadecimal values:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1"><span class="ex">xxd</span>  helloworld.txt</a></code></pre></div>
+<pre><code>## 00000000: 4865 6c6c 6f20 576f 726c 6421            Hello World!</code></pre>
+<p>Next, consider the text file <code>hastamanana.txt</code> which was written and stored with another character encoding. When looking at the content, assuming the now common UTF-8 encoding, the content seems a little odd:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" title="1"><span class="fu">cat</span> hastamanana.txt</a></code></pre></div>
+<pre><code>## Hasta Ma?ana!</code></pre>
+<p>We see that it is a short phrase written in Spanish. Strangely it contains the character <code>?</code> in the middle of a word. The occurrence of special characters in unusual places of text files is an indication of using the wrong character encoding to display the text. Let’s check what the file’s encoding is.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" title="1"><span class="fu">file</span> -b hastamanana.txt</a></code></pre></div>
+<pre><code>## ISO-8859 text</code></pre>
+<p>This tells us that the file is encoded with ISO-8859 (‘Latin1’), a character set for several Latin languages (including Spanish). Knowing this, we can check how the content looks like when we change the encoding to UTF-8 (which then properly displays the content on the screen)<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" title="1"><span class="ex">iconv</span> -f iso-8859-1 -t utf-8 hastamanana.txt <span class="kw">|</span> <span class="fu">cat</span></a></code></pre></div>
+<pre><code>## Hasta Mañana!</code></pre>
+<p>When working with data, we must therefore ensure that we apply the proper standards to translate the binary coded values into a character/text-representation that is easier to understand and work with. In recent years, much more general (or even ‘universal’) standards have been developed and adopted around the world, particularly UTF-8. Thus, if we deal with recently generated data sets, we usually can expect that they are encoded in UTF-8, independent of the data’s country of origin. However, when working on a research project where slightly older data sets from different sources are involved, encoding issues still occur quite frequently. It is thus crucial to understand early on what the origin of the problem is, when the data seem to display weird characters. Encoding issues are among the most basic problems that can occur when importing data.</p>
+<p>So far we have only looked at very simple examples of data stored in text files, essentially only containing short phrases of text. Nevertheless, most common formats of storing and transferring data (CSV, XML, JSON, etc.) build on exactly the same principle: characters in a text-file. The difference between such formats and the simple examples above is that their content is structured in a very specific way. That is, on top of the lower-level conversion of <code>0</code>s and <code>1</code>s into characters/text we add another standard, a data format, giving the data more <em>structure</em>, making it even simpler to interpret and work with the data on a computer. Once we understand how data is represented at the low level (the topic of the previous lecture), it is much easier to understand and distinguish different forms of storing structured data.</p>
+</div>
+<div id="structured-data-formats" class="section level1">
+<h1><span class="header-section-number">2</span> Structured data formats</h1>
+<p>As nicely pointed out by <span class="citation">Murrell (2009)</span>, most commonly used software today is designed in a very ‘user-friendly’ way, leading to situations in which we as users are ‘told’ by the computer what to do (rather than the other way around). A prominent symptom of this phenomenon is that specific software is automatically assigned to open files of specific formats, so we don’t have to bother about what the file’s format actually is but only have to click on the icon representing the file.</p>
+<p>However, if we actually want to engage seriously with a world driven by data we have to go beyond the habit of simply clicking on (data-)files and let the computer choose what to do with it. Since most common formats to store data are in essence text files (in research contexts usually in ASCII or UTF-8 encoding), a good way to start engaging with a data set is to look at the raw text file containing the data in order to get an idea of how the data is structured.</p>
+<p>For example, let’s have a look at the file <code>ch_gdp.csv</code>. When opening the file in a text editor we see the following:</p>
+<pre><code>year,gdp_chfb
+1980,184
+1985,244
+1990,331
+1995,374
+2000,422
+2005,464</code></pre>
+<p>At first sight, the file contains a collection of numbers and characters. Having a closer look, certain structural features become apparent. The content is distributed over several rows, with each row containing a comma character (<code>,</code>). Moreover, the first row seems systematically different from the following rows: it is the only row containing alphabetical characters, all the other rows contain numbers. Rather intuitively, we recognize that the specific way in which the data in this file is structured might in fact represent a table with two columns: one with the variable <code>year</code> describing the year of each observation (row), the other with the variable <code>gdp_chfb</code> with numerical values describing another characteristic of each observation/row (we can guess that this variable is somehow related to GDP and CHF/Swiss francs).</p>
+<p>The question arises, how do we work with this data? Recall that it is simply a text file. All the information stored in it is displayed above. How could we explain the computer that this is actually a table with two columns, containing two variables describing six observations? We would have to come up with a sequence of instructions/rules (i.e., an algorithm) of how to distinguish columns and rows, when all that a computer can do is sequentially read one character after the other (more precisely one <code>0</code>/<code>1</code> after the other, representing characters).</p>
+<p>This algorithm could be something along the lines of:</p>
+<ol style="list-style-type: decimal">
+<li>Start with an empty table consisting of one cell (1 row/column).</li>
+<li>While the end of the input file is not yet reached, do the following:
+Read characters from the input file, and add them one-by-one to the current cell.
+If you encounter the character ‘<code>,</code>’, ignore it, create a new field, and jump to the new field.
+If you encounter the end of the line, create a new row and jump to the new row.</li>
+</ol>
+<p>Consider the usefulness of this algorithm. It would certainly work quite well for the particular file we are looking at. But what if another file we want to read data from does not contain any ‘<code>,</code>’ but only ‘<code>;</code>’? We would have to tweak the algorithm accordingly. Hence, again, it is extremely useful if we can agree on certain standards of how data structured as a table/matrix is stored in a text file.</p>
+<div id="csvs-and-fixed-width-format" class="section level2">
+<h2><span class="header-section-number">2.1</span> CSVs and fixed-width format</h2>
+<p>Incidentally, the example we are looking at here is in line with such a standard, i.e., Comma-Separated Values (CSV, therefore <code>.csv</code>). In technical terms, the simple algorithm outlined above is a CSV <a href="https://en.wikipedia.org/wiki/Parsing#Computer_languages">parser</a>. A CSV parser is a software component which takes a text file with CSV standard structure as input and builds a data structure in the form of a table (represented in RAM). If the input file does not follow the agreed on CSV standard, the parser will likely fail to properly ‘parse’ (read/translate) the input.</p>
+<p>CSV files are very often used to transfer and store data in a table-like format. They essentially are based on two rules defining the structure of the data: commas delimit values/fields in a row and the end of a line indicates the end of a row.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>The comma is clearly visible when looking at the raw text content of <code>ch_gdp.csv</code>. However, how does the computer know that a line is ending? By default most programs to work with text files do not show an explicit symbol for line endings but instead display the text on the next line. Under the hood, these line endings are, however, non-printable characters. We can see this when investigating <code>ch_gdp.csv</code> in the command-line terminal (via <code>xxd</code>):</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb14-1" title="1"><span class="ex">xxd</span> ch_gdp.csv</a></code></pre></div>
+<pre><code>## 00000000: efbb bf79 6561 722c 6764 705f 6368 6662  ...year,gdp_chfb
+## 00000010: 0d31 3938 302c 3138 340d 3139 3835 2c32  .1980,184.1985,2
+## 00000020: 3434 0d31 3939 302c 3333 310d 3139 3935  44.1990,331.1995
+## 00000030: 2c33 3734 0d32 3030 302c 3432 320d 3230  ,374.2000,422.20
+## 00000040: 3035 2c34 3634                           05,464</code></pre>
+<p>When comparing the hexadecimal values with the characters they represent on the right side, we recognize that right before every year, a full stop (<code>.</code>) is printed to the output. Moreover, when inspecting the hexadecimal code, we recognize that this <code>.</code> corresponds to <code>0d</code> in the hexadecimal code. <code>0d</code> is indeed the sequence of <code>0</code>s and <code>1</code> indicating the end of a line. Because this character does not actually correspond to a symbol printed on the screen, it is replaced by <code>.</code> in the printed output of the text.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>While CSV files have become a very common way to store ‘flat’/table-like data in plain text files, several similar formats can be encountered in practice. Most commonly they either use a different delimiter (for example, tabs/white space) to separate fields in a row, or fields are defined to consist of a fixed number of characters (so-called fixed-width formats). In addition, various more complex standards to store and transfer digital data are widely used to store data. Particularly in the context of web data (data stored and transferred online), files storing data in these formats (e.g., XML, JSON, YAML, etc.) are in the end just plain text files. However, they contain a larger set of special characters/delimiters (or combinations of these) to indicate the structure of the data stored in them.</p>
+</div>
+</div>
+<div id="units-of-informationdata-storage" class="section level1">
+<h1><span class="header-section-number">3</span> Units of information/data storage</h1>
+<p>The question of how to store digital data on computers, also raises the question of storage capacity. Because every type of digital data can in the end only be stored as <code>0</code>s and <code>1</code>s, it makes perfectly sense to define the smallest unit of information in computing as consisting of either a <code>0</code> or a <code>1</code>. We call this basic unit a <em>bit</em> (from <em>bi</em>nary dig<em>it</em>; abbrev. ‘b’). Recall that the decimal number <code>139</code> corresponds to the binary number <code>10001011</code>. In order to store this number on a hard disk, we require a capacity of 8 bits, or one <em>byte</em> (1 byte = 8 bits; abbrev. ‘B’). Historically, one byte encoded a single character of text (i.e., in the ASCII character encoding system). 4 bytes (or 32 bits) are called a <em>word</em>. The following figure illustrates this point.</p>
+<div class="figure" style="text-align: center"><span id="fig:bitbyteword"></span>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAh8AAABfCAQAAADik20fAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCB4OKiE+coo4AAAFIklEQVR42u3dMW7bZhiH8UepUSRAM3DN0ADKEailYwHyCDLQC8hHsI8QoXsB6wjmCQoRWdrRRD0XCEcDbYGwqBM4rWOwg2XBsizKoqJYNJ/fENmhXpvfS+svfqREdcoSSarhiS2QZHxIMj4kGR+SjA9t3oEtsHMN0/HMy9ZsCtwU63euw5jIlrj3oWspuU24pzGhPTM+ZHzUERHYM+OjnXP4XTqMgD1GkwdBTMyQmA4pMOIVPfZs1cLOdQBmeibjoyXPnEccs0fOgCEACX3GRIwpicgY8ZZjAjKbtaBz11OY655pk3ZswfYIgJCInIguKSEJhzeWJxTEQAGTGb5ud07GR0sVN277JOQMbt2jz2vbtKRzcvLS2gdBRkoIDMhIJ/ERTB4WfdLJVz7LLu4cMz2T8dESI2JiDulOwiKYfBVyQI+UkAExMT2PfVR27mbPtEm+bGxrDenSnz67BjeeaQObc689EvtkfLRSTsAuYxshJy9aVcauB0nl3ock9z70IHshiU2wX8aH6kgmL16X/TI+JBkfkmR8SDI+JBkfkowPScaHJBkfkj4XX7Readj6zxAZzFzvrHnbZ7vXv+m82lilgvCB37r2nm8e8LcnW35hovntM9uvxAsrGR8PKWj15XbThm8fLxe0WR77kGR8SDI+JBkfkowPSZpTeebljFPOW9ycS075m4yvHP+W+oP3nKyxfNn4/+OSZ63d/lcB8ZLn9eLjlNOWp+snSv5x/FvrXy4qPw5q2fL7uGj5Y+CM7+pNXs6R1G4fK5Z57ENS7anNPXzf0ub86vi3fPw/81fl2i1bvmz8F63e/idLJ34r7n0U0w9pXiS33nrrH2n9WvGR0SMlrviA5oK44n0G1ltvfXPr71BW+K18U74p30y/j8rjsizHZbTg/kdlWAbleOHPa1r9L+UPZej4t3j992d+1nz97PLVx9/uv//bj/95T1bZ94AQiCgW7OKEjAmtt976R1i/5uSlmP7o7oJf3yWw3nrrH2X92sc+ilu3q7LeeuubW79WfHSnh1xyujV+lfXWW9/c+rXjIyAFEro1V996661vav2dVjnz8rYMy6gMy3cL7n9YRmVQhuX+guVNq7995sHxb9v6z55Zma+fXb76+Nv997/8zEvlldavX3XW3ldd/sTv/Oj4t3YND8gYr7F82fh91Wn1+H3Pi6Sa7vWel5OWNueT4/8C47/knEue8XWN2j85q1y7Zcvd/lXOPk98FLSb49+8D3yoUfWRT5Vrt2y52389lZOXZ/ZHarmndePjRWWppMcfHi/rTl6eV1ymrB3Wu16E47+Pdc7vbfZ6H1pr8iJJxock40OS8SHJ+JDUTju2oFqx2rUfH93om719fMGX8fGAAjLiVndg0PDtM/CPeIMq33ErbV7b39fdZB77kGR8SDI+JBkf0nI7N/6V8SGt4AVP2eFbG9FAnnmR5N6HJONDkvEhyfiQJONDkvEhyfiQ7pYzsgnGh1QvPhKbYHxIMj4kyfjQl7dLAuR0KICMXWBEj5geGdAh4RUpMKTDrkc+jA/pWkQKpPRJgISQlBFjxrxmD4Ahx0RkDHnHEX1bZnxIV65iI2V/GiMpEQEQUZABhwRAwoAACGyZ8SFdCeiSkROSkwPduXuENsn4kBbtfwyJgGh6m1AA6Ux09Cf/m9mwLedFnvRF4+OAYyAintzuExOQczSzDxLRo+vkZet5uSA9uPyOaYyMD0mPmMc+JBkfkowPScaHJONDkub8D/Q6JqmyKpE1AAAAAElFTkSuQmCC" alt="Writing data stored in RAM to a Mass Storage device (hard drive). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="40%" />
+<p class="caption">
+Figure 3.1: Writing data stored in RAM to a Mass Storage device (hard drive). Figure by <span class="citation">Murrell (2009)</span> (licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/nz/">CC BY-NC-SA 3.0 NZ</a>).
+</p>
+</div>
+
+<p>Bigger units for storage capacity usually build on bytes:</p>
 <ul>
-<li>CSV (typical for rectangular/table-like data)</li>
-<li>Variants of CSV (tab-delimited, fix length, etc.)</li>
-<li>XML and JSON (useful for complex/high-dimensional data sets)</li>
-<li>HTML (a markup language to define the structure and layout of webpages)</li>
-<li>Unstructured text</li>
+<li><span class="math inline">\(1 \text{ kilobyte (KB)} = 1000^{1} \approx 2^{10} \text{ bytes}\)</span></li>
+<li><span class="math inline">\(1 \text{ megabyte (MB)} = 1000^{2} \approx 2^{20} \text{ bytes}\)</span></li>
+<li><span class="math inline">\(1 \text{ gigabyte (GB)} = 1000^{3} \approx 2^{30} \text{ bytes}\)</span></li>
+<li><span class="math inline">\(1 \text{ terabyte (TB)} = 1000^{4} \approx 2^{40} \text{ bytes}\)</span></li>
+<li><span class="math inline">\(1 \text{ petabyte (PB)} = 1000^{5} \approx 2^{50} \text{ bytes}\)</span></li>
+<li><span class="math inline">\(1 \text{ exabyte (EB)} = 1000^{6} \approx 2^{60} \text{ bytes}\)</span></li>
+<li><span class="math inline">\(1 \text{ zettabyte (ZB)} = 1000^{7} \approx 2^{70} \text{ bytes}\)</span></li>
 </ul>
-<p>Depending on the <em>data source</em>, data might come in one or the other form. With the increasing importance of the Internet as a data source for economic research, handling XML, JSON, and HTML properly is becoming more important. However, in applied economic research various other, and more specific formats can be encountered:</p>
-<ul>
-<li>Excel spreadsheets (<code>.xls</code>)</li>
-<li>Formats specific to statistical software packages (SPSS: <code>.sav</code>, STATA: <code>.dat</code>, etc.)</li>
-<li>Built-in R datasets</li>
-<li>Binary formats</li>
-</ul>
-<p>While we will cover/revisit how to import all of these formats here, it is important to keep in mind that the learned fundamental concepts are as important (or even more important) than knowing which function to call in R for each of these cases. New formats might evolve and become more relevant in the future for which no R function yet exists. However, the underlying logic of how formats to structure data work will hardly change.</p>
+<p><span class="math inline">\(1 ZB = 1000000000000000000000\text{ bytes} = 1 \text{ billion terabytes} = 1 \text{ trillion gigabytes}.\)</span></p>
 </div>
-</div>
-<div id="data-gathering-procedure" class="section level1">
-<h1><span class="header-section-number">2</span> Data gathering procedure</h1>
-<p>Before we set out to gather/import data from diverse sources, we should start organizing the procedure in a R script. This script will be the beginning of our pipeline!</p>
-<p>First, open a new R script in RStudio and save it as <code>import_data.R</code> in your <code>code</code> folder. Take your time to meaningfully describe what the script is all about in the first few lines of the file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co">#</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Imports data from ...</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co"># Input: links to data sources (data comes in ... format)</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="co"># Output: cleaned data as CSV</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="co"># </span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="co"># U. Matter, St.Gallen, 2019</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="co">#######################################################################</span></a></code></pre></div>
-<p>RStudio recognizes different sections in a script, whereby section headers are indicated by <code>----------</code>. This helps to further organize the script into different tasks. Usually, it makes sense to start with a ‘meta’ section in which all necessary packages are loaded and fix variables initiated.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co">#</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co"># Imports data from ...</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co"># Input: links to data sources (data comes in ... format)</span></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="co"># Output: cleaned data as CSV</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co"># </span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co"># U. Matter, St.Gallen, 2019</span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb2-10" title="10"></a>
-<a class="sourceLine" id="cb2-11" title="11"></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co"># SET UP --------------</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb2-15" title="15"></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co"># set fix variables</span></a>
-<a class="sourceLine" id="cb2-17" title="17">INPUT_PATH &lt;-<span class="st"> &quot;/rawdata&quot;</span></a>
-<a class="sourceLine" id="cb2-18" title="18">OUTPUT_FILE &lt;-<span class="st"> &quot;/final_data/datafile.csv&quot;</span></a></code></pre></div>
-<p>Finally we add sections with the actual code (in the case of a data import script, maybe one section per data source).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co"># Project XY: Data Gathering and Import</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">#</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co"># This script is the first part of the data pipeline of project XY.</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co"># It imports data from ...</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co"># Input: links to data sources (data comes in ... format)</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co"># Output: cleaned data as CSV</span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co"># </span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co"># U. Matter, St.Gallen, 2019</span></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb3-11" title="11"></a>
-<a class="sourceLine" id="cb3-12" title="12"></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co"># SET UP --------------</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb3-16" title="16"></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="co"># set fix variables</span></a>
-<a class="sourceLine" id="cb3-18" title="18">INPUT_PATH &lt;-<span class="st"> &quot;/rawdata&quot;</span></a>
-<a class="sourceLine" id="cb3-19" title="19">OUTPUT_FILE &lt;-<span class="st"> &quot;/final_data/datafile.csv&quot;</span></a>
-<a class="sourceLine" id="cb3-20" title="20"></a>
-<a class="sourceLine" id="cb3-21" title="21"></a>
-<a class="sourceLine" id="cb3-22" title="22"><span class="co"># IMPORT RAW DATA FROM CSVs -------------</span></a></code></pre></div>
-</div>
-<div id="loadingimporting-rectangular-data" class="section level1">
-<h1><span class="header-section-number">3</span> Loading/importing rectangular data<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></h1>
-<div id="loading-built-in-datasets" class="section level2">
-<h2><span class="header-section-number">3.1</span> Loading built-in datasets</h2>
-<p>We start with the simplest case of loading/importing data. The basic R installation provides some example datasets to try out R’s statistics functions. In the introduction to visualization techniques with R as well as in the statistics examples in the lectures to come, we will rely on some of these datasets for the sake of simplicity. Note that the usage of these simple datasets shipped with basic R are very helpful when practicing/learning R on your own. Many R packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and tutorials online also use these datasets (see for example the <a href="https://ggplot2.tidyverse.org/">ggplot2 documentation</a>). And, they are very useful when searching help on <a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a> in the context of data analysis/manipulation with R, as you should provide a code example based on some data that everybody can easily load and access.</p>
-<p>In order to load such datasets, simply use the <code>data()</code>-function:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">data</span>(swiss)</a></code></pre></div>
-<p>In this case, we load a dataset called <code>swiss</code>. After loading it, the data is stored in a variable of the same name as the dataset (here ‘<code>swiss</code>’). We can inspect it and have a look at the first few rows:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># inspect the structure</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw">str</span>(swiss)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    47 obs. of  6 variables:
-##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
-##  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
-##  $ Examination     : int  15 6 5 12 17 9 16 14 12 16 ...
-##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
-##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
-##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># look at the first few rows</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">head</span>(swiss)</a></code></pre></div>
-<pre><code>##              Fertility Agriculture Examination Education Catholic Infant.Mortality
-## Courtelary        80.2        17.0          15        12     9.96             22.2
-## Delemont          83.1        45.1           6         9    84.84             22.2
-## Franches-Mnt      92.5        39.7           5         5    93.40             20.2
-## Moutier           85.8        36.5          12         7    33.77             20.3
-## Neuveville        76.9        43.5          17        15     5.16             20.6
-## Porrentruy        76.1        35.3           9         7    90.57             26.6</code></pre>
-<p>To get a list of all the built-in datasets simply type <code>data()</code> into the console and hit enter. To get more information about a given dataset use the help function (e.g., <code>?swiss</code>)</p>
-</div>
-<div id="importing-rectangular-data-from-text-files" class="section level2">
-<h2><span class="header-section-number">3.2</span> Importing rectangular data from text-files</h2>
-<p>In most cases of applying R for data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as ‘Comma Separated Values’ (CSV). In economics one also frequently encounters data being stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into R (in some cases, additional packages have to be loaded, though). Thereby, what happens ‘under the hood’ is essentially the same for all of these formats. Somebody has implemented the respective <em>parser</em> as an R function which accepts a character string with the path or url to the data source as input.</p>
-<div id="comma-separated-values-csv" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> Comma Separated Values (CSV)</h3>
-<p>Recall how in this format data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code-block shows how the first two rows of the <code>swiss</code>-dataset would look like when stored in a CSV:</p>
-<pre><code>&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;
-&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2</code></pre>
-<p>The function <code>read.csv()</code> imports such files from disk into R (in the form of a <code>data.frame</code>). In this example the <code>swiss</code>-dataset is stored locally on our disk in the folder <code>data</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">swiss_imported &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</a></code></pre></div>
-<p>Alternatively, we could use the newer <code>read_csv()</code> function which would return a <code>tibble</code>.</p>
-</div>
-<div id="spreadsheetsexcel" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> Spreadsheets/Excel</h3>
-<p>In order to read excel spreadsheets we need to install an additional R package called <code>readxl</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># install the package </span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</a></code></pre></div>
-<p>Then we load this additional package (‘library’) and use the package’s <code>read_excel()</code>-function to import data from an excel-sheet. In the example below, the same data as above is stored in an excel-sheet called <code>swiss.xlsx</code>, again in a folder called <code>data</code>.</p>
-<pre><code>## New names:
-## * `` -&gt; ...1</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># load the package</span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb13-3" title="3"></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="co"># import data from a spreadsheet</span></a>
-<a class="sourceLine" id="cb13-5" title="5">swiss_imported &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/swiss.xlsx&quot;</span>)</a></code></pre></div>
-</div>
-<div id="data-from-other-data-analysis-software" class="section level3">
-<h3><span class="header-section-number">3.2.3</span> Data from other data analysis software</h3>
-<p>The R packages <code>foreign</code> and <code>haven</code> contain functions to import data from formats used in other statistics/data analysis software, such as SPSS and STATA.</p>
-<p>In the following example we use <code>haven</code>‘s <code>read_spss()</code> function to import a version of the <code>swiss</code>-dataset stored in SPSS’ <code>.sav</code>-format (again stored in the folder called <code>data</code>).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># install the package (if not yet installed):</span></a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="co"># install.packages(&quot;haven&quot;)</span></a>
-<a class="sourceLine" id="cb14-3" title="3"></a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="co"># load the package</span></a>
-<a class="sourceLine" id="cb14-5" title="5"><span class="kw">library</span>(haven)</a>
-<a class="sourceLine" id="cb14-6" title="6"></a>
-<a class="sourceLine" id="cb14-7" title="7"><span class="co"># read the data</span></a>
-<a class="sourceLine" id="cb14-8" title="8">swiss_imported &lt;-<span class="st"> </span><span class="kw">read_spss</span>(<span class="st">&quot;data/swiss.sav&quot;</span>)</a></code></pre></div>
-</div>
-</div>
-</div>
-<div id="import-and-parsing-with-readr" class="section level1">
-<h1><span class="header-section-number">4</span> Import and parsing with <code>readr</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></h1>
-<p>The <code>readr</code> package is automatically installed and loaded with the installation/loading of <code>tidyverse</code>. It provides a set of functions to read different types of rectangular data formats and is usually more robust and faster than similar functions provided in the basic R distribution. Each of these functions basically expects either a character string with path pointing to a file or a character string directly containing the data.</p>
-<div id="basic-usage-of-readr-functions" class="section level2">
-<h2><span class="header-section-number">4.1</span> Basic usage of <code>readr</code> functions</h2>
-<p>For example, we can parse the first lines of the swiss dataset directly like this</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">library</span>(readr)</a></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;readr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:rvest&#39;:
-## 
-##     guess_encoding</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">read_csv</span>(<span class="st">&#39;&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="st">&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2&#39;</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 1 x 7
-##   District   Fertility Agriculture Examination Education Catholic Infant.Mortality
-##   &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;
-## 1 Courtelary      80.2          17          15        12     9.96             22.2</code></pre>
-<p>or read the entire <code>swiss</code> dataset by pointing to the file</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">swiss &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</a></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   District = col_character(),
-##   Fertility = col_double(),
-##   Agriculture = col_double(),
-##   Examination = col_double(),
-##   Education = col_double(),
-##   Catholic = col_double(),
-##   Infant.Mortality = col_double()
-## )</code></pre>
-<p>In either case, the result is a <code>tibble</code>:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">swiss</a></code></pre></div>
-<pre><code>## # A tibble: 47 x 7
-##    District     Fertility Agriculture Examination Education Catholic Infant.Mortality
-##    &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;
-##  1 Courtelary        80.2        17            15        12     9.96             22.2
-##  2 Delemont          83.1        45.1           6         9    84.8              22.2
-##  3 Franches-Mnt      92.5        39.7           5         5    93.4              20.2
-##  4 Moutier           85.8        36.5          12         7    33.8              20.3
-##  5 Neuveville        76.9        43.5          17        15     5.16             20.6
-##  6 Porrentruy        76.1        35.3           9         7    90.6              26.6
-##  7 Broye             83.8        70.2          16         7    92.8              23.6
-##  8 Glane             92.4        67.8          14         8    97.2              24.9
-##  9 Gruyere           82.4        53.3          12         7    97.7              21  
-## 10 Sarine            82.9        45.2          16        13    91.4              24.4
-## # … with 37 more rows</code></pre>
-<p>The other <code>readr</code> functions have practically the same syntax and behavior. They are used for fixed-width files or csv-type files with other delimiters than commas.</p>
-</div>
-<div id="parsing-and-data-types" class="section level2">
-<h2><span class="header-section-number">4.2</span> Parsing and data types</h2>
-<p>From inspecting the <code>swiss</code> tibble printed out above, we recognize that <code>read_csv</code> not only correctly recognizes observations and columns (parses the csv correctly) but also automatically guesses the data type of the values in each column. The first column is of type double, the second one of type integer, etc. That is, <code>read_csv</code> also parses each column-vector of the data set with the aim of recognizing which data type it is. For example, the data value <code>&quot;12:00&quot;</code> could be interpreted simply as a character string. Alternatively, it could also be interpreted as a <code>time</code> format.</p>
-<p>If <code>&quot;12:00&quot;</code> is an element of the vector <code>c(&quot;12:00&quot;, &quot;midnight&quot;, &quot;noon&quot;)</code> it must be interpreted as a character string. If however it is an element of the vector <code>c(&quot;12:00&quot;, &quot;14:30&quot;, &quot;20:01&quot;)</code> we probably want R to import this as a <code>time</code> format. Now, how can <code>readr</code> handle the two cases? In simple terms, the package first guesses for each column vector which type is most appropriate. Then, it uses a couple of lower-level parsing functions (one written for each possible data type) in order to parse each column according to the respective guessed type. We can demonstrate this for the two example vectors above.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">read_csv</span>(<span class="st">&#39;A,B</span></a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="st">         12:00, 12:00</span></a>
-<a class="sourceLine" id="cb24-3" title="3"><span class="st">         14:30, midnight</span></a>
-<a class="sourceLine" id="cb24-4" title="4"><span class="st">         20:01, noon&#39;</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 3 x 2
-##   A      B       
-##   &lt;time&gt; &lt;chr&gt;   
-## 1 12:00  12:00   
-## 2 14:30  midnight
-## 3 20:01  noon</code></pre>
-<p>Under the hood <code>read_csv()</code> used the <code>guess_parser()</code>- function to determine which type the two vectors likely contain:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">guess_parser</span>(<span class="kw">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;midnight&quot;</span>, <span class="st">&quot;noon&quot;</span>))</a></code></pre></div>
+<div id="data-structures-and-data-types-in-r" class="section level1">
+<h1><span class="header-section-number">4</span> Data structures and data types in R</h1>
+<p>So far, we have focused on how data is stored on the hard disk. That is, we discovered how <code>0</code>s and <code>1</code>s correspond to characters (following specific standards: character encodings), how a sequence of characters in a text file is a useful way to store data on a hard disk, and how specific standards are used to structure the data (with the help of special characters) in a meaningful way. When thinking about how to store data on a hard disk, we are usually concerned with how much space (in bytes) the data set needs, how well it is transferable/understandable, and how well we can retrieve information from it. All of these aspects go into the decision of what structure/format to choose etc.</p>
+<p>However, none of these is actually taking into consideration how data structures relate to how we actively work with the data. For example, when we want to sum up the <code>gdp_chfb</code> column in <code>ch_gdp.csv</code> (the table example above), do we actually work within the CSV data structure? The answer is usually no.</p>
+<p>Recall from the basics of data processing that data stored on the hard disk is loaded into RAM to work with (analysis, manipulation, cleaning, etc.). The question arises as to how data is structured in RAM? That is, what data structures/formats are used to actively work with the data?</p>
+<p>We distinguish two basic characteristics:</p>
+<ol style="list-style-type: decimal">
+<li>Data <strong>types</strong>: integers; real numbers (‘numeric values’, floating point numbers); text (‘string’, ‘character values’).</li>
+<li>Basic <strong>data structures</strong> in RAM:
+- <em>Vectors</em>
+- <em>Factors</em>
+- <em>Arrays/matrices</em>
+- <em>Lists</em>
+- <em>Data frames</em> (very <code>R</code>-specific)</li>
+</ol>
+<p>Depending on what data structure/format the data is stored in on the hard disk, the data will be more or less usefully represented in one of the above structures in RAM. For example, in the <code>R</code> language it is quite common to represent data stored in CSVs on disk as <em>data frames</em> in RAM. Similarly, it is quite common to represent a more complex format on disk, such as JSON, as a nested list in RAM.</p>
+<p>Importing data from the hard disk (or another mass storage device) into RAM in order to work with it in <code>R</code> essentially means reading the sequence of characters (in the end, of course, <code>0</code>s and <code>1</code>s) and mapping them, given the structure they are stored in, into one of these structures for representation in RAM.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.</p>
+<div id="data-types" class="section level2">
+<h2><span class="header-section-number">4.1</span> Data types</h2>
+<p>From the previous lectures we know that digital data (<code>0</code>s and <code>1</code>s) can be interpreted in different ways depending on the <em>format</em> it is stored in. Similarly, data loaded into RAM can be interpreted differently by R depending on the data <em>type</em>. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the numeric values <code>1.5</code> and <code>3</code> in the variables <code>a</code> and <code>b</code>, respectively.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">a &lt;-<span class="st"> </span><span class="fl">1.5</span></a>
+<a class="sourceLine" id="cb16-2" title="2">b &lt;-<span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<p>R interprets this data as type <code>double</code> (class ‘numeric’; a ‘double precision floating point number’):</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">typeof</span>(a)</a></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">class</span>(a)</a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>Given that these bytes of data are interpreted as numeric, we can use operators (here: math operators) that can work with such types:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">a <span class="op">+</span><span class="st"> </span>b</a></code></pre></div>
+<pre><code>## [1] 4.5</code></pre>
+<p>If however, we define <code>a</code> and <code>b</code> as follows, R will interpret the values stored in <code>a</code> and <code>b</code> as text (<code>character</code>).</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">a &lt;-<span class="st"> &quot;1.5&quot;</span></a>
+<a class="sourceLine" id="cb23-2" title="2">b &lt;-<span class="st"> &quot;3&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">typeof</span>(a)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">guess_parser</span>(<span class="kw">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;14:30&quot;</span>, <span class="st">&quot;20:01&quot;</span>))</a></code></pre></div>
-<pre><code>## [1] &quot;time&quot;</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">class</span>(a)</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>Now the same line of code as above will result in an error:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">a <span class="op">+</span><span class="st"> </span>b</a></code></pre></div>
+<pre><code>## Error in a + b: non-numeric argument to binary operator</code></pre>
+<p>The reason is, that the operator <code>+</code> expects numeric or integer values as arguments. When importing data sets with many different variables (columns), it is thus necessary to make sure that each column is interpreted in the intended way. That is, we have to make sure R is assigning the right type to each of the imported variables. Usually, this is done automatically. However, with large and complex data sets, the automatic recognition of data types when importing data can fail when the data is not perfectly cleaned/prepared (in practice, this is very often the case).</p>
 </div>
+<div id="data-structures" class="section level2">
+<h2><span class="header-section-number">4.2</span> Data structures</h2>
+<p>For now, we have only looked at individual bytes of data. An entire data set can consist of gigabytes of data and contain both text and numeric values. How can such collections of data values be represented in R? Here we look at the main data structures implemented in R. All of these structures will play a role in some of the hands-on exercises.</p>
+<div id="vectors" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Vectors</h3>
+<p>Vectors are collections of values of the same type. They can contain either all numeric values or all character values. We will use the following symbol to refer to vectors.</p>
+<div class="figure" style="text-align: center"><span id="fig:numvec"></span>
+<img src="data:image/png;base64,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" alt="Illustration of a numeric vector (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="5%" />
+<p class="caption">
+Figure 4.1: Illustration of a numeric vector (symbolic). Figure by <span class="citation">Murrell (2009)</span> (licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/nz/">CC BY-NC-SA 3.0 NZ</a>).
+</p>
 </div>
-<div id="importing-web-data-formats" class="section level1">
-<h1><span class="header-section-number">5</span> Importing web data formats</h1>
-<div id="xml-in-r" class="section level2">
-<h2><span class="header-section-number">5.1</span> XML in R<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></h2>
-<p>There are several XML-parsers already implemented in R packages specifically written for working with XML data. We thus do not have to understand the XML syntax in every detail in order to work with this data format in R. The already familiar package <code>xml2</code> (automatically loaded when loading <code>rvest</code>) provides the <code>read_xml()</code> function which we can use to read the exemplary XML-document.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="kw">library</span>(xml2)</a>
-<a class="sourceLine" id="cb30-3" title="3"></a>
-<a class="sourceLine" id="cb30-4" title="4"><span class="co"># parse XML, represent XML document as R object</span></a>
-<a class="sourceLine" id="cb30-5" title="5">xml_doc &lt;-<span class="st"> </span><span class="kw">read_xml</span>(<span class="st">&quot;data/customers.xml&quot;</span>)</a>
-<a class="sourceLine" id="cb30-6" title="6">xml_doc</a></code></pre></div>
-<pre><code>## {xml_document}
-## &lt;customers&gt;
-## [1] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; x &lt;/product&gt;\n    &lt;product&gt; y &lt;/ ...
-## [2] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; a &lt;/product&gt;\n    &lt;product&gt; x &lt; ...</code></pre>
-<p>The same package also comes with various functions to access, extract, and manipulate data from a parsed XML document. In the following code example, we have a look at the most useful functions for our purposes (see the package’s <a href="https://cran.r-project.org/web/packages/xml2/vignettes/modification.html">vignette</a> for more details).</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># navigate through the XML document (recall the tree-like nested structure similar to HTML)</span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="co"># navigate downwards</span></a>
-<a class="sourceLine" id="cb32-3" title="3"><span class="co"># &#39;customers&#39; is the root-node, persons are their&#39;children&#39;</span></a>
-<a class="sourceLine" id="cb32-4" title="4">persons &lt;-<span class="st"> </span><span class="kw">xml_children</span>(xml_doc) </a>
-<a class="sourceLine" id="cb32-5" title="5"><span class="co"># navigate sidewards</span></a>
-<a class="sourceLine" id="cb32-6" title="6"><span class="kw">xml_siblings</span>(persons)</a></code></pre></div>
-<pre><code>## {xml_nodeset (2)}
-## [1] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; a &lt;/product&gt;\n    &lt;product&gt; x &lt; ...
-## [2] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; x &lt;/product&gt;\n    &lt;product&gt; y &lt;/ ...</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># navigate upwards</span></a>
-<a class="sourceLine" id="cb34-2" title="2"><span class="kw">xml_parents</span>(persons)</a></code></pre></div>
-<pre><code>## {xml_nodeset (1)}
-## [1] &lt;customers&gt;\n  &lt;person&gt;\n    &lt;name&gt;John Doe&lt;/name&gt;\n    &lt;orders&gt;\n      &lt;product&gt; x &lt;/product ...</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># find data via XPath</span></a>
-<a class="sourceLine" id="cb36-2" title="2">customer_names &lt;-<span class="st"> </span><span class="kw">xml_find_all</span>(xml_doc, <span class="dt">xpath =</span> <span class="st">&quot;.//name&quot;</span>)</a>
-<a class="sourceLine" id="cb36-3" title="3"><span class="co"># extract the data as text</span></a>
-<a class="sourceLine" id="cb36-4" title="4"><span class="kw">xml_text</span>(customer_names)</a></code></pre></div>
-<pre><code>## [1] &quot;John Doe&quot;  &quot;Peter Pan&quot;</code></pre>
+
+<p>For example, we can initiate a character vector containing the names of persons:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">persons &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Brian&quot;</span>, <span class="st">&quot;Claire&quot;</span>)</a>
+<a class="sourceLine" id="cb30-2" title="2">persons</a></code></pre></div>
+<pre><code>## [1] &quot;Andy&quot;   &quot;Brian&quot;  &quot;Claire&quot;</code></pre>
+<p>and we can initiate a numeric vector with the age of these persons:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">24</span>, <span class="dv">50</span>, <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb32-2" title="2">ages</a></code></pre></div>
+<pre><code>## [1] 24 50 30</code></pre>
 </div>
-<div id="json-in-r" class="section level2">
-<h2><span class="header-section-number">5.2</span> JSON in R<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></h2>
-<p>Again, we can rely on an R package (<code>jsonlite</code>) providing high-level functions to read, manipulate, and extract data when working with JSON-documents in R. An important difference to working with XML- and HTML-documents is that XPath is not compatible with JSON. However, as <code>jsonlite</code> represents parsed JSON as R objects of class <code>list</code> and/or <code>data-frame</code>, we can work with the parsed document as with any other R-object of the same class. The following example illustrates this point.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb38-2" title="2"><span class="kw">library</span>(jsonlite)</a>
-<a class="sourceLine" id="cb38-3" title="3"></a>
-<a class="sourceLine" id="cb38-4" title="4"><span class="co"># parse the JSON-document shown in the example above</span></a>
-<a class="sourceLine" id="cb38-5" title="5">json_doc &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;data/person.json&quot;</span>)</a>
-<a class="sourceLine" id="cb38-6" title="6"></a>
-<a class="sourceLine" id="cb38-7" title="7"><span class="co"># look at the structure of the document</span></a>
-<a class="sourceLine" id="cb38-8" title="8"><span class="kw">str</span>(json_doc)</a>
-<a class="sourceLine" id="cb38-9" title="9"></a>
-<a class="sourceLine" id="cb38-10" title="10"><span class="co"># navigate the nested lists, extract data</span></a>
-<a class="sourceLine" id="cb38-11" title="11"><span class="co"># extract the address part</span></a>
-<a class="sourceLine" id="cb38-12" title="12">json_doc<span class="op">$</span>address</a>
-<a class="sourceLine" id="cb38-13" title="13"><span class="co"># extract the gender (type)</span></a>
-<a class="sourceLine" id="cb38-14" title="14">json_doc<span class="op">$</span>gender<span class="op">$</span>type</a></code></pre></div>
-<pre><code>## List of 6
-##  $ firstName  : chr &quot;John&quot;
-##  $ lastName   : chr &quot;Smith&quot;
-##  $ age        : int 25
-##  $ address    :List of 4
-##   ..$ streetAddress: chr &quot;21 2nd Street&quot;
-##   ..$ city         : chr &quot;New York&quot;
-##   ..$ state        : chr &quot;NY&quot;
-##   ..$ postalCode   : chr &quot;10021&quot;
-##  $ phoneNumber:&#39;data.frame&#39;: 2 obs. of  2 variables:
-##   ..$ type  : chr [1:2] &quot;home&quot; &quot;fax&quot;
-##   ..$ number: chr [1:2] &quot;212 555-1234&quot; &quot;646 555-4567&quot;
-##  $ gender     :List of 1
-##   ..$ type: chr &quot;male&quot;</code></pre>
-<pre><code>## $streetAddress
-## [1] &quot;21 2nd Street&quot;
+<div id="factors" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Factors</h3>
+<p>Factors are sets of categories. Thus, the values come from a fixed set of possible values.</p>
+<div class="figure" style="text-align: center"><span id="fig:factor"></span>
+<img src="data:image/png;base64,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" alt="Illustration of a factor (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="5%" />
+<p class="caption">
+Figure 4.2: Illustration of a factor (symbolic). Figure by <span class="citation">Murrell (2009)</span> (licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/nz/">CC BY-NC-SA 3.0 NZ</a>).
+</p>
+</div>
+
+<p>For example, we might want to initiate a factor that indicates the gender of a number of people.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">gender &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</a>
+<a class="sourceLine" id="cb34-2" title="2">gender</a></code></pre></div>
+<pre><code>## [1] Male   Male   Female
+## Levels: Female Male</code></pre>
+</div>
+<div id="matricesarrays" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Matrices/Arrays</h3>
+<p>Matrices are two-dimensional collections of values, arrays higher-dimensional collections of values, of the same type.</p>
+<div class="figure" style="text-align: center"><span id="fig:matrix"></span>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAQAAACSoYmJAAAJKWlDQ1BpY2MAAHjalZFnUJSHFobP933bC22XpcPSm1QpC0hZepVeRQWW3lmWImJDxAhEFBFpiiCigIJRKRIrolgICopY0CwSBJQYjCIqKPdH7kyceyc/8vx65p13zjkzB4AiBgCAigGkpAr4fi727JDQMDZ8RyQvM53r4+MJ/8jHUUAAAB6sgn8PJTomkwcAywCQz0vnCwCQXADQyhGkCwCQowDAjEpKFwAg5wGAyQ8JDQNAbgEAM+4vHwcAZtRfPg8ATH6AnwMAigMg0eK+86jv/L97AQBUuHxBQmxMLts/LVaQE8mPYWf6udiz3Rwc2D78tNiE5JjvDv5X5X9AEJMrAABwSEvfxE+Iixew/2+osaGREfz9i/e+gAAAwhr83/8AwHe9tEYAzgIAtu/vLKoaoHsXgPTTvzO1owCihQBd93hZ/Oy/MhwAAB4oIApMkAFFUAUt0ANjMAcrsAMncAdvCIBQ2AA8iIcU4EMO5MMOKIIS2AcHoQbqoQlaoB3OQjdchGtwE+7CfRiFZyCEKXgD8/ARlhAEISJ0hIHIIEqIOqKLGCMcxAZxQjwRPyQUiUDikFQkC8lHdiIlSDlSgzQgLchPyAXkGnIbGUaeIBPILPIn8gXFUBrKRBVQDdQA5aBc1AMNQNejcWgGmocWonvRKrQRPYV2odfQu+goKkTfoAsYYFSMhSljehgHc8C8sTAsFuNjW7FirBJrxNqxXmwAe4AJsTnsM46AY+DYOD2cFc4VF4jj4TJwW3GluBrcSVwXrh/3ADeBm8d9w9Px8nhdvCXeDR+Cj8Pn4IvwlfhmfCf+Bn4UP4X/SCAQWARNgjnBlRBKSCRsJpQSDhM6CFcJw4RJwgKRSJQh6hKtid7ESKKAWESsJp4iXiGOEKeIn0hUkhLJmORMCiOlkgpIlaRW0mXSCGmatEQWI6uTLcne5GjyJnIZuYncS75HniIvUcQpmhRrSgAlkbKDUkVpp9ygjFPeU6lUFaoF1ZeaQN1OraKeod6iTlA/0yRoOjQHWjgti7aXdoJ2lfaE9p5Op2vQ7ehhdAF9L72Ffp3+gv5JhCGiL+ImEi2yTaRWpEtkROStKFlUXZQrukE0T7RS9JzoPdE5MbKYhpiDWKTYVrFasQtiY2IL4gxxI3Fv8RTxUvFW8dviMxJECQ0JJ4loiUKJYxLXJSYZGEOV4cDgMXYymhg3GFNMAlOT6cZMZJYwTzOHmPOSEpImkkGSuZK1kpckhSyMpcFyYyWzylhnWY9YX6QUpLhSMVJ7pNqlRqQWpeWk7aRjpIulO6RHpb/IsGWcZJJk9st0yzyXxcnqyPrK5sgekb0hOyfHlLOS48kVy52VeyqPyuvI+8lvlj8mPyi/oKCo4KKQrlCtcF1hTpGlaKeYqFiheFlxVomhZKOUoFShdEXpNVuSzWUns6vY/ex5ZXllV+Us5QblIeUlFU2VQJUClQ6V56oUVY5qrGqFap/qvJqSmpdavlqb2lN1sjpHPV79kPqA+qKGpkawxm6Nbo0ZTWlNN808zTbNcS26lq1Whlaj1kNtgjZHO0n7sPZ9HVTHVCdep1bnni6qa6aboHtYd3gVfpXFqtRVjavG9Gh6XL1svTa9CX2Wvqd+gX63/lsDNYMwg/0GAwbfDE0Nkw2bDJ8ZSRi5GxUY9Rr9aaxjzDOuNX64mr7aefW21T2r35nomsSYHDF5bMow9TLdbdpn+tXM3Ixv1m42a65mHmFeZz7GYXJ8OKWcWxZ4C3uLbRYXLT5bmlkKLM9a/mGlZ5Vk1Wo1s0ZzTcyapjWT1irWkdYN1kIbtk2EzVEboa2ybaRto+1LO1W7aLtmu2muNjeRe4r71t7Qnm/fab/oYOmwxeGqI+bo4ljsOOQk4RToVOP0wlnFOc65zXnexdRls8tVV7yrh+t+1zE3BTeeW4vbvLu5+xb3fg+ah79HjcdLTx1PvmevF+rl7nXAa3yt+trUtd3e4O3mfcD7uY+mT4bPz74EXx/fWt9XfkZ++X4D/gz/jf6t/h8D7APKAp4FagVmBfYFiQaFB7UELQY7BpcHC0MMQraE3A2VDU0I7QkjhgWFNYctrHNad3DdVLhpeFH4o/Wa63PX394guyF5w6WNohsjN56LwEcER7RGLEd6RzZGLkS5RdVFzfMceId4b6LtoiuiZ2OsY8pjpmOtY8tjZ+Ks4w7EzcbbxlfGzyU4JNQkvEt0TaxPXEzyTjqRtJIcnNyRQkqJSLmQKpGalNqfppiWmzacrptelC7MsMw4mDHP9+A3ZyKZ6zN7BExBumAwSytrV9ZEtk12bfannKCcc7niuam5g5t0Nu3ZNJ3nnHd8M24zb3NfvnL+jvyJLdwtDVuRrVFb+7apbivcNrXdZfvJHZQdSTt+KTAsKC/4sDN4Z2+hQuH2wsldLrvaikSK+EVju6121/+A+yHhh6E9q/dU7/lWHF18p8SwpLJkuZRXeudHox+rflzZG7t3qMys7Mg+wr7UfY/22+4/WS5enlc+ecDrQFcFu6K44sPBjQdvV5pU1h+iHMo6JKzyrOqpVqveV71cE18zWmtf21EnX7enbvFw9OGRI3ZH2usV6kvqvxxNOPq4waWhq1GjsfIY4Vj2sVdNQU0DxznHW5plm0uav55IPSE86Xeyv8W8paVVvrWsDW3Laps9FX7q/mnH0z3teu0NHayOkjNwJuvM658ifnp01uNs3znOufbz6ufrOhmdxV1I16au+e74bmFPaM/wBfcLfb1WvZ0/6/984qLyxdpLkpfKLlMuF15euZJ3ZeFq+tW5a3HXJvs29j27HnL9Yb9v/9ANjxu3bjrfvD7AHbhyy/rWxduWty/c4dzpvmt2t2vQdLDzF9NfOofMhrrumd/ruW9xv3d4zfDlEduRaw8cH9x86Pbw7uja0eFHgY8ej4WPCR9HP555kvzk3dPsp0vPto/jx4ufiz2vfCH/ovFX7V87hGbCSxOOE4Mv/V8+m+RNvvkt87flqcJX9FeV00rTLTPGMxdnnWfvv173eupN+puluaLfxX+ve6v19vwfdn8MzofMT73jv1v5s/S9zPsTH0w+9C34LLz4mPJxabH4k8ynk585nwe+BH+ZXspZJi5XfdX+2vvN49v4SsrKyn8ALqKQvFCn7rEAAAACYktHRAD/h4/MvwAAAAlwSFlzAAAAeAAAAHgAnfVaYAAABM1JREFUaN7tmyF040YQhr/0hbbRkRxUUGEE7rVQQaFCNrSQqUtqGCMZ+pCpkVwWgz5Ro4imBTIMysILOeUVFlyBFT/Zvnv7b2s7cZ/mQC5+o/G3s7M7O6PNyReOT757bYAG+i1LA91A/9+gTzc/OPnAH68NtYH4198/WKB5BzMHk7/z2171C5Lvt4bxNcXQwehiz/pfk6OM6Qb6UHKqqxYETqZz7ojxrXoJV2u/X+LtCjqnxcxhCZV0ARhYXTFmvPZJz/qMCJ2TyLhL6XMp6fnAvJrDkjbQsz4jxfQ1LUfkjJyPkqbH0yrsusCtNThET4/wMA7gJQk9IZrXJSVnLiCLng4cAcZ4wiRvDnRIT1zqDruHKjlj5s5PZZTyQPewTyeyx+oyJZZCA/bg6TEFYbXXGCDBJ7Y+ZSgcAmrnng63vvxZeKrA5Ri1c08HtdAoCKyJ4kXTk4NDhDYYisofvriTGAzPPJMLaRkQU5EDdEJW/YSIiWQ4ZQwUpAyEaDUOyCK0hrkuAzEwljLaPfT+xXPSPsrzdAN9KNmO6fdw7mhkv/qnwief3lzfQ4Cm6XvsRRroQ4mYEQ0G/bBU1I6j2nFpaf9sl+VWnxSfZ0pCJlaIfK0EjoVzRcIYjzMMIQMBXAiPhIwZ9zwww1QtGJvMeKr+acgTHrjnnmfJvgA9Jaw2qZCP5OQSti4FPSIAfAYYwb4AfVmL5BB43DG0R7H6/yMI60aI6Xr+KoALAeSOlJILOkKE9ujSJQbumDLaDXRdEgIpn03p4FNwzaSa+m9LwIxWtXhHQuXuCN1nwa1VyydiVO0xffqElv2moE2HGJ+MhIWwdOXkUtIn41aYbr+2LfYoWVj0u3QY4AMRM1JS6zeIni5pU0rIy/L3pT60x6fB1JrqPr5Q5EqeLviZs6qLXFi1pzWdsRXcx+NubQj2gQrQKW18fmFBTs61dfo6LEiBkjFjoeV7w5gEA2S0CISlKITHkJKylpo9i/4AGNIHPDpCIyHGI6leYcTc2IEU6AfBzCb2gFw+/kBEhMHIxcHe+h6u1Yl6goQjPU830IeSpu+xD/2m7/Ga0kAfSsSMuOxk6IkZIHd4omTBI1diVhSgS7rkePgUBEwkwxl9SgIK4fYGpAwBn76kLbYQciY8MOce+FUwmtKlwxNzwo0LKN8aYI8H5sy2Lqz8a2ifsJpkn1DoSpiax2LBc2Pi6qVdSCwUWxJ0xGwVEso9phR/hRoJ7xALzmrfZYTaSK4RF7xcI7FJTkRKhiEgFhKJt/G7/V26uOVNadEik25/La9SLd+Kt4Tp7tSqyhSlgyV6ukcPyEgoBF/71bWeiIQhkaVA65HTpgPVy+wLq32n5BIxobD6zidY63vYlq7HnBsMRlq2IHm6T7SKzADP2pcIKGtAmsRVDZ7gCavA6umStJo2AENpjeqQfDWwFKz7TUa3GmbBlI4wRCu0R1j1QCGnK/QlYgK6GJaZzt73KMiqrke7tln+J2iYcMWQHzmnRSA0IGHCGT9xTl/sewRcc06XjmRdimmPESMKnuXDu8/MoY/hM3ey7tD3cL205tLHcLV+lOfpBvpQsh3Tn99a32NbTrb/iPLkA++cbLzn0171P3/50wr99uUoY7qBbqAb6DcgRwn9D1zhWzuDkcTKAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDEyLTA4LTIwVDE1OjUyOjQ1KzEyOjAwPS31cQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxMi0wOC0yMFQxNTo1Mjo0NSsxMjowMExwTc0AAAAedEVYdHBkZjpIaVJlc0JvdW5kaW5nQm94ADU0eDU0KzArMGLjnXwAAAAUdEVYdHBkZjpWZXJzaW9uAFBERi0xLjMgUwasvwAAAABJRU5ErkJggg==" alt="Illustration of a numeric matrix (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
+<p class="caption">
+Figure 4.3: Illustration of a numeric matrix (symbolic). Figure by <span class="citation">Murrell (2009)</span> (licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/nz/">CC BY-NC-SA 3.0 NZ</a>).
+</p>
+</div>
+
+<p>For example, we can initiate a three-row/two-column numeric matrix as follows</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">my_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb36-2" title="2">my_matrix</a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6</code></pre>
+<p>And a three-dimensional numeric array as follows.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">my_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>), <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb38-2" title="2">my_array</a></code></pre></div>
+<pre><code>## , , 1
 ## 
-## $city
-## [1] &quot;New York&quot;
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
 ## 
-## $state
-## [1] &quot;NY&quot;
+## , , 2
 ## 
-## $postalCode
-## [1] &quot;10021&quot;</code></pre>
-<pre><code>## [1] &quot;male&quot;</code></pre>
+##      [,1] [,2]
+## [1,]    5    7
+## [2,]    6    8</code></pre>
+</div>
+<div id="data-frames-tibbles-and-data-tables" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Data frames, tibbles, and data tables</h3>
+<p>Data frames are the typical representation of a (table-like) data set in R. Each column can contain a vector of a given data type (or a factor), but all columns need to be of identical length. Thus in the context of data analysis, we would say that each row of a data frame contains an observation, and each column contains a characteristic of this observation.</p>
+<div class="figure" style="text-align: center"><span id="fig:df"></span>
+<img src="data:image/png;base64,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" alt="Illustration of a data frame (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
+<p class="caption">
+Figure 4.4: Illustration of a data frame (symbolic). Figure by <span class="citation">Murrell (2009)</span> (licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/nz/">CC BY-NC-SA 3.0 NZ</a>).
+</p>
+</div>
+
+<p>The historical implementation of data frames in R is not very appropriate to work with large datasets.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> These days there are new implementations of the data frame concept in R provided by different packages, which aim at making data processing based on ‘data frames’ faster. One is called <code>tibbles</code>, implemented and used in the <code>tidyverse</code> packages. The other is called <code>data table</code>, implemented in the <code>data.table</code>-package. In this course we will encounter primarily the classical <code>data.frame</code> and <code>tibble</code> (however, there will also be some hints to tutorials with <code>data.table</code>). In any case, once we understand data frames in general, working with <code>tibble</code> and <code>data.table</code> is quite easy because functions that accept classical data frames as arguments also accept those newer implementations.</p>
+<p>Here is how we define a data frame in R, based on the examples of vectors and factors shown above.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">person =</span> persons, <span class="dt">age =</span> ages, <span class="dt">gender =</span> gender)</a>
+<a class="sourceLine" id="cb40-2" title="2">df</a></code></pre></div>
+<pre><code>##   person age gender
+## 1   Andy  24   Male
+## 2  Brian  50   Male
+## 3 Claire  30 Female</code></pre>
+</div>
+<div id="lists" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> Lists</h3>
+<p>Similar to data frames, lists can contain different types of data in each element. Moreover, they even can contain different data structures of <em>different dimensions</em> in each element. For example, a list could contain different other lists, data frames, and vectors with differing numbers of elements.</p>
+<div class="figure" style="text-align: center"><span id="fig:list"></span>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGwAAABmCAQAAACE9LwgAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCB4OJStZP3/pAAAEUklEQVR42u2cMUwbVxiAPwe2RvW5A4yXestAHMlSFSmSlcFeMhwdTFMhBWWo2olIkZCywISlMhB1YCqlyyFlACaveMlJlSKVDoYtg5Ubk8ExA2PzMuRwDEd77947+87m/ZbsO3T+7//u/f///v/xICcEEyk3wIAZMAM2RJmWvXCbDkV+1rhVh20KLFBU1vCBfTpUqcpcLKTkrkBMCcT3QlV+F4hpgbgpjhQ1dMXtQMcTiaulwDYE/deeolk3g+9PifuKGp6Lqb4V0Q9nWs4FvsgPmr7/L3+R046gfygnEWOFgeNnPFQypdY/+pZtJQ1/ssfH4LiYTIx1xW1xQyAQc8ox9rzvRofKMfa1yAkE4kFSMSZEV/woEBuiK9RlT8yKu8pYg1bISE62VmxRQ7esrFFmQ0uDvBWm8jBgBsyAGbBrARaaoI8GCl65Vz40OdZj69jQtsKKKoI/AKuxuqyXoZ91WcKJoWP9Qpl9bsVBDA1t1mWK4DltP8hTiXX1VVIxMWbArslizsml8yJfpWhwm1IyYC3+CKWW1dSwPOocSKWVSLAqVR4xz2Jw3khxtLxQUk8wxtJzxBr1YSyYnsuiollbvAIsKiwpatjEwpeGizViv/Fa0SiXdW5RwqbBT4o6StjJj9hrOsAJs9xTMsrBZwkbcKjRjFVwDS3dA8xQvCLxy4vFGj08XgUpOzNgxSC2VKvIHg1c7fqPYSWPReXbNGiyE4zTzCSVVE0ej8D9Yo3YGR3gjBOtZsZhlxIlfFzgFI87WDF1+Pi0gTZgR2ZIiZLqJdCixa8av7JbhSDNOyzh4vYdM0472gw+wWFHF2ye+QQcw2KTzYGpVkV2shhjph8zYKaDPpd3wCPNGeMbttiKpePhFVbMaFkRsmoW3RU92OaXmM+3nLgVV6Z73YquILfFJELMuqIBm8ysGO6kjsn31/Iuno1afHypAlgK7HODeL6WV8MH3qeCtYKLzSk9KuxE9gaRrrjJMlZQV7exUsNap8kBf/OGA3yJBSGpGHMCsOYIW/vLsksluHuFF3h4SYDlsWnCSFaX/kvuDERWBXibzJqHg4cNqaWNi3VIG7iVFFidfIrjdTneSpFBIQlmY7HLfiawVjiWsER6gl7GTtERv8yqKzTZl7BEel3RyYAj9ligJ4U1ViVVm+/Ic0gpSB+aYD6nnNILzjwppcMQlwVsnnKMh0cNV9cVXVzAZhnoUQcWeJMCWINecP/PYumCrbE2oOx9ao4Y92GafsyAGbARd9DxV/SmhmBWIbYVVhTYLPr7FfWlzGHMbxRl0v1cBlypamLMgE1oVgxLtvYrJgaWrf2KCYJlab/iUGNsPBxxhPsVMz1i6vsVMztiuvsVMztiMxQ1NhxleMR09ytmPHksjtGIXd9a8YyT/vtEgbVoBO+dyUoeyexXNDFmwAzYxHfQBeLuVxwTsDJHob9K/n8pZBIsZ/5bnwEzYAbMgBmwMZZPutOBqrB+cR0AAAAASUVORK5CYII=" alt="Illustration of a data frame (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
+<p class="caption">
+Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="citation">Murrell (2009)</span> (licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/nz/">CC BY-NC-SA 3.0 NZ</a>).
+</p>
+</div>
+
+<p>This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(my_array, my_matrix, df)</a>
+<a class="sourceLine" id="cb42-2" title="2">my_list</a></code></pre></div>
+<pre><code>## [[1]]
+## , , 1
+## 
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+## 
+## , , 2
+## 
+##      [,1] [,2]
+## [1,]    5    7
+## [2,]    6    8
+## 
+## 
+## [[2]]
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+## 
+## [[3]]
+##   person age gender
+## 1   Andy  24   Male
+## 2  Brian  50   Male
+## 3 Claire  30 Female</code></pre>
+</div>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 <div id="refs" class="references">
-<div id="ref-umatter_2018">
-<p>Matter, Ulrich. 2018a. “A Brief Introduction to Programming with R.” Lecture notes. St. Gallen: University of St. Gallen.</p>
-</div>
-<div id="ref-umatter_2018b">
-<p>———. 2018b. “Introduction to Web Data Mining for Social Scientists.” Lecture notes. St. Gallen: University of St. Gallen.</p>
-</div>
-<div id="ref-wickham_grolemund2017">
-<p>Wickham, Hadley, and Garrett Grolemund. 2017. Sebastopol, CA: O’Reilly. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.</p>
+<div id="ref-murrell_2009">
+<p>Murrell, Paul. 2009. <em>Introduction to Data Technologies</em>. London, UK: CRC Press.</p>
 </div>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>This section is based on <span class="citation">Matter (2018a)</span>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>This is a summary of Chapter 8 in <span class="citation">Wickham and Grolemund (2017)</span>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>This section is based on <span class="citation">Matter (2018b)</span>.<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>This section is based on <span class="citation">Matter (2018b)</span>.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>To be precise, this program shows both the raw binary content as well as its ASCII representation.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Note that changing the encoding in this way only works well if we actually know what the original encoding of the file is (i.e., the encoding used when the file was initially created). While the <code>file</code> comand above seems to simply tell us what the original encoding was, it actually has to make an educated guess in most cases (as the original encoding is often not stored as metadata describing a file). See, for example, the <a href="https://www-archive.mozilla.org/projects/intl/chardet.html">Mozilla Charset Detectors</a>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>In addition, if a field contains itself a comma (the comma is part of the data), the field needs to be surrounded by double-quotes (<code>&quot;</code>). If a field contains double-quotes it also has to be surrounded by double-quotes, and the double quotes in the field must be preceded by an additional double-quote.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>The same applies to other sequences of <code>0</code>s and <code>1</code>s that do not correspond to a printable character.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>In the lecture on data gathering and data import, we will cover this crucial step in detail.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>In the early days of R this was not really an issue because datasets that are rather large by today’s standards (in the Gigabytes) could not have been handled properly by normal computers anyhow (due to a lack of RAM).<a href="#fnref6" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 
