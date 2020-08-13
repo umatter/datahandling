@@ -1,4 +1,4 @@
-## ---- echo=FALSE, results='asis', warning=FALSE--------------------------
+## ---- echo=FALSE, results='asis', warning=FALSE---------------------------------------------------
 # conditional on the output format of the whole document,
 # generate and render a HTML or a LaTeX table.
 if (knitr::is_latex_output()) {
@@ -229,7 +229,7 @@ if (knitr::is_latex_output()) {
 
 
 
-## ----eval=FALSE, purl=TRUE-----------------------------------------------
+## ----eval=FALSE, purl=TRUE------------------------------------------------------------------------
 ## # load packages
 ## library(jsonlite)
 ## 
@@ -263,35 +263,35 @@ if (knitr::is_latex_output()) {
 ##      </html>
 
 
-## ----echo=FALSE, fig.align="center", out.width="50%", fig.cap="(ref:caphtml)"----
+## ----html, echo=FALSE, fig.align="center", out.width="50%", fig.cap="(ref:caphtml)"---------------
 include_graphics("../img/dom_tree.png")
 
 
-## ----swiss, echo=FALSE, out.width = "50%", fig.align='center', fig.cap= "(ref:capswiss)"----
+## ----swiss, echo=FALSE, out.width = "50%", fig.align='center', fig.cap= "(ref:capswiss)"----------
 include_graphics("../img/1_SwissGDP.png")
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 swiss_econ <- readLines("https://en.wikipedia.org/wiki/Economy_of_Switzerland")
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 head(swiss_econ)
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 line_number <- grep('US Dollar Exchange', swiss_econ)
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 line_number
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 swiss_econ[line_number]
 
 
-## ----echo=FALSE----------------------------------------------------------
+## ----echo=FALSE-----------------------------------------------------------------------------------
 # install package if not yet installed
 # install.packages("rvest")
 
@@ -301,13 +301,13 @@ library(rvest)
 
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 # parse the webpage, show the content
 swiss_econ_parsed <- read_html("https://en.wikipedia.org/wiki/Economy_of_Switzerland")
 swiss_econ_parsed
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 tab_node <- html_node(swiss_econ_parsed, xpath = "//*[@id='mw-content-text']/div/table[2]")
 tab <- html_table(tab_node)
 tab

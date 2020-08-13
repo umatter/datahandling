@@ -1,4 +1,4 @@
-## ---- echo=FALSE, results='asis', warning=FALSE--------------------------
+## ---- echo=FALSE, results='asis', warning=FALSE---------------------------------------------------
 # conditional on the output format of the whole document,
 # generate and render a HTML or a LaTeX table.
 if (knitr::is_latex_output()) {
@@ -23,7 +23,7 @@ if (knitr::is_latex_output()) {
 }
 
 
-## ----message=FALSE, warning=FALSE----------------------------------------
+## ----message=FALSE, warning=FALSE-----------------------------------------------------------------
 # load packages and data
 library(tidyverse)
 data("swiss")
@@ -38,12 +38,12 @@ swiss_summary
 
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 swiss_summary_rounded <- round(swiss_summary, 2)
 swiss_summary_rounded
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 
 swiss_summary_formatted <- format(swiss_summary_rounded, decimal.mark=",")
 swiss_summary_formatted 
@@ -51,7 +51,7 @@ swiss_summary_formatted
 
 
 
-## ----echo=TRUE-----------------------------------------------------------
+## ----echo=TRUE------------------------------------------------------------------------------------
 # load the R package
 library(ggplot2)
 # load the data
@@ -62,7 +62,7 @@ data(swiss)
 head(swiss)
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 # code province as 'Catholic' if more than 50% are catholic
 swiss$Religion <- 'Protestant'
 swiss$Religion[50 < swiss$Catholic] <- 'Catholic'
@@ -70,25 +70,25 @@ swiss$Religion <- as.factor(swiss$Religion)
 
 
 
-## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8--------------
+## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8---------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination))
 
 
 
-## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8--------------
+## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8---------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point()
 
 
 
-## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8--------------
+## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8---------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      facet_wrap(~Religion)
 
 
 
-## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8--------------
+## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8---------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      geom_smooth(method = 'loess') +
@@ -96,7 +96,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 
-## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8--------------
+## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8---------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      geom_smooth(method = 'lm') +
@@ -104,7 +104,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 
-## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8--------------
+## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8---------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -112,7 +112,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 
-## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8--------------
+## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8---------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -121,7 +121,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 
-## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8--------------
+## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8---------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -130,7 +130,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 
-## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8--------------
+## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8---------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -139,7 +139,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 
-## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8--------------
+## ----echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8---------------------------------------
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +

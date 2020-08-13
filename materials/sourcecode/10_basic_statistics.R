@@ -1,4 +1,4 @@
-## ---- echo=FALSE, results='asis', warning=FALSE--------------------------
+## ---- echo=FALSE, results='asis', warning=FALSE---------------------------------------------------
 # conditional on the output format of the whole document,
 # generate and render a HTML or a LaTeX table.
 if (knitr::is_latex_output()) {
@@ -23,7 +23,7 @@ if (knitr::is_latex_output()) {
 }
 
 
-## ----message=FALSE, warning=FALSE----------------------------------------
+## ----message=FALSE, warning=FALSE-----------------------------------------------------------------
 # load packages
 library(tidyverse)
 
@@ -42,41 +42,41 @@ df_p <- data.frame(id = 1:4,
 df_p
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 df_merged <- merge(df_p, df_c, by="id")
 df_merged
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 df_merged2 <- merge(df_p, df_c, by="id", all = TRUE)
 df_merged2
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 df_selection <- select(df_merged, id, year, money_spent, currency)
 df_selection
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 filter(df_selection, year == 2018)
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 filter(df_selection, year == 2018, money_spent < 5000, currency=="EUR")
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 exchange_rates <- data.frame(exchange_rate= c(0.9, 1, 1.2),
                              currency=c("USD", "CHF", "EUR"), stringsAsFactors = FALSE)
 df_selection <- merge(df_selection, exchange_rates, by="currency")
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 df_mutated <- mutate(df_selection, money_spent_chf = money_spent * exchange_rate)
 df_mutated
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 summarise(df_mutated, 
           mean = mean(money_spent_chf),
           standard_deviation = sd(money_spent_chf),
@@ -84,7 +84,7 @@ summarise(df_mutated,
           N = n())
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 by_year <- group_by(df_mutated, year)
 summarise(by_year, 
           mean = mean(money_spent_chf),
@@ -93,27 +93,27 @@ summarise(by_year,
           N = n())
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 # load data
 data("swiss")
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 sapply(swiss, mean)
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 summarise(swiss, 
           Fertility = mean(Fertility),
           Agriculture = mean(Agriculture)) # etc.
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 normal_distr <- rnorm(1000)
 hist(normal_distr)
 
 
-## ---- echo=TRUE----------------------------------------------------------
+## ---- echo=TRUE-----------------------------------------------------------------------------------
 # draw a random sample from a normal distribution with a large standard deviation
 largevar <- rnorm(10000, mean = 5000, sd = 5)
 # draw a random sample from a normal distribution with a small standard deviation
@@ -126,7 +126,7 @@ lines(density(largevar), col = "red")
 
 
 
-## ---- echo=TRUE----------------------------------------------------------
+## ---- echo=TRUE-----------------------------------------------------------------------------------
 # Install the R-package called "moments" with the following command (if not installed yet):
 # install.packages("moments")
 
@@ -135,7 +135,7 @@ library(moments)
 
 
 
-## ---- echo=TRUE----------------------------------------------------------
+## ---- echo=TRUE-----------------------------------------------------------------------------------
 # draw a random sample of simulated data from a normal distribution
 # the sample is of size 1000 (hence, n = 1000)
 sample <- rnorm(n = 1000)
@@ -162,7 +162,7 @@ skewness(sample)
 
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 # draw a random sample of simulated data from a normal distribution
 # the sample is of size 1000 (hence, n = 1000)
 sample <- rnorm(n = 1000)
@@ -184,7 +184,7 @@ kurtosis(sample)
 
 
 
-## ---- echo=TRUE----------------------------------------------------------
+## ---- echo=TRUE-----------------------------------------------------------------------------------
 # own implementation
 sum((sample-mean(sample))^3) / ((length(sample)-1) * sd(sample)^3)
 
@@ -192,7 +192,7 @@ sum((sample-mean(sample))^3) / ((length(sample)-1) * sd(sample)^3)
 skewness(sample)
 
 
-## ---- echo=TRUE----------------------------------------------------------
+## ---- echo=TRUE-----------------------------------------------------------------------------------
 # own implementation
 sum((sample-mean(sample))^4) / ((length(sample)-1) * sd(sample)^4)
 
@@ -200,7 +200,7 @@ sum((sample-mean(sample))^4) / ((length(sample)-1) * sd(sample)^4)
 kurtosis(sample)
 
 
-## ----dice10, echo=TRUE---------------------------------------------------
+## ----dice10, echo=TRUE----------------------------------------------------------------------------
 # first we define the potential values a die can take
 dvalues <- 1:6 # the : operater generates a regular sequence of numbers (from:to)
 dvalues
@@ -213,7 +213,7 @@ results <- sample( x = dvalues, size = n, replace = TRUE)
 mean(results)
 
 
-## ----dice100, echo=TRUE--------------------------------------------------
+## ----dice100, echo=TRUE---------------------------------------------------------------------------
 n <- 100
 # draw the random sample: 'roll the die n times and record each result'
 results <- sample( x = dvalues, size = n, replace = TRUE)
@@ -221,7 +221,7 @@ results <- sample( x = dvalues, size = n, replace = TRUE)
 mean(results)
 
 
-## ----lln, echo=TRUE------------------------------------------------------
+## ----lln, echo=TRUE-------------------------------------------------------------------------------
 # Essentially, what we are doing here is repeating the experiment above many times, 
 # each time increasing n.
 # define the set of sample sizes
@@ -246,7 +246,7 @@ plot(ns, unlist(means),
 abline(h = 3.5, col = "red")
 
 
-## ----t-test--------------------------------------------------------------
+## ----t-test---------------------------------------------------------------------------------------
 
 # First we roll the die like above
 n <- 100
@@ -265,12 +265,12 @@ t
 
 
 
-## ----p-value-------------------------------------------------------------
+## ----p-value--------------------------------------------------------------------------------------
 # calculate the p-value associated with the t-value calculated above
 2*pnorm(-abs(t))
 
 
-## ----clt-----------------------------------------------------------------
+## ----clt------------------------------------------------------------------------------------------
 # define the set of sample sizes
 ns <- c(10, 40, 100)
 # initiate an empty list to record the results

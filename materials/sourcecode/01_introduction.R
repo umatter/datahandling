@@ -1,4 +1,4 @@
-## ---- echo=FALSE, results='asis', warning=FALSE--------------------------
+## ---- echo=FALSE, results='asis', warning=FALSE---------------------------------------------------
 # conditional on the output format of the whole document,
 # generate and render a HTML or a LaTeX table.
 if (knitr::is_latex_output()) {

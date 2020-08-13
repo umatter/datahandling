@@ -1,4 +1,4 @@
-## ---- echo=FALSE, results='asis', warning=FALSE--------------------------
+## ---- echo=FALSE, results='asis', warning=FALSE---------------------------------------------------
 # conditional on the output format of the whole document,
 # generate and render a HTML or a LaTeX table.
 if (knitr::is_latex_output()) {
@@ -23,7 +23,7 @@ if (knitr::is_latex_output()) {
 }
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 #######################################################################
 # Data Handling Course: Example Script for Data Gathering and Import
 #
@@ -36,7 +36,7 @@ if (knitr::is_latex_output()) {
 
 
 
-## ----eval=FALSE----------------------------------------------------------
+## ----eval=FALSE-----------------------------------------------------------------------------------
 ## #######################################################################
 ## # Data Handling Course: Example Script for Data Gathering and Import
 ## #
@@ -58,7 +58,7 @@ if (knitr::is_latex_output()) {
 ## 
 
 
-## ----eval=FALSE----------------------------------------------------------
+## ----eval=FALSE-----------------------------------------------------------------------------------
 ## #######################################################################
 ## # Project XY: Data Gathering and Import
 ## #
@@ -85,11 +85,11 @@ if (knitr::is_latex_output()) {
 ## 
 
 
-## ----eval=TRUE-----------------------------------------------------------
+## ----eval=TRUE------------------------------------------------------------------------------------
 data(swiss)
 
 
-## ----eval=TRUE-----------------------------------------------------------
+## ----eval=TRUE------------------------------------------------------------------------------------
 # inspect the structure
 str(swiss)
 
@@ -101,14 +101,14 @@ head(swiss)
 
 
 
-## ----eval=FALSE----------------------------------------------------------
+## ----eval=FALSE-----------------------------------------------------------------------------------
 ## # install the package
 ## install.packages("readxl")
 
 
 
 
-## ----eval=FALSE----------------------------------------------------------
+## ----eval=FALSE, warning=FALSE--------------------------------------------------------------------
 ## # load the package
 ## library(readxl)
 ## 
@@ -118,7 +118,7 @@ head(swiss)
 
 
 
-## ----eval=FALSE----------------------------------------------------------
+## ----eval=FALSE-----------------------------------------------------------------------------------
 ## # install the package (if not yet installed):
 ## # install.packages("haven")
 ## 
@@ -130,7 +130,7 @@ head(swiss)
 ## 
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 library(readr)
 
 read_csv('"District","Fertility","Agriculture","Examination","Education","Catholic","Infant.Mortality"
@@ -138,39 +138,41 @@ read_csv('"District","Fertility","Agriculture","Examination","Education","Cathol
 
 
 
-## ----eval=FALSE----------------------------------------------------------
+## ----eval=FALSE-----------------------------------------------------------------------------------
 ## swiss <- read_csv("data/swiss.csv")
 
 
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 swiss
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 read_csv('A,B
          12:00, 12:00
          14:30, midnight
          20:01, noon')
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 guess_parser(c("12:00", "midnight", "noon"))
 guess_parser(c("12:00", "14:30", "20:01"))
 
 
-## ------------------------------------------------------------------------
-# load packages
-library(xml2)
+## ----eval=FALSE-----------------------------------------------------------------------------------
+## # load packages
+## library(xml2)
+## 
+## # parse XML, represent XML document as R object
+## xml_doc <- read_xml("data/customers.xml")
+## xml_doc
+## 
 
-# parse XML, represent XML document as R object
-xml_doc <- read_xml("../../data/customers.xml")
-xml_doc
 
 
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------------------------
 # navigate through the XML document (recall the tree-like nested structure similar to HTML)
 # navigate downwards
 # 'customers' is the root-node, persons are their'children'
@@ -187,21 +189,21 @@ xml_text(customer_names)
 
 
 
-## ------------------------------------------------------------------------
-# load packages
-library(jsonlite)
-
-# parse the JSON-document shown in the example above
-json_doc <- fromJSON("../../data/person.json")
-
-# look at the structure of the document
-str(json_doc)
-
-# navigate the nested lists, extract data
-# extract the address part
-json_doc$address
-# extract the gender (type)
-json_doc$gender$type
-
-
+## ----eval=FALSE-----------------------------------------------------------------------------------
+## # load packages
+## library(jsonlite)
+## 
+## # parse the JSON-document shown in the example above
+## json_doc <- fromJSON("data/person.json")
+## 
+## # look at the structure of the document
+## str(json_doc)
+## 
+## # navigate the nested lists, extract data
+## # extract the address part
+## json_doc$address
+## # extract the gender (type)
+## json_doc$gender$type
+## 
+## 
 
