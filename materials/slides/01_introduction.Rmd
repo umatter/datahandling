@@ -171,11 +171,11 @@ include_graphics("../img/AIrevolution.png")
 |  ![](https://tools.unisg.ch/handlers/Public/PortraitStreamer.ashx?HSGEntitiyId=f4b75b0a-e300-4f81-bd66-12090047f2c5)  |  ![](../img/u_matter.jpg) | 
 |  Philine Widmer  | Ulrich Matter  |
 
----
+<!-- --- -->
 
-```{r help, echo=FALSE, out.width = "75%", fig.align='center',  purl=FALSE}
-include_graphics("../img/help_wanted.jpg")
-```
+<!-- ```{r help, echo=FALSE, out.width = "75%", fig.align='center',  purl=FALSE} -->
+<!-- include_graphics("../img/help_wanted.jpg") -->
+<!-- ``` -->
 
 
 
@@ -302,8 +302,9 @@ kable(sched[15:nrow(sched), c(1,5)], format = "markdown")
 
 ## Core course resources
 
-- All information and materials (notes, slides, course sheet, syllabus, etc.) available on StudyNet/Canvas.
-- Exercises will be uploaded to Assignments in StudyNet/Canvas!
+- All information and materials (notes, slides, course sheet, syllabus, etc.) are available on StudyNet/Canvas.
+- Exercises will be handed out via GitHub Classroom!
+- Solutions to the exercises will be made available on Canvas.
 - This course is *open souce*: all raw materials (code, source code for slides, notes, etc.) are freely available on [GitHub](https://github.com/umatter/datahandling)
 
 ## Main textbooks
@@ -328,7 +329,7 @@ kable(sched[15:nrow(sched), c(1,5)], format = "markdown")
 - Exercises towards the end of the term will contain sample questions.
     - Get familiar with the style/format of questions.
 - Exchange students who need to take the exam before the central exam block:
-    - Notify the course TA until the end of September: *philine.widmer@unisg.ch*!
+    - Questions: *philine.widmer@unisg.ch*!
     - Decentral exam for exchange students: *18 December 2020*.
     
 
