@@ -209,7 +209,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -478,17 +478,17 @@ summary {
 </ol>
 <p>In order to work with the project environment that you have set up, you have several ways to open it. (1) Double click on the Rproj file in the folder on your hard disk. (2) Click on ‘File’ in the top left corner in RStudio, choose ‘Open Project’ and browse for and select an existing project. (3) Click on ‘File’, choose ‘Recent Projects’ and select the project from there. Options (2) and (3) are also available from the ‘Project’ button in the toolbar in the top right corner.</p>
 <p>If you work in the just defined environment and your data is available in the subfolder <code>data</code> as described above, then you can read a dataset (named ‘taxes.csv’ in this example) as follows:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">taxes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/taxes.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">taxes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/taxes.csv&quot;</span>)</a></code></pre></div>
 <p>Imagine your data is in the subfolder <code>exercise5</code> of the folder <code>data</code>. You can read your data with the following code:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">taxes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/exercise5/taxes.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">taxes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/exercise5/taxes.csv&quot;</span>)</a></code></pre></div>
 <p>Another example is when the data is not stored in a subfolder relative to where your working directory is set but in another branch of the folder structure. In this case, you can go one level up in the folder structure with <code>../</code> (or two levels with <code>../../</code>, etc.) and then choose the relevant subfolder <code>data</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">taxes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;../data/taxes.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">taxes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;../data/taxes.csv&quot;</span>)</a></code></pre></div>
 <p>Setting the working directory by defining a project gives you a flexible structure that especially pays off in multiple work contexts. For example, if you move your folder <code>r_course</code> to another drive, the working environment stays attached and no manual adjustment of the working directory is needed. Similarly, when you have a co-authored project working with a common folder structure, all parties can run the file without individually adjust the working directory.</p>
 </div>
 <div id="setting-the-working-directory-manually" class="section level1">
 <h1><span class="header-section-number">2</span> Setting the working directory manually</h1>
 <p>Another way to define the working directory is to set it explicitly in the beginning of the file with the code:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">setwd</span>(<span class="st">&quot;C:/Documents/r_course&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;C:/Documents/r_course&quot;</span>)</a></code></pre></div>
 <p>The sample text within the quotation marks is the path that leads to the main folder. The path is visible in the relevant folder in the (Windows-) explorer. Alternatively, you can browse to the folder that you would like to take as working directory in the File pane in RStudio, click on the ‘More’-Button and choose “Set As Working Directory”. Afterwards, you can copy the working directory from the console to the top of the file.</p>
 <p>Reading the data with <code>read_csv()</code> is consistent with the instructions given for the project environment.</p>
 <p>Setting the working directory manually is especially convenient for projects with a simple structure or for temporary files. Note that if you move your folder to another drive, you would need to adjust the path within <code>setwd()</code>.</p>

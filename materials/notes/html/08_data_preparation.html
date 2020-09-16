@@ -209,7 +209,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -475,31 +475,31 @@ summary {
 <h2><span class="header-section-number">1.1</span> Cleaning data with basic string operations</h2>
 <p>Recall that most of the data we read into R for analytic purposes is essentially a collection of raw text (structured with special characters). When parsing the data in order to read it into R with high-level functions such as the ones provided in the <code>readr</code>-package, both the structure and the types of the data are considered. The resulting <code>data.frame</code>/<code>tibble</code> might thus contain variables (different columns) of type <code>character</code>, <code>factor</code>, or <code>integer</code>, etc. At this stage it often happens that the raw data is not clean enough for the parser to recognize the data types in each column correctly, and it resorts to just parsing it as <code>character</code>. Indeed, if we have to deal with a very messy dataset it can make a lot of sense to constrain the parser such that it reads each column as <code>character</code>.</p>
 <p>As we will rely on functions provided in the <code>tidyverse</code>, we first load this package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
 <p>Let’s create a sample dataset to illustrate some of the typical issues regarding unclean data that we might encounter in empirical economic research (and many similar domains of data analysis).<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">messy_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">last_name =</span> <span class="kw">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Karl Marx&quot;</span>),</a>
-<a class="sourceLine" id="cb2-2" title="2">                       <span class="dt">first_name =</span> <span class="kw">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;&quot;</span>),</a>
-<a class="sourceLine" id="cb2-3" title="3">                       <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;Man&quot;</span>),</a>
-<a class="sourceLine" id="cb2-4" title="4">                       <span class="dt">date =</span> <span class="kw">c</span>(<span class="st">&quot;2018-11-15&quot;</span>, <span class="st">&quot;2018.11.01&quot;</span>, <span class="st">&quot;2018/11/02&quot;</span>),</a>
-<a class="sourceLine" id="cb2-5" title="5">                       <span class="dt">income =</span> <span class="kw">c</span>(<span class="st">&quot;150,000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>),</a>
-<a class="sourceLine" id="cb2-6" title="6">                       <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">messy_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">last_name =</span> <span class="kw">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Karl Marx&quot;</span>),</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">                       <span class="dt">first_name =</span> <span class="kw">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;&quot;</span>),</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">                       <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;Man&quot;</span>),</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">                       <span class="dt">date =</span> <span class="kw">c</span>(<span class="st">&quot;2018-11-15&quot;</span>, <span class="st">&quot;2018.11.01&quot;</span>, <span class="st">&quot;2018/11/02&quot;</span>),</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">                       <span class="dt">income =</span> <span class="kw">c</span>(<span class="st">&quot;150,000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>),</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">                       <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Assuming we have managed to read this dataset from a local file (with all columns as type <code>character</code>), the next step is to clean each of the columns such that the dataset is ready for analysis. Thereby we want to make sure that each variable (column) is set to a meaningful data type, once it is cleaned. The <em>cleaning</em> of the parsed data is often easier to do when the data is of type <code>character</code>. Once it is cleaned, however, we can set it to a type that is more useful for the analysis part. For example, in the final dataset a column containing numeric values should be stored as <code>numeric</code> or <code>integer</code>, so we can perform math operations on it later on (compute sums, means, etc.).</p>
 <div id="findreplace-character-strings-recode-factor-levels" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> Find/replace character strings, recode factor levels</h3>
 <p>Our dataset contains a typical categorical variable: <code>gender</code>. In R it is good practice to store such variables as type <code>factor</code>. Without really looking at the data values, we might thus be inclined to do the following:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">messy_df<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="kw">as.factor</span>(messy_df<span class="op">$</span>gender)</a>
-<a class="sourceLine" id="cb3-2" title="2">messy_df<span class="op">$</span>gender</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">messy_df<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="kw">as.factor</span>(messy_df<span class="op">$</span>gender)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">messy_df<span class="op">$</span>gender</a></code></pre></div>
 <pre><code>## [1] male   female Man   
 ## Levels: female male Man</code></pre>
 <p>The column is now of type <code>factor</code>. And we see that R defined the factor variable such that an observation can be one of three categories (‘levels’): <code>female</code>, <code>male</code>, or <code>Man</code>. In terms of content, that probably does not make too much sense. If we were to analyze the data later on and compute the share of males in the sample, we would only count one instead of two. Hence, we better <em>recode</em> the gender variable of male subjects as <code>male</code> and not <code>Man</code>. How can this be done programmatically?</p>
 <p>One approach is to select all entries in <code>messy_df$gender</code> that are equal to <code>&quot;Man&quot;</code> and replace these entries with <code>&quot;male&quot;</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">messy_df<span class="op">$</span>gender[messy_df<span class="op">$</span>gender <span class="op">==</span><span class="st"> &quot;Man&quot;</span>] &lt;-<span class="st"> &quot;male&quot;</span></a>
-<a class="sourceLine" id="cb5-2" title="2">messy_df<span class="op">$</span>gender</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">messy_df<span class="op">$</span>gender[messy_df<span class="op">$</span>gender <span class="op">==</span><span class="st"> &quot;Man&quot;</span>] &lt;-<span class="st"> &quot;male&quot;</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">messy_df<span class="op">$</span>gender</a></code></pre></div>
 <pre><code>## [1] male   female male  
 ## Levels: female male Man</code></pre>
 <p>Note, however, that this approach is not really perfect, because R still considers <code>Man</code> as a valid possible category in this column. This can have consequences for certain types of analyses we might want to run on this dataset later on.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Alternatively, we can use a function <code>fct_recode()</code> (provided in <code>tidyverse</code>), specifically made for such operations with factors.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">messy_df<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="kw">fct_recode</span>(messy_df<span class="op">$</span>gender, <span class="st">&quot;male&quot;</span> =<span class="st"> &quot;Man&quot;</span>)</a>
-<a class="sourceLine" id="cb7-2" title="2">messy_df<span class="op">$</span>gender</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">messy_df<span class="op">$</span>gender &lt;-<span class="st"> </span><span class="kw">fct_recode</span>(messy_df<span class="op">$</span>gender, <span class="st">&quot;male&quot;</span> =<span class="st"> &quot;Man&quot;</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">messy_df<span class="op">$</span>gender</a></code></pre></div>
 <pre><code>## [1] male   female male  
 ## Levels: female male</code></pre>
 <p>The latter can be very useful when several factor levels need to be recoded at once. Note that in both cases, the underlying logic is that we search for strings that are identical to <code>&quot;Man&quot;</code> and replace those values with <code>&quot;male&quot;</code>. Now, the gender variable is ready for analysis.</p>
@@ -507,30 +507,30 @@ summary {
 <div id="removing-individual-characters-from-a-string" class="section level3">
 <h3><span class="header-section-number">1.1.2</span> Removing individual characters from a string</h3>
 <p>The <code>income</code> column contains numbers, so let’s try to set this column to type <code>integer</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">as.integer</span>(messy_df<span class="op">$</span>income)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">as.integer</span>(messy_df<span class="op">$</span>income)</a></code></pre></div>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <pre><code>## [1]     NA 250000  10000</code></pre>
 <p>R is warning us that something did not go well when executing this code. We see that the first value of the original column has been replaced with <code>NA</code> (‘Not Available’/‘Not Applicable’/‘No Answer’). The reason is that the original value contained a comma (<code>,</code>) which is a special character. The function <code>as.integer()</code> does not know how to translate such a symbol to a number. Hence, the original data value cannot be translated into a number (integer). In order to resolve this issue, we have to remove the comma (<code>,</code>) from this string. Or, more precisely, we will locate this specific character <em>within</em> the string and replace it with an empty string (<code>&quot;&quot;</code>) In order to do so, we’ll use the function <code>str_replace()</code> (for ‘string replace’).</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">messy_df<span class="op">$</span>income &lt;-<span class="st"> </span><span class="kw">str_replace</span>(messy_df<span class="op">$</span>income, <span class="dt">pattern =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">messy_df<span class="op">$</span>income &lt;-<span class="st"> </span><span class="kw">str_replace</span>(messy_df<span class="op">$</span>income, <span class="dt">pattern =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <p>Now we can successfully set the column as type integer.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">messy_df<span class="op">$</span>income &lt;-<span class="st"> </span><span class="kw">as.integer</span>(messy_df<span class="op">$</span>income)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">messy_df<span class="op">$</span>income &lt;-<span class="st"> </span><span class="kw">as.integer</span>(messy_df<span class="op">$</span>income)</a></code></pre></div>
 </div>
 <div id="splitting-strings" class="section level3">
 <h3><span class="header-section-number">1.1.3</span> Splitting strings</h3>
 <p>From looking at the <code>last_name</code> and <code>first_name</code> columns of our messy dataset, it becomes clear that the last row is not accurately coded. <code>Karl</code> should show up in the <code>first_name</code> column. In order to correct this, we have to extract a part of one string and store this sub-string in another variable. There are several ways to do this. Here, it probably makes sense to split the original string into two parts, as the white space between <code>Karl</code> and <code>Marx</code> indicates the separation of first and last name. For this, we can use the function <code>str_split()</code>.</p>
 <p>First, we split the strings at every occurrence of white space (<code>&quot; &quot;</code>). Setting the option <code>simplify=TRUE</code>, we get a matrix containing the individual sub-strings after the splitting.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">splitnames &lt;-<span class="st"> </span><span class="kw">str_split</span>(messy_df<span class="op">$</span>last_name, <span class="dt">pattern =</span> <span class="st">&quot; &quot;</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb14-2" title="2">splitnames</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">splitnames &lt;-<span class="st"> </span><span class="kw">str_split</span>(messy_df<span class="op">$</span>last_name, <span class="dt">pattern =</span> <span class="st">&quot; &quot;</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">splitnames</a></code></pre></div>
 <pre><code>##      [,1]    [,2]  
 ## [1,] &quot;Wayne&quot; &quot;&quot;    
 ## [2,] &quot;Trump&quot; &quot;&quot;    
 ## [3,] &quot;Karl&quot;  &quot;Marx&quot;</code></pre>
 <p>As the first two observations did not contain any white space, there was nothing to split there and the function simply returned empty strings <code>&quot;&quot;</code>. In a second step, we replace empty observations in the <code>first_name</code> column with the corresponding values in <code>splitnames</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">problem_cases &lt;-<span class="st"> </span>messy_df<span class="op">$</span>first_name <span class="op">==</span><span class="st"> &quot;&quot;</span></a>
-<a class="sourceLine" id="cb16-2" title="2">messy_df<span class="op">$</span>first_name[problem_cases] &lt;-<span class="st"> </span>splitnames[problem_cases, <span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">problem_cases &lt;-<span class="st"> </span>messy_df<span class="op">$</span>first_name <span class="op">==</span><span class="st"> &quot;&quot;</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">messy_df<span class="op">$</span>first_name[problem_cases] &lt;-<span class="st"> </span>splitnames[problem_cases, <span class="dv">1</span>]</a></code></pre></div>
 <p>Finally, we have to correct the <code>last_name</code> column by replacing the respective values.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">messy_df<span class="op">$</span>last_name[problem_cases] &lt;-<span class="st"> </span>splitnames[problem_cases, <span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb17-2" title="2">messy_df</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">messy_df<span class="op">$</span>last_name[problem_cases] &lt;-<span class="st"> </span>splitnames[problem_cases, <span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">messy_df</a></code></pre></div>
 <pre><code>##   last_name first_name gender       date income
 ## 1     Wayne       John   male 2018-11-15 150000
 ## 2     Trump    Melania female 2018.11.01 250000
@@ -539,18 +539,19 @@ summary {
 <div id="parsing-dates" class="section level3">
 <h3><span class="header-section-number">1.1.4</span> Parsing dates</h3>
 <p>Finally, we take a look at the <code>date</code>-column of our dataset. For many data preparation steps as well as visualization and analysis, it is advantageous to have times and dates properly parsed as type <code>Date</code>. In practice, dates and times are often particularly messy because no unique standard has been used to define the format in the data collection phase. This seems also to be the case in our dataset. In order to work with dates, we load the <code>lubridate</code> package.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">library</span>(lubridate)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">library</span>(lubridate)</a></code></pre></div>
+<pre><code>## Warning: package 'lubridate' was built under R version 3.6.2</code></pre>
 <p>This package provides several functions to parse and manipulate date and time data. From looking at the <code>date</code>-column we see that the format is basically year, month, day. We can thus use the <code>ymd()</code>-function provided in the <code>lubridate</code>-package in order to parse the column as <code>Date</code> type.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">messy_df<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">ymd</span>(messy_df<span class="op">$</span>date)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">messy_df<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">ymd</span>(messy_df<span class="op">$</span>date)</a></code></pre></div>
 <p>Note how this function automatically recognizes how different special characters have been used in different observations to separate years from months/days.</p>
 <p>Now, our dataset is cleaned up and ready to go.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">messy_df</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">messy_df</a></code></pre></div>
 <pre><code>##   last_name first_name gender       date income
 ## 1     Wayne       John   male 2018-11-15 150000
 ## 2     Trump    Melania female 2018-11-01 250000
 ## 3      Marx       Karl   male 2018-11-02  10000</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">str</span>(messy_df)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    3 obs. of  5 variables:
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">str</span>(messy_df)</a></code></pre></div>
+<pre><code>## 'data.frame':    3 obs. of  5 variables:
 ##  $ last_name : chr  &quot;Wayne&quot; &quot;Trump&quot; &quot;Marx&quot;
 ##  $ first_name: chr  &quot;John&quot; &quot;Melania&quot; &quot;Karl&quot;
 ##  $ gender    : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 1 2
@@ -638,20 +639,20 @@ summary {
 <div id="gathering-wide-to-long" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> Gathering (‘wide to long’)</h3>
 <p>In the <code>tidyverse</code> context, we call the transformation of columns to rows (‘wide to long’) ‘gathering’. That is we ‘gather’ columns into keys and values. A most typical situation where this has to be done in applied data analysis is when a dataset contains for the same subjects several observations over time. To illustrate how <em>gathering</em> works in practice, consider the following example dataset (extending on the example above).</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">wide_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">last_name =</span> <span class="kw">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>),</a>
-<a class="sourceLine" id="cb25-2" title="2">                       <span class="dt">first_name =</span> <span class="kw">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>),</a>
-<a class="sourceLine" id="cb25-3" title="3">                       <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>),</a>
-<a class="sourceLine" id="cb25-4" title="4">                       <span class="dt">income.2018 =</span> <span class="kw">c</span>(<span class="st">&quot;150000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>),</a>
-<a class="sourceLine" id="cb25-5" title="5">                      <span class="dt">income.2017 =</span> <span class="kw">c</span>( <span class="st">&quot;140000&quot;</span>, <span class="st">&quot;230000&quot;</span>, <span class="st">&quot;15000&quot;</span>),</a>
-<a class="sourceLine" id="cb25-6" title="6">                      <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb25-7" title="7">wide_df</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">wide_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">last_name =</span> <span class="kw">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>),</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">                       <span class="dt">first_name =</span> <span class="kw">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>),</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">                       <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>),</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">                       <span class="dt">income.2018 =</span> <span class="kw">c</span>(<span class="st">&quot;150000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>),</a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">                      <span class="dt">income.2017 =</span> <span class="kw">c</span>( <span class="st">&quot;140000&quot;</span>, <span class="st">&quot;230000&quot;</span>, <span class="st">&quot;15000&quot;</span>),</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6">                      <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb26-7" data-line-number="7">wide_df</a></code></pre></div>
 <pre><code>##   last_name first_name gender income.2018 income.2017
 ## 1     Wayne       John   male      150000      140000
 ## 2     Trump    Melania female      250000      230000
 ## 3      Marx       Karl   male       10000       15000</code></pre>
 <p>The two last columns contain both information on the same variable (<code>income</code>), but for different years. We thus want to gather these two columns in a new <code>year</code> and <code>income</code> column, ensuring that columns correspond to variables and rows correspond to observations. For this, we call the <code>gather()</code>-function as follows:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">long_df &lt;-<span class="st"> </span><span class="kw">gather</span>(wide_df, income<span class="fl">.2018</span>, income<span class="fl">.2017</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;income&quot;</span>)</a>
-<a class="sourceLine" id="cb27-2" title="2">long_df</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">long_df &lt;-<span class="st"> </span><span class="kw">gather</span>(wide_df, income<span class="fl">.2018</span>, income<span class="fl">.2017</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;income&quot;</span>)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">long_df</a></code></pre></div>
 <pre><code>##   last_name first_name gender        year income
 ## 1     Wayne       John   male income.2018 150000
 ## 2     Trump    Melania female income.2018 250000
@@ -660,8 +661,8 @@ summary {
 ## 5     Trump    Melania female income.2017 230000
 ## 6      Marx       Karl   male income.2017  15000</code></pre>
 <p>We can further clean the <code>year</code> column to only contain the respective numeric values.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">long_df<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">str_replace</span>(long_df<span class="op">$</span>year, <span class="st">&quot;income.&quot;</span>, <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb29-2" title="2">long_df</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">long_df<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">str_replace</span>(long_df<span class="op">$</span>year, <span class="st">&quot;income.&quot;</span>, <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">long_df</a></code></pre></div>
 <pre><code>##   last_name first_name gender year income
 ## 1     Wayne       John   male 2018 150000
 ## 2     Trump    Melania female 2018 250000
@@ -673,23 +674,23 @@ summary {
 <div id="spreading-long-to-wide" class="section level3">
 <h3><span class="header-section-number">1.2.3</span> Spreading (‘long to wide’)</h3>
 <p>As we want to adhere to the ‘tidy’ paradigm of keeping our data in long format, the transformation of ‘long to wide’ is less common. However, it might be necessary if the dataset at hand is particularly messy. The following example illustrates such a situation.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">weird_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">last_name =</span> <span class="kw">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>,</a>
-<a class="sourceLine" id="cb31-2" title="2">                                     <span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>,</a>
-<a class="sourceLine" id="cb31-3" title="3">                                     <span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>),</a>
-<a class="sourceLine" id="cb31-4" title="4">                       <span class="dt">first_name =</span> <span class="kw">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>,</a>
-<a class="sourceLine" id="cb31-5" title="5">                                      <span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>,</a>
-<a class="sourceLine" id="cb31-6" title="6">                                      <span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>),</a>
-<a class="sourceLine" id="cb31-7" title="7">                       <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>,</a>
-<a class="sourceLine" id="cb31-8" title="8">                                  <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>,</a>
-<a class="sourceLine" id="cb31-9" title="9">                                  <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>),</a>
-<a class="sourceLine" id="cb31-10" title="10">                       <span class="dt">value =</span> <span class="kw">c</span>(<span class="st">&quot;150000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>,</a>
-<a class="sourceLine" id="cb31-11" title="11">                                 <span class="st">&quot;2000000&quot;</span>, <span class="st">&quot;5000000&quot;</span>, <span class="st">&quot;NA&quot;</span>,</a>
-<a class="sourceLine" id="cb31-12" title="12">                                 <span class="st">&quot;50&quot;</span>, <span class="st">&quot;25&quot;</span>, <span class="st">&quot;NA&quot;</span>),</a>
-<a class="sourceLine" id="cb31-13" title="13">                       <span class="dt">variable =</span> <span class="kw">c</span>(<span class="st">&quot;income&quot;</span>, <span class="st">&quot;income&quot;</span>, <span class="st">&quot;income&quot;</span>,</a>
-<a class="sourceLine" id="cb31-14" title="14">                                    <span class="st">&quot;assets&quot;</span>, <span class="st">&quot;assets&quot;</span>, <span class="st">&quot;assets&quot;</span>,</a>
-<a class="sourceLine" id="cb31-15" title="15">                                    <span class="st">&quot;age&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;age&quot;</span>),</a>
-<a class="sourceLine" id="cb31-16" title="16">                       <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb31-17" title="17">weird_df</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">weird_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">last_name =</span> <span class="kw">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>,</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">                                     <span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>,</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3">                                     <span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>),</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4">                       <span class="dt">first_name =</span> <span class="kw">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>,</a>
+<a class="sourceLine" id="cb32-5" data-line-number="5">                                      <span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>,</a>
+<a class="sourceLine" id="cb32-6" data-line-number="6">                                      <span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>),</a>
+<a class="sourceLine" id="cb32-7" data-line-number="7">                       <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>,</a>
+<a class="sourceLine" id="cb32-8" data-line-number="8">                                  <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>,</a>
+<a class="sourceLine" id="cb32-9" data-line-number="9">                                  <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>),</a>
+<a class="sourceLine" id="cb32-10" data-line-number="10">                       <span class="dt">value =</span> <span class="kw">c</span>(<span class="st">&quot;150000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>,</a>
+<a class="sourceLine" id="cb32-11" data-line-number="11">                                 <span class="st">&quot;2000000&quot;</span>, <span class="st">&quot;5000000&quot;</span>, <span class="st">&quot;NA&quot;</span>,</a>
+<a class="sourceLine" id="cb32-12" data-line-number="12">                                 <span class="st">&quot;50&quot;</span>, <span class="st">&quot;25&quot;</span>, <span class="st">&quot;NA&quot;</span>),</a>
+<a class="sourceLine" id="cb32-13" data-line-number="13">                       <span class="dt">variable =</span> <span class="kw">c</span>(<span class="st">&quot;income&quot;</span>, <span class="st">&quot;income&quot;</span>, <span class="st">&quot;income&quot;</span>,</a>
+<a class="sourceLine" id="cb32-14" data-line-number="14">                                    <span class="st">&quot;assets&quot;</span>, <span class="st">&quot;assets&quot;</span>, <span class="st">&quot;assets&quot;</span>,</a>
+<a class="sourceLine" id="cb32-15" data-line-number="15">                                    <span class="st">&quot;age&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;age&quot;</span>),</a>
+<a class="sourceLine" id="cb32-16" data-line-number="16">                       <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb32-17" data-line-number="17">weird_df</a></code></pre></div>
 <pre><code>##   last_name first_name gender   value variable
 ## 1     Wayne       John   male  150000   income
 ## 2     Trump    Melania female  250000   income
@@ -701,8 +702,8 @@ summary {
 ## 8     Trump    Melania female      25      age
 ## 9      Marx       Karl   male      NA      age</code></pre>
 <p>While the data is somehow in long format, the rule that each column should correspond to a variable (and vice versa) is ignored. Data on income, assets, as well as the age of the individuals in the dataset are all put in the same column. We can call the function <code>spread()</code> with the two parameters <code>key</code> and <code>value</code> to correct this.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">tidy_df &lt;-<span class="st"> </span><span class="kw">spread</span>(weird_df, <span class="dt">key =</span> <span class="st">&quot;variable&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;value&quot;</span>)</a>
-<a class="sourceLine" id="cb33-2" title="2">tidy_df</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">tidy_df &lt;-<span class="st"> </span><span class="kw">spread</span>(weird_df, <span class="dt">key =</span> <span class="st">&quot;variable&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;value&quot;</span>)</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">tidy_df</a></code></pre></div>
 <pre><code>##   last_name first_name gender age  assets income
 ## 1      Marx       Karl   male  NA      NA  10000
 ## 2     Trump    Melania female  25 5000000 250000
