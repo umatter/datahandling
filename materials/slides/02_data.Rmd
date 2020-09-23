@@ -22,19 +22,10 @@ library(knitr)
 
 # Updates
 
-<!-- ## Course assistants -->
+## Research insights lecture: online only!
 
-<!-- - Julian Leopold -->
-<!-- - Sebastian Kuhn -->
-
-<!-- <center> *Thanks a lot!* </center> -->
-
-<!-- ## Course evaluation: Focus Group -->
-
-<!-- - We have found three volunteers!  -->
-<!-- - (Still place for one more person) -->
-
-<!-- <center> *Thanks a lot!* </center> -->
+- The lecture on *8 October, 2020* will be recorded and made available via Canvas (with additional information).
+- There will be no lecture in 02-001 on that day. 
 
 ## Exam for exchange students
 
@@ -52,7 +43,10 @@ library(knitr)
           - Open issues/report bugs 
           
 
+
+
 # Recap: Data Science, Data Pipeline
+
 
 ## Class survey >>> Final output
 
