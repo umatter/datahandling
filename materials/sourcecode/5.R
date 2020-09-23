@@ -45,7 +45,6 @@ a %o% b # the 'outer product'
 sum(diag(a %o% b))
 
 
-
 # matrices
 A <- matrix(1:20, nrow=4) # 4 x 5
 B <- matrix(1:20, nrow=5) # 5 x 4
@@ -174,7 +173,16 @@ if (condition) {
 ##########################################################################
 
 
-
+my_mean <- function(x) {
+  
+  N <- length(x)
+  # sum
+  sumx <- sum(x)
+  # put pieces together
+  meanx <- (1/N) * sumx
+  
+  return(meanx)
+}
 
 
 
