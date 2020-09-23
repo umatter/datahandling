@@ -146,7 +146,7 @@ library(shiny)
 
 # fix vars
 #  API key needed here
-KEY <- readLines("../../../Admin/keys/datahandling_survey_static.txt") # key UM
+KEY <- readLines("../../admin/2020/keys/datahandling_survey_static.txt") # key UM
 
 
 # Download survey data
