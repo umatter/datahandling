@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 4:<br>"Big Data" from the Web'
 author: "Prof. Dr. Ulrich Matter"
-date: "01/10/2020"
+date: "15/10/2020"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
