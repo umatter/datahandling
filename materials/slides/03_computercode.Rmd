@@ -41,6 +41,15 @@ sched <- read_xlsx("../../../admin/2020/schedule.xlsx", col_types = "text")
 kable(sched[1:7, c(1,5)], format = "markdown")
 ```
 
+## Thoughts on studying in this course
+
+- Read the mandatory (and complementary) literature before lectures (see Syllabus)
+- Follow the lectures (make your own notes)
+- Read the lecture notes (extend with own notes)
+- Solve the exercises (in virtual teams)
+- Study the exercise solutions (notes + video)
+- Visit the exercise Q&A sessions with Philine 
+- Repeat...
 
 # Recap
 
