@@ -477,21 +477,23 @@ summary {
 <p>in a text file named <code>helloworld.txt</code>. Technically, this means that we allocate a block of computer memory to <code>helloworld.txt</code> (a ‘file’ is in the end a block of computer memory). The ending <code>.txt</code> indicates to the operating system of our computer what kind of data is stored in this file. When clicking on the file’s symbol, the operating system will open the file (read it into RAM) with the default program assigned to open <code>.txt</code>-files (in this course, usually <a href="https://atom.io/">Atom</a> or <a href="https://www.rstudio.com/">RStudio</a>). That is the <em>format</em> of a file says something about how to interpret the <code>0</code>s and <code>1</code>s. If the text editor displays <code>Hello World!</code> as the content of this file, the program correctly interprets the <code>0</code>s and <code>1</code>s as representing plain text and uses the correct character encoding to convert the raw <code>0</code>s and <code>1</code>s yet again to symbols that we can read more easily. Similarly, we can show the content of the file in the command-line terminal (here OSX or Linux):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="fu">cat</span> helloworld.txt</a></code></pre></div>
 <pre><code>## Hello World!</code></pre>
+<p>Or, from the R-console:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">system</span>(<span class="st">&quot;cat helloworld.txt&quot;</span>)</a></code></pre></div>
 <p>However, we can also use a command-line program (here, <code>xxd</code>) to display the content of <code>helloworld.txt</code> without actually ‘translating’ it into ASCII characters.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> That is, we can directly look at how the content looks like as <code>0</code>s and <code>1</code>s:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="ex">xxd</span> -b helloworld.txt</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="ex">xxd</span> -b helloworld.txt</a></code></pre></div>
 <pre><code>## 00000000: 01001000 01100101 01101100 01101100 01101111 00100000  Hello 
 ## 00000006: 01010111 01101111 01110010 01101100 01100100 00100001  World!</code></pre>
 <p>Similarly we can display the content in hexadecimal values:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="ex">xxd</span>  helloworld.txt</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="ex">xxd</span>  helloworld.txt</a></code></pre></div>
 <pre><code>## 00000000: 4865 6c6c 6f20 576f 726c 6421            Hello World!</code></pre>
 <p>Next, consider the text file <code>hastamanana.txt</code> which was written and stored with another character encoding. When looking at the content, assuming the now common UTF-8 encoding, the content seems a little odd:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="fu">cat</span> hastamanana.txt</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="fu">cat</span> hastamanana.txt</a></code></pre></div>
 <pre><code>## Hasta Ma?ana!</code></pre>
 <p>We see that it is a short phrase written in Spanish. Strangely it contains the character <code>?</code> in the middle of a word. The occurrence of special characters in unusual places of text files is an indication of using the wrong character encoding to display the text. Let’s check what the file’s encoding is.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="fu">file</span> -b hastamanana.txt</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="fu">file</span> -b hastamanana.txt</a></code></pre></div>
 <pre><code>## ISO-8859 text</code></pre>
 <p>This tells us that the file is encoded with ISO-8859 (‘Latin1’), a character set for several Latin languages (including Spanish). Knowing this, we can check how the content looks like when we change the encoding to UTF-8 (which then properly displays the content on the screen)<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="ex">iconv</span> -f iso-8859-1 -t utf-8 hastamanana.txt <span class="kw">|</span> <span class="fu">cat</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="ex">iconv</span> -f iso-8859-1 -t utf-8 hastamanana.txt <span class="kw">|</span> <span class="fu">cat</span></a></code></pre></div>
 <pre><code>## Hasta Mañana!</code></pre>
 <p>When working with data, we must therefore ensure that we apply the proper standards to translate the binary coded values into a character/text-representation that is easier to understand and work with. In recent years, much more general (or even ‘universal’) standards have been developed and adopted around the world, particularly UTF-8. Thus, if we deal with recently generated data sets, we usually can expect that they are encoded in UTF-8, independent of the data’s country of origin. However, when working on a research project where slightly older data sets from different sources are involved, encoding issues still occur quite frequently. It is thus crucial to understand early on what the origin of the problem is, when the data seem to display weird characters. Encoding issues are among the most basic problems that can occur when importing data.</p>
 <p>So far we have only looked at very simple examples of data stored in text files, essentially only containing short phrases of text. Nevertheless, most common formats of storing and transferring data (CSV, XML, JSON, etc.) build on exactly the same principle: characters in a text-file. The difference between such formats and the simple examples above is that their content is structured in a very specific way. That is, on top of the lower-level conversion of <code>0</code>s and <code>1</code>s into characters/text we add another standard, a data format, giving the data more <em>structure</em>, making it even simpler to interpret and work with the data on a computer. Once we understand how data is represented at the low level (the topic of the previous lecture), it is much easier to understand and distinguish different forms of storing structured data.</p>
@@ -524,7 +526,7 @@ If you encounter the end of the line, create a new row and jump to the new row.<
 <p>Incidentally, the example we are looking at here is in line with such a standard, i.e., Comma-Separated Values (CSV, therefore <code>.csv</code>). In technical terms, the simple algorithm outlined above is a CSV <a href="https://en.wikipedia.org/wiki/Parsing#Computer_languages">parser</a>. A CSV parser is a software component which takes a text file with CSV standard structure as input and builds a data structure in the form of a table (represented in RAM). If the input file does not follow the agreed on CSV standard, the parser will likely fail to properly ‘parse’ (read/translate) the input.</p>
 <p>CSV files are very often used to transfer and store data in a table-like format. They essentially are based on two rules defining the structure of the data: commas delimit values/fields in a row and the end of a line indicates the end of a row.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
 <p>The comma is clearly visible when looking at the raw text content of <code>ch_gdp.csv</code>. However, how does the computer know that a line is ending? By default most programs to work with text files do not show an explicit symbol for line endings but instead display the text on the next line. Under the hood, these line endings are, however, non-printable characters. We can see this when investigating <code>ch_gdp.csv</code> in the command-line terminal (via <code>xxd</code>):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="ex">xxd</span> ch_gdp.csv</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="ex">xxd</span> ch_gdp.csv</a></code></pre></div>
 <pre><code>## 00000000: efbb bf79 6561 722c 6764 705f 6368 6662  ...year,gdp_chfb
 ## 00000010: 0d31 3938 302c 3138 340d 3139 3835 2c32  .1980,184.1985,2
 ## 00000020: 3434 0d31 3939 302c 3333 310d 3139 3935  44.1990,331.1995
@@ -576,25 +578,25 @@ Figure 3.1: Writing data stored in RAM to a Mass Storage device (hard drive). Fi
 <div id="data-types" class="section level2">
 <h2><span class="header-section-number">4.1</span> Data types</h2>
 <p>From the previous lectures we know that digital data (<code>0</code>s and <code>1</code>s) can be interpreted in different ways depending on the <em>format</em> it is stored in. Similarly, data loaded into RAM can be interpreted differently by R depending on the data <em>type</em>. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the numeric values <code>1.5</code> and <code>3</code> in the variables <code>a</code> and <code>b</code>, respectively.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="fl">1.5</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="fl">1.5</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="dv">3</span></a></code></pre></div>
 <p>R interprets this data as type <code>double</code> (class ‘numeric’; a ‘double precision floating point number’):</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">typeof</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">typeof</span>(a)</a></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">class</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">class</span>(a)</a></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>Given that these bytes of data are interpreted as numeric, we can use operators (here: math operators) that can work with such types:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">a <span class="op">+</span><span class="st"> </span>b</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">a <span class="op">+</span><span class="st"> </span>b</a></code></pre></div>
 <pre><code>## [1] 4.5</code></pre>
 <p>If however, we define <code>a</code> and <code>b</code> as follows, R will interpret the values stored in <code>a</code> and <code>b</code> as text (<code>character</code>).</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">a &lt;-<span class="st"> &quot;1.5&quot;</span></a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">b &lt;-<span class="st"> &quot;3&quot;</span></a></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">typeof</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">a &lt;-<span class="st"> &quot;1.5&quot;</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">b &lt;-<span class="st"> &quot;3&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">typeof</span>(a)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">class</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">class</span>(a)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>Now the same line of code as above will result in an error:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">a <span class="op">+</span><span class="st"> </span>b</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">a <span class="op">+</span><span class="st"> </span>b</a></code></pre></div>
 <pre><code>## Error in a + b: non-numeric argument to binary operator</code></pre>
 <p>The reason is, that the operator <code>+</code> expects numeric or integer values as arguments. When importing data sets with many different variables (columns), it is thus necessary to make sure that each column is interpreted in the intended way. That is, we have to make sure R is assigning the right type to each of the imported variables. Usually, this is done automatically. However, with large and complex data sets, the automatic recognition of data types when importing data can fail when the data is not perfectly cleaned/prepared (in practice, this is very often the case).</p>
 </div>
@@ -612,12 +614,12 @@ Figure 4.1: Illustration of a numeric vector (symbolic). Figure by <span class="
 </div>
 
 <p>For example, we can initiate a character vector containing the names of persons:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">persons &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Brian&quot;</span>, <span class="st">&quot;Claire&quot;</span>)</a>
-<a class="sourceLine" id="cb30-2" data-line-number="2">persons</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">persons &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Brian&quot;</span>, <span class="st">&quot;Claire&quot;</span>)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">persons</a></code></pre></div>
 <pre><code>## [1] &quot;Andy&quot;   &quot;Brian&quot;  &quot;Claire&quot;</code></pre>
 <p>and we can initiate a numeric vector with the age of these persons:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">24</span>, <span class="dv">50</span>, <span class="dv">30</span>)</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">ages</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">24</span>, <span class="dv">50</span>, <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">ages</a></code></pre></div>
 <pre><code>## [1] 24 50 30</code></pre>
 </div>
 <div id="factors" class="section level3">
@@ -631,8 +633,8 @@ Figure 4.2: Illustration of a factor (symbolic). Figure by <span class="citation
 </div>
 
 <p>For example, we might want to initiate a factor that indicates the gender of a number of people.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">gender &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2">gender</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">gender &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">gender</a></code></pre></div>
 <pre><code>## [1] Male   Male   Female
 ## Levels: Female Male</code></pre>
 </div>
@@ -647,15 +649,15 @@ Figure 4.3: Illustration of a numeric matrix (symbolic). Figure by <span class="
 </div>
 
 <p>For example, we can initiate a three-row/two-column numeric matrix as follows</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">my_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb36-2" data-line-number="2">my_matrix</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">my_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">my_matrix</a></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    4
 ## [2,]    2    5
 ## [3,]    3    6</code></pre>
 <p>And a three-dimensional numeric array as follows.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">my_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>), <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2">my_array</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">my_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>), <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">my_array</a></code></pre></div>
 <pre><code>## , , 1
 ## 
 ##      [,1] [,2]
@@ -680,8 +682,8 @@ Figure 4.4: Illustration of a data frame (symbolic). Figure by <span class="cita
 
 <p>The historical implementation of data frames in R is not very appropriate to work with large datasets.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> These days there are new implementations of the data frame concept in R provided by different packages, which aim at making data processing based on ‘data frames’ faster. One is called <code>tibbles</code>, implemented and used in the <code>tidyverse</code> packages. The other is called <code>data table</code>, implemented in the <code>data.table</code>-package. In this course we will encounter primarily the classical <code>data.frame</code> and <code>tibble</code> (however, there will also be some hints to tutorials with <code>data.table</code>). In any case, once we understand data frames in general, working with <code>tibble</code> and <code>data.table</code> is quite easy because functions that accept classical data frames as arguments also accept those newer implementations.</p>
 <p>Here is how we define a data frame in R, based on the examples of vectors and factors shown above.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">person =</span> persons, <span class="dt">age =</span> ages, <span class="dt">gender =</span> gender)</a>
-<a class="sourceLine" id="cb40-2" data-line-number="2">df</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">person =</span> persons, <span class="dt">age =</span> ages, <span class="dt">gender =</span> gender)</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">df</a></code></pre></div>
 <pre><code>##   person age gender
 ## 1   Andy  24   Male
 ## 2  Brian  50   Male
@@ -698,8 +700,8 @@ Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="cita
 </div>
 
 <p>This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(my_array, my_matrix, df)</a>
-<a class="sourceLine" id="cb42-2" data-line-number="2">my_list</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(my_array, my_matrix, df)</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2">my_list</a></code></pre></div>
 <pre><code>## [[1]]
 ## , , 1
 ## 
