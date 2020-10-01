@@ -29,6 +29,10 @@ if (knitr::is_latex_output()) {
 ## cat ../../data/helloworld.txt; echo
 
 
+## ----eval=FALSE-----------------------------------------------------------------------------------
+## system("cat helloworld.txt")
+
+
 ## xxd -b helloworld.txt
 
 
