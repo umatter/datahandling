@@ -27,6 +27,7 @@ library(knitr)
 - There will be *no lecture in 02-001 on that day*. 
 - On *15 October* we will be back in 02-001.
 
+
 ## See update of syllabus/schedule
 
 ```{r echo = FALSE, warning=FALSE}
@@ -61,6 +62,66 @@ include_graphics("../img/on_off.png")
 - Base 2.
 - Columns: $2^0=1$, $2^1=2$, $2^2=4$, and so forth.
 
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+
+
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+
+
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
+
+
+
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
+2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0
+
+
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
+2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0
+3  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  1
+
+
+
+## Decimal numbers in a computer
+
+
+Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+-----|-----|----|----|----|----|----|----|----
+0  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  0  
+1  = | 0   |  0 | 0  |  0 | 0 |  0 | 0  |  1
+2  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  0
+3  = | 0   |  0 | 0  |  0 | 0 |  0 | 1  |  1
+... |    |   |   |  |  |   |   |  
+139 = | 1   |  0 | 0  |  0 |  1 |  0 | 1  |  1    
+
+
 
 ## The hexadecimal system
 
@@ -79,6 +140,7 @@ include_graphics("../img/on_off.png")
 - Similar to manually writing our $1/3=0.3333...$.
 - Floating point numbers: formulaic representation of real numbers (approximatively).
      - *--> example in R*
+     - [Short YouTube video](https://youtu.be/0NhF8LE0Vqw)
 
 ## Computers and text
 How can a computer understand text if it only understands `0`s and `1`s?
@@ -185,6 +247,12 @@ cat helloworld.txt; echo
 ```{bash echo=FALSE}
 cat ../../data/helloworld.txt; echo
 ```
+
+Or, from the R-console:
+```{R eval=FALSE}
+system("cat helloworld.txt")
+```
+
 
 
 ## Inspect a text file

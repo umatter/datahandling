@@ -82,6 +82,12 @@ cat helloworld.txt
 cat ../../data/helloworld.txt; echo
 ```
 
+Or, from the R-console:
+```{R eval=FALSE}
+system("cat helloworld.txt")
+```
+
+
 
 
 However, we can also use a command-line program (here, `xxd`) to display the content of `helloworld.txt` without actually 'translating' it into ASCII characters.^[To be precise, this program shows both the raw binary content as well as its ASCII representation.] That is, we can directly look at how the content looks like as `0`s and `1`s:
