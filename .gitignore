@@ -29,6 +29,7 @@ style/*.eps
 .DS_Store
 */.DS_Store
 
+todo_improvements.txt
 project.Rproj
 short_prompt.sh
 materials/img/venn_diagramm_01.pdf
