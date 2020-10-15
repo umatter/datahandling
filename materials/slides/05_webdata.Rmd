@@ -26,6 +26,49 @@ pre {
 }
 </style>
 
+
+# Updates
+
+## GitHub Classroom back on track
+
+- Due to an update of the system that runs GitHub Classroom, courses around the world experienced problems with autograding in the last week.
+- We apologize for any inconveniences that this might have caused!
+- For the moment, it looks like we could fix the problem. Please write Philine in case you experience technical issues when committing your solutions in GH Classroom.
+
+## Guest lecture: 26.11.2020
+
+```{r tspycher, echo=FALSE, out.width = "30%", fig.align='center', fig.cap= "Dr. Thomas Spycher (Novalytica AG).", purl=FALSE}
+include_graphics("../img/tspycher.png")
+```
+
+- 45-60 minutes talk.
+- Q&A.
+- Time for bilateral exchange.
+
+
+
+# Recap: Research Insights
+
+## Background: Increasing political polarization
+
+```{r polarization, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
+include_graphics("../img/pew_polarization.png")
+```
+
+## Background: "Algorithmic" polarization in the Web
+
+```{r google, echo=FALSE, out.width = "50%", fig.align='center', purl=FALSE}
+include_graphics("../img/google_screenshot.png")
+```
+
+## Insights: Ideological distribution of US online media sphere
+
+```{r distr, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
+include_graphics("../img/fig_outlet_ideology_distr_labels.png")
+```
+
+
+
 # Recap: Computer Code and Data Storage
 
 ## Computer code
@@ -126,13 +169,6 @@ cat hastamanana.txt; echo
   - Common format to store and transfer data.
     - Very common in a data analysis context.
   - Natural format/structure when data represents a table.
-
-
-## Units of information/data storage: Bit, Byte, Word
-
-```{r bitbyteword, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Bit, Byte, Word. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
-include_graphics("../img/store-bitbyteword.png")
-```
 
 
 
@@ -254,44 +290,39 @@ David  Debbie  Dianne    12  female
 
 # Deciphering XML
 
-## Revisiting Point Nemo
+## Revisiting COVID-19 data
 
 ```
-             VARIABLE : Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)
-             FILENAME : ISCCPMonthly_avg.nc
-             FILEPATH : /usr/local/fer_data/data/
-             BAD FLAG : -1.E+34       
-             SUBSET   : 48 points (TIME)
-             LONGITUDE: 123.8W(-123.8)
-             LATITUDE : 48.8S
-         	123.8W 
-16-JAN-1994 00	9.200012
-16-FEB-1994 00	10.70001
-16-MAR-1994 00	7.5
-16-APR-1994 00	8.100006
+dateRep,day,month,year,cases,deaths,countriesAndTerritories,geoId,countryterritoryCode,popData2019,continentExp,Cumulative_number_for_14_days_of_COVID-19_cases_per_100000
+14/10/2020,14,10,2020,66,0,Afghanistan,AF,AFG,38041757,Asia,1.94523087
+13/10/2020,13,10,2020,129,3,Afghanistan,AF,AFG,38041757,Asia,1.81116766
+12/10/2020,12,10,2020,96,4,Afghanistan,AF,AFG,38041757,Asia,1.50361089
 ```
 
-## Revisiting Point Nemo (in XML!)
+## Revisiting COVID-19 data (in XML!)
 
 
 ```
-<?xml version="1.0"?>
-<temperatures>
-<variable>Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)</variable>
-<filename>ISCCPMonthly_avg.nc</filename>
-<filepath>/usr/local/fer_data/data/</filepath>
-<badflag>-1.E+34</badflag>
-
-<subset>48 points (TIME)</subset>
-<longitude>123.8W(-123.8)</longitude>
-<latitude>48.8S</latitude>
-<case date="16-JAN-1994" temperature="9.200012" />
-<case date="16-FEB-1994" temperature="10.70001" />
-<case date="16-MAR-1994" temperature="7.5" />
-<case date="16-APR-1994" temperature="8.100006" />
+<records>
+<record>
+<dateRep>14/10/2020</dateRep>
+<day>14</day>
+<month>10</month>
+<year>2020</year>
+<cases>66</cases>
+<deaths>0</deaths>
+<countriesAndTerritories>Afghanistan</countriesAndTerritories>
+<geoId>AF</geoId>
+<countryterritoryCode>AFG</countryterritoryCode>
+<popData2019>38041757</popData2019>
+<continentExp>Asia</continentExp>
+<Cumulative_number_for_14_days_of_COVID-19_cases_per_100000>1.94523087</Cumulative_number_for_14_days_of_COVID-19_cases_per_100000>
+</record>
+<record>
+<dateRep>13/10/2020</dateRep>
 
 ...
-</temperatures>
+</records>
 ```
 
 
@@ -300,23 +331,26 @@ David  Debbie  Dianne    12  female
 
 
 ```
-<?xml version="1.0"?>
-<temperatures>
-<variable>Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)</variable>
-<filename>ISCCPMonthly_avg.nc</filename>
-<filepath>/usr/local/fer_data/data/</filepath>
-<badflag>-1.E+34</badflag>
-
-<subset>48 points (TIME)</subset>
-<longitude>123.8W(-123.8)</longitude>
-<latitude>48.8S</latitude>
-<case date="16-JAN-1994" temperature="9.200012" />
-<case date="16-FEB-1994" temperature="10.70001" />
-<case date="16-MAR-1994" temperature="7.5" />
-<case date="16-APR-1994" temperature="8.100006" />
+<records>
+<record>
+<dateRep>14/10/2020</dateRep>
+<day>14</day>
+<month>10</month>
+<year>2020</year>
+<cases>66</cases>
+<deaths>0</deaths>
+<countriesAndTerritories>Afghanistan</countriesAndTerritories>
+<geoId>AF</geoId>
+<countryterritoryCode>AFG</countryterritoryCode>
+<popData2019>38041757</popData2019>
+<continentExp>Asia</continentExp>
+<Cumulative_number_for_14_days_of_COVID-19_cases_per_100000>1.94523087</Cumulative_number_for_14_days_of_COVID-19_cases_per_100000>
+</record>
+<record>
+<dateRep>13/10/2020</dateRep>
 
 ...
-</temperatures>
+</records>
 ```
 
 <center>
@@ -328,38 +362,43 @@ David  Debbie  Dianne    12  female
 
 
 ```{xml}
-<?xml version="1.0"?>
-  <temperatures>
-    <variable>Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)</variable>
-    <filename>ISCCPMonthly_avg.nc</filename>
-    <filepath>/usr/local/fer_data/data/</filepath>
-    <badflag>-1.E+34</badflag>
-    <subset>48 points (TIME)</subset>
-    <longitude>123.8W(-123.8)</longitude>
-    <latitude>48.8S</latitude>
-    <case date="16-JAN-1994" temperature="9.200012" />
-    <case date="16-FEB-1994" temperature="10.70001" />
-    <case date="16-MAR-1994" temperature="7.5" />
-    <case date="16-APR-1994" temperature="8.100006" />
+<records>
+<record>
+<dateRep>14/10/2020</dateRep>
+<day>14</day>
+<month>10</month>
+<year>2020</year>
+<cases>66</cases>
+<deaths>0</deaths>
+<countriesAndTerritories>Afghanistan</countriesAndTerritories>
+<geoId>AF</geoId>
+<countryterritoryCode>AFG</countryterritoryCode>
+<popData2019>38041757</popData2019>
+<continentExp>Asia</continentExp>
+<Cumulative_number_for_14_days_of_COVID-19_cases_per_100000>1.94523087</Cumulative_number_for_14_days_of_COVID-19_cases_per_100000>
+</record>
+<record>
+<dateRep>13/10/2020</dateRep>
 
 ...
-  </temperatures>
+</records>
 ```
+
 
 
 
 ## XML syntax
 
-The actual content we know from the csv-type example above is nested between the '`temperatures`'-tags:
+The actual content we know from the csv-type example above is nested between the '`records`'-tags:
 
 ```{xml}
-  <temperatures>
+  <records>
 ...
-  </temperatures>
+  </records>
 ```
 
 
-## XML syntax
+## XML syntax: Point Nemo example
 
 Comparing the actual content between these tags with the csv-type format above, we further recognize that there are two principal ways to link variable names to values.
 ```{xml}
