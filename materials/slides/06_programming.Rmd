@@ -28,18 +28,38 @@ pre {
 
 # Updates
 
-## Part I: Data (Science) fundamentals {.smaller}
+## COVID-19: Protective measures for teaching activities
 
-```{r echo = FALSE, warning=FALSE}
-library(readxl)
-library(knitr)
-library(magrittr)
-library(kableExtra)
+1. Admittance only for symptom-free persons. 
+2. Observe hygiene and safety measures. 
+3. Have an online backup solution ready. 
+4. Mandatory wearing of masks – except for individuals when alone in a room. 
+5. Attendance lists, if   wearing a mask is not possible for methodical/didactic reasons. 
+6. Faculty without masks must keep a distance of 1.5 m at all times when teaching.
 
-sched <- read_xlsx("../../../admin/2020/schedule.xlsx", col_types = "text")
+## COVID-19: Protective measures for teaching activities
 
-kable(sched[1:7, c(1,5)], format = "markdown")
-```
+1. Admittance only for symptom-free persons. 
+2. Observe hygiene and safety measures. 
+3. Have an online backup solution ready. 
+4. Mandatory wearing of masks – except for individuals when alone in a room. 
+5. Attendance lists, if   wearing a mask is not possible for methodical/didactic reasons. 
+6. Faculty without masks must keep a distance of 1.5 m at all times when teaching.
+
+*Students must also wear a mask in the classrooms, and also while sitting!*
+
+<!-- ## Part I: Data (Science) fundamentals {.smaller} -->
+
+<!-- ```{r echo = FALSE, warning=FALSE} -->
+<!-- library(readxl) -->
+<!-- library(knitr) -->
+<!-- library(magrittr) -->
+<!-- library(kableExtra) -->
+
+<!-- sched <- read_xlsx("../../../admin/2020/schedule.xlsx", col_types = "text") -->
+
+<!-- kable(sched[1:7, c(1,5)], format = "markdown") -->
+<!-- ``` -->
 
 # Recap: "Big Data" from the Web
 
