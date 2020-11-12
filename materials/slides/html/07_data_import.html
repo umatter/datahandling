@@ -4553,7 +4553,24 @@ pre {
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Updates</h2></hgroup><article  id="updates">
 
-</article></slide><slide class=""><hgroup><h2>Part II: Data gathering and preparation</h2></hgroup><article  id="part-ii-data-gathering-and-preparation" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Online lecture mode</h2></hgroup><article  id="online-lecture-mode">
+
+<p><img src="https://imagesvc.meredithcorp.io/v3/mm/gif?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F12%2F2020%2F03%2Fflatten-curve-coronavirus.gif" width="85%" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Online lecture mode</h2></hgroup><article  id="online-lecture-mode-1">
+
+<ul>
+<li>All lectures <em>via Zoom</em>, same time/day as usual.
+
+<ul>
+<li>Lectures are recorded as usual.</li>
+<li>Preferably no breaks, max. 90+ minutes straight (including extended Q&amp;A).</li>
+</ul></li>
+<li>Materials online, as usual.</li>
+<li>Extended notes (additional tutorials).</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Part II: Data gathering and preparation</h2></hgroup><article  class="smaller" id="part-ii-data-gathering-and-preparation">
 
 <table class = 'rmdtable'>
 <col width="11.688312%" />
@@ -4576,7 +4593,7 @@ pre {
 </tr>
 </table>
 
-</article></slide><slide class=""><hgroup><h2>Part III: Analysis, visualisation, output</h2></hgroup><article  id="part-iii-analysis-visualisation-output" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Part III: Analysis, visualisation, output</h2></hgroup><article  class="smaller" id="part-iii-analysis-visualisation-output">
 
 <table class = 'rmdtable'>
 <tr class="header">
@@ -4679,7 +4696,7 @@ my_mean &lt;- function(x) {
      return(x_bar)
 }</pre>
 
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Today: Putting it All Together</h2></hgroup><article  id="today-putting-it-all-together">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Today: Putting it all Together</h2></hgroup><article  id="today-putting-it-all-together">
 
 </article></slide><slide class=""><hgroup><h2>Putting it all together</h2></hgroup><article  id="putting-it-all-together">
 
@@ -4692,13 +4709,13 @@ my_mean &lt;- function(x) {
 
 <center>
 
-<em>These are the basics to handel data properly!</em>
+<em>These are the basics to handle data properly!</em>
 
 </center>
 
 <center>
 
-<em>This is the fundament of data science!</em>
+<em>This is the basis of data science!</em>
 
 </center>
 
@@ -4751,7 +4768,7 @@ my_mean &lt;- function(x) {
 # Input: links to data sources (data comes in ... format)
 # Output: cleaned data as CSV
 # 
-# U. Matter, St. Gallen, 2018
+# U. Matter, St. Gallen, 2020
 #######################################################################</pre>
 
 </article></slide><slide class=""><hgroup><h2>Script sections</h2></hgroup><article  id="script-sections">
@@ -4874,24 +4891,6 @@ head(swiss)</pre>
 <li>Returns a <code>tibble</code>.</li>
 <li>Used in <span class="cite">Wickham and Grolemund (2017)</span>.</li>
 </ul>
-
-<pre >## 
-## Attaching package: &#39;readr&#39;</pre>
-
-<pre >## The following object is masked from &#39;package:rvest&#39;:
-## 
-##     guess_encoding</pre>
-
-<pre >## Parsed with column specification:
-## cols(
-##   District = col_character(),
-##   Fertility = col_double(),
-##   Agriculture = col_double(),
-##   Examination = col_double(),
-##   Education = col_double(),
-##   Catholic = col_double(),
-##   Infant.Mortality = col_double()
-## )</pre>
 
 <pre class = 'prettyprint lang-r'>swiss_imported &lt;- read_csv(&quot;data/swiss.csv&quot;)</pre>
 
@@ -5141,7 +5140,7 @@ swiss_imported &lt;- read_spss(&quot;data/swiss.sav&quot;)</pre>
 library(xml2)
 
 # parse XML, represent XML document as R object
-xml_doc &lt;- read_xml(&quot;../../data/customers.xml&quot;)
+xml_doc &lt;- read_xml(&quot;data/customers.xml&quot;)
 xml_doc</pre>
 
 </article></slide><slide class=""><hgroup><h2>XML in R: tree-structure</h2></hgroup><article  id="xml-in-r-tree-structure">
@@ -5156,36 +5155,20 @@ persons</pre>
 ## [1] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; x &lt;/product&gt;\n    &lt;product&gt; y &lt;/ ...
 ## [2] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; a &lt;/product&gt;\n    &lt;product&gt; x &lt; ...</pre>
 
-<pre class = 'prettyprint lang-r'># navigate sidewards
-xml_siblings(persons)</pre>
-
-<pre >## {xml_nodeset (2)}
-## [1] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; a &lt;/product&gt;\n    &lt;product&gt; x &lt; ...
-## [2] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; x &lt;/product&gt;\n    &lt;product&gt; y &lt;/ ...</pre>
-
-<pre class = 'prettyprint lang-r'># navigate upwards
-xml_parents(persons)</pre>
-
-<pre >## {xml_nodeset (1)}
-## [1] &lt;customers&gt;\n  &lt;person&gt;\n    &lt;name&gt;John Doe&lt;/name&gt;\n    &lt;orders&gt;\n      &lt;product&gt; x &lt;/product ...</pre>
-
-<pre class = 'prettyprint lang-r'># find data via XPath
-customer_names &lt;- xml_find_all(xml_doc, xpath = &quot;.//name&quot;)
-# extract the data as text
-xml_text(customer_names)</pre>
-
-<pre >## [1] &quot;John Doe&quot;  &quot;Peter Pan&quot;</pre>
-
 </article></slide><slide class=""><hgroup><h2>XML in R: tree-structure</h2></hgroup><article  id="xml-in-r-tree-structure-1">
 
 <p>Navigate sidewards and upwards</p>
 
 <pre class = 'prettyprint lang-r'># navigate sidewards
-xml_siblings(persons)</pre>
+persons[1]</pre>
 
-<pre >## {xml_nodeset (2)}
-## [1] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; a &lt;/product&gt;\n    &lt;product&gt; x &lt; ...
-## [2] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; x &lt;/product&gt;\n    &lt;product&gt; y &lt;/ ...</pre>
+<pre >## {xml_nodeset (1)}
+## [1] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; x &lt;/product&gt;\n    &lt;product&gt; y &lt;/ ...</pre>
+
+<pre class = 'prettyprint lang-r'>xml_siblings(persons[[1]])</pre>
+
+<pre >## {xml_nodeset (1)}
+## [1] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;product&gt; a &lt;/product&gt;\n    &lt;product&gt; x &lt; ...</pre>
 
 <pre class = 'prettyprint lang-r'># navigate upwards
 xml_parents(persons)</pre>
@@ -5206,6 +5189,15 @@ xml_text(customer_names)</pre>
 
 </article></slide><slide class=""><hgroup><h2>JSON in R</h2></hgroup><article  id="json-in-r">
 
+<pre class = 'prettyprint lang-r'># load packages
+library(jsonlite)
+
+# parse the JSON-document shown in the example above
+json_doc &lt;- fromJSON(&quot;data/person.json&quot;)
+
+# look at the structure of the document
+str(json_doc)</pre>
+
 <pre >## List of 6
 ##  $ firstName  : chr &quot;John&quot;
 ##  $ lastName   : chr &quot;Smith&quot;
@@ -5220,15 +5212,6 @@ xml_text(customer_names)</pre>
 ##   ..$ number: chr [1:2] &quot;212 555-1234&quot; &quot;646 555-4567&quot;
 ##  $ gender     :List of 1
 ##   ..$ type: chr &quot;male&quot;</pre>
-
-<pre class = 'prettyprint lang-r'># load packages
-library(jsonlite)
-
-# parse the JSON-document shown in the example above
-json_doc &lt;- fromJSON(&quot;../../data/person.json&quot;)
-
-# look at the structure of the document
-str(json_doc)</pre>
 
 </article></slide><slide class=""><hgroup><h2>JSON in R</h2></hgroup><article  id="json-in-r-1">
 
@@ -5255,6 +5238,8 @@ json_doc$gender$type</pre>
 
 <pre >## [1] &quot;male&quot;</pre>
 
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Tutorial (advanced): Importing data from a HTML table</h2></hgroup><article  id="tutorial-advanced-importing-data-from-a-html-table">
+
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Q&amp;A</h2></hgroup><article  id="qa">
 
 <style>
@@ -5264,19 +5249,12 @@ slides > slide:not(.nobackground):after {
 }
 
 
-code {
-  color: white;
-}
 
-
-pre {
-  color: white;
-}
 </style>
 
-</article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  id="references" class="unnumbered smaller">
+</article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  class="unnumbered smaller" id="references">
 
-<div id="refs" class="references">
+<div class="references" id="refs">
 <div id="ref-wickham_grolemund2017">
 <p>Wickham, Hadley, and Garrett Grolemund. 2017. Sebastopol, CA: O’Reilly. <a href='http://r4ds.had.co.nz/' title=''>http://r4ds.had.co.nz/</a>.</p></div></div></article></slide>
 

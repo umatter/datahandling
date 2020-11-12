@@ -6,14 +6,14 @@ author: |
      | (University of St.Gallen)
 date: "12/11/2020"
 output:
-  pdf_document:
-    pandoc_args:
-    - --filter
-    - ../../code/math.py
   html_document:
     highlight: tango
     theme: cerulean
     mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
+  pdf_document:
+    pandoc_args:
+    - --filter
+    - ../../code/math.py
 header-includes:
 - \usepackage[T1]{fontenc}
 - \usepackage{hyperref}
@@ -23,7 +23,6 @@ header-includes:
 - \rhead{\textcopyright \enspace 2020 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
 css: ../../style/notes_hsg.css
 bibliography: ../references/datahandling.bib
-
 ---
 
 ```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE, warning=FALSE, message=FALSE}
@@ -420,8 +419,95 @@ json_doc$gender$type
 
 
 
+## Tutorial (advanced): Importing data from a HTML table (on a website)
+
+In the lecture on Big Data from the Web we have discussed the *Hypertext Markup Language (HTML)* as code to define the structure/content of a website as well HTML-documents as semi-structured data sources. In the following tutorial, we revisit the basic steps involved to import data from a HTML table into R.
+
+The aim of the tutorial is to generate a CSV file containing data on ['divided government'](https://en.wikipedia.org/wiki/Divided_government) in US politics. We use the following Wikipedia page as a data source: https://en.wikipedia.org/wiki/Divided_government_in_the_United_States. The page contains a table indicating the president's party, and the majority party in the US House and the US Senate per Congress (2-year periods). The first few rows of the cleaned data is supposed to look like this:
+
+```{r echo=FALSE}
+dgov <- data.table::fread("../../data/divided_gov.csv")
+head(dgov)
+```
+
+In a first step, we initiate fix variables for paths and load additional R packages needed to handle data stored in HTML documents.
+
+```{r eval=FALSE, purl=FALSE}
+# SETUP ------------------
+
+# load packages
+library(rvest)
+library(data.table)
+
+# fix vars
+SOURCE_PATH <- "https://en.wikipedia.org/wiki/Divided_government_in_the_United_States"
+OUTPUT_PATH <- "data/divided_gov.csv"
+
+```
 
 
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# SETUP ------------------
+
+# load packages
+library(rvest)
+library(tidyverse)
+
+# fix vars
+SOURCE_PATH <- "https://en.wikipedia.org/wiki/Divided_government_in_the_United_States"
+OUTPUT_PATH <- "../../data/divided_gov.csv"
+
+```
+
+Now we write the part of the script that fetches the data from the Web. This part consists of three steps. First we fetch the entire website (HTML document) from Wikipedia with (`read_html()`). Second, we extract the part of the website containing the table with the data we want (via `html_node()`). Finally, we parse the HTML table and store its content in a data frame called `tab`. The last line of the code chunk below simply removes the last row of the data frame (you can see on the website that this row is not needed)
+
+```{r}
+# FETCH/FORMAT DATA -------------------
+
+# fetch from web
+doc <- read_html(SOURCE_PATH)
+html_tables <- html_node(doc, xpath = "//table[@class='wikitable']")
+tab <- html_table(html_tables)
+tab <- tab[-nrow(tab), ] # remove last row (not containing data)
+```
+
+Now we clean the data in order to get a data set more suitable for data analysis. Note that the original table contains information per congress (2-year periods). However, as the sample above shows, we aim for a panel at the year level. The following code iterates through the rows of the data frame, and generates for each row per congress several two rows  (one for each year in the congress).^[See `?strsplit`, `?unlist`, and [this introduction to regular expressions](https://www.oreilly.com/content/an-introduction-to-regular-expressions/) for the background of how this is done in the code example here.] 
+
+```{r}
+# generate year-level data.frame
+
+# prepare loop
+all_years <- list() # the container
+n <- length(tab$Year) # number of cases to iterate through
+length(all_years) <- n
+# generate year-level observations. row by row.
+for (i in 1:n){
+      # select row
+      row <- tab[i,] 
+      y <- row$Year
+      # 
+      begin <- as.numeric(unlist(strsplit(x = y, split = "[\\–\\-]", perl = TRUE))[1])
+      end <- as.numeric(unlist(strsplit(x = y, split =  "[\\–\\-]"))[2])
+      tabnew <- data.frame(year=begin:(end-1), president=row$President, senate=row$Senate, house=row$House)
+      all_years[[i]] <- tabnew # store in container
+}
+
+# stack all rows together
+allyears <- bind_rows(all_years)
+```
+
+In a last step, we inspect the collected data and write it to a CSV file.
+
+```{r}
+# WRITE TO DISK --------------------------------------------------
+
+# inspect
+head(allyears)
+
+# write to csv
+write_csv(allyears, path=OUTPUT_PATH)
+
+```
 
 
 

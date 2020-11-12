@@ -765,6 +765,71 @@ summary {
 ## [1] &quot;10021&quot;</code></pre>
 <pre><code>## [1] &quot;male&quot;</code></pre>
 </div>
+<div id="tutorial-advanced-importing-data-from-a-html-table-on-a-website" class="section level2">
+<h2><span class="header-section-number">5.3</span> Tutorial (advanced): Importing data from a HTML table (on a website)</h2>
+<p>In the lecture on Big Data from the Web we have discussed the <em>Hypertext Markup Language (HTML)</em> as code to define the structure/content of a website as well HTML-documents as semi-structured data sources. In the following tutorial, we revisit the basic steps involved to import data from a HTML table into R.</p>
+<p>The aim of the tutorial is to generate a CSV file containing data on <a href="https://en.wikipedia.org/wiki/Divided_government">‘divided government’</a> in US politics. We use the following Wikipedia page as a data source: <a href="https://en.wikipedia.org/wiki/Divided_government_in_the_United_States" class="uri">https://en.wikipedia.org/wiki/Divided_government_in_the_United_States</a>. The page contains a table indicating the president’s party, and the majority party in the US House and the US Senate per Congress (2-year periods). The first few rows of the cleaned data is supposed to look like this:</p>
+<pre><code>##    year president senate house
+## 1: 1861         R      R     R
+## 2: 1862         R      R     R
+## 3: 1863         R      R     R
+## 4: 1864         R      R     R
+## 5: 1865         D      R     R
+## 6: 1866         D      R     R</code></pre>
+<p>In a first step, we initiate fix variables for paths and load additional R packages needed to handle data stored in HTML documents.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># SETUP ------------------</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="co"># load packages</span></a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="kw">library</span>(rvest)</a>
+<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb43-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb43-7" data-line-number="7"><span class="co"># fix vars</span></a>
+<a class="sourceLine" id="cb43-8" data-line-number="8">SOURCE_PATH &lt;-<span class="st"> &quot;https://en.wikipedia.org/wiki/Divided_government_in_the_United_States&quot;</span></a>
+<a class="sourceLine" id="cb43-9" data-line-number="9">OUTPUT_PATH &lt;-<span class="st"> &quot;data/divided_gov.csv&quot;</span></a></code></pre></div>
+<p>Now we write the part of the script that fetches the data from the Web. This part consists of three steps. First we fetch the entire website (HTML document) from Wikipedia with (<code>read_html()</code>). Second, we extract the part of the website containing the table with the data we want (via <code>html_node()</code>). Finally, we parse the HTML table and store its content in a data frame called <code>tab</code>. The last line of the code chunk below simply removes the last row of the data frame (you can see on the website that this row is not needed)</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="co"># FETCH/FORMAT DATA -------------------</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="co"># fetch from web</span></a>
+<a class="sourceLine" id="cb44-4" data-line-number="4">doc &lt;-<span class="st"> </span><span class="kw">read_html</span>(SOURCE_PATH)</a>
+<a class="sourceLine" id="cb44-5" data-line-number="5">html_tables &lt;-<span class="st"> </span><span class="kw">html_node</span>(doc, <span class="dt">xpath =</span> <span class="st">&quot;//table[@class='wikitable']&quot;</span>)</a>
+<a class="sourceLine" id="cb44-6" data-line-number="6">tab &lt;-<span class="st"> </span><span class="kw">html_table</span>(html_tables)</a>
+<a class="sourceLine" id="cb44-7" data-line-number="7">tab &lt;-<span class="st"> </span>tab[<span class="op">-</span><span class="kw">nrow</span>(tab), ] <span class="co"># remove last row (not containing data)</span></a></code></pre></div>
+<p>Now we clean the data in order to get a data set more suitable for data analysis. Note that the original table contains information per congress (2-year periods). However, as the sample above shows, we aim for a panel at the year level. The following code iterates through the rows of the data frame, and generates for each row per congress several two rows (one for each year in the congress).<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># generate year-level data.frame</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co"># prepare loop</span></a>
+<a class="sourceLine" id="cb45-4" data-line-number="4">all_years &lt;-<span class="st"> </span><span class="kw">list</span>() <span class="co"># the container</span></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5">n &lt;-<span class="st"> </span><span class="kw">length</span>(tab<span class="op">$</span>Year) <span class="co"># number of cases to iterate through</span></a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="kw">length</span>(all_years) &lt;-<span class="st"> </span>n</a>
+<a class="sourceLine" id="cb45-7" data-line-number="7"><span class="co"># generate year-level observations. row by row.</span></a>
+<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb45-9" data-line-number="9">      <span class="co"># select row</span></a>
+<a class="sourceLine" id="cb45-10" data-line-number="10">      row &lt;-<span class="st"> </span>tab[i,] </a>
+<a class="sourceLine" id="cb45-11" data-line-number="11">      y &lt;-<span class="st"> </span>row<span class="op">$</span>Year</a>
+<a class="sourceLine" id="cb45-12" data-line-number="12">      <span class="co"># </span></a>
+<a class="sourceLine" id="cb45-13" data-line-number="13">      begin &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">unlist</span>(<span class="kw">strsplit</span>(<span class="dt">x =</span> y, <span class="dt">split =</span> <span class="st">&quot;[</span><span class="ch">\\</span><span class="st">–</span><span class="ch">\\</span><span class="st">-]&quot;</span>, <span class="dt">perl =</span> <span class="ot">TRUE</span>))[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb45-14" data-line-number="14">      end &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">unlist</span>(<span class="kw">strsplit</span>(<span class="dt">x =</span> y, <span class="dt">split =</span>  <span class="st">&quot;[</span><span class="ch">\\</span><span class="st">–</span><span class="ch">\\</span><span class="st">-]&quot;</span>))[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb45-15" data-line-number="15">      tabnew &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">year=</span>begin<span class="op">:</span>(end<span class="dv">-1</span>), <span class="dt">president=</span>row<span class="op">$</span>President, <span class="dt">senate=</span>row<span class="op">$</span>Senate, <span class="dt">house=</span>row<span class="op">$</span>House)</a>
+<a class="sourceLine" id="cb45-16" data-line-number="16">      all_years[[i]] &lt;-<span class="st"> </span>tabnew <span class="co"># store in container</span></a>
+<a class="sourceLine" id="cb45-17" data-line-number="17">}</a>
+<a class="sourceLine" id="cb45-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb45-19" data-line-number="19"><span class="co"># stack all rows together</span></a>
+<a class="sourceLine" id="cb45-20" data-line-number="20">allyears &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(all_years)</a></code></pre></div>
+<p>In a last step, we inspect the collected data and write it to a CSV file.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="co"># WRITE TO DISK --------------------------------------------------</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="co"># inspect</span></a>
+<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="kw">head</span>(allyears)</a></code></pre></div>
+<pre><code>##   year president senate house
+## 1 1861         R      R     R
+## 2 1862         R      R     R
+## 3 1863         R      R     R
+## 4 1864         R      R     R
+## 5 1865         D      R     R
+## 6 1866         D      R     R</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co"># write to csv</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw">write_csv</span>(allyears, <span class="dt">path=</span>OUTPUT_PATH)</a></code></pre></div>
+</div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
@@ -787,6 +852,7 @@ summary {
 <li id="fn2"><p>This is a summary of Chapter 8 in <span class="citation">Wickham and Grolemund (2017)</span>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
 <li id="fn3"><p>This section is based on <span class="citation">Matter (2018b)</span>.<a href="#fnref3" class="footnote-back">↩</a></p></li>
 <li id="fn4"><p>This section is based on <span class="citation">Matter (2018b)</span>.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>See <code>?strsplit</code>, <code>?unlist</code>, and <a href="https://www.oreilly.com/content/an-introduction-to-regular-expressions/">this introduction to regular expressions</a> for the background of how this is done in the code example here.<a href="#fnref5" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 

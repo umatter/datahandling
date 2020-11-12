@@ -30,6 +30,21 @@ pre {
 
 # Updates
 
+## Online lecture mode
+
+```{r github, echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE}
+include_graphics("https://imagesvc.meredithcorp.io/v3/mm/gif?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F12%2F2020%2F03%2Fflatten-curve-coronavirus.gif")
+```
+
+## Online lecture mode
+
+- All lectures *via Zoom*, same time/day as usual.
+  - Lectures are recorded as usual.
+  - Preferably no breaks, max. 90+ minutes straight (including extended Q&A).
+- Materials online, as usual.
+- Extended notes (additional tutorials).
+
+
 
 ## Part II: Data gathering and preparation {.smaller}
 
@@ -127,7 +142,7 @@ my_mean <- function(x) {
 
 
 
-# Today: Putting it All Together
+# Today: Putting it all Together
 
 ## Putting it all together
 
@@ -137,12 +152,13 @@ my_mean <- function(x) {
   - You know the basics of *programming in R*...
 
 <center>
-*These are the basics to handel data properly!*
+*These are the basics to handle data properly!*
 </center>
 
 <center>
-*This is the fundament of data science!*
+*This is the basis of data science!*
 </center>
+
 
 ## We are ready to start the data science journey
 
@@ -195,7 +211,7 @@ Tell your future self what this script is all about
 # Input: links to data sources (data comes in ... format)
 # Output: cleaned data as CSV
 # 
-# U. Matter, St. Gallen, 2018
+# U. Matter, St. Gallen, 2020
 #######################################################################
 
 ```
@@ -326,7 +342,7 @@ swiss_imported <- read.csv("data/swiss.csv")
 - Returns a `tibble`. 
 - Used in @wickham_grolemund2017.
 
-```{r eval=TRUE, echo=FALSE, purl=FALSE}
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, purl=FALSE}
 library(readr)
 swiss_imported <- read_csv("../../data/swiss.csv")
 ```
@@ -533,7 +549,7 @@ swiss_imported <- read_spss("data/swiss.sav")
 
 ## XML in R
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE}
 # load packages
 library(xml2)
 
@@ -548,7 +564,7 @@ xml_doc
 library(xml2)
 
 # parse XML, represent XML document as R object
-xml_doc <- read_xml("../../data/customers.xml")
+xml_doc <- read_xml("data/customers.xml")
 xml_doc
 
 ```
@@ -564,16 +580,6 @@ xml_doc
 persons <- xml_children(xml_doc) 
 persons
 
-# navigate sidewards
-xml_siblings(persons)
-# navigate upwards
-xml_parents(persons)
-
-# find data via XPath
-customer_names <- xml_find_all(xml_doc, xpath = ".//name")
-# extract the data as text
-xml_text(customer_names)
-
 ```
 
 
@@ -584,7 +590,8 @@ Navigate sidewards and upwards
 ```{r}
 
 # navigate sidewards
-xml_siblings(persons)
+persons[1]
+xml_siblings(persons[[1]])
 # navigate upwards
 xml_parents(persons)
 
@@ -608,19 +615,20 @@ xml_text(customer_names)
 
 ## JSON in R
 
-```{r echo=FALSE}
+
+```{r eval=FALSE}
 # load packages
 library(jsonlite)
 
 # parse the JSON-document shown in the example above
-json_doc <- fromJSON("../../data/person.json")
+json_doc <- fromJSON("data/person.json")
 
 # look at the structure of the document
 str(json_doc)
 
 ```
 
-```{r eval=FALSE}
+```{r echo=FALSE, message=FALSE }
 # load packages
 library(jsonlite)
 
@@ -650,6 +658,8 @@ json_doc$gender$type
 
 
 
+# Tutorial (advanced): Importing data from a HTML table 
+
 # Q&A
 
 
@@ -660,14 +670,7 @@ slides > slide:not(.nobackground):after {
 }
 
 
-code {
-  color: white;
-}
 
-
-pre {
-  color: white;
-}
 </style>
 
 ## References {.smaller}
