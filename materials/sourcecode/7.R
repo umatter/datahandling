@@ -48,6 +48,9 @@ OUTPUT_PATH <- "../../data/divided_gov.csv"
 
 
 
+
+
+
 # FETCH/FORMAT DATA -------------------
 
 # fetch from web
