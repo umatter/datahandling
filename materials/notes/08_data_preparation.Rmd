@@ -291,7 +291,7 @@ tidy_df
 
 # Turorial: Hotel Bookings Time Series
 
-This tutorial guides you step-by-step through the cleaning script (with a few adaptions) of [tidytuesday's Hotel Bookings repo](https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-02-11), dealing with the preparation and analysis of two datasets with *hotel demand data*. Along the way, you also get in touch with the [janitor package](https://github.com/sfirke/janitor). For details about the two datasets see [@nuno_etal2019](https://www.sciencedirect.com/science/article/pii/S2352340918315191#f0010) and for the original research contribution related to these datasets see [@nunes_etal2017](https://ieeexplore.ieee.org/document/8260781).
+This tutorial guides you step-by-step through the cleaning script (with a few adaptions) of [tidytuesday's Hotel Bookings repo](https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-02-11), dealing with the preparation and analysis of two datasets with *hotel demand data*. Along the way, you also get in touch with the [janitor package](https://github.com/sfirke/janitor). For details about the two datasets see the [paper](https://www.sciencedirect.com/science/article/pii/S2352340918315191#f0010) by @nuno_etal2019 and for the original research contribution related to these datasets see the [paper](https://ieeexplore.ieee.org/document/8260781) by @nunes_etal2017.
 
 @nuno_etal2019 summarize the content of the datasets as follows: "One of the hotels (H1) is a resort hotel and the other is a city hotel (H2). Both datasets share the same structure, with 31 variables describing the 40,060 observations of H1 and 79,330 observations of H2. Each observation represents a hotel booking. Both datasets comprehend bookings due to arrive between the 1st of July of 2015 and the 31st of August 2017, including bookings that effectively arrived and bookings that were canceled. Since this is hotel real data, all data elements pertaining hotel or costumer identification were deleted. Due to the scarcity of real business data for scientific and educational purposes, these datasets can have an important role for research and education in revenue management, machine learning, or data mining, as well as in other fields."
 
@@ -336,7 +336,7 @@ hotel_plot <- hotel_df %>%
 hotel_plot
 ```
 
-The the first few rows and columns of the final dataset should combine the two source datasets and look as follows and should contain all the observations from both datasets (H1 and H2).
+The first few rows and columns of the final dataset should combine the two source datasets and look as follows:
 
 ```{r}
 head(hotel_df)
