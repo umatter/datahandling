@@ -188,54 +188,6 @@ window.buildTabsets = function(tocID) {
 };
 
 </script>
-<style type="text/css">
-a.anchor-section {margin-left: 10px; visibility: hidden; color: inherit;}
-a.anchor-section::before {content: '#';}
-.hasAnchor:hover a.anchor-section {visibility: visible;}
-</style>
-<script>// Anchor sections v1.0 written by Atsushi Yasumoto on Oct 3rd, 2020.
-document.addEventListener('DOMContentLoaded', function() {
-  // Do nothing if AnchorJS is used
-  if (typeof window.anchors === 'object' && anchors.hasOwnProperty('hasAnchorJSLink')) {
-    return;
-  }
-
-  const h = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-
-  // Do nothing if sections are already anchored
-  if (Array.from(h).some(x => x.classList.contains('hasAnchor'))) {
-    return null;
-  }
-
-  // Use section id when pandoc runs with --section-divs
-  const section_id = function(x) {
-    return ((x.classList.contains('section') || (x.tagName === 'SECTION'))
-            ? x.id : '');
-  };
-
-  // Add anchors
-  h.forEach(function(x) {
-    const id = x.id || section_id(x.parentElement);
-    if (id === '') {
-      return null;
-    }
-    let anchor = document.createElement('a');
-    anchor.href = '#' + id;
-    anchor.classList = ['anchor-section'];
-    x.classList.add('hasAnchor');
-    x.appendChild(anchor);
-  });
-});
-</script>
-
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -257,7 +209,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -521,82 +473,82 @@ summary {
 <p>Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <div id="variables-and-vectors" class="section level2">
 <h2><span class="header-section-number">1.1</span> Variables and vectors</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># a simle integer vector</span></a>
-<a class="sourceLine" id="cb1-2" title="2">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">33</span>, <span class="dv">22</span>, <span class="dv">40</span>)</a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># give names to vector elements</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">names</span>(a) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Eva&quot;</span>)</a>
-<a class="sourceLine" id="cb1-6" title="6">a</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># a simle integer vector</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">33</span>, <span class="dv">22</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># give names to vector elements</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">names</span>(a) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Eva&quot;</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">a</a></code></pre></div>
 <pre><code>##   Andy  Betty Claire Daniel    Eva 
 ##     10     22     33     22     40</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># indexing either via number of vector element (start count with 1)</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co"># or by element name</span></a>
-<a class="sourceLine" id="cb3-3" title="3">a[<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># indexing either via number of vector element (start count with 1)</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># or by element name</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">a[<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## Claire 
 ##     33</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">a[<span class="st">&quot;Claire&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">a[<span class="st">&quot;Claire&quot;</span>]</a></code></pre></div>
 <pre><code>## Claire 
 ##     33</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># inspect the object you are working with</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">class</span>(a) <span class="co"># returns the class(es) of the object</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># inspect the object you are working with</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">class</span>(a) <span class="co"># returns the class(es) of the object</span></a></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">str</span>(a) <span class="co"># returns the structure of the object (&quot;what is in variable a?&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">str</span>(a) <span class="co"># returns the structure of the object (&quot;what is in variable a?&quot;)</span></a></code></pre></div>
 <pre><code>##  Named num [1:5] 10 22 33 22 40
 ##  - attr(*, &quot;names&quot;)= chr [1:5] &quot;Andy&quot; &quot;Betty&quot; &quot;Claire&quot; &quot;Daniel&quot; ...</code></pre>
 </div>
 <div id="math-operators" class="section level2">
 <h2><span class="header-section-number">1.2</span> Math operators</h2>
 <p>R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># basic arithmetic </span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># basic arithmetic </span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">sum_result &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb13-2" title="2">sum_result</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">sum_result &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">sum_result</a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">sum_result <span class="dv">-2</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">sum_result <span class="dv">-2</span></a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="dv">4</span><span class="op">*</span><span class="dv">5</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="dv">4</span><span class="op">*</span><span class="dv">5</span></a></code></pre></div>
 <pre><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="dv">20</span><span class="op">/</span><span class="dv">5</span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="dv">20</span><span class="op">/</span><span class="dv">5</span></a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># order of operations</span></a>
-<a class="sourceLine" id="cb21-2" title="2"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># order of operations</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span></a></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">3</span></a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">3</span></a></code></pre></div>
 <pre><code>## [1] 12</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">(<span class="dv">5</span><span class="op">+</span><span class="dv">5</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">(<span class="dv">5</span><span class="op">+</span><span class="dv">5</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># work with variables</span></a>
-<a class="sourceLine" id="cb27-2" title="2">a &lt;-<span class="st"> </span><span class="dv">20</span></a>
-<a class="sourceLine" id="cb27-3" title="3">b &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb27-4" title="4">a<span class="op">/</span>b</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># work with variables</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">b &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">a<span class="op">/</span>b</a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># arithmetics with vectors</span></a>
-<a class="sourceLine" id="cb29-2" title="2">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb29-3" title="3">a <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># arithmetics with vectors</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">a <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1]  2  8 12</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">40</span>,<span class="dv">80</span>)</a>
-<a class="sourceLine" id="cb31-2" title="2">a <span class="op">*</span><span class="st"> </span>b</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">40</span>,<span class="dv">80</span>)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">a <span class="op">*</span><span class="st"> </span>b</a></code></pre></div>
 <pre><code>## [1]  10 160 480</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">a <span class="op">+</span><span class="st"> </span>b </a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">a <span class="op">+</span><span class="st"> </span>b </a></code></pre></div>
 <pre><code>## [1] 11 44 86</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># other common math operators and functions</span></a>
-<a class="sourceLine" id="cb35-2" title="2"><span class="dv">4</span><span class="op">^</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># other common math operators and functions</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="dv">4</span><span class="op">^</span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">sqrt</span>(<span class="dv">4</span><span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">sqrt</span>(<span class="dv">4</span><span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">log</span>(<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">log</span>(<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 0.6931472</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">exp</span>(<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">exp</span>(<span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1] 22026.47</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">log</span>(<span class="kw">exp</span>(<span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">log</span>(<span class="kw">exp</span>(<span class="dv">10</span>))</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co"># special numbers</span></a>
-<a class="sourceLine" id="cb45-2" title="2"><span class="co"># Euler&#39;s number</span></a>
-<a class="sourceLine" id="cb45-3" title="3"><span class="kw">exp</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># special numbers</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="co"># Euler's number</span></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="kw">exp</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 2.718282</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="co"># Pi</span></a>
-<a class="sourceLine" id="cb47-2" title="2">pi</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># Pi</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">pi</a></code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
 </div>
 </div>
@@ -616,50 +568,50 @@ Figure 2.1: For-loop illustration.
 </div>
 
 <p>For example, a for-loop could be used to sum up each of the elements in a numeric vector of fix length (thus the number of iterations is clearly defined). In plain English, the for-loop would state something like: “Start with 0 as the current total value, for each of the elements in the vector add the value of this element to the current total value.” Note how this logically implies that the loop will ‘stop’ once the value of the last element in the vector is added to the total. Let’s illustrate this in R. Take the numeric vector <code>c(1,2,3,4,5)</code>. A for loop to sum up all elements can be implemented as follows:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="co"># vector to be summed up</span></a>
-<a class="sourceLine" id="cb49-2" title="2">numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="fl">2.1</span>,<span class="fl">3.5</span>,<span class="fl">4.8</span>,<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb49-3" title="3"><span class="co"># initiate total</span></a>
-<a class="sourceLine" id="cb49-4" title="4">total_sum &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb49-5" title="5"><span class="co"># number of iterations</span></a>
-<a class="sourceLine" id="cb49-6" title="6">n &lt;-<span class="st"> </span><span class="kw">length</span>(numbers)</a>
-<a class="sourceLine" id="cb49-7" title="7"><span class="co"># start loop</span></a>
-<a class="sourceLine" id="cb49-8" title="8"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
-<a class="sourceLine" id="cb49-9" title="9">     total_sum &lt;-<span class="st"> </span>total_sum <span class="op">+</span><span class="st"> </span>numbers[i]</a>
-<a class="sourceLine" id="cb49-10" title="10">}</a>
-<a class="sourceLine" id="cb49-11" title="11"></a>
-<a class="sourceLine" id="cb49-12" title="12"><span class="co"># check result</span></a>
-<a class="sourceLine" id="cb49-13" title="13">total_sum</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># vector to be summed up</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2">numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="fl">2.1</span>,<span class="fl">3.5</span>,<span class="fl">4.8</span>,<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="co"># initiate total</span></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4">total_sum &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="co"># number of iterations</span></a>
+<a class="sourceLine" id="cb49-6" data-line-number="6">n &lt;-<span class="st"> </span><span class="kw">length</span>(numbers)</a>
+<a class="sourceLine" id="cb49-7" data-line-number="7"><span class="co"># start loop</span></a>
+<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
+<a class="sourceLine" id="cb49-9" data-line-number="9">     total_sum &lt;-<span class="st"> </span>total_sum <span class="op">+</span><span class="st"> </span>numbers[i]</a>
+<a class="sourceLine" id="cb49-10" data-line-number="10">}</a>
+<a class="sourceLine" id="cb49-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb49-12" data-line-number="12"><span class="co"># check result</span></a>
+<a class="sourceLine" id="cb49-13" data-line-number="13">total_sum</a></code></pre></div>
 <pre><code>## [1] 16.4</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># compare with result of sum() function</span></a>
-<a class="sourceLine" id="cb51-2" title="2"><span class="kw">sum</span>(numbers)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="co"># compare with result of sum() function</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="kw">sum</span>(numbers)</a></code></pre></div>
 <pre><code>## [1] 16.4</code></pre>
 </div>
 <div id="nested-for-loops" class="section level3">
 <h3><span class="header-section-number">2.1.2</span> Nested for-loops</h3>
 <p>In some situations a simple for-loop might not be sufficient. Within one sequence of commands there might be another sequence of commands that also has to be executed for a number of times each time the first sequence of commands is executed. In such a case we speak of a ‘nested for-loop’. We can illustrate this easily by extending the example of the numeric vector above to a matrix for which we want to sum up the values in each column. Building on the loop implemented above, we would say ‘for each column <code>j</code> of a given numeric matrix, execute the for-loop defined above’.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># matrix to be summed up</span></a>
-<a class="sourceLine" id="cb53-2" title="2">numbers_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb53-3" title="3">numbers_matrix</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># matrix to be summed up</span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2">numbers_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb53-3" data-line-number="3">numbers_matrix</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    6   11   16
 ## [2,]    2    7   12   17
 ## [3,]    3    8   13   18
 ## [4,]    4    9   14   19
 ## [5,]    5   10   15   20</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># number of iterations for outer loop</span></a>
-<a class="sourceLine" id="cb55-2" title="2">m &lt;-<span class="st"> </span><span class="kw">ncol</span>(numbers_matrix)</a>
-<a class="sourceLine" id="cb55-3" title="3"><span class="co"># number of iterations for inner loop</span></a>
-<a class="sourceLine" id="cb55-4" title="4">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(numbers_matrix)</a>
-<a class="sourceLine" id="cb55-5" title="5"><span class="co"># start outer loop (loop over columns of matrix)</span></a>
-<a class="sourceLine" id="cb55-6" title="6"><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m) {</a>
-<a class="sourceLine" id="cb55-7" title="7">     <span class="co"># start inner loop</span></a>
-<a class="sourceLine" id="cb55-8" title="8">     <span class="co"># initiate total</span></a>
-<a class="sourceLine" id="cb55-9" title="9">     total_sum &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb55-10" title="10">     <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
-<a class="sourceLine" id="cb55-11" title="11">          total_sum &lt;-<span class="st"> </span>total_sum <span class="op">+</span><span class="st"> </span>numbers_matrix[i, j]</a>
-<a class="sourceLine" id="cb55-12" title="12">          }</a>
-<a class="sourceLine" id="cb55-13" title="13">     <span class="kw">print</span>(total_sum)</a>
-<a class="sourceLine" id="cb55-14" title="14">     }</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># number of iterations for outer loop</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">m &lt;-<span class="st"> </span><span class="kw">ncol</span>(numbers_matrix)</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co"># number of iterations for inner loop</span></a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(numbers_matrix)</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="co"># start outer loop (loop over columns of matrix)</span></a>
+<a class="sourceLine" id="cb55-6" data-line-number="6"><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m) {</a>
+<a class="sourceLine" id="cb55-7" data-line-number="7">     <span class="co"># start inner loop</span></a>
+<a class="sourceLine" id="cb55-8" data-line-number="8">     <span class="co"># initiate total</span></a>
+<a class="sourceLine" id="cb55-9" data-line-number="9">     total_sum &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb55-10" data-line-number="10">     <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
+<a class="sourceLine" id="cb55-11" data-line-number="11">          total_sum &lt;-<span class="st"> </span>total_sum <span class="op">+</span><span class="st"> </span>numbers_matrix[i, j]</a>
+<a class="sourceLine" id="cb55-12" data-line-number="12">          }</a>
+<a class="sourceLine" id="cb55-13" data-line-number="13">     <span class="kw">print</span>(total_sum)</a>
+<a class="sourceLine" id="cb55-14" data-line-number="14">     }</a></code></pre></div>
 <pre><code>## [1] 15
 ## [1] 40
 ## [1] 65
@@ -676,37 +628,37 @@ Figure 2.2: While-loop illustration.
 </div>
 
 <p>For example, a while-loop in plain English could state something like “start with 0 as the total, add 1.12 to the total until the total is larger than 20.” We can implement this in R as follows.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># initiate starting value</span></a>
-<a class="sourceLine" id="cb57-2" title="2">total &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb57-3" title="3"><span class="co"># start loop</span></a>
-<a class="sourceLine" id="cb57-4" title="4"><span class="cf">while</span> (total <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>) {</a>
-<a class="sourceLine" id="cb57-5" title="5">     total &lt;-<span class="st"> </span>total <span class="op">+</span><span class="st"> </span><span class="fl">1.12</span></a>
-<a class="sourceLine" id="cb57-6" title="6">}</a>
-<a class="sourceLine" id="cb57-7" title="7"></a>
-<a class="sourceLine" id="cb57-8" title="8"><span class="co"># check the result</span></a>
-<a class="sourceLine" id="cb57-9" title="9">total</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="co"># initiate starting value</span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2">total &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="co"># start loop</span></a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="cf">while</span> (total <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>) {</a>
+<a class="sourceLine" id="cb57-5" data-line-number="5">     total &lt;-<span class="st"> </span>total <span class="op">+</span><span class="st"> </span><span class="fl">1.12</span></a>
+<a class="sourceLine" id="cb57-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb57-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb57-8" data-line-number="8"><span class="co"># check the result</span></a>
+<a class="sourceLine" id="cb57-9" data-line-number="9">total</a></code></pre></div>
 <pre><code>## [1] 20.16</code></pre>
 </div>
 </div>
 <div id="booleans-and-logical-statements" class="section level2">
 <h2><span class="header-section-number">2.2</span> Booleans and logical statements</h2>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span></a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span></a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="dv">3</span><span class="op">+</span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">7</span></a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="dv">3</span><span class="op">+</span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">7</span></a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">condition &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb63-2" title="2"><span class="cf">if</span> (condition) {</a>
-<a class="sourceLine" id="cb63-3" title="3">     <span class="kw">print</span>(<span class="st">&quot;This is true!&quot;</span>)</a>
-<a class="sourceLine" id="cb63-4" title="4">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb63-5" title="5">     <span class="kw">print</span>(<span class="st">&quot;This is false!&quot;</span>)</a>
-<a class="sourceLine" id="cb63-6" title="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">condition &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="cf">if</span> (condition) {</a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">     <span class="kw">print</span>(<span class="st">&quot;This is true!&quot;</span>)</a>
+<a class="sourceLine" id="cb63-4" data-line-number="4">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb63-5" data-line-number="5">     <span class="kw">print</span>(<span class="st">&quot;This is false!&quot;</span>)</a>
+<a class="sourceLine" id="cb63-6" data-line-number="6">}</a></code></pre></div>
 <pre><code>## [1] &quot;This is true!&quot;</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">condition &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb65-2" title="2"><span class="cf">if</span> (condition) {</a>
-<a class="sourceLine" id="cb65-3" title="3">     <span class="kw">print</span>(<span class="st">&quot;This is true!&quot;</span>)</a>
-<a class="sourceLine" id="cb65-4" title="4">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb65-5" title="5">     <span class="kw">print</span>(<span class="st">&quot;This is false!&quot;</span>)</a>
-<a class="sourceLine" id="cb65-6" title="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">condition &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="cf">if</span> (condition) {</a>
+<a class="sourceLine" id="cb65-3" data-line-number="3">     <span class="kw">print</span>(<span class="st">&quot;This is true!&quot;</span>)</a>
+<a class="sourceLine" id="cb65-4" data-line-number="4">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb65-5" data-line-number="5">     <span class="kw">print</span>(<span class="st">&quot;This is false!&quot;</span>)</a>
+<a class="sourceLine" id="cb65-6" data-line-number="6">}</a></code></pre></div>
 <pre><code>## [1] &quot;This is false!&quot;</code></pre>
 </div>
 <div id="r-functions" class="section level2">
@@ -718,11 +670,11 @@ Figure 2.2: While-loop illustration.
 <h3><span class="header-section-number">2.3.1</span> Tutorial: Compute the mean</h3>
 <p>In order to illustrate the point of how functions work in R and how we can write our own functions in R, the following code-example illustrates how to implement a function that computes the mean/average value, given a numeric vector.</p>
 <p>First, we initiate a simple numeric vector which we then use as an example to test the function. Whenever you implement a function, it is very useful to first define a simple example of an input for which you know what the output should be.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># a simle integer vector, for which we want to compute the Mean</span></a>
-<a class="sourceLine" id="cb67-2" title="2">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">5.5</span>, <span class="fl">7.5</span>)</a>
-<a class="sourceLine" id="cb67-3" title="3"><span class="co"># desired functionality and output:</span></a>
-<a class="sourceLine" id="cb67-4" title="4"><span class="co"># my_mean(a)</span></a>
-<a class="sourceLine" id="cb67-5" title="5"><span class="co"># 6.5</span></a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="co"># a simle integer vector, for which we want to compute the Mean</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">5.5</span>, <span class="fl">7.5</span>)</a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="co"># desired functionality and output:</span></a>
+<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="co"># my_mean(a)</span></a>
+<a class="sourceLine" id="cb67-5" data-line-number="5"><span class="co"># 6.5</span></a></code></pre></div>
 <p>In this example, we would thus expect the output to be <code>6.5</code>. Later, we will compare the output of our function with this in order to check whether our function works as desired.</p>
 <p>In addition to defining a simple example and the desired output, it makes sense to also think about <em>how</em> the function is expected to produce this output. When implementing functions related to statistics (such as the mean), it usually makes sense to have a look at the mathematical definition:</p>
 <p><span class="math inline">\(\bar{x} = \frac{1}{n}\left (\sum_{i=1}^n{x_i}\right ) = \frac{x_1+x_2+\cdots +x_n}{n}\)</span>.</p>
@@ -737,23 +689,23 @@ Figure 2.2: While-loop illustration.
 <li><code>length()</code> returns the length of a given vector.</li>
 </ul>
 <p>With the following short line of code we thus get the mean of the elements in vector <code>a</code>.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="kw">sum</span>(a)<span class="op">/</span><span class="kw">length</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">sum</span>(a)<span class="op">/</span><span class="kw">length</span>(a)</a></code></pre></div>
 <pre><code>## [1] 6.5</code></pre>
 <p>All that is left to do is to pack all this into the function body of our newly defined <code>my_mean()</code> function:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># define our own function to compute the mean, given a numeric vector</span></a>
-<a class="sourceLine" id="cb70-2" title="2">my_mean &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb70-3" title="3">     x_bar &lt;-<span class="st"> </span><span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb70-4" title="4">     <span class="kw">return</span>(x_bar)</a>
-<a class="sourceLine" id="cb70-5" title="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># define our own function to compute the mean, given a numeric vector</span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">my_mean &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb70-3" data-line-number="3">     x_bar &lt;-<span class="st"> </span><span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb70-4" data-line-number="4">     <span class="kw">return</span>(x_bar)</a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">}</a></code></pre></div>
 <p>Now we can test it based on our example:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># test it</span></a>
-<a class="sourceLine" id="cb71-2" title="2"><span class="kw">my_mean</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="co"># test it</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="kw">my_mean</span>(a)</a></code></pre></div>
 <pre><code>## [1] 6.5</code></pre>
 <p>Moreover, we can test it by comparing it with the built-in <code>mean()</code> function:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb73-2" title="2"><span class="kw">my_mean</span>(b) <span class="co"># our own implementation</span></a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="kw">my_mean</span>(b) <span class="co"># our own implementation</span></a></code></pre></div>
 <pre><code>## [1] 4.666667</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="kw">mean</span>(b) <span class="co"># the built_in function</span></a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">mean</span>(b) <span class="co"># the built_in function</span></a></code></pre></div>
 <pre><code>## [1] 4.666667</code></pre>
 </div>
 </div>
@@ -784,7 +736,7 @@ Figure 2.2: While-loop illustration.
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

@@ -1,10 +1,10 @@
-
-
-## SET UP --------------
+## SET UP -----------
 library(tidyverse)
 
 
-## -a messy df
+## Clean messy data --------------------
+
+# initiate a messy data set
 messy_df <- data.frame(last_name = c("Wayne", "Trump", "Karl Marx"),
                        first_name = c("John", "Melania", ""),
                        gender = c("male", "female", "Man"),
@@ -13,66 +13,70 @@ messy_df <- data.frame(last_name = c("Wayne", "Trump", "Karl Marx"),
                        stringsAsFactors = FALSE)
 
 
+# Find/replace character strings, recode factor levels -------------
 
-
-
-## FACTORS EXAMPLE 
+# simple approach (problem?)
 messy_df$gender <- as.factor(messy_df$gender)
-messy_df$gender
+messy_df$gender # not really meaningful categories!
 
+# clean messy cagegories
+messy_df$gender[messy_df$gender == "Man"] <- "male" # find/replace
+messy_df$gender # the problem is not really solved!
 
-messy_df$gender[messy_df$gender == "Man"] <- "male"
-messy_df$gender
-
-
+# better approach via tidyverse!
 messy_df$gender <- fct_recode(messy_df$gender, "male" = "Man")
 messy_df$gender
 
 
 
 
+## Removing individual characters from a string -------------------
 
-## NUMBERS: INTEGER
-as.integer(messy_df$income)
+# prepare income variable
+as.integer(messy_df$income) # proper data type causes a problem
 
 
-
-## clean values!
+## replace characters in a string to clean this variable!
 messy_df$income <- str_replace(messy_df$income, pattern = ",", replacement = "")
 
 
-## try it again!
+## try to set the type again
 messy_df$income <- as.integer(messy_df$income)
 
 
-## -------------------------------------------------------------------------------------------------
+## Splitting strings ------------------------------------------------
+
+# First, we split the strings at every occurrence of white space (" "). 
+#Setting the option simplify=TRUE, we get a matrix containing the individual sub-strings after the splitting.
+
 splitnames <- str_split(messy_df$last_name, pattern = " ", simplify = TRUE)
 splitnames
 
 
-## -------------------------------------------------------------------------------------------------
+## As the first two observations did not contain any white space, there was nothing to split there and the function simply returned empty strings ""
 problem_cases <- messy_df$first_name == ""
 messy_df$first_name[problem_cases] <- splitnames[problem_cases, 1]
 
 
-## -------------------------------------------------------------------------------------------------
+## Finally, we have to correct the last_name column by replacing the respective values.
 messy_df$last_name[problem_cases] <- splitnames[problem_cases, 2]
 messy_df
 
 
-## ----message=FALSE--------------------------------------------------------------------------------
+
+
+## Parsing dates ---------------------
+
+# load additional package to handle dates
 library(lubridate)
 
-
-## -------------------------------------------------------------------------------------------------
+## parse as date
 messy_df$date <- ymd(messy_df$date)
 
 
-## -------------------------------------------------------------------------------------------------
+## inspect the final (cleaned) dataset --------------------------------
 messy_df
 
-
-## -------------------------------------------------------------------------------------------------
 str(messy_df)
 
 
@@ -80,14 +84,12 @@ str(messy_df)
 
 
 
-## ----echo=FALSE, warning=FALSE, message=FALSE-----------------------------------------------------
-tidydata <- gather(data = rawdata, treatmenta, treatmentb, key = "treatment", value = "result" )
-tidydata$treatment <- gsub("treatment", "", tidydata$treatment)
+##  Tidying messy datasets. ------------------------
 
 
 
 
-## -------------------------------------------------------------------------------------------------
+## Gathering (‘wide to long’)
 wide_df <- data.frame(last_name = c("Wayne", "Trump", "Marx"),
                        first_name = c("John", "Melania", "Karl"),
                        gender = c("male", "female", "male"),
@@ -97,17 +99,18 @@ wide_df <- data.frame(last_name = c("Wayne", "Trump", "Marx"),
 wide_df
 
 
-## -------------------------------------------------------------------------------------------------
+## change wide to long
 long_df <- gather(wide_df, income.2018, income.2017, key = "year", value = "income")
 long_df
 
-
-## -------------------------------------------------------------------------------------------------
+## clean up
 long_df$year <- str_replace(long_df$year, "income.", "")
 long_df
 
 
-## -------------------------------------------------------------------------------------------------
+## Spreading (‘long to wide’) -----------------
+
+# weird df example
 weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx",
                                      "Wayne", "Trump", "Marx",
                                      "Wayne", "Trump", "Marx"),
@@ -127,7 +130,49 @@ weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx",
 weird_df
 
 
-## -------------------------------------------------------------------------------------------------
+##  change to wide in order to clean df (make it tidy)
 tidy_df <- spread(weird_df, key = "variable", value = "value")
 tidy_df
+
+
+
+
+
+
+## Tutorial
+
+# SET UP --------------
+
+# load packages
+library(tidyverse)
+library(janitor) # install.packages("janitor") (if not yet installed)
+
+# fix variables
+url_h1 <- "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/H1.csv"
+url_h2 <- "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/H2.csv"
+
+## DATA IMPORT -----------------
+
+h1 <- read_csv(url_h1)
+h2 <- read_csv(url_h2)
+
+
+
+## -------------------------------------------------------------------------------------------------
+## CLEAN DATA -------------------------
+
+# use the janitor-package clean_names function. see ?clean_names for details
+h1 <- clean_names(h1)
+h2 <- clean_names(h2)
+
+# add column to clarify origin of observation
+h1 <- mutate(h1, hotel="Resort Hotel")
+h2 <- mutate(h2, hotel="City Hotel")
+
+# stack observations
+hotel_df <- bind_rows(h1,h2)
+
+# inspect the first observations
+head(hotel_df)
+
 
