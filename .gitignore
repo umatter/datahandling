@@ -28,6 +28,7 @@ materials/slides/preamble.tex
 style/*.eps
 .DS_Store
 */.DS_Store
+datahandling_factsheet.pdf
 
 todo_improvements.txt
 project.Rproj
