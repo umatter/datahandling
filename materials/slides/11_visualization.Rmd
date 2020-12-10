@@ -35,27 +35,16 @@ pre {
     - Wrap up
     - Exam info
     - Feedback
-    - Q&A (send questions until tomorrow! *ulrich.matter@unisg.ch*)
+    - Q&A (send questions until tomorrow! *ulrich.matter@unisg.ch*)!
 - Friday, 18 December
     - Decentral exam for *exchange students*!
     - See Canvas for details on place/time.
+    
+## Reminder: Course evaluation
 
-## Mock exam
+- Deadline extended until 11 December 2020.
+- Please fill in the evaluation form (via Canvas) *today* (if not done so yet)!
 
-- On Studynet/Canvas today
-  - Mock exam
-  - Solutions
-  - Answersheet
-  - Answersheet example
-
-<!-- ## Mock exam answer sheet: student ID (matr.-nr.) -->
-<!-- ```{r echo=FALSE, purl=FALSE, out.width="60%"} -->
-<!-- include_graphics("../img/mock_exam_scan.png") -->
-<!-- ``` -->
-
-<!-- ## Job opening! -->
-
-<!-- http://direktlink.prospective.ch/?view=63bb2b6b-b9c6-4fb2-85d5-27a653ea6650 -->
 
 
 # Data Display
@@ -108,6 +97,18 @@ swiss_summary_rounded
 swiss_form <- format(swiss_summary_rounded,
                      decimal.mark=",")
 swiss_form 
+```
+
+## See also the helpful functions for formatting text-strings
+
+- Uppercase/lowercase: `toupper()`/`tolowe()`.
+- Remove white spaces: `trimws()`,
+
+```{r}
+string <- "AbCD "
+toupper(string)
+tolower(string)
+trimws(tolower(string))
 ```
 
 
