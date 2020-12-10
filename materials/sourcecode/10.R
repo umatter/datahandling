@@ -1,12 +1,8 @@
 
 
-## SET UP -----------------------------------------------------------------
+## Merge data sets
 # load packages
 library(tidyverse)
-
-
-
-# initiate data ------
 
 # initiate data frame on persons' personal spending
 df_c <- data.frame(id = c(1:3,1:3),
@@ -23,60 +19,47 @@ df_p <- data.frame(id = 1:4,
 df_p
 
 
-
-
-
-
-##  MERGING -------------------------------------------------------------------------------------------------
+## (inner join)
 df_merged <- merge(df_p, df_c, by="id")
 df_merged
 
 
-
-# all (full join)
+## (outer join)
 df_merged2 <- merge(df_p, df_c, by="id", all = TRUE)
 df_merged2
 
 
 
 
+# Selection and filtering ---------------
 
-
-
-## SELECTING VARIABLES (COLUMNS) -------------------------------------
+## select specific columns
 df_selection <- select(df_merged, id, year, money_spent, currency)
 df_selection
 
 
-
-
-
-
-
-
-## FILTERING OBSERVATIONS (ROWS) -------------
+# filter the data set ('select' specific rows)
 filter(df_selection, year == 2018)
-df_selection[df_selection$year== 2018,]
-
-
 filter(df_selection, year == 2018, money_spent < 5000, currency=="EUR")
 
 
-## EXTEND AND MUTATE ----------------------------
+## Mutate a dataset ----------------
+# (extend, modify)
+
+## add exchange rates data
 exchange_rates <- data.frame(exchange_rate= c(0.9, 1, 1.2),
                              currency=c("USD", "CHF", "EUR"), stringsAsFactors = FALSE)
 df_selection <- merge(df_selection, exchange_rates, by="currency")
 
 
-## mutate
+## compute values in CHF
 df_mutated <- mutate(df_selection, money_spent_chf = money_spent * exchange_rate)
 df_mutated
 
 
+# Data Aggregation, Summary stats
 
-
-
-## COMPUTE SUMMARY STATS ---------------------
+## the summarise function
 summarise(df_mutated, 
           mean = mean(money_spent_chf),
           standard_deviation = sd(money_spent_chf),
@@ -84,9 +67,7 @@ summarise(df_mutated,
           N = n())
 
 
-
-
-## by a category (years)
+## by group aggregation
 by_year <- group_by(df_mutated, year)
 summarise(by_year, 
           mean = mean(money_spent_chf),
@@ -95,19 +76,57 @@ summarise(by_year,
           N = n())
 
 
-## ALTERNATIVE WAYS TO COMPUTE SUMMARY STATS ----------------
+## Alternative approaches: sapply
 # load data
 data("swiss")
 
+
+## for each columns, compute the means
 sapply(swiss, mean)
 
-
-## compare with summarise
+## comparison to summarize
 summarise(swiss, 
           Fertility = mean(Fertility),
           Agriculture = mean(Agriculture)) # etc.
 
 
+## Tutorial ---------------------
+
+## SET UP -------------------
+# load packages
+library(tidyverse)
+library(readxl)
+
+# fix variables
+INPUT_PATH <- "data/2015boysnamesfinal.xlsx"
+
+
+
+## LOAD/INSPECT DATA -----------------
+
+# import the excel sheet
+boys <- read_excel(INPUT_PATH, col_names = TRUE,
+                   sheet = "Table 1", # the name of the sheet to be loaded into R
+                   skip = 6 # skip the first 6 rows of the original sheet,
+                   )
+# inspect
+boys
+
+
+# FILTER/CLEAN ---------------------------
+
+# select columns
+boys <- select(boys, Rank...1, Name...2, Count...3, Rank...7, Name...8, Count...9)
+# filter rows
+boys <-  filter(boys, !is.na(Rank...1))
+
+
+
+# stack columns
+boys_long <- bind_rows(boys[,1:3], boys[,4:6])
+
+# inspect result
+boys_long
 
 
 
@@ -118,14 +137,15 @@ summarise(swiss,
 
 
 
+# STATS Part ---------------------
 
-## UNDERSTAND STATS WITH CODE -----------------------------
 
-
+## -------------------------------------------------------------------------------------------------
 normal_distr <- rnorm(1000)
 hist(normal_distr)
 
 
+## ---- echo=TRUE-----------------------------------------------------------------------------------
 # draw a random sample from a normal distribution with a large standard deviation
 largevar <- rnorm(10000, mean = 5000, sd = 5)
 # draw a random sample from a normal distribution with a small standard deviation
@@ -138,6 +158,7 @@ lines(density(largevar), col = "red")
 
 
 
+## ---- echo=TRUE-----------------------------------------------------------------------------------
 # Install the R-package called "moments" with the following command (if not installed yet):
 # install.packages("moments")
 
