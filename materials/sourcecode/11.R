@@ -1,7 +1,4 @@
-
-
-
-## DATA DISPLAY ----------------------
+## ----message=FALSE, warning=FALSE-----------------------------------------------------------------
 # load packages and data
 library(tidyverse)
 data("swiss")
@@ -16,28 +13,28 @@ swiss_summary
 
 
 
-
-
-
-
-## Rounding
+## -------------------------------------------------------------------------------------------------
 swiss_summary_rounded <- round(swiss_summary, 2)
 swiss_summary_rounded
 
 
-
-
-
-
-## Formatting numbers
+## -------------------------------------------------------------------------------------------------
 
 swiss_summary_formatted <- format(swiss_summary_rounded, decimal.mark=",")
 swiss_summary_formatted 
 
 
+## -------------------------------------------------------------------------------------------------
+string <- "AbCD "
+toupper(string)
+tolower(string)
+trimws(tolower(string))
 
 
-## Visualisation -----------------------
+
+
+## VISUALIZATION ------------------------------------------------------------------------------------
+
 # load the R package
 library(ggplot2)
 # load the data
@@ -48,10 +45,7 @@ data(swiss)
 head(swiss)
 
 
-
-
-
-## Preparations
+## prepare data
 # code province as 'Catholic' if more than 50% are catholic
 swiss$Religion <- 'Protestant'
 swiss$Religion[50 < swiss$Catholic] <- 'Catholic'
@@ -59,25 +53,25 @@ swiss$Religion <- as.factor(swiss$Religion)
 
 
 
-## Initiate plot canvas
+## canvas: data and basic aesthetics
 ggplot(data = swiss, aes(x = Education, y = Examination))
 
 
 
-## Add geometries
+## geometries
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point()
 
 
 
-## Add facets
+## facets
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      facet_wrap(~Religion)
 
 
 
-## add statistics
+## statistics
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      geom_smooth(method = 'loess') +
@@ -85,7 +79,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 
-## linear model
+## statistics 2
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      geom_smooth(method = 'lm') +
@@ -93,7 +87,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 
-## additional aestetics
+## improve aesthetics
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -110,7 +104,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 
-## fine tuning
+## theme tweaks
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -134,5 +128,6 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
      geom_smooth(method = 'lm') +
      facet_wrap(~Religion) +
      theme_dark()
+
 
 
