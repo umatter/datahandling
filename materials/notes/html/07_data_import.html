@@ -10,7 +10,6 @@
 
 
 
-<meta name="date" content="2020-12-11" />
 
 <title>Data Handling: Import, Cleaning and Visualisation</title>
 
@@ -461,7 +460,7 @@ summary {
 <h3 class="subtitle">Lecture 7: Data Sources, Data Gathering, Data Import</h3>
 <h4 class="author"><div class="line-block">Prof. Dr. Ulrich Matter<br />
 (University of St.Gallen)</div></h4>
-<h4 class="date">12/11/2020</h4>
+<h4 class="date">18/11/2021</h4>
 
 </div>
 
@@ -769,13 +768,13 @@ summary {
 <h2><span class="header-section-number">5.3</span> Tutorial (advanced): Importing data from a HTML table (on a website)</h2>
 <p>In the lecture on Big Data from the Web we have discussed the <em>Hypertext Markup Language (HTML)</em> as code to define the structure/content of a website as well HTML-documents as semi-structured data sources. In the following tutorial, we revisit the basic steps involved to import data from a HTML table into R.</p>
 <p>The aim of the tutorial is to generate a CSV file containing data on <a href="https://en.wikipedia.org/wiki/Divided_government">‘divided government’</a> in US politics. We use the following Wikipedia page as a data source: <a href="https://en.wikipedia.org/wiki/Divided_government_in_the_United_States" class="uri">https://en.wikipedia.org/wiki/Divided_government_in_the_United_States</a>. The page contains a table indicating the president’s party, and the majority party in the US House and the US Senate per Congress (2-year periods). The first few rows of the cleaned data is supposed to look like this:</p>
-<pre><code>##    year president senate house
-## 1: 1861         R      R     R
-## 2: 1862         R      R     R
-## 3: 1863         R      R     R
-## 4: 1864         R      R     R
-## 5: 1865         D      R     R
-## 6: 1866         D      R     R</code></pre>
+<pre><code>##    year  president senate house
+## 1: 1861    Lincoln      R     R
+## 2: 1862    Lincoln      R     R
+## 3: 1863    Lincoln      R     R
+## 4: 1864    Lincoln      R     R
+## 5: 1865 A. Johnson      R     R
+## 6: 1866 A. Johnson      R     R</code></pre>
 <p>In a first step, we initiate fix variables for paths and load additional R packages needed to handle data stored in HTML documents.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># SETUP ------------------</span></a>
 <a class="sourceLine" id="cb43-2" data-line-number="2"></a>
@@ -791,9 +790,8 @@ summary {
 <a class="sourceLine" id="cb44-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb44-3" data-line-number="3"><span class="co"># fetch from web</span></a>
 <a class="sourceLine" id="cb44-4" data-line-number="4">doc &lt;-<span class="st"> </span><span class="kw">read_html</span>(SOURCE_PATH)</a>
-<a class="sourceLine" id="cb44-5" data-line-number="5">html_tables &lt;-<span class="st"> </span><span class="kw">html_node</span>(doc, <span class="dt">xpath =</span> <span class="st">&quot;//table[@class='wikitable']&quot;</span>)</a>
-<a class="sourceLine" id="cb44-6" data-line-number="6">tab &lt;-<span class="st"> </span><span class="kw">html_table</span>(html_tables)</a>
-<a class="sourceLine" id="cb44-7" data-line-number="7">tab &lt;-<span class="st"> </span>tab[<span class="op">-</span><span class="kw">nrow</span>(tab), ] <span class="co"># remove last row (not containing data)</span></a></code></pre></div>
+<a class="sourceLine" id="cb44-5" data-line-number="5">tab &lt;-<span class="st"> </span><span class="kw">html_table</span>(doc,<span class="dt">fill=</span><span class="ot">TRUE</span>)[[<span class="dv">2</span>]]</a>
+<a class="sourceLine" id="cb44-6" data-line-number="6">tab &lt;-<span class="st"> </span>tab[<span class="op">-</span><span class="kw">nrow</span>(tab), ] <span class="co"># remove last row (not containing data)</span></a></code></pre></div>
 <p>Now we clean the data in order to get a data set more suitable for data analysis. Note that the original table contains information per congress (2-year periods). However, as the sample above shows, we aim for a panel at the year level. The following code iterates through the rows of the data frame, and generates for each row per congress several two rows (one for each year in the congress).<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># generate year-level data.frame</span></a>
 <a class="sourceLine" id="cb45-2" data-line-number="2"></a>
@@ -820,13 +818,13 @@ summary {
 <a class="sourceLine" id="cb46-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb46-3" data-line-number="3"><span class="co"># inspect</span></a>
 <a class="sourceLine" id="cb46-4" data-line-number="4"><span class="kw">head</span>(allyears)</a></code></pre></div>
-<pre><code>##   year president senate house
-## 1 1861         R      R     R
-## 2 1862         R      R     R
-## 3 1863         R      R     R
-## 4 1864         R      R     R
-## 5 1865         D      R     R
-## 6 1866         D      R     R</code></pre>
+<pre><code>##   year  president senate house
+## 1 1861    Lincoln      R     R
+## 2 1862    Lincoln      R     R
+## 3 1863    Lincoln      R     R
+## 4 1864    Lincoln      R     R
+## 5 1865 A. Johnson      R     R
+## 6 1866 A. Johnson      R     R</code></pre>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co"># write to csv</span></a>
 <a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw">write_csv</span>(allyears, <span class="dt">path=</span>OUTPUT_PATH)</a></code></pre></div>
 </div>

@@ -4,7 +4,7 @@ subtitle: 'Lecture 7: Data Sources, Data Gathering, Data Import'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "12/11/2020"
+date: "18/11/2021"
 output:
   html_document:
     highlight: tango
@@ -466,8 +466,7 @@ Now we write the part of the script that fetches the data from the Web. This par
 
 # fetch from web
 doc <- read_html(SOURCE_PATH)
-html_tables <- html_node(doc, xpath = "//table[@class='wikitable']")
-tab <- html_table(html_tables)
+tab <- html_table(doc,fill=TRUE)[[2]]
 tab <- tab[-nrow(tab), ] # remove last row (not containing data)
 ```
 

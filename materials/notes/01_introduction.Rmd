@@ -4,7 +4,7 @@ subtitle: 'Lecture 1: Introduction'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "17/09/2020"
+date: "23/09/2021"
 output:
   pdf_document:
     pandoc_args:

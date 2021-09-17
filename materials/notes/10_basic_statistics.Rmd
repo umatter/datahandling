@@ -4,7 +4,7 @@ subtitle: 'Lecture 10: Data Analysis and Basic Statistics with R'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "03/12/2020"
+date: "09/12/2021"
 output:
   html_document:
     highlight: tango
@@ -168,7 +168,7 @@ summarise(df_mutated,
 
 Moreover we can compute the same statistics grouped by certain observation characteristics. For example, we can compute the same summary statistics per year of observation.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 by_year <- group_by(df_mutated, year)
 summarise(by_year, 
           mean = mean(money_spent_chf),
@@ -205,7 +205,20 @@ The following tutorial is a (substantially) shortened and simplified version of 
 
 ## Preparatory steps
 
-```{r}
+
+```{r echo=FALSE }
+## SET UP -------------------
+# load packages
+library(tidyverse)
+library(readxl)
+
+# fix variables
+INPUT_PATH <- "../../data/2015boysnamesfinal.xlsx"
+```
+
+
+
+```{r eval= FALSE }
 ## SET UP -------------------
 # load packages
 library(tidyverse)

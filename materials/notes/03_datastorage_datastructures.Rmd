@@ -4,7 +4,7 @@ subtitle: 'Lecture 3: Data Storage and Data Structures'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "01/10/2020"
+date: "07/10/2021"
 output:
   pdf_document:
     pandoc_args:

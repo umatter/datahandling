@@ -4,7 +4,7 @@ subtitle: 'Lecture 5: "Big Data" from the Web'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "15/10/2020"
+date: "21/10/2021"
 output:
   pdf_document:
     pandoc_args:

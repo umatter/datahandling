@@ -4,7 +4,7 @@ subtitle: 'Lecture 6: Programming with Data'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "22/10/2020"
+date: "28/10/2021"
 output:
   pdf_document:
     pandoc_args:
