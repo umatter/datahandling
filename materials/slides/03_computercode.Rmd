@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 3:<br>Data Storage and Data Structures'
 author: "Prof. Dr. Ulrich Matter"
-date: "01/10/2020"
+date: "07/10/2021"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -21,25 +21,7 @@ library(knitr)
 
 # Updates
 
-## Next week: online only lecture!
 
-- The lecture on *8 October, 2020* will be recorded and made available via Canvas (with additional information).
-- There will be *no lecture in 02-001 on that day*. 
-- On *15 October* we will be back in 02-001.
-
-
-## See update of syllabus/schedule
-
-```{r echo = FALSE, warning=FALSE}
-library(readxl)
-library(knitr)
-library(magrittr)
-library(kableExtra)
-
-sched <- read_xlsx("../../../admin/2020/schedule.xlsx", col_types = "text")
-
-kable(sched[1:7, c(1,5)], format = "markdown")
-```
 
 ## Thoughts on studying in this course
 

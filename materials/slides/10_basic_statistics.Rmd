@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 10:<br>Data Analysis and Basic Statistics with R'
 author: "Prof. Dr. Ulrich Matter"
-date: "03/12/2020"
+date: "09/12/2021"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -26,7 +26,29 @@ pre {
 }
 </style>
 
+
+# Updates
+
+<!-- ## Mock exam is online! -->
+
+<!-- - [Mock exam](https://learning.unisg.ch/courses/8120/files/601108?wrap=1) -->
+<!-- - [Solutions](https://learning.unisg.ch/courses/8120/files/601109?wrap=1) -->
+
+## Reminder
+
+- Send questions for the Q&A session (last lecture)
+- *ulrich.matter@unisg.ch *
+
+
 # Recap: Data Preparation
+
+---
+
+```{r pipeline, echo=FALSE, out.width = "85%", fig.align='center',  purl=FALSE}
+include_graphics("../img/data_science_pipeline.png")
+```
+
+
 
 ## The dataset is imported, now what?
 

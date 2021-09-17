@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 1 :<br>Introduction'
 author: "Prof. Dr. Ulrich Matter"
-date: "17/09/2020"
+date: "23/09/2021"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -18,10 +18,10 @@ options(width = 100)
 library(knitr)
 ```
 
-## Welcome to Data Handling: I.C.V. 2020!
+## Welcome to Data Handling: I.C.V. 2021!
 
 - Fire up your notebooks!
-- Go to this page: http://bit.ly/datahandling-2020
+- Go to this page: http://bit.ly/datahandling-2021
 - Use one row to respond to the questions in the column headers (see the first two rows for examples).
 
 
@@ -105,43 +105,41 @@ include_graphics("../img/computers.jpg")
 ```
 
 
-## Technological change
+## Relevance for modern economic research
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, purl=FALSE, out.width="90%", fig.cap="Data source: http://www.mkomo.com/cost-per-gigabyte", fig.align='center'}
-source("../../code/fig_storage_costs.R")
-storage_cost_plot_dark
-```
-
-## Technological change
-
-```{r echo=FALSE, warning=FALSE, message=FALSE, purl=FALSE, out.width="90%", fig.cap="Data source: http://www.mkomo.com/cost-per-gigabyte", fig.align='center'}
-storage_cost_plot_dark_ln
-```
-
-----
-
-```{r google, echo=FALSE, out.width = "85%", fig.align='center', fig.cap="Source: https://techxerl.net.", purl=FALSE}
-include_graphics("../img/google_crawler.jpg")
+```{r css, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
+include_graphics("../img/css.png")
 ```
 
 
-----
+## Relevance for modern economic research
 
-```{r fb, echo=FALSE, out.width = "95%", fig.align='center', fig.cap="Source: statista.com.", purl=FALSE}
-include_graphics("../img/facebook_users.png")
+```{r internet, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
+include_graphics("../img/internet.png")
 ```
 
 
-----
+## Relevance for modern economic research
+
+```{r bigdata, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
+include_graphics("../img/bigdata.png")
+```
+
+
+## Relevance for modern economic research
+
+```{r text, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
+include_graphics("../img/text.png")
+```
+
+
+
+
+## Economy/Business
+
 
 ```{r newoil, echo=FALSE, out.width = "45%", fig.align='center',  purl=FALSE}
 include_graphics("../img/economist_oildata.png")
-```
-
-----
-
-```{r newoil2, echo=FALSE, out.width = "80%", fig.align='center',  purl=FALSE}
-include_graphics("../img/data_newoil.jpg")
 ```
 
 ----
@@ -160,16 +158,16 @@ include_graphics("../img/AIrevolution.png")
 <!-- ``` -->
 
 
-# Organization of the Course
+# Organisation of the Course
 
 
 ## Our Team - At Your Service
 
 
-|   |   |
-|:-:|:-:|
-|  ![](https://tools.unisg.ch/handlers/Public/PortraitStreamer.ashx?HSGEntitiyId=f4b75b0a-e300-4f81-bd66-12090047f2c5)  |  ![](../img/u_matter.jpg) | 
-|  Philine Widmer  | Ulrich Matter  |
+|   |   |   |
+|:-:|:-:|:-:|
+| ![](https://tools.unisg.ch/handlers/Public/PortraitStreamer.ashx?HSGEntitiyId=2e198ce8-8565-43ec-b8c4-e6e1cfae6f87) | ![](https://tools.unisg.ch/handlers/Public/PortraitStreamer.ashx?HSGEntitiyId=d0452b11-ec1a-4445-9caf-d8d6771d2fc9)| ![](../img/u_matter.jpg) | 
+|  Aurélien Sallin  | Michael Tüting | Ulrich Matter  |
 
 <!-- --- -->
 
@@ -206,49 +204,48 @@ include_graphics("../img/AIrevolution.png")
     - Illustration of 'hands-on' approaches
     
 
-## Course concept
+## Course components I
 
 - Lectures (Thursday morning)
     - Background/Concepts
     - Live demonstrations of concepts
     - Illustration of 'hands-on' approaches
+
+- Exercises (handed out every other week)
+  - Some conceptual questions (as they appear in the exam)
+  - Hands-on exercises/tutorials in R
+  - Detailed solution videos
+  - *First Exercises (set up R/RStudio) is available on StudyNet/Canvas today*
+
+## Course components II
+
     
 - Workshops/Exercises (bi-weekly evening sessions)
-    - Guided tutorials
-    - Discussion of homework exercises
+    - Discussion of exercises and additional input 
     - Recap of theoretical concepts
+    - Q&A, support
 
-
-## Course concept
-
-- Lectures (every Thursday morning)
-    - Background/Concepts
-    - Live demonstrations of concepts
-    - Illustration of 'hands-on' approaches
-    
-- Workshops/Exercises (bi-weekly evening sessions)
-    - Guided tutorials
-    - Discussion of homework exercises
-    - Recap of theoretical concepts
-    - *First Exercises (set up R/RStudio) is available on StudyNet/Canvas today*
-
-
-
-## Course concept
-
-- Lectures (every Thursday morning)
-    - Background/Concepts
-    - Live demonstrations of concepts
-    - Illustration of 'hands-on' approaches
-    
-- Workshops/Exercises (bi-weekly evening sessions)
-    - Guided tutorials
-    - Discussion of homework exercises
-    - Recap of theoretical concepts
-    - *First Exercises (set up R/RStudio) is available on StudyNet/Canvas today*
 - Guest lecture and research insights
 
+
 ## Course concept
+
+- Lectures (every Thursday morning)
+    - Background/Concepts
+    - Live demonstrations of concepts
+    - Illustration of 'hands-on' approaches
+    
+- Workshops/Exercises (bi-weekly evening sessions)
+    - Guided tutorials
+    - Discussion of homework exercises
+    - Recap of theoretical concepts
+    - *First Exercises (set up R/RStudio) is available on StudyNet/Canvas today*
+
+
+## Course concept
+
+- Learning mode in this course: Visit the lecture, recap key concepts in lecture notes (self-study), work on exercises, watch solution video, come to exercise session, repeat...
+
 - Strongly encouraged: (virtual) learning groups!
     - Biweekly exercises provide opportunity.
     - Tackle the tricky exercises together!
@@ -276,7 +273,7 @@ library(knitr)
 library(magrittr)
 library(kableExtra)
 
-sched <- read_xlsx("../../../admin/2020/schedule.xlsx", col_types = "text")
+sched <- read_xlsx("../../../admin/2021/schedule.xlsx", col_types = "text")
 
 kable(sched[1:7, c(1,5)], format = "markdown")
 ```
@@ -329,8 +326,8 @@ kable(sched[15:nrow(sched), c(1,5)], format = "markdown")
 - Exercises towards the end of the term will contain sample questions.
     - Get familiar with the style/format of questions.
 - Exchange students who need to take the exam before the central exam block:
-    - Questions: *philine.widmer@unisg.ch*!
-    - Decentral exam for exchange students: *18 December 2020*.
+    - Questions: *michael.tueting@unisg.ch*
+    - Decentral exam for exchange students: *24 December 2021, 9:15am*.
     
 
 

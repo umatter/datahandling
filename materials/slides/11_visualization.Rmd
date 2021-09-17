@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Lecture 11:<br>Visualisation and Dynamic Documents' 
 author: "Prof. Dr. Ulrich Matter"
-date: "10/12/2020"
+date: "16/12/2021"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -29,21 +29,21 @@ pre {
 
 # Updates
 
-## Week 12
+<!-- ## Week 12 -->
 
-- Thursday, 17 December
-    - Wrap up
-    - Exam info
-    - Feedback
-    - Q&A (send questions until tomorrow! *ulrich.matter@unisg.ch*)!
-- Friday, 18 December
-    - Decentral exam for *exchange students*!
-    - See Canvas for details on place/time.
+<!-- - Thursday, 17 December -->
+<!--     - Wrap up -->
+<!--     - Exam info -->
+<!--     - Feedback -->
+<!--     - Q&A (send questions until tomorrow! *ulrich.matter@unisg.ch*)! -->
+<!-- - Friday, 18 December -->
+<!--     - Decentral exam for *exchange students*! -->
+<!--     - See Canvas for details on place/time. -->
     
-## Reminder: Course evaluation
+<!-- ## Reminder: Course evaluation -->
 
-- Deadline extended until 11 December 2020.
-- Please fill in the evaluation form (via Canvas) *today* (if not done so yet)!
+<!-- - Deadline extended until 11 December 2020. -->
+<!-- - Please fill in the evaluation form (via Canvas) *today* (if not done so yet)! -->
 
 
 

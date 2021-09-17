@@ -1,7 +1,7 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
 author: "Prof. Dr. Ulrich Matter"
-date: "24/09/2020"
+date: "30/09/2021"
 output:
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -22,16 +22,12 @@ library(knitr)
 
 # Updates
 
-## Research insights lecture: online only!
-
-- The lecture on *8 October, 2020* will be recorded and made available via Canvas (with additional information).
-- There will be no lecture in 02-001 on that day. 
 
 ## Exam for exchange students
 
 - Exchange students who need to take the exam before the central exam block:
-    - Decentral exam for *exchange students: 18 December 2020, 14:15-15:45.*
-    - Location: TBD
+    - Decentral exam for *exchange students: 24 December 2021, 14:15-15:45.*
+    - Location: SIAW Institute, conference room (top floor), Bodanstrasse 8, 9000 St. Gallen
 
 ## Course resources
 

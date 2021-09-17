@@ -1,0 +1,77 @@
+---
+title: 'Data Handling: Import, Cleaning and Visualisation'
+subtitle: 'Lecture 9:<br>Guest Lecture by Dr. Matthias Gubbler'
+author: "Prof. Dr. Ulrich Matter"
+date: "02/12/2021"
+output:   
+  ioslides_presentation:
+    css: ../../style/ioslides.css
+    template: ../../style/nologo_template.html
+    mathjax: "default"
+logo: ../img/logo.png
+bibliography: ../references/datahandling.bib
+---
+
+
+
+```{r set-options, echo=FALSE, cache=FALSE, warning=FALSE}
+options(width = 100)
+library(knitr)
+```
+
+
+<style>
+pre {
+  font-size: 21px;
+}
+</style>
+
+
+# Updates
+
+<!-- ## Decentral examination for exchange students -->
+
+<!-- - The decentral exam for exchange students will take place on *18 December 2020 at 14:00*. -->
+<!-- - Will take place on campus (social distancing and masks): *SIAW Institute (building 29), top floor (conference room), Bodanstrasse 8, 9000 St. Gallen.* -->
+<!-- - Questions/notifications: philine.widmer@unisg.ch -->
+
+<!-- ## Course evaluation is online as of today -->
+
+<!-- - You should get an invitation/see under "Evaluation" in this course's Canvas/StudyNet page. -->
+<!-- - Due: 11 December 2020. -->
+<!-- - Your feedback is very valuable and helps us to further improve this course! -->
+
+
+## Guest lecture by Dr. Matthias Gubbler!
+
+<!-- ```{r tspycher, echo=FALSE, out.width = "30%", fig.align='center', fig.cap= "Dr. Thomas Spycher (Novalytica AG).", purl=FALSE} -->
+<!-- include_graphics("../img/tspycher.png") -->
+<!-- ``` -->
+
+- 45-60 minutes talk.
+- Q&A.
+
+
+
+
+
+
+<style>
+slides > slide { overflow: scroll; }
+slides > slide:not(.nobackground):after {
+  content: '';
+}
+
+
+code {
+  color: white;
+}
+
+
+pre {
+  color: white;
+}
+</style>
+
+## References {.smaller}
+

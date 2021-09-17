@@ -2,7 +2,7 @@
 title: 'Data Handling: Import, Cleaning and Visualisation'
 subtitle: 'Wrap up, Q&A, Exam info, Feedback'
 author: "Prof. Dr. Ulrich Matter"
-date: "17/12/2020"
+date: "23/12/2021"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -24,22 +24,105 @@ library(knitr)
 
 ## Decentral exam
 
-- Friday, 18 December
-    - Decentral exam for *exchange students*!
-    - See Canvas for details on *place/time*!
-    - Bring your *student ID*!
+<!-- - Friday, 18 December -->
+<!--     - Decentral exam for *exchange students*! -->
+<!--     - See Canvas for details on *place/time*! -->
+<!--     - Bring your *student ID*! -->
 
 
 
 ## Plan for today
 
 1. Wrap up
-2. Mock Exam/Exam Info
-3. Q&A: Review of binary/hexadecimal system 
+2. Exam Info
+3. Q&A
 4. Course Evaluation
 5. Suggested Improvements
 6. Final Remarks
 7. Happy Holidays!🎄
+
+
+# Recap Visualisation
+
+## Grammar of Graphics/`ggplot2`
+
+- The *`ggplot2`* package [@wickham_2016].
+- ... an implementation of Leland Wilkinson's ['Grammar of Graphics'](https://blog.gtwang.org/wp-content/uploads/2016/07/ggplot-grammar-of-graphics-stack-1.png).
+
+
+
+## `ggplot2` basics
+
+Using `ggplot2` to generate a basic plot in R is quite simple. Basically, it involves three key points:
+
+  1. The data must be stored in a `data.frame`/`tibble` (in tidy format!). 
+  2. The starting point of a plot is always the function `ggplot()`.
+  3. The first line of plot code declares the data and the 'aesthetics' (e.g., which variables are mapped to the x-/y-axes):
+
+```{r echo=TRUE, eval=FALSE}
+ggplot(data = my_dataframe, aes(x= xvar, y= yvar))
+```
+
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# load the R package
+library(tidyverse) # automatically loads ggplot2
+# load the data
+data(swiss)
+# get details about the data set
+# ?swiss
+# inspect the data
+head(swiss)
+
+
+# via tidyverse/mutate
+swiss <- mutate(swiss, 
+                Religion = 
+                  ifelse(50 < Catholic, 'Catholic', 'Protestant'))
+
+# 'old school' alternative
+swiss$Religion <- 'Protestant'
+swiss$Religion[50 < swiss$Catholic] <- 'Catholic'
+
+# set to factor
+swiss$Religion <- as.factor(swiss$Religion)
+```
+
+
+
+## `ggplot2`: building plots layer by layer
+
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
+ggplot(data = swiss, aes(x = Education, y = Examination))
+
+```
+
+## `ggplot2`: building plots layer by layer
+
+
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion)
+
+```
+
+
+## `ggplot2`: building plots layer by layer
+
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
+ggplot(data = swiss, aes(x = Education, y = Examination)) + 
+     geom_point(aes(color = Agriculture)) +
+     geom_smooth(method = 'lm') +
+     facet_wrap(~Religion)+
+     theme_minimal()
+
+```
+
 
 
 # Wrap up
@@ -52,130 +135,229 @@ include_graphics("../img/data_science_pipeline.png")
 
 
 
-# Mock Exam
+# Exam
+
+## 'Code questions'
+
+- Note: we do not invent wrong function parameters or misspell function names etc to mislead you!
+- 'Passive' knowledge of key R syntax and most important functions of core lecture contents are important!
+
+## 'Code questions'
+
+- Work step-by-step through the code example. What happens in each parenthesis, on each line? 
+- From the inner part to the outer part, from top to bottom.
+- Use pencil/paper to keep track of values, data structures (how does a data-frame look like), classes.
+
+## MC questions type A
+
+- Read the statement/question, then evaluate each statement (A-D) like a T/F question. 
+- It might be the case that *all* statements are FALSE.
+
+## MC questions type B (only one correct)
+
+- Here you can use an 'elimination process'. 
+- Which statement is most likely the correct one?
+
+## Open questions
+
+- Read all parts carefully. Often, one question builds on a previous question.
+- Respond brief and to the point.
+- We want to test whether you can explain/illustrate/apply key concepts of the course in a specific domain of the course.
+- [Mock exam](https://learning.unisg.ch/courses/8120/files/601108?wrap=1)
+
+
+## General questions
+
+- Do we need to know what packages need to be loaded for a certain command in R?
+- Only for the very core packages used in the course. 
+- For example, you should know that in order to generate plots based on the Grammar of Graphics concept, you need to load the `ggplot2` package first.
+
 
 # Q&A
 
-## Review of binary/hexadecimal system
 
-Microprocessors can only represent two signs (states): 
+## Review of `typeof()` and `class()`
 
- - 'Off' = `0`
- - 'On' = `1`
+- Both `type` and `class` refer to the very basic "kind" or "type" of data we are dealing with in R.
+- `type` refers to R's basic data types: `character`, `double`, `integer`, `complex`, `logical`, etc. Users cannot simply add new `type`s. 
+- Object classes can be extend by users. There are way more classes than data types in R.
+- Any object of a given class, can contain elements of various types but not the other way around. 
 
-```{r onoff, echo=FALSE, out.width = "10%", fig.align='center', purl=FALSE}
-include_graphics("../img/on_off.png")
+
+## Review of `typeof()` and `class()`
+
+Illustration: an object of class `data.frame` is based on type list `list`. The columns of the data.frame can contain different types of data.
+
+```{r}
+test <- data.frame(a=1, b="c", stringsAsFactors = FALSE)
+class(test)
+typeof(test)
+
+```
+
+## Review of `typeof()` and `class()`
+
+At the very basic level of an object, element `class` and `type` can be the same.
+
+```{r}
+class(test$b)
+typeof(test$b)
+
+```
+
+## Review of `typeof()` and `class()`
+
+Summary: `typeof()` shows you the very basic data type of an object. `class()` shows you the higher-level, overall 'type' of an object. Types are 'hard-coded' in the R language, no new types can be added by the user (easily). Classes are intended to be extened by users/R-programmers. They are a core aspect of object-oriented programming (in R and beyond).
+
+
+
+## When is a number of type `double` and when of type `integer`?
+
+- `integer` numbers are integer ('ganzzahlig'). They can precisely be expressed in binary. A number of type `integer` cannot be a fraction.
+
+- `double` numbers are R's way of expressing floating point numbers, the way *fractions* can be expressed in a computer. An integer can be stored as type `integer` or as `double` (not a 100 percent precise).
+
+```{r}
+numbers <- c(2,3,4.5)
+typeof(numbers)
+as.integer(numbers)
+
 ```
 
 
-## The binary counting frame
+## Booleans and filtering
 
-- Only two signs: `0`, `1`.
-- Base 2.
-- Columns: $2^0=1$, $2^1=2$, $2^2=4$, and so forth.
+The question:
+In WiGr 5.2.2 when they explain the filter() function coupled with logical operators, an example is provided using the N.Y. 2013 flight database (same as ex. 6) where the goal is to get the flights that departed in November and December. The book then explains that one cannot use  filter(flights, month == (11 | 12)). The explanation as to why it doesn't work is the following: 
 
-## Conversion between binary/decimal
+*The order of operations doesn’t work like English. You can’t write filter(flights, month == (11 | 12)), which you might literally translate into “finds all flights that departed in November or December”. Instead it finds all months that equal 11 | 12, an expression that evaluates to TRUE. In a numeric context (like here), TRUE becomes one, so this finds all flights in January, not November or December. This is quite confusing!*
 
-- Draw a binary counting frame/table
-- Columns from right to left: $2^0=1$, $2^1=2$, $2^2=4$, and so forth.
-- Fill in the respective binary values (`0` or `1`) in each column.
-  - Binary to decimal: simply fill in the values starting with the right-most column/digit.
-  - Decimal to binary: select largest column value that is smaller than (or equal to) the decimal number. Then fill up the remaining columns.
-- (Same approach for hexadecimal/decimal etc.)
+## Booleans and filtering
 
-## Example: Conversion from binary to decimal
+Why `filter(flights, month == (11 | 12))` does not work?
 
-- What is `1101` in decimal?
+Three aspects: 
+- `month == (11 | 12)` is a logical statement (basic R).
+- `(11 | 12)` itself is a logical statement.
+- `filter()` returns rows for which the *overall* logical statement is TRUE. 
 
-$2^n$ | ... | $2^7$ | $2^6$| $2^5$ | $2^4$| $2^3$  | $2^2$  | $2^1$  |  $2^0$ 
-----|----|----|----|----|----|----|----|----|----
-$2^n$ | ... | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
+## Booleans and filtering
 
-## Example: Conversion from binary to decimal
+(for simplicity, we use a simpler 'month column')
 
-- What is `1101` in decimal?
+```{r}
+month <- c(1,3,5,12,11)
+class(month)
+```
 
-$2^n$ | ... | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
-----|----|----|----|----|----|----|----|----|----|
+Work from 'inside to outside'
 
+```{r}
+(11 | 12) # returns TRUE
+```
 
-## Example: Conversion from binary to decimal
+We then would compare `TRUE` (a boolean) with each element in `month`, a numeric vector. `filter()` deals with this problem by automatically coercing `TRUE` to numeric, which is `1` (`FALSE` would be `0`).
 
-- What is `1101` in decimal?
+```{r}
+as.numeric(TRUE)
+```
 
-$2^n$ | ... | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
-----|----|----|----|----|----|----|----|----|----|
-| | | | | | | 1|1|0|1|
+## Booleans and filtering
 
+Hence, the overall logical statement we use for filtering is reduced to
 
-## Example: Conversion from binary to decimal
+```{r}
+month == 1 # since (11 | 12) == TRUE == 1
+```
 
-- What is `1101` in decimal?
-
-$2^n$ | ... | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1 
-----|----|----|----|----|----|----|----|----|----|
-| | | | | | | 1|1|0|1|
-
-- Solution:
-$$(1 \times 8) + (1 \times 4) + (0 \times 2) + (1 \times 1) = 13.$$
+Which means, `filter()` will return all rows, where `month` is equal to `1` (January).
 
 
-## Example: Conversion from decimal to binary
+## Booleans and filtering
 
-What is the decimal number *139* in binary?
+The problem is that the logical statement is expressed the wrong way. Each logical condition needs to be expressed. Correct would be:
 
+```{r}
+(month==11 | month==12)
+```
 
-## Example: Conversion from decimal to binary
-
-What is the decimal number *139* in binary?
- 
- - Solution:
- 
-$$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
+This states month is equal to 11 or month is equal to 12. R evaluates this step by step: `month==11` is TRUE in some cases, `month==12` is TRUE in other cases, the `|` (or) combines the two sides in the sense that either one or the other is true.
 
 
+## Booleans and filtering
 
-## Example: Conversion from decimal to binary
-
-What is the decimal number *139* in binary?
- 
- - Solution:
- 
-$$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
-
-  - More precisely:
-  
-$$(1 \times 2^7) + (0 \times 2^6) +  (0 \times 2^5) +  (0 \times 2^4) + (1 \times 2^3)\\ + (0 \times 2^2) + (1 \times 2^1) +  (1 \times 2^0)  = 139.$$
-
-  - That is, the number `139` in the decimal system corresponds to `10001011` in the binary system.
+Valid alternatives:
+```{r eval=FALSE}
+filter(flights, (month==11 | month==12))
+filter(flights, month %in% c(11,12)) # is the value in month in the set c(11,12)? 
+```
 
 
+## CSV, End-of-line (mock-exam)
 
-## The hexadecimal system
+In the mock exam, Part 2 Q1 letter A: Why is this incorrect? Is it because it should be CSV file and not binary? In letter D: What special character marks the end of a line, I thought it was simply the end of the line.
 
-- *16 symbols*: 
-    - `0`-`9` (used like in the decimal system)...
-    - and `A`-`F` (for the numbers 10 to 15).
-  
-- *16 symbols >>> base 16*: each digit represents an increasing power of 16 ($16^{0}$, $16^{1}$, etc.).
+*From the mock exam:*
+1.  In csv files, rows of data are indicated by new lines. Therefore...
 
+- A The underlying binary code contains white spaces whenever an end of line occurs
+- B CSV files can only be opened in spreadsheet software like Excel.
+- C Computers recognize the end of the line because each line contains the same amount of characters
+- D A special character marks the end of a line. This is why a CSV-parser recognizes when a line ends.
 
-
-## The hexadecimal system
-
-What is the decimal number 139 expressed in the hexadecimal system?
-
-- Solution: 
-$$(8\times 16^1) +  (11\times 16^0) = 139.$$
+## CSV, End-of-line (mock-exam)
 
 
+*Explanation regarding A:* The point is that binary code only consists of 0s and 1s. 'White space' visible in a text file when looking at it though a text editor is in itself a combination of 0s and 1s in the underlying binary code. Also, the end of a line is indicated in the binary code by another combination of 0s and 1s (see also D).
+
+*Explanation regarding D:* The point is that the 'end of a line' is actually indicated by a special character (a specific combination of 0s and 1s). See section 2.1 CSVs and fixed-width format in the lecture notes of week 3 for a detailed explanation and illustration.
+
+## HTML (mock-exam)
+
+*Question:* In the mock exam, Part 3 Q2, How is this a valid HTML if there are <head> …. <head/> tags in between the <body> … <body/> tags? How can you fit head inside body?
+
+*From the mock exam:*
+
+``<html><head><title>alpha</title></head><head><body>beta</body></head></html>``
+
+  - A All tags occurring in the code are valid HTML tags
+  - B The `<title>` tag should be placed in between the `<body>` tags in order to make this code a valid HTML document
+  - C 'alpha' and 'beta' are HTML-tag attributes
+  - D The code represents a basically correctly specified HTML-document
+
+
+## HTML (mock-exam)
+
+*From the Mock exam:*
+
+``<html><head><title>alpha</title></head><head><body>beta</body></head></html>``
+
+  - A All tags occurring in the code are valid HTML tags
+  - B The `<title>` tag should be placed in between the `<body>` tags in order to make this code a valid HTML document
+  - C 'alpha' and 'beta' are HTML-tag attributes
+  - D The code represents a basically correctly specified HTML-document
+
+*Explanation:*
+
+  - A is TRUE, because all tags used in the document  (`<head></head>`, `<body></body>`, and `<html></html>`) are valid HTML-tags. For example,  `<<person-id>><</person-id>>` is not a valid HTML tag.
+  - B is FALSE because the title-tag belongs in the head-section.
+  - C is FALSE because HTML-tag attributes would have to be from a clearly defined set and would have to be placed in the tag not between tags.
+  - D is FALSE because `<head></head>` should only occur once and `<body></body>` cannot be placed within `<head></head>`. Thus, the HTML-document is not valid/is mis-specified as the tags are nested in the wrong way. Specifically, regarding the question: for a correctly specified HTML-document, one cannot fit head inside body.
+
+The point is that for the overall document to be valid (that is, to be parsed and interpreted correctly), valid tags need to be used in the right way (the right nesting-structure and order). In the example, the former is the case (A) but the latter not (D).
 
 # Course Evaluation
 
 ## Course Evaluation: Summary 
 
 ```{r echo=FALSE, out.width='99%'}
-include_graphics("../img/evaluation_average.png")
+include_graphics("../img/eval_online.png")
+```
+
+## Course Evaluation: Summary 
+
+```{r echo=FALSE, out.width='99%'}
+include_graphics("../img/eval_overall.png")
 ```
 
 
@@ -189,28 +371,24 @@ include_graphics("../img/evaluation_average.png")
 - Practical examples during lectures/exercises
 
 ## Negative Points/Room for Improvement
-- Why multiple choice examination and not students project?
-- Exercises format (more, smaller groups, rooms)
-- Lecture slides
+- No students project.
+- No interaction in online classes.
+- No skills acquired beyond the key content.
 
 
 ## Course Evaluation: Open Feedback
 
 *"Which aspects of this course should be changed so that future students can profit more from it?"*
 
-- Tutorial sessions 👍
-- More ex(smaller) ercise sessions 👍
-- Still 'elective course format' (not 'mandatory course format') 👍
-- Assignments that count towards the grade 👍
+- Improve link between lectures and exercises. 👍
+- Student projects/interaction 👍
 
 ## Course Evaluation: Open Feedback
 
 *"Which aspects of this course should be changed so that future students can profit more from it?"*
 
-- Tutorial sessions 👍
-- More (smaller) exercise sessions 👍
-- Still 'elective course format' (not 'mandatory course format') 👍
-- Assignments that count towards the grade 👍
+- Improve link between lectures and exercises. 👍
+- Student projects/interaction 👍
 - Challenge: Resources! 🎃
 
 
@@ -218,9 +396,17 @@ include_graphics("../img/evaluation_average.png")
 
 *"Which aspects of this course should be changed so that future students can profit more from it?"*
 
-- More basics, less topics
-- More topics
-- Challenge: Very heterogenous group (mandatory course) 🎃
+- More basics
+- Too slow
+- Challenge: Very heterogenous group (mandatory course).
+
+## Course Evaluation: Open Feedback
+
+*"Which aspects of this course should be changed so that future students can profit more from it?"*
+
+- More mock exam questions/old exam questions to get an idea how the exam looks like.
+- Challenge: limited number of ways to pose (non-idiotic) questions in MC format.
+
 
 ## Course Evaluation: Food for thought
 
@@ -230,16 +416,6 @@ include_graphics("../img/evaluation_average.png")
  - Exercises vs exercises that are graded
  - Responsibilities of lecturers and students
 
-
-## Course Evaluation: Food for thought
-
-- Expectations regarding specific evaluation criteria.
- - Goals of the lecture
- - Exam preparation
- - Exercises vs exercises that are graded
- - Responsibilities of lecturers and students
-
-- Problematic incentives for the lecturer (at least if (s)he is an economist...). 🎃
 
 
 
@@ -259,8 +435,8 @@ include_graphics("../img/evaluation_average.png")
 ## My Feedback to You
 
 - Exploit learning by doing!
-- Engage more in class!
-- Think about what YOU can do to deal with the fact that this is a large lecture!
+- Engage more in (virtual) class!
+- Think about what YOU can do to deal with the fact that this is a large (virtual) lecture!
 
 
 # Improvements
@@ -269,14 +445,12 @@ include_graphics("../img/evaluation_average.png")
 ## Improvements 
 - *Course structure*
   - Each slide set/lecture note will at the beginning explicitly mention the learning goals.
-  - Online tutorials
+  - Online tutorials, and short videos/summaries
   - Split exercises/exercise sessions into 'more comfortable'/'less comfortable'
 
 ## Improvements 
 - *Infrastructure*
-    - (Cloud solution for exercises)
-- *Examination*
-    - (Examination: Written Exam (80%), Group project (20%))
+    - Further improve cloud solution for exercises.
 
 <!-- ## Improvements  -->
 
@@ -377,10 +551,22 @@ _| \_|\___| \_/\_/       _|\___|\__,_|_|   _)
 ```
 
 
+## References
+
+
+
+
+
+
+
+
+
 <style>
+
 slides > slide { overflow: scroll; }
 slides > slide:not(.nobackground):after {
   content: '';
 }
+
 </style>
 
