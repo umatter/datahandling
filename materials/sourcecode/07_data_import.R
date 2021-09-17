@@ -235,8 +235,7 @@ OUTPUT_PATH <- "../../data/divided_gov.csv"
 
 # fetch from web
 doc <- read_html(SOURCE_PATH)
-html_tables <- html_node(doc, xpath = "//table[@class='wikitable']")
-tab <- html_table(html_tables)
+tab <- html_table(doc,fill=TRUE)[[2]]
 tab <- tab[-nrow(tab), ] # remove last row (not containing data)
 
 

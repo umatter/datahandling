@@ -84,7 +84,7 @@ summarise(df_mutated,
           N = n())
 
 
-## -------------------------------------------------------------------------------------------------
+## ----message=FALSE, warning=FALSE-----------------------------------------------------------------
 by_year <- group_by(df_mutated, year)
 summarise(by_year, 
           mean = mean(money_spent_chf),
@@ -106,6 +106,56 @@ sapply(swiss, mean)
 summarise(swiss, 
           Fertility = mean(Fertility),
           Agriculture = mean(Agriculture)) # etc.
+
+
+## ----echo=FALSE-----------------------------------------------------------------------------------
+## SET UP -------------------
+# load packages
+library(tidyverse)
+library(readxl)
+
+# fix variables
+INPUT_PATH <- "../../data/2015boysnamesfinal.xlsx"
+
+
+## ----eval= FALSE----------------------------------------------------------------------------------
+## ## SET UP -------------------
+## # load packages
+## library(tidyverse)
+## library(readxl)
+## 
+## # fix variables
+## INPUT_PATH <- "data/2015boysnamesfinal.xlsx"
+
+
+## -------------------------------------------------------------------------------------------------
+## LOAD/INSPECT DATA -----------------
+
+# import the excel sheet
+boys <- read_excel(INPUT_PATH, col_names = TRUE,
+                   sheet = "Table 1", # the name of the sheet to be loaded into R
+                   skip = 6 # skip the first 6 rows of the original sheet,
+                   )
+# inspect
+boys
+
+
+## -------------------------------------------------------------------------------------------------
+# FILTER/CLEAN ---------------------------
+
+# select columns
+boys <- select(boys, Rank...1, Name...2, Count...3, Rank...7, Name...8, Count...9)
+# filter rows
+boys <-  filter(boys, !is.na(Rank...1))
+
+
+## -------------------------------------------------------------------------------------------------
+
+# stack columns
+boys_long <- bind_rows(boys[,1:3], boys[,4:6])
+
+# inspect result
+boys_long
 
 
 ## -------------------------------------------------------------------------------------------------

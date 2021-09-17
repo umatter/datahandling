@@ -1,28 +1,3 @@
-## ---- echo=FALSE, results='asis', warning=FALSE---------------------------------------------------
-# conditional on the output format of the whole document,
-# generate and render a HTML or a LaTeX table.
-if (knitr::is_latex_output()) {
-  
-  cat('
-  \\begin{center}
-  \\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\\includegraphics[width = .1\\textwidth]{../img/cc.png}}
-  
-  \\smallskip
-  
-  This work is licensed under a \\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}
-  \\end{center}
-  '
-  )
-  
-} else {
-     cat('
-     
-   <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
-   
-')
-}
-
-
 ## ----message=FALSE, warning=FALSE-----------------------------------------------------------------
 library(tidyverse)
 
@@ -148,4 +123,48 @@ weird_df
 ## -------------------------------------------------------------------------------------------------
 tidy_df <- spread(weird_df, key = "variable", value = "value")
 tidy_df
+
+
+
+
+## -------------------------------------------------------------------------------------------------
+head(hotel_df)
+
+
+## ----message=FALSE, warning=FALSE-----------------------------------------------------------------
+
+# SET UP --------------
+
+# load packages
+library(tidyverse)
+library(janitor) # install.packages("janitor") (if not yet installed)
+
+# fix variables
+url_h1 <- "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/H1.csv"
+url_h2 <- "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/H2.csv"
+
+## DATA IMPORT -----------------
+
+h1 <- read_csv(url_h1)
+h2 <- read_csv(url_h2)
+
+
+
+## -------------------------------------------------------------------------------------------------
+## CLEAN DATA -------------------------
+
+# use the janitor-package clean_names function. see ?clean_names for details
+h1 <- clean_names(h1)
+h2 <- clean_names(h2)
+
+# add column to clarify origin of observation
+h1 <- mutate(h1, hotel="Resort Hotel")
+h2 <- mutate(h2, hotel="City Hotel")
+
+# stack observations
+hotel_df <- bind_rows(h1,h2)
+
+# inspect the first observations
+head(hotel_df)
+
 

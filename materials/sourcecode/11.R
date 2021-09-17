@@ -18,10 +18,17 @@ swiss_summary_rounded <- round(swiss_summary, 2)
 swiss_summary_rounded
 
 
+
+
+
 ## -------------------------------------------------------------------------------------------------
 
 swiss_summary_formatted <- format(swiss_summary_rounded, decimal.mark=",")
 swiss_summary_formatted 
+
+
+
+
 
 
 ## -------------------------------------------------------------------------------------------------
