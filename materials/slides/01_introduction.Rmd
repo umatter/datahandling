@@ -327,7 +327,7 @@ kable(sched[15:nrow(sched), c(1,5)], format = "markdown")
     - Get familiar with the style/format of questions.
 - Exchange students who need to take the exam before the central exam block:
     - Questions: *michael.tueting@unisg.ch*
-    - Decentral exam for exchange students: *24 December 2021, 9:15am*.
+    - Decentral exam for exchange students: *TBD*.
     
 
 

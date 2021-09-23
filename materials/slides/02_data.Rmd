@@ -26,7 +26,7 @@ library(knitr)
 ## Exam for exchange students
 
 - Exchange students who need to take the exam before the central exam block:
-    - Decentral exam for *exchange students: 24 December 2021, 14:15-15:45.*
+    - Decentral exam for *exchange students: TBD*
     - Location: SIAW Institute, conference room (top floor), Bodanstrasse 8, 9000 St. Gallen
 
 ## Course resources
