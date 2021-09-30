@@ -23,21 +23,31 @@ library(knitr)
 # Updates
 
 
-## Exam for exchange students
+<!-- ## Exam for exchange students -->
 
-- Exchange students who need to take the exam before the central exam block:
-    - Decentral exam for *exchange students: TBD*
-    - Location: SIAW Institute, conference room (top floor), Bodanstrasse 8, 9000 St. Gallen
+<!-- - Exchange students who need to take the exam before the central exam block: -->
+<!--     - Decentral exam for *exchange students: TBD* -->
+<!--     - Location: SIAW Institute, conference room (top floor), Bodanstrasse 8, 9000 St. Gallen -->
 
 ## Course resources
 
-- Canvas page
+- Canvas/StudyNet page: slides, notes, exercises, solutions
 - *GitHub repo*: https://github.com/umatter/datahandling
      - Source code of slides/notes
      - Code used in examples
           - Clone/fork: e.g., extend notes etc.
           - Open issues/report bugs 
           
+## Tools
+
+- R/Rstudio (local and `in the cloud' on Nuvolos)
+- GitHub Classroom (instructions and auto-correction of small exercises)
+          
+## Tools
+
+```{r learning, echo=FALSE, out.width = "100%", fig.align='center',  purl=FALSE}
+include_graphics("../img/learning_systems.PNG")
+```
 
 
 
