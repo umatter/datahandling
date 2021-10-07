@@ -22,16 +22,22 @@ library(knitr)
 # Updates
 
 
+## Decentral exam for exchange students
+(Provisional plan)
 
-## Thoughts on studying in this course
+- The examination will take place during the *last exercise session (23 December, 4:15 PM - 6:00 PM) in room 01-013.*
 
-- Read the mandatory (and complementary) literature before lectures (see Syllabus)
-- Follow the lectures (make your own notes)
-- Read the lecture notes (extend with own notes)
-- Solve the exercises (in virtual teams)
-- Study the exercise solutions (notes + video)
-- Visit the exercise Q&A sessions with Philine 
-- Repeat...
+- The last exercise session is moved to *December 22, 4:15 PM - 6:00 PM, fully online (Zoom).*
+
+<!-- ## Thoughts on studying in this course -->
+
+<!-- - Read the mandatory (and complementary) literature before lectures (see Syllabus) -->
+<!-- - Follow the lectures (make your own notes) -->
+<!-- - Read the lecture notes (extend with own notes) -->
+<!-- - Solve the exercises (in virtual teams) -->
+<!-- - Study the exercise solutions (notes + video) -->
+<!-- - Visit the exercise Q&A sessions with Philine  -->
+<!-- - Repeat... -->
 
 # Recap
 
@@ -118,20 +124,59 @@ Number  | 128 | 64 | 32 | 16 | 8  | 4  | 2  |  1
 
 - Binary numbers can become quite long rather quickly.
 - Computer Science: refer to binary numbers with the *hexadecimal* system.
-- 16 symbols: 
 
-  - `0`-`9` (used like in the decimal system)...
-  - and `A`-`F` (for the numbers 10 to 15).
+
+## The hexadecimal system
+
+- *16 symbols*: 
+    - `0`-`9` (used like in the decimal system)...
+    - and `A`-`F` (for the numbers 10 to 15).
   
-- 16 symbols: base 16: each digit represents an increasing power of 16 ($16^{0}$, $16^{1}$, etc.).
 
-## Floating point numbers
+## The hexadecimal system
 
-- Why would $1/3$ be an infinate string of '0's and '1's?
-- Similar to manually writing our $1/3=0.3333...$.
-- Floating point numbers: formulaic representation of real numbers (approximatively).
-     - *--> example in R*
-     - [Short YouTube video](https://youtu.be/0NhF8LE0Vqw)
+- *16 symbols*: 
+    - `0`-`9` (used like in the decimal system)...
+    - and `A`-`F` (for the numbers 10 to 15).
+  
+- *16 symbols >>> base 16*: each digit represents an increasing power of 16 ($16^{0}$, $16^{1}$, etc.).
+
+
+
+
+## The hexadecimal system
+
+What is the decimal number 139 expressed in the hexadecimal system?
+
+
+## The hexadecimal system
+
+What is the decimal number 139 expressed in the hexadecimal system?
+
+- Solution: 
+$$(8\times 16^1) +  (11\times 16^0) = 139.$$
+
+
+
+## The hexadecimal system
+
+What is the decimal number 139 expressed in the hexadecimal system?
+
+- Solution: 
+$$(8\times 16^1) +  (11\times 16^0) = 139.$$
+
+- More precisely:
+$$(8\times 16^1) +  (B\times 16^0) = 8B = 139.$$
+
+
+
+<!-- ## Floating point numbers -->
+
+<!-- - Why would $1/3$ be an infinate string of '0's and '1's? -->
+<!-- - Similar to manually writing our $1/3=0.3333...$. -->
+<!-- - Floating point numbers: formulaic representation of real numbers (approximatively). -->
+<!--      example in R* -->
+<!--      - [Short YouTube video](https://youtu.be/0NhF8LE0Vqw) -->
 
 ## Computers and text
 How can a computer understand text if it only understands `0`s and `1`s?
@@ -189,16 +234,6 @@ In both of these domains we mainly work with one simple type of document: *text 
 include_graphics("../img/script-hardware.jpg")
 ```
 
-
-## Putting the pieces together...
-
-Recall the initial example (survey) of this course.
-
-  1. Access a website (over the Internet), use keyboard to enter data into a website (a Google sheet in that case). 
-
-  2. R program accesses the data of the Google sheet (again over the Internet), download the data, and load it into RAM.
-
-  3. Data processing: produce output (in the form of statistics/plots), output on screen.
 
 
 # Computer Code and Data Storage
