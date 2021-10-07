@@ -21,7 +21,6 @@ library(knitr)
 
 # Updates
 
-
 ## Decentral exam for exchange students
 (Provisional plan)
 
