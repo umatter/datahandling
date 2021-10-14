@@ -29,6 +29,14 @@ pre {
 
 # Updates
 
+
+## Last Exercise Session 
+
+- Fully online
+- *New date/time: ?*
+  - 21 December, 4.15pm-6:00pm (on Zoom)?
+  - 22 December, 4.15pm-6:00pm (on Zoom)?
+
 <!-- ## GitHub Classroom back on track -->
 
 <!-- - Due to an update of the system that runs GitHub Classroom, courses around the world experienced problems with autograding in the last week. -->
@@ -47,25 +55,25 @@ pre {
 
 
 
-# Recap: Research Insights
+<!-- # Recap: Research Insights -->
 
-## Background: Increasing political polarization
+<!-- ## Background: Increasing political polarization -->
 
-```{r polarization, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
-include_graphics("../img/pew_polarization.png")
-```
+<!-- ```{r polarization, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE} -->
+<!-- include_graphics("../img/pew_polarization.png") -->
+<!-- ``` -->
 
-## Background: "Algorithmic" polarization in the Web
+<!-- ## Background: "Algorithmic" polarization in the Web -->
 
-```{r google, echo=FALSE, out.width = "50%", fig.align='center', purl=FALSE}
-include_graphics("../img/google_screenshot.png")
-```
+<!-- ```{r google, echo=FALSE, out.width = "50%", fig.align='center', purl=FALSE} -->
+<!-- include_graphics("../img/google_screenshot.png") -->
+<!-- ``` -->
 
-## Insights: Ideological distribution of US online media sphere
+<!-- ## Insights: Ideological distribution of US online media sphere -->
 
-```{r distr, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
-include_graphics("../img/fig_outlet_ideology_distr_labels.png")
-```
+<!-- ```{r distr, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE} -->
+<!-- include_graphics("../img/fig_outlet_ideology_distr_labels.png") -->
+<!-- ``` -->
 
 
 
@@ -327,7 +335,7 @@ dateRep,day,month,year,cases,deaths,countriesAndTerritories,geoId,countryterrito
 
 
 
-## Revisiting Point Nemo (in XML!)
+## Revisiting COVID-19 (in XML!)
 
 
 ```
@@ -398,9 +406,9 @@ The actual content we know from the csv-type example above is nested between the
 ```
 
 
-## XML syntax: Point Nemo example
+## XML syntax: Temperature Data example
 
-Comparing the actual content between these tags with the csv-type format above, we further recognize that there are two principal ways to link variable names to values.
+There are two principal ways to link variable names to values.
 ```{xml}
     <variable>Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)</variable>
     <filename>ISCCPMonthly_avg.nc</filename>
