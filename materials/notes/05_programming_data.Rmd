@@ -1,10 +1,10 @@
 ---
 title: 'Data Handling: Import, Cleaning and Visualisation'
-subtitle: 'Lecture 6: Programming with Data'
+subtitle: 'Lecture 5: Programming with Data'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "28/10/2021"
+date: "21/10/2021"
 output:
   pdf_document:
     pandoc_args:
