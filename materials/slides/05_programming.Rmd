@@ -120,84 +120,6 @@ pre {
 ```
 
 
-----
-
-<div class="columns-2">
-*XML:*
-```{xml}
-<person>
-  <firstName>John</firstName>
-  <lastName>Smith</lastName>
- 
-</person>
-
-```
-
-*JSON:*
-```{json}
-{"firstName": "John",
-  "lastName": "Smith",
-
-}
-
-```
-
-</div>
-
-
-## Parsing XML in R
-
-The following examples are based on the example code shown above (the two text-files `persons.json` and `persons.xml`)
-
-
-```{r eval=FALSE, purl=FALSE }
-# load packages
-library(xml2)
-
-# parse XML, represent XML document as R object
-xml_doc <- read_xml("persons.xml")
-xml_doc
-
-```
-
-
-```{r echo=FALSE, purl=FALSE }
-# load packages
-library(xml2)
-
-# parse XML, represent XML document as R object
-xml_doc <- read_xml("../../data/persons.xml")
-xml_doc
-
-```
-
-## Parsing JSON in R
-
-
-```{r eval=FALSE, purl=TRUE}
-# load packages
-library(jsonlite)
-
-# parse the JSON-document shown in the example above
-json_doc <- fromJSON("persons.json")
-
-# check the structure
-str(json_doc)
-
-```
-
-
-```{r echo=FALSE, purl=FALSE}
-# load packages
-library(jsonlite)
-
-# parse the JSON-document shown in the example above
-json_doc <- fromJSON("../../data/persons.json")
-
-# check the structure
-str(json_doc)
-
-```
 
 
 ----
@@ -238,12 +160,12 @@ HTML documents/webpages consist of *'semi-structured data'*:
      - Doesn't explicitly 'tell' the computer what to do
      - HTML is a markup language, not a programming language.
      
-     
-## HTML document as a 'tree'
 
-```{r dom, echo=FALSE, fig.align="center", out.width="50%", fig.cap="HTML (DOM) tree diagram (by Lubaochuan 2014, licensed under the [Creative Commons Attribution-Share Alike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license)."}
-include_graphics("../img/dom_tree_white.png")
-```
+<!-- ## HTML document as a 'tree' -->
+
+<!-- ```{r dom, echo=FALSE, fig.align="center", out.width="50%", fig.cap="HTML (DOM) tree diagram (by Lubaochuan 2014, licensed under the [Creative Commons Attribution-Share Alike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license)."} -->
+<!-- include_graphics("../img/dom_tree_white.png") -->
+<!-- ``` -->
 
 
 
