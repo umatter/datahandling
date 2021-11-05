@@ -271,7 +271,7 @@ boys_long
 
 # Data Analytics: a primer in linear regression/OLS
 
-When we look at practical data analytics in an economics context, it becomes quickly apparent that the vast majority of applied econometric research builds in one way or the other on linear regression, specifically on *ordinary least squares (OLS)*. OLS is the bread-and-butter model in microeconometrics for a number of reasons: it is rather easy to understand, its results are straightforward to interpret, it comes with a number of very useful statistical properties, and it can easily be applied to a large variety of economic research questions. In this section, we get to know the very basic idea behind OLS by looking at it through the lense of formal math notation as well as through the lense of R code.
+When we look at practical data analytics in an economics context, it becomes quickly apparent that the vast majority of applied econometric research builds in one way or the other on linear regression, specifically on *ordinary least squares (OLS)*. OLS is the bread-and-butter model in microeconometrics for a number of reasons: it is rather easy to understand, its results are straightforward to interpret, it comes with a number of very useful statistical properties, and it can easily be applied to a large variety of economic research questions. In this section, we get to know the very basic idea behind OLS by looking at it through the lens of formal math notation as well as through the lens of R code.
 
 
 
