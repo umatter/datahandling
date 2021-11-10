@@ -436,24 +436,24 @@ summary {
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Jane Doe</td>
-<td align="left">a</td>
-<td align="right">16</td>
-</tr>
-<tr class="odd">
-<td align="left">Mary Johnson</td>
-<td align="left">a</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
 <td align="left">John Smith</td>
 <td align="left">b</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
 <td align="left">Jane Doe</td>
+<td align="left">a</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">Jane Doe</td>
 <td align="left">b</td>
 <td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">Mary Johnson</td>
+<td align="left">a</td>
+<td align="right">3</td>
 </tr>
 <tr class="even">
 <td align="left">Mary Johnson</td>
@@ -464,9 +464,9 @@ summary {
 </table>
 <p>This <em>long</em>/<em>tidy</em> shape of the dataset has several advantages. First, it is now clear what the numeric values refer to. Second, in this format it is much easier to filter/select the observations.</p>
 </div>
-<div id="gathering-wide-to-long" class="section level3" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> Gathering (‘wide to long’)</h3>
-<p>In the <code>tidyverse</code> context, we call the transformation of columns to rows (‘wide to long’) ‘gathering.’ That is we ‘gather’ columns into keys and values. A most typical situation where this has to be done in applied data analysis is when a dataset contains for the same subjects several observations over time. To illustrate how <em>gathering</em> works in practice, consider the following example dataset (extending on the example above).</p>
+<div id="pivoting-from-wide-to-long-gathering" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Pivoting from ‘wide to long’ (“gathering”)</h3>
+<p>In the <code>tidyverse</code> context, we call the transformation of columns to rows ‘pivoting from wide to long.’ That is we pivot columns into keys (or names) and values. A most typical situation where this has to be done in applied data analysis is when a dataset contains for the same subjects several observations over time. To illustrate how <em>pivoting from wide to long</em> works in practice, consider the following example dataset (extending on the example above).</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>wide_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">last_name =</span> <span class="fu">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>),</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>),</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>),</span>
@@ -478,29 +478,33 @@ summary {
 ## 1     Wayne       John   male      150000      140000
 ## 2     Trump    Melania female      250000      230000
 ## 3      Marx       Karl   male       10000       15000</code></pre>
-<p>The two last columns contain both information on the same variable (<code>income</code>), but for different years. We thus want to gather these two columns in a new <code>year</code> and <code>income</code> column, ensuring that columns correspond to variables and rows correspond to observations. For this, we call the <code>gather()</code>-function as follows:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>long_df <span class="ot">&lt;-</span> <span class="fu">gather</span>(wide_df, income<span class="fl">.2018</span>, income<span class="fl">.2017</span>, <span class="at">key =</span> <span class="st">&quot;year&quot;</span>, <span class="at">value =</span> <span class="st">&quot;income&quot;</span>)</span>
+<p>The two last columns contain both information on the same variable (<code>income</code>), but for different years. We thus want to pivot these two columns in a new <code>year</code> and <code>income</code> column, ensuring that columns correspond to variables and rows correspond to observations. For this, we call the <code>pivot_longer()</code>-function as follows:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>long_df <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(wide_df, <span class="fu">c</span>(income<span class="fl">.2018</span>, income<span class="fl">.2017</span>), <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;income&quot;</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>long_df</span></code></pre></div>
-<pre><code>##   last_name first_name gender        year income
-## 1     Wayne       John   male income.2018 150000
-## 2     Trump    Melania female income.2018 250000
-## 3      Marx       Karl   male income.2018  10000
-## 4     Wayne       John   male income.2017 140000
-## 5     Trump    Melania female income.2017 230000
-## 6      Marx       Karl   male income.2017  15000</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   last_name first_name gender year        income
+##   &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt; 
+## 1 Wayne     John       male   income.2018 150000
+## 2 Wayne     John       male   income.2017 140000
+## 3 Trump     Melania    female income.2018 250000
+## 4 Trump     Melania    female income.2017 230000
+## 5 Marx      Karl       male   income.2018 10000 
+## 6 Marx      Karl       male   income.2017 15000</code></pre>
 <p>We can further clean the <code>year</code> column to only contain the respective numeric values.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>long_df<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(long_df<span class="sc">$</span>year, <span class="st">&quot;income.&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>long_df</span></code></pre></div>
-<pre><code>##   last_name first_name gender year income
-## 1     Wayne       John   male 2018 150000
-## 2     Trump    Melania female 2018 250000
-## 3      Marx       Karl   male 2018  10000
-## 4     Wayne       John   male 2017 140000
-## 5     Trump    Melania female 2017 230000
-## 6      Marx       Karl   male 2017  15000</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   last_name first_name gender year  income
+##   &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; 
+## 1 Wayne     John       male   2018  150000
+## 2 Wayne     John       male   2017  140000
+## 3 Trump     Melania    female 2018  250000
+## 4 Trump     Melania    female 2017  230000
+## 5 Marx      Karl       male   2018  10000 
+## 6 Marx      Karl       male   2017  15000</code></pre>
 </div>
-<div id="spreading-long-to-wide" class="section level3" number="1.2.3">
-<h3><span class="header-section-number">1.2.3</span> Spreading (‘long to wide’)</h3>
+<div id="pivoting-from-long-to-wide-spreading" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Pivoting from ‘long to wide’ (“spreading”)</h3>
 <p>As we want to adhere to the ‘tidy’ paradigm of keeping our data in long format, the transformation of ‘long to wide’ is less common. However, it might be necessary if the dataset at hand is particularly messy. The following example illustrates such a situation.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>weird_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">last_name =</span> <span class="fu">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>,</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>,</span>
@@ -529,18 +533,20 @@ summary {
 ## 7     Wayne       John   male      50      age
 ## 8     Trump    Melania female      25      age
 ## 9      Marx       Karl   male      NA      age</code></pre>
-<p>While the data is somehow in long format, the rule that each column should correspond to a variable (and vice versa) is ignored. Data on income, assets, as well as the age of the individuals in the dataset are all put in the same column. We can call the function <code>spread()</code> with the two parameters <code>key</code> and <code>value</code> to correct this.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tidy_df <span class="ot">&lt;-</span> <span class="fu">spread</span>(weird_df, <span class="at">key =</span> <span class="st">&quot;variable&quot;</span>, <span class="at">value =</span> <span class="st">&quot;value&quot;</span>)</span>
+<p>While the data is somehow in long format, the rule that each column should correspond to a variable (and vice versa) is ignored. Data on income, assets, as well as the age of the individuals in the dataset are all put in the same column. We can call the function <code>pivot_wider()</code> with the two parameters <code>names</code> and <code>value</code> to correct this.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tidy_df <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(weird_df, <span class="at">names_from =</span> <span class="st">&quot;variable&quot;</span>, <span class="at">values_from =</span> <span class="st">&quot;value&quot;</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>tidy_df</span></code></pre></div>
-<pre><code>##   last_name first_name gender age  assets income
-## 1      Marx       Karl   male  NA      NA  10000
-## 2     Trump    Melania female  25 5000000 250000
-## 3     Wayne       John   male  50 2000000 150000</code></pre>
+<pre><code>## # A tibble: 3 x 6
+##   last_name first_name gender income assets  age  
+##   &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;
+## 1 Wayne     John       male   150000 2000000 50   
+## 2 Trump     Melania    female 250000 5000000 25   
+## 3 Marx      Karl       male   10000  NA      NA</code></pre>
 </div>
 </div>
 </div>
-<div id="turorial-hotel-bookings-time-series" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Turorial: Hotel Bookings Time Series</h1>
+<div id="tutorial-hotel-bookings-time-series" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Tutorial: Hotel Bookings Time Series</h1>
 <p>This tutorial guides you step-by-step through the cleaning script (with a few adaptions) of <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-02-11">tidytuesday’s Hotel Bookings repo</a>, dealing with the preparation and analysis of two datasets with <em>hotel demand data</em>. Along the way, you also get in touch with the <a href="https://github.com/sfirke/janitor">janitor package</a>. For details about the two datasets see the <a href="https://www.sciencedirect.com/science/article/pii/S2352340918315191#f0010">paper</a> by <span class="citation">Nuno Antonio, de Almeida, and Nunes (2019)</span> and for the original research contribution related to these datasets see the <a href="https://ieeexplore.ieee.org/document/8260781">paper</a> by <span class="citation">N. Antonio, de Almeida, and Nunes (2017)</span>.</p>
 <p><span class="citation">Nuno Antonio, de Almeida, and Nunes (2019)</span> summarize the content of the datasets as follows: “One of the hotels (H1) is a resort hotel and the other is a city hotel (H2). Both datasets share the same structure, with 31 variables describing the 40,060 observations of H1 and 79,330 observations of H2. Each observation represents a hotel booking. Both datasets comprehend bookings due to arrive between the 1st of July of 2015 and the 31st of August 2017, including bookings that effectively arrived and bookings that were canceled. Since this is real data, all data elements pertaining hotel or costumer identification were deleted. Due to the scarcity of real business data for scientific and educational purposes, these datasets can have an important role for research and education in revenue management, machine learning, or data mining, as well as in other fields.”</p>
 <p>The aim of the tutorial is to get the data in the form needed for the following plot.</p>

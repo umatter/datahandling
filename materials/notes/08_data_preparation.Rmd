@@ -213,7 +213,7 @@ Now consider the same data in 'tidy' format (variables in columns and observatio
 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
-tidydata <- gather(data = rawdata, treatmenta, treatmentb, key = "treatment", value = "result" )
+tidydata <- pivot_longer(data = rawdata, c(treatmenta, treatmentb), names_to = "treatment", values_to = "result" )
 tidydata$treatment <- gsub("treatment", "", tidydata$treatment)
 ```
 
@@ -227,9 +227,9 @@ kable(tidydata)
 This *long*/*tidy* shape of the dataset has several advantages. First, it is now clear what the numeric values refer to. Second, in this format it is much easier to filter/select the observations. 
 
 
-### Gathering ('wide to long')
+### Pivoting from 'wide to long' ("gathering")
 
-In the `tidyverse` context, we call the transformation of columns to rows ('wide to long') 'gathering'. That is we 'gather' columns into keys and values. A most typical situation where this has to be done in applied data analysis is when a dataset contains for the same subjects several observations over time. To illustrate how *gathering* works in practice, consider the following example dataset (extending on the example above).
+In the `tidyverse` context, we call the transformation of columns to rows 'pivoting from wide to long'. That is we pivot columns into keys (or names) and values. A most typical situation where this has to be done in applied data analysis is when a dataset contains for the same subjects several observations over time. To illustrate how *pivoting from wide to long* works in practice, consider the following example dataset (extending on the example above).
 
 
 ```{r}
@@ -242,10 +242,10 @@ wide_df <- data.frame(last_name = c("Wayne", "Trump", "Marx"),
 wide_df
 ```
 
-The two last columns contain both information on the same variable (`income`), but for different years. We thus want to gather these two columns in a new `year` and `income` column, ensuring that columns correspond to variables and rows correspond to observations. For this, we call the `gather()`-function as follows:
+The two last columns contain both information on the same variable (`income`), but for different years. We thus want to pivot these two columns in a new `year` and `income` column, ensuring that columns correspond to variables and rows correspond to observations. For this, we call the `pivot_longer()`-function as follows:
 
 ```{r}
-long_df <- gather(wide_df, income.2018, income.2017, key = "year", value = "income")
+long_df <- pivot_longer(wide_df, c(income.2018, income.2017), names_to = "year", values_to = "income")
 long_df
 ```
 
@@ -257,7 +257,7 @@ long_df
 ```
 
 
-### Spreading ('long to wide')
+### Pivoting from 'long to wide' ("spreading")
 
 As we want to adhere to the 'tidy' paradigm of keeping our data in long format, the transformation of 'long to wide' is less common. However, it might be necessary if the dataset at hand is particularly messy. The following example illustrates such a situation.
 
@@ -282,14 +282,14 @@ weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx",
 weird_df
 ```
 
-While the data is somehow in long format, the rule that each column should correspond to a variable (and vice versa) is ignored. Data on income, assets, as well as the age of the individuals in the dataset are all put in the same column. We can call the function `spread()` with the two parameters `key` and `value` to correct this.
+While the data is somehow in long format, the rule that each column should correspond to a variable (and vice versa) is ignored. Data on income, assets, as well as the age of the individuals in the dataset are all put in the same column. We can call the function `pivot_wider()` with the two parameters `names` and `value` to correct this.
 
 ```{r}
-tidy_df <- spread(weird_df, key = "variable", value = "value")
+tidy_df <- pivot_wider(weird_df, names_from = "variable", values_from = "value")
 tidy_df
 ```
 
-# Turorial: Hotel Bookings Time Series
+# Tutorial: Hotel Bookings Time Series
 
 This tutorial guides you step-by-step through the cleaning script (with a few adaptions) of [tidytuesday's Hotel Bookings repo](https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-02-11), dealing with the preparation and analysis of two datasets with *hotel demand data*. Along the way, you also get in touch with the [janitor package](https://github.com/sfirke/janitor). For details about the two datasets see the [paper](https://www.sciencedirect.com/science/article/pii/S2352340918315191#f0010) by @nuno_etal2019 and for the original research contribution related to these datasets see the [paper](https://ieeexplore.ieee.org/document/8260781) by @nunes_etal2017.
 

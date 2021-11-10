@@ -74,7 +74,7 @@ str(messy_df)
 
 
 ## ----echo=FALSE, warning=FALSE, message=FALSE-----------------------------------------------------
-tidydata <- gather(data = rawdata, treatmenta, treatmentb, key = "treatment", value = "result" )
+tidydata <- pivot_longer(data = rawdata, c(treatmenta, treatmentb), names_to = "treatment", values_to = "result" )
 tidydata$treatment <- gsub("treatment", "", tidydata$treatment)
 
 
@@ -91,7 +91,7 @@ wide_df
 
 
 ## -------------------------------------------------------------------------------------------------
-long_df <- gather(wide_df, income.2018, income.2017, key = "year", value = "income")
+long_df <- pivot_longer(wide_df, c(income.2018, income.2017), names_to = "year", values_to = "income")
 long_df
 
 
@@ -121,7 +121,7 @@ weird_df
 
 
 ## -------------------------------------------------------------------------------------------------
-tidy_df <- spread(weird_df, key = "variable", value = "value")
+tidy_df <- pivot_wider(weird_df, names_from = "variable", values_from = "value")
 tidy_df
 
 
