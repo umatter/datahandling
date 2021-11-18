@@ -30,21 +30,23 @@ pre {
 
 # Updates
 
-<!-- ## Online lecture mode -->
 
-<!-- ```{r github, echo=FALSE, out.width = "85%", fig.align='center', purl=FALSE} -->
-<!-- include_graphics("https://imagesvc.meredithcorp.io/v3/mm/gif?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F12%2F2020%2F03%2Fflatten-curve-coronavirus.gif") -->
-<!-- ``` -->
+##  Guest Lecture by Corina Grünenfelder
 
-<!-- ## Online lecture mode -->
+<center>
+*9 December 2021, "Data Science in Insurance"*
+<center/>
 
-<!-- - All lectures *via Zoom*, same time/day as usual. -->
-<!--   - Lectures are recorded as usual. -->
-<!--   - Preferably no breaks, max. 90+ minutes straight (including extended Q&A). -->
-<!-- - Materials online, as usual. -->
-<!-- - Extended notes (additional tutorials). -->
+<br/>
 
+```{r cgruenenfelder, echo=FALSE, out.width= "20%", fig.align='center',  purl=FALSE}
+include_graphics("../img/c_gruenenfelder.jpg")
+```
 
+<center>
+*Corina Grünenfelder*, M.Sc. Mathematics, Actuary SSA<br/>
+Director, EY
+<center/>
 
 ## Part II: Data gathering and preparation {.smaller}
 
@@ -54,7 +56,7 @@ library(knitr)
 library(magrittr)
 library(kableExtra)
 
-sched <- read_xlsx("../../../admin/2020/schedule.xlsx", col_types = "text")
+sched <- read_xlsx("../../../admin/2021/schedule.xlsx", col_types = "text")
 
 #kable(sched[1:7, c(1,5)], format = "markdown")
 ```
@@ -73,76 +75,76 @@ kable(sched[15:nrow(sched), c(1,5)], format = "markdown")
 
 
 
-# Recap: Programming with Data
+<!-- # Recap: Programming with Data -->
 
 
-## Loops
-- Repeatedly execute a sequence of commands.
-- Known or unknown number of iterations.
-- Types: 'for-loop' and 'while-loop'.
-     - 'for-loop': number of iterations typically known.
-     - 'while-loop: number of iterations typically not known.
+<!-- ## Loops -->
+<!-- - Repeatedly execute a sequence of commands. -->
+<!-- - Known or unknown number of iterations. -->
+<!-- - Types: 'for-loop' and 'while-loop'. -->
+<!--      - 'for-loop': number of iterations typically known. -->
+<!--      - 'while-loop: number of iterations typically not known. -->
 
-## for-loop
+<!-- ## for-loop -->
 
-```{r echo=FALSE, fig.align='center', out.width="40%"}
-include_graphics("../img/forloop_black.png")
-```
+<!-- ```{r echo=FALSE, fig.align='center', out.width="40%"} -->
+<!-- include_graphics("../img/forloop_black.png") -->
+<!-- ``` -->
 
-## while-loop
+<!-- ## while-loop -->
 
-```{r while, echo= FALSE, fig.align="center", out.width="45%"}
-include_graphics("../img/while_loop_black_own.png")
-```
-
-
-
-
-## Booleans and logical statements
-```{r}
-2+2 == 4
-3+3 == 7
-4!=7
-
-```
-
-
-## Booleans and logical statements
-```{r}
-
-condition <- TRUE
-
-if (condition) {
-     print("This is true!")
-} else {
-     print("This is false!")
-}
-
-
-```
+<!-- ```{r while, echo= FALSE, fig.align="center", out.width="45%"} -->
+<!-- include_graphics("../img/while_loop_black_own.png") -->
+<!-- ``` -->
 
 
 
-## R functions
 
-- $f:X \rightarrow Y$
-- 'Take a variable/parameter value $X$ as input and provide value $Y$ as output'
-- For example, $2\times X = Y$.
-- R functions take 'parameter values' as input, process those values according to a predefined program, and 'return' the results.
+<!-- ## Booleans and logical statements -->
+<!-- ```{r} -->
+<!-- 2+2 == 4 -->
+<!-- 3+3 == 7 -->
+<!-- 4!=7 -->
 
-## R functions
-
-```{r}
-# define our own function to compute the mean, given a numeric vector
-my_mean <- function(x) {
-     x_bar <- sum(x) / length(x)
-     return(x_bar)
-}
-```
+<!-- ``` -->
 
 
+<!-- ## Booleans and logical statements -->
+<!-- ```{r} -->
 
-# Today: Putting it all Together
+<!-- condition <- TRUE -->
+
+<!-- if (condition) { -->
+<!--      print("This is true!") -->
+<!-- } else { -->
+<!--      print("This is false!") -->
+<!-- } -->
+
+
+<!-- ``` -->
+
+
+
+<!-- ## R functions -->
+
+<!-- - $f:X \rightarrow Y$ -->
+<!-- - 'Take a variable/parameter value $X$ as input and provide value $Y$ as output' -->
+<!-- - For example, $2\times X = Y$. -->
+<!-- - R functions take 'parameter values' as input, process those values according to a predefined program, and 'return' the results. -->
+
+<!-- ## R functions -->
+
+<!-- ```{r} -->
+<!-- # define our own function to compute the mean, given a numeric vector -->
+<!-- my_mean <- function(x) { -->
+<!--      x_bar <- sum(x) / length(x) -->
+<!--      return(x_bar) -->
+<!-- } -->
+<!-- ``` -->
+
+
+
+# "Putting it all Together"
 
 ## Putting it all together
 
@@ -150,6 +152,9 @@ my_mean <- function(x) {
   - You know how digital data is *stored*...
   - You know how to write *computer code*...
   - You know the basics of *programming in R*...
+  - You know the basics of *statistics*...
+  - You have *basic domain knowledge* (in Econ/Business)...
+
 
 <center>
 *These are the basics to handle data properly!*

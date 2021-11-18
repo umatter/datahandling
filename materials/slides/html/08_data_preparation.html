@@ -232,7 +232,7 @@ OUTPUT_FILE &lt;- &quot;/final_data/datafile.csv&quot;
 
 <pre class = 'prettyprint lang-r'>swiss</pre>
 
-<pre >## # A tibble: 47 x 7
+<pre >## # A tibble: 47 × 7
 ##    District     Fertility Agriculture Examination Education Catholic Infant.Mortality
 ##    &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;
 ##  1 Courtelary        80.2        17            15        12     9.96             22.2
@@ -275,7 +275,18 @@ read_csv(&#39;A,B
          14:30, midnight
          20:01, noon&#39;)</pre>
 
-<pre >## # A tibble: 3 x 2
+<pre >## Rows: 3 Columns: 2</pre>
+
+<pre >## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (1): B
+## time (1): A</pre>
+
+<pre >## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</pre>
+
+<pre >## # A tibble: 3 × 2
 ##   A      B       
 ##   &lt;time&gt; &lt;chr&gt;   
 ## 1 12:00  12:00   
@@ -361,14 +372,14 @@ pre {
 }
 </style>
 
-</article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  id="references" class="unnumbered smaller">
+</article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  class="unnumbered smaller" id="references">
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-wickham_2014" class="csl-entry">
+<div class="references csl-bib-body hanging-indent" id="refs">
+<div class="csl-entry" id="ref-wickham_2014">
 <p>Wickham, Hadley. 2014. <span>
 “Tidy Data.”</span> <em>Journal of Statistical Software</em> 59 (10): 1–23. <a href='https://doi.org/10.18637/jss.v059.i10' title=''>https://doi.org/10.18637/jss.v059.i10</a>.</p></div>
 
-<div id="ref-wickham_grolemund2017" class="csl-entry">
+<div class="csl-entry" id="ref-wickham_grolemund2017">
 <p>Wickham, Hadley, and Garrett Grolemund. 2017. Sebastopol, CA: O’Reilly. <a href='http://r4ds.had.co.nz/' title=''>http://r4ds.had.co.nz/</a>.</p></div></div></article></slide>
 
 

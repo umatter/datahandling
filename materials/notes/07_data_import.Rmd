@@ -76,7 +76,7 @@ In the first two lectures we have learned how data is stored in text-files and h
 - HTML (a markup language to define the structure and layout of webpages)
 - Unstructured text
 
-Depending on the *data source*, data might come in one or the other form. With the increasing importance of the Internet as a data source for economic research, handling XML, JSON, and HTML properly is becoming more important. However, in applied economic research various other, and more specific formats can be encountered:
+Depending on the *data source*, data might come in one or the other form. With the increasing importance of the Internet as a data source for economic research, handling XML, JSON, and HTML properly is becoming more important. However, in applied economic research various other formats can be encountered:
 
 - Excel spreadsheets (`.xls`)
 - Formats specific to statistical software packages (SPSS: `.sav`, STATA: `.dat`, etc.)
@@ -190,7 +190,7 @@ To get a list of all the built-in datasets simply type `data()` into the console
 
 
 ## Importing rectangular data from text-files
-In most cases of applying R for data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as 'Comma Separated Values' (CSV). In economics one also frequently encounters data being stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into R (in some cases, additional packages have to be loaded, though). Thereby, what happens 'under the hood' is essentially the same for all of these formats. Somebody has implemented the respective *parser* as an R function which accepts a character string with the path or url to the data source as input. 
+In most cases of applying R for data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as 'Comma Separated Values' (CSV). In economics one also frequently encounters data stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into R (in some cases, additional packages have to be loaded, though). Thereby, what happens 'under the hood' is essentially the same for all of these formats. Somebody has implemented the respective *parser* as an R function which accepts a character string with the path or url to the data source as input. 
 
 ### Comma Separated Values (CSV)
 Recall how in this format data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code-block shows how the first two rows of the `swiss`-dataset would look like when stored in a CSV:
@@ -504,7 +504,7 @@ In a last step, we inspect the collected data and write it to a CSV file.
 head(allyears)
 
 # write to csv
-write_csv(allyears, path=OUTPUT_PATH)
+write_csv(allyears, file=OUTPUT_PATH)
 
 ```
 

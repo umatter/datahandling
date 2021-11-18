@@ -269,6 +269,6 @@ allyears <- bind_rows(all_years)
 head(allyears)
 
 # write to csv
-write_csv(allyears, path=OUTPUT_PATH)
+write_csv(allyears, file=OUTPUT_PATH)
 
 
