@@ -17,28 +17,26 @@ messy_df <- data.frame(last_name = c("Wayne", "Trump", "Karl Marx"),
 
 # simple approach (problem?)
 messy_df$gender <- as.factor(messy_df$gender)
-messy_df$gender # not really meaningful categories!
+messy_df$gender
 
-# clean messy cagegories
-messy_df$gender[messy_df$gender == "Man"] <- "male" # find/replace
-messy_df$gender # the problem is not really solved!
+# replacement
+messy_df$gender[messy_df$gender == "Man"] <- "male"
+messy_df$gender
 
+# update categories directly ('factor levels')
 # better approach via tidyverse!
 messy_df$gender <- fct_recode(messy_df$gender, "male" = "Man")
 messy_df$gender
 
 
 
-
 ## Removing individual characters from a string -------------------
 
 # prepare income variable
-as.integer(messy_df$income) # proper data type causes a problem
-
+as.integer(messy_df$income)  # proper data type causes a problem
 
 ## replace characters in a string to clean this variable!
 messy_df$income <- str_replace(messy_df$income, pattern = ",", replacement = "")
-
 
 ## try to set the type again
 messy_df$income <- as.integer(messy_df$income)
@@ -48,7 +46,6 @@ messy_df$income <- as.integer(messy_df$income)
 
 # First, we split the strings at every occurrence of white space (" "). 
 #Setting the option simplify=TRUE, we get a matrix containing the individual sub-strings after the splitting.
-
 splitnames <- str_split(messy_df$last_name, pattern = " ", simplify = TRUE)
 splitnames
 
@@ -63,8 +60,6 @@ messy_df$last_name[problem_cases] <- splitnames[problem_cases, 2]
 messy_df
 
 
-
-
 ## Parsing dates ---------------------
 
 # load additional package to handle dates
@@ -74,22 +69,35 @@ library(lubridate)
 messy_df$date <- ymd(messy_df$date)
 
 
-## inspect the final (cleaned) dataset --------------------------------
+## Inspect the final (cleaned) dataset --------------------------------
 messy_df
-
 str(messy_df)
-
-
 
 
 
 
 ##  Tidying messy datasets. ------------------------
 
+# Illustration
+rawdata <- read_csv("data/treatments.csv")
+rawdata # what is the problem?
 
 
 
-## Gathering (‘wide to long’)
+# wide-to-long transformation
+tidydata <- pivot_longer(data = rawdata,
+                         c(treatmenta, treatmentb),
+                         names_to = "treatment",
+                         values_to = "result" )
+tidydata$treatment <- gsub("treatment", "", tidydata$treatment)
+
+
+
+
+
+
+
+## Reshaping practice
 wide_df <- data.frame(last_name = c("Wayne", "Trump", "Marx"),
                        first_name = c("John", "Melania", "Karl"),
                        gender = c("male", "female", "male"),
@@ -100,15 +108,18 @@ wide_df
 
 
 ## change wide to long
-long_df <- gather(wide_df, income.2018, income.2017, key = "year", value = "income")
+long_df <- pivot_longer(wide_df, c(income.2018, income.2017), names_to = "year", values_to = "income")
 long_df
-
 ## clean up
 long_df$year <- str_replace(long_df$year, "income.", "")
 long_df
 
 
-## Spreading (‘long to wide’) -----------------
+
+
+
+## "Spreading": long to wide -----------------
+
 
 # weird df example
 weird_df <- data.frame(last_name = c("Wayne", "Trump", "Marx",
@@ -131,10 +142,8 @@ weird_df
 
 
 ##  change to wide in order to clean df (make it tidy)
-tidy_df <- spread(weird_df, key = "variable", value = "value")
+tidy_df <- pivot_wider(weird_df, names_from = "variable", values_from = "value")
 tidy_df
-
-
 
 
 
