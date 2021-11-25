@@ -29,16 +29,6 @@ pre {
 
 # Updates
 
-<!-- ## Next week: Guest lecture by Dr. Thomas Spycher (Novalytica AG)! -->
-
-<!-- ```{r tspycher, echo=FALSE, out.width = "30%", fig.align='center', fig.cap= "Dr. Thomas Spycher (Novalytica AG).", purl=FALSE} -->
-<!-- include_graphics("../img/tspycher.png") -->
-<!-- ``` -->
-
-<!-- - In Zoom! -->
-<!-- - 45-60 minutes talk. -->
-<!-- - Q&A. -->
-
 
 
 ## Additional online material
@@ -46,10 +36,6 @@ pre {
 - Hint: [tidyverse](https://www.tidyverse.org/blog/)!
 - Hint: [R for Data Science Online Learning Community](https://github.com/rfordatascience)!
 
-## Mandatory reading
-
-- See the [syllabus](https://learning.unisg.ch/courses/8120/files/586893/download?wrap=1).
-- *NOTE:* The chapter numbers for WiGr refer to the online version of the book (http://r4ds.had.co.nz/).
 
 # Recap: Data Import
 
