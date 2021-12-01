@@ -277,7 +277,7 @@ When we look at practical data analytics in an economics context, it becomes qui
 
 ## Statistical modelling perspective
 
-Before we turn to a specific data example, let us introduce a general notation for this type of econometric problems. In the equation above, $Examination_{i}$ is the so-called *'dependent variable'* (or 'left-hand-side variable') and $Education_{i}$ is the *'explanatory variable'* (or 'right-hand-side variable'). Generally we denote the dependent variable as $y_i$ and the explanatory variable as $x_i$. All the rest that is not more specifically explained by explanatory variables ($u_{i}$) we call the *'residuals'* or the 'error term'. Hence we can rewrite the problem with the more general notation as 
+Before we turn to a specific data example, let us introduce a general notation for this type of econometric problems.  Generally we denote the *dependent variable* as $y_i$ and the *explanatory variable* as $x_i$. All the rest that is not more specifically explained by explanatory variables ($u_{i}$) we call the *'residuals'* or the 'error term'. Hence we can rewrite the problem with the more general notation as 
 
 $y_{i}= \alpha + \beta x_{i} + u_{i}$.
 
@@ -523,6 +523,8 @@ Finally, we can visually inspect the estimated parameters (i.e., does the line f
 plot(swiss$Education, swiss$Examination)
 abline(estimates$alpha, estimates$beta, col="red")
 ```
+
+
 The fit looks rather reasonable. There seems to be indeed a positive relationship between Education and Examination. In a next step, we would likely want to know whether we can say something meaningful about how precisely this relationship is measured statistically (i.e., how 'significant' $\hat{\beta}$ is). We will leave this issue for another class. 
 
 ## Regression toolbox in R
