@@ -190,3 +190,4 @@ estimates2 <- lm(Examination~Education, data=swiss)
 estimates2
 summary(estimates2)
 
+
