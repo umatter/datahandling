@@ -372,7 +372,7 @@ epsilon <- rnorm(N, sd=10)
 y <- alpha + beta*x + epsilon
 ```
 
-We can illustrate how $y$ changes when $x$ increases by plotting the raw data as a scatterplot as well as the true relationship (function) as a line.
+We can illustrate how $y$ changes when $x$ increases by plotting the raw data as a scatter plot as well as the true relationship (function) as a line.
 
 ```{r}
 plot(x,y)
@@ -544,7 +544,7 @@ summary(estimates2)
 The t-tests displayed in this summary for the intercept ($\alpha$) and the slope-coefficient concerning `Education` ($\beta$) assess how probable it is to observe such parameter estimates if the true values of these parameters are 0 (this is one way of thinking about statistical 'significance'). Specifically for the research question in this example: How often would we observe a value of $\hat{\beta}=0.579..$ or larger if we were to repeatedly draw a random sample from the same population and if more schooling in the population does actually not increase the average high-success rate at the standardized examination ($\beta=0$)? The P-values (last column) suggest that this would hardly ever be the case. If we are confident that the factors not considered in this simple model do not affect `Education`, we could conclude that `Education` has a significant and positive effect on `Examination`.
 
 
-# Additional (non-mandatory) reading: unterstanding statistics and probability with code
+# Additional (non-mandatory) reading: understanding statistics and probability with code
 
 
 
