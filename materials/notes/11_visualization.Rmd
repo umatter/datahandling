@@ -127,7 +127,7 @@ A key technique to convincingly communicate statistical results and insights fro
 While all of these packages provide well-documented high-level R functions to plot data, their syntax differs in some important ways. For R beginners it thus makes sense to first learn how to generate plots in R with *one* of these packages. Here, we focus on `ggplot2` because it is part of the `tidyverse`.
 
 ## 'Grammar of Graphics'
-A few years back, Leland Wilkinson (statistician and computer scientist) wrote an influential book called 'The Grammar of Graphics'. In this book, Wilkinson develops a formal description ('grammar') of graphics used in statistics, illustrating how different types of plots (bar plot, histogram, etc.) are special cases of an underlying framework. In short, his idea was that we can think of graphics as consisting of different design-layers and thus can build and describe graphics/plots layer by layer (see [here](http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html) for an illustration of this idea). 
+A few years back, statistician and computer scientist Leland Wilkinson  wrote an influential book called 'The Grammar of Graphics'. In this book, Wilkinson develops a formal description ('grammar') of graphics used in statistics, illustrating how different types of plots (bar plot, histogram, etc.) are special cases of an underlying framework. In short, his idea was that we can think of graphics as consisting of different design-layers and thus can build and describe graphics/plots *layer by layer* (see [here](http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html) for an illustration of this idea). 
 
 This framework got implemented in R with the prominent `ggplot2`-package, building on the already powerful R graphics engine. The result is a user-friendly environment to visualise data with enormous potential to plot almost any graphic illustrating data.
 
@@ -207,7 +207,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 ```
 
-Draftees from protestant districts tend to do generally better (which might be an indication of better primary schools, or a generally stronger focus on scholastic achievements of Protestant children). However, the relationship between education (beyond primary schools) and examination success seems to hold for either type of districts.
+Draftees from protestant districts tend to do generally better (which might be an indication of better primary schools, or a generally stronger focus on educational achievements of Protestant children). However, the relationship between education (beyond primary schools) and examination success seems to hold for either type of districts.
 
 ### Additional layers and statistics
 Let's visualise this relationship more clearly by drawing  trend-lines through the scatter diagrams. Once with the non-parametric 'loess'-approach and once forcing a linear model on the relationship between the two variables.
@@ -246,7 +246,7 @@ The resulting picture is in line with what we have expected. Overall, the distri
 
 
 
-### Themes: Fine-tuning the plot
+### Coordinates/Themes: Fine-tuning the plot
 
 Finally, there are countless options to further refine the plot. For example, we can easily change the orientation/coordinates of the plot:
 
@@ -306,7 +306,7 @@ The entire procedure from importing, cleaning, analyzing, and visualising data c
 
 
 
-# Tutorial: How to give the wrong impression with data visualization
+# Tutorial: How to give the wrong impression with data visualisation
 
 ## Background and aim
 Referring to the supposed trade-off between public health and economic performance in the context of the SARS-CoV-2 pandemic, Georgia Governor Brian Kemp has "reopened the state on April 24 [2020], citing a downward trend of COVID-19 cases being reported by the Georgia Department of Health [...] Georgians have been relying on this data (number of cases, hospitalizations and deaths in their areas) to determine whether or not it's safe for them to go out." ([FIRSTCOAST NEWS](https://www.firstcoastnews.com/article/news/local/georgia/georgia-data-numbers-misrepresented/77-08c31538-3f26-4348-9f30-d81b11dd4d24)) It later turned out that there was no downward trend at all but that the data on Covid cases was intentionally visualized in such a way to give the impression of a downward trend. In this tutorial we aim to replicate the doctored downward trend visualization, using the orignal data and `ggplot2`.^[Note that the original data is not 100% identical with the data used in the original plot. The reason is that Covid-numbers are updated/corrected over time and the original plot use very recent data at the time.] 
@@ -321,7 +321,7 @@ knitr::include_graphics("../img/georgia_vis.jpg")
 
 The original raw data is provided in a zip-file (compressed file). The code chunk below shows some tricks of how to download and import data from an online zip-file as part of a simple data analytics script. First, we generate a temporary file with `tempfile()`. We then download the compressed zip file containing the Covid-data to the temporary file via `download.file(DATA_URL, destfile = tmp)`. Finally, we use `unzip(tmp, files = "epicurve_rpt_date.csv" )` in order to decompress the one CSV-file in the zip-file we want to work with. After that, we can simply import the CSV-file the usual way (with the `read_cav()` function). 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 # SET UP ----------------
 
 # load packages
@@ -373,7 +373,7 @@ ggplot(cases, aes(y=cases, x=date, fill=county)) +
   
 ```
 
-There is no obvious downward trend visible. So let's have a look at what steps are involved in manipulating the visualisation in order to give the wrong impression of a downward trend. Importantly, all the manipulation is purely done via the plotting of the data. We do not touch/manipulate the underlying data (such as removing observations or falsifying numbers).
+There is no obvious downward trend visible. Now, let us have a look at what steps are involved in manipulating the visualisation in order to give the wrong impression of a downward trend. Importantly, all the manipulation is purely done via the plotting of the data. We do not touch/manipulate the underlying data (such as removing observations or falsifying numbers).
 
 When comparing the original plot with what we have so far, two things become aparent. First, the order of days on the X-axis is not chronological but seems to be based on the total number of cases per day. Second, the order of the bars of a given day does not follow the alphabetical order of the county names but the number of cases in each of the counties. Let's address the two aspects one at the time. To change the order on the x-axis we have to re-order the factor levels in `date`.
 
@@ -404,7 +404,7 @@ This already looks much more like the original plot.
 
 ## Cosmetics: theme
 
-Finally, we tweak the plot's theme in order to look more similar to the original. The following code is a first shot at addressing the most obvious aspects to make the plot more similar to the original. More steps might be needed to make it essentially identical (consider, for example the color-scheme of the bars). This part of the tutorial is a nice illustration of how versatile the `ggplot2`-`theme()`-function is regarding the tweaking of every detail of a plot. 
+Finally, we tweak the plot's theme in order to make it look more similar to the original. The following code is a first shot at addressing the most obvious aspects to make the plot more similar to the original. More steps might be needed to make it essentially identical (consider, for example the color-scheme of the bars). This part of the tutorial is a nice illustration of how versatile the `ggplot2`-`theme()`-function is to tweak every cosmetic detail of a plot. 
 
 ```{r, out.width="85%", fig.width=8,fig.height=4}
 ggplot(cases2, aes(y=cases, x=date, fill=county, group=cases)) +

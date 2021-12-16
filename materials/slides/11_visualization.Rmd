@@ -29,20 +29,31 @@ pre {
 
 # Updates
 
-<!-- ## Week 12 -->
+## Last exercise session: on Zoom!!
 
-<!-- - Thursday, 17 December -->
-<!--     - Wrap up -->
-<!--     - Exam info -->
-<!--     - Feedback -->
-<!--     - Q&A (send questions until tomorrow! *ulrich.matter@unisg.ch*)! -->
-<!-- - Friday, 18 December -->
-<!--     - Decentral exam for *exchange students*! -->
-<!--     - See Canvas for details on place/time. -->
-    
+- Thursday, 21 December
+  - 16:00-18:15
+  - On Zoom
+
+
+## Last lecture: on Zoom!!
+
+- Thursday, 23 December
+    - online only!
+    - Wrap up
+    - Exam info
+    - Feedback
+    - Q&A (send questions until tomorrow! *ulrich.matter@unisg.ch*)!
+
+## Exchange students exam
+
+- Thursday, 23 December
+    - *In person/on campus!*
+    - Decentral exam for *exchange students*!
+    - See Canvas for details on place/time.
+
 <!-- ## Reminder: Course evaluation -->
 
-<!-- - Deadline extended until 11 December 2020. -->
 <!-- - Please fill in the evaluation form (via Canvas) *today* (if not done so yet)! -->
 
 
@@ -256,7 +267,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 ## Additional layers and statistics
-```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      geom_smooth(method = 'loess') +
@@ -266,7 +277,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 ## Additional layers and statistics
-```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point() +
      geom_smooth(method = 'lm') +
@@ -275,7 +286,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ```
 
 ## Additional aesthetics
-```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -285,7 +296,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 ## Change coordinates
-```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -296,7 +307,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 ## Themes
 
-```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -307,7 +318,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 
 
 ## Themes
-```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +
@@ -317,7 +328,7 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 ```
 
 ## Themes
-```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8}
+```{r echo=TRUE, out.width="85%", fig.width=6,fig.height=2.8, message=FALSE}
 ggplot(data = swiss, aes(x = Education, y = Examination)) + 
      geom_point(aes(color = Agriculture)) +
      geom_smooth(method = 'lm') +

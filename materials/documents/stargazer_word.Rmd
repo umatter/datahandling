@@ -1,0 +1,55 @@
+---
+title: "stargazer_word"
+author: "Ulrich Matter"
+date: "December 16, 2021"
+output:
+  word_document: default
+  html_document: default
+---
+
+
+```{r echo=FALSE}
+# install.packages("stargazer")
+# load packages
+library(stargazer)
+
+# load data
+data(swiss)
+
+```
+
+
+
+## Simple linear regressions
+```{r}
+
+# linear regression with one variable
+# estimate coefficients
+model_fit <- lm(Examination~Education, data = swiss)
+
+# multiple linear regression
+# estimate coefficients
+model_fit2 <- lm(Examination~Education + Catholic + Agriculture, data = swiss)
+
+
+```
+
+
+## Print results
+```{r, results='asis', echo=FALSE}
+# load packages
+library(stargazer)
+
+# print regression results 
+stargazer(model_fit, model_fit2, type = "html")
+```
+
+**Note: compiling the stargazer output to word via an Rmd-file does not seem to work well! But there is a way around: compile it as html (as in this example, open the generated html file in a browser, and copy-paste the table from the browser to word. This should work!**
+
+
+## Alternative via `kable`
+```{r}
+library(knitr)
+kable(summary(model_fit)$coef)
+```
+

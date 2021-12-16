@@ -1,0 +1,47 @@
+---
+title: 'Stargazer: Latex/PDF'
+author: "Ulrich Matter"
+date: "December 16, 2021"
+output:
+  pdf_document: default
+
+---
+
+
+
+```{r echo=FALSE}
+# install.packages("stargazer")
+# load packages
+library(stargazer)
+
+# load data
+data(swiss)
+
+```
+
+
+
+## Simple linear regressions
+```{r}
+
+# linear regression with onqe variable
+# estimate coefficients
+model_fit <- lm(Examination~Education, data = swiss)
+
+# multiple linear regression
+# estimate coefficients
+model_fit2 <- lm(Examination~Education + Catholic + Agriculture, data = swiss)
+
+
+```
+
+
+## Print results
+```{r, results='asis', echo=FALSE, message=FALSE, waring=FALSE, comment=FALSE}
+# load packages
+library(stargazer)
+
+# print regression results 
+stargazer(model_fit, model_fit2, type = "latex")
+```
+
