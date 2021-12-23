@@ -36,7 +36,6 @@ library(knitr)
 1. Wrap up
 2. Exam Info
 3. Q&A
-4. Course Evaluation
 5. Suggested Improvements
 6. Final Remarks
 7. Happy Holidays!🎄
@@ -133,6 +132,52 @@ ggplot(data = swiss, aes(x = Education, y = Examination)) +
 include_graphics("../img/data_science_pipeline.png")
 ```
 
+## Wrap up: 'Theory'/Conceptual part
+
+- Understand the very basics of how computers process data.
+  - Binary code.
+  - Representation of binary code as text (encodings/standards!).
+
+
+## Wrap up: 'Theory'/Conceptual part
+
+- Understand the very basics of how computers process data.
+  - Binary code.
+  - Representation of binary code as text (encodings/standards!).
+  - Text files to store data: special characters (comma, semicolon, etc.) define the structure (following a standard!)
+    - CSV: two-dimensional/table-like structure
+    - JSON/XML: hierarchical data (high-dimensional)
+
+## Wrap up: 'Theory'/Conceptual part
+
+- Understand the very basics of how computers process data.
+  - Binary code.
+  - Representation of binary code as text (encodings/standards!).
+  - Text files to store data: special characters (comma, semicolon, etc.) define the structure (following a standard!)
+    - CSV: two-dimensional/table-like structure
+    - JSON/XML: hierarchical data (high-dimensional)
+  - Data in text file: how is data structured when stored on the hard disk (mass storage device).
+  - Data structures in R (objects): How data is structured/represented when loaded into RAM (via a 'parser')
+        
+    
+## Wrap up: Applied part: import, cleaning, analysis/visualisation.
+
+- How to get from the data source to the final data product.
+- `tidyverse`: tools to help you with every part of the data pipeline.
+
+
+## Wrap up: Applied part: import, cleaning, analysis/visualisation.
+
+- How to get from the data source to the final data product.
+- `tidyverse`: tools to help you with every part of the data pipeline.
+- How to import data into R? What to do if the parsing fails?
+- How to clean/prepare data in R? Aim: tidy data set (rows:observations, columns:variables).
+- How to filter for specific observations? How to select a set of variables/columns?
+- How to modify/add variable?
+- How to compute basic summary statistics?
+- How to visualise raw data and basic statistics?
+
+
 
 
 # Exam
@@ -146,12 +191,11 @@ include_graphics("../img/data_science_pipeline.png")
 
 - Work step-by-step through the code example. What happens in each parenthesis, on each line? 
 - From the inner part to the outer part, from top to bottom.
-- Use pencil/paper to keep track of values, data structures (how does a data-frame look like), classes.
+- Use pencil/paper to keep track of values, data structures (how does a data-frame look like?), classes.
 
 ## MC questions type A
 
 - Read the statement/question, then evaluate each statement (A-D) like a T/F question. 
-- It might be the case that *all* statements are FALSE.
 
 ## MC questions type B (only one correct)
 
@@ -163,15 +207,15 @@ include_graphics("../img/data_science_pipeline.png")
 - Read all parts carefully. Often, one question builds on a previous question.
 - Respond brief and to the point.
 - We want to test whether you can explain/illustrate/apply key concepts of the course in a specific domain of the course.
-- [Mock exam](https://learning.unisg.ch/courses/8120/files/601108?wrap=1)
+- [Mock exam](https://learning.unisg.ch/courses/10927/files/1196448?wrap=1)
 
 
 ## General questions
 
-- Do we need to know what packages need to be loaded for a certain command in R?
+- *Do we need to know what packages need to be loaded for a certain command in R?*
 - Only for the very core packages used in the course. 
 - For example, you should know that in order to generate plots based on the Grammar of Graphics concept, you need to load the `ggplot2` package first.
-
+- Importantly, if a code-example question refers to specific functions, you can always assume that the corresponding package is also loaded.
 
 # Q&A
 
@@ -180,7 +224,8 @@ include_graphics("../img/data_science_pipeline.png")
 
 - Both `type` and `class` refer to the very basic "kind" or "type" of data we are dealing with in R.
 - `type` refers to R's basic data types: `character`, `double`, `integer`, `complex`, `logical`, etc. Users cannot simply add new `type`s. 
-- Object classes can be extend by users. There are way more classes than data types in R.
+- Any data value is stored in a specific *data type*. Objects of a specific *class* (e.g., a `tibble`) often contain values of various *types*.
+- Object classes can be defined by users. There are way more classes than data types in R.
 - Any object of a given class, can contain elements of various types but not the other way around. 
 
 
@@ -225,12 +270,6 @@ as.integer(numbers)
 ```
 
 
-## Booleans and filtering
-
-The question:
-In WiGr 5.2.2 when they explain the filter() function coupled with logical operators, an example is provided using the N.Y. 2013 flight database (same as ex. 6) where the goal is to get the flights that departed in November and December. The book then explains that one cannot use  filter(flights, month == (11 | 12)). The explanation as to why it doesn't work is the following: 
-
-*The order of operations doesn’t work like English. You can’t write filter(flights, month == (11 | 12)), which you might literally translate into “finds all flights that departed in November or December”. Instead it finds all months that equal 11 | 12, an expression that evaluates to TRUE. In a numeric context (like here), TRUE becomes one, so this finds all flights in January, not November or December. This is quite confusing!*
 
 ## Booleans and filtering
 
@@ -275,7 +314,7 @@ Which means, `filter()` will return all rows, where `month` is equal to `1` (Jan
 
 ## Booleans and filtering
 
-The problem is that the logical statement is expressed the wrong way. Each logical condition needs to be expressed. Correct would be:
+The problem is that the logical statement is expressed the wrong way. Each logical condition needs to be expressed. The following would be correct:
 
 ```{r}
 (month==11 | month==12)
@@ -346,127 +385,32 @@ In the mock exam, Part 2 Q1 letter A: Why is this incorrect? Is it because it sh
 
 The point is that for the overall document to be valid (that is, to be parsed and interpreted correctly), valid tags need to be used in the right way (the right nesting-structure and order). In the example, the former is the case (A) but the latter not (D).
 
+
+
 # Course Evaluation
 
-## Course Evaluation: Summary 
 
-```{r echo=FALSE, out.width='99%'}
-include_graphics("../img/eval_online.png")
-```
-
-## Course Evaluation: Summary 
-
-```{r echo=FALSE, out.width='99%'}
-include_graphics("../img/eval_overall.png")
-```
-
-
-## Course Evaluation: Open Feedback
+## Course Evaluation
 <center>
-*Thanks a lot!*
+*Ongoing! See link on our course's StudyNet/Canvas page.*
 </center>
 
-## Positive Points
-- Lecture notes/lecture materials
-- Practical examples during lectures/exercises
 
-## Negative Points/Room for Improvement
-- No students project.
-- No interaction in online classes.
-- No skills acquired beyond the key content.
+# Suggested Improvements
 
 
-## Course Evaluation: Open Feedback
-
-*"Which aspects of this course should be changed so that future students can profit more from it?"*
-
-- Improve link between lectures and exercises. 👍
-- Student projects/interaction 👍
-
-## Course Evaluation: Open Feedback
-
-*"Which aspects of this course should be changed so that future students can profit more from it?"*
-
-- Improve link between lectures and exercises. 👍
-- Student projects/interaction 👍
-- Challenge: Resources! 🎃
-
-
-## Course Evaluation: Open Feedback
-
-*"Which aspects of this course should be changed so that future students can profit more from it?"*
-
-- More basics
-- Too slow
-- Challenge: Very heterogenous group (mandatory course).
-
-## Course Evaluation: Open Feedback
-
-*"Which aspects of this course should be changed so that future students can profit more from it?"*
-
-- More mock exam questions/old exam questions to get an idea how the exam looks like.
-- Challenge: limited number of ways to pose (non-idiotic) questions in MC format.
-
-
-## Course Evaluation: Food for thought
-
-- Expectations regarding specific evaluation criteria.
- - Goals of the lecture
- - Exam preparation
- - Exercises vs exercises that are graded
- - Responsibilities of lecturers and students
-
-
-
-
-## Course Evaluation: Food for thought
-
-- Ask yourself early on what *you* can do to improve the situation!
-- Do not forget to think for yourself!
-
-
-
-## My Feedback to You
-
-- By and large attentive, focused (still room for improvement)
-- Good questions
-
-
-## My Feedback to You
-
-- Exploit learning by doing!
-- Engage more in (virtual) class!
-- Think about what YOU can do to deal with the fact that this is a large (virtual) lecture!
-
-
-# Improvements
-
-
-## Improvements 
+## Improvements
 - *Course structure*
+  - First half: R boot camp, concepts/theory; second half: applied, each part of the "data pipeline."
   - Each slide set/lecture note will at the beginning explicitly mention the learning goals.
-  - Online tutorials, and short videos/summaries
-  - Split exercises/exercise sessions into 'more comfortable'/'less comfortable'
+  - Online tutorials (via Nuvolos), and short videos/summaries.
+  - Split exercises more explicitly into 'more comfortable'/'less comfortable'.
 
-## Improvements 
+## Improvements
 - *Infrastructure*
-    - Further improve cloud solution for exercises.
-
-<!-- ## Improvements  -->
-
-<!-- - *Examination* -->
-<!--     - Exam: part multiple choice, part open questions -->
-<!--     - (Examination: Written Exam (80%), Group project (20%)) -->
-<!-- - *Other*  -->
-<!--     - Guest lecture: case study with material (some prep work for students) -->
-
-
-<!-- ## Improvements -->
-<!-- <center> -->
-<!-- *Aim: *  -->
-<!-- *Become the reference introductory course on data science in undergraduate econ.* -->
-<!-- </center> -->
-
+    - Further improve Nuvolos cloud solution for materials and exercises.
+    - All materials automatically synced to Nuvolos student accounts.
+    - *Thoughts, additional suggestions?*
 
 
 
@@ -480,31 +424,18 @@ include_graphics("../img/eval_overall.png")
 ## Final Remarks
 
 - Materials will be updated on GitHub: https://github.com/umatter/datahandling.
-- Keep in touch (easiest way: *LinkedIn*).
-    - Connect by pointing to this course.
-
-
-## Final Remarks
-
-- Materials will be updated on GitHub: https://github.com/umatter/datahandling.
-- Keep in touch (easiest way: *LinkedIn*).
-    - Connect by pointing to this course.
 - All the best for your exams! 👍
 
 
 ## Final Remarks
 
 - Materials will be updated on GitHub: https://github.com/umatter/datahandling.
-- Keep in touch (easiest way: *LinkedIn*).
-    - Connect by pointing to this course.
 - All the best for your exams! 👍
-- All the best for your studies and careers
+- All the best for your studies and careers!
 
 ## Final Remarks
 
 - Materials will be updated on GitHub: https://github.com/umatter/datahandling.
-- Keep in touch (easiest way: *LinkedIn*).
-    - Connect by pointing to this course.
 - All the best for your exams! 👍
 - All the best for your studies and careers, *and finally, of course, ...*
 

@@ -108,17 +108,115 @@ summarise(swiss,
           Agriculture = mean(Agriculture)) # etc.
 
 
+## ----echo=FALSE-----------------------------------------------------------------------------------
+## SET UP -------------------
+# load packages
+library(tidyverse)
+library(readxl)
 
-# Regression Basics -------------------------------------
+# fix variables
+INPUT_PATH <- "../../data/2015boysnamesfinal.xlsx"
 
 
-## Illustration with code (Monte Carlo Analysis)
-# set parameter values
+## ----eval= FALSE----------------------------------------------------------------------------------
+## ## SET UP -------------------
+## # load packages
+## library(tidyverse)
+## library(readxl)
+## 
+## # fix variables
+## INPUT_PATH <- "data/2015boysnamesfinal.xlsx"
+
+
+## -------------------------------------------------------------------------------------------------
+## LOAD/INSPECT DATA -----------------
+
+# import the excel sheet
+boys <- read_excel(INPUT_PATH, col_names = TRUE,
+                   sheet = "Table 1", # the name of the sheet to be loaded into R
+                   skip = 6 # skip the first 6 rows of the original sheet,
+                   )
+# inspect
+boys
+
+
+## -------------------------------------------------------------------------------------------------
+# FILTER/CLEAN ---------------------------
+
+# select columns
+boys <- select(boys, Rank...1, Name...2, Count...3, Rank...7, Name...8, Count...9)
+# filter rows
+boys <-  filter(boys, !is.na(Rank...1))
+
+
+## -------------------------------------------------------------------------------------------------
+
+# stack columns
+boys_long <- bind_rows(boys[,1:3], boys[,4:6])
+
+# inspect result
+boys_long
+
+
+## ----warning=FALSE, message=FALSE, echo=FALSE-----------------------------------------------------
+# see http://dagitty.net/primer/ for background about thepackages
+library(dagitty)
+library(ggdag)
+library(ggraph)
+library(cowplot)
+library(dplyr)
+library(gridExtra)
+
+
+# causal diagram with endogeneity
+dag <- dagitty( 'dag {
+  X [pos="0,1"]
+  Y [pos="1,1"]
+  U [pos="0.5,0"]
+  Y <- X 
+  Y <- U
+  X <- U
+  X [exposure]
+  Y [outcome]
+  }')
+dag <- dag %>% 
+  tidy_dagitty( seed=1) %>%
+  arrange(name)
+
+
+# causal diagram 
+dag2 <- dag
+dag2$data <- dag2$data[-1,]
+
+endo_plot <-
+  ggplot(dag, aes(x = x, y = y, xend = xend, yend = yend)) +
+  geom_dag_point() +
+  geom_dag_edges() +
+  geom_dag_text(parse = TRUE, label = c( expression(u[i]), expression(x[i]),  expression(y[i]))) +
+  theme_dag(base_size = 20)
+ggsave("../img/causal_diagram_endo.png", plot = endo_plot, device = "png", width = 6, height = 4)
+
+exo_plot <- 
+  ggplot(dag2, aes(x = x, y = y, xend = xend, yend = yend)) +
+  geom_dag_point() +
+  geom_dag_edges() +
+  geom_dag_text(parse = TRUE, label = c( expression(u[i]), expression(x[i]),  expression(y[i]))) +
+  theme_dag(base_size = 20)
+ggsave("../img/causal_diagram_exo.png", plot = exo_plot, device = "png", width = 6, height = 4)
+
+
+
+
+
+
+
+## -------------------------------------------------------------------------------------------------
 alpha <- 30
 beta <- 0.9
 N <- 1000
 
-# draw random sample
+
+## -------------------------------------------------------------------------------------------------
 x <- runif(N, 0, 50)
 
 
