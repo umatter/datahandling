@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Data Visualization | Data Handling</title>
+  <meta name="description" content="A guide to practical data handling with a focus on R and empirical economic research." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Data Visualization | Data Handling" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/new_abacus.jpg" />
+  <meta property="og:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Data Visualization | Data Handling" />
+  
+  <meta name="twitter:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
+  <meta name="twitter:image" content="img/new_abacus.jpg" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+<meta name="date" content="2022-01-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="basic-econometrics-in-r.html"/>
+<link rel="next" href="appendix-a.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Handling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#processing-data-simple-calculations-in-numeral-systems"><i class="fa fa-check"></i><b>2.1</b> Processing data: simple calculations in numeral systems</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#the-binary-system"><i class="fa fa-check"></i><b>2.1.1</b> The binary system</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data.html"><a href="data.html#the-hexadecimal-system"><i class="fa fa-check"></i><b>2.1.2</b> The hexadecimal system</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#character-encoding"><i class="fa fa-check"></i><b>2.2</b> Character encoding</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#computer-code-and-text-files"><i class="fa fa-check"></i><b>2.3</b> Computer code and text files</a></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#data-processing-basics"><i class="fa fa-check"></i><b>2.4</b> Data processing basics</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>2.4.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#illustration"><i class="fa fa-check"></i><b>2.4.2</b> Illustration</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html"><i class="fa fa-check"></i><b>3</b> Data Storage and Data Structures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#unstructured-data-in-text-files"><i class="fa fa-check"></i><b>3.1</b> Unstructured data in text files</a></li>
+<li class="chapter" data-level="3.2" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#structured-data-formats"><i class="fa fa-check"></i><b>3.2</b> Structured data formats</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#csvs-and-fixed-width-format"><i class="fa fa-check"></i><b>3.2.1</b> CSVs and fixed-width format</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>3.3</b> Units of information/data storage</a></li>
+<li class="chapter" data-level="3.4" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#data-structures-and-data-types-in-r"><i class="fa fa-check"></i><b>3.4</b> Data structures and data types in R</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#data-types"><i class="fa fa-check"></i><b>3.4.1</b> Data types</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#data-structures"><i class="fa fa-check"></i><b>3.4.2</b> Data structures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html"><i class="fa fa-check"></i><b>4</b> High-Dimensional Data</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#deciphering-xml"><i class="fa fa-check"></i><b>4.0.1</b> Deciphering XML</a></li>
+<li class="chapter" data-level="4.1" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#deciphering-json"><i class="fa fa-check"></i><b>4.1</b> Deciphering JSON</a></li>
+<li class="chapter" data-level="4.2" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#parsing-xml-and-json-in-r"><i class="fa fa-check"></i><b>4.2</b> Parsing XML and JSON in R</a></li>
+<li class="chapter" data-level="4.3" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#html-computer-code-meets-data"><i class="fa fa-check"></i><b>4.3</b> HTML: Computer code meets data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#write-a-simple-webpage-with-html"><i class="fa fa-check"></i><b>4.3.1</b> Write a simple webpage with HTML</a></li>
+<li class="chapter" data-level="4.3.2" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#two-ways-to-read-a-webpage-into-r"><i class="fa fa-check"></i><b>4.3.2</b> Two ways to read a webpage into R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>5</b> Programming with Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>5.1</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="programming-with-data.html"><a href="programming-with-data.html#variables-and-vectors"><i class="fa fa-check"></i><b>5.1.1</b> Variables and vectors</a></li>
+<li class="chapter" data-level="5.1.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>5.1.2</b> Math operators</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>5.2</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>5.2.1</b> Loops</a></li>
+<li class="chapter" data-level="5.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>5.2.2</b> For-loops</a></li>
+<li class="chapter" data-level="5.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>5.2.3</b> Booleans and logical statements</a></li>
+<li class="chapter" data-level="5.2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>5.2.4</b> R functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html"><i class="fa fa-check"></i><b>6</b> Data Sources, Data Gathering, Data Import</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#sourcesformats"><i class="fa fa-check"></i><b>6.1</b> Sources/formats</a></li>
+<li class="chapter" data-level="6.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#data-gathering-procedure"><i class="fa fa-check"></i><b>6.2</b> Data gathering procedure</a></li>
+<li class="chapter" data-level="6.3" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loadingimporting-rectangular-data"><i class="fa fa-check"></i><b>6.3</b> Loading/importing rectangular data</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>6.3.1</b> Loading built-in datasets</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>6.3.2</b> Importing rectangular data from text-files</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parsing-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parsing with <code>readr</code></a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>6.4.1</b> Basic usage of <code>readr</code> functions</a></li>
+<li class="chapter" data-level="6.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>6.4.2</b> Parsing and data types</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-web-data-formats"><i class="fa fa-check"></i><b>6.5</b> Importing web data formats</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#xml-in-r"><i class="fa fa-check"></i><b>6.5.1</b> XML in R</a></li>
+<li class="chapter" data-level="6.5.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#json-in-r"><i class="fa fa-check"></i><b>6.5.2</b> JSON in R</a></li>
+<li class="chapter" data-level="6.5.3" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#tutorial-advanced-importing-data-from-a-html-table-on-a-website"><i class="fa fa-check"></i><b>6.5.3</b> Tutorial (advanced): Importing data from a HTML table (on a website)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>7</b> Data Preparation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="data-preparation.html"><a href="data-preparation.html#cleaning-data-with-basic-string-operations"><i class="fa fa-check"></i><b>7.1</b> Cleaning data with basic string operations</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="data-preparation.html"><a href="data-preparation.html#findreplace-character-strings-recode-factor-levels"><i class="fa fa-check"></i><b>7.1.1</b> Find/replace character strings, recode factor levels</a></li>
+<li class="chapter" data-level="7.1.2" data-path="data-preparation.html"><a href="data-preparation.html#removing-individual-characters-from-a-string"><i class="fa fa-check"></i><b>7.1.2</b> Removing individual characters from a string</a></li>
+<li class="chapter" data-level="7.1.3" data-path="data-preparation.html"><a href="data-preparation.html#splitting-strings"><i class="fa fa-check"></i><b>7.1.3</b> Splitting strings</a></li>
+<li class="chapter" data-level="7.1.4" data-path="data-preparation.html"><a href="data-preparation.html#parsing-dates"><i class="fa fa-check"></i><b>7.1.4</b> Parsing dates</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="data-preparation.html"><a href="data-preparation.html#reshaping-datasets"><i class="fa fa-check"></i><b>7.2</b> Reshaping datasets</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="data-preparation.html"><a href="data-preparation.html#tidying-messy-datasets."><i class="fa fa-check"></i><b>7.2.1</b> Tidying messy datasets.</a></li>
+<li class="chapter" data-level="7.2.2" data-path="data-preparation.html"><a href="data-preparation.html#pivoting-from-wide-to-long-gathering"><i class="fa fa-check"></i><b>7.2.2</b> Pivoting from ‘wide to long’ (“gathering”)</a></li>
+<li class="chapter" data-level="7.2.3" data-path="data-preparation.html"><a href="data-preparation.html#pivoting-from-long-to-wide-spreading"><i class="fa fa-check"></i><b>7.2.3</b> Pivoting from ‘long to wide’ (“spreading”)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="data-preparation.html"><a href="data-preparation.html#tutorial-hotel-bookings-time-series"><i class="fa fa-check"></i><b>7.3</b> Tutorial: Hotel Bookings Time Series</a></li>
+<li class="chapter" data-level="7.4" data-path="data-preparation.html"><a href="data-preparation.html#set-up-and-import"><i class="fa fa-check"></i><b>7.4</b> Set up and import</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html"><i class="fa fa-check"></i><b>8</b> Data Analysis: First Steps</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#merging-datasets"><i class="fa fa-check"></i><b>8.1</b> Merging datasets</a></li>
+<li class="chapter" data-level="8.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#selecting-subsets"><i class="fa fa-check"></i><b>8.2</b> Selecting subsets</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#filtering-datasets"><i class="fa fa-check"></i><b>8.2.1</b> Filtering datasets</a></li>
+<li class="chapter" data-level="8.2.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#mutating-datasets"><i class="fa fa-check"></i><b>8.2.2</b> Mutating datasets</a></li>
+<li class="chapter" data-level="8.2.3" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#aggregation-and-summary-statistics"><i class="fa fa-check"></i><b>8.2.3</b> Aggregation and summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#tutorial-analise-messy-excel-sheets"><i class="fa fa-check"></i><b>8.3</b> Tutorial: Analise messy Excel sheets</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#preparatory-steps"><i class="fa fa-check"></i><b>8.3.1</b> Preparatory steps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>9</b> Basic Econometrics in R</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modelling"><i class="fa fa-check"></i><b>9.1</b> Statistical modelling</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>9.1.1</b> Illustration with pseudo-data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#estimation-and-application"><i class="fa fa-check"></i><b>9.2</b> Estimation and Application</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#model-specification"><i class="fa fa-check"></i><b>9.2.1</b> Model specification</a></li>
+<li class="chapter" data-level="9.2.2" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#raw-data"><i class="fa fa-check"></i><b>9.2.2</b> Raw data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#derivation-and-implementation-of-ols-estimator"><i class="fa fa-check"></i><b>9.3</b> Derivation and implementation of OLS estimator</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#regression-toolbox-in-r"><i class="fa fa-check"></i><b>9.3.1</b> Regression toolbox in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>10.1</b> Data display</a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualisation-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualisation with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>10.3</b> ‘Grammar of Graphics’</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>10.3.1</b> <code>ggplot2</code> basics</a></li>
+<li class="chapter" data-level="10.3.2" data-path="data-visualization.html"><a href="data-visualization.html#tutorial"><i class="fa fa-check"></i><b>10.3.2</b> Tutorial</a></li>
+<li class="chapter" data-level="10.3.3" data-path="data-visualization.html"><a href="data-visualization.html#loadingpreparing-the-data"><i class="fa fa-check"></i><b>10.3.3</b> Loading/preparing the data</a></li>
+<li class="chapter" data-level="10.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>10.3.4</b> Geometries (~ type of plot)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>10.4</b> Dynamic documents</a></li>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualisation"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualisation</a></li>
+<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.6</b> Background and aim</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.6.1</b> Data import and preparation</a></li>
+<li class="chapter" data-level="10.6.2" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.6.2</b> Plot</a></li>
+<li class="chapter" data-level="10.6.3" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.6.3</b> Cosmetics: theme</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#understanding-statistics-and-probability-with-code"><i class="fa fa-check"></i><b>A.1</b> Understanding statistics and probability with code</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#random-draws-and-distributions"><i class="fa fa-check"></i><b>A.1.1</b> Random draws and distributions</a></li>
+<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#illustration-of-variability"><i class="fa fa-check"></i><b>A.1.2</b> Illustration of variability</a></li>
+<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>A.1.3</b> Skewness and Kurtosis</a></li>
+<li class="chapter" data-level="A.1.4" data-path="appendix-a.html"><a href="appendix-a.html#the-law-of-large-numbers"><i class="fa fa-check"></i><b>A.1.4</b> The Law of Large Numbers</a></li>
+<li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Handling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualization" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Data Visualization</h1>
+<div id="data-display" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Data display</h2>
+<p>In the last part of a data pipeline we are typically dealing with the visualisation of data and statistical results for presentation/communication. Typical output formats are reports, a thesis (BA, MA, Dissertation chapter), interactive dashboards, and websites. R (and particularly RStudio) provides a very flexible framework to manage the steps involved in visualisation/presentation for all of these output formats. A first (low-level) step in preparing data/results for publication is the formatting of data values for publication. Typically, this involves some string operations to make numbers and text look nicer before we show them in a table or graph.</p>
+<p>Consider, for example, the following summary statistics.</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="data-visualization.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages and data</span></span>
+<span id="cb297-2"><a href="data-visualization.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb297-3"><a href="data-visualization.html#cb297-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;swiss&quot;</span>)</span>
+<span id="cb297-4"><a href="data-visualization.html#cb297-4" aria-hidden="true" tabindex="-1"></a><span class="co"># compute summary statistics</span></span>
+<span id="cb297-5"><a href="data-visualization.html#cb297-5" aria-hidden="true" tabindex="-1"></a>swiss_summary <span class="ot">&lt;-</span></span>
+<span id="cb297-6"><a href="data-visualization.html#cb297-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(swiss, </span>
+<span id="cb297-7"><a href="data-visualization.html#cb297-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">avg_education =</span> <span class="fu">mean</span>(Education, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb297-8"><a href="data-visualization.html#cb297-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">avg_fertility =</span> <span class="fu">mean</span>(Fertility, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb297-9"><a href="data-visualization.html#cb297-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>()</span>
+<span id="cb297-10"><a href="data-visualization.html#cb297-10" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb297-11"><a href="data-visualization.html#cb297-11" aria-hidden="true" tabindex="-1"></a>swiss_summary</span></code></pre></div>
+<pre><code>##   avg_education avg_fertility  N
+## 1         10.98         70.14 47</code></pre>
+<p>Quite likely, we do not want to present these numbers with that many decimal places. The function <code>round()</code> can take care of this.</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="data-visualization.html#cb299-1" aria-hidden="true" tabindex="-1"></a>swiss_summary_rounded <span class="ot">&lt;-</span> <span class="fu">round</span>(swiss_summary, <span class="dv">2</span>)</span>
+<span id="cb299-2"><a href="data-visualization.html#cb299-2" aria-hidden="true" tabindex="-1"></a>swiss_summary_rounded</span></code></pre></div>
+<pre><code>##   avg_education avg_fertility  N
+## 1         10.98         70.14 47</code></pre>
+<p>More specific formatting of numeric values is easier when coercing the numbers to character strings (text).<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a> For example, depending on the audience (country/region) to which we want to communicate our results, different standards of how to format numbers are expected. In the English-speaking world it is quite common to use <code>.</code> as decimal mark, in the German-speaking world it is rather common to use <code>,</code>. The <code>format()</code>-function provides an easy way to format numbers in this way (once they are coerced to character).</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="data-visualization.html#cb301-1" aria-hidden="true" tabindex="-1"></a>swiss_summary_formatted <span class="ot">&lt;-</span> <span class="fu">format</span>(swiss_summary_rounded, <span class="at">decimal.mark=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb301-2"><a href="data-visualization.html#cb301-2" aria-hidden="true" tabindex="-1"></a>swiss_summary_formatted </span></code></pre></div>
+<pre><code>##   avg_education avg_fertility  N
+## 1         10,98         70,14 47</code></pre>
+<p>R also provides various helpful functions to better format/display text strings. See, for example:</p>
+<ul>
+<li>Uppercase/lowercase: <code>toupper()</code>/<code>tolowe()</code>.</li>
+<li>Remove white spaces: <code>trimws()</code>,</li>
+</ul>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="data-visualization.html#cb303-1" aria-hidden="true" tabindex="-1"></a>string <span class="ot">&lt;-</span> <span class="st">&quot;AbCD &quot;</span></span>
+<span id="cb303-2"><a href="data-visualization.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(string)</span></code></pre></div>
+<pre><code>## [1] &quot;ABCD &quot;</code></pre>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="data-visualization.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(string)</span></code></pre></div>
+<pre><code>## [1] &quot;abcd &quot;</code></pre>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="data-visualization.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trimws</span>(<span class="fu">tolower</span>(string))</span></code></pre></div>
+<pre><code>## [1] &quot;abcd&quot;</code></pre>
+</div>
+<div id="data-visualisation-with-ggplot2" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Data visualisation with <code>ggplot2</code></h2>
+<p>A key technique to convincingly communicate statistical results and insights from data is visualisation. How can we visualise raw data and insights gained from statistical models with R? It turns out that R is a really useful tool for data visualisation, thanks to its very powerful graphics engine (i.e., the underlying low-level R functions that handle things like colors, shapes, etc.). Building on this graphics engine, there are particularly three R packages with a variety of high-level functions to plot data in R:</p>
+<ul>
+<li>The original <code>graphics</code> package (<span class="citation"><a href="references.html#ref-r_2018" role="doc-biblioref">R Core Team</a> (<a href="references.html#ref-r_2018" role="doc-biblioref">2018</a>)</span>; shipped with the base R installation).</li>
+<li>The <code>lattice</code> package <span class="citation">(<a href="references.html#ref-lattice_2008" role="doc-biblioref">Sarkar 2008</a>)</span>, an implementation of the original Bell Labs ‘Trellis’ system.</li>
+<li>The <code>ggplot2</code> package <span class="citation">(<a href="references.html#ref-wickham_2016" role="doc-biblioref">Wickham 2016</a>)</span>, an implementation of Leland Wilkinson’s ‘Grammar of Graphics.’</li>
+</ul>
+<p>While all of these packages provide well-documented high-level R functions to plot data, their syntax differs in some important ways. For R beginners it thus makes sense to first learn how to generate plots in R with <em>one</em> of these packages. Here, we focus on <code>ggplot2</code> because it is part of the <code>tidyverse</code>.</p>
+</div>
+<div id="grammar-of-graphics" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> ‘Grammar of Graphics’</h2>
+<p>A few years back, statistician and computer scientist Leland Wilkinson wrote an influential book called ‘The Grammar of Graphics.’ In this book, Wilkinson develops a formal description (‘grammar’) of graphics used in statistics, illustrating how different types of plots (bar plot, histogram, etc.) are special cases of an underlying framework. In short, his idea was that we can think of graphics as consisting of different design-layers and thus can build and describe graphics/plots <em>layer by layer</em> (see <a href="http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html">here</a> for an illustration of this idea).</p>
+<p>This framework got implemented in R with the prominent <code>ggplot2</code>-package, building on the already powerful R graphics engine. The result is a user-friendly environment to visualise data with enormous potential to plot almost any graphic illustrating data.</p>
+<div id="ggplot2-basics" class="section level3" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> <code>ggplot2</code> basics</h3>
+<p>Using <code>ggplot2</code> to generate a basic plot in R is quite simple. Basically, it involves three key points:</p>
+<ol style="list-style-type: decimal">
+<li>The data must be stored in a <code>data.frame</code>/<code>tibble</code> (in tidy format).</li>
+<li>The starting point of a plot is always the function <code>ggplot()</code>.</li>
+<li>The first line of plot code declares the data and the ‘aesthetics’ (e.g., which variables are mapped to the x-/y-axes):</li>
+</ol>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="data-visualization.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_dataframe, <span class="fu">aes</span>(<span class="at">x=</span> xvar, <span class="at">y=</span> yvar))</span></code></pre></div>
+</div>
+<div id="tutorial" class="section level3" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Tutorial</h3>
+<p>In the following, we learn the basic functionality of <code>ggplot</code> by applying it to the <code>swiss</code> dataset.</p>
+</div>
+<div id="loadingpreparing-the-data" class="section level3" number="10.3.3">
+<h3><span class="header-section-number">10.3.3</span> Loading/preparing the data</h3>
+<p>First, we load and inspect the data. Among other variables it contains information about the share of inhabitants of a given Swiss province who indicate to be of Catholic faith (and not Protestant).</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="data-visualization.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the R package</span></span>
+<span id="cb310-2"><a href="data-visualization.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb310-3"><a href="data-visualization.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data</span></span>
+<span id="cb310-4"><a href="data-visualization.html#cb310-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
+<span id="cb310-5"><a href="data-visualization.html#cb310-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get details about the data set</span></span>
+<span id="cb310-6"><a href="data-visualization.html#cb310-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ?swiss</span></span>
+<span id="cb310-7"><a href="data-visualization.html#cb310-7" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the data</span></span>
+<span id="cb310-8"><a href="data-visualization.html#cb310-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(swiss)</span></code></pre></div>
+<pre><code>##              Fertility Agriculture Examination
+## Courtelary        80.2        17.0          15
+## Delemont          83.1        45.1           6
+## Franches-Mnt      92.5        39.7           5
+## Moutier           85.8        36.5          12
+## Neuveville        76.9        43.5          17
+## Porrentruy        76.1        35.3           9
+##              Education Catholic Infant.Mortality
+## Courtelary          12     9.96             22.2
+## Delemont             9    84.84             22.2
+## Franches-Mnt         5    93.40             20.2
+## Moutier              7    33.77             20.3
+## Neuveville          15     5.16             20.6
+## Porrentruy           7    90.57             26.6</code></pre>
+<p>As we do not only want to use this continuous measure in the data visualisation, we generate an additional factor variable called <code>Religion</code> which has either the value <code>'Protestant'</code> or <code>'Catholic'</code> depending on whether more then 50 percent of the inhabitants of the province are Catholics.</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="data-visualization.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code province as &#39;Catholic&#39; if more than 50% are catholic</span></span>
+<span id="cb312-2"><a href="data-visualization.html#cb312-2" aria-hidden="true" tabindex="-1"></a>swiss<span class="sc">$</span>Religion <span class="ot">&lt;-</span> <span class="st">&#39;Protestant&#39;</span></span>
+<span id="cb312-3"><a href="data-visualization.html#cb312-3" aria-hidden="true" tabindex="-1"></a>swiss<span class="sc">$</span>Religion[<span class="dv">50</span> <span class="sc">&lt;</span> swiss<span class="sc">$</span>Catholic] <span class="ot">&lt;-</span> <span class="st">&#39;Catholic&#39;</span></span>
+<span id="cb312-4"><a href="data-visualization.html#cb312-4" aria-hidden="true" tabindex="-1"></a>swiss<span class="sc">$</span>Religion <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(swiss<span class="sc">$</span>Religion)</span></code></pre></div>
+<div id="data-and-aesthetics" class="section level4" number="10.3.3.1">
+<h4><span class="header-section-number">10.3.3.1</span> Data and aesthetics</h4>
+<p>We initiate the most basic plot with <code>ggplot()</code> by defining which data to use and in the plot aesthetics which variable to use on the x and y axes. Here, we are interested in whether the level of education beyond primary school in a given district is related with how well draftees from the same district do in a standardized army examination (% of draftees that get the highest mark in the examination).</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="data-visualization.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-164-1.svg" width="85%" /></p>
+<p>As we have not yet defined according to what rules the data shall be visualised, all we get is an empty ‘canvas’ and the axes (with the respective label and ticks indicating the range of the values).</p>
+</div>
+</div>
+<div id="geometries-type-of-plot" class="section level3" number="10.3.4">
+<h3><span class="header-section-number">10.3.4</span> Geometries (~ type of plot)</h3>
+<p>In order to actually plot the data we have to define the ‘geometries,’ defining according to which function the data should be mapped/visualised. In other words, geometries define which ‘type of plot’ we use to visualise the data (histogram, lines, points, etc.). In the example code below, we use <code>geom_point()</code> to get a simple point plot.</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="data-visualization.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb314-2"><a href="data-visualization.html#cb314-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-165-1.svg" width="85%" /></p>
+<p>The result indicates that there is a positive correlation between the level of education and how well draftees do in the examination. We want to better understand this correlation. Particularly, what other factors could drive this picture.</p>
+<div id="facets" class="section level4" number="10.3.4.1">
+<h4><span class="header-section-number">10.3.4.1</span> Facets</h4>
+<p>According to a popular thesis, the protestant reformation and the spread of the protestant movement in Europe was driving the development of compulsory schooling. It would thus be reasonable to hypothesize that the picture we see is partly driven by differences in schooling between Catholic and Protestant districts. In order to make such differences visible in the data, we use ‘facets’ to show the same plot again, but this time separating observations from Catholic and Protestant districts:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="data-visualization.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb315-2"><a href="data-visualization.html#cb315-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb315-3"><a href="data-visualization.html#cb315-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-166-1.svg" width="85%" /></p>
+<p>Draftees from protestant districts tend to do generally better (which might be an indication of better primary schools, or a generally stronger focus on educational achievements of Protestant children). However, the relationship between education (beyond primary schools) and examination success seems to hold for either type of districts.</p>
+</div>
+<div id="additional-layers-and-statistics" class="section level4" number="10.3.4.2">
+<h4><span class="header-section-number">10.3.4.2</span> Additional layers and statistics</h4>
+<p>Let’s visualise this relationship more clearly by drawing trend-lines through the scatter diagrams. Once with the non-parametric ‘loess’-approach and once forcing a linear model on the relationship between the two variables.</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="data-visualization.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb316-2"><a href="data-visualization.html#cb316-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb316-3"><a href="data-visualization.html#cb316-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;loess&#39;</span>) <span class="sc">+</span></span>
+<span id="cb316-4"><a href="data-visualization.html#cb316-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-167-1.svg" width="85%" /></p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="data-visualization.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb318-2"><a href="data-visualization.html#cb318-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb318-3"><a href="data-visualization.html#cb318-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb318-4"><a href="data-visualization.html#cb318-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-168-1.svg" width="85%" /></p>
+</div>
+<div id="additional-aesthetics" class="section level4" number="10.3.4.3">
+<h4><span class="header-section-number">10.3.4.3</span> Additional aesthetics</h4>
+<p>Knowing a little bit about Swiss history and geography, we realize that particularly rural cantons in mountain regions remained Catholic during the reformation. In addition, cantonal school systems historically took into account that children have to help their parents on the farms during the summers. Thus in some rural cantons schools were closed from spring until autumn. Hence, we might want to indicate in the plot which point refers to a predominantly agricultural district. We use the aesthetics of the point geometry to color the points according to the ‘<code>Agriculture</code>’-variable (the % of males involved in agriculture as occupation).</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="data-visualization.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb320-2"><a href="data-visualization.html#cb320-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
+<span id="cb320-3"><a href="data-visualization.html#cb320-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb320-4"><a href="data-visualization.html#cb320-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-169-1.svg" width="85%" /></p>
+<p>The resulting picture is in line with what we have expected. Overall, the districts with a lower share of occupation in agriculture tend to have rather higher levels of education as well as higher achievements in the examination.</p>
+</div>
+<div id="coordinatesthemes-fine-tuning-the-plot" class="section level4" number="10.3.4.4">
+<h4><span class="header-section-number">10.3.4.4</span> Coordinates/Themes: Fine-tuning the plot</h4>
+<p>Finally, there are countless options to further refine the plot. For example, we can easily change the orientation/coordinates of the plot:</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="data-visualization.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb322-2"><a href="data-visualization.html#cb322-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
+<span id="cb322-3"><a href="data-visualization.html#cb322-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb322-4"><a href="data-visualization.html#cb322-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
+<span id="cb322-5"><a href="data-visualization.html#cb322-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">coord_flip</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-170-1.svg" width="85%" /></p>
+<p>In addition, the <code>theme()</code>-function allows to change almost every aspect of the plot (margins, font face, font size, etc.). For example, we might prefer to have the plot legend at the bottom and have larger axis labels.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="data-visualization.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb324-2"><a href="data-visualization.html#cb324-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
+<span id="cb324-3"><a href="data-visualization.html#cb324-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb324-4"><a href="data-visualization.html#cb324-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
+<span id="cb324-5"><a href="data-visualization.html#cb324-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, <span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>) ) </span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-171-1.svg" width="85%" /></p>
+<p>Moreover, several theme-templates offer ready-made designs for plots:</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="data-visualization.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb326-2"><a href="data-visualization.html#cb326-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
+<span id="cb326-3"><a href="data-visualization.html#cb326-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb326-4"><a href="data-visualization.html#cb326-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
+<span id="cb326-5"><a href="data-visualization.html#cb326-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-172-1.svg" width="85%" /></p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="data-visualization.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb328-2"><a href="data-visualization.html#cb328-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
+<span id="cb328-3"><a href="data-visualization.html#cb328-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb328-4"><a href="data-visualization.html#cb328-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
+<span id="cb328-5"><a href="data-visualization.html#cb328-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_dark</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-173-1.svg" width="85%" /></p>
+</div>
+</div>
+</div>
+<div id="dynamic-documents" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> Dynamic documents</h2>
+<p>Dynamic documents are a way to directly/dynamically integrate results of an analysis in R (numbers, tables, plots) in written text (a report, thesis, slide set, website, etc.). That is, we can write a report in so-called ‘R-Markdown’ format and place directly in the same document ‘chunks’ of R code which we want to be executed each time we ‘knit’ the report. Knitting the document means that the following steps are executed under the hood:</p>
+<ol style="list-style-type: decimal">
+<li>The code in the R chunks is executed and the results cached and formatted for print.</li>
+<li>The formatted R output is embedded in a so-called ‘Markdown’-file (<code>.md</code>).</li>
+<li>The markdown-file is rendered as either a PDF, HTML, or Word-file (with additional formatting options, depending on the output format).</li>
+</ol>
+<p>The entire procedure from importing, cleaning, analyzing, and visualising data can thus be combined in one document, based on which we can generate a meaningful output to communicate our results (in fact, the initial dashboard example, as well as all notes and slides of this course are generated in this way).</p>
+</div>
+<div id="tutorial-how-to-give-the-wrong-impression-with-data-visualisation" class="section level2" number="10.5">
+<h2><span class="header-section-number">10.5</span> Tutorial: How to give the wrong impression with data visualisation</h2>
+</div>
+<div id="background-and-aim" class="section level2" number="10.6">
+<h2><span class="header-section-number">10.6</span> Background and aim</h2>
+<p>Referring to the supposed trade-off between public health and economic performance in the context of the SARS-CoV-2 pandemic, Georgia Governor Brian Kemp has “reopened the state on April 24 [2020], citing a downward trend of COVID-19 cases being reported by the Georgia Department of Health […] Georgians have been relying on this data (number of cases, hospitalizations and deaths in their areas) to determine whether or not it’s safe for them to go out.” (<a href="https://www.firstcoastnews.com/article/news/local/georgia/georgia-data-numbers-misrepresented/77-08c31538-3f26-4348-9f30-d81b11dd4d24">FIRSTCOAST NEWS</a>) It later turned out that there was no downward trend at all but that the data on Covid cases was intentionally visualized in such a way to give the impression of a downward trend. In this tutorial we aim to replicate the doctored downward trend visualization, using the orignal data and <code>ggplot2</code>.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></p>
+<p><img src="img/georgia_vis.jpg" width="300pt" /></p>
+<div id="data-import-and-preparation" class="section level3" number="10.6.1">
+<h3><span class="header-section-number">10.6.1</span> Data import and preparation</h3>
+<p>The original raw data is provided in a zip-file (compressed file). The code chunk below shows some tricks of how to download and import data from an online zip-file as part of a simple data analytics script. First, we generate a temporary file with <code>tempfile()</code>. We then download the compressed zip file containing the Covid-data to the temporary file via <code>download.file(DATA_URL, destfile = tmp)</code>. Finally, we use <code>unzip(tmp, files = "epicurve_rpt_date.csv" )</code> in order to decompress the one CSV-file in the zip-file we want to work with. After that, we can simply import the CSV-file the usual way (with the <code>read_cav()</code> function).</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="data-visualization.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP ----------------</span></span>
+<span id="cb330-2"><a href="data-visualization.html#cb330-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb330-3"><a href="data-visualization.html#cb330-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb330-4"><a href="data-visualization.html#cb330-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb330-5"><a href="data-visualization.html#cb330-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb330-6"><a href="data-visualization.html#cb330-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb330-7"><a href="data-visualization.html#cb330-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars </span></span>
+<span id="cb330-8"><a href="data-visualization.html#cb330-8" aria-hidden="true" tabindex="-1"></a>DATA_URL <span class="ot">&lt;-</span> <span class="st">&quot;https://ga-covid19.ondemand.sas.com/docs/ga_covid_data.zip&quot;</span></span>
+<span id="cb330-9"><a href="data-visualization.html#cb330-9" aria-hidden="true" tabindex="-1"></a>COUNTIES <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Cobb&quot;</span>, <span class="st">&quot;DeKalb&quot;</span>, <span class="st">&quot;Fulton&quot;</span>, <span class="st">&quot;Gwinnett&quot;</span>, <span class="st">&quot;Hall&quot;</span>)</span>
+<span id="cb330-10"><a href="data-visualization.html#cb330-10" aria-hidden="true" tabindex="-1"></a>MIN_DATE <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-04-26&quot;</span>)</span>
+<span id="cb330-11"><a href="data-visualization.html#cb330-11" aria-hidden="true" tabindex="-1"></a>MAX_DATE <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-05-09&quot;</span>)</span>
+<span id="cb330-12"><a href="data-visualization.html#cb330-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb330-13"><a href="data-visualization.html#cb330-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb330-14"><a href="data-visualization.html#cb330-14" aria-hidden="true" tabindex="-1"></a><span class="co"># FETCH/IMPORT DATA -----------------------</span></span>
+<span id="cb330-15"><a href="data-visualization.html#cb330-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb330-16"><a href="data-visualization.html#cb330-16" aria-hidden="true" tabindex="-1"></a><span class="co"># create a temporary file to store the downloaded zipfile</span></span>
+<span id="cb330-17"><a href="data-visualization.html#cb330-17" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb330-18"><a href="data-visualization.html#cb330-18" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(DATA_URL, <span class="at">destfile =</span> tmp)</span>
+<span id="cb330-19"><a href="data-visualization.html#cb330-19" aria-hidden="true" tabindex="-1"></a><span class="co"># unzip the file we need</span></span>
+<span id="cb330-20"><a href="data-visualization.html#cb330-20" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">unzip</span>(tmp, <span class="at">files =</span> <span class="st">&quot;epicurve_rpt_date.csv&quot;</span> )</span>
+<span id="cb330-21"><a href="data-visualization.html#cb330-21" aria-hidden="true" tabindex="-1"></a><span class="co"># read the data</span></span>
+<span id="cb330-22"><a href="data-visualization.html#cb330-22" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(path)</span>
+<span id="cb330-23"><a href="data-visualization.html#cb330-23" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the data</span></span>
+<span id="cb330-24"><a href="data-visualization.html#cb330-24" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cases)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 20
+##   measure     county report_date cases deaths cases_cum
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+## 1 state_total Georg… 2020-02-01      0      0         0
+## 2 state_total Georg… 2020-02-02      0      0         0
+## 3 state_total Georg… 2020-02-03      0      0         0
+## 4 state_total Georg… 2020-02-04      0      0         0
+## 5 state_total Georg… 2020-02-05      0      0         0
+## 6 state_total Georg… 2020-02-06      0      0         0
+## # … with 14 more variables: death_cum &lt;dbl&gt;,
+## #   moving_avg_cases &lt;dbl&gt;, moving_avg_deaths &lt;dbl&gt;,
+## #   antigen_cases &lt;dbl&gt;, probable_deaths &lt;dbl&gt;,
+## #   antigen_case_hospitalization &lt;dbl&gt;,
+## #   confirmed_case_hospitalization &lt;dbl&gt;,
+## #   antigen_cases_cum &lt;dbl&gt;,
+## #   probable_deaths_cum &lt;dbl&gt;, total_cases &lt;dbl&gt;,
+## #   total_cases_cum &lt;dbl&gt;,
+## #   moving_avg_antigen_cases &lt;dbl&gt;,
+## #   moving_avg_probable_deaths &lt;dbl&gt;,
+## #   moving_avg_total_cases &lt;dbl&gt;</code></pre>
+<p>Once the data is imported, we select/filter the part of the dataset used in the original bar plot. Note the tidyverse-functions introduced in previous lectures to efficiently prepare an analytic dataset out of the raw data. At one point, we use the <code>order()</code>-function to order the observations according to the report date of covid cases. This is what would be usually done when displaying the frequency of cases over time. This way, in the following plot the x-axis serves as a time axis, displaying the date of the corresponding reported case numbers from the beginning of the observation period on the left to the end of the observation period on the right).</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="data-visualization.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="co"># only observations in the five major counties and during the relevant days</span></span>
+<span id="cb332-2"><a href="data-visualization.html#cb332-2" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">filter</span>(cases, county <span class="sc">%in%</span> COUNTIES, MIN_DATE <span class="sc">&lt;=</span> report_date, report_date <span class="sc">&lt;=</span> MAX_DATE)</span>
+<span id="cb332-3"><a href="data-visualization.html#cb332-3" aria-hidden="true" tabindex="-1"></a><span class="co"># only the relevant variables</span></span>
+<span id="cb332-4"><a href="data-visualization.html#cb332-4" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">select</span>(cases, county, report_date, cases)</span>
+<span id="cb332-5"><a href="data-visualization.html#cb332-5" aria-hidden="true" tabindex="-1"></a><span class="co"># order according to date</span></span>
+<span id="cb332-6"><a href="data-visualization.html#cb332-6" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> cases[<span class="fu">order</span>(cases<span class="sc">$</span>report_date),]</span>
+<span id="cb332-7"><a href="data-visualization.html#cb332-7" aria-hidden="true" tabindex="-1"></a><span class="co"># we add an additional column in which we treat dates as categories</span></span>
+<span id="cb332-8"><a href="data-visualization.html#cb332-8" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">mutate</span>(cases, <span class="at">date=</span><span class="fu">factor</span>(report_date))</span></code></pre></div>
+</div>
+<div id="plot" class="section level3" number="10.6.2">
+<h3><span class="header-section-number">10.6.2</span> Plot</h3>
+<p>First we show what the actual (honest) plot would essentially look like.</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="data-visualization.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cases, <span class="fu">aes</span>(<span class="at">y=</span>cases, <span class="at">x=</span>date, <span class="at">fill=</span>county)) <span class="sc">+</span></span>
+<span id="cb333-2"><a href="data-visualization.html#cb333-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb333-3"><a href="data-visualization.html#cb333-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">n.dodge =</span> <span class="dv">2</span>)) <span class="co"># this avoids overlapping of x-axis labels (and is similar to what is done in the original plot)</span></span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-177-1.svg" width="85%" /></p>
+<p>There is no obvious downward trend visible. Now, let us have a look at what steps are involved in manipulating the visualisation in order to give the wrong impression of a downward trend. Importantly, all the manipulation is purely done via the plotting of the data. We do not touch/manipulate the underlying data (such as removing observations or falsifying numbers).</p>
+<p>When comparing the original plot with what we have so far, two things become aparent. First, the order of days on the X-axis is not chronological but seems to be based on the total number of cases per day. Second, the order of the bars of a given day does not follow the alphabetical order of the county names but the number of cases in each of the counties. Let’s address the two aspects one at the time. To change the order on the x-axis we have to re-order the factor levels in <code>date</code>.</p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="data-visualization.html#cb334-1" aria-hidden="true" tabindex="-1"></a>cases2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(cases, <span class="at">date=</span> <span class="fu">fct_reorder</span>(date, cases, sum,<span class="at">.desc =</span> <span class="cn">TRUE</span>)) <span class="co"># re-order the dates based on the total number of cases per date.</span></span>
+<span id="cb334-2"><a href="data-visualization.html#cb334-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb334-3"><a href="data-visualization.html#cb334-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cases2, <span class="fu">aes</span>(<span class="at">y=</span>cases, <span class="at">x=</span>date, <span class="at">fill=</span>county)) <span class="sc">+</span></span>
+<span id="cb334-4"><a href="data-visualization.html#cb334-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb334-5"><a href="data-visualization.html#cb334-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">n.dodge =</span> <span class="dv">2</span>))  <span class="co"># this avoids overlapping of x-axis labels (and is similar to what is done in the original plot)</span></span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-178-1.svg" width="85%" /></p>
+<p>Note that the number of cases are not exactly the same as in the original. Quite likely the reason for this is that the numbers have been updated during May. Given the fact that the overall pattern is very similar, there is no reason to believe that the actual numbers underlying the original figure had been manipulated too. Now, let us address the second aspect (ordering of bars per date). For this, we use the <code>group</code> aesthetic, indicating to <code>ggplot</code> that we want the number of cases to be used to order the bars within each point in time (date). Setting <code>position_dodge2(reverse=TRUE)</code> simply means we want the bars per date to be ordered in decreasing order (per default it would be increasing; try out the difference by changing it to <code>position_dodge2(reverse=FALSE)</code> or simply <code>position_dodge2()</code>).</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="data-visualization.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cases2, <span class="fu">aes</span>(<span class="at">y=</span>cases, <span class="at">x=</span>date, <span class="at">fill=</span>county, <span class="at">group=</span>cases)) <span class="sc">+</span></span>
+<span id="cb335-2"><a href="data-visualization.html#cb335-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">group=</span>cases), <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">reverse=</span><span class="cn">TRUE</span>), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb335-3"><a href="data-visualization.html#cb335-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">n.dodge =</span> <span class="dv">2</span>))  <span class="co"># this avoids overlapping of x-axis labels (and is similar to what is done in the original plot)</span></span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-179-1.svg" width="85%" /></p>
+<p>This already looks much more like the original plot.</p>
+</div>
+<div id="cosmetics-theme" class="section level3" number="10.6.3">
+<h3><span class="header-section-number">10.6.3</span> Cosmetics: theme</h3>
+<p>Finally, we tweak the plot’s theme in order to make it look more similar to the original. The following code is a first shot at addressing the most obvious aspects to make the plot more similar to the original. More steps might be needed to make it essentially identical (consider, for example the color-scheme of the bars). This part of the tutorial is a nice illustration of how versatile the <code>ggplot2</code>-<code>theme()</code>-function is to tweak every cosmetic detail of a plot.</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="data-visualization.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cases2, <span class="fu">aes</span>(<span class="at">y=</span>cases, <span class="at">x=</span>date, <span class="at">fill=</span>county, <span class="at">group=</span>cases)) <span class="sc">+</span></span>
+<span id="cb336-2"><a href="data-visualization.html#cb336-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">group=</span>cases), <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">reverse=</span><span class="cn">TRUE</span>), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb336-3"><a href="data-visualization.html#cb336-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Top5 Counties with the Greatest Number of Confirmed COVID-19 Cases&quot;</span>) <span class="sc">+</span></span>
+<span id="cb336-4"><a href="data-visualization.html#cb336-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">n.dodge =</span> <span class="dv">2</span>)) <span class="sc">+</span>  <span class="co"># this avoids overlapping of x-axis labels (and is similar to what is done in the original plot)</span></span>
+<span id="cb336-5"><a href="data-visualization.html#cb336-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">&quot;County&quot;</span>,</span>
+<span id="cb336-6"><a href="data-visualization.html#cb336-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">title.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb336-7"><a href="data-visualization.html#cb336-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">direction =</span> <span class="st">&quot;horizontal&quot;</span>,</span>
+<span id="cb336-8"><a href="data-visualization.html#cb336-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">title.hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb336-9"><a href="data-visualization.html#cb336-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb336-10"><a href="data-visualization.html#cb336-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">&quot;white&quot;</span>, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>),</span>
+<span id="cb336-11"><a href="data-visualization.html#cb336-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>,<span class="st">&quot;line&quot;</span>),</span>
+<span id="cb336-12"><a href="data-visualization.html#cb336-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb336-13"><a href="data-visualization.html#cb336-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),        </span>
+<span id="cb336-14"><a href="data-visualization.html#cb336-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;#132a52&quot;</span>),</span>
+<span id="cb336-15"><a href="data-visualization.html#cb336-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;#132a52&quot;</span>),</span>
+<span id="cb336-16"><a href="data-visualization.html#cb336-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;#132a52&quot;</span>),</span>
+<span id="cb336-17"><a href="data-visualization.html#cb336-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">&quot;#536b8d&quot;</span>), </span>
+<span id="cb336-18"><a href="data-visualization.html#cb336-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">&quot;white&quot;</span>),</span>
+<span id="cb336-19"><a href="data-visualization.html#cb336-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">&quot;#536b8d&quot;</span>),</span>
+<span id="cb336-20"><a href="data-visualization.html#cb336-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;#71869e&quot;</span>),</span>
+<span id="cb336-21"><a href="data-visualization.html#cb336-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour=</span><span class="st">&quot;#71869e&quot;</span>),</span>
+<span id="cb336-22"><a href="data-visualization.html#cb336-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-180-1.svg" width="85%" /></p>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="25">
+<li id="fn25"><p>Note that this step only makes sense if we are sure that the numeric values won’t be further analyzed or used in a plot (except for labels).<a href="data-visualization.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p>Note that the original data is not 100% identical with the data used in the original plot. The reason is that Covid-numbers are updated/corrected over time and the original plot use very recent data at the time.<a href="data-visualization.html#fnref26" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basic-econometrics-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-a.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["datahandling.pdf", "datahandling.html", "datahandling.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

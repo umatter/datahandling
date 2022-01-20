@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='504.00pt' height='360.00pt' viewBox='0 0 504.00 360.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA='>
+    <rect x='0.00' y='0.00' width='504.00' height='360.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
+<text x='266.40' y='34.77' text-anchor='middle' style='font-size: 14.40px; font-weight: bold; font-family: Arimo;' textLength='168.88px' lengthAdjust='spacingAndGlyphs'>Histogram of sample</text>
+<text x='266.40' y='341.28' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='43.65px' lengthAdjust='spacingAndGlyphs'>sample</text>
+<text transform='translate(12.96,172.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='62.02px' lengthAdjust='spacingAndGlyphs'>Frequency</text>
+<line x1='103.94' y1='286.56' x2='458.40' y2='286.56' style='stroke-width: 0.75;' />
+<line x1='103.94' y1='286.56' x2='103.94' y2='293.76' style='stroke-width: 0.75;' />
+<line x1='163.02' y1='286.56' x2='163.02' y2='293.76' style='stroke-width: 0.75;' />
+<line x1='222.09' y1='286.56' x2='222.09' y2='293.76' style='stroke-width: 0.75;' />
+<line x1='281.17' y1='286.56' x2='281.17' y2='293.76' style='stroke-width: 0.75;' />
+<line x1='340.25' y1='286.56' x2='340.25' y2='293.76' style='stroke-width: 0.75;' />
+<line x1='399.32' y1='286.56' x2='399.32' y2='293.76' style='stroke-width: 0.75;' />
+<line x1='458.40' y1='286.56' x2='458.40' y2='293.76' style='stroke-width: 0.75;' />
+<text x='103.94' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-3</text>
+<text x='163.02' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-2</text>
+<text x='222.09' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-1</text>
+<text x='281.17' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='340.25' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='399.32' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='458.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>3</text>
+<line x1='59.04' y1='278.13' x2='59.04' y2='83.07' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='278.13' x2='51.84' y2='278.13' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='229.37' x2='51.84' y2='229.37' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='180.60' x2='51.84' y2='180.60' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='131.84' x2='51.84' y2='131.84' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='83.07' x2='51.84' y2='83.07' style='stroke-width: 0.75;' />
+<text transform='translate(41.76,278.13) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text transform='translate(41.76,229.37) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>50</text>
+<text transform='translate(41.76,180.60) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='22.92px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text transform='translate(41.76,131.84) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='22.92px' lengthAdjust='spacingAndGlyphs'>150</text>
+<text transform='translate(41.76,83.07) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Arimo;' textLength='22.92px' lengthAdjust='spacingAndGlyphs'>200</text>
+</g>
+<defs>
+  <clipPath id='cpNTkuMDR8NDczLjc2fDU5LjA0fDI4Ni41Ng=='>
+    <rect x='59.04' y='59.04' width='414.72' height='227.52' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNTkuMDR8NDczLjc2fDU5LjA0fDI4Ni41Ng==)'>
+<rect x='74.40' y='277.16' width='29.54' height='0.98' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='103.94' y='273.26' width='29.54' height='4.88' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='133.48' y='263.50' width='29.54' height='14.63' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='163.02' y='239.12' width='29.54' height='39.01' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='192.55' y='193.28' width='29.54' height='84.85' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='222.09' y='125.01' width='29.54' height='153.12' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='251.63' y='112.33' width='29.54' height='165.80' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='281.17' y='67.47' width='29.54' height='210.67' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='310.71' y='126.96' width='29.54' height='151.17' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='340.25' y='190.36' width='29.54' height='87.78' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='369.78' y='237.17' width='29.54' height='40.96' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='399.32' y='260.58' width='29.54' height='17.56' style='stroke-width: 0.75; fill: #D3D3D3;' />
+<rect x='428.86' y='274.23' width='29.54' height='3.90' style='stroke-width: 0.75; fill: #D3D3D3;' />
+</g>
+</svg>

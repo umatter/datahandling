@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A Appendix A | Data Handling</title>
+  <meta name="description" content="A guide to practical data handling with a focus on R and empirical economic research." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="A Appendix A | Data Handling" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/new_abacus.jpg" />
+  <meta property="og:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Appendix A | Data Handling" />
+  
+  <meta name="twitter:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
+  <meta name="twitter:image" content="img/new_abacus.jpg" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+<meta name="date" content="2022-01-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-visualization.html"/>
+<link rel="next" href="appendix-b.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Handling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#processing-data-simple-calculations-in-numeral-systems"><i class="fa fa-check"></i><b>2.1</b> Processing data: simple calculations in numeral systems</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#the-binary-system"><i class="fa fa-check"></i><b>2.1.1</b> The binary system</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data.html"><a href="data.html#the-hexadecimal-system"><i class="fa fa-check"></i><b>2.1.2</b> The hexadecimal system</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#character-encoding"><i class="fa fa-check"></i><b>2.2</b> Character encoding</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#computer-code-and-text-files"><i class="fa fa-check"></i><b>2.3</b> Computer code and text files</a></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#data-processing-basics"><i class="fa fa-check"></i><b>2.4</b> Data processing basics</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>2.4.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#illustration"><i class="fa fa-check"></i><b>2.4.2</b> Illustration</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html"><i class="fa fa-check"></i><b>3</b> Data Storage and Data Structures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#unstructured-data-in-text-files"><i class="fa fa-check"></i><b>3.1</b> Unstructured data in text files</a></li>
+<li class="chapter" data-level="3.2" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#structured-data-formats"><i class="fa fa-check"></i><b>3.2</b> Structured data formats</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#csvs-and-fixed-width-format"><i class="fa fa-check"></i><b>3.2.1</b> CSVs and fixed-width format</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>3.3</b> Units of information/data storage</a></li>
+<li class="chapter" data-level="3.4" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#data-structures-and-data-types-in-r"><i class="fa fa-check"></i><b>3.4</b> Data structures and data types in R</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#data-types"><i class="fa fa-check"></i><b>3.4.1</b> Data types</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#data-structures"><i class="fa fa-check"></i><b>3.4.2</b> Data structures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html"><i class="fa fa-check"></i><b>4</b> High-Dimensional Data</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#deciphering-xml"><i class="fa fa-check"></i><b>4.0.1</b> Deciphering XML</a></li>
+<li class="chapter" data-level="4.1" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#deciphering-json"><i class="fa fa-check"></i><b>4.1</b> Deciphering JSON</a></li>
+<li class="chapter" data-level="4.2" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#parsing-xml-and-json-in-r"><i class="fa fa-check"></i><b>4.2</b> Parsing XML and JSON in R</a></li>
+<li class="chapter" data-level="4.3" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#html-computer-code-meets-data"><i class="fa fa-check"></i><b>4.3</b> HTML: Computer code meets data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#write-a-simple-webpage-with-html"><i class="fa fa-check"></i><b>4.3.1</b> Write a simple webpage with HTML</a></li>
+<li class="chapter" data-level="4.3.2" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#two-ways-to-read-a-webpage-into-r"><i class="fa fa-check"></i><b>4.3.2</b> Two ways to read a webpage into R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>5</b> Programming with Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>5.1</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="programming-with-data.html"><a href="programming-with-data.html#variables-and-vectors"><i class="fa fa-check"></i><b>5.1.1</b> Variables and vectors</a></li>
+<li class="chapter" data-level="5.1.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>5.1.2</b> Math operators</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>5.2</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>5.2.1</b> Loops</a></li>
+<li class="chapter" data-level="5.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>5.2.2</b> For-loops</a></li>
+<li class="chapter" data-level="5.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>5.2.3</b> Booleans and logical statements</a></li>
+<li class="chapter" data-level="5.2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>5.2.4</b> R functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html"><i class="fa fa-check"></i><b>6</b> Data Sources, Data Gathering, Data Import</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#sourcesformats"><i class="fa fa-check"></i><b>6.1</b> Sources/formats</a></li>
+<li class="chapter" data-level="6.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#data-gathering-procedure"><i class="fa fa-check"></i><b>6.2</b> Data gathering procedure</a></li>
+<li class="chapter" data-level="6.3" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loadingimporting-rectangular-data"><i class="fa fa-check"></i><b>6.3</b> Loading/importing rectangular data</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>6.3.1</b> Loading built-in datasets</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>6.3.2</b> Importing rectangular data from text-files</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parsing-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parsing with <code>readr</code></a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>6.4.1</b> Basic usage of <code>readr</code> functions</a></li>
+<li class="chapter" data-level="6.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>6.4.2</b> Parsing and data types</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-web-data-formats"><i class="fa fa-check"></i><b>6.5</b> Importing web data formats</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#xml-in-r"><i class="fa fa-check"></i><b>6.5.1</b> XML in R</a></li>
+<li class="chapter" data-level="6.5.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#json-in-r"><i class="fa fa-check"></i><b>6.5.2</b> JSON in R</a></li>
+<li class="chapter" data-level="6.5.3" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#tutorial-advanced-importing-data-from-a-html-table-on-a-website"><i class="fa fa-check"></i><b>6.5.3</b> Tutorial (advanced): Importing data from a HTML table (on a website)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>7</b> Data Preparation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="data-preparation.html"><a href="data-preparation.html#cleaning-data-with-basic-string-operations"><i class="fa fa-check"></i><b>7.1</b> Cleaning data with basic string operations</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="data-preparation.html"><a href="data-preparation.html#findreplace-character-strings-recode-factor-levels"><i class="fa fa-check"></i><b>7.1.1</b> Find/replace character strings, recode factor levels</a></li>
+<li class="chapter" data-level="7.1.2" data-path="data-preparation.html"><a href="data-preparation.html#removing-individual-characters-from-a-string"><i class="fa fa-check"></i><b>7.1.2</b> Removing individual characters from a string</a></li>
+<li class="chapter" data-level="7.1.3" data-path="data-preparation.html"><a href="data-preparation.html#splitting-strings"><i class="fa fa-check"></i><b>7.1.3</b> Splitting strings</a></li>
+<li class="chapter" data-level="7.1.4" data-path="data-preparation.html"><a href="data-preparation.html#parsing-dates"><i class="fa fa-check"></i><b>7.1.4</b> Parsing dates</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="data-preparation.html"><a href="data-preparation.html#reshaping-datasets"><i class="fa fa-check"></i><b>7.2</b> Reshaping datasets</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="data-preparation.html"><a href="data-preparation.html#tidying-messy-datasets."><i class="fa fa-check"></i><b>7.2.1</b> Tidying messy datasets.</a></li>
+<li class="chapter" data-level="7.2.2" data-path="data-preparation.html"><a href="data-preparation.html#pivoting-from-wide-to-long-gathering"><i class="fa fa-check"></i><b>7.2.2</b> Pivoting from ‘wide to long’ (“gathering”)</a></li>
+<li class="chapter" data-level="7.2.3" data-path="data-preparation.html"><a href="data-preparation.html#pivoting-from-long-to-wide-spreading"><i class="fa fa-check"></i><b>7.2.3</b> Pivoting from ‘long to wide’ (“spreading”)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="data-preparation.html"><a href="data-preparation.html#tutorial-hotel-bookings-time-series"><i class="fa fa-check"></i><b>7.3</b> Tutorial: Hotel Bookings Time Series</a></li>
+<li class="chapter" data-level="7.4" data-path="data-preparation.html"><a href="data-preparation.html#set-up-and-import"><i class="fa fa-check"></i><b>7.4</b> Set up and import</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html"><i class="fa fa-check"></i><b>8</b> Data Analysis: First Steps</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#merging-datasets"><i class="fa fa-check"></i><b>8.1</b> Merging datasets</a></li>
+<li class="chapter" data-level="8.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#selecting-subsets"><i class="fa fa-check"></i><b>8.2</b> Selecting subsets</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#filtering-datasets"><i class="fa fa-check"></i><b>8.2.1</b> Filtering datasets</a></li>
+<li class="chapter" data-level="8.2.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#mutating-datasets"><i class="fa fa-check"></i><b>8.2.2</b> Mutating datasets</a></li>
+<li class="chapter" data-level="8.2.3" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#aggregation-and-summary-statistics"><i class="fa fa-check"></i><b>8.2.3</b> Aggregation and summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#tutorial-analise-messy-excel-sheets"><i class="fa fa-check"></i><b>8.3</b> Tutorial: Analise messy Excel sheets</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#preparatory-steps"><i class="fa fa-check"></i><b>8.3.1</b> Preparatory steps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>9</b> Basic Econometrics in R</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modelling"><i class="fa fa-check"></i><b>9.1</b> Statistical modelling</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>9.1.1</b> Illustration with pseudo-data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#estimation-and-application"><i class="fa fa-check"></i><b>9.2</b> Estimation and Application</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#model-specification"><i class="fa fa-check"></i><b>9.2.1</b> Model specification</a></li>
+<li class="chapter" data-level="9.2.2" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#raw-data"><i class="fa fa-check"></i><b>9.2.2</b> Raw data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#derivation-and-implementation-of-ols-estimator"><i class="fa fa-check"></i><b>9.3</b> Derivation and implementation of OLS estimator</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#regression-toolbox-in-r"><i class="fa fa-check"></i><b>9.3.1</b> Regression toolbox in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>10.1</b> Data display</a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualisation-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualisation with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>10.3</b> ‘Grammar of Graphics’</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>10.3.1</b> <code>ggplot2</code> basics</a></li>
+<li class="chapter" data-level="10.3.2" data-path="data-visualization.html"><a href="data-visualization.html#tutorial"><i class="fa fa-check"></i><b>10.3.2</b> Tutorial</a></li>
+<li class="chapter" data-level="10.3.3" data-path="data-visualization.html"><a href="data-visualization.html#loadingpreparing-the-data"><i class="fa fa-check"></i><b>10.3.3</b> Loading/preparing the data</a></li>
+<li class="chapter" data-level="10.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>10.3.4</b> Geometries (~ type of plot)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>10.4</b> Dynamic documents</a></li>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualisation"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualisation</a></li>
+<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.6</b> Background and aim</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.6.1</b> Data import and preparation</a></li>
+<li class="chapter" data-level="10.6.2" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.6.2</b> Plot</a></li>
+<li class="chapter" data-level="10.6.3" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.6.3</b> Cosmetics: theme</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#understanding-statistics-and-probability-with-code"><i class="fa fa-check"></i><b>A.1</b> Understanding statistics and probability with code</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#random-draws-and-distributions"><i class="fa fa-check"></i><b>A.1.1</b> Random draws and distributions</a></li>
+<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#illustration-of-variability"><i class="fa fa-check"></i><b>A.1.2</b> Illustration of variability</a></li>
+<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>A.1.3</b> Skewness and Kurtosis</a></li>
+<li class="chapter" data-level="A.1.4" data-path="appendix-a.html"><a href="appendix-a.html#the-law-of-large-numbers"><i class="fa fa-check"></i><b>A.1.4</b> The Law of Large Numbers</a></li>
+<li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Handling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="appendix-a" class="section level1" number="11">
+<h1><span class="header-section-number">A</span> Appendix A</h1>
+<div id="understanding-statistics-and-probability-with-code" class="section level2" number="11.1">
+<h2><span class="header-section-number">A.1</span> Understanding statistics and probability with code</h2>
+<div id="random-draws-and-distributions" class="section level3" number="11.1.1">
+<h3><span class="header-section-number">A.1.1</span> Random draws and distributions</h3>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="appendix-a.html#cb337-1" aria-hidden="true" tabindex="-1"></a>normal_distr <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb337-2"><a href="appendix-a.html#cb337-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(normal_distr)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-181-1.svg" width="672" /></p>
+</div>
+<div id="illustration-of-variability" class="section level3" number="11.1.2">
+<h3><span class="header-section-number">A.1.2</span> Illustration of variability</h3>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="appendix-a.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample from a normal distribution with a large standard deviation</span></span>
+<span id="cb338-2"><a href="appendix-a.html#cb338-2" aria-hidden="true" tabindex="-1"></a>largevar <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">5000</span>, <span class="at">sd =</span> <span class="dv">5</span>)</span>
+<span id="cb338-3"><a href="appendix-a.html#cb338-3" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample from a normal distribution with a small standard deviation</span></span>
+<span id="cb338-4"><a href="appendix-a.html#cb338-4" aria-hidden="true" tabindex="-1"></a>littlevar <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">5000</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb338-5"><a href="appendix-a.html#cb338-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb338-6"><a href="appendix-a.html#cb338-6" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the distributions of both samples with a density plot</span></span>
+<span id="cb338-7"><a href="appendix-a.html#cb338-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(littlevar), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb338-8"><a href="appendix-a.html#cb338-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fu">min</span>(largevar), <span class="fu">max</span>(largevar)), <span class="at">main=</span><span class="st">&quot;Income Distribution&quot;</span>)</span>
+<span id="cb338-9"><a href="appendix-a.html#cb338-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(largevar), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-182-1.svg" width="672" /></p>
+<p><strong>Note:</strong> the red curve illustrates the distribution of the sample with a large standard deviation (a lot of variability) whereas the blue curve illustrates the one with a rather small standard deviation.</p>
+</div>
+<div id="skewness-and-kurtosis" class="section level3" number="11.1.3">
+<h3><span class="header-section-number">A.1.3</span> Skewness and Kurtosis</h3>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="appendix-a.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the R-package called &quot;moments&quot; with the following command (if not installed yet):</span></span>
+<span id="cb339-2"><a href="appendix-a.html#cb339-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;moments&quot;)</span></span>
+<span id="cb339-3"><a href="appendix-a.html#cb339-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb339-4"><a href="appendix-a.html#cb339-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package</span></span>
+<span id="cb339-5"><a href="appendix-a.html#cb339-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(moments)</span></code></pre></div>
+<p>Recall Day 1’s slides on Skewness and Kurtosis. A helpful way to memorize what a certain value of either of these two statistics means is to visualize the respective distribution (as shown in the slides).</p>
+<div id="skewness" class="section level4" number="11.1.3.1">
+<h4><span class="header-section-number">A.1.3.1</span> Skewness</h4>
+<p>Skewness refers to how symmetric the frequency distribution of a variable is. For example, a distribution can be ‘positively skewed’ meaning it has a long tail on the right and a lot of ‘mass’ (observations) on the left. We can see that when visualizing the distribution in a histogram or a density plot. In R this looks as follow (consider the comments in the code explaining what each line does):</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="appendix-a.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample of simulated data from a normal distribution</span></span>
+<span id="cb340-2"><a href="appendix-a.html#cb340-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample is of size 1000 (hence, n = 1000)</span></span>
+<span id="cb340-3"><a href="appendix-a.html#cb340-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>)</span>
+<span id="cb340-4"><a href="appendix-a.html#cb340-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb340-5"><a href="appendix-a.html#cb340-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a histogram and a density plot of that sample</span></span>
+<span id="cb340-6"><a href="appendix-a.html#cb340-6" aria-hidden="true" tabindex="-1"></a><span class="co"># note that the distribution is neither strongly positively nor negatively skewed</span></span>
+<span id="cb340-7"><a href="appendix-a.html#cb340-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (this is to be expected, as we have drawn a sample from a normal distribution)</span></span>
+<span id="cb340-8"><a href="appendix-a.html#cb340-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-184-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="appendix-a.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-184-2.svg" width="672" /></p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="appendix-a.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now compute the skewness</span></span>
+<span id="cb342-2"><a href="appendix-a.html#cb342-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(sample)</span></code></pre></div>
+<pre><code>## [1] -0.03438</code></pre>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="appendix-a.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we intentionally change our sample to be strongly positively skewed</span></span>
+<span id="cb344-2"><a href="appendix-a.html#cb344-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We do that by adding some outliers (observations with very high values) to the sample </span></span>
+<span id="cb344-3"><a href="appendix-a.html#cb344-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">c</span>(sample, (<span class="fu">rnorm</span>(<span class="dv">200</span>) <span class="sc">+</span> <span class="dv">2</span>), (<span class="fu">rnorm</span>(<span class="dv">200</span>) <span class="sc">+</span> <span class="dv">3</span>))</span>
+<span id="cb344-4"><a href="appendix-a.html#cb344-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb344-5"><a href="appendix-a.html#cb344-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Have a look at the distribution and re-calculate the skewness</span></span>
+<span id="cb344-6"><a href="appendix-a.html#cb344-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-184-3.svg" width="672" /></p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="appendix-a.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(sample)</span></code></pre></div>
+<pre><code>## [1] 0.4897</code></pre>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="appendix-a.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div>
+</div>
+<div id="kurtosis" class="section level4" number="11.1.3.2">
+<h4><span class="header-section-number">A.1.3.2</span> Kurtosis</h4>
+<p>Kurtosis refers to how much ‘mass’ a distribution has in its ‘tails.’ It thus tells us something about whether a distribution tends to have a lot of outliers. Again, plotting the data can help us understand this concept of kurtosis. Lets have a look at this in R (consider the comments in the code explaining what each line does):</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="appendix-a.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample of simulated data from a normal distribution</span></span>
+<span id="cb348-2"><a href="appendix-a.html#cb348-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample is of size 1000 (hence, n = 1000)</span></span>
+<span id="cb348-3"><a href="appendix-a.html#cb348-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>)</span>
+<span id="cb348-4"><a href="appendix-a.html#cb348-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb348-5"><a href="appendix-a.html#cb348-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the density &amp; compute the kurtosis</span></span>
+<span id="cb348-6"><a href="appendix-a.html#cb348-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-185-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="appendix-a.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(sample)</span></code></pre></div>
+<pre><code>## [1] 2.775</code></pre>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="appendix-a.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now lets remove observations from the extremes in this distribution</span></span>
+<span id="cb351-2"><a href="appendix-a.html#cb351-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we thus intentionally alter the distribution to have less mass in its tails</span></span>
+<span id="cb351-3"><a href="appendix-a.html#cb351-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> sample[ sample <span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">0.6</span> <span class="sc">&amp;</span> sample <span class="sc">&lt;</span> <span class="fl">0.6</span>]</span>
+<span id="cb351-4"><a href="appendix-a.html#cb351-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb351-5"><a href="appendix-a.html#cb351-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the distribution again and see how the tails of it (and thus the kurtosis) has changed</span></span>
+<span id="cb351-6"><a href="appendix-a.html#cb351-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-185-2.svg" width="672" /></p>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="appendix-a.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="co"># re-calculate the kurtosis</span></span>
+<span id="cb352-2"><a href="appendix-a.html#cb352-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(sample)</span></code></pre></div>
+<pre><code>## [1] 1.889</code></pre>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="appendix-a.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as expected, the kurtosis has now a lower value</span></span></code></pre></div>
+</div>
+<div id="implement-the-formulas-for-skewness-and-kurtosis-in-r" class="section level4" number="11.1.3.3">
+<h4><span class="header-section-number">A.1.3.3</span> Implement the formulas for skewness and kurtosis in R</h4>
+<p><strong>Skewness</strong></p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="appendix-a.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="co"># own implementation</span></span>
+<span id="cb355-2"><a href="appendix-a.html#cb355-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((sample<span class="sc">-</span><span class="fu">mean</span>(sample))<span class="sc">^</span><span class="dv">3</span>) <span class="sc">/</span> ((<span class="fu">length</span>(sample)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sd</span>(sample)<span class="sc">^</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 0.01866</code></pre>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="appendix-a.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implementation in moments package</span></span>
+<span id="cb357-2"><a href="appendix-a.html#cb357-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(sample)</span></code></pre></div>
+<pre><code>## [1] 0.01869</code></pre>
+<p><strong>Kurtosis</strong></p>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="appendix-a.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="co"># own implementation</span></span>
+<span id="cb359-2"><a href="appendix-a.html#cb359-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((sample<span class="sc">-</span><span class="fu">mean</span>(sample))<span class="sc">^</span><span class="dv">4</span>) <span class="sc">/</span> ((<span class="fu">length</span>(sample)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sd</span>(sample)<span class="sc">^</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 1.884</code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="appendix-a.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implementation in moments package</span></span>
+<span id="cb361-2"><a href="appendix-a.html#cb361-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(sample)</span></code></pre></div>
+<pre><code>## [1] 1.889</code></pre>
+</div>
+</div>
+<div id="the-law-of-large-numbers" class="section level3" number="11.1.4">
+<h3><span class="header-section-number">A.1.4</span> The Law of Large Numbers</h3>
+<p>The Law of Large Numbers (LLN) is an important statistical property which essentially describes how the behavior of sample averages is related to sample size. Particularly, it states that the sample mean can come as close as we like to the mean of the population from which it is drawn by simply increasing the sample size. That is, the larger our randomly selected sample from a population, the closer is that sample’s mean to the mean of the population.</p>
+<p>Think of playing dice. Each time we roll a fair die, the result is either 1, 2, 3, 4, 5, or 6, whereby each possible outcome can occur with the same probability (1/6). In other words we randomly draw die-values. Thus we can expect that the average of the resulting die values is (1 + 2 + 3 + 4 + 5 + 6)/6 = 3.5.</p>
+<p>We can investigate this empirically: We roll a fair die once and record the result. We roll it again, and again we record the result. We keep rolling the die and recording results until we get 100 recorded results. Intuitively, we would expect to observe each possible die-value about equally often (given that the die is fair) because each time we roll the die, each possible value (1,2,..,6) is equally likely to be the result. And we would thus expect the average of the resulting die values to be around 3.5. However, just by chance it can obviously be the case that one value (say 5) occurs slightly more often than another value (say 1), leading to a sample mean slightly larger than 3.5. In this context, the LLN states that by increasing the number of times we are rolling the die, we will get closer and closer to 3.5. Now, let’s implement this experiment in R:</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="appendix-a.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first we define the potential values a die can take</span></span>
+<span id="cb363-2"><a href="appendix-a.html#cb363-2" aria-hidden="true" tabindex="-1"></a>dvalues <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span> <span class="co"># the : operator generates a regular sequence of numbers (from:to)</span></span>
+<span id="cb363-3"><a href="appendix-a.html#cb363-3" aria-hidden="true" tabindex="-1"></a>dvalues</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="appendix-a.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the size of the sample n (how often do we roll the die...)</span></span>
+<span id="cb365-2"><a href="appendix-a.html#cb365-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for a start, we only roll the die ten times</span></span>
+<span id="cb365-3"><a href="appendix-a.html#cb365-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb365-4"><a href="appendix-a.html#cb365-4" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random sample: &#39;roll the die n times and record each result&#39;</span></span>
+<span id="cb365-5"><a href="appendix-a.html#cb365-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="at">x =</span> dvalues, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb365-6"><a href="appendix-a.html#cb365-6" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the mean</span></span>
+<span id="cb365-7"><a href="appendix-a.html#cb365-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(results)</span></code></pre></div>
+<pre><code>## [1] 3.5</code></pre>
+<p>As you can see we are relatively close to 3.5, but not quite there. So let’s roll the die more often and calculate the mean of the resulting values again:</p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="appendix-a.html#cb367-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb367-2"><a href="appendix-a.html#cb367-2" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random sample: &#39;roll the die n times and record each result&#39;</span></span>
+<span id="cb367-3"><a href="appendix-a.html#cb367-3" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="at">x =</span> dvalues, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb367-4"><a href="appendix-a.html#cb367-4" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the mean</span></span>
+<span id="cb367-5"><a href="appendix-a.html#cb367-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(results)</span></code></pre></div>
+<pre><code>## [1] 3.75</code></pre>
+<p>We are already close to 3.5! Now let’s scale up these comparisons and show how the sample means are getting even closer to 3.5 when increasing the number of times we roll the die up to 10’000.</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="appendix-a.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Essentially, what we are doing here is repeating the experiment above many times, </span></span>
+<span id="cb369-2"><a href="appendix-a.html#cb369-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each time increasing n.</span></span>
+<span id="cb369-3"><a href="appendix-a.html#cb369-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define the set of sample sizes</span></span>
+<span id="cb369-4"><a href="appendix-a.html#cb369-4" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">10</span>, <span class="at">to =</span> <span class="dv">10000</span>, <span class="at">by =</span> <span class="dv">10</span>)</span>
+<span id="cb369-5"><a href="appendix-a.html#cb369-5" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate an empty list to record the results</span></span>
+<span id="cb369-6"><a href="appendix-a.html#cb369-6" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb369-7"><a href="appendix-a.html#cb369-7" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(means) <span class="ot">&lt;-</span> <span class="fu">length</span>(ns)</span>
+<span id="cb369-8"><a href="appendix-a.html#cb369-8" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each sample size: &#39;repeat the die experiment for each sample size&#39;</span></span>
+<span id="cb369-9"><a href="appendix-a.html#cb369-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(ns)) {</span>
+<span id="cb369-10"><a href="appendix-a.html#cb369-10" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb369-11"><a href="appendix-a.html#cb369-11" aria-hidden="true" tabindex="-1"></a>     means[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">sample</span>( <span class="at">x =</span> dvalues,</span>
+<span id="cb369-12"><a href="appendix-a.html#cb369-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size =</span> ns[i],</span>
+<span id="cb369-13"><a href="appendix-a.html#cb369-13" aria-hidden="true" tabindex="-1"></a>                                <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb369-14"><a href="appendix-a.html#cb369-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb369-15"><a href="appendix-a.html#cb369-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb369-16"><a href="appendix-a.html#cb369-16" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the result: plot sample means against sample size</span></span>
+<span id="cb369-17"><a href="appendix-a.html#cb369-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ns, <span class="fu">unlist</span>(means),</span>
+<span id="cb369-18"><a href="appendix-a.html#cb369-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sample Mean&quot;</span>,</span>
+<span id="cb369-19"><a href="appendix-a.html#cb369-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample Size&quot;</span>,</span>
+<span id="cb369-20"><a href="appendix-a.html#cb369-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb369-21"><a href="appendix-a.html#cb369-21" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> .<span class="dv">6</span>)</span>
+<span id="cb369-22"><a href="appendix-a.html#cb369-22" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">3.5</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/lln-1.svg" width="672" /></p>
+<p>We observe that with smaller sample sizes the sample means are broadly spread around the population mean of 3.5. However, the more we go to the right extreme of the x-axis (and thus the larger the sample size), the narrower the sample means are spread around the population mean.</p>
+</div>
+<div id="the-central-limit-theorem" class="section level3" number="11.1.5">
+<h3><span class="header-section-number">A.1.5</span> The Central Limit Theorem</h3>
+<p>The Central Limit Theorem (CLT) is an almost miraculous statistical property enabling us to test the statistical significance of a statistic such as the mean. In essence, the CLT states that as long as we have a large enough sample, the t-statistic (applied, e.g., to test whether the mean is equal to a particular value) is approximately standard normal distributed. This holds independently of how the underlying data is distributed.</p>
+<p>Consider the dice-play-example above. We might want to statistically test whether we are indeed playing with a fair die. In order to test that we would roll the die 100 times and record each resulting value. We would then compute the sample mean and standard deviation in order to assess how likely it was to observe the mean we observe if the population mean actually is 3.5 (thus our H0 would be pop_mean = 3.5, or in plain English ‘the die is fair’). However, the distribution of the resulting die values are not standard normal distributed. So how can we interpret the sample standard deviation and the sample mean in the context of our hypothesis?</p>
+<p>The simplest way to interpret these measures is by means of a <em>t-statistic</em>. A t-statistic for the sample mean under our working hypothesis that pop_mean = 3.5 is constructed as <code>t(3.5) = (sample_mean - 3.5) / (sample_sd/sqrt(n))</code>. Let’s illustrate this in R:</p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="appendix-a.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First we roll the die like above</span></span>
+<span id="cb370-2"><a href="appendix-a.html#cb370-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb370-3"><a href="appendix-a.html#cb370-3" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random sample: &#39;roll the die n times and record each result&#39;</span></span>
+<span id="cb370-4"><a href="appendix-a.html#cb370-4" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="at">x =</span> dvalues, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb370-5"><a href="appendix-a.html#cb370-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the mean</span></span>
+<span id="cb370-6"><a href="appendix-a.html#cb370-6" aria-hidden="true" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(results)</span>
+<span id="cb370-7"><a href="appendix-a.html#cb370-7" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the sample SD</span></span>
+<span id="cb370-8"><a href="appendix-a.html#cb370-8" aria-hidden="true" tabindex="-1"></a>sample_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(results)</span>
+<span id="cb370-9"><a href="appendix-a.html#cb370-9" aria-hidden="true" tabindex="-1"></a><span class="co"># estimated standard error of the mean</span></span>
+<span id="cb370-10"><a href="appendix-a.html#cb370-10" aria-hidden="true" tabindex="-1"></a>mean_se <span class="ot">&lt;-</span> sample_sd<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb370-11"><a href="appendix-a.html#cb370-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb370-12"><a href="appendix-a.html#cb370-12" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the t-statistic:</span></span>
+<span id="cb370-13"><a href="appendix-a.html#cb370-13" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> (sample_mean <span class="sc">-</span> <span class="fl">3.5</span>) <span class="sc">/</span> mean_se</span>
+<span id="cb370-14"><a href="appendix-a.html#cb370-14" aria-hidden="true" tabindex="-1"></a>t</span></code></pre></div>
+<pre><code>## [1] 0.3344</code></pre>
+<p>At this point you might wonder what the use of <code>t</code> is if the underlying data is not drawn from a normal distribution. In other words: what is the use of <code>t</code> if we cannot interpret it as a value that tells us how likely it is to observe this sample mean, given our null hypothesis? Well, actually we can. And here is where the magic of the CLT comes in: It turns out that there is a mathematical proof (i.e. the CLT) which states that the t-statistic itself can arbitrarily well be approximated by the standard normal distribution. This is true independent of the distribution of the underlying data in our sample! That is, if we have a large enough sample, we can simply compute the t-statistic and look up how likely it is to observe a value at least as large as t, given the null hypothesis is true (-&gt; the p-value):</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="appendix-a.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the p-value associated with the t-value calculated above</span></span>
+<span id="cb372-2"><a href="appendix-a.html#cb372-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(t))</span></code></pre></div>
+<pre><code>## [1] 0.738</code></pre>
+<p>In that case we could not reject the null hypothesis of a fair die. However, as pointed out above, the t-statistic is only asymptotically (meaning with very large samples) normally distributed. We might not want to trust this hypothesis test too much because we were using a sample of only 100 observations.</p>
+<p>Let’s turn back to R in order to illustrate the CLT at work. Similar to the illustration of the LLN above, we will repeatedly compute the t-statistic of our dice play experiment and for each trial increase the number of observations.</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="appendix-a.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the set of sample sizes</span></span>
+<span id="cb374-2"><a href="appendix-a.html#cb374-2" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">40</span>, <span class="dv">100</span>)</span>
+<span id="cb374-3"><a href="appendix-a.html#cb374-3" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate an empty list to record the results</span></span>
+<span id="cb374-4"><a href="appendix-a.html#cb374-4" aria-hidden="true" tabindex="-1"></a>ts <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb374-5"><a href="appendix-a.html#cb374-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ts) <span class="ot">&lt;-</span> <span class="fu">length</span>(ns)</span>
+<span id="cb374-6"><a href="appendix-a.html#cb374-6" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each sample size: &#39;repeat the die experiment for each sample size&#39;</span></span>
+<span id="cb374-7"><a href="appendix-a.html#cb374-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(ns)) {</span>
+<span id="cb374-8"><a href="appendix-a.html#cb374-8" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb374-9"><a href="appendix-a.html#cb374-9" aria-hidden="true" tabindex="-1"></a>     samples.i <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>, <span class="cf">function</span>(j) <span class="fu">sample</span>( <span class="at">x =</span> dvalues,</span>
+<span id="cb374-10"><a href="appendix-a.html#cb374-10" aria-hidden="true" tabindex="-1"></a>                                                       <span class="at">size =</span> ns[i],</span>
+<span id="cb374-11"><a href="appendix-a.html#cb374-11" aria-hidden="true" tabindex="-1"></a>                                                       <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb374-12"><a href="appendix-a.html#cb374-12" aria-hidden="true" tabindex="-1"></a>     ts[[i]] <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.i, <span class="cf">function</span>(x) (<span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fl">3.5</span>) <span class="sc">/</span> <span class="fu">sd</span>(x), <span class="at">MARGIN =</span> <span class="dv">2</span>)</span>
+<span id="cb374-13"><a href="appendix-a.html#cb374-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb374-14"><a href="appendix-a.html#cb374-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb374-15"><a href="appendix-a.html#cb374-15" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the result: plot the density for each sample size</span></span>
+<span id="cb374-16"><a href="appendix-a.html#cb374-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb374-17"><a href="appendix-a.html#cb374-17" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the density for each set of t values</span></span>
+<span id="cb374-18"><a href="appendix-a.html#cb374-18" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ts[[<span class="dv">1</span>]], <span class="at">main =</span> <span class="st">&quot;Sample size: 10&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;T-value&quot;</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/clt-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="appendix-a.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ts[[<span class="dv">2</span>]], <span class="at">main =</span> <span class="st">&quot;Sample size: 40&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;T-value&quot;</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/clt-2.svg" width="672" /></p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="appendix-a.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ts[[<span class="dv">3</span>]], <span class="at">main =</span> <span class="st">&quot;Sample size: 100&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;T-value&quot;</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/clt-3.svg" width="672" /></p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="appendix-a.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="co"># finally have a look at the actual standard normal distribution as a reference point</span></span>
+<span id="cb377-2"><a href="appendix-a.html#cb377-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cf">function</span>(t)<span class="fu">dnorm</span>(t), <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">main =</span> <span class="st">&quot;Normal density&quot;</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/clt-4.svg" width="672" /></p>
+<p>Note how the histogram is getting closer to a normal distribution with increasing sample size.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-b.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["datahandling.pdf", "datahandling.html", "datahandling.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
