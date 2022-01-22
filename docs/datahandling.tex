@@ -229,7 +229,7 @@
 
 \title{Data Handling}
 \author{Ulrich Matter}
-\date{2022-01-20}
+\date{2022-01-22}
 
 \begin{document}
 \maketitle
@@ -287,6 +287,595 @@ Lower computing costs, a stark decrease in storage costs for digital data, as we
 The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of \href{https://en.wikipedia.org/wiki/Data_science}{`Data Science'} as well as an increasing demand for `Data Scientists'. While nothing within Data Science is particularly new on its own, it is the combination of skills and insights from different fields (particularly Computer Science and Statistics) that has proven to be very productive in meeting new challenges posed by a data-driven economy. In that sense, Data Science is rather a craft than a scientific field. As such, it presupposes a more practical and broader understanding of the data than traditional Computer Science and Statistics from which Data Science borrows its methods. The skill set this course is focusing on can be described as `hacking skills', that is, the skills necessary for \emph{acquiring, cleaning, and manipulating} massive amounts of electronic data.
 
 Moreover, this course revisits and applies/integrates concepts learned in the introductory Statistics course (3,222), and will generally presuppose `substantive expertise' in undergraduate economics. Finally, the aim is to give you first practical insights into each part of the data science pipeline in the context of business and economics research.
+
+\hypertarget{programming-with-data}{%
+\chapter{Programming with Data}\label{programming-with-data}}
+
+\hypertarget{first-steps-with-r}{%
+\section[First steps with R]{\texorpdfstring{First steps with R\footnote{The following sections and examples are based on \citet{umatter_2018}.}}{First steps with R}}\label{first-steps-with-r}}
+
+Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier.\footnote{In fact, since R is an open source environment, you can directly look at already implemented programs in order to learn how they work.}
+
+\hypertarget{variables-and-vectors}{%
+\subsection{Variables and vectors}\label{variables-and-vectors}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# a simle integer vector}
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{33}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{40}\NormalTok{)}
+
+\CommentTok{\# give names to vector elements}
+\FunctionTok{names}\NormalTok{(a) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Andy"}\NormalTok{, }\StringTok{"Betty"}\NormalTok{, }\StringTok{"Claire"}\NormalTok{, }\StringTok{"Daniel"}\NormalTok{, }\StringTok{"Eva"}\NormalTok{)}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Andy  Betty Claire Daniel    Eva 
+##     10     22     33     22     40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# indexing either via number of vector element (start count with 1)}
+\CommentTok{\# or by element name}
+\NormalTok{a[}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Claire 
+##     33
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a[}\StringTok{"Claire"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Claire 
+##     33
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# inspect the object you are working with}
+\FunctionTok{class}\NormalTok{(a) }\CommentTok{\# returns the class(es) of the object}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(a) }\CommentTok{\# returns the structure of the object ("what is in variable a?")}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Named num [1:5] 10 22 33 22 40
+##  - attr(*, "names")= chr [1:5] "Andy" "Betty" "Claire" "Daniel" ...
+\end{verbatim}
+
+\hypertarget{math-operators}{%
+\subsection{Math operators}\label{math-operators}}
+
+R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# basic arithmetic }
+\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum\_result }\OtherTok{\textless{}{-}} \DecValTok{2}\SpecialCharTok{+}\DecValTok{2}
+\NormalTok{sum\_result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum\_result }\SpecialCharTok{{-}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4}\SpecialCharTok{*}\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{20}\SpecialCharTok{/}\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# order of operations}
+\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}\SpecialCharTok{*}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{5}\SpecialCharTok{+}\DecValTok{5}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\SpecialCharTok{+}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# work with variables}
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{20}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{a}\SpecialCharTok{/}\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# arithmetics with vectors}
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\NormalTok{a }\SpecialCharTok{*} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  2  8 12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{80}\NormalTok{)}
+\NormalTok{a }\SpecialCharTok{*}\NormalTok{ b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  10 160 480
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\SpecialCharTok{+}\NormalTok{ b }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11 44 86
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# other common math operators and functions}
+\DecValTok{4}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{(}\DecValTok{4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{log}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6931
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 22026
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{log}\NormalTok{(}\FunctionTok{exp}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# special numbers}
+\CommentTok{\# Euler\textquotesingle{}s number}
+\FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.718
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Pi}
+\NormalTok{pi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.142
+\end{verbatim}
+
+\hypertarget{basic-programming-concepts-in-r}{%
+\section{Basic programming concepts in R}\label{basic-programming-concepts-in-r}}
+
+\hypertarget{loops}{%
+\subsection{Loops}\label{loops}}
+
+A loop is typically a sequence of statements that is executed a specific number of times. How often the code `inside' the loop is executed depends on a clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called `for-loop'. If the number of iterations is not clearly known before executing the code, we typically write a so-called `while-loop'. The following subsections illustrate both of these concepts in R.
+
+\hypertarget{for-loops}{%
+\subsection{For-loops}\label{for-loops}}
+
+In simple terms, a for-loop tells the computer to execute a sequence of commands `for each case in a set of n cases'. The flow-chart in Figure \ref{fig:for} illustrates the concept.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.4\linewidth]{img/forloop} 
+
+}
+
+\caption{For-loop illustration.}\label{fig:for}
+\end{figure}
+
+
+
+For example, a for-loop could be used to sum up each of the elements in a numeric vector of fix length (thus the number of iterations is clearly defined). In plain English, the for-loop would state something like: ``Start with 0 as the current total value, for each of the elements in the vector add the value of this element to the current total value.'' Note how this logically implies that the loop will `stop' once the value of the last element in the vector is added to the total. Let's illustrate this in R. Take the numeric vector \texttt{c(1,2,3,4,5)}. A for loop to sum up all elements can be implemented as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# vector to be summed up}
+\NormalTok{numbers }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{4.8}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\CommentTok{\# initiate total}
+\NormalTok{total\_sum }\OtherTok{\textless{}{-}} \DecValTok{0}
+\CommentTok{\# number of iterations}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(numbers)}
+\CommentTok{\# start loop}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{     total\_sum }\OtherTok{\textless{}{-}}\NormalTok{ total\_sum }\SpecialCharTok{+}\NormalTok{ numbers[i]}
+\NormalTok{\}}
+
+\CommentTok{\# check result}
+\NormalTok{total\_sum}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# compare with result of sum() function}
+\FunctionTok{sum}\NormalTok{(numbers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16.4
+\end{verbatim}
+
+\hypertarget{nested-for-loops}{%
+\subsubsection{Nested for-loops}\label{nested-for-loops}}
+
+In some situations a simple for-loop might not be sufficient. Within one sequence of commands there might be another sequence of commands that also has to be executed for a number of times each time the first sequence of commands is executed. In such a case we speak of a `nested for-loop'. We can illustrate this easily by extending the example of the numeric vector above to a matrix for which we want to sum up the values in each column. Building on the loop implemented above, we would say `for each column \texttt{j} of a given numeric matrix, execute the for-loop defined above'.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# matrix to be summed up}
+\NormalTok{numbers\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{4}\NormalTok{)}
+\NormalTok{numbers\_matrix}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# number of iterations for outer loop}
+\NormalTok{m }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(numbers\_matrix)}
+\CommentTok{\# number of iterations for inner loop}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(numbers\_matrix)}
+\CommentTok{\# start outer loop (loop over columns of matrix)}
+\ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{m) \{}
+     \CommentTok{\# start inner loop}
+     \CommentTok{\# initiate total}
+\NormalTok{     total\_sum }\OtherTok{\textless{}{-}} \DecValTok{0}
+     \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{          total\_sum }\OtherTok{\textless{}{-}}\NormalTok{ total\_sum }\SpecialCharTok{+}\NormalTok{ numbers\_matrix[i, j]}
+\NormalTok{          \}}
+     \FunctionTok{print}\NormalTok{(total\_sum)}
+\NormalTok{     \}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15
+## [1] 40
+## [1] 65
+## [1] 90
+\end{verbatim}
+
+\hypertarget{while-loop}{%
+\subsubsection{While-loop}\label{while-loop}}
+
+In a situation where a program has to repeatedly run a sequence of commands but we don't know in advance how many iterations we need in order to reach the intended goal, a while-loop can help. In simple terms, a while loop keeps executing a sequence of commands as long as a certain logical statement is true. The flow chart in Figure \ref{fig:while} illustrates this point.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{img/while_loop_own} 
+
+}
+
+\caption{While-loop illustration.}\label{fig:while}
+\end{figure}
+
+
+
+For example, a while-loop in plain English could state something like ``start with 0 as the total, add 1.12 to the total until the total is larger than 20.'' We can implement this in R as follows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# initiate starting value}
+\NormalTok{total }\OtherTok{\textless{}{-}} \DecValTok{0}
+\CommentTok{\# start loop}
+\ControlFlowTok{while}\NormalTok{ (total }\SpecialCharTok{\textless{}=} \DecValTok{20}\NormalTok{) \{}
+\NormalTok{     total }\OtherTok{\textless{}{-}}\NormalTok{ total }\SpecialCharTok{+} \FloatTok{1.12}
+\NormalTok{\}}
+
+\CommentTok{\# check the result}
+\NormalTok{total}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20.16
+\end{verbatim}
+
+\hypertarget{booleans-and-logical-statements}{%
+\subsection{Booleans and logical statements}\label{booleans-and-logical-statements}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\SpecialCharTok{+}\DecValTok{2} \SpecialCharTok{==} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{3}\SpecialCharTok{+}\DecValTok{3} \SpecialCharTok{==} \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{condition }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
+\ControlFlowTok{if}\NormalTok{ (condition) \{}
+     \FunctionTok{print}\NormalTok{(}\StringTok{"This is true!"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+     \FunctionTok{print}\NormalTok{(}\StringTok{"This is false!"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "This is true!"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{condition }\OtherTok{\textless{}{-}} \ConstantTok{FALSE}
+\ControlFlowTok{if}\NormalTok{ (condition) \{}
+     \FunctionTok{print}\NormalTok{(}\StringTok{"This is true!"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+     \FunctionTok{print}\NormalTok{(}\StringTok{"This is false!"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "This is false!"
+\end{verbatim}
+
+\hypertarget{r-functions}{%
+\subsection{R functions}\label{r-functions}}
+
+R programs heavily rely on functions. Conceptually, `functions' in R are very similar to what we know as `functions' in math (i.e., \(f:X \rightarrow Y\)). A function can thus, e.g., take a variable \(X\) as input and provide value \(Y\) as output. The actual calculation of \(Y\) based on \(X\) can be something as simple as \(2\times X = Y\). But it could also be a very complex algorithm or an operation that has not directly anything to do with numbers and arithmetic.\footnote{Of course, on the very low level, everything that happens in a microprocessor can in the end be expressed in some formal way using math. However, the point here is, that at the level we work with R, a function could simply process different text strings (i.e., stack them together). Thus for us as programmers, R functions do not necessarily have to do anything with arithmetic and numbers but could serve all kind of purposes, including the parsing of HTML code, etc.}
+
+In R---and many other programming languages---functions take `parameter values' as input, process those values according to a predefined program, and `return' the result. For example, a function could take a numeric vector as input and return the sum of all the individual numeric values in the input vector.
+
+When we open RStudio, all basic functions are already loaded automatically. This means we can directly call them from the R-Console or by executing an R-Script. As R is made for data analysis and statistics, the basic functions loaded with R cover many aspects of tasks related to working with and analyzing data. Besides these basic functions, thousands of additional functions covering all kind of topics related to data analysis can be loaded additionally by installing the respective R-packages (\texttt{install.packages("PACKAGE-NAME")}), and then loading the packages with \texttt{library(PACKAGE-NAME)}. In addition, it is straightforward to define our own functions.
+
+\hypertarget{tutorial-compute-the-mean}{%
+\subsubsection{Tutorial: Compute the mean}\label{tutorial-compute-the-mean}}
+
+In order to illustrate the point of how functions work in R and how we can write our own functions in R, the following code-example illustrates how to implement a function that computes the mean/average value, given a numeric vector.
+
+First, we initiate a simple numeric vector which we then use as an example to test the function. Whenever you implement a function, it is very useful to first define a simple example of an input for which you know what the output should be.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# a simle integer vector, for which we want to compute the Mean}
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{5.5}\NormalTok{, }\FloatTok{7.5}\NormalTok{)}
+\CommentTok{\# desired functionality and output:}
+\CommentTok{\# my\_mean(a)}
+\CommentTok{\# 6.5}
+\end{Highlighting}
+\end{Shaded}
+
+In this example, we would thus expect the output to be \texttt{6.5}. Later, we will compare the output of our function with this in order to check whether our function works as desired.
+
+In addition to defining a simple example and the desired output, it makes sense to also think about \emph{how} the function is expected to produce this output. When implementing functions related to statistics (such as the mean), it usually makes sense to have a look at the mathematical definition:
+
+\(\bar{x} = \frac{1}{n}\left (\sum_{i=1}^n{x_i}\right ) = \frac{x_1+x_2+\cdots +x_n}{n}\).
+
+Now, we can start thinking about how to implement the function based on built-in R functions. From looking at the mathematical definition of the mean (\(\bar{x}\)), we recognize that there are two main components to computing the mean:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sum_{i=1}^n{x_i}\): the sum of all the elements in vector \(x\)
+\item
+  \(n\): the number of elements in vector \(x\).
+\end{itemize}
+
+Once we know how to get these two components, computing the mean is straightforward. In R there are two built-in functions that deliver exactly these two components:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{sum()} returns the sum of all the values in i ts arguments (i.e., if \texttt{x} is a numeric vector, \texttt{sum(x)} returns the sum of all elements in \texttt{x}).
+\item
+  \texttt{length()} returns the length of a given vector.
+\end{itemize}
+
+With the following short line of code we thus get the mean of the elements in vector \texttt{a}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(a)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.5
+\end{verbatim}
+
+All that is left to do is to pack all this into the function body of our newly defined \texttt{my\_mean()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# define our own function to compute the mean, given a numeric vector}
+\NormalTok{my\_mean }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+\NormalTok{     x\_bar }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(x) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(x)}
+     \FunctionTok{return}\NormalTok{(x\_bar)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can test it based on our example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# test it}
+\FunctionTok{my\_mean}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.5
+\end{verbatim}
+
+Moreover, we can test it by comparing it with the built-in \texttt{mean()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{)}
+\FunctionTok{my\_mean}\NormalTok{(b) }\CommentTok{\# our own implementation}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(b) }\CommentTok{\# the built\_in function}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.667
+\end{verbatim}
 
 \hypertarget{data}{%
 \chapter{Data}\label{data}}
@@ -1146,7 +1735,7 @@ From simply looking at the data we can make a best guess which observations belo
 Issues with complex/hierarchical data (with several observation types), intuitive human readability (self-describing), and efficiency in storage as well as transfer are all of great importance in the Web. In course of the development of the Internet several data formats have been put forward to address these issues. Here, we discuss the two most prominent of these formats: \href{https://en.wikipedia.org/wiki/XML}{Extensible Markup Language (XML)} and \href{https://en.wikipedia.org/wiki/JSON}{JavaScript Object Notation (JSON)}.
 
 \hypertarget{deciphering-xml}{%
-\subsection{Deciphering XML}\label{deciphering-xml}}
+\section{Deciphering XML}\label{deciphering-xml}}
 
 Before going into more technical details, let's try to figure out the basic logic behind the XML format by simply looking at some raw example data. For this, we turn to the Point Nemo case study in \citep{murrell_2009}. The following code block shows the upper part of the data set downloaded from NASA's LAS server (here in a CSV-type format).
 
@@ -1416,8 +2005,8 @@ As in the case of CSV-like formats, there are several parsers in R that we can u
 ##   ..$ type: chr "male"
 \end{verbatim}
 
-\hypertarget{html-computer-code-meets-data}{%
-\section{HTML: Computer code meets data}\label{html-computer-code-meets-data}}
+\hypertarget{html}{%
+\section{HTML}\label{html}}
 
 Recall the data processing example in which we investigated how a webpage can be downloded, processed, and stored via the R command line. The code constituting a webpage is written in \href{https://en.wikipedia.org/wiki/HTML}{HyperText Markup Language (HTML)}, designed to be read in a web browser. Thus, HTML is predominantly designed for visual display in browsers, not for storing data. HTML is used to annotate content and define the hierarchy of content in a document in order to tell the browser how to display (`render') this document on the computer screen. Interestingly for us, its structure is very close to that of XML. However, the tags that can be used are strictly pre-defined and are aimed at explaining the structure of a website.
 
@@ -1518,7 +2107,7 @@ And we can check if everything worked out well by having a look at the first lin
 ## [3] "<head>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 ## [4] "<meta charset=\"UTF-8\"/>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 ## [5] "<title>Economy of Switzerland - Wikipedia</title>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-## [6] "<script>document.documentElement.className=\"client-js\";RLCONF={\"wgBreakFrames\":false,\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgRequestId\":\"0ea2dc81-78cf-46a2-b079-972053adcb7a\",\"wgCSPNonce\":false,\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Economy_of_Switzerland\",\"wgTitle\":\"Economy of Switzerland\",\"wgCurRevisionId\":1065230304,\"wgRevisionId\":1065230304,\"wgArticleId\":27465,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"CS1 maint: archived copy as title\",\"CS1 German-language sources (de)\",\"Articles with German-language sources (de)\",\"Webarchive template wayback links\",\"CS1 errors: generic title\",\"Articles with French-language sources (fr)\",\"Articles with short description\","
+## [6] "<script>document.documentElement.className=\"client-js\";RLCONF={\"wgBreakFrames\":false,\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgRequestId\":\"f7d5f289-8051-4101-81e1-c50fae79b88c\",\"wgCSPNonce\":false,\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Economy_of_Switzerland\",\"wgTitle\":\"Economy of Switzerland\",\"wgCurRevisionId\":1065230304,\"wgRevisionId\":1065230304,\"wgArticleId\":27465,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"CS1 maint: archived copy as title\",\"CS1 German-language sources (de)\",\"Articles with German-language sources (de)\",\"Webarchive template wayback links\",\"CS1 errors: generic title\",\"Articles with French-language sources (fr)\",\"Articles with short description\","
 \end{verbatim}
 
 The next thing we do is to look at how we can filter the webpage for certain information. For example, we search in the source code the line that contains the part of the webpage with the table, showing data on the Swiss GDP:
@@ -1619,595 +2208,6 @@ Now we can easily separate the data/text from the html code. For example, we can
 ## 17  2016                     659 0.98 Francs         
 ## 18  2017                     668 1.01 Francs         
 ## 19  2018                     694 1.00 Francs
-\end{verbatim}
-
-\hypertarget{programming-with-data}{%
-\chapter{Programming with Data}\label{programming-with-data}}
-
-\hypertarget{first-steps-with-r}{%
-\section[First steps with R]{\texorpdfstring{First steps with R\footnote{The following sections and examples are based on \citet{umatter_2018}.}}{First steps with R}}\label{first-steps-with-r}}
-
-Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier.\footnote{In fact, since R is an open source environment, you can directly look at already implemented programs in order to learn how they work.}
-
-\hypertarget{variables-and-vectors}{%
-\subsection{Variables and vectors}\label{variables-and-vectors}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# a simle integer vector}
-\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{33}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{40}\NormalTok{)}
-
-\CommentTok{\# give names to vector elements}
-\FunctionTok{names}\NormalTok{(a) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Andy"}\NormalTok{, }\StringTok{"Betty"}\NormalTok{, }\StringTok{"Claire"}\NormalTok{, }\StringTok{"Daniel"}\NormalTok{, }\StringTok{"Eva"}\NormalTok{)}
-\NormalTok{a}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   Andy  Betty Claire Daniel    Eva 
-##     10     22     33     22     40
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# indexing either via number of vector element (start count with 1)}
-\CommentTok{\# or by element name}
-\NormalTok{a[}\DecValTok{3}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Claire 
-##     33
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{a[}\StringTok{"Claire"}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Claire 
-##     33
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# inspect the object you are working with}
-\FunctionTok{class}\NormalTok{(a) }\CommentTok{\# returns the class(es) of the object}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "numeric"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{str}\NormalTok{(a) }\CommentTok{\# returns the structure of the object ("what is in variable a?")}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  Named num [1:5] 10 22 33 22 40
-##  - attr(*, "names")= chr [1:5] "Andy" "Betty" "Claire" "Daniel" ...
-\end{verbatim}
-
-\hypertarget{math-operators}{%
-\subsection{Math operators}\label{math-operators}}
-
-R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# basic arithmetic }
-\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sum\_result }\OtherTok{\textless{}{-}} \DecValTok{2}\SpecialCharTok{+}\DecValTok{2}
-\NormalTok{sum\_result}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sum\_result }\SpecialCharTok{{-}}\DecValTok{2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{4}\SpecialCharTok{*}\DecValTok{5}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 20
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{20}\SpecialCharTok{/}\DecValTok{5}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# order of operations}
-\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}\SpecialCharTok{*}\DecValTok{3}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 8
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{(}\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\DecValTok{3}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 12
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{(}\DecValTok{5}\SpecialCharTok{+}\DecValTok{5}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\SpecialCharTok{+}\DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# work with variables}
-\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{20}
-\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{10}
-\NormalTok{a}\SpecialCharTok{/}\NormalTok{b}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# arithmetics with vectors}
-\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{)}
-\NormalTok{a }\SpecialCharTok{*} \DecValTok{2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1]  2  8 12
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{80}\NormalTok{)}
-\NormalTok{a }\SpecialCharTok{*}\NormalTok{ b}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1]  10 160 480
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{a }\SpecialCharTok{+}\NormalTok{ b }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 11 44 86
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# other common math operators and functions}
-\DecValTok{4}\SpecialCharTok{\^{}}\DecValTok{2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 16
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sqrt}\NormalTok{(}\DecValTok{4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{log}\NormalTok{(}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.6931
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{exp}\NormalTok{(}\DecValTok{10}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 22026
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{log}\NormalTok{(}\FunctionTok{exp}\NormalTok{(}\DecValTok{10}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 10
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# special numbers}
-\CommentTok{\# Euler\textquotesingle{}s number}
-\FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 2.718
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Pi}
-\NormalTok{pi}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 3.142
-\end{verbatim}
-
-\hypertarget{basic-programming-concepts-in-r}{%
-\section{Basic programming concepts in R}\label{basic-programming-concepts-in-r}}
-
-\hypertarget{loops}{%
-\subsection{Loops}\label{loops}}
-
-A loop is typically a sequence of statements that is executed a specific number of times. How often the code `inside' the loop is executed depends on a clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called `for-loop'. If the number of iterations is not clearly known before executing the code, we typically write a so-called `while-loop'. The following subsections illustrate both of these concepts in R.
-
-\hypertarget{for-loops}{%
-\subsection{For-loops}\label{for-loops}}
-
-In simple terms, a for-loop tells the computer to execute a sequence of commands `for each case in a set of n cases'. The flow-chart in Figure \ref{fig:for} illustrates the concept.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.4\linewidth]{img/forloop} 
-
-}
-
-\caption{For-loop illustration.}\label{fig:for}
-\end{figure}
-
-
-
-For example, a for-loop could be used to sum up each of the elements in a numeric vector of fix length (thus the number of iterations is clearly defined). In plain English, the for-loop would state something like: ``Start with 0 as the current total value, for each of the elements in the vector add the value of this element to the current total value.'' Note how this logically implies that the loop will `stop' once the value of the last element in the vector is added to the total. Let's illustrate this in R. Take the numeric vector \texttt{c(1,2,3,4,5)}. A for loop to sum up all elements can be implemented as follows:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# vector to be summed up}
-\NormalTok{numbers }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{4.8}\NormalTok{,}\DecValTok{5}\NormalTok{)}
-\CommentTok{\# initiate total}
-\NormalTok{total\_sum }\OtherTok{\textless{}{-}} \DecValTok{0}
-\CommentTok{\# number of iterations}
-\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(numbers)}
-\CommentTok{\# start loop}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
-\NormalTok{     total\_sum }\OtherTok{\textless{}{-}}\NormalTok{ total\_sum }\SpecialCharTok{+}\NormalTok{ numbers[i]}
-\NormalTok{\}}
-
-\CommentTok{\# check result}
-\NormalTok{total\_sum}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 16.4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# compare with result of sum() function}
-\FunctionTok{sum}\NormalTok{(numbers)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 16.4
-\end{verbatim}
-
-\hypertarget{nested-for-loops}{%
-\subsubsection{Nested for-loops}\label{nested-for-loops}}
-
-In some situations a simple for-loop might not be sufficient. Within one sequence of commands there might be another sequence of commands that also has to be executed for a number of times each time the first sequence of commands is executed. In such a case we speak of a `nested for-loop'. We can illustrate this easily by extending the example of the numeric vector above to a matrix for which we want to sum up the values in each column. Building on the loop implemented above, we would say `for each column \texttt{j} of a given numeric matrix, execute the for-loop defined above'.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# matrix to be summed up}
-\NormalTok{numbers\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{4}\NormalTok{)}
-\NormalTok{numbers\_matrix}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      [,1] [,2] [,3] [,4]
-## [1,]    1    6   11   16
-## [2,]    2    7   12   17
-## [3,]    3    8   13   18
-## [4,]    4    9   14   19
-## [5,]    5   10   15   20
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# number of iterations for outer loop}
-\NormalTok{m }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(numbers\_matrix)}
-\CommentTok{\# number of iterations for inner loop}
-\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(numbers\_matrix)}
-\CommentTok{\# start outer loop (loop over columns of matrix)}
-\ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{m) \{}
-     \CommentTok{\# start inner loop}
-     \CommentTok{\# initiate total}
-\NormalTok{     total\_sum }\OtherTok{\textless{}{-}} \DecValTok{0}
-     \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
-\NormalTok{          total\_sum }\OtherTok{\textless{}{-}}\NormalTok{ total\_sum }\SpecialCharTok{+}\NormalTok{ numbers\_matrix[i, j]}
-\NormalTok{          \}}
-     \FunctionTok{print}\NormalTok{(total\_sum)}
-\NormalTok{     \}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 15
-## [1] 40
-## [1] 65
-## [1] 90
-\end{verbatim}
-
-\hypertarget{while-loop}{%
-\subsubsection{While-loop}\label{while-loop}}
-
-In a situation where a program has to repeatedly run a sequence of commands but we don't know in advance how many iterations we need in order to reach the intended goal, a while-loop can help. In simple terms, a while loop keeps executing a sequence of commands as long as a certain logical statement is true. The flow chart in Figure \ref{fig:while} illustrates this point.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{img/while_loop_own} 
-
-}
-
-\caption{While-loop illustration.}\label{fig:while}
-\end{figure}
-
-
-
-For example, a while-loop in plain English could state something like ``start with 0 as the total, add 1.12 to the total until the total is larger than 20.'' We can implement this in R as follows.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# initiate starting value}
-\NormalTok{total }\OtherTok{\textless{}{-}} \DecValTok{0}
-\CommentTok{\# start loop}
-\ControlFlowTok{while}\NormalTok{ (total }\SpecialCharTok{\textless{}=} \DecValTok{20}\NormalTok{) \{}
-\NormalTok{     total }\OtherTok{\textless{}{-}}\NormalTok{ total }\SpecialCharTok{+} \FloatTok{1.12}
-\NormalTok{\}}
-
-\CommentTok{\# check the result}
-\NormalTok{total}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 20.16
-\end{verbatim}
-
-\hypertarget{booleans-and-logical-statements}{%
-\subsection{Booleans and logical statements}\label{booleans-and-logical-statements}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{2}\SpecialCharTok{+}\DecValTok{2} \SpecialCharTok{==} \DecValTok{4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] TRUE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{3}\SpecialCharTok{+}\DecValTok{3} \SpecialCharTok{==} \DecValTok{7}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] FALSE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{condition }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
-\ControlFlowTok{if}\NormalTok{ (condition) \{}
-     \FunctionTok{print}\NormalTok{(}\StringTok{"This is true!"}\NormalTok{)}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
-     \FunctionTok{print}\NormalTok{(}\StringTok{"This is false!"}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "This is true!"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{condition }\OtherTok{\textless{}{-}} \ConstantTok{FALSE}
-\ControlFlowTok{if}\NormalTok{ (condition) \{}
-     \FunctionTok{print}\NormalTok{(}\StringTok{"This is true!"}\NormalTok{)}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
-     \FunctionTok{print}\NormalTok{(}\StringTok{"This is false!"}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "This is false!"
-\end{verbatim}
-
-\hypertarget{r-functions}{%
-\subsection{R functions}\label{r-functions}}
-
-R programs heavily rely on functions. Conceptually, `functions' in R are very similar to what we know as `functions' in math (i.e., \(f:X \rightarrow Y\)). A function can thus, e.g., take a variable \(X\) as input and provide value \(Y\) as output. The actual calculation of \(Y\) based on \(X\) can be something as simple as \(2\times X = Y\). But it could also be a very complex algorithm or an operation that has not directly anything to do with numbers and arithmetic.\footnote{Of course, on the very low level, everything that happens in a microprocessor can in the end be expressed in some formal way using math. However, the point here is, that at the level we work with R, a function could simply process different text strings (i.e., stack them together). Thus for us as programmers, R functions do not necessarily have to do anything with arithmetic and numbers but could serve all kind of purposes, including the parsing of HTML code, etc.}
-
-In R---and many other programming languages---functions take `parameter values' as input, process those values according to a predefined program, and `return' the result. For example, a function could take a numeric vector as input and return the sum of all the individual numeric values in the input vector.
-
-When we open RStudio, all basic functions are already loaded automatically. This means we can directly call them from the R-Console or by executing an R-Script. As R is made for data analysis and statistics, the basic functions loaded with R cover many aspects of tasks related to working with and analyzing data. Besides these basic functions, thousands of additional functions covering all kind of topics related to data analysis can be loaded additionally by installing the respective R-packages (\texttt{install.packages("PACKAGE-NAME")}), and then loading the packages with \texttt{library(PACKAGE-NAME)}. In addition, it is straightforward to define our own functions.
-
-\hypertarget{tutorial-compute-the-mean}{%
-\subsubsection{Tutorial: Compute the mean}\label{tutorial-compute-the-mean}}
-
-In order to illustrate the point of how functions work in R and how we can write our own functions in R, the following code-example illustrates how to implement a function that computes the mean/average value, given a numeric vector.
-
-First, we initiate a simple numeric vector which we then use as an example to test the function. Whenever you implement a function, it is very useful to first define a simple example of an input for which you know what the output should be.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# a simle integer vector, for which we want to compute the Mean}
-\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{5.5}\NormalTok{, }\FloatTok{7.5}\NormalTok{)}
-\CommentTok{\# desired functionality and output:}
-\CommentTok{\# my\_mean(a)}
-\CommentTok{\# 6.5}
-\end{Highlighting}
-\end{Shaded}
-
-In this example, we would thus expect the output to be \texttt{6.5}. Later, we will compare the output of our function with this in order to check whether our function works as desired.
-
-In addition to defining a simple example and the desired output, it makes sense to also think about \emph{how} the function is expected to produce this output. When implementing functions related to statistics (such as the mean), it usually makes sense to have a look at the mathematical definition:
-
-\(\bar{x} = \frac{1}{n}\left (\sum_{i=1}^n{x_i}\right ) = \frac{x_1+x_2+\cdots +x_n}{n}\).
-
-Now, we can start thinking about how to implement the function based on built-in R functions. From looking at the mathematical definition of the mean (\(\bar{x}\)), we recognize that there are two main components to computing the mean:
-
-\begin{itemize}
-\tightlist
-\item
-  \(\sum_{i=1}^n{x_i}\): the sum of all the elements in vector \(x\)
-\item
-  \(n\): the number of elements in vector \(x\).
-\end{itemize}
-
-Once we know how to get these two components, computing the mean is straightforward. In R there are two built-in functions that deliver exactly these two components:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{sum()} returns the sum of all the values in i ts arguments (i.e., if \texttt{x} is a numeric vector, \texttt{sum(x)} returns the sum of all elements in \texttt{x}).
-\item
-  \texttt{length()} returns the length of a given vector.
-\end{itemize}
-
-With the following short line of code we thus get the mean of the elements in vector \texttt{a}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sum}\NormalTok{(a)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(a)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 6.5
-\end{verbatim}
-
-All that is left to do is to pack all this into the function body of our newly defined \texttt{my\_mean()} function:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# define our own function to compute the mean, given a numeric vector}
-\NormalTok{my\_mean }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
-\NormalTok{     x\_bar }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(x) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(x)}
-     \FunctionTok{return}\NormalTok{(x\_bar)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-Now we can test it based on our example:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# test it}
-\FunctionTok{my\_mean}\NormalTok{(a)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 6.5
-\end{verbatim}
-
-Moreover, we can test it by comparing it with the built-in \texttt{mean()} function:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{)}
-\FunctionTok{my\_mean}\NormalTok{(b) }\CommentTok{\# our own implementation}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4.667
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{mean}\NormalTok{(b) }\CommentTok{\# the built\_in function}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4.667
 \end{verbatim}
 
 \hypertarget{data-sources-data-gathering-data-import}{%
