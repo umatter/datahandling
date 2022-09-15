@@ -9,6 +9,9 @@
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
+    .svglite text {
+      white-space: pre;
+    }
   ]]></style>
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
@@ -130,7 +133,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMzMuNjB8MTg5Ljk5fDUuNDh8MjIuNjk=)'>
-<text x='111.80' y='17.29' text-anchor='middle' style='font-size: 8.80px; fill: #1A1A1A; font-family: Arimo;' textLength='35.68px' lengthAdjust='spacingAndGlyphs'>Catholic</text>
+<text x='111.80' y='17.29' text-anchor='middle' style='font-size: 8.80px;fill: #1A1A1A; font-family: "Arimo";' textLength='35.68px' lengthAdjust='spacingAndGlyphs'>Catholic</text>
 </g>
 <g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwyMDEuNjA=)'>
 </g>
@@ -140,28 +143,28 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMTk1LjQ3fDM1MS44N3w1LjQ4fDIyLjY5)'>
-<text x='273.67' y='17.29' text-anchor='middle' style='font-size: 8.80px; fill: #1A1A1A; font-family: Arimo;' textLength='45.27px' lengthAdjust='spacingAndGlyphs'>Protestant</text>
+<text x='273.67' y='17.29' text-anchor='middle' style='font-size: 8.80px;fill: #1A1A1A; font-family: "Arimo";' textLength='45.27px' lengthAdjust='spacingAndGlyphs'>Protestant</text>
 </g>
 <g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwyMDEuNjA=)'>
-<text x='37.97' y='180.91' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='5.59px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='92.66' y='180.91' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='147.34' y='180.91' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>40</text>
-<text x='199.85' y='180.91' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='5.59px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='254.53' y='180.91' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='309.22' y='180.91' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>40</text>
-<text x='28.67' y='145.58' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='28.67' y='116.26' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='28.67' y='86.95' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>30</text>
-<text x='28.67' y='57.63' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>40</text>
-<text x='28.67' y='28.31' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>50</text>
-<text x='192.73' y='193.70' text-anchor='middle' style='font-size: 11.00px; font-family: Arimo;' textLength='54.76px' lengthAdjust='spacingAndGlyphs'>Education</text>
-<text transform='translate(13.50,96.13) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: Arimo;' textLength='68.75px' lengthAdjust='spacingAndGlyphs'>Examination</text>
+<text x='37.97' y='180.91' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='5.59px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='92.66' y='180.91' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='147.34' y='180.91' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='199.85' y='180.91' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='5.59px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='254.53' y='180.91' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='309.22' y='180.91' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='28.67' y='145.58' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='28.67' y='116.26' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='28.67' y='86.95' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>30</text>
+<text x='28.67' y='57.63' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='28.67' y='28.31' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>50</text>
+<text x='192.73' y='193.70' text-anchor='middle' style='font-size: 11.00px; font-family: "Arimo";' textLength='54.76px' lengthAdjust='spacingAndGlyphs'>Education</text>
+<text transform='translate(13.50,96.13) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Arimo";' textLength='68.75px' lengthAdjust='spacingAndGlyphs'>Examination</text>
 <image width='17.28' height='86.40' x='368.31' y='60.83' preserveAspectRatio='none' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAEsCAYAAAACUNnVAAAAmElEQVQ4ja2UQRLDMAgDd3hk/tnX5agcknFaCoa0vnkMCEnGsL12GQhDYDpPwoDrpBFlRDWi/9Wu6AHC9FkLYLrzlhD3oJ3mDvRHRYy7IC8A7bCK8gpWKYDzeQVArDcDyD2YAnSofZvzaOA6Q7Oahp/dmRuVTQ0xU5TGP2o8Waool1obVuv1q8qP9xPvg633XlGLDtfIhNUBcBeA5ss0BXMAAAAASUVORK5CYII='/>
-<text x='390.48' y='132.00' style='font-size: 8.80px; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='390.48' y='112.54' style='font-size: 8.80px; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>40</text>
-<text x='390.48' y='93.08' style='font-size: 8.80px; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>60</text>
-<text x='390.48' y='73.62' style='font-size: 8.80px; font-family: Arimo;' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>80</text>
-<text x='368.31' y='54.20' style='font-size: 11.00px; font-family: Arimo;' textLength='60.49px' lengthAdjust='spacingAndGlyphs'>Agriculture</text>
+<text x='390.48' y='132.00' style='font-size: 8.80px; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='390.48' y='112.54' style='font-size: 8.80px; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='390.48' y='93.08' style='font-size: 8.80px; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>60</text>
+<text x='390.48' y='73.62' style='font-size: 8.80px; font-family: "Arimo";' textLength='11.19px' lengthAdjust='spacingAndGlyphs'>80</text>
+<text x='368.31' y='54.20' style='font-size: 11.00px; font-family: "Arimo";' textLength='60.49px' lengthAdjust='spacingAndGlyphs'>Agriculture</text>
 <line x1='368.31' y1='128.79' x2='371.76' y2='128.79' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <line x1='368.31' y1='109.33' x2='371.76' y2='109.33' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
 <line x1='368.31' y1='89.87' x2='371.76' y2='89.87' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />

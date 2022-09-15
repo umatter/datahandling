@@ -1,0 +1,208 @@
+
+
+# Data Analysis: First Steps
+
+In the first part of this chapter, we look at some key functions for applied data analysis in R. At this point, we have already implemented collecting/importing and cleaning the raw data. The analysis part can be thought of as a collection of tasks with the aim of making sense of the data. In practice, this can be explorative (discovering interesting patterns in the data) or inductive (testing of a specific hypothesis). Moreover, it typically involves functions for actual statistical analysis and various functions to select, combine, filter, and aggregate data. Similar to the topic of data cleaning/preparation, covering all aspects of applied data analysis with R goes well beyond the scope of one chapter. The aim is thus to give a practical overview of some of the basic concepts and their corresponding R functions (here from `tidyverse`).  
+
+## Merging datasets
+
+The following two data sets contain data on persons' characteristics and their consumption spending. Both are cleaned datasets. But, for analysis purposes, we have to combine the two datasets. There are several ways to do this in R, but most commonly (for `data.frames` as well as `tibbles`), we can use the `merge()`-function.
+
+```{r message=FALSE, warning=FALSE}
+# load packages
+library(tidyverse)
+
+# initiate data frame on persons' spending
+df_c <- data.frame(id = c(1:3,1:3),
+                   money_spent= c(1000, 2000, 6000, 1500, 3000, 5500),
+                   currency = c("CHF", "CHF", "USD", "EUR", "CHF", "USD"),
+                   year=c(2017,2017,2017,2018,2018,2018))
+df_c
+
+# initiate data frame on persons' characteristics
+df_p <- data.frame(id = 1:4,
+                   first_name = c("Anna", "Betty", "Claire", "Diane"),
+                   profession = c("Economist", "Data Scientist",
+                                  "Data Scientist", "Economist"))
+df_p
+```
+
+Our aim is to compute the average spending by profession. Therefore, we want to link `money_spent` with `profession`. Both datasets contain a unique identifier `id`, which we can use to link the observations via `merge()`.
+
+```{r}
+df_merged <- merge(df_p, df_c, by="id")
+df_merged
+```
+
+Note how only the exact matches are merged. The observation of `"Diane"` is not part of the merged data frame because there is no corresponding row in `df_c` with her spending information. If for some reason, we would like to have all persons in the merged dataset, we can specify the `merge()`-call accordingly:
+
+
+```{r}
+df_merged2 <- merge(df_p, df_c, by="id", all = TRUE)
+df_merged2
+```
+
+## Selecting subsets
+
+For our analysis's next steps, we do not need to have all columns. Via the `select()`-function provided in `tidyverse` we can easily select the columns of interest
+
+
+```{r}
+df_selection <- select(df_merged, id, year, money_spent, currency)
+df_selection
+```
+
+
+### Filtering datasets
+
+In the next step, we want to select only observations with specific characteristics. Say we want to select only observations from 2018. Again there are several ways to do this in R, but the most comfortable way is to use the `filter()` function provided in `tidyverse`.
+
+```{r}
+filter(df_selection, year == 2018)
+```
+
+We can use several filtering conditions simultaneously:
+
+```{r}
+filter(df_selection, year == 2018, money_spent < 5000, currency=="EUR")
+```
+
+### Mutating datasets
+
+Before we compute aggregate statistics based on our selected dataset, we have to deal with the fact that the `money_spent`-variable is not tidy. It describes each observation's characteristic, but it is measured in different units (here, different currencies) across some of these observations. If the aim was to have a perfectly tidy dataset, we could address the issue with `spread()`. However, in this context, it could be more helpful to add an additional variable/column with a normalized amount of money spent. That is, we want to have every value converted to one currency (given a certain exchange rate). In order to do so, we use the `mutate()` function (again provided in `tidyverse`).
+
+First, we look up the USD/CHF and EUR/CHF exchange rates and add those as a variable (CHF/CHF exchange rates are equal to 1, of course).
+
+```{r}
+exchange_rates <- data.frame(exchange_rate= c(0.9, 1, 1.2),
+                             currency=c("USD", "CHF", "EUR"), stringsAsFactors = FALSE)
+df_selection <- merge(df_selection, exchange_rates, by="currency")
+```
+
+Now we can define an additional variable with the money spent in CHF via `mutate()`:
+
+```{r}
+df_mutated <- mutate(df_selection, money_spent_chf = money_spent * exchange_rate)
+df_mutated
+```
+
+
+### Aggregation and summary statistics
+
+Now we can start analyzing the dataset. Typically, the first step of analyzing a dataset is to get an overview by computing some summary statistics. This helps to better understand the dataset at hand. Key summary statistics of the variables of interest are the mean, standard deviation, median, and a number of observations. Together, they give a first idea of how the variables of interest are distributed.
+
+As you know from previous chapters, R has several built-in functions that help us do this. In practice, these basic functions are often combined with functions implemented particularly for this step of the analysis, such as `summarise()` provided in `tidyverse`.
+
+As the first output in our report, we want to show the key characteristics of the spending data in one table.
+
+```{r}
+summarise(df_mutated,
+          mean = mean(money_spent_chf),
+          standard_deviation = sd(money_spent_chf),
+          median = median(money_spent_chf),
+          N = n())
+```
+
+Moreover, we can compute the same statistics grouped by certain observation characteristics. For example, we can compute the same summary statistics per year of observation.
+
+```{r message=FALSE, warning=FALSE}
+by_year <- group_by(df_mutated, year)
+summarise(by_year,
+          mean = mean(money_spent_chf),
+          standard_deviation = sd(money_spent_chf),
+          median = median(money_spent_chf),
+          N = n())
+```
+
+Alternatively, to the more user-friendly (but less flexible) `summarise` function, we can use lower-level functions to compute aggregate statistics provided in the basic R distribution. A good example of such a function is `sapply()`. In simple terms, `sapply()` takes a list as input and applies a function to the content of each element in this list (here: compute a statistic for each column). To illustrate this point, we load the already familiar `swiss` dataset.
+
+```{r}
+# load data
+data("swiss")
+```
+
+Now we want to compute the mean for each variable in this dataset. Technically speaking, a data frame is a list, where each list element is a column of the same length. Thus, we can use `sapply()` to 'apply' the function `mean()` to each of the columns in `swiss`.
+
+```{r}
+sapply(swiss, mean)
+```
+
+By default, `sapply()` returns a vector or a matrix.^[The related function `lapply()`, returns a list (see `lapply(swiss, mean)`).] We can get a similar result by using `summarise()`. However, we would have to explicitly mention which variables we want as input.
+
+```{r}
+summarise(swiss,
+          Fertility = mean(Fertility),
+          Agriculture = mean(Agriculture)) # etc.
+```
+
+
+## Tutorial: Analise messy Excel sheets
+
+The following tutorial is a (substantially) shortened and simplified version of Ista Zahn and Daina Bouquin's ["Cleaning up messy data tutorial" (Harvard Datafest 2017)](https://rawgit.com/izahn/R-data-cleaning/master/dataCleaning.html). The tutorial aims to clean up an Excel sheet provided by the UK Office of National Statistics that provides data on the most popular baby names in England and Wales in 2015. The dataset is stored in `data/2015boysnamesfinal.xlsx`
+
+### Preparatory steps
+
+
+```{r echo=FALSE }
+## SET UP -------------------
+# load packages
+library(tidyverse)
+library(readxl)
+
+# fix variables
+INPUT_PATH <- "data/2015boysnamesfinal.xlsx"
+```
+
+
+
+```{r eval= FALSE }
+## SET UP -------------------
+# load packages
+library(tidyverse)
+library(readxl)
+
+# fix variables
+INPUT_PATH <- "data/2015boysnamesfinal.xlsx"
+```
+
+Before diving into the data import and cleaning, it is helpful to first open the file in Excel. We notice a couple of things there: first, there are several sheets in this Excel file. For this exercise, we only rely on the sheet called "Table 1". Second, in this sheet, we notice intuitively some potential problems with importing this dataset due to the way the spreadsheet is organized. The actual data entries only start on row 7. These two issues can be considered when importing the data with `read_excel()`.
+
+```{r}
+## LOAD/INSPECT DATA -----------------
+
+# import the excel sheet
+boys <- read_excel(INPUT_PATH, col_names = TRUE,
+                   sheet = "Table 1", # the name of the sheet to be loaded into R
+                   skip = 6 # skip the first 6 rows of the original sheet,
+                   )
+# inspect
+boys
+```
+
+
+Note that by default, `read_excel()` "repairs" the column names of imported datasets to ensure all columns have unique names. We do not need to worry about the automatically assigned column names. However, some of the columns are not needed for analytics purposes. In addition, we note that some rows are empty (contain `NA` values). In the next step we *select* only those columns needed and *filter* incomplete observations out.
+
+```{r}
+# FILTER/CLEAN ---------------------------
+
+# select columns
+boys <- select(boys, Rank...1, Name...2, Count...3, Rank...7, Name...8, Count...9)
+# filter rows
+boys <-  filter(boys, !is.na(Rank...1))
+```
+
+Finally, we re-arrange the data by stacking them in a three-column format.
+
+```{r}
+
+# stack columns
+boys_long <- bind_rows(boys[,1:3], boys[,4:6])
+
+# inspect result
+boys_long
+```
+
+
+
+
+

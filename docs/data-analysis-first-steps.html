@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Data Analysis: First Steps | Data Handling</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and empirical economic research." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Data Analysis: First Steps | Data Handling" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://umatter.github.io/datahandling/" />
   <meta property="og:image" content="https://umatter.github.io/datahandling/img/new_abacus.jpg" />
   <meta property="og:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
   <meta name="github-repo" content="umatter/datahandling" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-22" />
+<meta name="date" content="2022-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="data-preparation.html"/>
 <link rel="next" href="basic-econometrics-in-r.html"/>
-<script src="libs/header-attrs/header-attrs.js"></script>
-<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -118,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style/style.css" type="text/css" />
 </head>
 
@@ -138,17 +162,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>2</b> Programming with Data</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.1</b> First steps with R</a>
+<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#why-learn-to-program-to-handle-data"><i class="fa fa-check"></i><b>2.1</b> Why learn to program to handle data?</a></li>
+<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#why-r"><i class="fa fa-check"></i><b>2.2</b> Why <em>R</em>?</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="programming-with-data.html"><a href="programming-with-data.html#variables-and-vectors"><i class="fa fa-check"></i><b>2.1.1</b> Variables and vectors</a></li>
-<li class="chapter" data-level="2.1.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.1.2</b> Math operators</a></li>
+<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-data-language"><i class="fa fa-check"></i><b>2.2.1</b> The ‘data language’</a></li>
+<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#high-level-language-relatively-easy-to-learn"><i class="fa fa-check"></i><b>2.2.2</b> High-level language, relatively easy to learn</a></li>
+<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#free-open-source-large-community"><i class="fa fa-check"></i><b>2.2.3</b> Free, open source, large community</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.2</b> Basic programming concepts in R</a>
+<li class="chapter" data-level="2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#rrstudio-overview"><i class="fa fa-check"></i><b>2.3</b> <em>R</em>/RStudio overview</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.2.1</b> Loops</a></li>
-<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.2.2</b> For-loops</a></li>
-<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.2.3</b> Booleans and logical statements</a></li>
-<li class="chapter" data-level="2.2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.2.4</b> R functions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-r-console"><i class="fa fa-check"></i><b>2.3.1</b> The <em>R</em>-Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="programming-with-data.html"><a href="programming-with-data.html#r-scripts"><i class="fa fa-check"></i><b>2.3.2</b> <em>R</em>-Scripts</a></li>
+<li class="chapter" data-level="2.3.3" data-path="programming-with-data.html"><a href="programming-with-data.html#r-environment"><i class="fa fa-check"></i><b>2.3.3</b> <em>R</em> Environment</a></li>
+<li class="chapter" data-level="2.3.4" data-path="programming-with-data.html"><a href="programming-with-data.html#file-browser"><i class="fa fa-check"></i><b>2.3.4</b> File Browser</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.4</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="programming-with-data.html"><a href="programming-with-data.html#values-vectors-and-variables"><i class="fa fa-check"></i><b>2.4.1</b> Values, Vectors, and Variables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.4.2</b> Math operators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.5</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.5.1</b> Loops</a></li>
+<li class="chapter" data-level="2.5.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.5.2</b> For-loops</a></li>
+<li class="chapter" data-level="2.5.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.5.3</b> Booleans and logical statements</a></li>
+<li class="chapter" data-level="2.5.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.5.4</b> R functions</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
@@ -200,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>6.3.1</b> Loading built-in datasets</a></li>
 <li class="chapter" data-level="6.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>6.3.2</b> Importing rectangular data from text-files</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parsing-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parsing with <code>readr</code></a>
+<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parse-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parse with <code>readr</code></a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>6.4.1</b> Basic usage of <code>readr</code> functions</a></li>
 <li class="chapter" data-level="6.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>6.4.2</b> Parsing and data types</a></li>
@@ -246,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>9</b> Basic Econometrics in R</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modelling"><i class="fa fa-check"></i><b>9.1</b> Statistical modelling</a>
+<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modeling"><i class="fa fa-check"></i><b>9.1</b> Statistical modeling</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>9.1.1</b> Illustration with pseudo-data</a></li>
 </ul></li>
@@ -263,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>10.1</b> Data display</a></li>
-<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualisation-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualisation with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualization with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>10.3</b> ‘Grammar of Graphics’</a>
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>10.3.1</b> <code>ggplot2</code> basics</a></li>
@@ -272,12 +310,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>10.3.4</b> Geometries (~ type of plot)</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>10.4</b> Dynamic documents</a></li>
-<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualisation"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualisation</a></li>
-<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.6</b> Background and aim</a>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualization"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualization</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.6.1</b> Data import and preparation</a></li>
-<li class="chapter" data-level="10.6.2" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.6.2</b> Plot</a></li>
-<li class="chapter" data-level="10.6.3" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.6.3</b> Cosmetics: theme</a></li>
+<li class="chapter" data-level="10.5.1" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.5.1</b> Background and aim</a></li>
+<li class="chapter" data-level="10.5.2" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.5.2</b> Data import and preparation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.5.3</b> Plot</a></li>
+<li class="chapter" data-level="10.5.4" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.5.4</b> Cosmetics: theme</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -292,8 +330,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
 
@@ -314,21 +350,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-analysis-first-steps" class="section level1" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Data Analysis: First Steps</h1>
-<p>In the first part of this lecture we take a look at some key functions for applied data analysis in R. At this point, we have already implemented the collecting/importing and cleaning of the raw data. The analysis part can be thought of as a collection of tasks with the aim of making sense of the data. In practice, this can be explorative (discovering interesting patterns in the data) or inductive (testing of a specific hypothesis). Moreover it typically involves both functions for actual statistical analysis as well as various functions to select, combine, filter, and aggregate data. Similar to the topic of data cleaning/preparation, covering all aspects of applied data analysis with R goes well beyond the scope of one lecture. The aim is thus to give a practical overview of some of the basic concepts and their corresponding R functions (here from <code>tidyverse</code>).</p>
-<div id="merging-datasets" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Merging datasets</h2>
-<p>The following two data sets contain data on persons’ characteristics as well as their consumption spending. Both are cleaned datasets. But, for analysis purposes we have to combine the two datasets in one. There are several ways to do this in R but most commonly (for <code>data.frames</code> as well as <code>tibbles</code>) we can use the <code>merge()</code>-function.</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="data-analysis-first-steps.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb244-2"><a href="data-analysis-first-steps.html#cb244-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb244-3"><a href="data-analysis-first-steps.html#cb244-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb244-4"><a href="data-analysis-first-steps.html#cb244-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate data frame on persons&#39; personal spending</span></span>
-<span id="cb244-5"><a href="data-analysis-first-steps.html#cb244-5" aria-hidden="true" tabindex="-1"></a>df_c <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
-<span id="cb244-6"><a href="data-analysis-first-steps.html#cb244-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">money_spent=</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">6000</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">5500</span>),</span>
-<span id="cb244-7"><a href="data-analysis-first-steps.html#cb244-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">currency =</span> <span class="fu">c</span>(<span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;USD&quot;</span>, <span class="st">&quot;EUR&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;USD&quot;</span>),</span>
-<span id="cb244-8"><a href="data-analysis-first-steps.html#cb244-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">year=</span><span class="fu">c</span>(<span class="dv">2017</span>,<span class="dv">2017</span>,<span class="dv">2017</span>,<span class="dv">2018</span>,<span class="dv">2018</span>,<span class="dv">2018</span>))</span>
-<span id="cb244-9"><a href="data-analysis-first-steps.html#cb244-9" aria-hidden="true" tabindex="-1"></a>df_c</span></code></pre></div>
+<div id="data-analysis-first-steps" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Data Analysis: First Steps<a href="data-analysis-first-steps.html#data-analysis-first-steps" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the first part of this chapter, we look at some key functions for applied data analysis in R. At this point, we have already implemented collecting/importing and cleaning the raw data. The analysis part can be thought of as a collection of tasks with the aim of making sense of the data. In practice, this can be explorative (discovering interesting patterns in the data) or inductive (testing of a specific hypothesis). Moreover, it typically involves functions for actual statistical analysis and various functions to select, combine, filter, and aggregate data. Similar to the topic of data cleaning/preparation, covering all aspects of applied data analysis with R goes well beyond the scope of one chapter. The aim is thus to give a practical overview of some of the basic concepts and their corresponding R functions (here from <code>tidyverse</code>).</p>
+<div id="merging-datasets" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Merging datasets<a href="data-analysis-first-steps.html#merging-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following two data sets contain data on persons’ characteristics and their consumption spending. Both are cleaned datasets. But, for analysis purposes, we have to combine the two datasets. There are several ways to do this in R, but most commonly (for <code>data.frames</code> as well as <code>tibbles</code>), we can use the <code>merge()</code>-function.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-analysis-first-steps.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb250-2"><a href="data-analysis-first-steps.html#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb250-3"><a href="data-analysis-first-steps.html#cb250-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb250-4"><a href="data-analysis-first-steps.html#cb250-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate data frame on persons&#39; spending</span></span>
+<span id="cb250-5"><a href="data-analysis-first-steps.html#cb250-5" aria-hidden="true" tabindex="-1"></a>df_c <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
+<span id="cb250-6"><a href="data-analysis-first-steps.html#cb250-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">money_spent=</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">6000</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">5500</span>),</span>
+<span id="cb250-7"><a href="data-analysis-first-steps.html#cb250-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">currency =</span> <span class="fu">c</span>(<span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;USD&quot;</span>, <span class="st">&quot;EUR&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;USD&quot;</span>),</span>
+<span id="cb250-8"><a href="data-analysis-first-steps.html#cb250-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">year=</span><span class="fu">c</span>(<span class="dv">2017</span>,<span class="dv">2017</span>,<span class="dv">2017</span>,<span class="dv">2018</span>,<span class="dv">2018</span>,<span class="dv">2018</span>))</span>
+<span id="cb250-9"><a href="data-analysis-first-steps.html#cb250-9" aria-hidden="true" tabindex="-1"></a>df_c</span></code></pre></div>
 <pre><code>##   id money_spent currency year
 ## 1  1        1000      CHF 2017
 ## 2  2        2000      CHF 2017
@@ -336,20 +372,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4  1        1500      EUR 2018
 ## 5  2        3000      CHF 2018
 ## 6  3        5500      USD 2018</code></pre>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="data-analysis-first-steps.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate data frame on persons&#39; characteristics</span></span>
-<span id="cb246-2"><a href="data-analysis-first-steps.html#cb246-2" aria-hidden="true" tabindex="-1"></a>df_p <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
-<span id="cb246-3"><a href="data-analysis-first-steps.html#cb246-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;Anna&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Diane&quot;</span>),</span>
-<span id="cb246-4"><a href="data-analysis-first-steps.html#cb246-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">profession =</span> <span class="fu">c</span>(<span class="st">&quot;Economist&quot;</span>, <span class="st">&quot;Data Scientist&quot;</span>,</span>
-<span id="cb246-5"><a href="data-analysis-first-steps.html#cb246-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">&quot;Data Scientist&quot;</span>, <span class="st">&quot;Economist&quot;</span>))</span>
-<span id="cb246-6"><a href="data-analysis-first-steps.html#cb246-6" aria-hidden="true" tabindex="-1"></a>df_p</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="data-analysis-first-steps.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate data frame on persons&#39; characteristics</span></span>
+<span id="cb252-2"><a href="data-analysis-first-steps.html#cb252-2" aria-hidden="true" tabindex="-1"></a>df_p <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb252-3"><a href="data-analysis-first-steps.html#cb252-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;Anna&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Diane&quot;</span>),</span>
+<span id="cb252-4"><a href="data-analysis-first-steps.html#cb252-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">profession =</span> <span class="fu">c</span>(<span class="st">&quot;Economist&quot;</span>, <span class="st">&quot;Data Scientist&quot;</span>,</span>
+<span id="cb252-5"><a href="data-analysis-first-steps.html#cb252-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">&quot;Data Scientist&quot;</span>, <span class="st">&quot;Economist&quot;</span>))</span>
+<span id="cb252-6"><a href="data-analysis-first-steps.html#cb252-6" aria-hidden="true" tabindex="-1"></a>df_p</span></code></pre></div>
 <pre><code>##   id first_name     profession
 ## 1  1       Anna      Economist
 ## 2  2      Betty Data Scientist
 ## 3  3     Claire Data Scientist
 ## 4  4      Diane      Economist</code></pre>
-<p>Our aim is to compute the average spending by profession. Therefore, we want to link <code>money_spent</code> with <code>profession</code>. Both datasets contain a unique identifier <code>id</code> which we can use to link the observations via <code>merge()</code>.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="data-analysis-first-steps.html#cb248-1" aria-hidden="true" tabindex="-1"></a>df_merged <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>)</span>
-<span id="cb248-2"><a href="data-analysis-first-steps.html#cb248-2" aria-hidden="true" tabindex="-1"></a>df_merged</span></code></pre></div>
+<p>Our aim is to compute the average spending by profession. Therefore, we want to link <code>money_spent</code> with <code>profession</code>. Both datasets contain a unique identifier <code>id</code>, which we can use to link the observations via <code>merge()</code>.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="data-analysis-first-steps.html#cb254-1" aria-hidden="true" tabindex="-1"></a>df_merged <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>)</span>
+<span id="cb254-2"><a href="data-analysis-first-steps.html#cb254-2" aria-hidden="true" tabindex="-1"></a>df_merged</span></code></pre></div>
 <pre><code>##   id first_name     profession money_spent currency
 ## 1  1       Anna      Economist        1000      CHF
 ## 2  1       Anna      Economist        1500      EUR
@@ -364,9 +400,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 2018
 ## 5 2017
 ## 6 2018</code></pre>
-<p>Note how only the exact matches are merged. The observation of <code>"Diane"</code> is not part of the merged data frame because there is no corresponding row in <code>df_c</code> with her spending information. If for some reason we would like to have all persons in the merged dataset, we can specify the <code>merge()</code>-call accordingly:</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-analysis-first-steps.html#cb250-1" aria-hidden="true" tabindex="-1"></a>df_merged2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb250-2"><a href="data-analysis-first-steps.html#cb250-2" aria-hidden="true" tabindex="-1"></a>df_merged2</span></code></pre></div>
+<p>Note how only the exact matches are merged. The observation of <code>"Diane"</code> is not part of the merged data frame because there is no corresponding row in <code>df_c</code> with her spending information. If for some reason, we would like to have all persons in the merged dataset, we can specify the <code>merge()</code>-call accordingly:</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="data-analysis-first-steps.html#cb256-1" aria-hidden="true" tabindex="-1"></a>df_merged2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb256-2"><a href="data-analysis-first-steps.html#cb256-2" aria-hidden="true" tabindex="-1"></a>df_merged2</span></code></pre></div>
 <pre><code>##   id first_name     profession money_spent currency
 ## 1  1       Anna      Economist        1000      CHF
 ## 2  1       Anna      Economist        1500      EUR
@@ -384,11 +420,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 2018
 ## 7   NA</code></pre>
 </div>
-<div id="selecting-subsets" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Selecting subsets</h2>
-<p>For the next steps of our analysis, we actually do not need to have all columns. Via the <code>select()</code>-function provided in <code>tidyverse</code> we can easily select the columns of interest</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="data-analysis-first-steps.html#cb252-1" aria-hidden="true" tabindex="-1"></a>df_selection <span class="ot">&lt;-</span> <span class="fu">select</span>(df_merged, id, year, money_spent, currency)</span>
-<span id="cb252-2"><a href="data-analysis-first-steps.html#cb252-2" aria-hidden="true" tabindex="-1"></a>df_selection</span></code></pre></div>
+<div id="selecting-subsets" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Selecting subsets<a href="data-analysis-first-steps.html#selecting-subsets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For our analysis’s next steps, we do not need to have all columns. Via the <code>select()</code>-function provided in <code>tidyverse</code> we can easily select the columns of interest</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="data-analysis-first-steps.html#cb258-1" aria-hidden="true" tabindex="-1"></a>df_selection <span class="ot">&lt;-</span> <span class="fu">select</span>(df_merged, id, year, money_spent, currency)</span>
+<span id="cb258-2"><a href="data-analysis-first-steps.html#cb258-2" aria-hidden="true" tabindex="-1"></a>df_selection</span></code></pre></div>
 <pre><code>##   id year money_spent currency
 ## 1  1 2017        1000      CHF
 ## 2  1 2018        1500      EUR
@@ -396,29 +432,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4  2 2018        3000      CHF
 ## 5  3 2017        6000      USD
 ## 6  3 2018        5500      USD</code></pre>
-<div id="filtering-datasets" class="section level3" number="8.2.1">
-<h3><span class="header-section-number">8.2.1</span> Filtering datasets</h3>
-<p>In a next step, we want to select only observations with specific characteristics. Say, we want to select only observations from 2018. Again there are several ways to do this in R but a most comfortable way is to use the <code>filter()</code> function provided in <code>tidyverse</code>.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="data-analysis-first-steps.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_selection, year <span class="sc">==</span> <span class="dv">2018</span>)</span></code></pre></div>
+<div id="filtering-datasets" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Filtering datasets<a href="data-analysis-first-steps.html#filtering-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the next step, we want to select only observations with specific characteristics. Say we want to select only observations from 2018. Again there are several ways to do this in R, but the most comfortable way is to use the <code>filter()</code> function provided in <code>tidyverse</code>.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="data-analysis-first-steps.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_selection, year <span class="sc">==</span> <span class="dv">2018</span>)</span></code></pre></div>
 <pre><code>##   id year money_spent currency
 ## 1  1 2018        1500      EUR
 ## 2  2 2018        3000      CHF
 ## 3  3 2018        5500      USD</code></pre>
 <p>We can use several filtering conditions simultaneously:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="data-analysis-first-steps.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_selection, year <span class="sc">==</span> <span class="dv">2018</span>, money_spent <span class="sc">&lt;</span> <span class="dv">5000</span>, currency<span class="sc">==</span><span class="st">&quot;EUR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="data-analysis-first-steps.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_selection, year <span class="sc">==</span> <span class="dv">2018</span>, money_spent <span class="sc">&lt;</span> <span class="dv">5000</span>, currency<span class="sc">==</span><span class="st">&quot;EUR&quot;</span>)</span></code></pre></div>
 <pre><code>##   id year money_spent currency
 ## 1  1 2018        1500      EUR</code></pre>
 </div>
-<div id="mutating-datasets" class="section level3" number="8.2.2">
-<h3><span class="header-section-number">8.2.2</span> Mutating datasets</h3>
-<p>Before we compute aggregate statistics based on our selected dataset, we have to deal with the fact that the <code>money_spent</code>-variable is not really tidy. It does describe a characteristic of each observation but it is measured in different units (here, different currencies) across some of these observations. If the aim was to have a perfectly tidy dataset, we could address the issue with <code>spread()</code>. However, in this context it could be more helpful to add an additional variable/column with a normalized amount of money spent. That is, we want to have every value converted to one currency (given a certain exchange rate). In order to do so, we use the <code>mutate()</code> function (again provided in <code>tidyverse</code>).</p>
+<div id="mutating-datasets" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Mutating datasets<a href="data-analysis-first-steps.html#mutating-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we compute aggregate statistics based on our selected dataset, we have to deal with the fact that the <code>money_spent</code>-variable is not tidy. It describes each observation’s characteristic, but it is measured in different units (here, different currencies) across some of these observations. If the aim was to have a perfectly tidy dataset, we could address the issue with <code>spread()</code>. However, in this context, it could be more helpful to add an additional variable/column with a normalized amount of money spent. That is, we want to have every value converted to one currency (given a certain exchange rate). In order to do so, we use the <code>mutate()</code> function (again provided in <code>tidyverse</code>).</p>
 <p>First, we look up the USD/CHF and EUR/CHF exchange rates and add those as a variable (CHF/CHF exchange rates are equal to 1, of course).</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="data-analysis-first-steps.html#cb258-1" aria-hidden="true" tabindex="-1"></a>exchange_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">exchange_rate=</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="dv">1</span>, <span class="fl">1.2</span>),</span>
-<span id="cb258-2"><a href="data-analysis-first-steps.html#cb258-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">currency=</span><span class="fu">c</span>(<span class="st">&quot;USD&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;EUR&quot;</span>), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb258-3"><a href="data-analysis-first-steps.html#cb258-3" aria-hidden="true" tabindex="-1"></a>df_selection <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_selection, exchange_rates, <span class="at">by=</span><span class="st">&quot;currency&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="data-analysis-first-steps.html#cb264-1" aria-hidden="true" tabindex="-1"></a>exchange_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">exchange_rate=</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="dv">1</span>, <span class="fl">1.2</span>),</span>
+<span id="cb264-2"><a href="data-analysis-first-steps.html#cb264-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">currency=</span><span class="fu">c</span>(<span class="st">&quot;USD&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;EUR&quot;</span>), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb264-3"><a href="data-analysis-first-steps.html#cb264-3" aria-hidden="true" tabindex="-1"></a>df_selection <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_selection, exchange_rates, <span class="at">by=</span><span class="st">&quot;currency&quot;</span>)</span></code></pre></div>
 <p>Now we can define an additional variable with the money spent in CHF via <code>mutate()</code>:</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="data-analysis-first-steps.html#cb259-1" aria-hidden="true" tabindex="-1"></a>df_mutated <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df_selection, <span class="at">money_spent_chf =</span> money_spent <span class="sc">*</span> exchange_rate)</span>
-<span id="cb259-2"><a href="data-analysis-first-steps.html#cb259-2" aria-hidden="true" tabindex="-1"></a>df_mutated</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-analysis-first-steps.html#cb265-1" aria-hidden="true" tabindex="-1"></a>df_mutated <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df_selection, <span class="at">money_spent_chf =</span> money_spent <span class="sc">*</span> exchange_rate)</span>
+<span id="cb265-2"><a href="data-analysis-first-steps.html#cb265-2" aria-hidden="true" tabindex="-1"></a>df_mutated</span></code></pre></div>
 <pre><code>##   currency id year money_spent exchange_rate
 ## 1      CHF  1 2017        1000           1.0
 ## 2      CHF  2 2017        2000           1.0
@@ -434,114 +470,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5            5400
 ## 6            4950</code></pre>
 </div>
-<div id="aggregation-and-summary-statistics" class="section level3" number="8.2.3">
-<h3><span class="header-section-number">8.2.3</span> Aggregation and summary statistics</h3>
-<p>Now we can start analyzing the dataset. Quite typically, the first step of analyzing a dataset is to get an overview by computing some summary statistics. This helps to better understand the dataset at hand. Key summary statistics of the variables of interest are the mean, standard deviation, median, and number of observations. Together, they give a first idea of how the variables of interest are distributed.</p>
-<p>As you know from previous lectures, R has several built-in functions that help us do this. In practice, these basic functions are often combined with functions implemented particularly for this step of the analysis, such as <code>summarise()</code> provided in <code>tidyverse</code>.</p>
-<p>As a first output in our report we want to show the key characteristics of the spending data in one table.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-analysis-first-steps.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df_mutated, </span>
-<span id="cb261-2"><a href="data-analysis-first-steps.html#cb261-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(money_spent_chf),</span>
-<span id="cb261-3"><a href="data-analysis-first-steps.html#cb261-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">standard_deviation =</span> <span class="fu">sd</span>(money_spent_chf),</span>
-<span id="cb261-4"><a href="data-analysis-first-steps.html#cb261-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">median =</span> <span class="fu">median</span>(money_spent_chf),</span>
-<span id="cb261-5"><a href="data-analysis-first-steps.html#cb261-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div id="aggregation-and-summary-statistics" class="section level3 hasAnchor" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Aggregation and summary statistics<a href="data-analysis-first-steps.html#aggregation-and-summary-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now we can start analyzing the dataset. Typically, the first step of analyzing a dataset is to get an overview by computing some summary statistics. This helps to better understand the dataset at hand. Key summary statistics of the variables of interest are the mean, standard deviation, median, and a number of observations. Together, they give a first idea of how the variables of interest are distributed.</p>
+<p>As you know from previous chapters, R has several built-in functions that help us do this. In practice, these basic functions are often combined with functions implemented particularly for this step of the analysis, such as <code>summarise()</code> provided in <code>tidyverse</code>.</p>
+<p>As the first output in our report, we want to show the key characteristics of the spending data in one table.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-analysis-first-steps.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df_mutated,</span>
+<span id="cb267-2"><a href="data-analysis-first-steps.html#cb267-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(money_spent_chf),</span>
+<span id="cb267-3"><a href="data-analysis-first-steps.html#cb267-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">standard_deviation =</span> <span class="fu">sd</span>(money_spent_chf),</span>
+<span id="cb267-4"><a href="data-analysis-first-steps.html#cb267-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">median =</span> <span class="fu">median</span>(money_spent_chf),</span>
+<span id="cb267-5"><a href="data-analysis-first-steps.html#cb267-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
 <pre><code>##   mean standard_deviation median N
 ## 1 3025               1789   2500 6</code></pre>
-<p>Moreover we can compute the same statistics grouped by certain observation characteristics. For example, we can compute the same summary statistics per year of observation.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="data-analysis-first-steps.html#cb263-1" aria-hidden="true" tabindex="-1"></a>by_year <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df_mutated, year)</span>
-<span id="cb263-2"><a href="data-analysis-first-steps.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_year, </span>
-<span id="cb263-3"><a href="data-analysis-first-steps.html#cb263-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(money_spent_chf),</span>
-<span id="cb263-4"><a href="data-analysis-first-steps.html#cb263-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">standard_deviation =</span> <span class="fu">sd</span>(money_spent_chf),</span>
-<span id="cb263-5"><a href="data-analysis-first-steps.html#cb263-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">median =</span> <span class="fu">median</span>(money_spent_chf),</span>
-<span id="cb263-6"><a href="data-analysis-first-steps.html#cb263-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 5
+<p>Moreover, we can compute the same statistics grouped by certain observation characteristics. For example, we can compute the same summary statistics per year of observation.</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-analysis-first-steps.html#cb269-1" aria-hidden="true" tabindex="-1"></a>by_year <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df_mutated, year)</span>
+<span id="cb269-2"><a href="data-analysis-first-steps.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_year,</span>
+<span id="cb269-3"><a href="data-analysis-first-steps.html#cb269-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(money_spent_chf),</span>
+<span id="cb269-4"><a href="data-analysis-first-steps.html#cb269-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">standard_deviation =</span> <span class="fu">sd</span>(money_spent_chf),</span>
+<span id="cb269-5"><a href="data-analysis-first-steps.html#cb269-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">median =</span> <span class="fu">median</span>(money_spent_chf),</span>
+<span id="cb269-6"><a href="data-analysis-first-steps.html#cb269-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
 ##    year  mean standard_deviation median     N
 ##   &lt;dbl&gt; &lt;dbl&gt;              &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
 ## 1  2017  2800              2307.   2000     3
 ## 2  2018  3250              1590.   3000     3</code></pre>
-<p>Alternatively to the more user-friendly (but less flexible) <code>summarise</code> function, we can use lower-level functions to compute aggregate statistics, provided in the basic R distribution. A good example for such a function is <code>sapply()</code>. In simple terms, <code>sapply()</code> takes a list as input and applies a function to the content of each element in this list (here: compute a statistic for each column). To illustrate this point, we load the already familiar <code>swiss</code> dataset.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-analysis-first-steps.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
-<span id="cb265-2"><a href="data-analysis-first-steps.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;swiss&quot;</span>)</span></code></pre></div>
-<p>Now we want to compute the mean for each of the variables in this dataset. Technically speaking, a data frame is a list, where each list element is a column of the same length. Thus, we can use <code>sapply()</code> to ‘apply’ the function <code>mean()</code> to each of the columns in <code>swiss</code>.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="data-analysis-first-steps.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(swiss, mean)</span></code></pre></div>
+<p>Alternatively, to the more user-friendly (but less flexible) <code>summarise</code> function, we can use lower-level functions to compute aggregate statistics provided in the basic R distribution. A good example of such a function is <code>sapply()</code>. In simple terms, <code>sapply()</code> takes a list as input and applies a function to the content of each element in this list (here: compute a statistic for each column). To illustrate this point, we load the already familiar <code>swiss</code> dataset.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-analysis-first-steps.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb271-2"><a href="data-analysis-first-steps.html#cb271-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;swiss&quot;</span>)</span></code></pre></div>
+<p>Now we want to compute the mean for each variable in this dataset. Technically speaking, a data frame is a list, where each list element is a column of the same length. Thus, we can use <code>sapply()</code> to ‘apply’ the function <code>mean()</code> to each of the columns in <code>swiss</code>.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-analysis-first-steps.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(swiss, mean)</span></code></pre></div>
 <pre><code>##        Fertility      Agriculture      Examination 
 ##            70.14            50.66            16.49 
 ##        Education         Catholic Infant.Mortality 
 ##            10.98            41.14            19.94</code></pre>
-<p>By default, <code>sapply()</code> returns a vector or a matrix.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> We can get a very similar result by using <code>summarise()</code>. However, we would have to explicitly mention which variables we want as input.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="data-analysis-first-steps.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(swiss, </span>
-<span id="cb268-2"><a href="data-analysis-first-steps.html#cb268-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">Fertility =</span> <span class="fu">mean</span>(Fertility),</span>
-<span id="cb268-3"><a href="data-analysis-first-steps.html#cb268-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Agriculture =</span> <span class="fu">mean</span>(Agriculture)) <span class="co"># etc.</span></span></code></pre></div>
+<p>By default, <code>sapply()</code> returns a vector or a matrix.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> We can get a similar result by using <code>summarise()</code>. However, we would have to explicitly mention which variables we want as input.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="data-analysis-first-steps.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(swiss,</span>
+<span id="cb274-2"><a href="data-analysis-first-steps.html#cb274-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">Fertility =</span> <span class="fu">mean</span>(Fertility),</span>
+<span id="cb274-3"><a href="data-analysis-first-steps.html#cb274-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Agriculture =</span> <span class="fu">mean</span>(Agriculture)) <span class="co"># etc.</span></span></code></pre></div>
 <pre><code>##   Fertility Agriculture
 ## 1     70.14       50.66</code></pre>
 </div>
 </div>
-<div id="tutorial-analise-messy-excel-sheets" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Tutorial: Analise messy Excel sheets</h2>
-<p>The following tutorial is a (substantially) shortened and simplified version of Ista Zahn and Daina Bouquin’s <a href="https://rawgit.com/izahn/R-data-cleaning/master/dataCleaning.html">“Cleaning up messy data tutorial” (Harvard Datafest 2017)</a>. The aim of the tutorial is to clean up an Excel sheet provided by the UK Office of National Statistics that provides data on the most popular baby names in England and Wales in 2015. The dataset is stored in <code>data/2015boysnamesfinal.xlsx</code></p>
-<div id="preparatory-steps" class="section level3" number="8.3.1">
-<h3><span class="header-section-number">8.3.1</span> Preparatory steps</h3>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-analysis-first-steps.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="do">## SET UP -------------------</span></span>
-<span id="cb270-2"><a href="data-analysis-first-steps.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb270-3"><a href="data-analysis-first-steps.html#cb270-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb270-4"><a href="data-analysis-first-steps.html#cb270-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb270-5"><a href="data-analysis-first-steps.html#cb270-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb270-6"><a href="data-analysis-first-steps.html#cb270-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
-<span id="cb270-7"><a href="data-analysis-first-steps.html#cb270-7" aria-hidden="true" tabindex="-1"></a>INPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/2015boysnamesfinal.xlsx&quot;</span></span></code></pre></div>
-<p>Before diving into the data import and cleaning, it is helpful to first open the file in Excel. We notice a couple of things there: first, there are several sheets in this Excel-file. For this exercise, we only rely on the sheet called “Table 1.” Second, in this sheet we notice intuitively some potential problems with importing this dataset due to the way the spreadsheet is organized. The actual data entries only start on row 7. These two issues can be taken into consideration directly when importing the data with <code>read_excel()</code>.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-analysis-first-steps.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="do">## LOAD/INSPECT DATA -----------------</span></span>
-<span id="cb271-2"><a href="data-analysis-first-steps.html#cb271-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb271-3"><a href="data-analysis-first-steps.html#cb271-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import the excel sheet</span></span>
-<span id="cb271-4"><a href="data-analysis-first-steps.html#cb271-4" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(INPUT_PATH, <span class="at">col_names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb271-5"><a href="data-analysis-first-steps.html#cb271-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;Table 1&quot;</span>, <span class="co"># the name of the sheet to be loaded into R</span></span>
-<span id="cb271-6"><a href="data-analysis-first-steps.html#cb271-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">skip =</span> <span class="dv">6</span> <span class="co"># skip the first 6 rows of the original sheet,</span></span>
-<span id="cb271-7"><a href="data-analysis-first-steps.html#cb271-7" aria-hidden="true" tabindex="-1"></a>                   )</span></code></pre></div>
+<div id="tutorial-analise-messy-excel-sheets" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Tutorial: Analise messy Excel sheets<a href="data-analysis-first-steps.html#tutorial-analise-messy-excel-sheets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following tutorial is a (substantially) shortened and simplified version of Ista Zahn and Daina Bouquin’s <a href="https://rawgit.com/izahn/R-data-cleaning/master/dataCleaning.html">“Cleaning up messy data tutorial” (Harvard Datafest 2017)</a>. The tutorial aims to clean up an Excel sheet provided by the UK Office of National Statistics that provides data on the most popular baby names in England and Wales in 2015. The dataset is stored in <code>data/2015boysnamesfinal.xlsx</code></p>
+<div id="preparatory-steps" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Preparatory steps<a href="data-analysis-first-steps.html#preparatory-steps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="data-analysis-first-steps.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="do">## SET UP -------------------</span></span>
+<span id="cb276-2"><a href="data-analysis-first-steps.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb276-3"><a href="data-analysis-first-steps.html#cb276-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb276-4"><a href="data-analysis-first-steps.html#cb276-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb276-5"><a href="data-analysis-first-steps.html#cb276-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb276-6"><a href="data-analysis-first-steps.html#cb276-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb276-7"><a href="data-analysis-first-steps.html#cb276-7" aria-hidden="true" tabindex="-1"></a>INPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/2015boysnamesfinal.xlsx&quot;</span></span></code></pre></div>
+<p>Before diving into the data import and cleaning, it is helpful to first open the file in Excel. We notice a couple of things there: first, there are several sheets in this Excel file. For this exercise, we only rely on the sheet called “Table 1”. Second, in this sheet, we notice intuitively some potential problems with importing this dataset due to the way the spreadsheet is organized. The actual data entries only start on row 7. These two issues can be considered when importing the data with <code>read_excel()</code>.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="data-analysis-first-steps.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="do">## LOAD/INSPECT DATA -----------------</span></span>
+<span id="cb277-2"><a href="data-analysis-first-steps.html#cb277-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-3"><a href="data-analysis-first-steps.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import the excel sheet</span></span>
+<span id="cb277-4"><a href="data-analysis-first-steps.html#cb277-4" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(INPUT_PATH, <span class="at">col_names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb277-5"><a href="data-analysis-first-steps.html#cb277-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;Table 1&quot;</span>, <span class="co"># the name of the sheet to be loaded into R</span></span>
+<span id="cb277-6"><a href="data-analysis-first-steps.html#cb277-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">skip =</span> <span class="dv">6</span> <span class="co"># skip the first 6 rows of the original sheet,</span></span>
+<span id="cb277-7"><a href="data-analysis-first-steps.html#cb277-7" aria-hidden="true" tabindex="-1"></a>                   )</span></code></pre></div>
 <pre><code>## New names:
-## * Rank -&gt; Rank...1
-## * Name -&gt; Name...2
-## * Count -&gt; Count...3
-## * `since 2014` -&gt; `since 2014...4`
-## * `since 2005` -&gt; `since 2005...5`
-## * ...</code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="data-analysis-first-steps.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
-<span id="cb273-2"><a href="data-analysis-first-steps.html#cb273-2" aria-hidden="true" tabindex="-1"></a>boys</span></code></pre></div>
-<pre><code>## # A tibble: 61 x 11
-##    Rank...1 Name...2 Count...3 `since 2014...4`
-##    &lt;chr&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;           
-##  1 &lt;NA&gt;     &lt;NA&gt;            NA &lt;NA&gt;            
-##  2 1        OLIVER        6941 ­                
-##  3 2        JACK          5371 ­                
-##  4 3        HARRY         5308 ­                
-##  5 4        GEORGE        4869 +3              
-##  6 5        JACOB         4850 -1              
-##  7 6        CHARLIE       4831 -1              
-##  8 7        NOAH          4148 +4              
-##  9 8        WILLIAM       4083 +2              
-## 10 9        THOMAS        4075 -3              
-## # … with 51 more rows, and 7 more variables:
-## #   since 2005...5 &lt;chr&gt;, ...6 &lt;lgl&gt;, Rank...7 &lt;chr&gt;,
-## #   Name...8 &lt;chr&gt;, Count...9 &lt;dbl&gt;,
-## #   since 2014...10 &lt;chr&gt;, since 2005...11 &lt;chr&gt;</code></pre>
-<p>Note that by default, <code>read_excel()</code> “repairs” the column names of imported datasets in order to make sure all columns do have unique names. For the moment we do not need to worry about the automatically assigned column names. However, some of the columns are not needed for analytics purposes. In addition, we note that some rows are empty (contain <code>NA</code> values). In a next step we thus <em>select</em> only those columns needed and <em>filter</em> incomplete observations out.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="data-analysis-first-steps.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FILTER/CLEAN ---------------------------</span></span>
-<span id="cb275-2"><a href="data-analysis-first-steps.html#cb275-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb275-3"><a href="data-analysis-first-steps.html#cb275-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns</span></span>
-<span id="cb275-4"><a href="data-analysis-first-steps.html#cb275-4" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span> <span class="fu">select</span>(boys, Rank...<span class="dv">1</span>, Name...<span class="dv">2</span>, Count...<span class="dv">3</span>, Rank...<span class="dv">7</span>, Name...<span class="dv">8</span>, Count...<span class="dv">9</span>)</span>
-<span id="cb275-5"><a href="data-analysis-first-steps.html#cb275-5" aria-hidden="true" tabindex="-1"></a><span class="co"># filter rows</span></span>
-<span id="cb275-6"><a href="data-analysis-first-steps.html#cb275-6" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span>  <span class="fu">filter</span>(boys, <span class="sc">!</span><span class="fu">is.na</span>(Rank...<span class="dv">1</span>))</span></code></pre></div>
+## • `Rank` -&gt; `Rank...1`
+## • `Name` -&gt; `Name...2`
+## • `Count` -&gt; `Count...3`
+## • `since 2014` -&gt; `since 2014...4`
+## • `since 2005` -&gt; `since 2005...5`
+## • `` -&gt; `...6`
+## • `Rank` -&gt; `Rank...7`
+## • `Name` -&gt; `Name...8`
+## • `Count` -&gt; `Count...9`
+## • `since 2014` -&gt; `since 2014...10`
+## • `since 2005` -&gt; `since 2005...11`</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="data-analysis-first-steps.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
+<span id="cb279-2"><a href="data-analysis-first-steps.html#cb279-2" aria-hidden="true" tabindex="-1"></a>boys</span></code></pre></div>
+<pre><code>## # A tibble: 61 × 11
+##    Rank...1 Name...2 Count...3 since 20…¹ since…² ...6 
+##    &lt;chr&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;lgl&gt;
+##  1 &lt;NA&gt;     &lt;NA&gt;            NA &lt;NA&gt;       &lt;NA&gt;    NA   
+##  2 1        OLIVER        6941 ­           +4      NA   
+##  3 2        JACK          5371 ­           -1      NA   
+##  4 3        HARRY         5308 ­           +6      NA   
+##  5 4        GEORGE        4869 +3         +13     NA   
+##  6 5        JACOB         4850 -1         +16     NA   
+##  7 6        CHARLIE       4831 -1         +6      NA   
+##  8 7        NOAH          4148 +4         +44     NA   
+##  9 8        WILLIAM       4083 +2         ­        NA   
+## 10 9        THOMAS        4075 -3         -6      NA   
+## # … with 51 more rows, 5 more variables:
+## #   Rank...7 &lt;chr&gt;, Name...8 &lt;chr&gt;, Count...9 &lt;dbl&gt;,
+## #   `since 2014...10` &lt;chr&gt;, `since 2005...11` &lt;chr&gt;,
+## #   and abbreviated variable names ¹​`since 2014...4`,
+## #   ²​`since 2005...5`
+## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+<p>Note that by default, <code>read_excel()</code> “repairs” the column names of imported datasets to ensure all columns have unique names. We do not need to worry about the automatically assigned column names. However, some of the columns are not needed for analytics purposes. In addition, we note that some rows are empty (contain <code>NA</code> values). In the next step we <em>select</em> only those columns needed and <em>filter</em> incomplete observations out.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="data-analysis-first-steps.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FILTER/CLEAN ---------------------------</span></span>
+<span id="cb281-2"><a href="data-analysis-first-steps.html#cb281-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-3"><a href="data-analysis-first-steps.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns</span></span>
+<span id="cb281-4"><a href="data-analysis-first-steps.html#cb281-4" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span> <span class="fu">select</span>(boys, Rank...<span class="dv">1</span>, Name...<span class="dv">2</span>, Count...<span class="dv">3</span>, Rank...<span class="dv">7</span>, Name...<span class="dv">8</span>, Count...<span class="dv">9</span>)</span>
+<span id="cb281-5"><a href="data-analysis-first-steps.html#cb281-5" aria-hidden="true" tabindex="-1"></a><span class="co"># filter rows</span></span>
+<span id="cb281-6"><a href="data-analysis-first-steps.html#cb281-6" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span>  <span class="fu">filter</span>(boys, <span class="sc">!</span><span class="fu">is.na</span>(Rank...<span class="dv">1</span>))</span></code></pre></div>
 <p>Finally, we re-arrange the data by stacking them in a three-column format.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="data-analysis-first-steps.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stack columns</span></span>
-<span id="cb276-2"><a href="data-analysis-first-steps.html#cb276-2" aria-hidden="true" tabindex="-1"></a>boys_long <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(boys[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], boys[,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="data-analysis-first-steps.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stack columns</span></span>
+<span id="cb282-2"><a href="data-analysis-first-steps.html#cb282-2" aria-hidden="true" tabindex="-1"></a>boys_long <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(boys[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], boys[,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>])</span></code></pre></div>
 <pre><code>## New names:
-## * Rank...1 -&gt; Rank
-## * Name...2 -&gt; Name
-## * Count...3 -&gt; Count</code></pre>
-<pre><code>## New names:
-## * Rank...7 -&gt; Rank
-## * Name...8 -&gt; Name
-## * Count...9 -&gt; Count</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="data-analysis-first-steps.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect result</span></span>
-<span id="cb279-2"><a href="data-analysis-first-steps.html#cb279-2" aria-hidden="true" tabindex="-1"></a>boys_long</span></code></pre></div>
-<pre><code>## # A tibble: 114 x 3
+## New names:
+## • `Rank...1` -&gt; `Rank`
+## • `Name...2` -&gt; `Name`
+## • `Count...3` -&gt; `Count`</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="data-analysis-first-steps.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect result</span></span>
+<span id="cb284-2"><a href="data-analysis-first-steps.html#cb284-2" aria-hidden="true" tabindex="-1"></a>boys_long</span></code></pre></div>
+<pre><code>## # A tibble: 114 × 3
 ##    Rank  Name    Count
 ##    &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
 ##  1 1     OLIVER   6941
@@ -554,7 +594,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 8     WILLIAM  4083
 ##  9 9     THOMAS   4075
 ## 10 10    OSCAR    4066
-## # … with 104 more rows</code></pre>
+## # … with 104 more rows
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
 
 </div>
 </div>
@@ -575,7 +616,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
 <script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
@@ -594,6 +634,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -614,6 +655,10 @@ gitbook.start({
 "text": null
 },
 "download": ["datahandling.pdf", "datahandling.html", "datahandling.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Data Storage and Data Structures | Data Handling</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and empirical economic research." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Data Storage and Data Structures | Data Handling" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://umatter.github.io/datahandling/" />
   <meta property="og:image" content="https://umatter.github.io/datahandling/img/new_abacus.jpg" />
   <meta property="og:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
   <meta name="github-repo" content="umatter/datahandling" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-22" />
+<meta name="date" content="2022-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="data.html"/>
 <link rel="next" href="high-dimensional-data.html"/>
-<script src="libs/header-attrs/header-attrs.js"></script>
-<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -118,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style/style.css" type="text/css" />
 </head>
 
@@ -138,17 +162,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>2</b> Programming with Data</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.1</b> First steps with R</a>
+<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#why-learn-to-program-to-handle-data"><i class="fa fa-check"></i><b>2.1</b> Why learn to program to handle data?</a></li>
+<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#why-r"><i class="fa fa-check"></i><b>2.2</b> Why <em>R</em>?</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="programming-with-data.html"><a href="programming-with-data.html#variables-and-vectors"><i class="fa fa-check"></i><b>2.1.1</b> Variables and vectors</a></li>
-<li class="chapter" data-level="2.1.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.1.2</b> Math operators</a></li>
+<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-data-language"><i class="fa fa-check"></i><b>2.2.1</b> The ‘data language’</a></li>
+<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#high-level-language-relatively-easy-to-learn"><i class="fa fa-check"></i><b>2.2.2</b> High-level language, relatively easy to learn</a></li>
+<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#free-open-source-large-community"><i class="fa fa-check"></i><b>2.2.3</b> Free, open source, large community</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.2</b> Basic programming concepts in R</a>
+<li class="chapter" data-level="2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#rrstudio-overview"><i class="fa fa-check"></i><b>2.3</b> <em>R</em>/RStudio overview</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.2.1</b> Loops</a></li>
-<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.2.2</b> For-loops</a></li>
-<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.2.3</b> Booleans and logical statements</a></li>
-<li class="chapter" data-level="2.2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.2.4</b> R functions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-r-console"><i class="fa fa-check"></i><b>2.3.1</b> The <em>R</em>-Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="programming-with-data.html"><a href="programming-with-data.html#r-scripts"><i class="fa fa-check"></i><b>2.3.2</b> <em>R</em>-Scripts</a></li>
+<li class="chapter" data-level="2.3.3" data-path="programming-with-data.html"><a href="programming-with-data.html#r-environment"><i class="fa fa-check"></i><b>2.3.3</b> <em>R</em> Environment</a></li>
+<li class="chapter" data-level="2.3.4" data-path="programming-with-data.html"><a href="programming-with-data.html#file-browser"><i class="fa fa-check"></i><b>2.3.4</b> File Browser</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.4</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="programming-with-data.html"><a href="programming-with-data.html#values-vectors-and-variables"><i class="fa fa-check"></i><b>2.4.1</b> Values, Vectors, and Variables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.4.2</b> Math operators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.5</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.5.1</b> Loops</a></li>
+<li class="chapter" data-level="2.5.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.5.2</b> For-loops</a></li>
+<li class="chapter" data-level="2.5.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.5.3</b> Booleans and logical statements</a></li>
+<li class="chapter" data-level="2.5.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.5.4</b> R functions</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
@@ -200,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>6.3.1</b> Loading built-in datasets</a></li>
 <li class="chapter" data-level="6.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>6.3.2</b> Importing rectangular data from text-files</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parsing-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parsing with <code>readr</code></a>
+<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parse-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parse with <code>readr</code></a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>6.4.1</b> Basic usage of <code>readr</code> functions</a></li>
 <li class="chapter" data-level="6.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>6.4.2</b> Parsing and data types</a></li>
@@ -246,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>9</b> Basic Econometrics in R</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modelling"><i class="fa fa-check"></i><b>9.1</b> Statistical modelling</a>
+<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modeling"><i class="fa fa-check"></i><b>9.1</b> Statistical modeling</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>9.1.1</b> Illustration with pseudo-data</a></li>
 </ul></li>
@@ -263,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>10.1</b> Data display</a></li>
-<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualisation-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualisation with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualization with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>10.3</b> ‘Grammar of Graphics’</a>
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>10.3.1</b> <code>ggplot2</code> basics</a></li>
@@ -272,12 +310,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>10.3.4</b> Geometries (~ type of plot)</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>10.4</b> Dynamic documents</a></li>
-<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualisation"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualisation</a></li>
-<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.6</b> Background and aim</a>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualization"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualization</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.6.1</b> Data import and preparation</a></li>
-<li class="chapter" data-level="10.6.2" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.6.2</b> Plot</a></li>
-<li class="chapter" data-level="10.6.3" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.6.3</b> Cosmetics: theme</a></li>
+<li class="chapter" data-level="10.5.1" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.5.1</b> Background and aim</a></li>
+<li class="chapter" data-level="10.5.2" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.5.2</b> Data import and preparation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.5.3</b> Plot</a></li>
+<li class="chapter" data-level="10.5.4" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.5.4</b> Cosmetics: theme</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -292,8 +330,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
 
@@ -314,41 +350,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-storage-and-data-structures" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Data Storage and Data Structures</h1>
-<p>A core part of the practical skills taught in this course has to do with writing, executing, and storing <em>computer code</em> (i.e., instructions to a computer, in a language that it understands) as well as storing and reading <em>data</em>. The way data is typically stored on a computer follows quite naturally from the outlined principles of how computers process data (both technically speaking and in terms of practical applications). Based on a given standard of how <code>0</code>s and <code>1</code>s are translated into the more meaningful symbols we see on our keyboard, we simply write data (or computer code) to a <em>text file</em> and save this file on the hard-disk drive of our computer. Again, what is stored on disk is in the end only consisting of <code>0</code>s and <code>1</code>s. But, given the standards outlined in the previous lecture, these <code>0</code>s and <code>1</code>s properly map to characters that we can understand when reading the file again from disk and look at its content on our computer screen.</p>
-<div id="unstructured-data-in-text-files" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Unstructured data in text files</h2>
-<p>In the simplest case we want to literally store a text. For example, we store the following phrase</p>
-<p><code>Hello World!</code></p>
-<p>in a text file named <code>helloworld.txt</code>. Technically, this means that we allocate a block of computer memory to <code>helloworld.txt</code> (a ‘file’ is in the end a block of computer memory). The ending <code>.txt</code> indicates to the operating system of our computer what kind of data is stored in this file. When clicking on the file’s symbol, the operating system will open the file (read it into RAM) with the default program assigned to open <code>.txt</code>-files (in this course, usually <a href="https://atom.io/">Atom</a> or <a href="https://www.rstudio.com/">RStudio</a>). That is, the <em>format</em> of a file says something about how to interpret the <code>0</code>s and <code>1</code>s. If the text editor displays <code>Hello World!</code> as the content of this file, the program correctly interprets the <code>0</code>s and <code>1</code>s as representing plain text and uses the correct character encoding to convert the raw <code>0</code>s and <code>1</code>s yet again to symbols that we can read more easily. Similarly, we can show the content of the file in the command-line terminal (here OSX or Linux):</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb84-1"><a href="data-storage-and-data-structures.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> helloworld.txt</span></code></pre></div>
+<div id="data-storage-and-data-structures" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Data Storage and Data Structures<a href="data-storage-and-data-structures.html#data-storage-and-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A core part of the practical skills covered in this book has to do with writing, executing, and storing <em>computer code</em> (i.e., instructions to a computer in a language that it understands) as well as storing and reading <em>data</em>. The way data is typically stored on a computer follows quite naturally from the outlined principles of how computers process data (both technically speaking and in terms of practical applications). Based on a given standard of how <code>0</code>s and <code>1</code>s are translated into the more meaningful symbols we see on our keyboard, we simply write data (or computer code) to a <em>text file</em> and save this file on the hard-disk drive of our computer. Again, what is stored on disk is in the end only consisting of <code>0</code>s and <code>1</code>s. But, given the standards outlined in the previous chapter, these <code>0</code>s and <code>1</code>s properly map to characters that we can understand when reading the file again from the disk and looking at its content on our computer screen.</p>
+<div id="unstructured-data-in-text-files" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Unstructured data in text files<a href="data-storage-and-data-structures.html#unstructured-data-in-text-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the simplest case, we want to store a text literally. For example, we store the following phrase</p>
+<p><code>Hello, World!</code></p>
+<p>in a text file named <code>helloworld.txt</code>. Technically, this means that we allocate a block of computer memory to <code>helloworld.txt</code> (a ‘file’ is, in the end, a block of computer memory). The ending <code>.txt</code> indicates to the operating system of our computer what kind of data is stored in this file. When clicking on the file’s symbol, the operating system will open the file (read it into RAM) with the default program assigned to open <code>.txt</code>-files (for example, <a href="https://atom.io/">Atom</a> or <a href="https://www.rstudio.com/">RStudio</a>). That is, the <em>format</em> of a file says something about how to interpret the <code>0</code>s and <code>1</code>s. If the text editor displays <code>Hello World!</code> as the content of this file, the program correctly interprets the <code>0</code>s and <code>1</code>s as representing plain text and uses the correct character encoding to convert the raw <code>0</code>s and <code>1</code>s yet again to symbols that we can read more easily. Similarly, we can show the content of the file in the command-line terminal (here OSX or Linux):</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb87-1"><a href="data-storage-and-data-structures.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> helloworld.txt</span></code></pre></div>
 <pre><code>## Hello World!</code></pre>
 <p>Or, from the R-console:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="data-storage-and-data-structures.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;cat helloworld.txt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="data-storage-and-data-structures.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;cat helloworld.txt&quot;</span>)</span></code></pre></div>
 <p>However, we can also use a command-line program (here, <code>xxd</code>) to display the content of <code>helloworld.txt</code> without actually ‘translating’ it into ASCII characters.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> That is, we can directly look at how the content looks like as <code>0</code>s and <code>1</code>s:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb87-1"><a href="data-storage-and-data-structures.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xxd</span> <span class="at">-b</span> helloworld.txt</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb90-1"><a href="data-storage-and-data-structures.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xxd</span> <span class="at">-b</span> helloworld.txt</span></code></pre></div>
 <pre><code>## 00000000: 01001000 01100101 01101100 01101100 01101111 00100000  Hello 
 ## 00000006: 01010111 01101111 01110010 01101100 01100100 00100001  World!</code></pre>
-<p>Similarly we can display the content in hexadecimal values:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb89-1"><a href="data-storage-and-data-structures.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xxd</span>  helloworld.txt</span></code></pre></div>
+<p>Similarly, we can display the content in hexadecimal values:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb92-1"><a href="data-storage-and-data-structures.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xxd</span>  helloworld.txt</span></code></pre></div>
 <pre><code>## 00000000: 4865 6c6c 6f20 576f 726c 6421            Hello World!</code></pre>
-<p>Next, consider the text file <code>hastamanana.txt</code> which was written and stored with another character encoding. When looking at the content, assuming the now common UTF-8 encoding, the content seems a little odd:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb91-1"><a href="data-storage-and-data-structures.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hastamanana.txt</span></code></pre></div>
+<p>Next, consider the text file <code>hastamanana.txt</code>, which was written and stored with another character encoding. When looking at the content, assuming the now common UTF-8 encoding, the content seems a little odd:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb94-1"><a href="data-storage-and-data-structures.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hastamanana.txt</span></code></pre></div>
 <pre><code>## Hasta Ma?ana!</code></pre>
 <p>We see that it is a short phrase written in Spanish. Strangely it contains the character <code>?</code> in the middle of a word. The occurrence of special characters in unusual places of text files is an indication of using the wrong character encoding to display the text. Let’s check what the file’s encoding is.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb93-1"><a href="data-storage-and-data-structures.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file</span> <span class="at">-b</span> hastamanana.txt</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb96-1"><a href="data-storage-and-data-structures.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file</span> <span class="at">-b</span> hastamanana.txt</span></code></pre></div>
 <pre><code>## ISO-8859 text</code></pre>
 <p>This tells us that the file is encoded with ISO-8859 (‘Latin1’), a character set for several Latin languages (including Spanish). Knowing this, we can check how the content looks like when we change the encoding to UTF-8 (which then properly displays the content on the screen)<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb95-1"><a href="data-storage-and-data-structures.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="ex">iconv</span> <span class="at">-f</span> iso-8859-1 <span class="at">-t</span> utf-8 hastamanana.txt <span class="kw">|</span> <span class="fu">cat</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb98-1"><a href="data-storage-and-data-structures.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">iconv</span> <span class="at">-f</span> iso-8859-1 <span class="at">-t</span> utf-8 hastamanana.txt <span class="kw">|</span> <span class="fu">cat</span></span></code></pre></div>
 <pre><code>## Hasta Mañana!</code></pre>
-<p>When working with data, we must therefore ensure that we apply the proper standards to translate the binary coded values into a character/text-representation that is easier to understand and work with. In recent years, much more general (or even ‘universal’) standards have been developed and adopted around the world, particularly UTF-8. Thus, if we deal with recently generated data sets, we usually can expect that they are encoded in UTF-8, independent of the data’s country of origin. However, when working on a research project where slightly older data sets from different sources are involved, encoding issues still occur quite frequently. It is thus crucial to understand early on what the origin of the problem is, when the data seem to display weird characters. Encoding issues are among the most basic problems that can occur when importing data.</p>
-<p>So far we have only looked at very simple examples of data stored in text files, essentially only containing short phrases of text. Nevertheless, most common formats of storing and transferring data (CSV, XML, JSON, etc.) build on exactly the same principle: characters in a text-file. The difference between such formats and the simple examples above is that their content is structured in a very specific way. That is, on top of the lower-level conversion of <code>0</code>s and <code>1</code>s into characters/text we add another standard, a data format, giving the data more <em>structure</em>, making it even simpler to interpret and work with the data on a computer. Once we understand how data is represented at the low level (the topic of the previous lecture), it is much easier to understand and distinguish different forms of storing structured data.</p>
+<p>When working with data, we must therefore ensure that we apply the proper standards to translate the binary coded values into a character/text representation that is easier to understand and work with. In recent years, much more general (or even ‘universal’) standards have been developed and adopted worldwide, particularly UTF-8. Thus, if we deal with recently generated data sets, we usually can expect that they are encoded in UTF-8, independent of the data’s country of origin. However, when working on a research project with slightly older data sets from different sources, encoding issues still occur quite frequently. It is thus crucial to understand the origin of the problem early on when the data seem to display weird characters. Encoding issues are among the most basic problems that can occur when importing data.</p>
+<p>So far, we have only looked at very simple examples of data stored in text files, essentially only containing short phrases of text. Nevertheless, the most common formats of storing and transferring data (CSV, XML, JSON, etc.) build on exactly the same principle: characters in a text-file. The difference between such formats and the simple examples above is that their content is structured in a very specific way. That is, on top of the lower-level conversion of <code>0</code>s and <code>1</code>s into characters/text, we add another standard, a data format, giving the data more <em>structure</em>, making it even simpler to interpret and work with the data on a computer. Once we understand how data is represented at a low level (the topic of the previous chapter), it is much easier to understand and distinguish different forms of storing structured data.</p>
 </div>
-<div id="structured-data-formats" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Structured data formats</h2>
-<p>As nicely pointed out by <span class="citation"><a href="references.html#ref-murrell_2009" role="doc-biblioref">Murrell</a> (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span>, most commonly used software today is designed in a very ‘user-friendly’ way, leading to situations in which we as users are ‘told’ by the computer what to do (rather than the other way around). A prominent symptom of this phenomenon is that specific software is automatically assigned to open files of specific formats, so we don’t have to bother about what the file’s format actually is but only have to click on the icon representing the file.</p>
-<p>However, if we actually want to engage seriously with a world driven by data we have to go beyond the habit of simply clicking on (data-)files and let the computer choose what to do with it. Since most common formats to store data are in essence text files (in research contexts usually in ASCII or UTF-8 encoding), a good way to start engaging with a data set is to look at the raw text file containing the data in order to get an idea of how the data is structured.</p>
+<div id="structured-data-formats" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Structured data formats<a href="data-storage-and-data-structures.html#structured-data-formats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As nicely pointed out by <span class="citation">Murrell (<a href="#ref-murrell_2009" role="doc-biblioref">2009</a>)</span>, the most commonly used software today is designed in a very ‘user-friendly’ way, leading to situations in which we as users are ‘told’ by the computer what to do (rather than the other way around). A prominent symptom of this phenomenon is that specific software is automatically assigned to open files of specific formats, so we don’t have to bother about what the file’s format actually is but only have to click on the icon representing the file.</p>
+<p>However, if we actually want to engage seriously with a world driven by data, we have to go beyond the habit of simply clicking on (data-)files and let the computer choose what to do with it. Since most common formats to store data are in essence text files (in research contexts usually in ASCII or UTF-8 encoding), a good way to start engaging with a data set is to look at the raw text file containing the data in order to get an idea of how the data is structured.</p>
 <p>For example, let’s have a look at the file <code>ch_gdp.csv</code>. When opening the file in a text editor we see the following:</p>
 <pre><code>year,gdp_chfb
 1980,184
@@ -357,39 +393,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 1995,374
 2000,422
 2005,464</code></pre>
-<p>At first sight, the file contains a collection of numbers and characters. Having a closer look, certain structural features become apparent. The content is distributed over several rows, with each row containing a comma character (<code>,</code>). Moreover, the first row seems systematically different from the following rows: it is the only row containing alphabetical characters, all the other rows contain numbers. Rather intuitively, we recognize that the specific way in which the data in this file is structured might in fact represent a table with two columns: one with the variable <code>year</code> describing the year of each observation (row), the other with the variable <code>gdp_chfb</code> with numerical values describing another characteristic of each observation/row (we can guess that this variable is somehow related to GDP and CHF/Swiss francs).</p>
-<p>The question arises, how do we work with this data? Recall that it is simply a text file. All the information stored in it is displayed above. How could we explain the computer that this is actually a table with two columns, containing two variables describing six observations? We would have to come up with a sequence of instructions/rules (i.e., an algorithm) of how to distinguish columns and rows, when all that a computer can do is sequentially read one character after the other (more precisely one <code>0</code>/<code>1</code> after the other, representing characters).</p>
+<p>At first sight, the file contains a collection of numbers and characters. Having a closer look, certain structural features become apparent. The content is distributed over several rows, with each row containing a comma character (<code>,</code>). Moreover, the first row seems systematically different from the following rows: it is the only row containing alphabetical characters, all the other rows contain numbers. Rather intuitively, we recognize that the specific way in which the data in this file is structured might, in fact, represent a table with two columns: one with the variable <code>year</code> describing the year of each observation (row), the other with the variable <code>gdp_chfb</code> with numerical values describing another characteristic of each observation/row (we can guess that this variable is somehow related to GDP and CHF/Swiss francs).</p>
+<p>The question arises, how do we work with this data? Recall that it is simply a text file. All the information stored in it is displayed above. How could we explain to the computer that this is a table with two columns containing two variables describing six observations? We would have to come up with a sequence of instructions/rules (i.e., an algorithm) of how to distinguish columns and rows when all that a computer can do is sequentially read one character after the other (more precisely one <code>0</code>/<code>1</code> after the other, representing characters).</p>
 <p>This algorithm could be something along the lines of:</p>
 <ol style="list-style-type: decimal">
 <li>Start with an empty table consisting of one cell (1 row/column).</li>
 <li>While the end of the input file is not yet reached, do the following:
 Read characters from the input file, and add them one-by-one to the current cell.
-If you encounter the character ‘<code>,</code>’ ignore it, create a new field, and jump to the new field.
+If you encounter the character ‘<code>,</code>’, ignore it, create a new field, and jump to the new field.
 If you encounter the end of the line, create a new row and jump to the new row.</li>
 </ol>
-<p>Consider the usefulness of this algorithm. It would certainly work quite well for the particular file we are looking at. But what if another file we want to read data from does not contain any ‘<code>,</code>’ but only ‘<code>;</code>’ We would have to tweak the algorithm accordingly. Hence, again, it is extremely useful if we can agree on certain standards of how data structured as a table/matrix is stored in a text file.</p>
-<div id="csvs-and-fixed-width-format" class="section level3" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> CSVs and fixed-width format</h3>
+<p>Consider the usefulness of this algorithm. It would certainly work quite well for the particular file we are looking at. But what if another file we want to read data from does not contain any ‘<code>,</code>’ but only ‘<code>;</code>’? We would have to tweak the algorithm accordingly. Hence, again, it is extremely useful if we can agree on certain standards of how data structured as a table/matrix is stored in a text file.</p>
+<div id="csvs-and-fixed-width-format" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> CSVs and fixed-width format<a href="data-storage-and-data-structures.html#csvs-and-fixed-width-format" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Incidentally, the example we are looking at here is in line with such a standard, i.e., Comma-Separated Values (CSV, therefore <code>.csv</code>). In technical terms, the simple algorithm outlined above is a CSV <a href="https://en.wikipedia.org/wiki/Parsing#Computer_languages">parser</a>. A CSV parser is a software component which takes a text file with CSV standard structure as input and builds a data structure in the form of a table (represented in RAM). If the input file does not follow the agreed-on CSV standard, the parser will likely fail to properly ‘parse’ (read/translate) the input.</p>
 <p>CSV files are very often used to transfer and store data in a table-like format. They essentially are based on two rules defining the structure of the data: commas delimit values/fields in a row and the end of a line indicates the end of a row.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
 <p>The comma is clearly visible when looking at the raw text content of <code>ch_gdp.csv</code>. However, how does the computer know that a line is ending? By default most programs to work with text files do not show an explicit symbol for line endings but instead display the text on the next line. Under the hood, these line endings are, however, non-printable characters. We can see this when investigating <code>ch_gdp.csv</code> in the command-line terminal (via <code>xxd</code>):</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb98-1"><a href="data-storage-and-data-structures.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xxd</span> ch_gdp.csv</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb101-1"><a href="data-storage-and-data-structures.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xxd</span> ch_gdp.csv</span></code></pre></div>
 <pre><code>## 00000000: efbb bf79 6561 722c 6764 705f 6368 6662  ...year,gdp_chfb
 ## 00000010: 0d31 3938 302c 3138 340d 3139 3835 2c32  .1980,184.1985,2
 ## 00000020: 3434 0d31 3939 302c 3333 310d 3139 3935  44.1990,331.1995
 ## 00000030: 2c33 3734 0d32 3030 302c 3432 320d 3230  ,374.2000,422.20
 ## 00000040: 3035 2c34 3634                           05,464</code></pre>
-<p>When comparing the hexadecimal values with the characters they represent on the right side, we recognize that right before every year, a full stop (<code>.</code>) is printed to the output. Moreover, when inspecting the hexadecimal code, we recognize that this <code>.</code> corresponds to <code>0d</code> in the hexadecimal code. <code>0d</code> is indeed the sequence of <code>0</code>s and <code>1</code> indicating the end of a line. Because this character does not actually correspond to a symbol printed on the screen, it is replaced by <code>.</code> in the printed output of the text.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
-<p>While CSV files have become a very common way to store ‘flat’/table-like data in plain text files, several similar formats can be encountered in practice. Most commonly they either use a different delimiter (for example, tabs/white space) to separate fields in a row, or fields are defined to consist of a fixed number of characters (so-called fixed-width formats). In addition, various more complex standards to store and transfer digital data are widely used to store data. Particularly in the context of web data (data stored and transferred online), files storing data in these formats (e.g., XML, JSON, YAML, etc.) are in the end just plain text files. However, they contain a larger set of special characters/delimiters (or combinations of these) to indicate the structure of the data stored in them.</p>
+<p>When comparing the hexadecimal values with the characters they represent on the right side, we recognize that a full stop (<code>.</code>) is printed to the output right before every year. Moreover, when inspecting the hexadecimal code, we recognize that this <code>.</code> corresponds to <code>0d</code> in the hexadecimal code. <code>0d</code> is indeed the sequence of <code>0</code>s and <code>1</code> indicating the end of a line. Because this character does not actually correspond to a symbol printed on the screen, it is replaced by <code>.</code> in the printed output of the text.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p>While CSV files have become a very common way to store ‘flat’/table-like data in plain text files, several similar formats can be encountered in practice. Most commonly they either use a different delimiter (for example, tabs/white space) to separate fields in a row, or fields are defined to consist of a fixed number of characters (so-called fixed-width formats). In addition, various more complex standards to store and transfer digital data are widely used to store data. Particularly in the context of web data (data stored and transferred online), files storing data in these formats (e.g., XML, JSON, YAML, etc.) are in the end, just plain text files. However, they contain a larger set of special characters/delimiters (or combinations of these) to indicate the structure of the data stored in them.</p>
 </div>
 </div>
-<div id="units-of-informationdata-storage" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Units of information/data storage</h2>
-<p>The question of how to store digital data on computers, also raises the question of storage capacity. Because every type of digital data can in the end only be stored as <code>0</code>s and <code>1</code>s, it makes perfectly sense to define the smallest unit of information in computing as consisting of either a <code>0</code> or a <code>1</code>. We call this basic unit a <em>bit</em> (from <em>bi</em>nary dig<em>it</em>; abbrev. ‘b’). Recall that the decimal number <code>139</code> corresponds to the binary number <code>10001011</code>. In order to store this number on a hard disk, we require a capacity of 8 bits, or one <em>byte</em> (1 byte = 8 bits; abbrev. ‘B’). Historically, one byte encoded a single character of text (i.e., in the ASCII character encoding system). 4 bytes (or 32 bits) are called a <em>word</em>. The following figure illustrates this point.</p>
-<div class="figure" style="text-align: center"><span id="fig:bitbyteword"></span>
+<div id="units-of-informationdata-storage" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Units of information/data storage<a href="data-storage-and-data-structures.html#units-of-informationdata-storage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The question of how to store digital data on computers also raises the question of storage capacity. Because every type of digital data can, in the end, only be stored as <code>0</code>s and <code>1</code>s, it makes perfect sense to define the smallest unit of information in computing as consisting of either a <code>0</code> or a <code>1</code>. We call this basic unit a <em>bit</em> (from <em>bi</em>nary dig<em>it</em>; abbrev. ‘b’). Recall that the decimal number <code>139</code> corresponds to the binary number <code>10001011</code>. To store this number on a hard disk, we require a capacity of 8 bits or one <em>byte</em> (1 byte = 8 bits; abbrev. ‘B’). Historically, one byte encoded a single character of text (i.e., in the ASCII character encoding system). 4 bytes (or 32 bits) are called a <em>word</em>. The following figure illustrates this point.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bitbyteword"></span>
 <img src="img/store-bitbyteword.png" alt="Writing data stored in RAM to a Mass Storage device (hard drive). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="40%" />
 <p class="caption">
-Figure 4.1: Writing data stored in RAM to a Mass Storage device (hard drive). Figure by <span class="citation"><a href="references.html#ref-murrell_2009" role="doc-biblioref">Murrell</a> (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.1: Writing data stored in RAM to a Mass Storage device (hard drive). Figure by <span class="citation">Murrell (<a href="#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
@@ -405,14 +441,14 @@ Figure 4.1: Writing data stored in RAM to a Mass Storage device (hard drive). Fi
 </ul>
 <p><span class="math inline">\(1 ZB = 1000000000000000000000\text{ bytes} = 1 \text{ billion terabytes} = 1 \text{ trillion gigabytes}.\)</span></p>
 </div>
-<div id="data-structures-and-data-types-in-r" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Data structures and data types in R</h2>
-<p>So far, we have focused on how data is stored on the hard disk. That is, we discovered how <code>0</code>s and <code>1</code>s correspond to characters (following specific standards: character encodings), how a sequence of characters in a text file is a useful way to store data on a hard disk, and how specific standards are used to structure the data (with the help of special characters) in a meaningful way. When thinking about how to store data on a hard disk, we are usually concerned with how much space (in bytes) the data set needs, how well it is transferable/understandable, and how well we can retrieve information from it. All of these aspects go into the decision of what structure/format to choose etc.</p>
-<p>However, none of these is actually taking into consideration how data structures relate to how we actively work with the data. For example, when we want to sum up the <code>gdp_chfb</code> column in <code>ch_gdp.csv</code> (the table example above), do we actually work within the CSV data structure? The answer is usually no.</p>
-<p>Recall from the basics of data processing that data stored on the hard disk is loaded into RAM to work with (analysis, manipulation, cleaning, etc.). The question arises as to how data is structured in RAM? That is, what data structures/formats are used to actively work with the data?</p>
+<div id="data-structures-and-data-types-in-r" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Data structures and data types in R<a href="data-storage-and-data-structures.html#data-structures-and-data-types-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far, we have focused on how data is stored on the hard disk. That is, we discovered how ’0’s and ’1’s correspond to characters (using specific standards: character encodings), how a sequence of characters in a text file is a useful way to store data on a hard disk, and how specific standards are used to structure the data in a meaningful way (using special characters). When thinking about how to store data on a hard disk, we are usually concerned with how much space (in bytes) the data set needs, how well it is transferable/understandable, and how well we can retrieve information from it. All of these aspects go into the decision of what structure/format to choose etc.</p>
+<p>However, none of these considers how we actively work with the data. For example, when we want to sum up the <code>gdp_chfb</code> column in <code>ch_gdp.csv</code> (the table example above), do we actually work within the CSV data structure? The answer is usually no.</p>
+<p>Recall from the basics of data processing that data stored on the hard disk is loaded into RAM to work with (analysis, manipulation, cleaning, etc.). The question arises as to how data is structured in RAM? That is, what data structures/formats are used to work with the data actively?</p>
 <p>We distinguish two basic characteristics:</p>
 <ol style="list-style-type: decimal">
-<li>Data <strong>types</strong>: integers; real numbers (‘numeric values,’ floating point numbers); text (‘string,’ ‘character values’).</li>
+<li>Data <strong>types</strong>: integers; real numbers (‘numeric values’, floating point numbers); text (‘string’, ‘character values’).</li>
 <li>Basic <strong>data structures</strong> in RAM:
 - <em>Vectors</em>
 - <em>Factors</em>
@@ -420,91 +456,91 @@ Figure 4.1: Writing data stored in RAM to a Mass Storage device (hard drive). Fi
 - <em>Lists</em>
 - <em>Data frames</em> (very <code>R</code>-specific)</li>
 </ol>
-<p>Depending on what data structure/format the data is stored in on the hard disk, the data will be more or less usefully represented in one of the above structures in RAM. For example, in the <code>R</code> language it is quite common to represent data stored in CSVs on disk as <em>data frames</em> in RAM. Similarly, it is quite common to represent a more complex format on disk, such as JSON, as a nested list in RAM.</p>
+<p>Depending on the data structure/format stored in on the hard disk, the data will be more or less usefully represented in one of the above structures in RAM. For example, in the <code>R</code> language it is quite common to represent data stored in CSVs on disk as <em>data frames</em> in RAM. Similarly, it is quite common to represent a more complex format on disk, such as JSON, as a nested list in RAM.</p>
 <p>Importing data from the hard disk (or another mass storage device) into RAM in order to work with it in <code>R</code> essentially means reading the sequence of characters (in the end, of course, <code>0</code>s and <code>1</code>s) and mapping them, given the structure they are stored in, into one of these structures for representation in RAM.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>.</p>
-<div id="data-types" class="section level3" number="4.4.1">
-<h3><span class="header-section-number">4.4.1</span> Data types</h3>
-<p>From the previous lectures we know that digital data (<code>0</code>s and <code>1</code>s) can be interpreted in different ways depending on the <em>format</em> it is stored in. Similarly, data loaded into RAM can be interpreted differently by R depending on the data <em>type</em>. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the numeric values <code>1.5</code> and <code>3</code> in the variables <code>a</code> and <code>b</code>, respectively.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="data-storage-and-data-structures.html#cb100-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
-<span id="cb100-2"><a href="data-storage-and-data-structures.html#cb100-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div>
+<div id="data-types" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Data types<a href="data-storage-and-data-structures.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From the previous chapters, we know that digital data (<code>0</code>s and <code>1</code>s) can be interpreted in different ways depending on the <em>format</em> it is stored in. Similarly, data loaded into RAM can be interpreted differently by R depending on the data <em>type</em>. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the numeric values <code>1.5</code> and <code>3</code> in the variables <code>a</code> and <code>b</code>, respectively.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="data-storage-and-data-structures.html#cb103-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb103-2"><a href="data-storage-and-data-structures.html#cb103-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div>
 <p>R interprets this data as type <code>double</code> (class ‘numeric’; a ‘double precision floating point number’):</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="data-storage-and-data-structures.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="data-storage-and-data-structures.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="data-storage-and-data-structures.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="data-storage-and-data-structures.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>Given that these bytes of data are interpreted as numeric, we can use operators (here: math operators) that can work with such types:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="data-storage-and-data-structures.html#cb105-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="data-storage-and-data-structures.html#cb108-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
 <pre><code>## [1] 4.5</code></pre>
-<p>If however, we define <code>a</code> and <code>b</code> as follows, R will interpret the values stored in <code>a</code> and <code>b</code> as text (<code>character</code>).</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="data-storage-and-data-structures.html#cb107-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;1.5&quot;</span></span>
-<span id="cb107-2"><a href="data-storage-and-data-structures.html#cb107-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">&quot;3&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="data-storage-and-data-structures.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
+<p>If we define <code>a</code> and <code>b</code> as follows, R will interpret the values stored in <code>a</code> and <code>b</code> as text (<code>character</code>).</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-storage-and-data-structures.html#cb110-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;1.5&quot;</span></span>
+<span id="cb110-2"><a href="data-storage-and-data-structures.html#cb110-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">&quot;3&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-storage-and-data-structures.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-storage-and-data-structures.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="data-storage-and-data-structures.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>Now the same line of code as above will result in an error:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-storage-and-data-structures.html#cb112-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-storage-and-data-structures.html#cb115-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
 <pre><code>## Error in a + b: non-numeric argument to binary operator</code></pre>
-<p>The reason is, that the operator <code>+</code> expects numeric or integer values as arguments. When importing data sets with many different variables (columns), it is thus necessary to make sure that each column is interpreted in the intended way. That is, we have to make sure R is assigning the right type to each of the imported variables. Usually, this is done automatically. However, with large and complex data sets, the automatic recognition of data types when importing data can fail when the data is not perfectly cleaned/prepared (in practice, this is very often the case).</p>
+<p>The reason is that an operator <code>+</code> expects numeric or integer values as arguments. When importing data sets with many different variables (columns), it is thus necessary to ensure that each column is interpreted in the intended way. That is, we have to make sure R is assigning the right type to each of the imported variables. Usually, this is done automatically. However, with large and complex data sets, the automatic recognition of data types when importing data can fail when the data is not perfectly cleaned/prepared (in practice, this is very often the case).</p>
 </div>
-<div id="data-structures" class="section level3" number="4.4.2">
-<h3><span class="header-section-number">4.4.2</span> Data structures</h3>
-<p>For now, we have only looked at individual bytes of data. An entire data set can consist of gigabytes of data and contain both text and numeric values. How can such collections of data values be represented in R? Here we look at the main data structures implemented in R. All of these structures will play a role in some of the hands-on exercises.</p>
-<div id="vectors" class="section level4" number="4.4.2.1">
-<h4><span class="header-section-number">4.4.2.1</span> Vectors</h4>
+<div id="data-structures" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Data structures<a href="data-storage-and-data-structures.html#data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For now, we have only looked at individual bytes of data. An entire data set can consist of gigabytes of data containing text and numeric values. How can such collections of data values be represented in R? Here, we look at the main data structures implemented in R. All of these structures will play a role in some of the hands-on exercises.</p>
+<div id="vectors" class="section level4 hasAnchor" number="4.4.2.1">
+<h4><span class="header-section-number">4.4.2.1</span> Vectors<a href="data-storage-and-data-structures.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Vectors are collections of values of the same type. They can contain either all numeric values or all character values. We will use the following symbol to refer to vectors.</p>
-<div class="figure" style="text-align: center"><span id="fig:numvec"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:numvec"></span>
 <img src="img/numvec.png" alt="Illustration of a numeric vector (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="5%" />
 <p class="caption">
-Figure 4.2: Illustration of a numeric vector (symbolic). Figure by <span class="citation"><a href="references.html#ref-murrell_2009" role="doc-biblioref">Murrell</a> (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.2: Illustration of a numeric vector (symbolic). Figure by <span class="citation">Murrell (<a href="#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
 <p>For example, we can initiate a character vector containing the names of persons:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="data-storage-and-data-structures.html#cb114-1" aria-hidden="true" tabindex="-1"></a>persons <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Brian&quot;</span>, <span class="st">&quot;Claire&quot;</span>)</span>
-<span id="cb114-2"><a href="data-storage-and-data-structures.html#cb114-2" aria-hidden="true" tabindex="-1"></a>persons</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="data-storage-and-data-structures.html#cb117-1" aria-hidden="true" tabindex="-1"></a>persons <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Brian&quot;</span>, <span class="st">&quot;Claire&quot;</span>)</span>
+<span id="cb117-2"><a href="data-storage-and-data-structures.html#cb117-2" aria-hidden="true" tabindex="-1"></a>persons</span></code></pre></div>
 <pre><code>## [1] &quot;Andy&quot;   &quot;Brian&quot;  &quot;Claire&quot;</code></pre>
-<p>and we can initiate a numeric vector with the age of these persons:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data-storage-and-data-structures.html#cb116-1" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">50</span>, <span class="dv">30</span>)</span>
-<span id="cb116-2"><a href="data-storage-and-data-structures.html#cb116-2" aria-hidden="true" tabindex="-1"></a>ages</span></code></pre></div>
+<p>And we can initiate a numeric vector with the age of these persons:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data-storage-and-data-structures.html#cb119-1" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">50</span>, <span class="dv">30</span>)</span>
+<span id="cb119-2"><a href="data-storage-and-data-structures.html#cb119-2" aria-hidden="true" tabindex="-1"></a>ages</span></code></pre></div>
 <pre><code>## [1] 24 50 30</code></pre>
 </div>
-<div id="factors" class="section level4" number="4.4.2.2">
-<h4><span class="header-section-number">4.4.2.2</span> Factors</h4>
+<div id="factors" class="section level4 hasAnchor" number="4.4.2.2">
+<h4><span class="header-section-number">4.4.2.2</span> Factors<a href="data-storage-and-data-structures.html#factors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Factors are sets of categories. Thus, the values come from a fixed set of possible values.</p>
-<div class="figure" style="text-align: center"><span id="fig:factor"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:factor"></span>
 <img src="img/factor.png" alt="Illustration of a factor (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="5%" />
 <p class="caption">
-Figure 4.3: Illustration of a factor (symbolic). Figure by <span class="citation"><a href="references.html#ref-murrell_2009" role="doc-biblioref">Murrell</a> (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.3: Illustration of a factor (symbolic). Figure by <span class="citation">Murrell (<a href="#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
 <p>For example, we might want to initiate a factor that indicates the gender of a number of people.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-storage-and-data-structures.html#cb118-1" aria-hidden="true" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</span>
-<span id="cb118-2"><a href="data-storage-and-data-structures.html#cb118-2" aria-hidden="true" tabindex="-1"></a>gender</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data-storage-and-data-structures.html#cb121-1" aria-hidden="true" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</span>
+<span id="cb121-2"><a href="data-storage-and-data-structures.html#cb121-2" aria-hidden="true" tabindex="-1"></a>gender</span></code></pre></div>
 <pre><code>## [1] Male   Male   Female
 ## Levels: Female Male</code></pre>
 </div>
-<div id="matricesarrays" class="section level4" number="4.4.2.3">
-<h4><span class="header-section-number">4.4.2.3</span> Matrices/Arrays</h4>
-<p>Matrices are two-dimensional collections of values, arrays higher-dimensional collections of values, of the same type.</p>
-<div class="figure" style="text-align: center"><span id="fig:matrix"></span>
+<div id="matricesarrays" class="section level4 hasAnchor" number="4.4.2.3">
+<h4><span class="header-section-number">4.4.2.3</span> Matrices/Arrays<a href="data-storage-and-data-structures.html#matricesarrays" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:matrix"></span>
 <img src="img/matrix.png" alt="Illustration of a numeric matrix (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
 <p class="caption">
-Figure 4.4: Illustration of a numeric matrix (symbolic). Figure by <span class="citation"><a href="references.html#ref-murrell_2009" role="doc-biblioref">Murrell</a> (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.4: Illustration of a numeric matrix (symbolic). Figure by <span class="citation">Murrell (<a href="#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
 <p>For example, we can initiate a three-row/two-column numeric matrix as follows</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-storage-and-data-structures.html#cb120-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
-<span id="cb120-2"><a href="data-storage-and-data-structures.html#cb120-2" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-storage-and-data-structures.html#cb123-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb123-2"><a href="data-storage-and-data-structures.html#cb123-2" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    4
 ## [2,]    2    5
 ## [3,]    3    6</code></pre>
 <p>And a three-dimensional numeric array as follows.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-storage-and-data-structures.html#cb122-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>), <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb122-2"><a href="data-storage-and-data-structures.html#cb122-2" aria-hidden="true" tabindex="-1"></a>my_array</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-storage-and-data-structures.html#cb125-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>), <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb125-2"><a href="data-storage-and-data-structures.html#cb125-2" aria-hidden="true" tabindex="-1"></a>my_array</span></code></pre></div>
 <pre><code>## , , 1
 ## 
 ##      [,1] [,2]
@@ -517,38 +553,38 @@ Figure 4.4: Illustration of a numeric matrix (symbolic). Figure by <span class="
 ## [1,]    5    7
 ## [2,]    6    8</code></pre>
 </div>
-<div id="data-frames-tibbles-and-data-tables" class="section level4" number="4.4.2.4">
-<h4><span class="header-section-number">4.4.2.4</span> Data frames, tibbles, and data tables</h4>
+<div id="data-frames-tibbles-and-data-tables" class="section level4 hasAnchor" number="4.4.2.4">
+<h4><span class="header-section-number">4.4.2.4</span> Data frames, tibbles, and data tables<a href="data-storage-and-data-structures.html#data-frames-tibbles-and-data-tables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Data frames are the typical representation of a (table-like) data set in R. Each column can contain a vector of a given data type (or a factor), but all columns need to be of identical length. Thus in the context of data analysis, we would say that each row of a data frame contains an observation, and each column contains a characteristic of this observation.</p>
-<div class="figure" style="text-align: center"><span id="fig:df"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:df"></span>
 <img src="img/df.png" alt="Illustration of a data frame (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
 <p class="caption">
-Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="citation"><a href="references.html#ref-murrell_2009" role="doc-biblioref">Murrell</a> (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="citation">Murrell (<a href="#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
-<p>The historical implementation of data frames in R is not very appropriate to work with large datasets.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> These days there are new implementations of the data frame concept in R provided by different packages, which aim at making data processing based on ‘data frames’ faster. One is called <code>tibbles</code>, implemented and used in the <code>tidyverse</code> packages. The other is called <code>data table</code>, implemented in the <code>data.table</code>-package. In this course we will encounter primarily the classical <code>data.frame</code> and <code>tibble</code> (however, there will also be some hints to tutorials with <code>data.table</code>). In any case, once we understand data frames in general, working with <code>tibble</code> and <code>data.table</code> is quite easy because functions that accept classical data frames as arguments also accept those newer implementations.</p>
+<p>The historical implementation of data frames in R is not very appropriate to work with large datasets. <a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> These days there are new implementations of the data frame concept in R provided by different packages, which aim at making data processing based on ‘data frames’ faster. One is called <code>tibbles</code>, implemented and used in the <code>tidyverse</code> packages. The other is called <code>data table</code>, implemented in the <code>data. table</code>-package. In this book, we will encounter primarily classical <code>data. frame</code> and <code>tibble</code> (however, there will also be some hints to tutorials with <code>data. table</code>). In any case, once we understand data frames in general, working with <code>tibble</code> and <code>data. table</code> is quite easy because functions that accept classical data frames as arguments also accept those newer implementations.</p>
 <p>Here is how we define a data frame in R, based on the examples of vectors and factors shown above.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-storage-and-data-structures.html#cb124-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">person =</span> persons, <span class="at">age =</span> ages, <span class="at">gender =</span> gender)</span>
-<span id="cb124-2"><a href="data-storage-and-data-structures.html#cb124-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-storage-and-data-structures.html#cb127-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">person =</span> persons, <span class="at">age =</span> ages, <span class="at">gender =</span> gender)</span>
+<span id="cb127-2"><a href="data-storage-and-data-structures.html#cb127-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##   person age gender
 ## 1   Andy  24   Male
 ## 2  Brian  50   Male
 ## 3 Claire  30 Female</code></pre>
 </div>
-<div id="lists" class="section level4" number="4.4.2.5">
-<h4><span class="header-section-number">4.4.2.5</span> Lists</h4>
-<p>Similar to data frames, lists can contain different types of data in each element. Moreover, they even can contain different data structures of <em>different dimensions</em> in each element. For example, a list could contain different other lists, data frames, and vectors with differing numbers of elements.</p>
-<div class="figure" style="text-align: center"><span id="fig:list"></span>
+<div id="lists" class="section level4 hasAnchor" number="4.4.2.5">
+<h4><span class="header-section-number">4.4.2.5</span> Lists<a href="data-storage-and-data-structures.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Unlike data frames, lists can contain different data types in each element. Moreover, they even can contain different data structures of <em>different dimensions</em> in each element. For example, a list could contain different other lists, data frames, and vectors with differing numbers of elements.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:list"></span>
 <img src="img/list.png" alt="Illustration of a data frame (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
 <p class="caption">
-Figure 4.6: Illustration of a data frame (symbolic). Figure by <span class="citation"><a href="references.html#ref-murrell_2009" role="doc-biblioref">Murrell</a> (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.6: Illustration of a data frame (symbolic). Figure by <span class="citation">Murrell (<a href="#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
 <p>This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-storage-and-data-structures.html#cb126-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(my_array, my_matrix, df)</span>
-<span id="cb126-2"><a href="data-storage-and-data-structures.html#cb126-2" aria-hidden="true" tabindex="-1"></a>my_list</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-storage-and-data-structures.html#cb129-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(my_array, my_matrix, df)</span>
+<span id="cb129-2"><a href="data-storage-and-data-structures.html#cb129-2" aria-hidden="true" tabindex="-1"></a>my_list</span></code></pre></div>
 <pre><code>## [[1]]
 ## , , 1
 ## 
@@ -579,15 +615,21 @@ Figure 4.6: Illustration of a data frame (symbolic). Figure by <span class="cita
 </div>
 </div>
 </div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-murrell_2009" class="csl-entry">
+Murrell, Paul. 2009. <em><span class="nocase">Introduction to Data Technologies</span></em>. London, UK: CRC Press.
+</div>
+</div>
 <div class="footnotes">
 <hr />
 <ol start="7">
 <li id="fn7"><p>To be precise, this program shows both the raw binary content as well as its ASCII representation.<a href="data-storage-and-data-structures.html#fnref7" class="footnote-back">↩︎</a></p></li>
-<li id="fn8"><p>Note that changing the encoding in this way only works well if we actually know what the original encoding of the file is (i.e., the encoding used when the file was initially created). While the <code>file</code> comand above seems to simply tell us what the original encoding was, it actually has to make an educated guess in most cases (as the original encoding is often not stored as metadata describing a file). See, for example, the <a href="https://www-archive.mozilla.org/projects/intl/chardet.html">Mozilla Charset Detectors</a>.<a href="data-storage-and-data-structures.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>Note that changing the encoding in this way only works well if we know what the original encoding of the file is (i.e., the encoding used when the file was initially created). While the <code>file</code> command above simply tells us what the original encoding was, it has to make an educated guess in most cases (as the original encoding is often not stored as metadata describing a file). See, for example, the <a href="https://www-archive.mozilla.org/projects/intl/chardet.html">Mozilla Charset Detectors</a>.<a href="data-storage-and-data-structures.html#fnref8" class="footnote-back">↩︎</a></p></li>
 <li id="fn9"><p>In addition, if a field contains itself a comma (the comma is part of the data), the field needs to be surrounded by double-quotes (<code>"</code>). If a field contains double-quotes it also has to be surrounded by double-quotes, and the double quotes in the field must be preceded by an additional double-quote.<a href="data-storage-and-data-structures.html#fnref9" class="footnote-back">↩︎</a></p></li>
 <li id="fn10"><p>The same applies to other sequences of <code>0</code>s and <code>1</code>s that do not correspond to a printable character.<a href="data-storage-and-data-structures.html#fnref10" class="footnote-back">↩︎</a></p></li>
-<li id="fn11"><p>In the lecture on data gathering and data import, we will cover this crucial step in detail.<a href="data-storage-and-data-structures.html#fnref11" class="footnote-back">↩︎</a></p></li>
-<li id="fn12"><p>In the early days of R this was not really an issue because datasets that are rather large by today’s standards (in the Gigabytes) could not have been handled properly by normal computers anyhow (due to a lack of RAM).<a href="data-storage-and-data-structures.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>In the chapter on data gathering and data import, we will cover this crucial step in detail.<a href="data-storage-and-data-structures.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>In the early days of R, this was not an issue because datasets that are rather large by today’s standards (in the Gigabytes) could not have been handled properly by normal computers anyway (due to a lack of RAM).<a href="data-storage-and-data-structures.html#fnref12" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -600,7 +642,6 @@ Figure 4.6: Illustration of a data frame (symbolic). Figure by <span class="cita
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
 <script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
@@ -619,6 +660,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -639,6 +681,10 @@ gitbook.start({
 "text": null
 },
 "download": ["datahandling.pdf", "datahandling.html", "datahandling.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

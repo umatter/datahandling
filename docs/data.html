@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Data | Data Handling</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and empirical economic research." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Data | Data Handling" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://umatter.github.io/datahandling/" />
   <meta property="og:image" content="https://umatter.github.io/datahandling/img/new_abacus.jpg" />
   <meta property="og:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
   <meta name="github-repo" content="umatter/datahandling" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-22" />
+<meta name="date" content="2022-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="programming-with-data.html"/>
 <link rel="next" href="data-storage-and-data-structures.html"/>
-<script src="libs/header-attrs/header-attrs.js"></script>
-<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -118,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style/style.css" type="text/css" />
 </head>
 
@@ -138,17 +162,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>2</b> Programming with Data</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.1</b> First steps with R</a>
+<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#why-learn-to-program-to-handle-data"><i class="fa fa-check"></i><b>2.1</b> Why learn to program to handle data?</a></li>
+<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#why-r"><i class="fa fa-check"></i><b>2.2</b> Why <em>R</em>?</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="programming-with-data.html"><a href="programming-with-data.html#variables-and-vectors"><i class="fa fa-check"></i><b>2.1.1</b> Variables and vectors</a></li>
-<li class="chapter" data-level="2.1.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.1.2</b> Math operators</a></li>
+<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-data-language"><i class="fa fa-check"></i><b>2.2.1</b> The ‘data language’</a></li>
+<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#high-level-language-relatively-easy-to-learn"><i class="fa fa-check"></i><b>2.2.2</b> High-level language, relatively easy to learn</a></li>
+<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#free-open-source-large-community"><i class="fa fa-check"></i><b>2.2.3</b> Free, open source, large community</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.2</b> Basic programming concepts in R</a>
+<li class="chapter" data-level="2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#rrstudio-overview"><i class="fa fa-check"></i><b>2.3</b> <em>R</em>/RStudio overview</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.2.1</b> Loops</a></li>
-<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.2.2</b> For-loops</a></li>
-<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.2.3</b> Booleans and logical statements</a></li>
-<li class="chapter" data-level="2.2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.2.4</b> R functions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-r-console"><i class="fa fa-check"></i><b>2.3.1</b> The <em>R</em>-Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="programming-with-data.html"><a href="programming-with-data.html#r-scripts"><i class="fa fa-check"></i><b>2.3.2</b> <em>R</em>-Scripts</a></li>
+<li class="chapter" data-level="2.3.3" data-path="programming-with-data.html"><a href="programming-with-data.html#r-environment"><i class="fa fa-check"></i><b>2.3.3</b> <em>R</em> Environment</a></li>
+<li class="chapter" data-level="2.3.4" data-path="programming-with-data.html"><a href="programming-with-data.html#file-browser"><i class="fa fa-check"></i><b>2.3.4</b> File Browser</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.4</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="programming-with-data.html"><a href="programming-with-data.html#values-vectors-and-variables"><i class="fa fa-check"></i><b>2.4.1</b> Values, Vectors, and Variables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.4.2</b> Math operators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.5</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.5.1</b> Loops</a></li>
+<li class="chapter" data-level="2.5.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.5.2</b> For-loops</a></li>
+<li class="chapter" data-level="2.5.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.5.3</b> Booleans and logical statements</a></li>
+<li class="chapter" data-level="2.5.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.5.4</b> R functions</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
@@ -200,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>6.3.1</b> Loading built-in datasets</a></li>
 <li class="chapter" data-level="6.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>6.3.2</b> Importing rectangular data from text-files</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parsing-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parsing with <code>readr</code></a>
+<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parse-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parse with <code>readr</code></a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>6.4.1</b> Basic usage of <code>readr</code> functions</a></li>
 <li class="chapter" data-level="6.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>6.4.2</b> Parsing and data types</a></li>
@@ -246,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>9</b> Basic Econometrics in R</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modelling"><i class="fa fa-check"></i><b>9.1</b> Statistical modelling</a>
+<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modeling"><i class="fa fa-check"></i><b>9.1</b> Statistical modeling</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>9.1.1</b> Illustration with pseudo-data</a></li>
 </ul></li>
@@ -263,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>10.1</b> Data display</a></li>
-<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualisation-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualisation with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualization with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>10.3</b> ‘Grammar of Graphics’</a>
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>10.3.1</b> <code>ggplot2</code> basics</a></li>
@@ -272,12 +310,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>10.3.4</b> Geometries (~ type of plot)</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>10.4</b> Dynamic documents</a></li>
-<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualisation"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualisation</a></li>
-<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.6</b> Background and aim</a>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualization"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualization</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.6.1</b> Data import and preparation</a></li>
-<li class="chapter" data-level="10.6.2" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.6.2</b> Plot</a></li>
-<li class="chapter" data-level="10.6.3" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.6.3</b> Cosmetics: theme</a></li>
+<li class="chapter" data-level="10.5.1" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.5.1</b> Background and aim</a></li>
+<li class="chapter" data-level="10.5.2" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.5.2</b> Data import and preparation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.5.3</b> Plot</a></li>
+<li class="chapter" data-level="10.5.4" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.5.4</b> Cosmetics: theme</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -292,8 +330,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
 
@@ -314,14 +350,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Data</h1>
-<p>In order to better understand the role of data in today’s economy and society, we study the usage forms and purposes of data records in human history. In a second step, we look at how a computer processes digital data.</p>
-<p>Throughout human history, the recording and storage of data has primarily been motivated by measuring, quantifying, and keeping record of both our social and natural environments. Early on, the recording of data has been related to economic activity and scientific endeavor. The neolithic transition from hunter-gatherer societies to agriculture and settlements (the economic development sometimes referred to as the ‘first industrial revolution’) came along with a division of labor and more complex organizational structures of society. The change to agricultural food production had the effect that more people could be fed. But it also implied that food production would need to follow a more careful planning (e.g., the right time to seed and harvest) and that the produced food (e.g., grains) would partly be stored and not consumed entirely on the spot. It is believed that partly due to these two practical problems, keeping track of time and keeping record of production quantities, neolithic societies started to use signs (numbers/letters) carved in stone or wood <span class="citation">(<a href="references.html#ref-hogben_1983" role="doc-biblioref">Hogben 1983</a>)</span>. Keeping record of the time and later measuring and keeping record of production quantities in order to store and trade likely led to the first ‘data sets.’ At the same time the development of mathematics, particularly geometry, took shape.</p>
-<div id="processing-data-simple-calculations-in-numeral-systems" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Processing data: simple calculations in numeral systems</h2>
+<div id="data" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Data<a href="data.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>To better understand the role of data in today’s economy and society, we study the usage forms and purposes of data records in human history. In the second step, we look at how a computer processes digital data.</p>
+<p>Throughout human history, the recording and storage of data have primarily been motivated by measuring, quantifying, and keeping records of both our social and natural environments. Early on, data recording was related to economic activity and scientific endeavors. The neolithic transition from hunter-gatherer societies to agriculture and settlements (the economic development sometimes referred to as the ‘first industrial revolution’) came along with a division of labor and more complex organizational structures of society. Because of the change in agricultural food production, more people could be fed. But it also implied that food production would need to follow a more careful planning (e.g., the right time to seed and harvest) and that the produced food (e.g., grains) would partly be stored and not consumed entirely on the spot. It is believed that partly due to these two practical problems, keeping track of time and keeping record of production quantities, neolithic societies started to use signs (numbers/letters) carved in stone or wood <span class="citation">(<a href="#ref-hogben_1983" role="doc-biblioref">Hogben 1983</a>)</span>. Keeping record of the time and later measuring and keeping record of production quantities in order to store and trade likely led to the first ‘data sets’. At the same time the development of mathematics, particularly geometry, took shape.</p>
+<div id="processing-data-simple-calculations-in-numeral-systems" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Processing data: simple calculations in numeral systems<a href="data.html#processing-data-simple-calculations-in-numeral-systems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In order to keep track of calculations with large numbers, humans started to use mechanical aids such as pebbles or shells and later developed the <a href="https://en.wikipedia.org/wiki/Abacus">counting frame (‘abacus’)</a>.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> We can understand the counting frame as a simple mechanical tool to process numbers (data). In order to use the abacus properly, one must agree on a standard regarding what each column of the frame represents, as well as how many beads each column can contain. In other words, one has to define what the <em>base</em> of the frame’s numeral system is. For example, the Roman numeral system is essentially of base 10, with ‘I’ representing one, ‘X’ representing ten, ‘C’ representing one hundred, and ‘M’ representing one thousand. Figure <a href="data.html#fig:abacus">3.1</a> illustrates how a counting frame based on this numeral system works (examples are written out in Arabic numbers). The first column on the right represents units of <span class="math inline">\(10^0=1\)</span>, the second <span class="math inline">\(10^1=10\)</span>, and so forth.</p>
-<div class="figure" style="text-align: center"><span id="fig:abacus"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:abacus"></span>
 <img src="img/abacus_own.png" alt="A simple abacus." width="80%" />
 <p class="caption">
 Figure 3.1: A simple abacus.
@@ -331,15 +367,15 @@ Figure 3.1: A simple abacus.
 <p>From inspecting Figure <a href="data.html#fig:abacus">3.1</a> we recognize that the columns of the abacus are the positions of the digits, which also denote the power of 10 with which the digit is multiplied: <span class="math inline">\(139=(1 \times 10^{2}) + (3 \times 10^{1}) + (9 \times 10^{0})\)</span>. In addition, a base of 10 means that the system is based on 10 different signs (0, 1, …, 9) with which we distinguish one-digit numbers. Further, we recognize that each column in the abacus has 9 beads (when we agree on the standard that a column without any bead represents the sign 0).</p>
 <p>The numeral system with base 10 (the ‘decimal system’) is what we use to measure/count/quantify things in our everyday life. Moreover, it is what we normally work with in applied math and statistics. However, the simple but very useful concept of the counting frame also works well for numeral systems with other bases. Historically, numeral systems with other bases existed in various cultures. For example, ancient cultures in Mesopotamia used different forms of a sexagesimal system (base 60), consisting of 60 different signs to distinguish ‘one-digit’ numbers.</p>
 <p>Note that this logic holds both ways: if a numeral system only consists of two different signs, it follows that the system has to be of base 2 (i.e., a ‘binary system’). As it turns out, this is exactly the kind of numeral system that becomes relevant once we use electronic tools, that is, digital computers, to calculate and process data.</p>
-<div id="the-binary-system" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> The binary system</h3>
-<p>Anything related to electronically processing (and storing) <em>digital data</em> has to be built on a binary system. The reason is that a microprocessor (similar to a light switch) can only represent two signs (states): <em>on and off</em>. We usually refer to ‘off’ with the sign ‘0’ and to ‘on’ with the sign ‘1.’ A numeral system consisting only of the signs 0 and 1 must, thus, be of base 2. It follows that an abacus of this binary system has columns <span class="math inline">\(2^0=1\)</span>, <span class="math inline">\(2^1=2\)</span>, <span class="math inline">\(2^3=4\)</span>, and so forth. Moreover, each column has only one bead (1) or none (0). Nevertheless we can express all (natural) numbers from the decimal system.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> For example, the number 139 which we have expressed with the ‘decimal abacus,’ would be expressed as follows with a base 2 system:</p>
+<div id="the-binary-system" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> The binary system<a href="data.html#the-binary-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Anything related to electronically processing (and storing) <em>digital data</em> has to be built on a binary system. The reason is that a microprocessor (similar to a light switch) can only represent two signs (states): <em>on and off</em>. We usually refer to ‘off’ with the sign ‘0’ and to ‘on’ with the sign ‘1’. A numeral system consisting only of the signs 0 and 1 must, thus, be of base 2. It follows that an abacus of this binary system has columns <span class="math inline">\(2^0=1\)</span>, <span class="math inline">\(2^1=2\)</span>, <span class="math inline">\(2^3=4\)</span>, and so forth. Moreover, each column has only one bead (1) or none (0). Nevertheless, we can express all (natural) numbers from the decimal system.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> For example, the number 139 which we have expressed with the ‘decimal abacus’, would be expressed as follows with a base 2 system:</p>
 <p><span class="math display">\[(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.\]</span></p>
 <p>More precisely, when including all columns of our binary system abacus (that is, including also the columns set to 0), we would get the following:</p>
 <p><span class="math display">\[(1 \times 2^7) + (0 \times 2^6) +  (0 \times 2^5) +  (0 \times 2^4) + (1 \times 2^3) + (0 \times 2^2) + (1 \times 2^1) +  (1 \times 2^0)  = 139.\]</span></p>
-<p>Now, compare this with the abacus in the decimal system above. There, we have set the third column to 1, the second column to 3 and the first column (from the right) to 9, resulting in 139. If we do the same in the binary system (where we can set each column either to 0 or 1) we get 10001011. That is, the number 139 in the decimal system corresponds to 10001011 in the binary system.</p>
-<p>How can a computer know that? In order to correctly print the three symbols <code>139</code> to our computer screen when dealing with the binary expression <code>10001011</code>, the computer needs to rely on a predefined mapping between binary coded values and the symbols for (Arabic) decimal numbers like <code>3</code>. Since a computer can only understand binary expressions, we have to define a <em>standard</em> of how <code>0</code>s and <code>1</code>s correspond to symbols, colors, etc. that we see on the screen.</p>
-<p>Of course, this does not change the fact that any digital data processing is in the end happening in the binary system. But in order to avoid having to work with a keyboard consisting only of an on/off (1/0) switch, low-level standards that define how symbols like <code>3</code>, <code>A</code>, <code>#</code>, etc. correspond to expressions in 0s and 1s help us to interact with the computer. It makes it easier to enter data and commands into the computer as well as understand the output (i.e., the result of a calculation performed on the computer) on the screen. A standard defining how our number symbols in the decimal system correspond to binary numbers (again, reflecting the idea of an abacus) can be illustrated in the following table:</p>
+<p>Now, compare this with the abacus in the decimal system above. There, we set the third column to 1, the second column to 3, and the first column (from the right) to 9, resulting in 139. If we do the same in the binary system (where we can set each column either to 0 or 1), we get 10001011. That is, the number 139 in the decimal system corresponds to 10001011 in the binary system.</p>
+<p>How can a computer know that? To correctly print the three symbols <code>139</code> to our computer screen when dealing with the binary expression <code>10001011</code>, the computer needs to rely on a predefined mapping between binary coded values and the symbols for (Arabic) decimal numbers like <code>3</code>. Since a computer can only understand binary expressions, we have to define a <em>standard</em> of how <code>0</code>s and <code>1</code>s correspond to symbols, colors, etc. that we see on the screen.</p>
+<p>Of course, this does not change the fact that any digital data processing is, in the end, happening in the binary system. But in order to avoid having to work with a keyboard consisting only of an on/off (1/0) switch, low-level standards that define how symbols like <code>3</code>, <code>A</code>, <code>#</code>, etc. corresponding expressions in 0s and 1s help us to interact with the computer. It makes it easier to enter data and commands into the computer as well as understand the output (i.e., the result of a calculation performed on the computer) on the screen. A standard defining how our number symbols in the decimal system correspond to binary numbers (again, reflecting the idea of an abacus) can be illustrated in the following table:</p>
 <table>
 <thead>
 <tr class="header">
@@ -424,19 +460,19 @@ Figure 3.1: A simple abacus.
 </tbody>
 </table>
 </div>
-<div id="the-hexadecimal-system" class="section level3" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> The hexadecimal system</h3>
-<p>From the above table we also recognize that binary numbers can become quite long rather quickly (have many digits). In Computer Science it is, therefore, quite common to use another numeral system to refer to binary numbers: the <em>hexadecimal</em> system. In this system we have 16 symbols available, consisting of <code>0</code>-<code>9</code> (used like in the decimal system) and <code>A</code>-<code>F</code> (for the numbers 10 to 15). Because we have 16 symbols available, each digit represents an increasing power of 16 (<span class="math inline">\(16^{0}\)</span>, <span class="math inline">\(16^{1}\)</span>, etc.). The decimal number 139 is expressed in the hexadecimal system as follows</p>
+<div id="the-hexadecimal-system" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> The hexadecimal system<a href="data.html#the-hexadecimal-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From the above table, we also recognize that binary numbers can become quite long rather quickly (have many digits). In Computer Science it is, therefore, quite common to use another numeral system to refer to binary numbers: the <em>hexadecimal</em> system. In this system, we have 16 symbols available, consisting of <code>0</code>-<code>9</code> (used like in the decimal system) and <code>A</code>-<code>F</code> (for the numbers 10 to 15). Because we have 16 symbols available, each digit represents an increasing power of 16 (<span class="math inline">\(16^{0}\)</span>, <span class="math inline">\(16^{1}\)</span>, etc.). The decimal number 139 is expressed in the hexadecimal system as follows.</p>
 <p><span class="math display">\[(8\times 16^1) +  (11\times 16^0) = 139.\]</span>
-More precisely following the convention of the hexadecimal system used in Computer Science (where <code>B</code> stands for <code>11</code>), it is:
+More precisely, following the convention of the hexadecimal system used in Computer Science (where <code>B</code> stands for <code>11</code>), it is:
 <span class="math display">\[(8\times 16^1) +  (B\times 16^0) = 8B = 139.\]</span></p>
-<p>Hence, <code>10001011</code> in the binary system is <code>8B</code> in the hexadecimal system and <code>139</code> in the decimal system. The primary use of hexadecimal notation when dealing with binary numbers is the more ‘human-friendly’ representation of binary coded values. First, it is shorter than the raw binary representation (as well as the decimal representation). Second, with a little bit of practice it is much easier for humans to translate forth and back between hexadecimal and binary notation than it is between decimal and binary. This is because each hexadecimal digit can directly be converted into its four-digit binary equivalent (from looking at the table above): <span class="math inline">\(8=1000\)</span>, <span class="math inline">\(B=11=1011\)</span>, thus <code>8B</code> in hexadecimal notation corresponds to <code>10001011</code> (<code>1000 1011</code>) in binary coded values.</p>
+<p>Hence, <code>10001011</code> in the binary system is <code>8B</code> in the hexadecimal system and <code>139</code> in the decimal system. The primary use of hexadecimal notation when dealing with binary numbers is the more ‘human-friendly’ representation of binary-coded values. First, it is shorter than the raw binary representation (as well as the decimal representation). Second, with a little bit of practice it is much easier for humans to translate forth and back between hexadecimal and binary notation than it is between decimal and binary. This is because each hexadecimal digit can directly be converted into its four-digit binary equivalent (from looking at the table above): <span class="math inline">\(8=1000\)</span>, <span class="math inline">\(B=11=1011\)</span>, thus <code>8B</code> in hexadecimal notation corresponds to <code>10001011</code> (<code>1000 1011</code>) in binary coded values.</p>
 </div>
 </div>
-<div id="character-encoding" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Character encoding</h2>
-<p>Computers are not only used to process numbers but in a wide array of applications they are used to process text. Most fundamentally, when writing computer code, we type in commands in the form of text consisting of common alphabetical letters. How can a computer understand text if it only understands <code>0</code>s and <code>1</code>s? Well, again we have to agree on a certain standard of how <code>0</code>s and <code>1</code>s correspond to characters/letters. While the conversions of integers between different numeral systems follow all essentially the same principle (~ the idea of a ‘digital’ abacus), the introduction of standards defining how <code>0</code>s and <code>1</code>s correspond to specific letters of different human languages is way more arbitrary.</p>
-<p>Today, there are many standards defining how computers translate <code>0</code>s and <code>1</code>s into more meaningful symbols like numbers, letters, and special characters in various natural (human) languages. These standards are called <em>character encodings</em>. They consist of what is called a ‘coded character set,’ basically a mapping of unique numbers (in the end in binary coded values) to each character in the set. For example, the classical ASCII (American Standard Code for Information Interchange) assigns the following numbers to the respective characters:</p>
+<div id="character-encoding" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Character encoding<a href="data.html#character-encoding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Computers are not only used to process numbers but in a wide array of applications, they are used to process text. Most fundamentally, when writing computer code, we type in commands in the form of text consisting of common alphabetical letters. How can a computer understand text if it only understands <code>0</code>s and <code>1</code>s? Well, again, we have to agree on a certain standard of how <code>0</code>s and <code>1</code>s correspond to characters/letters. While the conversions of integers between different numeral systems follow all essentially the same principle (~ the idea of a ‘digital’ abacus), the introduction of standards defining how <code>0</code>s and <code>1</code>s correspond to specific letters of different human languages is way more arbitrary.</p>
+<p>Today, many standards define how computers translate <code>0</code>s and <code>1</code>s into more meaningful symbols like numbers, letters, and special characters in various natural (human) languages. These standards are called <em>character encodings</em>. They consist of what is called a ‘coded character set’, basically a mapping of unique numbers (in the end in binary coded values) to each character in the set. For example, the classical ASCII (American Standard Code for Information Interchange) assigns the following numbers to the respective characters:</p>
 <table>
 <thead>
 <tr class="header">
@@ -467,31 +503,30 @@ More precisely following the convention of the hexadecimal system used in Comput
 </tr>
 </tbody>
 </table>
-<p>The convention that <code>0100 0001</code> corresponds to <code>A</code> is only true by definition of the ASCII character encoding.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> It does not follow from any law of nature or fundamental logic. Somebody simply defined this standard at some point. To have such standards (and widely accept them) is paramount to have functioning software and meaningful data sets that can be used and shared across many users and computers. If we write a text and store it in a file based on the ASCII standard and that text (which, under the hood, only consists of <code>0</code>s and <code>1</code>s) is read on another computer only capable of mapping the binary code to another character set, the output would likely be complete gibberish.</p>
-<p>In practice, the software we use to write emails, browse the Web, or conduct statistical analyses all have some of these standards built into them and usually we do not have to worry about encoding issues when simply interacting with a computer through such programs. The practical relevance of such standards becomes much more relevant once we <em>store</em> or <em>read</em> previously stored data/computer code.</p>
+<p>The convention that <code>0100 0001</code> corresponds to <code>A</code> is only true by definition of the ASCII character encoding.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> It does not follow any law of nature or fundamental logic. Somebody simply defined this standard at some point. To have such standards (and widely accept them) is paramount to have functioning software and meaningful data sets that can be used and shared across many users and computers. If we write a text and store it in a file based on the ASCII standard, and that text (which, under the hood, only consists of <code>0</code>s and <code>1</code>s) is read on another computer only capable of mapping the binary code to another character set, the output would likely be complete gibberish.</p>
+<p>In practice, the software we use to write emails, browse the Web, or conduct statistical analyses all have some of these standards built into them. Usually, we do not have to worry about encoding issues when simply interacting with a computer through such programs. The practical relevance of such standards becomes much more relevant once we <em>store</em> or <em>read</em> previously stored data/computer code.</p>
 </div>
-<div id="computer-code-and-text-files" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Computer code and text files</h2>
-<p>Understanding the fundamentals of what digital data is and how computers process them is the basis for approaching two core themes of this course: <span class="math inline">\((I)\)</span> How <em>data</em> can be <em>stored</em> digitally and be read by/imported to a computer (this will be the main subject of the next lecture), and <span class="math inline">\((II)\)</span> how we can give instructions to a computer by writing <em>computer code</em> (this will be the main topic of the first two exercises/workshops).</p>
-<p>In both of these domains we mainly work with one simple type of document: <em>text files</em>. Text files are a collection of characters (with a given character encoding). Following the logic of how binary code is translated forth and back into text, they are a straightforward representation of the underlying information (<code>0</code>s and <code>1</code>s). They are used to store both structured data (e.g., tables), unstructured data (e.g., plain texts), or semi-structured data (such as websites). Similarly, they are used to write and store a collection of instructions to the computer (i.e., computer code) in any computer language.</p>
-<p>From our every-day use of computers (notebooks, smartphones, etc.) we are accustomed to certain software packages to write text. Most prominently, we use programs like Microsoft Word or email clients (Outlook, Thunderbird, etc.). However, these programs are a poor choice for writing/editing plain text. Such programs tend to add all kinds of formatting to the text and use specific file formats to store formatting information in addition to the raw text. In other words, when using this type of software, we actually do not only write plain text. Any program to read data or execute computer code, however, expects only plain text. Therefore, we must only use <em>text editors</em> to write and edit text files. In this course we will use either <a href="https://atom.io/">Atom</a> or <a href="https://www.rstudio.com/products/RStudio/">RStudio</a>.</p>
+<div id="computer-code-and-text-files" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Computer code and text files<a href="data.html#computer-code-and-text-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Understanding the fundamentals of what digital data is and how computers process them is the basis for approaching two core themes of this book: <span class="math inline">\((I)\)</span> How <em>data</em> can be <em>stored</em> digitally and be read by/imported to a computer (this will be the main subject of the next chapter), and <span class="math inline">\((II)\)</span> how we can give instructions to a computer by writing <em>computer code</em> (this will be the main topic of the first two exercises/workshops).</p>
+<p>In both of these domains, we mainly work with one simple type of document: <em>text files</em>. Text files are a collection of characters (with a given character encoding). Following the logic of how binary code is translated forth and back into text, they are a straightforward representation of the underlying information (<code>0</code>s and <code>1</code>s). They are used to store both structured data (e.g., tables), unstructured data (e.g., plain texts), or semi-structured data (such as websites). Similarly, they are used to write and store a collection of instructions to the computer (i.e., computer code) in any computer language.</p>
+<p>From our everyday use of computers (notebooks, smartphones, etc.), we are accustomed to certain software packages to write text. Most prominently, we use programs like Microsoft Word or email clients (Outlook, Thunderbird, etc.). However, these programs are a poor choice for writing/editing plain text. Such programs tend to add all kinds of formatting to the text and use specific file formats to store formatting information in addition to the raw text. In other words, when using this type of software, we actually do not only write plain text. However, any program to read data or execute computer code expects only plain text. Therefore, we must only use <em>text editors</em> to write and edit text files. For example, with <a href="https://atom.io/">Atom</a> or <a href="https://www.rstudio.com/products/RStudio/">RStudio</a>.</p>
 </div>
-<div id="data-processing-basics" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Data processing basics</h2>
-Recall the ‘blackbox’-illustration from the first lecture:
-<div class="figure" style="text-align: center"><span id="fig:dsdiagram"></span>
+<div id="data-processing-basics" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Data processing basics<a href="data.html#data-processing-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By now, we already have a much better understanding of what the <code>0</code>s and <code>1</code>s stand for, how they might enter the computer, where they might be stored on the computer, and where we might see the output of processing data on a computer.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dsdiagram"></span>
 <img src="img/cpu_blackbox_white.png" alt="The ‘blackbox’ of data processing." width="75%" />
 <p class="caption">
 Figure 3.2: The ‘blackbox’ of data processing.
 </p>
 </div>
 
-<p>By now we already have a much better understanding of what the <code>0</code>s and <code>1</code>s stand for, how they might enter the computer, where they might be stored on the computer, and where we might see the output of processing data on a computer.</p>
-<p>This section briefly gives a summary of the key components of processing data with a computer, following <span class="citation"><a href="references.html#ref-murrell_2009" role="doc-biblioref">Murrell</a> (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (chapter 9, pages 199-204).</p>
-<div id="components-of-a-standard-computing-environment" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Components of a standard computing environment</h3>
-<p>Figure <a href="data.html#fig:components">3.3</a> illustrates the key components of a standard computing environment (PC, notebook, tablet, etc.) with which we can process data. A programming language (such as R) allows us to work with these hardware components (i.e., control them) in order to perform our tasks (e.g., cleaning/analyzing data).</p>
-<div class="figure" style="text-align: center"><span id="fig:components"></span>
+<p>This section briefly summarizes the key components of processing data with a computer, following <span class="citation">Murrell (<a href="#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (chapter 9, pages 199-204).</p>
+<div id="components-of-a-standard-computing-environment" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Components of a standard computing environment<a href="data.html#components-of-a-standard-computing-environment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Figure @ref(fig: components) illustrates the key components of a standard computing environment (PC, notebook, tablet, etc.) with which we can process data. A programming language (such as R) allows us to work with these hardware components (i.e., control them) in order to perform our tasks (e.g., cleaning/analyzing data).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:components"></span>
 <img src="img/script-hardware_w.jpg" alt="Basic components of a standard computing environment." width="60%" />
 <p class="caption">
 Figure 3.3: Basic components of a standard computing environment.
@@ -500,39 +535,39 @@ Figure 3.3: Basic components of a standard computing environment.
 
 <ul>
 <li><p>The component actually <em>processing</em> data is the Central Processing Unit (CPU). When using R to process data, R commands are translated into complex combinations of a small set of basic operations which the <em>CPU</em> then executes.</p></li>
-<li><p>In order to work with data (e.g., in R), it first has to be loaded into the <em>memory</em> of our computer. More specifically into the Random Access Memory (<em>RAM</em>). Typically, data is only loaded in the RAM as long as we work with it.</p></li>
-<li><p>The <em>Keyboard</em> is the typical <em>input</em> hardware. It is the key tool we need to interact with the computer in this course (note that, in contrast, in a course on graphic design this would rather be the mouse).</p></li>
+<li><p>To work with data (e.g., in R), it first must be loaded into the <em>memory</em> of our computer. More specifically, into the Random Access Memory (<em>RAM</em>). Typically, data is only loaded in the RAM as long as we work with it.</p></li>
+<li><p>The <em>Keyboard</em> is the typical <em>input</em> hardware. It is the key tool we need to interact with the computer in this book (in contrast, in a book on graphic design this would rather be the mouse).</p></li>
 <li><p><em>Mass Storage</em> refers to the type of computer memory we use to store data in the long run. Typically this is what we call the <em>hard drive</em> or <em>hard disk</em>. In these days, the relevant hard disk for storing and accessing data is actually often not the one physically built into our computer but a hard disk ‘in the cloud’ (built into a server to which we connect over the Internet).</p></li>
 <li><p>The <em>Screen</em> is our primary output hardware that is key to interact with the computer.</p></li>
 <li><p>Today almost all computers are connected to a local <em>network</em> which in turn is connected to the Internet. With the rise of ‘Big Data’ this component has become increasingly relevant to understand, as the key data sources might reside in this network.</p></li>
 </ul>
-<p>Note how understanding the role of these components helps us to capture what happened in the initial example of this course (online survey of the class):</p>
+<p>Note how understanding the role of these components helps us to capture what happened in the initial example of this book (online survey of the class):</p>
 <ol style="list-style-type: decimal">
 <li><p>You have used your computers to access a website (over the Internet) and used your keyboards to enter data into this website (a Google sheet in that case).</p></li>
 <li><p>My R program has accessed the data you have entered into the Google sheet (again over the Internet), downloaded the data, and loaded it into the RAM on my notebook.</p></li>
 <li><p>There, the data has been processed in order to produce an output (in the form of statistics/plots), which in the end has been shown on the screen.</p></li>
 </ol>
-<p>In the following, we look at a related example (taken from <span class="citation"><a href="references.html#ref-murrell_2009" role="doc-biblioref">Murrell</a> (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span>, Chapter 9), illustrating how which hardware components are involved when extracting data from a website.</p>
+<p>In the following, we look at a related example (taken from <span class="citation">Murrell (<a href="#ref-murrell_2009" role="doc-biblioref">2009</a>)</span>, Chapter 9), illustrating which hardware components are involved when extracting data from a website.</p>
 </div>
-<div id="illustration" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> Illustration</h3>
-<div id="downloadingaccessing-a-website" class="section level4" number="3.4.2.1">
-<h4><span class="header-section-number">3.4.2.1</span> Downloading/accessing a website</h4>
-<p>First, we use our keyboard to enter the address of a website in the address-bar of our browser (i.e., Firefox). The browser then accesses the network and loads the webpage to the RAM. Figure <a href="data.html#fig:htmldownload">3.4</a> illustrates this point.</p>
-<div class="figure" style="text-align: center"><span id="fig:htmldownload"></span>
+<div id="illustration" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Illustration<a href="data.html#illustration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="downloadingaccessing-a-website" class="section level4 hasAnchor" number="3.4.2.1">
+<h4><span class="header-section-number">3.4.2.1</span> Downloading/accessing a website<a href="data.html#downloadingaccessing-a-website" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>First, we use our keyboard to enter the address of a website in the address bar of our browser (i.e., Firefox). The browser then accesses the network and loads the webpage to the RAM. Figure <a href="data.html#fig:htmldownload">3.4</a> illustrates this point.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:htmldownload"></span>
 <img src="img/script-htmldownload_w.jpg" alt="Components involved in visiting a website." width="40%" />
 <p class="caption">
 Figure 3.4: Components involved in visiting a website.
 </p>
 </div>
 
-<p>In this simple task of accessing/visiting a website, several parts of data are involved as shown in <a href="data.html#fig:htmldownloaddata">3.5</a>:</p>
+<p>In this simple task of accessing/visiting a website, several parts of data are involved, as shown in <a href="data.html#fig:htmldownloaddata">3.5</a>:</p>
 <ol style="list-style-type: decimal">
 <li><p>The string of characters that we type into the address bar of the browser</p></li>
-<li><p>The source-code of the website (written in Hyper text markup language, HTML), being sent through the network</p></li>
-<li><p>The HTML-document (the website) stored in the RAM</p></li>
+<li><p>The source code of the website (written in Hypertext markup language, HTML), being sent through the network</p></li>
+<li><p>The HTML document (the website) stored in the RAM</p></li>
 </ol>
-<div class="figure" style="text-align: center"><span id="fig:htmldownloaddata"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:htmldownloaddata"></span>
 <img src="img/script-htmldownloaddata_w.jpg" alt="Data involved in visiting a website." width="40%" />
 <p class="caption">
 Figure 3.5: Data involved in visiting a website.
@@ -540,9 +575,9 @@ Figure 3.5: Data involved in visiting a website.
 </div>
 
 <p>What we just did with our browser can also be done via R. First, we tell R to download the webpage and read its source code into RAM:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="data.html#cb77-1" aria-hidden="true" tabindex="-1"></a>clockHTML <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;https://www.census.gov/popclock/&quot;</span>)</span></code></pre></div>
-<p>And we can have a look at the first lines of the webpage’s source code:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="data.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(clockHTML)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="data.html#cb80-1" aria-hidden="true" tabindex="-1"></a>clockHTML <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;https://www.census.gov/popclock/&quot;</span>)</span></code></pre></div>
+<p>And we can have a look at the first lines of the web page’s source code:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="data.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(clockHTML)</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;!DOCTYPE html&gt;&quot;                                                                                                                                                                                           
 ## [2] &quot;&lt;html lang=\&quot;en\&quot;&gt;&quot;                                                                                                                                                                                        
 ## [3] &quot;&lt;head&gt;&quot;                                                                                                                                                                                                    
@@ -551,16 +586,16 @@ Figure 3.5: Data involved in visiting a website.
 ## [6] &quot;        &lt;meta name=\&quot;description\&quot; content=\&quot;Shows estimates of current USA Population overall and people by US state/county and of World Population overall, by country and most populated countries.\&quot;/&gt;&quot;</code></pre>
 <p>Note that what happened is essentially the same as displayed in the diagram above. The only difference is that here, we look at the raw code of the webpage, whereas in the example above, we looked at it through our browser. What the browser did, is to <em>render</em> the source code, meaning it translated it into the nicely designed webpage we see in the browser window.</p>
 </div>
-<div id="searchingfiltering-the-webpage" class="section level4" number="3.4.2.2">
-<h4><span class="header-section-number">3.4.2.2</span> Searching/filtering the webpage</h4>
-<p>Having the webpage loaded into RAM, we can now process this data in different ways via R. For example, we can search the source code for the line that contains the part of the website with the world population counter:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="data.html#cb80-1" aria-hidden="true" tabindex="-1"></a>line_number <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&#39;id=&quot;world-pop-container&quot;&#39;</span>, clockHTML)</span></code></pre></div>
+<div id="searchingfiltering-the-webpage" class="section level4 hasAnchor" number="3.4.2.2">
+<h4><span class="header-section-number">3.4.2.2</span> Searching/filtering the webpage<a href="data.html#searchingfiltering-the-webpage" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Having the webpage loaded into RAM, we can now process this data in different ways via R. For example; we can search the source code for the line that contains the part of the website with the world population counter:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="data.html#cb83-1" aria-hidden="true" tabindex="-1"></a>line_number <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&#39;id=&quot;world-pop-container&quot;&#39;</span>, clockHTML)</span></code></pre></div>
 <p>That is, we ask R on which line in <code>clockHTML</code> (the source code stored in RAM) the text <code>id="world-pop-container"</code> is and store the answer (the line number) in RAM under the variable name <code>line_number</code>.</p>
 <p>We can now check on which line the text was found.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="data.html#cb81-1" aria-hidden="true" tabindex="-1"></a>line_number</span></code></pre></div>
-<pre><code>## [1] 540</code></pre>
-<p>Again, we can illustrate with a simple diagram which computer components were involved in this task. First we entered an R command with the keyboard, the CPU is processing it and as a result accesses <code>clockHTML</code> in RAM, executes the search, returns the line number, and stores it in a new variable called <code>line_number</code> in RAM. In our current R session, we thus have now two ‘objects’ stored in RAM: <code>clockHTML</code> and <code>line_number</code>, which we can further process with R.</p>
-<div class="figure" style="text-align: center"><span id="fig:ramcalc"></span>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="data.html#cb84-1" aria-hidden="true" tabindex="-1"></a>line_number</span></code></pre></div>
+<pre><code>## [1] 441</code></pre>
+<p>Again, we can illustrate with a simple diagram which computer components were involved in this task. First, we entered an R command with the keyboard; the CPU is processing it and as a result accesses <code>clockHTML</code> in RAM, executes the search, returns the line number, and stores it in a new variable called <code>line_number</code> in RAM. In our current R session, we thus now have two ‘objects’ stored in RAM: <code>clockHTML</code> and <code>line_number</code>, which we can further process with R.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ramcalc"></span>
 <img src="img/script-ramcalc_w.jpg" alt="Accessing data in RAM, processing it, and storing the result in RAM." width="40%" />
 <p class="caption">
 Figure 3.6: Accessing data in RAM, processing it, and storing the result in RAM.
@@ -568,9 +603,9 @@ Figure 3.6: Accessing data in RAM, processing it, and storing the result in RAM.
 </div>
 
 <p>Finally, we can tell R to store the source code of the downloaded webpage on our local hard drive.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="data.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(clockHTML, <span class="st">&quot;clock.html&quot;</span>)</span></code></pre></div>
-<p>That means we tell R to access the data stored in <code>clockHTML</code> in RAM and write this data to a text-file called “clock.html” on our local hard drive (in the current working directory of our R session). The following diagram again illustrates the hardware components involved in these steps.</p>
-<div class="figure" style="text-align: center"><span id="fig:htmlstore"></span>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="data.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(clockHTML, <span class="st">&quot;clock.html&quot;</span>)</span></code></pre></div>
+<p>That means we tell R to access the data stored in <code>clockHTML</code> in RAM and write this data to a text file called “clock.html” on our local hard drive (in the current working directory of our R session). The following diagram again illustrates the hardware components involved in these steps.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:htmlstore"></span>
 <img src="img/script-htmlstore_w.jpg" alt="Writing data stored in RAM to a Mass Storage device (hard drive)." width="40%" />
 <p class="caption">
 Figure 3.7: Writing data stored in RAM to a Mass Storage device (hard drive).
@@ -582,11 +617,20 @@ Figure 3.7: Writing data stored in RAM to a Mass Storage device (hard drive).
 </div>
 </div>
 </div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-hogben_1983" class="csl-entry">
+Hogben, Lancelot. 1983. <em><span class="nocase">Mathematics for the Million</span></em>. New York: W.W Norton &amp; Company.
+</div>
+<div id="ref-murrell_2009" class="csl-entry">
+Murrell, Paul. 2009. <em><span class="nocase">Introduction to Data Technologies</span></em>. London, UK: CRC Press.
+</div>
+</div>
 <div class="footnotes">
 <hr />
 <ol start="4">
-<li id="fn4"><p>See <span class="citation"><a href="references.html#ref-hogben_1983" role="doc-biblioref">Hogben</a> (<a href="references.html#ref-hogben_1983" role="doc-biblioref">1983</a>)</span>, Chapter 1 for a detailed account of the abacus’ origin and usage.<a href="data.html#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p>Representing fractions is much harder in a binary system than representing natural numbers. The reason is that fractions such as <span class="math inline">\(1/3=0.333..\)</span> actually constitute an infinite sequence of 0s and 1s. The representation of such numbers in a computer (via so-called ‘floating point’ numbers) is thus in reality not 100% accurate.<a href="data.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>See <span class="citation">Hogben (<a href="#ref-hogben_1983" role="doc-biblioref">1983</a>)</span>, Chapter 1 for a detailed account of the abacus’ origin and usage.<a href="data.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Representing fractions is much harder in a binary system than representing natural numbers. The reason is fractions such as <span class="math inline">\(1/3=0.333..\)</span> actually constitute an infinite sequence of 0s and 1s. The representation of such numbers in a computer (via so-called ‘floating point’ numbers) is thus in reality not 100% accurate.<a href="data.html#fnref5" class="footnote-back">↩︎</a></p></li>
 <li id="fn6"><p>Each character digit is expressed in 1 byte (8 <code>0</code>/<code>1</code> digits). The ASCII character set thus consists of <span class="math inline">\(2^{8}=256\)</span> different characters.<a href="data.html#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
@@ -600,7 +644,6 @@ Figure 3.7: Writing data stored in RAM to a Mass Storage device (hard drive).
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
 <script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
@@ -619,6 +662,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -639,6 +683,10 @@ gitbook.start({
 "text": null
 },
 "download": ["datahandling.pdf", "datahandling.html", "datahandling.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

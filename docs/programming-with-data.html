@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Programming with Data | Data Handling</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and empirical economic research." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Programming with Data | Data Handling" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://umatter.github.io/datahandling/" />
   <meta property="og:image" content="https://umatter.github.io/datahandling/img/new_abacus.jpg" />
   <meta property="og:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
   <meta name="github-repo" content="umatter/datahandling" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-22" />
+<meta name="date" content="2022-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="introduction.html"/>
 <link rel="next" href="data.html"/>
-<script src="libs/header-attrs/header-attrs.js"></script>
-<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -118,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style/style.css" type="text/css" />
 </head>
 
@@ -138,17 +162,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>2</b> Programming with Data</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.1</b> First steps with R</a>
+<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#why-learn-to-program-to-handle-data"><i class="fa fa-check"></i><b>2.1</b> Why learn to program to handle data?</a></li>
+<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#why-r"><i class="fa fa-check"></i><b>2.2</b> Why <em>R</em>?</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="programming-with-data.html"><a href="programming-with-data.html#variables-and-vectors"><i class="fa fa-check"></i><b>2.1.1</b> Variables and vectors</a></li>
-<li class="chapter" data-level="2.1.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.1.2</b> Math operators</a></li>
+<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-data-language"><i class="fa fa-check"></i><b>2.2.1</b> The ‘data language’</a></li>
+<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#high-level-language-relatively-easy-to-learn"><i class="fa fa-check"></i><b>2.2.2</b> High-level language, relatively easy to learn</a></li>
+<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#free-open-source-large-community"><i class="fa fa-check"></i><b>2.2.3</b> Free, open source, large community</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.2</b> Basic programming concepts in R</a>
+<li class="chapter" data-level="2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#rrstudio-overview"><i class="fa fa-check"></i><b>2.3</b> <em>R</em>/RStudio overview</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.2.1</b> Loops</a></li>
-<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.2.2</b> For-loops</a></li>
-<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.2.3</b> Booleans and logical statements</a></li>
-<li class="chapter" data-level="2.2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.2.4</b> R functions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-r-console"><i class="fa fa-check"></i><b>2.3.1</b> The <em>R</em>-Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="programming-with-data.html"><a href="programming-with-data.html#r-scripts"><i class="fa fa-check"></i><b>2.3.2</b> <em>R</em>-Scripts</a></li>
+<li class="chapter" data-level="2.3.3" data-path="programming-with-data.html"><a href="programming-with-data.html#r-environment"><i class="fa fa-check"></i><b>2.3.3</b> <em>R</em> Environment</a></li>
+<li class="chapter" data-level="2.3.4" data-path="programming-with-data.html"><a href="programming-with-data.html#file-browser"><i class="fa fa-check"></i><b>2.3.4</b> File Browser</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.4</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="programming-with-data.html"><a href="programming-with-data.html#values-vectors-and-variables"><i class="fa fa-check"></i><b>2.4.1</b> Values, Vectors, and Variables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.4.2</b> Math operators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.5</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.5.1</b> Loops</a></li>
+<li class="chapter" data-level="2.5.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.5.2</b> For-loops</a></li>
+<li class="chapter" data-level="2.5.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.5.3</b> Booleans and logical statements</a></li>
+<li class="chapter" data-level="2.5.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.5.4</b> R functions</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
@@ -200,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>6.3.1</b> Loading built-in datasets</a></li>
 <li class="chapter" data-level="6.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>6.3.2</b> Importing rectangular data from text-files</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parsing-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parsing with <code>readr</code></a>
+<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parse-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parse with <code>readr</code></a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>6.4.1</b> Basic usage of <code>readr</code> functions</a></li>
 <li class="chapter" data-level="6.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>6.4.2</b> Parsing and data types</a></li>
@@ -246,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>9</b> Basic Econometrics in R</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modelling"><i class="fa fa-check"></i><b>9.1</b> Statistical modelling</a>
+<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modeling"><i class="fa fa-check"></i><b>9.1</b> Statistical modeling</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>9.1.1</b> Illustration with pseudo-data</a></li>
 </ul></li>
@@ -263,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>10.1</b> Data display</a></li>
-<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualisation-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualisation with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualization with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>10.3</b> ‘Grammar of Graphics’</a>
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>10.3.1</b> <code>ggplot2</code> basics</a></li>
@@ -272,12 +310,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>10.3.4</b> Geometries (~ type of plot)</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>10.4</b> Dynamic documents</a></li>
-<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualisation"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualisation</a></li>
-<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.6</b> Background and aim</a>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualization"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualization</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.6.1</b> Data import and preparation</a></li>
-<li class="chapter" data-level="10.6.2" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.6.2</b> Plot</a></li>
-<li class="chapter" data-level="10.6.3" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.6.3</b> Cosmetics: theme</a></li>
+<li class="chapter" data-level="10.5.1" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.5.1</b> Background and aim</a></li>
+<li class="chapter" data-level="10.5.2" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.5.2</b> Data import and preparation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.5.3</b> Plot</a></li>
+<li class="chapter" data-level="10.5.4" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.5.4</b> Cosmetics: theme</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -292,8 +330,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
 
@@ -314,258 +350,386 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="programming-with-data" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Programming with Data</h1>
-<div id="first-steps-with-r" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> First steps with R<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></h2>
-<p>Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<div id="variables-and-vectors" class="section level3" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Variables and vectors</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="programming-with-data.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simle integer vector</span></span>
-<span id="cb1-2"><a href="programming-with-data.html#cb1-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">33</span>, <span class="dv">22</span>, <span class="dv">40</span>)</span>
-<span id="cb1-3"><a href="programming-with-data.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="programming-with-data.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># give names to vector elements</span></span>
-<span id="cb1-5"><a href="programming-with-data.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(a) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Eva&quot;</span>)</span>
-<span id="cb1-6"><a href="programming-with-data.html#cb1-6" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
-<pre><code>##   Andy  Betty Claire Daniel    Eva 
-##     10     22     33     22     40</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="programming-with-data.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indexing either via number of vector element (start count with 1)</span></span>
-<span id="cb3-2"><a href="programming-with-data.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or by element name</span></span>
-<span id="cb3-3"><a href="programming-with-data.html#cb3-3" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">3</span>]</span></code></pre></div>
-<pre><code>## Claire 
-##     33</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="programming-with-data.html#cb5-1" aria-hidden="true" tabindex="-1"></a>a[<span class="st">&quot;Claire&quot;</span>]</span></code></pre></div>
-<pre><code>## Claire 
-##     33</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="programming-with-data.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the object you are working with</span></span>
-<span id="cb7-2"><a href="programming-with-data.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a) <span class="co"># returns the class(es) of the object</span></span></code></pre></div>
-<pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="programming-with-data.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a) <span class="co"># returns the structure of the object (&quot;what is in variable a?&quot;)</span></span></code></pre></div>
-<pre><code>##  Named num [1:5] 10 22 33 22 40
-##  - attr(*, &quot;names&quot;)= chr [1:5] &quot;Andy&quot; &quot;Betty&quot; &quot;Claire&quot; &quot;Daniel&quot; ...</code></pre>
+<div id="programming-with-data" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Programming with Data<a href="programming-with-data.html#programming-with-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="why-learn-to-program-to-handle-data" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Why learn to program to handle data?<a href="programming-with-data.html#why-learn-to-program-to-handle-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With lower computing costs, lower storage costs for digital data, and the diffusion of the Internet, we have recently witnessed a stark increase in the availability of digital data describing all kind of every-day human activities <span class="citation">(<a href="#ref-einav_levin2014" role="doc-biblioref">Einav and Levin 2014</a>; <a href="#ref-matter_stutzer2015" role="doc-biblioref">Matter and Stutzer 2015</a>)</span>. As a consequence, new business models and economic structures are emerging with data as their core commodity (i.e., AI-related technological and economic change). A ‘data-driven’ economy heavily relies on processing/analyzing/handling large amounts of digital data.</p>
+<p>The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of <a href="https://en.wikipedia.org/wiki/Data_science">‘Data Science’</a> as well as an increasing demand for ‘Data Scientists’. While nothing within Data Science is particularly new on its own, it is the combination of skills and insights from different fields (particularly Computer Science and Statistics) that has proven to be very productive in meeting new challenges posed by a data-driven economy. The various facets of this new craft are often illustrated in the ‘Data Science’ Venn-Diagram (see, for example, <a href="http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/" class="uri">http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/</a>), reflecting the combination of knowledge and skills from Mathematics/Statistics, substantive expertise in the particular scientific field in which Data Science is applied, and ‘hacking skills’, that is, the skills necessary for <em>acquiring, cleaning, and analyzing</em> data <em>programmatically</em>.</p>
+<p>Apart from the current ‘Data Science developments’ and the related career opportunities for young economists, learning to program comes with many benefits for academic work in graduate economics. Many of the courses in your curriculum will at least partially touch upon practical programming exercises or concepts related to programming and scientific computing in an environment like R.</p>
 </div>
-<div id="math-operators" class="section level3" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Math operators</h3>
-<p>R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="programming-with-data.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basic arithmetic </span></span>
-<span id="cb11-2"><a href="programming-with-data.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="programming-with-data.html#cb13-1" aria-hidden="true" tabindex="-1"></a>sum_result <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
-<span id="cb13-2"><a href="programming-with-data.html#cb13-2" aria-hidden="true" tabindex="-1"></a>sum_result</span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="programming-with-data.html#cb15-1" aria-hidden="true" tabindex="-1"></a>sum_result <span class="sc">-</span><span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="programming-with-data.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">*</span><span class="dv">5</span></span></code></pre></div>
-<pre><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="programming-with-data.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span><span class="sc">/</span><span class="dv">5</span></span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="programming-with-data.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order of operations</span></span>
-<span id="cb21-2"><a href="programming-with-data.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
-<pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="programming-with-data.html#cb23-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
-<pre><code>## [1] 12</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="programming-with-data.html#cb25-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span><span class="sc">+</span><span class="dv">5</span>)<span class="sc">/</span>(<span class="dv">2</span><span class="sc">+</span><span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="programming-with-data.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># work with variables</span></span>
-<span id="cb27-2"><a href="programming-with-data.html#cb27-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb27-3"><a href="programming-with-data.html#cb27-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb27-4"><a href="programming-with-data.html#cb27-4" aria-hidden="true" tabindex="-1"></a>a<span class="sc">/</span>b</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="programming-with-data.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetics with vectors</span></span>
-<span id="cb29-2"><a href="programming-with-data.html#cb29-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>)</span>
-<span id="cb29-3"><a href="programming-with-data.html#cb29-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1]  2  8 12</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="programming-with-data.html#cb31-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">40</span>,<span class="dv">80</span>)</span>
-<span id="cb31-2"><a href="programming-with-data.html#cb31-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">*</span> b</span></code></pre></div>
-<pre><code>## [1]  10 160 480</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="programming-with-data.html#cb33-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b </span></code></pre></div>
-<pre><code>## [1] 11 44 86</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="programming-with-data.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># other common math operators and functions</span></span>
-<span id="cb35-2"><a href="programming-with-data.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="programming-with-data.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="programming-with-data.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 0.6931</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="programming-with-data.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>## [1] 22026</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="programming-with-data.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">exp</span>(<span class="dv">10</span>))</span></code></pre></div>
-<pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="programming-with-data.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># special numbers</span></span>
-<span id="cb45-2"><a href="programming-with-data.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Euler&#39;s number</span></span>
-<span id="cb45-3"><a href="programming-with-data.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## [1] 2.718</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="programming-with-data.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pi</span></span>
-<span id="cb47-2"><a href="programming-with-data.html#cb47-2" aria-hidden="true" tabindex="-1"></a>pi</span></code></pre></div>
-<pre><code>## [1] 3.142</code></pre>
+<div id="why-r" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Why <em>R</em>?<a href="programming-with-data.html#why-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-data-language" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> The ‘data language’<a href="programming-with-data.html#the-data-language" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The programming language and open-source statistical computing environment <a href="www.r-project.org"><em>R</em></a> has over the last decade become a core tool for data science in industry and academia. It was originally designed as a tool for statistical analysis. Many characteristics of the language make <em>R</em> particularly useful to work with data. With the rise of the ‘data economy’ and ‘data science’, <em>R</em> is increasingly used in various domains, going well beyond the traditional applications of academic research.</p>
+</div>
+<div id="high-level-language-relatively-easy-to-learn" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> High-level language, relatively easy to learn<a href="programming-with-data.html#high-level-language-relatively-easy-to-learn" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>R</em> is a relatively easy computer language to learn for people with no previous programming experience. The syntax is rather intuitive and error messages are not too cryptic to understand (this facilitates learning by doing). Moreover, with <em>R</em>’s recent stark rise in popularity, there are plenty of freely accessible resources online that help beginners to learn the language.</p>
+</div>
+<div id="free-open-source-large-community" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Free, open source, large community<a href="programming-with-data.html#free-open-source-large-community" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Due to its vast base of contributors, <em>R</em> serves as a valuable tool for users in various fields related to data analysis and computation (economics/econometrics, biomedicine, business analytics, etc.). <em>R</em> users have direct access to thousands of freely available ‘<em>R</em>-packages’ (small software libraries written in <em>R</em>), covering diverse aspects of data analysis, statistics, data preparation, and data import.</p>
+<p>Hence, a lot of people using <em>R</em> as a tool in their daily work do not actually ‘write programs’ (in the traditional sense of the word), but apply <em>R</em> packages. Applied econometrics with <em>R</em> is a good example of this. Almost any function a modern commercial computing environment with a focus on statistics and econometrics (such as <a href="http://www.stata.com/">STATA</a>) is offering, can also be found within the <em>R</em> environment. Furthermore, there are <em>R</em> packages covering all the areas of modern data analytics, including natural language processing, machine learning, big data analytics, etc. (see the <a href="https://cran.r-project.org/web/views/">CRAN Task Views</a> for an overview). We thus do not actually have to write a program for many tasks we perform with <em>R</em>. Instead, we can build on already existing and reliable packages.</p>
 </div>
 </div>
-<div id="basic-programming-concepts-in-r" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Basic programming concepts in R</h2>
-<div id="loops" class="section level3" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Loops</h3>
-<p>A loop is typically a sequence of statements that is executed a specific number of times. How often the code ‘inside’ the loop is executed depends on a clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called ‘for-loop.’ If the number of iterations is not clearly known before executing the code, we typically write a so-called ‘while-loop.’ The following subsections illustrate both of these concepts in R.</p>
-</div>
-<div id="for-loops" class="section level3" number="2.2.2">
-<h3><span class="header-section-number">2.2.2</span> For-loops</h3>
-<p>In simple terms, a for-loop tells the computer to execute a sequence of commands ‘for each case in a set of n cases.’ The flow-chart in Figure <a href="programming-with-data.html#fig:for">2.1</a> illustrates the concept.</p>
-<div class="figure" style="text-align: center"><span id="fig:for"></span>
-<img src="img/forloop.png" alt="For-loop illustration." width="40%" />
+<div id="rrstudio-overview" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> <em>R</em>/RStudio overview<a href="programming-with-data.html#rrstudio-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><em>R</em> is the high-level (meaning ‘more user friendly’) programming language for statistical computing. Once we have installed <em>R</em> on our computer, we can run it…</p>
+<ol style="list-style-type: lower-alpha">
+<li>…directly from the command line, by typing <code>R</code> and hit enter (here in the OSX terminal):</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:terminal"></span>
+<img src="img/r_terminal.png" alt="Running R in the Mac/OSX terminal." width="60%" />
 <p class="caption">
-Figure 2.1: For-loop illustration.
+Figure 2.1: Running <em>R</em> in the Mac/OSX terminal.
 </p>
 </div>
 
-<p>For example, a for-loop could be used to sum up each of the elements in a numeric vector of fix length (thus the number of iterations is clearly defined). In plain English, the for-loop would state something like: “Start with 0 as the current total value, for each of the elements in the vector add the value of this element to the current total value.” Note how this logically implies that the loop will ‘stop’ once the value of the last element in the vector is added to the total. Let’s illustrate this in R. Take the numeric vector <code>c(1,2,3,4,5)</code>. A for loop to sum up all elements can be implemented as follows:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="programming-with-data.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># vector to be summed up</span></span>
-<span id="cb49-2"><a href="programming-with-data.html#cb49-2" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="fl">2.1</span>,<span class="fl">3.5</span>,<span class="fl">4.8</span>,<span class="dv">5</span>)</span>
-<span id="cb49-3"><a href="programming-with-data.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate total</span></span>
-<span id="cb49-4"><a href="programming-with-data.html#cb49-4" aria-hidden="true" tabindex="-1"></a>total_sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb49-5"><a href="programming-with-data.html#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># number of iterations</span></span>
-<span id="cb49-6"><a href="programming-with-data.html#cb49-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(numbers)</span>
-<span id="cb49-7"><a href="programming-with-data.html#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co"># start loop</span></span>
-<span id="cb49-8"><a href="programming-with-data.html#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
-<span id="cb49-9"><a href="programming-with-data.html#cb49-9" aria-hidden="true" tabindex="-1"></a>     total_sum <span class="ot">&lt;-</span> total_sum <span class="sc">+</span> numbers[i]</span>
-<span id="cb49-10"><a href="programming-with-data.html#cb49-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-11"><a href="programming-with-data.html#cb49-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-12"><a href="programming-with-data.html#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="co"># check result</span></span>
-<span id="cb49-13"><a href="programming-with-data.html#cb49-13" aria-hidden="true" tabindex="-1"></a>total_sum</span></code></pre></div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>…with the simple <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">Integrated Development Environment (IDE)</a> delivered with the basic <em>R</em> installation</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ide"></span>
+<img src="img/r_ide.png" alt="Running R in the original R GUI/IDE." width="75%" />
+<p class="caption">
+Figure 2.2: Running <em>R</em> in the original <em>R</em> GUI/IDE.
+</p>
+</div>
+
+<ol start="3" style="list-style-type: lower-alpha">
+<li>…or with the more elaborated and user-friendly IDE called <em>RStudio</em> (either locally or in the cloud, see, for example <a href="https://rstudio.cloud/">RStudio Cloud</a>:</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstudio"></span>
+<img src="img/rstudio_panels.png" alt="Running R in RStudio (IDE)." width="75%" />
+<p class="caption">
+Figure 2.3: Running <em>R</em> in RStudio (IDE).
+</p>
+</div>
+
+<p>The latter is what we will do throughout this course. RStudio is a very helpful tool for simple data analysis with <em>R</em>, writing <em>R</em> scripts (short <em>R</em> programs), or even for developing <em>R</em> packages (software written in <em>R</em>), as well as building interactive documents, presentations, etc. Moreover, it offers many options to change its own appearance (Pane Layout, Code Highlighting, etc.).</p>
+<p>In the following, we have a look at each of the main panels that will be relevant in this course.</p>
+<div id="the-r-console" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> The <em>R</em>-Console<a href="programming-with-data.html#the-r-console" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When working in an interactive session, we simply type <em>R</em> commands directly into the <em>R</em> console. Typically, the output of executing a command this way is also directly printed to the console. Hence, we type a command on one line, hit enter, and the output is presented on the next line.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:console"></span>
+<img src="img/rstudio_console.png" alt="Running R in the Mac/OSX terminal." width="75%" />
+<p class="caption">
+Figure 2.4: Running <em>R</em> in the Mac/OSX terminal.
+</p>
+</div>
+
+<p>For example, we can tell <em>R</em> to print the phrase <code>Hello world</code> to the console, by typing to following command in the console and hit enter:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="programming-with-data.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello world&quot;</code></pre>
+</div>
+<div id="r-scripts" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> <em>R</em>-Scripts<a href="programming-with-data.html#r-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Apart from very short interactive sessions, it usually makes sense to write <em>R</em> code not directly in the command line but to an <em>R</em>-script in the script panel. This way, we can easily execute several lines at once, comment the code (to explain what it does), save it on our hard disk, and further develop the code later on.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rscript"></span>
+<img src="img/rstudio_script.png" alt="The R Script window in RStudio." width="75%" />
+<p class="caption">
+Figure 2.5: The <em>R</em> Script window in RStudio.
+</p>
+</div>
+
+</div>
+<div id="r-environment" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> <em>R</em> Environment<a href="programming-with-data.html#r-environment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The environment pane shows what variables, objects, and data are loaded in our current <em>R</em> session. Moreover, it offers functions to open documents and import data.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:renvironment"></span>
+<img src="img/rstudio_environment.png" alt="The environment window in RStudio." width="50%" />
+<p class="caption">
+Figure 2.6: The environment window in RStudio.
+</p>
+</div>
+
+</div>
+<div id="file-browser" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> File Browser<a href="programming-with-data.html#file-browser" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>With the file browser window we can navigate through the folder structure and files on our computer’s hard disk, modify files, and set the working directory of our current <em>R</em> session. Moreover, it has a pane to show plots generated in <em>R</em> and a pane with help pages and <em>R</em> documentation.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rfiles"></span>
+<img src="img/rstudio_files.png" alt="The file browser window in RStudio." width="50%" />
+<p class="caption">
+Figure 2.7: The file browser window in RStudio.
+</p>
+</div>
+
+</div>
+</div>
+<div id="first-steps-with-r" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> First steps with R<a href="programming-with-data.html#first-steps-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before introducing some of the key functions and packages for data handling and data analysis with R, we should understand how such programs basically work and how we can write them in R. Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div id="values-vectors-and-variables" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Values, Vectors, and Variables<a href="programming-with-data.html#values-vectors-and-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The simplest objects to work with in R are vectors. In fact, even a simple numeric value such as <code>5.5</code> or a string of characters (text) like <code>"Hello"</code> is considered a vector (a scalar).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>A first good step to get familiar with coding in R is to assign names to the objects/values you are working with. For example, when summing up two numeric values, you might want to store the result in a separate object and call this object <code>result</code>. This is done with the assignment operator <code>&lt;-</code> (or <code>=</code>, which serves the same purpose).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="programming-with-data.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign the variable name &quot;result&quot; to the sum of two numeric values</span></span>
+<span id="cb3-2"><a href="programming-with-data.html#cb3-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fl">25.6</span> <span class="sc">+</span> <span class="fl">53.4</span> </span></code></pre></div>
+<p>Whenever you want to re-use the just computed sum, you can directly call the object by its name (the variable <code>result</code>):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="programming-with-data.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check what &quot;is stored in&quot; result</span></span>
+<span id="cb4-2"><a href="programming-with-data.html#cb4-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
+<pre><code>## [1] 79</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="programming-with-data.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># further work with the value in result</span></span>
+<span id="cb6-2"><a href="programming-with-data.html#cb6-2" aria-hidden="true" tabindex="-1"></a>result <span class="sc">-</span> <span class="dv">20</span></span></code></pre></div>
+<pre><code>## [1] 59</code></pre>
+<p>With the combine-function (<code>c()</code>), you easily form vectors with several elements and name the elements in the vector. By doing so, you create a very simple dataset. For example, suppose you survey the age of a sample of persons. The age values (in years) gives you an integer vector. By naming each integer value (each vector element) after the corresponding person’s name, you then have a simple dataset stored in a named R vector.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="programming-with-data.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple integer vector</span></span>
+<span id="cb8-2"><a href="programming-with-data.html#cb8-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">33</span>, <span class="dv">22</span>, <span class="dv">40</span>)</span>
+<span id="cb8-3"><a href="programming-with-data.html#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="programming-with-data.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># give names to vector elements</span></span>
+<span id="cb8-5"><a href="programming-with-data.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(a) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Eva&quot;</span>)</span>
+<span id="cb8-6"><a href="programming-with-data.html#cb8-6" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>##   Andy  Betty Claire Daniel    Eva 
+##     10     22     33     22     40</code></pre>
+<p>To retrieve specific values from this vector, you can either select the corresponding vector element with the element’s index (the first, second, third, etc. element) or via its name.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="programming-with-data.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indexing either via a number of vector element (start count with 1)</span></span>
+<span id="cb10-2"><a href="programming-with-data.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or by element name</span></span>
+<span id="cb10-3"><a href="programming-with-data.html#cb10-3" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## Claire 
+##     33</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="programming-with-data.html#cb12-1" aria-hidden="true" tabindex="-1"></a>a[<span class="st">&quot;Claire&quot;</span>]</span></code></pre></div>
+<pre><code>## Claire 
+##     33</code></pre>
+<p>When not sure what kind of object <code>a</code> is, the <code>str()</code> (structure) function, provides you with a short summary.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="programming-with-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the object you are working with</span></span>
+<span id="cb14-2"><a href="programming-with-data.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a) <span class="co"># returns the structure of the object (&quot;what is in variable a?&quot;)</span></span></code></pre></div>
+<pre><code>##  Named num [1:5] 10 22 33 22 40
+##  - attr(*, &quot;names&quot;)= chr [1:5] &quot;Andy&quot; &quot;Betty&quot; &quot;Claire&quot; &quot;Daniel&quot; ...</code></pre>
+<p>If you want to learn more about what the <code>c()</code> or <code>str()</code> functions (or any other pre-defined R functions) do and how they should be used, type <code>help(FUNCTION-NAME)</code> or <code>?FUNCTION-NAME</code> in the console and hit enter. A help-page with detailed explanations of what the function is for and how it can be used will appear in one of the R-Studio panels.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="programming-with-data.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(str)</span>
+<span id="cb16-2"><a href="programming-with-data.html#cb16-2" aria-hidden="true" tabindex="-1"></a>?c</span></code></pre></div>
+</div>
+<div id="math-operators" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Math operators<a href="programming-with-data.html#math-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Above, we have just in a side remark introduced the very intuitive syntax for two common math operators in R: <code>+</code> for the addition of numeric or integer values, and <code>-</code> for subtraction. R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="programming-with-data.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basic arithmetic</span></span>
+<span id="cb17-2"><a href="programming-with-data.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="programming-with-data.html#cb19-1" aria-hidden="true" tabindex="-1"></a>sum_result <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
+<span id="cb19-2"><a href="programming-with-data.html#cb19-2" aria-hidden="true" tabindex="-1"></a>sum_result</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="programming-with-data.html#cb21-1" aria-hidden="true" tabindex="-1"></a>sum_result <span class="sc">-</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="programming-with-data.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">*</span><span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="programming-with-data.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span><span class="sc">/</span><span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="programming-with-data.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order of operations</span></span>
+<span id="cb27-2"><a href="programming-with-data.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="programming-with-data.html#cb29-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="programming-with-data.html#cb31-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span><span class="sc">+</span><span class="dv">5</span>)<span class="sc">/</span>(<span class="dv">2</span><span class="sc">+</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="programming-with-data.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># work with variables</span></span>
+<span id="cb33-2"><a href="programming-with-data.html#cb33-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb33-3"><a href="programming-with-data.html#cb33-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb33-4"><a href="programming-with-data.html#cb33-4" aria-hidden="true" tabindex="-1"></a>a<span class="sc">/</span>b</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="programming-with-data.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetics with vectors</span></span>
+<span id="cb35-2"><a href="programming-with-data.html#cb35-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>)</span>
+<span id="cb35-3"><a href="programming-with-data.html#cb35-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1]  2  8 12</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="programming-with-data.html#cb37-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">40</span>,<span class="dv">80</span>)</span>
+<span id="cb37-2"><a href="programming-with-data.html#cb37-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">*</span> b</span></code></pre></div>
+<pre><code>## [1]  10 160 480</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="programming-with-data.html#cb39-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
+<pre><code>## [1] 11 44 86</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="programming-with-data.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># other common math operators and functions</span></span>
+<span id="cb41-2"><a href="programming-with-data.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="programming-with-data.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="programming-with-data.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.6931</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="programming-with-data.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 22026</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="programming-with-data.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">exp</span>(<span class="dv">10</span>))</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<p>To look up the most common math operators in R and get more details about how to use them type</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="programming-with-data.html#cb51-1" aria-hidden="true" tabindex="-1"></a>?<span class="st">`</span><span class="at">+</span><span class="st">`</span></span></code></pre></div>
+<p>in the R console and hit enter.</p>
+</div>
+</div>
+<div id="basic-programming-concepts-in-r" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Basic programming concepts in R<a href="programming-with-data.html#basic-programming-concepts-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In very simple terms, programming/coding is all about using a computer language to instruct a computer what to do. What reads very complex at first sight, is actually rather simple in (at least for a large array of basic programming problems). At the core of almost any R program is the right application and combination of just a handful of basic programming concepts: loops, logical statements, control statements, and functions. Once you a) conceptually understand what these concepts are for, and b) have learned the syntax of how to use these concepts when writing a program in R, addressing all kind of data handling problems efficiently with R, will simply become a matter of training/practice.</p>
+<div id="loops" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Loops<a href="programming-with-data.html#loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A loop is typically a sequence of statements executed a specific number of times. How often the code ‘inside’ the loop is executed depends on a clearly defined control statement. If we know in advance how often the code inside the loop has to be executed, we typically write a so-called ‘for-loop’. We typically write a so-called’ while-loop’ if the number of iterations is not clearly known before executing the code. The following subsections illustrate both of these concepts in R.</p>
+</div>
+<div id="for-loops" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> For-loops<a href="programming-with-data.html#for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In simple terms, a for-loop tells the computer to execute a sequence of commands ‘for each case in a set of n cases’. The flowchart in Figure @ref(fig: for) illustrates the concept.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:for"></span>
+<img src="img/forloop.png" alt="For-loop illustration." width="40%" />
+<p class="caption">
+Figure 2.8: For-loop illustration.
+</p>
+</div>
+
+<p>For example, a for-loop could be used, to sum up each element in a numeric vector of fixed length (thus, the number of iterations is clearly defined). In plain English, the for-loop would state something like: “Start with 0 as the current total value, for each of the elements in the vector, add the value of this element to the current total value.” Note how this logically implies that the loop will ‘stop’ once the value of the last element in the vector is added to the total. Let’s illustrate this in R. Take the numeric vector <code>c(1,2,3,4,5)</code>. A for loop to sum up all elements can be implemented as follows:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="programming-with-data.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># vector to be summed up</span></span>
+<span id="cb52-2"><a href="programming-with-data.html#cb52-2" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="fl">2.1</span>,<span class="fl">3.5</span>,<span class="fl">4.8</span>,<span class="dv">5</span>)</span>
+<span id="cb52-3"><a href="programming-with-data.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate total</span></span>
+<span id="cb52-4"><a href="programming-with-data.html#cb52-4" aria-hidden="true" tabindex="-1"></a>total_sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb52-5"><a href="programming-with-data.html#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># number of iterations</span></span>
+<span id="cb52-6"><a href="programming-with-data.html#cb52-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(numbers)</span>
+<span id="cb52-7"><a href="programming-with-data.html#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co"># start loop</span></span>
+<span id="cb52-8"><a href="programming-with-data.html#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb52-9"><a href="programming-with-data.html#cb52-9" aria-hidden="true" tabindex="-1"></a>     total_sum <span class="ot">&lt;-</span> total_sum <span class="sc">+</span> numbers[i]</span>
+<span id="cb52-10"><a href="programming-with-data.html#cb52-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb52-11"><a href="programming-with-data.html#cb52-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-12"><a href="programming-with-data.html#cb52-12" aria-hidden="true" tabindex="-1"></a><span class="co"># check result</span></span>
+<span id="cb52-13"><a href="programming-with-data.html#cb52-13" aria-hidden="true" tabindex="-1"></a>total_sum</span></code></pre></div>
 <pre><code>## [1] 16.4</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="programming-with-data.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with result of sum() function</span></span>
-<span id="cb51-2"><a href="programming-with-data.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="programming-with-data.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with the result of sum() function</span></span>
+<span id="cb54-2"><a href="programming-with-data.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(numbers)</span></code></pre></div>
 <pre><code>## [1] 16.4</code></pre>
-<div id="nested-for-loops" class="section level4" number="2.2.2.1">
-<h4><span class="header-section-number">2.2.2.1</span> Nested for-loops</h4>
-<p>In some situations a simple for-loop might not be sufficient. Within one sequence of commands there might be another sequence of commands that also has to be executed for a number of times each time the first sequence of commands is executed. In such a case we speak of a ‘nested for-loop.’ We can illustrate this easily by extending the example of the numeric vector above to a matrix for which we want to sum up the values in each column. Building on the loop implemented above, we would say ‘for each column <code>j</code> of a given numeric matrix, execute the for-loop defined above.’</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="programming-with-data.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># matrix to be summed up</span></span>
-<span id="cb53-2"><a href="programming-with-data.html#cb53-2" aria-hidden="true" tabindex="-1"></a>numbers_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
-<span id="cb53-3"><a href="programming-with-data.html#cb53-3" aria-hidden="true" tabindex="-1"></a>numbers_matrix</span></code></pre></div>
+<div id="nested-for-loops" class="section level4 hasAnchor" number="2.5.2.1">
+<h4><span class="header-section-number">2.5.2.1</span> Nested for-loops<a href="programming-with-data.html#nested-for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In some situations, a simple for-loop might not be sufficient. Within one sequence of commands, there might be another sequence of commands that also has to be executed for a number of times each time the first sequence of commands is executed. In such a case, we speak of a ‘nested for-loop’. We can illustrate this easily by extending the example of the numeric vector above to a matrix for which we want to sum up the values in each column. Building on the loop implemented above, we would say ‘for each column <code>j</code> of a given numeric matrix, execute the for-loop defined above’.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="programming-with-data.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># matrix to be summed up</span></span>
+<span id="cb56-2"><a href="programming-with-data.html#cb56-2" aria-hidden="true" tabindex="-1"></a>numbers_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb56-3"><a href="programming-with-data.html#cb56-3" aria-hidden="true" tabindex="-1"></a>numbers_matrix</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    6   11   16
 ## [2,]    2    7   12   17
 ## [3,]    3    8   13   18
 ## [4,]    4    9   14   19
 ## [5,]    5   10   15   20</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="programming-with-data.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of iterations for outer loop</span></span>
-<span id="cb55-2"><a href="programming-with-data.html#cb55-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">ncol</span>(numbers_matrix)</span>
-<span id="cb55-3"><a href="programming-with-data.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># number of iterations for inner loop</span></span>
-<span id="cb55-4"><a href="programming-with-data.html#cb55-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(numbers_matrix)</span>
-<span id="cb55-5"><a href="programming-with-data.html#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># start outer loop (loop over columns of matrix)</span></span>
-<span id="cb55-6"><a href="programming-with-data.html#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>m) {</span>
-<span id="cb55-7"><a href="programming-with-data.html#cb55-7" aria-hidden="true" tabindex="-1"></a>     <span class="co"># start inner loop</span></span>
-<span id="cb55-8"><a href="programming-with-data.html#cb55-8" aria-hidden="true" tabindex="-1"></a>     <span class="co"># initiate total</span></span>
-<span id="cb55-9"><a href="programming-with-data.html#cb55-9" aria-hidden="true" tabindex="-1"></a>     total_sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb55-10"><a href="programming-with-data.html#cb55-10" aria-hidden="true" tabindex="-1"></a>     <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
-<span id="cb55-11"><a href="programming-with-data.html#cb55-11" aria-hidden="true" tabindex="-1"></a>          total_sum <span class="ot">&lt;-</span> total_sum <span class="sc">+</span> numbers_matrix[i, j]</span>
-<span id="cb55-12"><a href="programming-with-data.html#cb55-12" aria-hidden="true" tabindex="-1"></a>          }</span>
-<span id="cb55-13"><a href="programming-with-data.html#cb55-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">print</span>(total_sum)</span>
-<span id="cb55-14"><a href="programming-with-data.html#cb55-14" aria-hidden="true" tabindex="-1"></a>     }</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="programming-with-data.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of iterations for the outer loop</span></span>
+<span id="cb58-2"><a href="programming-with-data.html#cb58-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">ncol</span>(numbers_matrix)</span>
+<span id="cb58-3"><a href="programming-with-data.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># number of iterations for the inner loop</span></span>
+<span id="cb58-4"><a href="programming-with-data.html#cb58-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(numbers_matrix)</span>
+<span id="cb58-5"><a href="programming-with-data.html#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co"># start outer loop (loop over columns of the matrix)</span></span>
+<span id="cb58-6"><a href="programming-with-data.html#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>m) {</span>
+<span id="cb58-7"><a href="programming-with-data.html#cb58-7" aria-hidden="true" tabindex="-1"></a>     <span class="co"># start inner loop</span></span>
+<span id="cb58-8"><a href="programming-with-data.html#cb58-8" aria-hidden="true" tabindex="-1"></a>     <span class="co"># initiate total</span></span>
+<span id="cb58-9"><a href="programming-with-data.html#cb58-9" aria-hidden="true" tabindex="-1"></a>     total_sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb58-10"><a href="programming-with-data.html#cb58-10" aria-hidden="true" tabindex="-1"></a>     <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb58-11"><a href="programming-with-data.html#cb58-11" aria-hidden="true" tabindex="-1"></a>          total_sum <span class="ot">&lt;-</span> total_sum <span class="sc">+</span> numbers_matrix[i, j]</span>
+<span id="cb58-12"><a href="programming-with-data.html#cb58-12" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb58-13"><a href="programming-with-data.html#cb58-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">print</span>(total_sum)</span>
+<span id="cb58-14"><a href="programming-with-data.html#cb58-14" aria-hidden="true" tabindex="-1"></a>     }</span></code></pre></div>
 <pre><code>## [1] 15
 ## [1] 40
 ## [1] 65
 ## [1] 90</code></pre>
 </div>
-<div id="while-loop" class="section level4" number="2.2.2.2">
-<h4><span class="header-section-number">2.2.2.2</span> While-loop</h4>
-<p>In a situation where a program has to repeatedly run a sequence of commands but we don’t know in advance how many iterations we need in order to reach the intended goal, a while-loop can help. In simple terms, a while loop keeps executing a sequence of commands as long as a certain logical statement is true. The flow chart in Figure <a href="programming-with-data.html#fig:while">2.2</a> illustrates this point.</p>
-<div class="figure" style="text-align: center"><span id="fig:while"></span>
+<div id="while-loop" class="section level4 hasAnchor" number="2.5.2.2">
+<h4><span class="header-section-number">2.5.2.2</span> While-loop<a href="programming-with-data.html#while-loop" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In a situation where a program has to repeatedly run a sequence of commands, but we don’t know in advance how many iterations we need to reach the intended goal, a while-loop can help. In simple terms, a while loop keeps executing a sequence of commands as long as a certain logical statement is true. The flow chart in Figure @ref(fig: while) illustrates this point.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:while"></span>
 <img src="img/while_loop_own.png" alt="While-loop illustration." width="70%" />
 <p class="caption">
-Figure 2.2: While-loop illustration.
+Figure 2.9: While-loop illustration.
 </p>
 </div>
 
 <p>For example, a while-loop in plain English could state something like “start with 0 as the total, add 1.12 to the total until the total is larger than 20.” We can implement this in R as follows.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="programming-with-data.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate starting value</span></span>
-<span id="cb57-2"><a href="programming-with-data.html#cb57-2" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb57-3"><a href="programming-with-data.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># start loop</span></span>
-<span id="cb57-4"><a href="programming-with-data.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (total <span class="sc">&lt;=</span> <span class="dv">20</span>) {</span>
-<span id="cb57-5"><a href="programming-with-data.html#cb57-5" aria-hidden="true" tabindex="-1"></a>     total <span class="ot">&lt;-</span> total <span class="sc">+</span> <span class="fl">1.12</span></span>
-<span id="cb57-6"><a href="programming-with-data.html#cb57-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb57-7"><a href="programming-with-data.html#cb57-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-8"><a href="programming-with-data.html#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="co"># check the result</span></span>
-<span id="cb57-9"><a href="programming-with-data.html#cb57-9" aria-hidden="true" tabindex="-1"></a>total</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="programming-with-data.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate starting value</span></span>
+<span id="cb60-2"><a href="programming-with-data.html#cb60-2" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb60-3"><a href="programming-with-data.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># start loop</span></span>
+<span id="cb60-4"><a href="programming-with-data.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (total <span class="sc">&lt;=</span> <span class="dv">20</span>) {</span>
+<span id="cb60-5"><a href="programming-with-data.html#cb60-5" aria-hidden="true" tabindex="-1"></a>     total <span class="ot">&lt;-</span> total <span class="sc">+</span> <span class="fl">1.12</span></span>
+<span id="cb60-6"><a href="programming-with-data.html#cb60-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb60-7"><a href="programming-with-data.html#cb60-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-8"><a href="programming-with-data.html#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co"># check the result</span></span>
+<span id="cb60-9"><a href="programming-with-data.html#cb60-9" aria-hidden="true" tabindex="-1"></a>total</span></code></pre></div>
 <pre><code>## [1] 20.16</code></pre>
 </div>
 </div>
-<div id="booleans-and-logical-statements" class="section level3" number="2.2.3">
-<h3><span class="header-section-number">2.2.3</span> Booleans and logical statements</h3>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="programming-with-data.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span> <span class="sc">==</span> <span class="dv">4</span></span></code></pre></div>
+<div id="booleans-and-logical-statements" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Booleans and logical statements<a href="programming-with-data.html#booleans-and-logical-statements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Note that in order to write a meaningful while-loop we have to make use of a logical statement such as “the value stored in the variable <code>total</code>is smaller or equal to <code>20</code>” (<code>total &lt;= 20</code>). A logical statement results in a ‘Boolean’ data type. That is, a data type with the only two possible values <code>TRUE</code> or <code>FALSE</code> (<code>1</code> or <code>0</code>).</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="programming-with-data.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span> <span class="sc">==</span> <span class="dv">4</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="programming-with-data.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">+</span><span class="dv">3</span> <span class="sc">==</span> <span class="dv">7</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="programming-with-data.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">+</span><span class="dv">3</span> <span class="sc">==</span> <span class="dv">7</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="programming-with-data.html#cb63-1" aria-hidden="true" tabindex="-1"></a>condition <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb63-2"><a href="programming-with-data.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb63-3"><a href="programming-with-data.html#cb63-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">print</span>(<span class="st">&quot;This is true!&quot;</span>)</span>
-<span id="cb63-4"><a href="programming-with-data.html#cb63-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb63-5"><a href="programming-with-data.html#cb63-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">print</span>(<span class="st">&quot;This is false!&quot;</span>)</span>
-<span id="cb63-6"><a href="programming-with-data.html#cb63-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Logical statements play an important role in fundamental programming concepts. In particular, they are crucial to make conditional statements (‘if-statements’) that build the control structure of a program, controlling the ‘direction’ the program takes (given certain conditions).</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="programming-with-data.html#cb66-1" aria-hidden="true" tabindex="-1"></a>condition <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb66-2"><a href="programming-with-data.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
+<span id="cb66-3"><a href="programming-with-data.html#cb66-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">print</span>(<span class="st">&quot;This is true!&quot;</span>)</span>
+<span id="cb66-4"><a href="programming-with-data.html#cb66-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb66-5"><a href="programming-with-data.html#cb66-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">print</span>(<span class="st">&quot;This is false!&quot;</span>)</span>
+<span id="cb66-6"><a href="programming-with-data.html#cb66-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;This is true!&quot;</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="programming-with-data.html#cb65-1" aria-hidden="true" tabindex="-1"></a>condition <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb65-2"><a href="programming-with-data.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb65-3"><a href="programming-with-data.html#cb65-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">print</span>(<span class="st">&quot;This is true!&quot;</span>)</span>
-<span id="cb65-4"><a href="programming-with-data.html#cb65-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb65-5"><a href="programming-with-data.html#cb65-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">print</span>(<span class="st">&quot;This is false!&quot;</span>)</span>
-<span id="cb65-6"><a href="programming-with-data.html#cb65-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="programming-with-data.html#cb68-1" aria-hidden="true" tabindex="-1"></a>condition <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb68-2"><a href="programming-with-data.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
+<span id="cb68-3"><a href="programming-with-data.html#cb68-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">print</span>(<span class="st">&quot;This is true!&quot;</span>)</span>
+<span id="cb68-4"><a href="programming-with-data.html#cb68-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb68-5"><a href="programming-with-data.html#cb68-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">print</span>(<span class="st">&quot;This is false!&quot;</span>)</span>
+<span id="cb68-6"><a href="programming-with-data.html#cb68-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;This is false!&quot;</code></pre>
 </div>
-<div id="r-functions" class="section level3" number="2.2.4">
-<h3><span class="header-section-number">2.2.4</span> R functions</h3>
-<p>R programs heavily rely on functions. Conceptually, ‘functions’ in R are very similar to what we know as ‘functions’ in math (i.e., <span class="math inline">\(f:X \rightarrow Y\)</span>). A function can thus, e.g., take a variable <span class="math inline">\(X\)</span> as input and provide value <span class="math inline">\(Y\)</span> as output. The actual calculation of <span class="math inline">\(Y\)</span> based on <span class="math inline">\(X\)</span> can be something as simple as <span class="math inline">\(2\times X = Y\)</span>. But it could also be a very complex algorithm or an operation that has not directly anything to do with numbers and arithmetic.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<div id="r-functions" class="section level3 hasAnchor" number="2.5.4">
+<h3><span class="header-section-number">2.5.4</span> R functions<a href="programming-with-data.html#r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R programs heavily rely on functions. Conceptually, ‘functions’ in R are very similar to what we know as ‘functions’ in math (i.e., <span class="math inline">\(f:X \rightarrow Y\)</span>). A function can thus, e.g., take a variable <span class="math inline">\(X\)</span> as input and provide value <span class="math inline">\(Y\)</span> as output. The actual calculation of <span class="math inline">\(Y\)</span> based on <span class="math inline">\(X\)</span> can be something as simple as <span class="math inline">\(2\times X = Y\)</span>. But it could also be a very complex algorithm or an operation that does not directly have anything to do with numbers and arithmetic.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
 <p>In R—and many other programming languages—functions take ‘parameter values’ as input, process those values according to a predefined program, and ‘return’ the result. For example, a function could take a numeric vector as input and return the sum of all the individual numeric values in the input vector.</p>
-<p>When we open RStudio, all basic functions are already loaded automatically. This means we can directly call them from the R-Console or by executing an R-Script. As R is made for data analysis and statistics, the basic functions loaded with R cover many aspects of tasks related to working with and analyzing data. Besides these basic functions, thousands of additional functions covering all kind of topics related to data analysis can be loaded additionally by installing the respective R-packages (<code>install.packages("PACKAGE-NAME")</code>), and then loading the packages with <code>library(PACKAGE-NAME)</code>. In addition, it is straightforward to define our own functions.</p>
-<div id="tutorial-compute-the-mean" class="section level4" number="2.2.4.1">
-<h4><span class="header-section-number">2.2.4.1</span> Tutorial: Compute the mean</h4>
-<p>In order to illustrate the point of how functions work in R and how we can write our own functions in R, the following code-example illustrates how to implement a function that computes the mean/average value, given a numeric vector.</p>
+<p>When we open RStudio, all basic functions are already loaded automatically. This means we can directly call them from the R-Console or by executing an R-Script. As R is made for data analysis and statistics, the basic functions loaded with R cover many aspects of tasks related to working with and analyzing data. Besides these basic functions, thousands of additional functions covering all kinds of topics related to data analysis can be loaded additionally by installing the respective R-packages (<code>install. packages("PACKAGE-NAME")</code>) and then loading the packages with <code>library(PACKAGE-NAME)</code>. In addition, it is straightforward to define our own functions.</p>
+<div id="case-study-compute-the-mean" class="section level4 hasAnchor" number="2.5.4.1">
+<h4><span class="header-section-number">2.5.4.1</span> Case study: Compute the mean<a href="programming-with-data.html#case-study-compute-the-mean" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To illustrate the point of how functions work in R and how we can write our own functions in R, the following code-example illustrates how to implement a function that computes the mean/average value, given a numeric vector.</p>
 <p>First, we initiate a simple numeric vector which we then use as an example to test the function. Whenever you implement a function, it is very useful to first define a simple example of an input for which you know what the output should be.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="programming-with-data.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simle integer vector, for which we want to compute the Mean</span></span>
-<span id="cb67-2"><a href="programming-with-data.html#cb67-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.5</span>, <span class="fl">7.5</span>)</span>
-<span id="cb67-3"><a href="programming-with-data.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># desired functionality and output:</span></span>
-<span id="cb67-4"><a href="programming-with-data.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># my_mean(a)</span></span>
-<span id="cb67-5"><a href="programming-with-data.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 6.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="programming-with-data.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple integer vector, for which we want to compute the Mean</span></span>
+<span id="cb70-2"><a href="programming-with-data.html#cb70-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.5</span>, <span class="fl">7.5</span>)</span>
+<span id="cb70-3"><a href="programming-with-data.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="co"># desired functionality and output:</span></span>
+<span id="cb70-4"><a href="programming-with-data.html#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="co"># my_mean(a)</span></span>
+<span id="cb70-5"><a href="programming-with-data.html#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 6.5</span></span></code></pre></div>
 <p>In this example, we would thus expect the output to be <code>6.5</code>. Later, we will compare the output of our function with this in order to check whether our function works as desired.</p>
 <p>In addition to defining a simple example and the desired output, it makes sense to also think about <em>how</em> the function is expected to produce this output. When implementing functions related to statistics (such as the mean), it usually makes sense to have a look at the mathematical definition:</p>
 <p><span class="math inline">\(\bar{x} = \frac{1}{n}\left (\sum_{i=1}^n{x_i}\right ) = \frac{x_1+x_2+\cdots +x_n}{n}\)</span>.</p>
-<p>Now, we can start thinking about how to implement the function based on built-in R functions. From looking at the mathematical definition of the mean (<span class="math inline">\(\bar{x}\)</span>), we recognize that there are two main components to computing the mean:</p>
+<p>Now, we can start thinking about implementing the function based on built-in R functions. From looking at the mathematical definition of the mean (<span class="math inline">\(\bar{x}\)</span>), we recognize that there are two main components to computing the mean:</p>
 <ul>
 <li><span class="math inline">\(\sum_{i=1}^n{x_i}\)</span>: the sum of all the elements in vector <span class="math inline">\(x\)</span></li>
 <li><span class="math inline">\(n\)</span>: the number of elements in vector <span class="math inline">\(x\)</span>.</li>
 </ul>
-<p>Once we know how to get these two components, computing the mean is straightforward. In R there are two built-in functions that deliver exactly these two components:</p>
+<p>Once we know how to get these two components, computing the mean is straightforward. In R, there are two built-in functions that deliver exactly these two components:</p>
 <ul>
-<li><code>sum()</code> returns the sum of all the values in i ts arguments (i.e., if <code>x</code> is a numeric vector, <code>sum(x)</code> returns the sum of all elements in <code>x</code>).</li>
+<li><code>sum()</code> returns the sum of all the values in I ts arguments (i.e., if <code>x</code> is a numeric vector, <code>sum(x)</code> returns the sum of all elements in <code>x</code>).</li>
 <li><code>length()</code> returns the length of a given vector.</li>
 </ul>
-<p>With the following short line of code we thus get the mean of the elements in vector <code>a</code>.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="programming-with-data.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(a)<span class="sc">/</span><span class="fu">length</span>(a)</span></code></pre></div>
+<p>With the following short line of code, we thus get the mean of the elements in vector <code>a</code>.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="programming-with-data.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(a)<span class="sc">/</span><span class="fu">length</span>(a)</span></code></pre></div>
 <pre><code>## [1] 6.5</code></pre>
 <p>All that is left to do is to pack all this into the function body of our newly defined <code>my_mean()</code> function:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="programming-with-data.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define our own function to compute the mean, given a numeric vector</span></span>
-<span id="cb70-2"><a href="programming-with-data.html#cb70-2" aria-hidden="true" tabindex="-1"></a>my_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb70-3"><a href="programming-with-data.html#cb70-3" aria-hidden="true" tabindex="-1"></a>     x_bar <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
-<span id="cb70-4"><a href="programming-with-data.html#cb70-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">return</span>(x_bar)</span>
-<span id="cb70-5"><a href="programming-with-data.html#cb70-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="programming-with-data.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define our own function to compute the mean, given a numeric vector</span></span>
+<span id="cb73-2"><a href="programming-with-data.html#cb73-2" aria-hidden="true" tabindex="-1"></a>my_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb73-3"><a href="programming-with-data.html#cb73-3" aria-hidden="true" tabindex="-1"></a>     x_bar <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb73-4"><a href="programming-with-data.html#cb73-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">return</span>(x_bar)</span>
+<span id="cb73-5"><a href="programming-with-data.html#cb73-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now we can test it based on our example:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="programming-with-data.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test it</span></span>
-<span id="cb71-2"><a href="programming-with-data.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="programming-with-data.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test it</span></span>
+<span id="cb74-2"><a href="programming-with-data.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(a)</span></code></pre></div>
 <pre><code>## [1] 6.5</code></pre>
 <p>Moreover, we can test it by comparing it with the built-in <code>mean()</code> function:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="programming-with-data.html#cb73-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">7</span>)</span>
-<span id="cb73-2"><a href="programming-with-data.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(b) <span class="co"># our own implementation</span></span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="programming-with-data.html#cb76-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">7</span>)</span>
+<span id="cb76-2"><a href="programming-with-data.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(b) <span class="co"># our own implementation</span></span></code></pre></div>
 <pre><code>## [1] 4.667</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="programming-with-data.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(b) <span class="co"># the built_in function</span></span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="programming-with-data.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(b) <span class="co"># the built_in function</span></span></code></pre></div>
 <pre><code>## [1] 4.667</code></pre>
 
 </div>
 </div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-einav_levin2014" class="csl-entry">
+Einav, Liran, and Jonathan Levin. 2014. <span>“Economics in the Age of Big Data.”</span> <em>Science</em> 346 (6210): 1243089-1-1243089-6. <a href="https://doi.org/10.1126/science.1243089">https://doi.org/10.1126/science.1243089</a>.
+</div>
+<div id="ref-matter_stutzer2015" class="csl-entry">
+Matter, Ulrich, and Alois Stutzer. 2015. <span>“<span class="nocase">pvsR: An Open Source Interface to Big Data on the American Political Sphere</span>.”</span> <em>PLOS ONE</em> 10 (7): 1–21. <a href="https://doi.org/10.1371/journal.pone.0130501">https://doi.org/10.1371/journal.pone.0130501</a>.
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>The following sections and examples are based on <span class="citation"><a href="references.html#ref-umatter_2018" role="doc-biblioref">Matter</a> (<a href="references.html#ref-umatter_2018" role="doc-biblioref">2018a</a>)</span>.<a href="programming-with-data.html#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>In fact, since R is an open source environment, you can directly look at already implemented programs in order to learn how they work.<a href="programming-with-data.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Of course, on the very low level, everything that happens in a microprocessor can in the end be expressed in some formal way using math. However, the point here is, that at the level we work with R, a function could simply process different text strings (i.e., stack them together). Thus for us as programmers, R functions do not necessarily have to do anything with arithmetic and numbers but could serve all kind of purposes, including the parsing of HTML code, etc.<a href="programming-with-data.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>In fact, since R is an open source environment, you can directly look at already implemented programs in order to learn how they work.<a href="programming-with-data.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>You can try this out in the R console by typing <code>is.vector(5.5)</code> and <code>is.vector("Hello")</code>.<a href="programming-with-data.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Of course, on the very low level, everything that happens in a microprocessor can, in the end, be expressed in some formal way using math. However, the point here is that at the level we work with R, a function could simply process different text strings (i.e., stack them together). Thus for us as programmers, R functions do not necessarily have to do anything with arithmetic and numbers but could serve all kinds of purposes, including the parsing of HTML code, etc.<a href="programming-with-data.html#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -578,7 +742,6 @@ Figure 2.2: While-loop illustration.
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
 <script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
@@ -597,6 +760,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -617,6 +781,10 @@ gitbook.start({
 "text": null
 },
 "download": ["datahandling.pdf", "datahandling.html", "datahandling.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Basic Econometrics in R | Data Handling</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and empirical economic research." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Basic Econometrics in R | Data Handling" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://umatter.github.io/datahandling/" />
   <meta property="og:image" content="https://umatter.github.io/datahandling/img/new_abacus.jpg" />
   <meta property="og:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
   <meta name="github-repo" content="umatter/datahandling" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-22" />
+<meta name="date" content="2022-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="data-analysis-first-steps.html"/>
 <link rel="next" href="data-visualization.html"/>
-<script src="libs/header-attrs/header-attrs.js"></script>
-<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -118,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style/style.css" type="text/css" />
 </head>
 
@@ -138,17 +162,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>2</b> Programming with Data</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.1</b> First steps with R</a>
+<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#why-learn-to-program-to-handle-data"><i class="fa fa-check"></i><b>2.1</b> Why learn to program to handle data?</a></li>
+<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#why-r"><i class="fa fa-check"></i><b>2.2</b> Why <em>R</em>?</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="programming-with-data.html"><a href="programming-with-data.html#variables-and-vectors"><i class="fa fa-check"></i><b>2.1.1</b> Variables and vectors</a></li>
-<li class="chapter" data-level="2.1.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.1.2</b> Math operators</a></li>
+<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-data-language"><i class="fa fa-check"></i><b>2.2.1</b> The ‘data language’</a></li>
+<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#high-level-language-relatively-easy-to-learn"><i class="fa fa-check"></i><b>2.2.2</b> High-level language, relatively easy to learn</a></li>
+<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#free-open-source-large-community"><i class="fa fa-check"></i><b>2.2.3</b> Free, open source, large community</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.2</b> Basic programming concepts in R</a>
+<li class="chapter" data-level="2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#rrstudio-overview"><i class="fa fa-check"></i><b>2.3</b> <em>R</em>/RStudio overview</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.2.1</b> Loops</a></li>
-<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.2.2</b> For-loops</a></li>
-<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.2.3</b> Booleans and logical statements</a></li>
-<li class="chapter" data-level="2.2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.2.4</b> R functions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-r-console"><i class="fa fa-check"></i><b>2.3.1</b> The <em>R</em>-Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="programming-with-data.html"><a href="programming-with-data.html#r-scripts"><i class="fa fa-check"></i><b>2.3.2</b> <em>R</em>-Scripts</a></li>
+<li class="chapter" data-level="2.3.3" data-path="programming-with-data.html"><a href="programming-with-data.html#r-environment"><i class="fa fa-check"></i><b>2.3.3</b> <em>R</em> Environment</a></li>
+<li class="chapter" data-level="2.3.4" data-path="programming-with-data.html"><a href="programming-with-data.html#file-browser"><i class="fa fa-check"></i><b>2.3.4</b> File Browser</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.4</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="programming-with-data.html"><a href="programming-with-data.html#values-vectors-and-variables"><i class="fa fa-check"></i><b>2.4.1</b> Values, Vectors, and Variables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.4.2</b> Math operators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.5</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.5.1</b> Loops</a></li>
+<li class="chapter" data-level="2.5.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.5.2</b> For-loops</a></li>
+<li class="chapter" data-level="2.5.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.5.3</b> Booleans and logical statements</a></li>
+<li class="chapter" data-level="2.5.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.5.4</b> R functions</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
@@ -200,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>6.3.1</b> Loading built-in datasets</a></li>
 <li class="chapter" data-level="6.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>6.3.2</b> Importing rectangular data from text-files</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parsing-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parsing with <code>readr</code></a>
+<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parse-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parse with <code>readr</code></a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>6.4.1</b> Basic usage of <code>readr</code> functions</a></li>
 <li class="chapter" data-level="6.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>6.4.2</b> Parsing and data types</a></li>
@@ -246,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>9</b> Basic Econometrics in R</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modelling"><i class="fa fa-check"></i><b>9.1</b> Statistical modelling</a>
+<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modeling"><i class="fa fa-check"></i><b>9.1</b> Statistical modeling</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>9.1.1</b> Illustration with pseudo-data</a></li>
 </ul></li>
@@ -263,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>10.1</b> Data display</a></li>
-<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualisation-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualisation with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualization with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>10.3</b> ‘Grammar of Graphics’</a>
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>10.3.1</b> <code>ggplot2</code> basics</a></li>
@@ -272,12 +310,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>10.3.4</b> Geometries (~ type of plot)</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>10.4</b> Dynamic documents</a></li>
-<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualisation"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualisation</a></li>
-<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.6</b> Background and aim</a>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualization"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualization</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.6.1</b> Data import and preparation</a></li>
-<li class="chapter" data-level="10.6.2" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.6.2</b> Plot</a></li>
-<li class="chapter" data-level="10.6.3" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.6.3</b> Cosmetics: theme</a></li>
+<li class="chapter" data-level="10.5.1" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.5.1</b> Background and aim</a></li>
+<li class="chapter" data-level="10.5.2" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.5.2</b> Data import and preparation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.5.3</b> Plot</a></li>
+<li class="chapter" data-level="10.5.4" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.5.4</b> Cosmetics: theme</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -292,8 +330,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
 
@@ -314,62 +350,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basic-econometrics-in-r" class="section level1" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Basic Econometrics in R</h1>
-<p>When we look at practical data analytics in an economics context, it becomes quickly apparent that the vast majority of applied econometric research builds in one way or the other on linear regression, specifically on <em>ordinary least squares (OLS)</em>. OLS is the bread-and-butter model in microeconometrics for a number of reasons: it is rather easy to understand, its results are straightforward to interpret, it comes with a number of very useful statistical properties, and it can easily be applied to a large variety of economic research questions. In this section, we get to know the very basic idea behind OLS by looking at it through the lens of formal math notation as well as through the lens of R code.</p>
-<div id="statistical-modelling" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> Statistical modelling</h2>
-<p>Before we turn to a specific data example, let us introduce a general notation for this type of econometric problems. Generally we denote the <em>dependent variable</em> as <span class="math inline">\(y_i\)</span> and the <em>explanatory variable</em> as <span class="math inline">\(x_i\)</span>. All the rest that is not more specifically explained by explanatory variables (<span class="math inline">\(u_{i}\)</span>) we call the <em>‘residuals’</em> or the ‘error term.’ Hence we can rewrite the problem with the more general notation as</p>
+<div id="basic-econometrics-in-r" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Basic Econometrics in R<a href="basic-econometrics-in-r.html#basic-econometrics-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>When we look at practical data analytics in an economics context, it becomes quickly apparent that the vast majority of applied econometric research builds in one way or the other on linear regression, specifically on <em>ordinary least squares (OLS)</em>. OLS is the bread-and-butter model in microeconometrics for several reasons: it is rather easy to understand, its results are straightforward to interpret, it comes with several very useful statistical properties, and it can easily be applied to a large variety of economic research questions. In this section, we get to know the very basic idea behind OLS by looking at it through the lens of formal math notation as well as through the lens of R code.</p>
+<div id="statistical-modeling" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Statistical modeling<a href="basic-econometrics-in-r.html#statistical-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we turn to a specific data example, let us introduce a general notation for this econometric problem. Generally we denote the <em>dependent variable</em> as <span class="math inline">\(y_i\)</span> and the <em>explanatory variable</em> as <span class="math inline">\(x_i\)</span>. All the rest that is not more specifically explained by explanatory variables (<span class="math inline">\(u_{i}\)</span>) we call the <em>’ residuals’</em> or the ‘error term.’ Hence we can rewrite the problem with a more general notation as</p>
 <p><span class="math inline">\(y_{i}= \alpha + \beta x_{i} + u_{i}\)</span>.</p>
-<p>The overarching goal of modern econometrics for such problems is usually to assess whether <span class="math inline">\(x\)</span> has a <em>causal</em> effect on <span class="math inline">\(y\)</span>. A key aspect of such an interpretation is that <span class="math inline">\(u_{i}\)</span> is unrelated to <span class="math inline">\(x_i\)</span>. That is, other unobservable factors might also play a role for <span class="math inline">\(y\)</span> but they must not affect both <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>. The great computer scientist <a href="https://en.wikipedia.org/wiki/Judea_Pearl">Judea Pearl</a> has introduced an intuitive approach for illustrating such problems of causality. In the left panel of the figure below, we illustrate the unfortunate case where we have a so-called <em>‘endogeneity’</em> problem, a situation in which other factors affect both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
-<div class="figure" style="text-align: center"><span id="fig:causality"></span>
-<img src="img/causal_diagram_endo.png" alt="Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable) and on the right without this endogeneity issue." width="49%" height="49%" /><img src="img/causal_diagram_exo.png" alt="Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable) and on the right without this endogeneity issue." width="49%" height="49%" />
+<p>The overarching goal of modern econometrics for such problems is to assess whether <span class="math inline">\(x\)</span> has a <em>causal</em> effect on <span class="math inline">\(y\)</span>. A key aspect of such an interpretation is that <span class="math inline">\(u_{i}\)</span> is unrelated to <span class="math inline">\(x_i\)</span>. Other unobservable factors might also play a role for <span class="math inline">\(y\)</span>, but they must not affect both <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>. The great computer scientist <a href="https://en.wikipedia.org/wiki/Judea_Pearl">Judea Pearl</a> has introduced an intuitive approach to illustrating such causality problems. In the left panel of the figure below, we illustrate the unfortunate case where we have a so-called <em>’ endogeneity’</em> problem, a situation in which other factors affect both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:causality"></span>
+<img src="img/causal_diagram_endo.png" alt="(ref:causality)" width="49%" height="49%" /><img src="img/causal_diagram_exo.png" alt="(ref:causality)" width="49%" height="49%" />
 <p class="caption">
-Figure 9.1: Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable) and on the right without this endogeneity issue.
+Figure 9.1: (ref:causality)
 </p>
 </div>
-
-<div id="illustration-with-pseudo-data" class="section level3" number="9.1.1">
-<h3><span class="header-section-number">9.1.1</span> Illustration with pseudo-data</h3>
-<p>Let us now turn to an illustration of how we can estimate <span class="math inline">\(\beta\)</span> under the assumption that <span class="math inline">\(u\)</span> does not affect <span class="math inline">\(x\)</span>. In order to make this more general and easily accessible let us for the moment ignore the dataset above and generate simulated data for which this assumption certainly holds. The basic R installation provides a number of functions to easily generate vectors of pseudo-random numbers<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> The great advantage of using simulated data and code to understand statistical models is that we have full control over what the <em>actual</em> relationship between variables is. We can then easily assess how well an estimation procedure for a parameter is by comparing the parameter estimate with its true value (something we never observe when working with real-life data).</p>
+<p>(ref: causality) Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable), and on the right without this endogeneity issue.</p>
+<div id="illustration-with-pseudo-data" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Illustration with pseudo-data<a href="basic-econometrics-in-r.html#illustration-with-pseudo-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let us now look at how we can estimate <span class="math inline">\(\beta\)</span> under the assumption that <span class="math inline">\(u\)</span> does not affect <span class="math inline">\(x\)</span>. To make this more general and easily accessible, let us, for the moment, ignore the dataset above and generate simulated data for which this assumption certainly holds. The basic R installation provides a number of functions to easily generate vectors of pseudo-random numbers<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> The great advantage of using simulated data and code to understand statistical models is that we have full control over what the <em>actual</em> relationship between variables is. We can then easily assess how well an estimation procedure for a parameter is by comparing the parameter estimate with its true value (something we never observe when working with real-life data).</p>
 <p>First, we define the key parameters for the simulation. We choose the actual values of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, and set the number of observations <span class="math inline">\(N\)</span>.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="basic-econometrics-in-r.html#cb281-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb281-2"><a href="basic-econometrics-in-r.html#cb281-2" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
-<span id="cb281-3"><a href="basic-econometrics-in-r.html#cb281-3" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span></span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="basic-econometrics-in-r.html#cb286-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb286-2"><a href="basic-econometrics-in-r.html#cb286-2" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
+<span id="cb286-3"><a href="basic-econometrics-in-r.html#cb286-3" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span></span></code></pre></div>
 <p>Now, we initiate a vector <span class="math inline">\(x\)</span> of length <span class="math inline">\(N\)</span> drawn from the uniform distribution (between 0 and 0.5). This will be our explanatory variable.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="basic-econometrics-in-r.html#cb282-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(N, <span class="dv">0</span>, <span class="dv">50</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="basic-econometrics-in-r.html#cb287-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(N, <span class="dv">0</span>, <span class="dv">50</span>)</span></code></pre></div>
 <p>Next, we draw a vector of random errors (residuals) <span class="math inline">\(u\)</span> (from a normal distribution with mean=0 and SD=0.05) and compute the corresponding values of the dependent variable <span class="math inline">\(y\)</span>. Since we impose that the actual relationship between the variables is exactly defined in our simple linear model, this computation is straightforward (<span class="math inline">\(y_{i}= \alpha + \beta x_{i} + u_{i}\)</span>).</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="basic-econometrics-in-r.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random errors (all the other factors also affecting y)</span></span>
-<span id="cb283-2"><a href="basic-econometrics-in-r.html#cb283-2" aria-hidden="true" tabindex="-1"></a>epsilon <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="at">sd=</span><span class="dv">10</span>)</span>
-<span id="cb283-3"><a href="basic-econometrics-in-r.html#cb283-3" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the dependent variable values</span></span>
-<span id="cb283-4"><a href="basic-econometrics-in-r.html#cb283-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> alpha <span class="sc">+</span> beta<span class="sc">*</span>x <span class="sc">+</span> epsilon</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="basic-econometrics-in-r.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random errors (all the other factors also affecting y)</span></span>
+<span id="cb288-2"><a href="basic-econometrics-in-r.html#cb288-2" aria-hidden="true" tabindex="-1"></a>epsilon <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="at">sd=</span><span class="dv">10</span>)</span>
+<span id="cb288-3"><a href="basic-econometrics-in-r.html#cb288-3" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the dependent variable values</span></span>
+<span id="cb288-4"><a href="basic-econometrics-in-r.html#cb288-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> alpha <span class="sc">+</span> beta<span class="sc">*</span>x <span class="sc">+</span> epsilon</span></code></pre></div>
 <p>We can illustrate how <span class="math inline">\(y\)</span> changes when <span class="math inline">\(x\)</span> increases by plotting the raw data as a scatter plot as well as the true relationship (function) as a line.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="basic-econometrics-in-r.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
-<span id="cb284-2"><a href="basic-econometrics-in-r.html#cb284-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> alpha, <span class="at">b=</span>beta, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-147-1.svg" width="672" /></p>
-<p>We see that while individual observations can be way off the true values (the red line), ‘on average’ the observations seem to follow the true relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. We can have a closer look at this by computing the average observed <span class="math inline">\(y\)</span>-values for different intervals along the <span class="math inline">\(x\)</span>-axis.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="basic-econometrics-in-r.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute average y per x intervals</span></span>
-<span id="cb285-2"><a href="basic-econometrics-in-r.html#cb285-2" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>)</span>
-<span id="cb285-3"><a href="basic-econometrics-in-r.html#cb285-3" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">c</span>(lower[<span class="sc">-</span><span class="dv">1</span>], <span class="dv">50</span>)</span>
-<span id="cb285-4"><a href="basic-econometrics-in-r.html#cb285-4" aria-hidden="true" tabindex="-1"></a>n_intervals <span class="ot">&lt;-</span> <span class="fu">length</span>(lower)</span>
-<span id="cb285-5"><a href="basic-econometrics-in-r.html#cb285-5" aria-hidden="true" tabindex="-1"></a>y_bars <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb285-6"><a href="basic-econometrics-in-r.html#cb285-6" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(y_bars) <span class="ot">&lt;-</span> n_intervals</span>
-<span id="cb285-7"><a href="basic-econometrics-in-r.html#cb285-7" aria-hidden="true" tabindex="-1"></a>x_bars <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb285-8"><a href="basic-econometrics-in-r.html#cb285-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x_bars) <span class="ot">&lt;-</span> n_intervals</span>
-<span id="cb285-9"><a href="basic-econometrics-in-r.html#cb285-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_intervals){</span>
-<span id="cb285-10"><a href="basic-econometrics-in-r.html#cb285-10" aria-hidden="true" tabindex="-1"></a>  y_bars[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(y[lower[i] <span class="sc">&lt;=</span> x <span class="sc">&amp;</span> x <span class="sc">&lt;</span> upper[i]])</span>
-<span id="cb285-11"><a href="basic-econometrics-in-r.html#cb285-11" aria-hidden="true" tabindex="-1"></a>  x_bars[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(x[lower[i] <span class="sc">&lt;=</span> x <span class="sc">&amp;</span> x <span class="sc">&lt;</span> upper[i]])</span>
-<span id="cb285-12"><a href="basic-econometrics-in-r.html#cb285-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb285-13"><a href="basic-econometrics-in-r.html#cb285-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb285-14"><a href="basic-econometrics-in-r.html#cb285-14" aria-hidden="true" tabindex="-1"></a>y_bars <span class="ot">&lt;-</span> <span class="fu">unlist</span>(y_bars)</span>
-<span id="cb285-15"><a href="basic-econometrics-in-r.html#cb285-15" aria-hidden="true" tabindex="-1"></a>x_bars <span class="ot">&lt;-</span> <span class="fu">unlist</span>(x_bars)</span>
-<span id="cb285-16"><a href="basic-econometrics-in-r.html#cb285-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb285-17"><a href="basic-econometrics-in-r.html#cb285-17" aria-hidden="true" tabindex="-1"></a><span class="co"># add to plot</span></span>
-<span id="cb285-18"><a href="basic-econometrics-in-r.html#cb285-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
-<span id="cb285-19"><a href="basic-econometrics-in-r.html#cb285-19" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> alpha, <span class="at">b=</span>beta, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb285-20"><a href="basic-econometrics-in-r.html#cb285-20" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x_bars, y_bars, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lwd=</span><span class="dv">10</span>)</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-148-1.svg" width="672" /></p>
-<p>Clearly, the average values are much closer to the real values. That is, we can ‘average out’ the <span class="math inline">\(u\)</span> in order to get a good estimate for the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> (to get an estimate of <span class="math inline">\(\beta\)</span>). With this understanding, we can now formalize how to compute <span class="math inline">\(\beta\)</span> (or, to be more precise, an estimate of it: <span class="math inline">\(\hat{\beta}\)</span>). For simplicity, we take <span class="math inline">\(\alpha=30\)</span> as given.</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="basic-econometrics-in-r.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
+<span id="cb289-2"><a href="basic-econometrics-in-r.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> alpha, <span class="at">b=</span>beta, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-156-1.svg" width="672" /></p>
+<p>We see that while individual observations can be way off the true values (the red line), ‘on average’ the observations seem to follow the true relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. We can look at this closely by computing the average observed <span class="math inline">\(y\)</span>-values for different intervals along the <span class="math inline">\(x\)</span>-axis.</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="basic-econometrics-in-r.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute average y per x intervals</span></span>
+<span id="cb290-2"><a href="basic-econometrics-in-r.html#cb290-2" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>)</span>
+<span id="cb290-3"><a href="basic-econometrics-in-r.html#cb290-3" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">c</span>(lower[<span class="sc">-</span><span class="dv">1</span>], <span class="dv">50</span>)</span>
+<span id="cb290-4"><a href="basic-econometrics-in-r.html#cb290-4" aria-hidden="true" tabindex="-1"></a>n_intervals <span class="ot">&lt;-</span> <span class="fu">length</span>(lower)</span>
+<span id="cb290-5"><a href="basic-econometrics-in-r.html#cb290-5" aria-hidden="true" tabindex="-1"></a>y_bars <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb290-6"><a href="basic-econometrics-in-r.html#cb290-6" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(y_bars) <span class="ot">&lt;-</span> n_intervals</span>
+<span id="cb290-7"><a href="basic-econometrics-in-r.html#cb290-7" aria-hidden="true" tabindex="-1"></a>x_bars <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb290-8"><a href="basic-econometrics-in-r.html#cb290-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x_bars) <span class="ot">&lt;-</span> n_intervals</span>
+<span id="cb290-9"><a href="basic-econometrics-in-r.html#cb290-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_intervals){</span>
+<span id="cb290-10"><a href="basic-econometrics-in-r.html#cb290-10" aria-hidden="true" tabindex="-1"></a>  y_bars[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(y[lower[i] <span class="sc">&lt;=</span> x <span class="sc">&amp;</span> x <span class="sc">&lt;</span> upper[i]])</span>
+<span id="cb290-11"><a href="basic-econometrics-in-r.html#cb290-11" aria-hidden="true" tabindex="-1"></a>  x_bars[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(x[lower[i] <span class="sc">&lt;=</span> x <span class="sc">&amp;</span> x <span class="sc">&lt;</span> upper[i]])</span>
+<span id="cb290-12"><a href="basic-econometrics-in-r.html#cb290-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb290-13"><a href="basic-econometrics-in-r.html#cb290-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb290-14"><a href="basic-econometrics-in-r.html#cb290-14" aria-hidden="true" tabindex="-1"></a>y_bars <span class="ot">&lt;-</span> <span class="fu">unlist</span>(y_bars)</span>
+<span id="cb290-15"><a href="basic-econometrics-in-r.html#cb290-15" aria-hidden="true" tabindex="-1"></a>x_bars <span class="ot">&lt;-</span> <span class="fu">unlist</span>(x_bars)</span>
+<span id="cb290-16"><a href="basic-econometrics-in-r.html#cb290-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb290-17"><a href="basic-econometrics-in-r.html#cb290-17" aria-hidden="true" tabindex="-1"></a><span class="co"># add to plot</span></span>
+<span id="cb290-18"><a href="basic-econometrics-in-r.html#cb290-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
+<span id="cb290-19"><a href="basic-econometrics-in-r.html#cb290-19" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> alpha, <span class="at">b=</span>beta, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb290-20"><a href="basic-econometrics-in-r.html#cb290-20" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x_bars, y_bars, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lwd=</span><span class="dv">10</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-157-1.svg" width="672" /></p>
+<p>The average values are much closer to the real values. That is, we can ‘average out’ the <span class="math inline">\(u\)</span> to get a good estimate for the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> (to get an estimate of <span class="math inline">\(\beta\)</span>). With this understanding, we can now formalize how to compute <span class="math inline">\(\beta\)</span> (or, to be more precise, an estimate of it: <span class="math inline">\(\hat{\beta}\)</span>). For simplicity, we take <span class="math inline">\(\alpha=30\)</span> as given.</p>
 <p>In a first step we take the averages of both sides of our initial regression equation:</p>
 <p><span class="math inline">\(\frac{1}{N}\sum{y_i}=\frac{1}{N}\sum{(30 + \beta x_{i} + u_{i})}\)</span>,</p>
 <p>rearranging and using the common ‘bar’-notation for means, we get</p>
@@ -378,39 +414,39 @@ Figure 9.1: Causal diagrams. On the left with an endogeneity issue (other factor
 <p><span class="math inline">\(\beta=\frac{\bar{y}-30-\bar{u}}{\bar{x}}\)</span>.</p>
 <p>While the elements in <span class="math inline">\(\bar{u}\)</span> are unobservable, we can use the rest to compute an estimate of <span class="math inline">\(\beta\)</span>:</p>
 <p><span class="math inline">\(\hat{\beta}=\frac{\bar{y}-30}{\bar{x}}\)</span>.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="basic-econometrics-in-r.html#cb286-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">mean</span>(y) <span class="sc">-</span><span class="dv">30</span>)<span class="sc">/</span><span class="fu">mean</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="basic-econometrics-in-r.html#cb291-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">mean</span>(y) <span class="sc">-</span><span class="dv">30</span>)<span class="sc">/</span><span class="fu">mean</span>(x)</span></code></pre></div>
 <pre><code>## [1] 0.9076</code></pre>
 </div>
 </div>
-<div id="estimation-and-application" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> Estimation and Application</h2>
-<p>Now that we have a basic understanding of the simple linear model, let us use this model to investigate an empirical research question based on real data. By so doing, we will take an alternative perspective to compute an estimation of the parameters of interest. The example builds on the `swiss’ dataset encountered in previous lectures. First, get again familiar with the dataset:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="basic-econometrics-in-r.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data</span></span>
-<span id="cb288-2"><a href="basic-econometrics-in-r.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
-<span id="cb288-3"><a href="basic-econometrics-in-r.html#cb288-3" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the description</span></span>
-<span id="cb288-4"><a href="basic-econometrics-in-r.html#cb288-4" aria-hidden="true" tabindex="-1"></a>?swiss</span></code></pre></div>
-<p>Recall that observations in this dataset are at the province level. We make use of the simple linear model to better understand whether more years of schooling is improving educational outcomes. Thereby, we approximate educational attainment with the variable <code>Education</code> (the percentage of Swiss military draftees in a province that had education beyond primary school) and educational outcomes with the variable <code>Examination</code> (the percentage of draftees in a province that have received the highest mark on the standardized test as part of the army examination). We thus want to exploit that schooling systematically varies between provinces but that all military draftees need to take the same standardized examination during the military drafting process.</p>
-<div id="model-specification" class="section level3" number="9.2.1">
-<h3><span class="header-section-number">9.2.1</span> Model specification</h3>
+<div id="estimation-and-application" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Estimation and Application<a href="basic-econometrics-in-r.html#estimation-and-application" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we have a basic understanding of the simple linear model, let us use this model to investigate an empirical research question based on real data. By doing so, we will take an alternative perspective to compute an estimation of the parameters of interest. The example builds on the `swiss’ dataset encountered in previous chapters. First, get again familiar with the dataset:</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="basic-econometrics-in-r.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data</span></span>
+<span id="cb293-2"><a href="basic-econometrics-in-r.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
+<span id="cb293-3"><a href="basic-econometrics-in-r.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the description</span></span>
+<span id="cb293-4"><a href="basic-econometrics-in-r.html#cb293-4" aria-hidden="true" tabindex="-1"></a>?swiss</span></code></pre></div>
+<p>Recall that observations in this dataset are at the province level. We use the simple linear model to better understand whether more years of schooling is improving educational outcomes. Thereby, we approximate educational attainment with the variable <code>Education</code> (the percentage of Swiss military draftees in a province that had education beyond primary school) and educational outcomes with the variable <code>Examination</code> (the percentage of draftees in a province that have received the highest mark on the standardized test as part of the army examination). We thus want to exploit that schooling systematically varies between provinces but that all military draftees need to take the same standardized examination during the military drafting process.</p>
+<div id="model-specification" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Model specification<a href="basic-econometrics-in-r.html#model-specification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Formally, we can express the relationship between these variables as</p>
 <p><span class="math inline">\(Examination_{i}= \alpha + \beta Education_{i}\)</span>,</p>
-<p>where the parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> determine the percentage of draftees in a province that have received the highest mark and the subscript <span class="math inline">\(i\)</span> indicates that we model this relationship for each province <span class="math inline">\(i\)</span> out of the <span class="math inline">\(N\)</span> provinces (note that this also presupposes that <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are the same in each province). The intuitive hypothesis is that in this equation, <span class="math inline">\(\beta\)</span> is positive, indicating that a higher share of draftees with more years of schooling results in a higher share of draftees who reach the highest examination mark.</p>
-<p>Yet, our model has arguably a couple of weaknesses. Most importantly, from an economic point of view, it seems rather unlikely that <span class="math inline">\(Education\)</span> is the only variable that matters for examination success. For example, it might matter a lot how students allocate their time when not in school, which might vary by province. In some provinces children and young adults might have generally engaged in work activities that foster their reading and math skills outside of school, while in other provinces they might have engaged in hard manual labor in the agricultural sector. To formally acknowledge that other factors might also play a role, we extend our model with the term <span class="math inline">\(u_{i}\)</span>. For the moment, we thus subsume all other potentially relevant factors in that term:</p>
+<p>where the parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> determine the percentage of draftees in a province that has received the highest mark, and the subscript <span class="math inline">\(i\)</span> indicates that we model this relationship for each province <span class="math inline">\(i\)</span> out of the <span class="math inline">\(N\)</span> provinces (note that this also presupposes that <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are the same in each province). The intuitive hypothesis is that in this equation, <span class="math inline">\(\beta\)</span> is positive, indicating that a higher share of draftees with more years of schooling results in a higher share of draftees who reach the highest examination mark.</p>
+<p>Yet, our model arguably has a couple of weaknesses. Most importantly, from an economic point of view, it seems rather unlikely that <span class="math inline">\(Education\)</span> is the only variable that matters for examination success. For example, it might matter a lot how students allocate their time when not in school, which might vary by province. In some provinces, children and young adults might have engaged in work activities that foster their reading and math skills outside school. In contrast, in other provinces, they might have engaged in hard manual labor in the agricultural sector. To formally acknowledge that other factors might also play a role, we extend our model with the term <span class="math inline">\(u_{i}\)</span>. For the moment, we thus subsume all other potentially relevant factors in that term:</p>
 <p><span class="math inline">\(Examination_{i}= \alpha + \beta Education_{i} + u_{i}\)</span>.</p>
 </div>
-<div id="raw-data" class="section level3" number="9.2.2">
-<h3><span class="header-section-number">9.2.2</span> Raw data</h3>
-<p>First, let’s look at how these two variables are jointly distributed with a scatter plot.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="basic-econometrics-in-r.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(swiss<span class="sc">$</span>Education, swiss<span class="sc">$</span>Examination)</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-152-1.svg" width="672" />
-Clearly, there seems to be a positive relationship between the years of schooling and examination success. Considering the raw data, we can formulate the problem of estimating the parameters of interest (<span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>) as the question: What is the best way to draw a straight trend-line through the cloud of dots? To further specify the problem, we need to specify a criterion to judge whether such a line ‘fits’ the data well. A rather intuitive measure is the sum of the squared differences between the line and the actual data points on the <span class="math inline">\(y\)</span>-axis. That is, we compare what <span class="math inline">\(y\)</span>-value we would get for a given <span class="math inline">\(x\)</span>-value according to our trend-line (i.e., the function defining this line) with the actual <span class="math inline">\(y\)</span>-value in the data (for simplicity, we use the general formulation with <span class="math inline">\(y\)</span> as the dependent and <span class="math inline">\(x\)</span> as the explanatory variable).</p>
+<div id="raw-data" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Raw data<a href="basic-econometrics-in-r.html#raw-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, look at how these two variables are jointly distributed with a scatter plot.</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="basic-econometrics-in-r.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(swiss<span class="sc">$</span>Education, swiss<span class="sc">$</span>Examination)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-161-1.svg" width="672" />
+There seems to be a positive relationship between the years of schooling and examination success. Considering the raw data, we can formulate the problem of estimating the parameters of interest (<span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>) as the question: What is the best way to draw a straight trend line through the cloud of dots? To further specify the problem, we need to specify a criterion to judge whether such a line ‘fits’ the data well. A rather intuitive measure is the sum of the squared differences between the line and the actual data points on the <span class="math inline">\(y\)</span>-axis. That is, we compare what <span class="math inline">\(y\)</span>-value we would get for a given <span class="math inline">\(x\)</span>-value according to our trend-line (i.e., the function defining this line) with the actual <span class="math inline">\(y\)</span>-value in the data (for simplicity, we use the general formulation with <span class="math inline">\(y\)</span> as the dependent and <span class="math inline">\(x\)</span> as the explanatory variable).</p>
 </div>
 </div>
-<div id="derivation-and-implementation-of-ols-estimator" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> Derivation and implementation of OLS estimator</h2>
-<p>From the model equation we easily see that these ‘differences’ between the predicted and the actual values of <span class="math inline">\(y\)</span> are the remaining unexplained component <span class="math inline">\(u\)</span>:</p>
+<div id="derivation-and-implementation-of-ols-estimator" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Derivation and implementation of OLS estimator<a href="basic-econometrics-in-r.html#derivation-and-implementation-of-ols-estimator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From the model equation, we easily see that these ‘differences’ between the predicted and the actual values of <span class="math inline">\(y\)</span> are the remaining unexplained component <span class="math inline">\(u\)</span>:</p>
 <p><span class="math inline">\(y_{i}-\hat{\alpha}-\hat{\beta} x_i=u_i\)</span>.</p>
-<p>Hence, we want to minimize the <em>sum of squared residuals (SSR)</em>: <span class="math inline">\(\sum{u_i^2}=\sum{(y_{i}-\hat{\alpha}-\hat{\beta} x_i)^2}\)</span>. Using calculus, we define the two first order conditions:</p>
+<p>Hence, we want to minimize the <em>sum of squared residuals (SSR)</em>: <span class="math inline">\(\sum{u_i^2}=\sum{(y_{i}-\hat{\alpha}-\hat{\beta} x_i)^2}\)</span>. Using calculus, we define the two first-order conditions:</p>
 <p><span class="math display">\[\frac{\partial SSR}{\partial \hat{\alpha}}=\sum{-2(y_{i}-\hat{\alpha}-\hat{\beta} x_i)}=0\]</span></p>
 <p><span class="math display">\[\frac{\partial SSR}{\partial \hat{\beta}}=\sum{-2x_i(y_{i}-\hat{\alpha}-\hat{\beta} x_i)}=0\]</span></p>
 <p>The first condition is relatively easily solved by getting rid of the <span class="math inline">\(-2\)</span> and considering that <span class="math inline">\(\sum{y_i}=N\bar{y}\)</span>:</p>
@@ -418,37 +454,37 @@ Clearly, there seems to be a positive relationship between the years of schoolin
 <p>By plugging the solution for <span class="math inline">\(\hat{\alpha}\)</span> into the first order condition regarding <span class="math inline">\(\hat{\beta}\)</span> and again considering that <span class="math inline">\(\sum{y_i}=N\bar{y}\)</span>, we get the solution for the slope coefficient estimator:</p>
 <p><span class="math inline">\(\frac{\sum{x_{i}y_{i}}-N\bar{y}\bar{x}}{\sum{x_i^2}-N\bar{x}^2}\)</span>.</p>
 <p>To compute the actual estimates, we first compute <span class="math inline">\(\hat{\beta}\)</span> and then <span class="math inline">\(\hat{\alpha}\)</span>. With all that, we can implement our OLS estimator for the simple linear regression model in R and apply it to the estimation problem at hand:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="basic-econometrics-in-r.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implement the simple OLS estimator</span></span>
-<span id="cb290-2"><a href="basic-econometrics-in-r.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="co"># verify implementation with simulated data from above</span></span>
-<span id="cb290-3"><a href="basic-econometrics-in-r.html#cb290-3" aria-hidden="true" tabindex="-1"></a><span class="co"># my_ols(y,x) </span></span>
-<span id="cb290-4"><a href="basic-econometrics-in-r.html#cb290-4" aria-hidden="true" tabindex="-1"></a><span class="co"># should be very close to alpha=30 and beta=0.9</span></span>
-<span id="cb290-5"><a href="basic-econometrics-in-r.html#cb290-5" aria-hidden="true" tabindex="-1"></a>my_ols <span class="ot">&lt;-</span> </span>
-<span id="cb290-6"><a href="basic-econometrics-in-r.html#cb290-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(y,x) {</span>
-<span id="cb290-7"><a href="basic-econometrics-in-r.html#cb290-7" aria-hidden="true" tabindex="-1"></a>    N <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
-<span id="cb290-8"><a href="basic-econometrics-in-r.html#cb290-8" aria-hidden="true" tabindex="-1"></a>    betahat <span class="ot">&lt;-</span> (<span class="fu">sum</span>(y<span class="sc">*</span>x) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">mean</span>(x)<span class="sc">*</span><span class="fu">mean</span>(y)) <span class="sc">/</span> (<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>)<span class="sc">-</span>N<span class="sc">*</span><span class="fu">mean</span>(x)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb290-9"><a href="basic-econometrics-in-r.html#cb290-9" aria-hidden="true" tabindex="-1"></a>    alphahat <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)<span class="sc">-</span>betahat<span class="sc">*</span><span class="fu">mean</span>(x)</span>
-<span id="cb290-10"><a href="basic-econometrics-in-r.html#cb290-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb290-11"><a href="basic-econometrics-in-r.html#cb290-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">alpha=</span>alphahat,<span class="at">beta=</span>betahat))</span>
-<span id="cb290-12"><a href="basic-econometrics-in-r.html#cb290-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb290-13"><a href="basic-econometrics-in-r.html#cb290-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb290-14"><a href="basic-econometrics-in-r.html#cb290-14" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate effect of Education on Examination</span></span>
-<span id="cb290-15"><a href="basic-econometrics-in-r.html#cb290-15" aria-hidden="true" tabindex="-1"></a>estimates <span class="ot">&lt;-</span> <span class="fu">my_ols</span>(swiss<span class="sc">$</span>Examination, swiss<span class="sc">$</span>Education)</span>
-<span id="cb290-16"><a href="basic-econometrics-in-r.html#cb290-16" aria-hidden="true" tabindex="-1"></a>estimates</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="basic-econometrics-in-r.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implement the simple OLS estimator</span></span>
+<span id="cb295-2"><a href="basic-econometrics-in-r.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="co"># verify implementation with simulated data from above</span></span>
+<span id="cb295-3"><a href="basic-econometrics-in-r.html#cb295-3" aria-hidden="true" tabindex="-1"></a><span class="co"># my_ols(y,x)</span></span>
+<span id="cb295-4"><a href="basic-econometrics-in-r.html#cb295-4" aria-hidden="true" tabindex="-1"></a><span class="co"># should be very close to alpha=30 and beta=0.9</span></span>
+<span id="cb295-5"><a href="basic-econometrics-in-r.html#cb295-5" aria-hidden="true" tabindex="-1"></a>my_ols <span class="ot">&lt;-</span></span>
+<span id="cb295-6"><a href="basic-econometrics-in-r.html#cb295-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(y,x) {</span>
+<span id="cb295-7"><a href="basic-econometrics-in-r.html#cb295-7" aria-hidden="true" tabindex="-1"></a>    N <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="cb295-8"><a href="basic-econometrics-in-r.html#cb295-8" aria-hidden="true" tabindex="-1"></a>    betahat <span class="ot">&lt;-</span> (<span class="fu">sum</span>(y<span class="sc">*</span>x) <span class="sc">-</span> N<span class="sc">*</span><span class="fu">mean</span>(x)<span class="sc">*</span><span class="fu">mean</span>(y)) <span class="sc">/</span> (<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>)<span class="sc">-</span>N<span class="sc">*</span><span class="fu">mean</span>(x)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb295-9"><a href="basic-econometrics-in-r.html#cb295-9" aria-hidden="true" tabindex="-1"></a>    alphahat <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)<span class="sc">-</span>betahat<span class="sc">*</span><span class="fu">mean</span>(x)</span>
+<span id="cb295-10"><a href="basic-econometrics-in-r.html#cb295-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb295-11"><a href="basic-econometrics-in-r.html#cb295-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">alpha=</span>alphahat,<span class="at">beta=</span>betahat))</span>
+<span id="cb295-12"><a href="basic-econometrics-in-r.html#cb295-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb295-13"><a href="basic-econometrics-in-r.html#cb295-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb295-14"><a href="basic-econometrics-in-r.html#cb295-14" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate the effect of Education on Examination</span></span>
+<span id="cb295-15"><a href="basic-econometrics-in-r.html#cb295-15" aria-hidden="true" tabindex="-1"></a>estimates <span class="ot">&lt;-</span> <span class="fu">my_ols</span>(swiss<span class="sc">$</span>Examination, swiss<span class="sc">$</span>Education)</span>
+<span id="cb295-16"><a href="basic-econometrics-in-r.html#cb295-16" aria-hidden="true" tabindex="-1"></a>estimates</span></code></pre></div>
 <pre><code>## $alpha
 ## [1] 10.13
 ## 
 ## $beta
 ## [1] 0.5795</code></pre>
-<p>Finally, we can visually inspect the estimated parameters (i.e., does the line fit well to the data?):</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="basic-econometrics-in-r.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(swiss<span class="sc">$</span>Education, swiss<span class="sc">$</span>Examination)</span>
-<span id="cb292-2"><a href="basic-econometrics-in-r.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(estimates<span class="sc">$</span>alpha, estimates<span class="sc">$</span>beta, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-154-1.svg" width="672" /></p>
-<p>The fit looks rather reasonable. There seems to be indeed a positive relationship between Education and Examination. In a next step, we would likely want to know whether we can say something meaningful about how precisely this relationship is measured statistically (i.e., how ‘significant’ <span class="math inline">\(\hat{\beta}\)</span> is). We will leave this issue for another class.</p>
-<div id="regression-toolbox-in-r" class="section level3" number="9.3.1">
-<h3><span class="header-section-number">9.3.1</span> Regression toolbox in R</h3>
-<p>When working on data analytics problems in R, there is usually no need to implement one’s own estimator functions. For most data analytics problems, the basic R installation (or an additional R package) already provide easy-to-use functions with many more features than our very simple example above. For example, the work-horse function for linear regressions in R is <code>lm()</code>, which accepts regression equation expressions as <code>formulaes</code> such as <code>Examination~Education</code> and a data-frame with the corresponding dataset as arguments. As a simple example, we use this function to compute the same regression estimates as before:</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="basic-econometrics-in-r.html#cb293-1" aria-hidden="true" tabindex="-1"></a>estimates2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Examination<span class="sc">~</span>Education, <span class="at">data=</span>swiss)</span>
-<span id="cb293-2"><a href="basic-econometrics-in-r.html#cb293-2" aria-hidden="true" tabindex="-1"></a>estimates2</span></code></pre></div>
+<p>Finally, we can visually inspect the estimated parameters (i.e., does the line fit well with the data?):</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="basic-econometrics-in-r.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(swiss<span class="sc">$</span>Education, swiss<span class="sc">$</span>Examination)</span>
+<span id="cb297-2"><a href="basic-econometrics-in-r.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(estimates<span class="sc">$</span>alpha, estimates<span class="sc">$</span>beta, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-163-1.svg" width="672" /></p>
+<p>The fit looks rather reasonable. There seems to be indeed a positive relationship between Education and Examination. In the next step, we would likely want to know whether we can say something meaningful about how precisely this relationship is measured statistically (i.e., how ‘significant’ <span class="math inline">\(\hat{\beta}\)</span> is). We will leave this issue for another class.</p>
+<div id="regression-toolbox-in-r" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Regression toolbox in R<a href="basic-econometrics-in-r.html#regression-toolbox-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When working on data analytics problems in R, there is usually no need to implement one’s own estimator functions. For most data analytics problems, the basic R installation (or an additional R package) already provides easy-to-use functions with many more features than our very simple example above. For example, the work-horse function for linear regressions in R is <code>lm()</code>, which accepts regression equation expressions as <code>formulas</code> such as <code>Examination~Education</code> and a data-frame with the corresponding dataset as arguments. As a simple example, we use this function to compute the same regression estimates as before:</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="basic-econometrics-in-r.html#cb298-1" aria-hidden="true" tabindex="-1"></a>estimates2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Examination<span class="sc">~</span>Education, <span class="at">data=</span>swiss)</span>
+<span id="cb298-2"><a href="basic-econometrics-in-r.html#cb298-2" aria-hidden="true" tabindex="-1"></a>estimates2</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Examination ~ Education, data = swiss)
@@ -456,8 +492,8 @@ Clearly, there seems to be a positive relationship between the years of schoolin
 ## Coefficients:
 ## (Intercept)    Education  
 ##      10.127        0.579</code></pre>
-<p>With one additional line of code we can compute all the common statistics about the regression estimation:</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="basic-econometrics-in-r.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(estimates2)</span></code></pre></div>
+<p>With one additional line of code, we can compute all the common statistics about the regression estimation:</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="basic-econometrics-in-r.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(estimates2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Examination ~ Education, data = swiss)
@@ -477,7 +513,7 @@ Clearly, there seems to be a positive relationship between the years of schoolin
 ## Residual standard error: 5.77 on 45 degrees of freedom
 ## Multiple R-squared:  0.488,  Adjusted R-squared:  0.476 
 ## F-statistic: 42.9 on 1 and 45 DF,  p-value: 4.81e-08</code></pre>
-<p>The t-tests displayed in this summary for the intercept (<span class="math inline">\(\alpha\)</span>) and the slope-coefficient concerning <code>Education</code> (<span class="math inline">\(\beta\)</span>) assess how probable it is to observe such parameter estimates if the true values of these parameters are 0 (this is one way of thinking about statistical ‘significance’). Specifically for the research question in this example: How often would we observe a value of <span class="math inline">\(\hat{\beta}=0.579..\)</span> or larger if we were to repeatedly draw a random sample from the same population and if more schooling in the population does actually not increase the average high-success rate at the standardized examination (<span class="math inline">\(\beta=0\)</span>)? The P-values (last column) suggest that this would hardly ever be the case. If we are confident that the factors not considered in this simple model do not affect <code>Education</code>, we could conclude that <code>Education</code> has a significant and positive effect on <code>Examination</code>.</p>
+<p>The t-tests displayed in this summary for the intercept (<span class="math inline">\(\alpha\)</span>) and the slope-coefficient concerning <code>Education</code> (<span class="math inline">\(\beta\)</span>) assess how probable it is to observe such parameter estimates if the true values of these parameters are 0 (this is one way of thinking about statistical ‘significance’). Specifically for the research question in this example: How often would we observe a value of <span class="math inline">\(\hat{\beta}=0.579..\)</span> or larger if we were to draw a random sample from the same population repeatedly and if more schooling in the population does not increase the average high-success rate at the standardized examination (<span class="math inline">\(\beta=0\)</span>)? The P-values (last column) suggests that this would hardly ever be the case. If we are confident that the factors not considered in this simple model do not affect <code>Education</code>, we could conclude that <code>Education</code> has a significant and positive effect on <code>Examination</code>.</p>
 
 </div>
 </div>
@@ -498,7 +534,6 @@ Clearly, there seems to be a positive relationship between the years of schoolin
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
 <script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
@@ -517,6 +552,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -537,6 +573,10 @@ gitbook.start({
 "text": null
 },
 "download": ["datahandling.pdf", "datahandling.html", "datahandling.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

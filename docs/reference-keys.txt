@@ -1,3 +1,10 @@
+fig:terminal
+fig:ide
+fig:rstudio
+fig:console
+fig:rscript
+fig:renvironment
+fig:rfiles
 fig:for
 fig:while
 fig:abacus
@@ -18,8 +25,18 @@ fig:swiss
 fig:causality
 introduction
 programming-with-data
+why-learn-to-program-to-handle-data
+why-r
+the-data-language
+high-level-language-relatively-easy-to-learn
+free-open-source-large-community
+rrstudio-overview
+the-r-console
+r-scripts
+r-environment
+file-browser
 first-steps-with-r
-variables-and-vectors
+values-vectors-and-variables
 math-operators
 basic-programming-concepts-in-r
 loops
@@ -28,7 +45,7 @@ nested-for-loops
 while-loop
 booleans-and-logical-statements
 r-functions
-tutorial-compute-the-mean
+case-study-compute-the-mean
 data
 processing-data-simple-calculations-in-numeral-systems
 the-binary-system
@@ -69,7 +86,7 @@ importing-rectangular-data-from-text-files
 comma-separated-values-csv
 spreadsheetsexcel
 data-from-other-data-analysis-software
-import-and-parsing-with-readr
+import-and-parse-with-readr
 basic-usage-of-readr-functions
 parsing-and-data-types
 importing-web-data-formats
@@ -97,7 +114,7 @@ aggregation-and-summary-statistics
 tutorial-analise-messy-excel-sheets
 preparatory-steps
 basic-econometrics-in-r
-statistical-modelling
+statistical-modeling
 illustration-with-pseudo-data
 estimation-and-application
 model-specification
@@ -106,7 +123,7 @@ derivation-and-implementation-of-ols-estimator
 regression-toolbox-in-r
 data-visualization
 data-display
-data-visualisation-with-ggplot2
+data-visualization-with-ggplot2
 grammar-of-graphics
 ggplot2-basics
 tutorial
@@ -118,7 +135,7 @@ additional-layers-and-statistics
 additional-aesthetics
 coordinatesthemes-fine-tuning-the-plot
 dynamic-documents
-tutorial-how-to-give-the-wrong-impression-with-data-visualisation
+tutorial-how-to-give-the-wrong-impression-with-data-visualization
 background-and-aim
 data-import-and-preparation
 plot
@@ -133,4 +150,3 @@ kurtosis
 implement-the-formulas-for-skewness-and-kurtosis-in-r
 the-law-of-large-numbers
 the-central-limit-theorem
-appendix-b

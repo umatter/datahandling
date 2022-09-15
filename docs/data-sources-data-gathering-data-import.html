@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Data Sources, Data Gathering, Data Import | Data Handling</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and empirical economic research." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Data Sources, Data Gathering, Data Import | Data Handling" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://umatter.github.io/datahandling/" />
   <meta property="og:image" content="https://umatter.github.io/datahandling/img/new_abacus.jpg" />
   <meta property="og:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
   <meta name="github-repo" content="umatter/datahandling" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-22" />
+<meta name="date" content="2022-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="high-dimensional-data.html"/>
 <link rel="next" href="data-preparation.html"/>
-<script src="libs/header-attrs/header-attrs.js"></script>
-<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +49,9 @@
 
 
 
-
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -118,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style/style.css" type="text/css" />
 </head>
 
@@ -138,17 +162,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>2</b> Programming with Data</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.1</b> First steps with R</a>
+<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#why-learn-to-program-to-handle-data"><i class="fa fa-check"></i><b>2.1</b> Why learn to program to handle data?</a></li>
+<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#why-r"><i class="fa fa-check"></i><b>2.2</b> Why <em>R</em>?</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="programming-with-data.html"><a href="programming-with-data.html#variables-and-vectors"><i class="fa fa-check"></i><b>2.1.1</b> Variables and vectors</a></li>
-<li class="chapter" data-level="2.1.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.1.2</b> Math operators</a></li>
+<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-data-language"><i class="fa fa-check"></i><b>2.2.1</b> The ‘data language’</a></li>
+<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#high-level-language-relatively-easy-to-learn"><i class="fa fa-check"></i><b>2.2.2</b> High-level language, relatively easy to learn</a></li>
+<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#free-open-source-large-community"><i class="fa fa-check"></i><b>2.2.3</b> Free, open source, large community</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.2</b> Basic programming concepts in R</a>
+<li class="chapter" data-level="2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#rrstudio-overview"><i class="fa fa-check"></i><b>2.3</b> <em>R</em>/RStudio overview</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.2.1</b> Loops</a></li>
-<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.2.2</b> For-loops</a></li>
-<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.2.3</b> Booleans and logical statements</a></li>
-<li class="chapter" data-level="2.2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.2.4</b> R functions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-r-console"><i class="fa fa-check"></i><b>2.3.1</b> The <em>R</em>-Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="programming-with-data.html"><a href="programming-with-data.html#r-scripts"><i class="fa fa-check"></i><b>2.3.2</b> <em>R</em>-Scripts</a></li>
+<li class="chapter" data-level="2.3.3" data-path="programming-with-data.html"><a href="programming-with-data.html#r-environment"><i class="fa fa-check"></i><b>2.3.3</b> <em>R</em> Environment</a></li>
+<li class="chapter" data-level="2.3.4" data-path="programming-with-data.html"><a href="programming-with-data.html#file-browser"><i class="fa fa-check"></i><b>2.3.4</b> File Browser</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.4</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="programming-with-data.html"><a href="programming-with-data.html#values-vectors-and-variables"><i class="fa fa-check"></i><b>2.4.1</b> Values, Vectors, and Variables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.4.2</b> Math operators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.5</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.5.1</b> Loops</a></li>
+<li class="chapter" data-level="2.5.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.5.2</b> For-loops</a></li>
+<li class="chapter" data-level="2.5.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.5.3</b> Booleans and logical statements</a></li>
+<li class="chapter" data-level="2.5.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.5.4</b> R functions</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
@@ -200,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>6.3.1</b> Loading built-in datasets</a></li>
 <li class="chapter" data-level="6.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>6.3.2</b> Importing rectangular data from text-files</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parsing-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parsing with <code>readr</code></a>
+<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parse-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parse with <code>readr</code></a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>6.4.1</b> Basic usage of <code>readr</code> functions</a></li>
 <li class="chapter" data-level="6.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>6.4.2</b> Parsing and data types</a></li>
@@ -246,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>9</b> Basic Econometrics in R</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modelling"><i class="fa fa-check"></i><b>9.1</b> Statistical modelling</a>
+<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modeling"><i class="fa fa-check"></i><b>9.1</b> Statistical modeling</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>9.1.1</b> Illustration with pseudo-data</a></li>
 </ul></li>
@@ -263,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>10.1</b> Data display</a></li>
-<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualisation-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualisation with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualization with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>10.3</b> ‘Grammar of Graphics’</a>
 <ul>
 <li class="chapter" data-level="10.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>10.3.1</b> <code>ggplot2</code> basics</a></li>
@@ -272,12 +310,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>10.3.4</b> Geometries (~ type of plot)</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>10.4</b> Dynamic documents</a></li>
-<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualisation"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualisation</a></li>
-<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.6</b> Background and aim</a>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualization"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualization</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.6.1</b> Data import and preparation</a></li>
-<li class="chapter" data-level="10.6.2" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.6.2</b> Plot</a></li>
-<li class="chapter" data-level="10.6.3" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.6.3</b> Cosmetics: theme</a></li>
+<li class="chapter" data-level="10.5.1" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.5.1</b> Background and aim</a></li>
+<li class="chapter" data-level="10.5.2" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.5.2</b> Data import and preparation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.5.3</b> Plot</a></li>
+<li class="chapter" data-level="10.5.4" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.5.4</b> Cosmetics: theme</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -292,8 +330,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
 
@@ -314,12 +350,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-sources-data-gathering-data-import" class="section level1" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Data Sources, Data Gathering, Data Import</h1>
-<p>In this chapter we put the key concepts learned so far (text-files for data storage, parsers, encoding, data structures) together and apply them in order to master the first key bottleneck in the data pipeline: how to <em>import</em> raw data from various sources and <em>export/store</em> them for further processing in the pipeline.</p>
-<div id="sourcesformats" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Sources/formats</h2>
-<p>In the first two lectures we have learned how data is stored in text-files and how different data structures/formats/syntaxes help to organize the data in these files. Along the way, we have encountered key data formats that are used in various settings to store and transfer data:</p>
+<div id="data-sources-data-gathering-data-import" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Data Sources, Data Gathering, Data Import<a href="data-sources-data-gathering-data-import.html#data-sources-data-gathering-data-import" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we put the key concepts learned so far (text files for data storage, parsers, encoding, data structures) together and apply them to master the first key bottleneck in the data pipeline: how to <em>import</em> raw data from various sources and <em>export/store</em> them for further processing in the pipeline.</p>
+<div id="sourcesformats" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Sources/formats<a href="data-sources-data-gathering-data-import.html#sourcesformats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous chapters, we learned how data is stored in text files and how different data structures/formats/syntaxes help to organize the data in these files. Along the way, we have encountered key data formats that are used in various settings to store and transfer data:</p>
 <ul>
 <li>CSV (typical for rectangular/table-like data)</li>
 <li>Variants of CSV (tab-delimited, fix length, etc.)</li>
@@ -327,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>HTML (a markup language to define the structure and layout of webpages)</li>
 <li>Unstructured text</li>
 </ul>
-<p>Depending on the <em>data source</em>, data might come in one or the other form. With the increasing importance of the Internet as a data source for economic research, handling XML, JSON, and HTML properly is becoming more important. However, in applied economic research various other formats can be encountered:</p>
+<p>Depending on the <em>data source</em>, data might come in one or the other form. With the increasing importance of the Internet as a data source for economic research, properly handling XML, JSON, and HTML is becoming more important. However, in applied economic research, various other formats can be encountered:</p>
 <ul>
 <li>Excel spreadsheets (<code>.xls</code>)</li>
 <li>Formats specific to statistical software packages (SPSS: <code>.sav</code>, STATA: <code>.dat</code>, etc.)</li>
@@ -336,72 +372,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>While we will cover/revisit how to import all of these formats here, it is important to keep in mind that the learned fundamental concepts are as important (or even more important) than knowing which function to call in R for each of these cases. New formats might evolve and become more relevant in the future for which no R function yet exists. However, the underlying logic of how formats to structure data work will hardly change.</p>
 </div>
-<div id="data-gathering-procedure" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Data gathering procedure</h2>
-<p>Before we set out to gather/import data from diverse sources, we should start organizing the procedure in a R script. This script will be the beginning of our pipeline!</p>
+<div id="data-gathering-procedure" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Data gathering procedure<a href="data-sources-data-gathering-data-import.html#data-gathering-procedure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we set out to gather/import data from diverse sources, we should start organizing the procedure in an R script. This script will be the beginning of our pipeline!</p>
 <p>First, open a new R script in RStudio and save it as <code>import_data.R</code> in your <code>code</code> folder. Take your time to meaningfully describe what the script is all about in the first few lines of the file:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="data-sources-data-gathering-data-import.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span>
-<span id="cb157-2"><a href="data-sources-data-gathering-data-import.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span></span>
-<span id="cb157-3"><a href="data-sources-data-gathering-data-import.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb157-4"><a href="data-sources-data-gathering-data-import.html#cb157-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports data from ...</span></span>
-<span id="cb157-5"><a href="data-sources-data-gathering-data-import.html#cb157-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Input: links to data sources (data comes in ... format)</span></span>
-<span id="cb157-6"><a href="data-sources-data-gathering-data-import.html#cb157-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: cleaned data as CSV</span></span>
-<span id="cb157-7"><a href="data-sources-data-gathering-data-import.html#cb157-7" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb157-8"><a href="data-sources-data-gathering-data-import.html#cb157-8" aria-hidden="true" tabindex="-1"></a><span class="co"># U. Matter, St.Gallen, 2019</span></span>
-<span id="cb157-9"><a href="data-sources-data-gathering-data-import.html#cb157-9" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span></code></pre></div>
-<p>RStudio recognizes different sections in a script, whereby section headers are indicated by <code>----------</code>. This helps to further organize the script into different tasks. Usually, it makes sense to start with a ‘meta’ section in which all necessary packages are loaded and fix variables initiated.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-sources-data-gathering-data-import.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span>
-<span id="cb158-2"><a href="data-sources-data-gathering-data-import.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span></span>
-<span id="cb158-3"><a href="data-sources-data-gathering-data-import.html#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb158-4"><a href="data-sources-data-gathering-data-import.html#cb158-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports data from ...</span></span>
-<span id="cb158-5"><a href="data-sources-data-gathering-data-import.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Input: links to data sources (data comes in ... format)</span></span>
-<span id="cb158-6"><a href="data-sources-data-gathering-data-import.html#cb158-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: cleaned data as CSV</span></span>
-<span id="cb158-7"><a href="data-sources-data-gathering-data-import.html#cb158-7" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb158-8"><a href="data-sources-data-gathering-data-import.html#cb158-8" aria-hidden="true" tabindex="-1"></a><span class="co"># U. Matter, St.Gallen, 2019</span></span>
-<span id="cb158-9"><a href="data-sources-data-gathering-data-import.html#cb158-9" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span>
-<span id="cb158-10"><a href="data-sources-data-gathering-data-import.html#cb158-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-11"><a href="data-sources-data-gathering-data-import.html#cb158-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-12"><a href="data-sources-data-gathering-data-import.html#cb158-12" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP --------------</span></span>
-<span id="cb158-13"><a href="data-sources-data-gathering-data-import.html#cb158-13" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb158-14"><a href="data-sources-data-gathering-data-import.html#cb158-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb158-15"><a href="data-sources-data-gathering-data-import.html#cb158-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-16"><a href="data-sources-data-gathering-data-import.html#cb158-16" aria-hidden="true" tabindex="-1"></a><span class="co"># set fix variables</span></span>
-<span id="cb158-17"><a href="data-sources-data-gathering-data-import.html#cb158-17" aria-hidden="true" tabindex="-1"></a>INPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;/rawdata&quot;</span></span>
-<span id="cb158-18"><a href="data-sources-data-gathering-data-import.html#cb158-18" aria-hidden="true" tabindex="-1"></a>OUTPUT_FILE <span class="ot">&lt;-</span> <span class="st">&quot;/final_data/datafile.csv&quot;</span></span></code></pre></div>
-<p>Finally we add sections with the actual code (in the case of a data import script, maybe one section per data source).</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="data-sources-data-gathering-data-import.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span>
-<span id="cb159-2"><a href="data-sources-data-gathering-data-import.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Project XY: Data Gathering and Import</span></span>
-<span id="cb159-3"><a href="data-sources-data-gathering-data-import.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb159-4"><a href="data-sources-data-gathering-data-import.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This script is the first part of the data pipeline of project XY.</span></span>
-<span id="cb159-5"><a href="data-sources-data-gathering-data-import.html#cb159-5" aria-hidden="true" tabindex="-1"></a><span class="co"># It imports data from ...</span></span>
-<span id="cb159-6"><a href="data-sources-data-gathering-data-import.html#cb159-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Input: links to data sources (data comes in ... format)</span></span>
-<span id="cb159-7"><a href="data-sources-data-gathering-data-import.html#cb159-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: cleaned data as CSV</span></span>
-<span id="cb159-8"><a href="data-sources-data-gathering-data-import.html#cb159-8" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb159-9"><a href="data-sources-data-gathering-data-import.html#cb159-9" aria-hidden="true" tabindex="-1"></a><span class="co"># U. Matter, St.Gallen, 2019</span></span>
-<span id="cb159-10"><a href="data-sources-data-gathering-data-import.html#cb159-10" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span>
-<span id="cb159-11"><a href="data-sources-data-gathering-data-import.html#cb159-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-12"><a href="data-sources-data-gathering-data-import.html#cb159-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-13"><a href="data-sources-data-gathering-data-import.html#cb159-13" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP --------------</span></span>
-<span id="cb159-14"><a href="data-sources-data-gathering-data-import.html#cb159-14" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb159-15"><a href="data-sources-data-gathering-data-import.html#cb159-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb159-16"><a href="data-sources-data-gathering-data-import.html#cb159-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-17"><a href="data-sources-data-gathering-data-import.html#cb159-17" aria-hidden="true" tabindex="-1"></a><span class="co"># set fix variables</span></span>
-<span id="cb159-18"><a href="data-sources-data-gathering-data-import.html#cb159-18" aria-hidden="true" tabindex="-1"></a>INPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;/rawdata&quot;</span></span>
-<span id="cb159-19"><a href="data-sources-data-gathering-data-import.html#cb159-19" aria-hidden="true" tabindex="-1"></a>OUTPUT_FILE <span class="ot">&lt;-</span> <span class="st">&quot;/final_data/datafile.csv&quot;</span></span>
-<span id="cb159-20"><a href="data-sources-data-gathering-data-import.html#cb159-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-21"><a href="data-sources-data-gathering-data-import.html#cb159-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-22"><a href="data-sources-data-gathering-data-import.html#cb159-22" aria-hidden="true" tabindex="-1"></a><span class="co"># IMPORT RAW DATA FROM CSVs -------------</span></span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-sources-data-gathering-data-import.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span>
+<span id="cb160-2"><a href="data-sources-data-gathering-data-import.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span></span>
+<span id="cb160-3"><a href="data-sources-data-gathering-data-import.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb160-4"><a href="data-sources-data-gathering-data-import.html#cb160-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports data from ...</span></span>
+<span id="cb160-5"><a href="data-sources-data-gathering-data-import.html#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Input: links to data sources (data comes in ... format)</span></span>
+<span id="cb160-6"><a href="data-sources-data-gathering-data-import.html#cb160-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: cleaned data as CSV</span></span>
+<span id="cb160-7"><a href="data-sources-data-gathering-data-import.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb160-8"><a href="data-sources-data-gathering-data-import.html#cb160-8" aria-hidden="true" tabindex="-1"></a><span class="co"># U. Matter, St.Gallen, 2019</span></span>
+<span id="cb160-9"><a href="data-sources-data-gathering-data-import.html#cb160-9" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span></code></pre></div>
+<p>RStudio recognizes different sections in a script, whereby section headers are indicated by <code>----------</code>. This helps to organize the script into different tasks further. Usually, it makes sense to start with a ‘meta’ section in which all necessary packages are loaded and fix variables initiated.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-sources-data-gathering-data-import.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span>
+<span id="cb161-2"><a href="data-sources-data-gathering-data-import.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Handling Course: Example Script for Data Gathering and Import</span></span>
+<span id="cb161-3"><a href="data-sources-data-gathering-data-import.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb161-4"><a href="data-sources-data-gathering-data-import.html#cb161-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports data from ...</span></span>
+<span id="cb161-5"><a href="data-sources-data-gathering-data-import.html#cb161-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Input: links to data sources (data comes in ... format)</span></span>
+<span id="cb161-6"><a href="data-sources-data-gathering-data-import.html#cb161-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: cleaned data as CSV</span></span>
+<span id="cb161-7"><a href="data-sources-data-gathering-data-import.html#cb161-7" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb161-8"><a href="data-sources-data-gathering-data-import.html#cb161-8" aria-hidden="true" tabindex="-1"></a><span class="co"># U. Matter, St.Gallen, 2019</span></span>
+<span id="cb161-9"><a href="data-sources-data-gathering-data-import.html#cb161-9" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span>
+<span id="cb161-10"><a href="data-sources-data-gathering-data-import.html#cb161-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-11"><a href="data-sources-data-gathering-data-import.html#cb161-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-12"><a href="data-sources-data-gathering-data-import.html#cb161-12" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP --------------</span></span>
+<span id="cb161-13"><a href="data-sources-data-gathering-data-import.html#cb161-13" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb161-14"><a href="data-sources-data-gathering-data-import.html#cb161-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb161-15"><a href="data-sources-data-gathering-data-import.html#cb161-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-16"><a href="data-sources-data-gathering-data-import.html#cb161-16" aria-hidden="true" tabindex="-1"></a><span class="co"># set fix variables</span></span>
+<span id="cb161-17"><a href="data-sources-data-gathering-data-import.html#cb161-17" aria-hidden="true" tabindex="-1"></a>INPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;/rawdata&quot;</span></span>
+<span id="cb161-18"><a href="data-sources-data-gathering-data-import.html#cb161-18" aria-hidden="true" tabindex="-1"></a>OUTPUT_FILE <span class="ot">&lt;-</span> <span class="st">&quot;/final_data/datafile.csv&quot;</span></span></code></pre></div>
+<p>Finally, we add sections with the actual code (in the case of a data import script, maybe one section per data source).</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-sources-data-gathering-data-import.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span>
+<span id="cb162-2"><a href="data-sources-data-gathering-data-import.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Project XY: Data Gathering and Import</span></span>
+<span id="cb162-3"><a href="data-sources-data-gathering-data-import.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb162-4"><a href="data-sources-data-gathering-data-import.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This script is the first part of the data pipeline of project XY.</span></span>
+<span id="cb162-5"><a href="data-sources-data-gathering-data-import.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="co"># It imports data from ...</span></span>
+<span id="cb162-6"><a href="data-sources-data-gathering-data-import.html#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Input: links to data sources (data comes in ... format)</span></span>
+<span id="cb162-7"><a href="data-sources-data-gathering-data-import.html#cb162-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: cleaned data as CSV</span></span>
+<span id="cb162-8"><a href="data-sources-data-gathering-data-import.html#cb162-8" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb162-9"><a href="data-sources-data-gathering-data-import.html#cb162-9" aria-hidden="true" tabindex="-1"></a><span class="co"># U. Matter, St.Gallen, 2019</span></span>
+<span id="cb162-10"><a href="data-sources-data-gathering-data-import.html#cb162-10" aria-hidden="true" tabindex="-1"></a><span class="do">#######################################################################</span></span>
+<span id="cb162-11"><a href="data-sources-data-gathering-data-import.html#cb162-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-12"><a href="data-sources-data-gathering-data-import.html#cb162-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-13"><a href="data-sources-data-gathering-data-import.html#cb162-13" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP --------------</span></span>
+<span id="cb162-14"><a href="data-sources-data-gathering-data-import.html#cb162-14" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb162-15"><a href="data-sources-data-gathering-data-import.html#cb162-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb162-16"><a href="data-sources-data-gathering-data-import.html#cb162-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-17"><a href="data-sources-data-gathering-data-import.html#cb162-17" aria-hidden="true" tabindex="-1"></a><span class="co"># set fix variables</span></span>
+<span id="cb162-18"><a href="data-sources-data-gathering-data-import.html#cb162-18" aria-hidden="true" tabindex="-1"></a>INPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;/rawdata&quot;</span></span>
+<span id="cb162-19"><a href="data-sources-data-gathering-data-import.html#cb162-19" aria-hidden="true" tabindex="-1"></a>OUTPUT_FILE <span class="ot">&lt;-</span> <span class="st">&quot;/final_data/datafile.csv&quot;</span></span>
+<span id="cb162-20"><a href="data-sources-data-gathering-data-import.html#cb162-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-21"><a href="data-sources-data-gathering-data-import.html#cb162-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-22"><a href="data-sources-data-gathering-data-import.html#cb162-22" aria-hidden="true" tabindex="-1"></a><span class="co"># IMPORT RAW DATA FROM CSVs -------------</span></span></code></pre></div>
 </div>
-<div id="loadingimporting-rectangular-data" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Loading/importing rectangular data<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></h2>
-<div id="loading-built-in-datasets" class="section level3" number="6.3.1">
-<h3><span class="header-section-number">6.3.1</span> Loading built-in datasets</h3>
-<p>We start with the simplest case of loading/importing data. The basic R installation provides some example datasets to try out R’s statistics functions. In the introduction to visualization techniques with R as well as in the statistics examples in the lectures to come, we will rely on some of these datasets for the sake of simplicity. Note that the usage of these simple datasets shipped with basic R are very helpful when practicing/learning R on your own. Many R packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and tutorials online also use these datasets (see for example the <a href="https://ggplot2.tidyverse.org/">ggplot2 documentation</a>). And, they are very useful when searching help on <a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a> in the context of data analysis/manipulation with R, as you should provide a code example based on some data that everybody can easily load and access.</p>
+<div id="loadingimporting-rectangular-data" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Loading/importing rectangular data<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a><a href="data-sources-data-gathering-data-import.html#loadingimporting-rectangular-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="loading-built-in-datasets" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Loading built-in datasets<a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We start with the simplest case of loading/importing data. The basic R installation provides some example datasets to try out R’s statistics functions. In the introduction to visualization techniques with R and the statistics examples in the chapters to come, we will rely on some of these datasets for simplicity. Note that the usage of these simple datasets shipped with basic R are very helpful when practicing/learning R on your own. Many R packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and tutorials online also use these datasets (see for example the <a href="https://ggplot2.tidyverse.org/">ggplot2 documentation</a>). And, they are very useful when searching help on <a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a> in the context of data analysis/manipulation with R, as you should provide a code example based on some data that everybody can easily load and access.</p>
 <p>In order to load such datasets, simply use the <code>data()</code>-function:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-sources-data-gathering-data-import.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(swiss)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-sources-data-gathering-data-import.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(swiss)</span></code></pre></div>
 <p>In this case, we load a dataset called <code>swiss</code>. After loading it, the data is stored in a variable of the same name as the dataset (here ‘<code>swiss</code>’). We can inspect it and have a look at the first few rows:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-sources-data-gathering-data-import.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the structure</span></span>
-<span id="cb161-2"><a href="data-sources-data-gathering-data-import.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(swiss)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-sources-data-gathering-data-import.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the structure</span></span>
+<span id="cb164-2"><a href="data-sources-data-gathering-data-import.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(swiss)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    47 obs. of  6 variables:
 ##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
 ##  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
@@ -409,8 +445,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
 ##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
 ##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-sources-data-gathering-data-import.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the first few rows</span></span>
-<span id="cb163-2"><a href="data-sources-data-gathering-data-import.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(swiss)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-sources-data-gathering-data-import.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the first few rows</span></span>
+<span id="cb166-2"><a href="data-sources-data-gathering-data-import.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(swiss)</span></code></pre></div>
 <pre><code>##              Fertility Agriculture Examination
 ## Courtelary        80.2        17.0          15
 ## Delemont          83.1        45.1           6
@@ -425,174 +461,192 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Moutier              7    33.77             20.3
 ## Neuveville          15     5.16             20.6
 ## Porrentruy           7    90.57             26.6</code></pre>
-<p>To get a list of all the built-in datasets simply type <code>data()</code> into the console and hit enter. To get more information about a given dataset use the help function (e.g., <code>?swiss</code>)</p>
+<p>To get a list of all the built-in datasets, type <code>data()</code> into the console and hit enter. To get more information about a given dataset, use the help function (e.g., <code>?swiss</code>)</p>
 </div>
-<div id="importing-rectangular-data-from-text-files" class="section level3" number="6.3.2">
-<h3><span class="header-section-number">6.3.2</span> Importing rectangular data from text-files</h3>
-<p>In most cases of applying R for data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as ‘Comma Separated Values’ (CSV). In economics one also frequently encounters data stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into R (in some cases, additional packages have to be loaded, though). Thereby, what happens ‘under the hood’ is essentially the same for all of these formats. Somebody has implemented the respective <em>parser</em> as an R function which accepts a character string with the path or url to the data source as input.</p>
-<div id="comma-separated-values-csv" class="section level4" number="6.3.2.1">
-<h4><span class="header-section-number">6.3.2.1</span> Comma Separated Values (CSV)</h4>
-<p>Recall how in this format data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code-block shows how the first two rows of the <code>swiss</code>-dataset would look like when stored in a CSV:</p>
+<div id="importing-rectangular-data-from-text-files" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Importing rectangular data from text-files<a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In most cases of applying R for data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text file format such as ‘Comma Separated Values’ (CSV). In economics, one also frequently encounters data stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all these formats can easily be imported into R (in some cases, additional packages have to be loaded, though). Thereby, what happens ‘under the hood’ is essentially the same for all of these formats. Somebody has implemented the respective <em>parser</em> as an R function that accepts a character string with the path or URL to the data source as input.</p>
+<div id="comma-separated-values-csv" class="section level4 hasAnchor" number="6.3.2.1">
+<h4><span class="header-section-number">6.3.2.1</span> Comma Separated Values (CSV)<a href="data-sources-data-gathering-data-import.html#comma-separated-values-csv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Recall how in this format, data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code block shows how the first two rows of the <code>swiss</code>-dataset would look like when stored in a CSV:</p>
 <pre><code>&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;
 &quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2</code></pre>
-<p>The function <code>read.csv()</code> imports such files from disk into R (in the form of a <code>data.frame</code>). In this example the <code>swiss</code>-dataset is stored locally on our disk in the folder <code>data</code>:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-sources-data-gathering-data-import.html#cb166-1" aria-hidden="true" tabindex="-1"></a>swiss_imported <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</span></code></pre></div>
-<p>Alternatively, we could use the newer <code>read_csv()</code> function which would return a <code>tibble</code>.</p>
+<p>The function <code>read.csv()</code> imports such files from disk into R (in the form of a <code>data frame</code>). In this example, the <code>swiss</code>-dataset is stored locally on our disk in the folder <code>data</code>:</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="data-sources-data-gathering-data-import.html#cb169-1" aria-hidden="true" tabindex="-1"></a>swiss_imported <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</span></code></pre></div>
+<p>Alternatively, we could use the newer <code>read_csv()</code> function, which would return a <code>tibble</code>.</p>
 </div>
-<div id="spreadsheetsexcel" class="section level4" number="6.3.2.2">
-<h4><span class="header-section-number">6.3.2.2</span> Spreadsheets/Excel</h4>
-<p>In order to read excel spreadsheets we need to install an additional R package called <code>readxl</code>.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="data-sources-data-gathering-data-import.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the package </span></span>
-<span id="cb167-2"><a href="data-sources-data-gathering-data-import.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
+<div id="spreadsheetsexcel" class="section level4 hasAnchor" number="6.3.2.2">
+<h4><span class="header-section-number">6.3.2.2</span> Spreadsheets/Excel<a href="data-sources-data-gathering-data-import.html#spreadsheetsexcel" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To read excel spreadsheets, we need to install an additional R package called <code>readxl</code>.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-sources-data-gathering-data-import.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the package</span></span>
+<span id="cb170-2"><a href="data-sources-data-gathering-data-import.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
 <p>Then we load this additional package (‘library’) and use the package’s <code>read_excel()</code>-function to import data from an excel-sheet. In the example below, the same data as above is stored in an excel-sheet called <code>swiss.xlsx</code>, again in a folder called <code>data</code>.</p>
 <pre><code>## New names:
-## * `` -&gt; ...1</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="data-sources-data-gathering-data-import.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package</span></span>
-<span id="cb169-2"><a href="data-sources-data-gathering-data-import.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb169-3"><a href="data-sources-data-gathering-data-import.html#cb169-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb169-4"><a href="data-sources-data-gathering-data-import.html#cb169-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import data from a spreadsheet</span></span>
-<span id="cb169-5"><a href="data-sources-data-gathering-data-import.html#cb169-5" aria-hidden="true" tabindex="-1"></a>swiss_imported <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/swiss.xlsx&quot;</span>)</span></code></pre></div>
+## • `` -&gt; `...1`</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-sources-data-gathering-data-import.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package</span></span>
+<span id="cb172-2"><a href="data-sources-data-gathering-data-import.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb172-3"><a href="data-sources-data-gathering-data-import.html#cb172-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-4"><a href="data-sources-data-gathering-data-import.html#cb172-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import data from a spreadsheet</span></span>
+<span id="cb172-5"><a href="data-sources-data-gathering-data-import.html#cb172-5" aria-hidden="true" tabindex="-1"></a>swiss_imported <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/swiss.xlsx&quot;</span>)</span></code></pre></div>
 </div>
-<div id="data-from-other-data-analysis-software" class="section level4" number="6.3.2.3">
-<h4><span class="header-section-number">6.3.2.3</span> Data from other data analysis software</h4>
+<div id="data-from-other-data-analysis-software" class="section level4 hasAnchor" number="6.3.2.3">
+<h4><span class="header-section-number">6.3.2.3</span> Data from other data analysis software<a href="data-sources-data-gathering-data-import.html#data-from-other-data-analysis-software" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The R packages <code>foreign</code> and <code>haven</code> contain functions to import data from formats used in other statistics/data analysis software, such as SPSS and STATA.</p>
 <p>In the following example we use <code>haven</code>‘s <code>read_spss()</code> function to import a version of the <code>swiss</code>-dataset stored in SPSS’ <code>.sav</code>-format (again stored in the folder called <code>data</code>).</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-sources-data-gathering-data-import.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the package (if not yet installed):</span></span>
-<span id="cb170-2"><a href="data-sources-data-gathering-data-import.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;haven&quot;)</span></span>
-<span id="cb170-3"><a href="data-sources-data-gathering-data-import.html#cb170-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-4"><a href="data-sources-data-gathering-data-import.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package</span></span>
-<span id="cb170-5"><a href="data-sources-data-gathering-data-import.html#cb170-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb170-6"><a href="data-sources-data-gathering-data-import.html#cb170-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-7"><a href="data-sources-data-gathering-data-import.html#cb170-7" aria-hidden="true" tabindex="-1"></a><span class="co"># read the data</span></span>
-<span id="cb170-8"><a href="data-sources-data-gathering-data-import.html#cb170-8" aria-hidden="true" tabindex="-1"></a>swiss_imported <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;data/swiss.sav&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-sources-data-gathering-data-import.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the package (if not yet installed):</span></span>
+<span id="cb173-2"><a href="data-sources-data-gathering-data-import.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;haven&quot;)</span></span>
+<span id="cb173-3"><a href="data-sources-data-gathering-data-import.html#cb173-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-4"><a href="data-sources-data-gathering-data-import.html#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package</span></span>
+<span id="cb173-5"><a href="data-sources-data-gathering-data-import.html#cb173-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb173-6"><a href="data-sources-data-gathering-data-import.html#cb173-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-7"><a href="data-sources-data-gathering-data-import.html#cb173-7" aria-hidden="true" tabindex="-1"></a><span class="co"># read the data</span></span>
+<span id="cb173-8"><a href="data-sources-data-gathering-data-import.html#cb173-8" aria-hidden="true" tabindex="-1"></a>swiss_imported <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;data/swiss.sav&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
-<div id="import-and-parsing-with-readr" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> Import and parsing with <code>readr</code><a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></h2>
-<p>The <code>readr</code> package is automatically installed and loaded with the installation/loading of <code>tidyverse</code>. It provides a set of functions to read different types of rectangular data formats and is usually more robust and faster than similar functions provided in the basic R distribution. Each of these functions basically expects either a character string with path pointing to a file or a character string directly containing the data.</p>
-<div id="basic-usage-of-readr-functions" class="section level3" number="6.4.1">
-<h3><span class="header-section-number">6.4.1</span> Basic usage of <code>readr</code> functions</h3>
-<p>For example, we can parse the first lines of the swiss dataset directly like this</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-sources-data-gathering-data-import.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<div id="import-and-parse-with-readr" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Import and parse with <code>readr</code><a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a><a href="data-sources-data-gathering-data-import.html#import-and-parse-with-readr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>readr</code> package is automatically installed and loaded with the installation/loading of <code>tidyverse</code>. It provides a set of functions to read different types of rectangular data formats and is usually more robust and faster than similar functions in the basic R distribution. Each of these functions expects either a character string with a path pointing to a file or a character string directly containing the data.</p>
+<div id="basic-usage-of-readr-functions" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Basic usage of <code>readr</code> functions<a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For example, we can parse the first lines of the swiss dataset directly like this.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-sources-data-gathering-data-import.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;readr&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:rvest&#39;:
 ## 
 ##     guess_encoding</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-sources-data-gathering-data-import.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&#39;&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;</span></span>
-<span id="cb174-2"><a href="data-sources-data-gathering-data-import.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2&#39;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 7
-##   District  Fertility Agriculture Examination Education
-##   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Courtela…      80.2          17          15        12
-## # … with 2 more variables: Catholic &lt;dbl&gt;,
-## #   Infant.Mortality &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="data-sources-data-gathering-data-import.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&#39;&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;</span></span>
+<span id="cb177-2"><a href="data-sources-data-gathering-data-import.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2&#39;</span>)</span></code></pre></div>
+<pre><code>## Rows: 1 Columns: 7</code></pre>
+<pre><code>## ── Column specification ───────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): District
+## dbl (6): Fertility, Agriculture, Examination, Educa...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 1 × 7
+##   District   Fertility Agricu…¹ Exami…² Educa…³ Catho…⁴
+##   &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Courtelary      80.2       17      15      12    9.96
+## # … with 1 more variable: Infant.Mortality &lt;dbl&gt;, and
+## #   abbreviated variable names ¹​Agriculture,
+## #   ²​Examination, ³​Education, ⁴​Catholic
+## # ℹ Use `colnames()` to see all variable names</code></pre>
 <p>or read the entire <code>swiss</code> dataset by pointing to the file</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="data-sources-data-gathering-data-import.html#cb176-1" aria-hidden="true" tabindex="-1"></a>swiss <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## 
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="data-sources-data-gathering-data-import.html#cb181-1" aria-hidden="true" tabindex="-1"></a>swiss <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 47 Columns: 7
 ## ── Column specification ───────────────────────────────
-## cols(
-##   District = col_character(),
-##   Fertility = col_double(),
-##   Agriculture = col_double(),
-##   Examination = col_double(),
-##   Education = col_double(),
-##   Catholic = col_double(),
-##   Infant.Mortality = col_double()
-## )</code></pre>
+## Delimiter: &quot;,&quot;
+## chr (1): District
+## dbl (6): Fertility, Agriculture, Examination, Educa...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p>In either case, the result is a <code>tibble</code>:</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="data-sources-data-gathering-data-import.html#cb178-1" aria-hidden="true" tabindex="-1"></a>swiss</span></code></pre></div>
-<pre><code>## # A tibble: 47 x 7
-##    District Fertility Agriculture Examination Education
-##    &lt;chr&gt;        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Courtel…      80.2        17            15        12
-##  2 Delemont      83.1        45.1           6         9
-##  3 Franche…      92.5        39.7           5         5
-##  4 Moutier       85.8        36.5          12         7
-##  5 Neuvevi…      76.9        43.5          17        15
-##  6 Porrent…      76.1        35.3           9         7
-##  7 Broye         83.8        70.2          16         7
-##  8 Glane         92.4        67.8          14         8
-##  9 Gruyere       82.4        53.3          12         7
-## 10 Sarine        82.9        45.2          16        13
-## # … with 37 more rows, and 2 more variables:
-## #   Catholic &lt;dbl&gt;, Infant.Mortality &lt;dbl&gt;</code></pre>
-<p>The other <code>readr</code> functions have practically the same syntax and behavior. They are used for fixed-width files or csv-type files with other delimiters than commas.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="data-sources-data-gathering-data-import.html#cb183-1" aria-hidden="true" tabindex="-1"></a>swiss</span></code></pre></div>
+<pre><code>## # A tibble: 47 × 7
+##    District     Ferti…¹ Agric…² Exami…³ Educa…⁴ Catho…⁵
+##    &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Courtelary      80.2    17        15      12    9.96
+##  2 Delemont        83.1    45.1       6       9   84.8 
+##  3 Franches-Mnt    92.5    39.7       5       5   93.4 
+##  4 Moutier         85.8    36.5      12       7   33.8 
+##  5 Neuveville      76.9    43.5      17      15    5.16
+##  6 Porrentruy      76.1    35.3       9       7   90.6 
+##  7 Broye           83.8    70.2      16       7   92.8 
+##  8 Glane           92.4    67.8      14       8   97.2 
+##  9 Gruyere         82.4    53.3      12       7   97.7 
+## 10 Sarine          82.9    45.2      16      13   91.4 
+## # … with 37 more rows, 1 more variable:
+## #   Infant.Mortality &lt;dbl&gt;, and abbreviated variable
+## #   names ¹​Fertility, ²​Agriculture, ³​Examination,
+## #   ⁴​Education, ⁵​Catholic
+## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+<p>The other <code>readr</code> functions have practically the same syntax and behavior. They are used for fixed-width files or CSV-type files with other delimiters than commas.</p>
 </div>
-<div id="parsing-and-data-types" class="section level3" number="6.4.2">
-<h3><span class="header-section-number">6.4.2</span> Parsing and data types</h3>
-<p>From inspecting the <code>swiss</code> tibble printed out above, we recognize that <code>read_csv</code> not only correctly recognizes observations and columns (parses the csv correctly) but also automatically guesses the data type of the values in each column. The first column is of type double, the second one of type integer, etc. That is, <code>read_csv</code> also parses each column-vector of the data set with the aim of recognizing which data type it is. For example, the data value <code>"12:00"</code> could be interpreted simply as a character string. Alternatively, it could also be interpreted as a <code>time</code> format.</p>
+<div id="parsing-and-data-types" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Parsing and data types<a href="data-sources-data-gathering-data-import.html#parsing-and-data-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From inspecting the <code>swiss</code> tibble pointed out above, we recognize that <code>read_csv</code> not only correctly recognizes observations and columns (parses the CSV correctly) but also automatically guesses the data type of the values in each column. The first column is of type double, the second one of type integer, etc. That is, <code>read_csv</code> also parses each column-vector of the data set with the aim of recognizing which data type it is. For example, the data value <code>"12:00"</code> could be interpreted simply as a character string. Alternatively, it could also be interpreted as a <code>time</code> format.</p>
 <p>If <code>"12:00"</code> is an element of the vector <code>c("12:00", "midnight", "noon")</code> it must be interpreted as a character string. If however it is an element of the vector <code>c("12:00", "14:30", "20:01")</code> we probably want R to import this as a <code>time</code> format. Now, how can <code>readr</code> handle the two cases? In simple terms, the package first guesses for each column vector which type is most appropriate. Then, it uses a couple of lower-level parsing functions (one written for each possible data type) in order to parse each column according to the respective guessed type. We can demonstrate this for the two example vectors above.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="data-sources-data-gathering-data-import.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&#39;A,B</span></span>
-<span id="cb180-2"><a href="data-sources-data-gathering-data-import.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="st">         12:00, 12:00</span></span>
-<span id="cb180-3"><a href="data-sources-data-gathering-data-import.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="st">         14:30, midnight</span></span>
-<span id="cb180-4"><a href="data-sources-data-gathering-data-import.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="st">         20:01, noon&#39;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 2
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="data-sources-data-gathering-data-import.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&#39;A,B</span></span>
+<span id="cb185-2"><a href="data-sources-data-gathering-data-import.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="st">         12:00, 12:00</span></span>
+<span id="cb185-3"><a href="data-sources-data-gathering-data-import.html#cb185-3" aria-hidden="true" tabindex="-1"></a><span class="st">         14:30, midnight</span></span>
+<span id="cb185-4"><a href="data-sources-data-gathering-data-import.html#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="st">         20:01, noon&#39;</span>)</span></code></pre></div>
+<pre><code>## Rows: 3 Columns: 2
+## ── Column specification ───────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (1): B
+## time (1): A
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 3 × 2
 ##   A      B       
 ##   &lt;time&gt; &lt;chr&gt;   
 ## 1 12:00  12:00   
 ## 2 14:30  midnight
 ## 3 20:01  noon</code></pre>
 <p>Under the hood <code>read_csv()</code> used the <code>guess_parser()</code>- function to determine which type the two vectors likely contain:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="data-sources-data-gathering-data-import.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_parser</span>(<span class="fu">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;midnight&quot;</span>, <span class="st">&quot;noon&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="data-sources-data-gathering-data-import.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_parser</span>(<span class="fu">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;midnight&quot;</span>, <span class="st">&quot;noon&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="data-sources-data-gathering-data-import.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_parser</span>(<span class="fu">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;14:30&quot;</span>, <span class="st">&quot;20:01&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="data-sources-data-gathering-data-import.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_parser</span>(<span class="fu">c</span>(<span class="st">&quot;12:00&quot;</span>, <span class="st">&quot;14:30&quot;</span>, <span class="st">&quot;20:01&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;time&quot;</code></pre>
 </div>
 </div>
-<div id="importing-web-data-formats" class="section level2" number="6.5">
-<h2><span class="header-section-number">6.5</span> Importing web data formats</h2>
-<div id="xml-in-r" class="section level3" number="6.5.1">
-<h3><span class="header-section-number">6.5.1</span> XML in R<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></h3>
-<p>There are several XML-parsers already implemented in R packages specifically written for working with XML data. We thus do not have to understand the XML syntax in every detail in order to work with this data format in R. The already familiar package <code>xml2</code> (automatically loaded when loading <code>rvest</code>) provides the <code>read_xml()</code> function which we can use to read the exemplary XML-document.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="data-sources-data-gathering-data-import.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb186-2"><a href="data-sources-data-gathering-data-import.html#cb186-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xml2)</span>
-<span id="cb186-3"><a href="data-sources-data-gathering-data-import.html#cb186-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb186-4"><a href="data-sources-data-gathering-data-import.html#cb186-4" aria-hidden="true" tabindex="-1"></a><span class="co"># parse XML, represent XML document as R object</span></span>
-<span id="cb186-5"><a href="data-sources-data-gathering-data-import.html#cb186-5" aria-hidden="true" tabindex="-1"></a>xml_doc <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">&quot;data/customers.xml&quot;</span>)</span>
-<span id="cb186-6"><a href="data-sources-data-gathering-data-import.html#cb186-6" aria-hidden="true" tabindex="-1"></a>xml_doc</span></code></pre></div>
+<div id="importing-web-data-formats" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Importing web data formats<a href="data-sources-data-gathering-data-import.html#importing-web-data-formats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="xml-in-r" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> XML in R<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a><a href="data-sources-data-gathering-data-import.html#xml-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are several XML-parsers already implemented in R packages specifically written for working with XML data. Thus, we do not have to understand the XML syntax in every detail to work with this data format in R. The already familiar package <code>xml2</code> (automatically loaded when loading <code>rvest</code>) provides the <code>read_xml()</code> function which we can use to read the exemplary XML-document.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="data-sources-data-gathering-data-import.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb192-2"><a href="data-sources-data-gathering-data-import.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xml2)</span>
+<span id="cb192-3"><a href="data-sources-data-gathering-data-import.html#cb192-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-4"><a href="data-sources-data-gathering-data-import.html#cb192-4" aria-hidden="true" tabindex="-1"></a><span class="co"># parse XML, represent XML document as R object</span></span>
+<span id="cb192-5"><a href="data-sources-data-gathering-data-import.html#cb192-5" aria-hidden="true" tabindex="-1"></a>xml_doc <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(<span class="st">&quot;data/customers.xml&quot;</span>)</span>
+<span id="cb192-6"><a href="data-sources-data-gathering-data-import.html#cb192-6" aria-hidden="true" tabindex="-1"></a>xml_doc</span></code></pre></div>
 <pre><code>## {xml_document}
 ## &lt;customers&gt;
 ## [1] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n  ...
 ## [2] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n ...</code></pre>
-<p>The same package also comes with various functions to access, extract, and manipulate data from a parsed XML document. In the following code example, we have a look at the most useful functions for our purposes (see the package’s <a href="https://cran.r-project.org/web/packages/xml2/vignettes/modification.html">vignette</a> for more details).</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="data-sources-data-gathering-data-import.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate through the XML document (recall the tree-like nested structure similar to HTML)</span></span>
-<span id="cb188-2"><a href="data-sources-data-gathering-data-import.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate downwards</span></span>
-<span id="cb188-3"><a href="data-sources-data-gathering-data-import.html#cb188-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;customers&#39; is the root-node, persons are their&#39;children&#39;</span></span>
-<span id="cb188-4"><a href="data-sources-data-gathering-data-import.html#cb188-4" aria-hidden="true" tabindex="-1"></a>persons <span class="ot">&lt;-</span> <span class="fu">xml_children</span>(xml_doc) </span>
-<span id="cb188-5"><a href="data-sources-data-gathering-data-import.html#cb188-5" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate sidewards</span></span>
-<span id="cb188-6"><a href="data-sources-data-gathering-data-import.html#cb188-6" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_siblings</span>(persons)</span></code></pre></div>
+<p>The same package also has various functions to access, extract, and manipulate data from a parsed XML document. In the following code example, we have a look at the most useful functions for our purposes (see the package’s <a href="https://cran.r-project.org/web/packages/xml2/vignettes/modification.html">vignette</a> for more details).</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="data-sources-data-gathering-data-import.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate through the XML document (recall the tree-like nested structure similar to HTML)</span></span>
+<span id="cb194-2"><a href="data-sources-data-gathering-data-import.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate downwards</span></span>
+<span id="cb194-3"><a href="data-sources-data-gathering-data-import.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;customers&#39; is the root node, persons are ‘their children&#39;</span></span>
+<span id="cb194-4"><a href="data-sources-data-gathering-data-import.html#cb194-4" aria-hidden="true" tabindex="-1"></a>persons <span class="ot">&lt;-</span> <span class="fu">xml_children</span>(xml_doc)</span>
+<span id="cb194-5"><a href="data-sources-data-gathering-data-import.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate sidewards</span></span>
+<span id="cb194-6"><a href="data-sources-data-gathering-data-import.html#cb194-6" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_siblings</span>(persons)</span></code></pre></div>
 <pre><code>## {xml_nodeset (2)}
 ## [1] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n ...
 ## [2] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n  ...</code></pre>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="data-sources-data-gathering-data-import.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate upwards</span></span>
-<span id="cb190-2"><a href="data-sources-data-gathering-data-import.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_parents</span>(persons)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="data-sources-data-gathering-data-import.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate upwards</span></span>
+<span id="cb196-2"><a href="data-sources-data-gathering-data-import.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_parents</span>(persons)</span></code></pre></div>
 <pre><code>## {xml_nodeset (1)}
 ## [1] &lt;customers&gt;\n  &lt;person&gt;\n    &lt;name&gt;John Doe&lt;/nam ...</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="data-sources-data-gathering-data-import.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find data via XPath</span></span>
-<span id="cb192-2"><a href="data-sources-data-gathering-data-import.html#cb192-2" aria-hidden="true" tabindex="-1"></a>customer_names <span class="ot">&lt;-</span> <span class="fu">xml_find_all</span>(xml_doc, <span class="at">xpath =</span> <span class="st">&quot;.//name&quot;</span>)</span>
-<span id="cb192-3"><a href="data-sources-data-gathering-data-import.html#cb192-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the data as text</span></span>
-<span id="cb192-4"><a href="data-sources-data-gathering-data-import.html#cb192-4" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_text</span>(customer_names)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="data-sources-data-gathering-data-import.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find data via XPath</span></span>
+<span id="cb198-2"><a href="data-sources-data-gathering-data-import.html#cb198-2" aria-hidden="true" tabindex="-1"></a>customer_names <span class="ot">&lt;-</span> <span class="fu">xml_find_all</span>(xml_doc, <span class="at">xpath =</span> <span class="st">&quot;.//name&quot;</span>)</span>
+<span id="cb198-3"><a href="data-sources-data-gathering-data-import.html#cb198-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the data as text</span></span>
+<span id="cb198-4"><a href="data-sources-data-gathering-data-import.html#cb198-4" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_text</span>(customer_names)</span></code></pre></div>
 <pre><code>## [1] &quot;John Doe&quot;  &quot;Peter Pan&quot;</code></pre>
 </div>
-<div id="json-in-r" class="section level3" number="6.5.2">
-<h3><span class="header-section-number">6.5.2</span> JSON in R<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></h3>
-<p>Again, we can rely on an R package (<code>jsonlite</code>) providing high-level functions to read, manipulate, and extract data when working with JSON-documents in R. An important difference to working with XML- and HTML-documents is that XPath is not compatible with JSON. However, as <code>jsonlite</code> represents parsed JSON as R objects of class <code>list</code> and/or <code>data-frame</code>, we can work with the parsed document as with any other R-object of the same class. The following example illustrates this point.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="data-sources-data-gathering-data-import.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb194-2"><a href="data-sources-data-gathering-data-import.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb194-3"><a href="data-sources-data-gathering-data-import.html#cb194-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-4"><a href="data-sources-data-gathering-data-import.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="co"># parse the JSON-document shown in the example above</span></span>
-<span id="cb194-5"><a href="data-sources-data-gathering-data-import.html#cb194-5" aria-hidden="true" tabindex="-1"></a>json_doc <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">&quot;data/person.json&quot;</span>)</span>
-<span id="cb194-6"><a href="data-sources-data-gathering-data-import.html#cb194-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-7"><a href="data-sources-data-gathering-data-import.html#cb194-7" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the structure of the document</span></span>
-<span id="cb194-8"><a href="data-sources-data-gathering-data-import.html#cb194-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(json_doc)</span>
-<span id="cb194-9"><a href="data-sources-data-gathering-data-import.html#cb194-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-10"><a href="data-sources-data-gathering-data-import.html#cb194-10" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate the nested lists, extract data</span></span>
-<span id="cb194-11"><a href="data-sources-data-gathering-data-import.html#cb194-11" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the address part</span></span>
-<span id="cb194-12"><a href="data-sources-data-gathering-data-import.html#cb194-12" aria-hidden="true" tabindex="-1"></a>json_doc<span class="sc">$</span>address</span>
-<span id="cb194-13"><a href="data-sources-data-gathering-data-import.html#cb194-13" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the gender (type)</span></span>
-<span id="cb194-14"><a href="data-sources-data-gathering-data-import.html#cb194-14" aria-hidden="true" tabindex="-1"></a>json_doc<span class="sc">$</span>gender<span class="sc">$</span>type</span></code></pre></div>
+<div id="json-in-r" class="section level3 hasAnchor" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> JSON in R<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a><a href="data-sources-data-gathering-data-import.html#json-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Again, we can rely on an R package (<code>jsonlite</code>) providing high-level functions to read, manipulate, and extract data when working with JSON documents in R. An important difference between working with XML- and HTML-documents is that XPath is not compatible with JSON. However, as <code>jsonlite</code> represents parsed JSON as R objects of class <code>list</code> and/or <code>data-frame</code>, we can work with the parsed document as with any other R-object of the same class. The following example illustrates this point.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="data-sources-data-gathering-data-import.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb200-2"><a href="data-sources-data-gathering-data-import.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb200-3"><a href="data-sources-data-gathering-data-import.html#cb200-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-4"><a href="data-sources-data-gathering-data-import.html#cb200-4" aria-hidden="true" tabindex="-1"></a><span class="co"># parse the JSON document shown in the example above</span></span>
+<span id="cb200-5"><a href="data-sources-data-gathering-data-import.html#cb200-5" aria-hidden="true" tabindex="-1"></a>json_doc <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">&quot;data/person.json&quot;</span>)</span>
+<span id="cb200-6"><a href="data-sources-data-gathering-data-import.html#cb200-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-7"><a href="data-sources-data-gathering-data-import.html#cb200-7" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the structure of the document</span></span>
+<span id="cb200-8"><a href="data-sources-data-gathering-data-import.html#cb200-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(json_doc)</span>
+<span id="cb200-9"><a href="data-sources-data-gathering-data-import.html#cb200-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-10"><a href="data-sources-data-gathering-data-import.html#cb200-10" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate the nested lists, extract data</span></span>
+<span id="cb200-11"><a href="data-sources-data-gathering-data-import.html#cb200-11" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the address part</span></span>
+<span id="cb200-12"><a href="data-sources-data-gathering-data-import.html#cb200-12" aria-hidden="true" tabindex="-1"></a>json_doc<span class="sc">$</span>address</span>
+<span id="cb200-13"><a href="data-sources-data-gathering-data-import.html#cb200-13" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the gender (type)</span></span>
+<span id="cb200-14"><a href="data-sources-data-gathering-data-import.html#cb200-14" aria-hidden="true" tabindex="-1"></a>json_doc<span class="sc">$</span>gender<span class="sc">$</span>type</span></code></pre></div>
 <pre><code>## List of 6
 ##  $ firstName  : chr &quot;John&quot;
 ##  $ lastName   : chr &quot;Smith&quot;
@@ -620,10 +674,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] &quot;10021&quot;</code></pre>
 <pre><code>## [1] &quot;male&quot;</code></pre>
 </div>
-<div id="tutorial-advanced-importing-data-from-a-html-table-on-a-website" class="section level3" number="6.5.3">
-<h3><span class="header-section-number">6.5.3</span> Tutorial (advanced): Importing data from a HTML table (on a website)</h3>
-<p>In the lecture on Big Data from the Web we have discussed the <em>Hypertext Markup Language (HTML)</em> as code to define the structure/content of a website as well HTML-documents as semi-structured data sources. In the following tutorial, we revisit the basic steps involved to import data from a HTML table into R.</p>
-<p>The aim of the tutorial is to generate a CSV file containing data on <a href="https://en.wikipedia.org/wiki/Divided_government">‘divided government’</a> in US politics. We use the following Wikipedia page as a data source: <a href="https://en.wikipedia.org/wiki/Divided_government_in_the_United_States" class="uri">https://en.wikipedia.org/wiki/Divided_government_in_the_United_States</a>. The page contains a table indicating the president’s party, and the majority party in the US House and the US Senate per Congress (2-year periods). The first few rows of the cleaned data is supposed to look like this:</p>
+<div id="tutorial-advanced-importing-data-from-a-html-table-on-a-website" class="section level3 hasAnchor" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> Tutorial (advanced): Importing data from a HTML table (on a website)<a href="data-sources-data-gathering-data-import.html#tutorial-advanced-importing-data-from-a-html-table-on-a-website" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the chapter on high-dimensional data, we discussed the <em>Hypertext Markup Language (HTML)</em> as code to define the structure/content of a website and HTML-documents as semi-structured data sources. The following tutorial revisits the basic steps in importing data from an HTML table into R.</p>
+<p>The aim of the tutorial is to generate a CSV file containing data on <a href="https://en.wikipedia.org/wiki/Divided_government">‘divided government’</a> in US politics. We use the following Wikipedia page as a data source: <a href="https://en.wikipedia.org/wiki/Divided_government_in_the_United_States" class="uri">https://en.wikipedia.org/wiki/Divided_government_in_the_United_States</a>. The page contains a table indicating the president’s party, and the majority party in the US House and the US Senate per Congress (2-year periods). The first few rows of the cleaned data are supposed to look like this:</p>
 <pre><code>##    year  president senate house
 ## 1: 1861    Lincoln      R     R
 ## 2: 1862    Lincoln      R     R
@@ -632,48 +686,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5: 1865 A. Johnson      R     R
 ## 6: 1866 A. Johnson      R     R</code></pre>
 <p>In a first step, we initiate fix variables for paths and load additional R packages needed to handle data stored in HTML documents.</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="data-sources-data-gathering-data-import.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SETUP ------------------</span></span>
-<span id="cb199-2"><a href="data-sources-data-gathering-data-import.html#cb199-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-3"><a href="data-sources-data-gathering-data-import.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb199-4"><a href="data-sources-data-gathering-data-import.html#cb199-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
-<span id="cb199-5"><a href="data-sources-data-gathering-data-import.html#cb199-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb199-6"><a href="data-sources-data-gathering-data-import.html#cb199-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-7"><a href="data-sources-data-gathering-data-import.html#cb199-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
-<span id="cb199-8"><a href="data-sources-data-gathering-data-import.html#cb199-8" aria-hidden="true" tabindex="-1"></a>SOURCE_PATH <span class="ot">&lt;-</span> <span class="st">&quot;https://en.wikipedia.org/wiki/Divided_government_in_the_United_States&quot;</span></span>
-<span id="cb199-9"><a href="data-sources-data-gathering-data-import.html#cb199-9" aria-hidden="true" tabindex="-1"></a>OUTPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/divided_gov.csv&quot;</span></span></code></pre></div>
-<p>Now we write the part of the script that fetches the data from the Web. This part consists of three steps. First we fetch the entire website (HTML document) from Wikipedia with (<code>read_html()</code>). Second, we extract the part of the website containing the table with the data we want (via <code>html_node()</code>). Finally, we parse the HTML table and store its content in a data frame called <code>tab</code>. The last line of the code chunk below simply removes the last row of the data frame (you can see on the website that this row is not needed)</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="data-sources-data-gathering-data-import.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FETCH/FORMAT DATA -------------------</span></span>
-<span id="cb200-2"><a href="data-sources-data-gathering-data-import.html#cb200-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-3"><a href="data-sources-data-gathering-data-import.html#cb200-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fetch from web</span></span>
-<span id="cb200-4"><a href="data-sources-data-gathering-data-import.html#cb200-4" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">read_html</span>(SOURCE_PATH)</span>
-<span id="cb200-5"><a href="data-sources-data-gathering-data-import.html#cb200-5" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">html_table</span>(doc,<span class="at">fill=</span><span class="cn">TRUE</span>)[[<span class="dv">2</span>]]</span>
-<span id="cb200-6"><a href="data-sources-data-gathering-data-import.html#cb200-6" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> tab[<span class="sc">-</span><span class="fu">nrow</span>(tab), ] <span class="co"># remove last row (not containing data)</span></span></code></pre></div>
-<p>Now we clean the data in order to get a data set more suitable for data analysis. Note that the original table contains information per congress (2-year periods). However, as the sample above shows, we aim for a panel at the year level. The following code iterates through the rows of the data frame, and generates for each row per congress several two rows (one for each year in the congress).<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="data-sources-data-gathering-data-import.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate year-level data.frame</span></span>
-<span id="cb201-2"><a href="data-sources-data-gathering-data-import.html#cb201-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb201-3"><a href="data-sources-data-gathering-data-import.html#cb201-3" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare loop</span></span>
-<span id="cb201-4"><a href="data-sources-data-gathering-data-import.html#cb201-4" aria-hidden="true" tabindex="-1"></a>all_years <span class="ot">&lt;-</span> <span class="fu">list</span>() <span class="co"># the container</span></span>
-<span id="cb201-5"><a href="data-sources-data-gathering-data-import.html#cb201-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(tab<span class="sc">$</span>Year) <span class="co"># number of cases to iterate through</span></span>
-<span id="cb201-6"><a href="data-sources-data-gathering-data-import.html#cb201-6" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(all_years) <span class="ot">&lt;-</span> n</span>
-<span id="cb201-7"><a href="data-sources-data-gathering-data-import.html#cb201-7" aria-hidden="true" tabindex="-1"></a><span class="co"># generate year-level observations. row by row.</span></span>
-<span id="cb201-8"><a href="data-sources-data-gathering-data-import.html#cb201-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
-<span id="cb201-9"><a href="data-sources-data-gathering-data-import.html#cb201-9" aria-hidden="true" tabindex="-1"></a>      <span class="co"># select row</span></span>
-<span id="cb201-10"><a href="data-sources-data-gathering-data-import.html#cb201-10" aria-hidden="true" tabindex="-1"></a>      row <span class="ot">&lt;-</span> tab[i,] </span>
-<span id="cb201-11"><a href="data-sources-data-gathering-data-import.html#cb201-11" aria-hidden="true" tabindex="-1"></a>      y <span class="ot">&lt;-</span> row<span class="sc">$</span>Year</span>
-<span id="cb201-12"><a href="data-sources-data-gathering-data-import.html#cb201-12" aria-hidden="true" tabindex="-1"></a>      <span class="co"># </span></span>
-<span id="cb201-13"><a href="data-sources-data-gathering-data-import.html#cb201-13" aria-hidden="true" tabindex="-1"></a>      begin <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(<span class="at">x =</span> y, <span class="at">split =</span> <span class="st">&quot;[</span><span class="sc">\\</span><span class="st">–</span><span class="sc">\\</span><span class="st">-]&quot;</span>, <span class="at">perl =</span> <span class="cn">TRUE</span>))[<span class="dv">1</span>])</span>
-<span id="cb201-14"><a href="data-sources-data-gathering-data-import.html#cb201-14" aria-hidden="true" tabindex="-1"></a>      end <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(<span class="at">x =</span> y, <span class="at">split =</span>  <span class="st">&quot;[</span><span class="sc">\\</span><span class="st">–</span><span class="sc">\\</span><span class="st">-]&quot;</span>))[<span class="dv">2</span>])</span>
-<span id="cb201-15"><a href="data-sources-data-gathering-data-import.html#cb201-15" aria-hidden="true" tabindex="-1"></a>      tabnew <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year=</span>begin<span class="sc">:</span>(end<span class="dv">-1</span>), <span class="at">president=</span>row<span class="sc">$</span>President, <span class="at">senate=</span>row<span class="sc">$</span>Senate, <span class="at">house=</span>row<span class="sc">$</span>House)</span>
-<span id="cb201-16"><a href="data-sources-data-gathering-data-import.html#cb201-16" aria-hidden="true" tabindex="-1"></a>      all_years[[i]] <span class="ot">&lt;-</span> tabnew <span class="co"># store in container</span></span>
-<span id="cb201-17"><a href="data-sources-data-gathering-data-import.html#cb201-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb201-18"><a href="data-sources-data-gathering-data-import.html#cb201-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb201-19"><a href="data-sources-data-gathering-data-import.html#cb201-19" aria-hidden="true" tabindex="-1"></a><span class="co"># stack all rows together</span></span>
-<span id="cb201-20"><a href="data-sources-data-gathering-data-import.html#cb201-20" aria-hidden="true" tabindex="-1"></a>allyears <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(all_years)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="data-sources-data-gathering-data-import.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SETUP ------------------</span></span>
+<span id="cb205-2"><a href="data-sources-data-gathering-data-import.html#cb205-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-3"><a href="data-sources-data-gathering-data-import.html#cb205-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb205-4"><a href="data-sources-data-gathering-data-import.html#cb205-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb205-5"><a href="data-sources-data-gathering-data-import.html#cb205-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb205-6"><a href="data-sources-data-gathering-data-import.html#cb205-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-7"><a href="data-sources-data-gathering-data-import.html#cb205-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
+<span id="cb205-8"><a href="data-sources-data-gathering-data-import.html#cb205-8" aria-hidden="true" tabindex="-1"></a>SOURCE_PATH <span class="ot">&lt;-</span> <span class="st">&quot;https://en.wikipedia.org/wiki/Divided_government_in_the_United_States&quot;</span></span>
+<span id="cb205-9"><a href="data-sources-data-gathering-data-import.html#cb205-9" aria-hidden="true" tabindex="-1"></a>OUTPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/divided_gov.csv&quot;</span></span></code></pre></div>
+<p>Now we write the part of the script that fetches the data from the Web. This part consists of three steps. First we fetch the entire website (HTML document) from Wikipedia with (<code>read_html()</code>). Second, we extract the part of the website containing the table with the data we want (via <code>html_node()</code>). Finally, we parse the HTML table and store its content in a data frame called <code>tab.</code> The last line of the code chunk below removes the last row of the data frame (you can see on the website that this row is not needed)</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="data-sources-data-gathering-data-import.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FETCH/FORMAT DATA -------------------</span></span>
+<span id="cb206-2"><a href="data-sources-data-gathering-data-import.html#cb206-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-3"><a href="data-sources-data-gathering-data-import.html#cb206-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fetch from web</span></span>
+<span id="cb206-4"><a href="data-sources-data-gathering-data-import.html#cb206-4" aria-hidden="true" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">read_html</span>(SOURCE_PATH)</span>
+<span id="cb206-5"><a href="data-sources-data-gathering-data-import.html#cb206-5" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">html_table</span>(doc,<span class="at">fill=</span><span class="cn">TRUE</span>)[[<span class="dv">2</span>]]</span>
+<span id="cb206-6"><a href="data-sources-data-gathering-data-import.html#cb206-6" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> tab[<span class="sc">-</span><span class="fu">nrow</span>(tab), ] <span class="co"># remove last row (not containing data)</span></span></code></pre></div>
+<p>Now we clean the data to get a data set more suitable for data analysis. Note that the original table contains information per congress (2-year periods). However, as the sample above shows, we aim for a panel at the year level. The following code iterates through the rows of the data frame and generates for each row per congress several two rows (one for each year in the congress).<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="data-sources-data-gathering-data-import.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate year-level data. frame</span></span>
+<span id="cb207-2"><a href="data-sources-data-gathering-data-import.html#cb207-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-3"><a href="data-sources-data-gathering-data-import.html#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare loop</span></span>
+<span id="cb207-4"><a href="data-sources-data-gathering-data-import.html#cb207-4" aria-hidden="true" tabindex="-1"></a>all_years <span class="ot">&lt;-</span> <span class="fu">list</span>() <span class="co"># the container</span></span>
+<span id="cb207-5"><a href="data-sources-data-gathering-data-import.html#cb207-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(tab<span class="sc">$</span>Year) <span class="co"># number of cases to iterate through</span></span>
+<span id="cb207-6"><a href="data-sources-data-gathering-data-import.html#cb207-6" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(all_years) <span class="ot">&lt;-</span> n</span>
+<span id="cb207-7"><a href="data-sources-data-gathering-data-import.html#cb207-7" aria-hidden="true" tabindex="-1"></a><span class="co"># generate year-level observations. row by row.</span></span>
+<span id="cb207-8"><a href="data-sources-data-gathering-data-import.html#cb207-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb207-9"><a href="data-sources-data-gathering-data-import.html#cb207-9" aria-hidden="true" tabindex="-1"></a>      <span class="co"># select row</span></span>
+<span id="cb207-10"><a href="data-sources-data-gathering-data-import.html#cb207-10" aria-hidden="true" tabindex="-1"></a>      row <span class="ot">&lt;-</span> tab[i,]</span>
+<span id="cb207-11"><a href="data-sources-data-gathering-data-import.html#cb207-11" aria-hidden="true" tabindex="-1"></a>      y <span class="ot">&lt;-</span> row<span class="sc">$</span>Year</span>
+<span id="cb207-12"><a href="data-sources-data-gathering-data-import.html#cb207-12" aria-hidden="true" tabindex="-1"></a>      <span class="co">#</span></span>
+<span id="cb207-13"><a href="data-sources-data-gathering-data-import.html#cb207-13" aria-hidden="true" tabindex="-1"></a>      begin <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(<span class="at">x =</span> y, <span class="at">split =</span> <span class="st">&quot;[</span><span class="sc">\\</span><span class="st">–</span><span class="sc">\\</span><span class="st">-]&quot;</span>, <span class="at">perl =</span> <span class="cn">TRUE</span>))[<span class="dv">1</span>])</span>
+<span id="cb207-14"><a href="data-sources-data-gathering-data-import.html#cb207-14" aria-hidden="true" tabindex="-1"></a>      end <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(<span class="at">x =</span> y, <span class="at">split =</span>  <span class="st">&quot;[</span><span class="sc">\\</span><span class="st">–</span><span class="sc">\\</span><span class="st">-]&quot;</span>))[<span class="dv">2</span>])</span>
+<span id="cb207-15"><a href="data-sources-data-gathering-data-import.html#cb207-15" aria-hidden="true" tabindex="-1"></a>      tabnew <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year=</span>begin<span class="sc">:</span>(end<span class="dv">-1</span>), <span class="at">president=</span>row<span class="sc">$</span>President, <span class="at">senate=</span>row<span class="sc">$</span>Senate, <span class="at">house=</span>row<span class="sc">$</span>House)</span>
+<span id="cb207-16"><a href="data-sources-data-gathering-data-import.html#cb207-16" aria-hidden="true" tabindex="-1"></a>      all_years[[i]] <span class="ot">&lt;-</span> tabnew <span class="co"># store in container</span></span>
+<span id="cb207-17"><a href="data-sources-data-gathering-data-import.html#cb207-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb207-18"><a href="data-sources-data-gathering-data-import.html#cb207-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-19"><a href="data-sources-data-gathering-data-import.html#cb207-19" aria-hidden="true" tabindex="-1"></a><span class="co"># stack all rows together</span></span>
+<span id="cb207-20"><a href="data-sources-data-gathering-data-import.html#cb207-20" aria-hidden="true" tabindex="-1"></a>allyears <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(all_years)</span></code></pre></div>
 <p>In a last step, we inspect the collected data and write it to a CSV file.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="data-sources-data-gathering-data-import.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WRITE TO DISK --------------------------------------------------</span></span>
-<span id="cb202-2"><a href="data-sources-data-gathering-data-import.html#cb202-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-3"><a href="data-sources-data-gathering-data-import.html#cb202-3" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
-<span id="cb202-4"><a href="data-sources-data-gathering-data-import.html#cb202-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(allyears)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="data-sources-data-gathering-data-import.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WRITE TO DISK --------------------------------------------------</span></span>
+<span id="cb208-2"><a href="data-sources-data-gathering-data-import.html#cb208-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb208-3"><a href="data-sources-data-gathering-data-import.html#cb208-3" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
+<span id="cb208-4"><a href="data-sources-data-gathering-data-import.html#cb208-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(allyears)</span></code></pre></div>
 <pre><code>##   year  president senate house
 ## 1 1861    Lincoln      R     R
 ## 2 1862    Lincoln      R     R
@@ -681,19 +735,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 1864    Lincoln      R     R
 ## 5 1865 A. Johnson      R     R
 ## 6 1866 A. Johnson      R     R</code></pre>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="data-sources-data-gathering-data-import.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write to csv</span></span>
-<span id="cb204-2"><a href="data-sources-data-gathering-data-import.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(allyears, <span class="at">file=</span>OUTPUT_PATH)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="data-sources-data-gathering-data-import.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write to CSV</span></span>
+<span id="cb210-2"><a href="data-sources-data-gathering-data-import.html#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(allyears, <span class="at">file=</span>OUTPUT_PATH)</span></code></pre></div>
 
 </div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-umatter_2018" class="csl-entry">
+Matter, Ulrich. 2018a. <span>“A Brief Introduction to Programming with r.”</span> Lecture notes. St. Gallen: University of St. Gallen.
+</div>
+<div id="ref-umatter_2018b" class="csl-entry">
+———. 2018b. <span>“Introduction to Web Data Mining for Social Scientists.”</span> Lecture notes. St. Gallen: University of St. Gallen.
+</div>
+<div id="ref-wickham_grolemund2017" class="csl-entry">
+Wickham, Hadley, and Garrett Grolemund. 2017. Sebastopol, CA: O’Reilly. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="15">
-<li id="fn15"><p>This section is based on <span class="citation"><a href="references.html#ref-umatter_2018" role="doc-biblioref">Matter</a> (<a href="references.html#ref-umatter_2018" role="doc-biblioref">2018a</a>)</span>.<a href="data-sources-data-gathering-data-import.html#fnref15" class="footnote-back">↩︎</a></p></li>
-<li id="fn16"><p>This is a summary of Chapter 8 in <span class="citation"><a href="references.html#ref-wickham_grolemund2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="references.html#ref-wickham_grolemund2017" role="doc-biblioref">2017</a>)</span>.<a href="data-sources-data-gathering-data-import.html#fnref16" class="footnote-back">↩︎</a></p></li>
-<li id="fn17"><p>This section is based on <span class="citation"><a href="references.html#ref-umatter_2018b" role="doc-biblioref">Matter</a> (<a href="references.html#ref-umatter_2018b" role="doc-biblioref">2018b</a>)</span>.<a href="data-sources-data-gathering-data-import.html#fnref17" class="footnote-back">↩︎</a></p></li>
-<li id="fn18"><p>This section is based on <span class="citation"><a href="references.html#ref-umatter_2018b" role="doc-biblioref">Matter</a> (<a href="references.html#ref-umatter_2018b" role="doc-biblioref">2018b</a>)</span>.<a href="data-sources-data-gathering-data-import.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>This section is based on <span class="citation">Matter (<a href="#ref-umatter_2018" role="doc-biblioref">2018a</a>)</span>.<a href="data-sources-data-gathering-data-import.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>This is a summary of Chapter 8 in <span class="citation">Wickham and Grolemund (<a href="#ref-wickham_grolemund2017" role="doc-biblioref">2017</a>)</span>.<a href="data-sources-data-gathering-data-import.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<li id="fn17"><p>This section is based on <span class="citation">Matter (<a href="#ref-umatter_2018b" role="doc-biblioref">2018b</a>)</span>.<a href="data-sources-data-gathering-data-import.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>This section is based on <span class="citation">Matter (<a href="#ref-umatter_2018b" role="doc-biblioref">2018b</a>)</span>.<a href="data-sources-data-gathering-data-import.html#fnref18" class="footnote-back">↩︎</a></p></li>
 <li id="fn19"><p>See <code>?strsplit</code>, <code>?unlist</code>, and <a href="https://www.oreilly.com/content/an-introduction-to-regular-expressions/">this introduction to regular expressions</a> for the background of how this is done in the code example here.<a href="data-sources-data-gathering-data-import.html#fnref19" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
@@ -707,7 +773,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
 <script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
@@ -726,6 +791,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -746,6 +812,10 @@ gitbook.start({
 "text": null
 },
 "download": ["datahandling.pdf", "datahandling.html", "datahandling.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
