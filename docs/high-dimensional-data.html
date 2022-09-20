@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 High-Dimensional Data | Data Handling</title>
-  <meta name="description" content="A guide to practical data handling with a focus on R and empirical economic research." />
+  <title>Chapter 5 High-Dimensional Data | Data Handling Pocket Reference</title>
+  <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 High-Dimensional Data | Data Handling" />
+  <meta property="og:title" content="Chapter 5 High-Dimensional Data | Data Handling Pocket Reference" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://umatter.github.io/datahandling/img/new_abacus.jpg" />
-  <meta property="og:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
+  <meta property="og:image" content="https://umatter.github.io/datahandling/img/cover.png" />
+  <meta property="og:description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
   <meta name="github-repo" content="umatter/datahandling" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 High-Dimensional Data | Data Handling" />
+  <meta name="twitter:title" content="Chapter 5 High-Dimensional Data | Data Handling Pocket Reference" />
   
-  <meta name="twitter:description" content="A guide to practical data handling with a focus on R and empirical economic research." />
-  <meta name="twitter:image" content="https://umatter.github.io/datahandling/img/new_abacus.jpg" />
+  <meta name="twitter:description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
+  <meta name="twitter:image" content="https://umatter.github.io/datahandling/img/cover.png" />
 
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-15" />
+<meta name="date" content="2022-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="data-storage-and-data-structures.html"/>
-<link rel="next" href="data-sources-data-gathering-data-import.html"/>
+<link rel="next" href="text-data.html"/>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -162,7 +162,7 @@ div.csl-indent {
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>2</b> Programming with Data</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#why-learn-to-program-to-handle-data"><i class="fa fa-check"></i><b>2.1</b> Why learn to program to handle data?</a></li>
+<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#handling-data-programmatically"><i class="fa fa-check"></i><b>2.1</b> Handling data programmatically</a></li>
 <li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#why-r"><i class="fa fa-check"></i><b>2.2</b> Why <em>R</em>?</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-data-language"><i class="fa fa-check"></i><b>2.2.1</b> The ‘data language’</a></li>
@@ -229,93 +229,105 @@ div.csl-indent {
 <li class="chapter" data-level="5.4.2" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#two-ways-to-read-a-webpage-into-r"><i class="fa fa-check"></i><b>5.4.2</b> Two ways to read a webpage into R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html"><i class="fa fa-check"></i><b>6</b> Data Sources, Data Gathering, Data Import</a>
+<li class="chapter" data-level="6" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>6</b> Text Data</a></li>
+<li class="chapter" data-level="7" data-path="image-data.html"><a href="image-data.html"><i class="fa fa-check"></i><b>7</b> Image data</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#sourcesformats"><i class="fa fa-check"></i><b>6.1</b> Sources/formats</a></li>
-<li class="chapter" data-level="6.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#data-gathering-procedure"><i class="fa fa-check"></i><b>6.2</b> Data gathering procedure</a></li>
-<li class="chapter" data-level="6.3" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loadingimporting-rectangular-data"><i class="fa fa-check"></i><b>6.3</b> Loading/importing rectangular data</a>
+<li class="chapter" data-level="7.1" data-path="image-data.html"><a href="image-data.html#image-data-structure-and-storage"><i class="fa fa-check"></i><b>7.1</b> Image data structure and storage</a></li>
+<li class="chapter" data-level="7.2" data-path="image-data.html"><a href="image-data.html#vector-images-in-r"><i class="fa fa-check"></i><b>7.2</b> Vector images in R</a></li>
+<li class="chapter" data-level="7.3" data-path="image-data.html"><a href="image-data.html#raster-images-in-r"><i class="fa fa-check"></i><b>7.3</b> Raster images in R</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>6.3.1</b> Loading built-in datasets</a></li>
-<li class="chapter" data-level="6.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>6.3.2</b> Importing rectangular data from text-files</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parse-with-readr"><i class="fa fa-check"></i><b>6.4</b> Import and parse with <code>readr</code></a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>6.4.1</b> Basic usage of <code>readr</code> functions</a></li>
-<li class="chapter" data-level="6.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>6.4.2</b> Parsing and data types</a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-web-data-formats"><i class="fa fa-check"></i><b>6.5</b> Importing web data formats</a>
-<ul>
-<li class="chapter" data-level="6.5.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#xml-in-r"><i class="fa fa-check"></i><b>6.5.1</b> XML in R</a></li>
-<li class="chapter" data-level="6.5.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#json-in-r"><i class="fa fa-check"></i><b>6.5.2</b> JSON in R</a></li>
-<li class="chapter" data-level="6.5.3" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#tutorial-advanced-importing-data-from-a-html-table-on-a-website"><i class="fa fa-check"></i><b>6.5.3</b> Tutorial (advanced): Importing data from a HTML table (on a website)</a></li>
+<li class="chapter" data-level="7.3.1" data-path="image-data.html"><a href="image-data.html#basic-data-structure"><i class="fa fa-check"></i><b>7.3.1</b> Basic data structure</a></li>
+<li class="chapter" data-level="7.3.2" data-path="image-data.html"><a href="image-data.html#advanced-image-manipulation-using-imagemagick"><i class="fa fa-check"></i><b>7.3.2</b> Advanced Image Manipulation using ImageMagick</a></li>
+<li class="chapter" data-level="7.3.3" data-path="image-data.html"><a href="image-data.html#working-with-ocr-optical-character-recognition"><i class="fa fa-check"></i><b>7.3.3</b> Working with OCR (Optical Character Recognition)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>7</b> Data Preparation</a>
+<li class="chapter" data-level="8" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html"><i class="fa fa-check"></i><b>8</b> Data Sources, Data Gathering, Data Import</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="data-preparation.html"><a href="data-preparation.html#cleaning-data-with-basic-string-operations"><i class="fa fa-check"></i><b>7.1</b> Cleaning data with basic string operations</a>
+<li class="chapter" data-level="8.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#sourcesformats"><i class="fa fa-check"></i><b>8.1</b> Sources/formats</a></li>
+<li class="chapter" data-level="8.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#data-gathering-procedure"><i class="fa fa-check"></i><b>8.2</b> Data gathering procedure</a></li>
+<li class="chapter" data-level="8.3" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loadingimporting-rectangular-data"><i class="fa fa-check"></i><b>8.3</b> Loading/importing rectangular data</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="data-preparation.html"><a href="data-preparation.html#findreplace-character-strings-recode-factor-levels"><i class="fa fa-check"></i><b>7.1.1</b> Find/replace character strings, recode factor levels</a></li>
-<li class="chapter" data-level="7.1.2" data-path="data-preparation.html"><a href="data-preparation.html#removing-individual-characters-from-a-string"><i class="fa fa-check"></i><b>7.1.2</b> Removing individual characters from a string</a></li>
-<li class="chapter" data-level="7.1.3" data-path="data-preparation.html"><a href="data-preparation.html#splitting-strings"><i class="fa fa-check"></i><b>7.1.3</b> Splitting strings</a></li>
-<li class="chapter" data-level="7.1.4" data-path="data-preparation.html"><a href="data-preparation.html#parsing-dates"><i class="fa fa-check"></i><b>7.1.4</b> Parsing dates</a></li>
+<li class="chapter" data-level="8.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>8.3.1</b> Loading built-in datasets</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>8.3.2</b> Importing rectangular data from text-files</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="data-preparation.html"><a href="data-preparation.html#reshaping-datasets"><i class="fa fa-check"></i><b>7.2</b> Reshaping datasets</a>
+<li class="chapter" data-level="8.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parse-with-readr"><i class="fa fa-check"></i><b>8.4</b> Import and parse with <code>readr</code></a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="data-preparation.html"><a href="data-preparation.html#tidying-messy-datasets."><i class="fa fa-check"></i><b>7.2.1</b> Tidying messy datasets.</a></li>
-<li class="chapter" data-level="7.2.2" data-path="data-preparation.html"><a href="data-preparation.html#pivoting-from-wide-to-long-gathering"><i class="fa fa-check"></i><b>7.2.2</b> Pivoting from ‘wide to long’ (“gathering”)</a></li>
-<li class="chapter" data-level="7.2.3" data-path="data-preparation.html"><a href="data-preparation.html#pivoting-from-long-to-wide-spreading"><i class="fa fa-check"></i><b>7.2.3</b> Pivoting from ‘long to wide’ (“spreading”)</a></li>
+<li class="chapter" data-level="8.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>8.4.1</b> Basic usage of <code>readr</code> functions</a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>8.4.2</b> Parsing and data types</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="data-preparation.html"><a href="data-preparation.html#tutorial-hotel-bookings-time-series"><i class="fa fa-check"></i><b>7.3</b> Tutorial: Hotel Bookings Time Series</a></li>
-<li class="chapter" data-level="7.4" data-path="data-preparation.html"><a href="data-preparation.html#set-up-and-import"><i class="fa fa-check"></i><b>7.4</b> Set up and import</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html"><i class="fa fa-check"></i><b>8</b> Data Analysis: First Steps</a>
+<li class="chapter" data-level="8.5" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-web-data-formats"><i class="fa fa-check"></i><b>8.5</b> Importing web data formats</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#merging-datasets"><i class="fa fa-check"></i><b>8.1</b> Merging datasets</a></li>
-<li class="chapter" data-level="8.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#selecting-subsets"><i class="fa fa-check"></i><b>8.2</b> Selecting subsets</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#filtering-datasets"><i class="fa fa-check"></i><b>8.2.1</b> Filtering datasets</a></li>
-<li class="chapter" data-level="8.2.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#mutating-datasets"><i class="fa fa-check"></i><b>8.2.2</b> Mutating datasets</a></li>
-<li class="chapter" data-level="8.2.3" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#aggregation-and-summary-statistics"><i class="fa fa-check"></i><b>8.2.3</b> Aggregation and summary statistics</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#tutorial-analise-messy-excel-sheets"><i class="fa fa-check"></i><b>8.3</b> Tutorial: Analise messy Excel sheets</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#preparatory-steps"><i class="fa fa-check"></i><b>8.3.1</b> Preparatory steps</a></li>
+<li class="chapter" data-level="8.5.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#xml-in-r"><i class="fa fa-check"></i><b>8.5.1</b> XML in R</a></li>
+<li class="chapter" data-level="8.5.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#json-in-r"><i class="fa fa-check"></i><b>8.5.2</b> JSON in R</a></li>
+<li class="chapter" data-level="8.5.3" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#tutorial-advanced-importing-data-from-a-html-table-on-a-website"><i class="fa fa-check"></i><b>8.5.3</b> Tutorial (advanced): Importing data from a HTML table (on a website)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>9</b> Basic Econometrics in R</a>
+<li class="chapter" data-level="9" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>9</b> Data Preparation</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modeling"><i class="fa fa-check"></i><b>9.1</b> Statistical modeling</a>
+<li class="chapter" data-level="9.1" data-path="data-preparation.html"><a href="data-preparation.html#cleaning-data-with-basic-string-operations"><i class="fa fa-check"></i><b>9.1</b> Cleaning data with basic string operations</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>9.1.1</b> Illustration with pseudo-data</a></li>
+<li class="chapter" data-level="9.1.1" data-path="data-preparation.html"><a href="data-preparation.html#findreplace-character-strings-recode-factor-levels"><i class="fa fa-check"></i><b>9.1.1</b> Find/replace character strings, recode factor levels</a></li>
+<li class="chapter" data-level="9.1.2" data-path="data-preparation.html"><a href="data-preparation.html#removing-individual-characters-from-a-string"><i class="fa fa-check"></i><b>9.1.2</b> Removing individual characters from a string</a></li>
+<li class="chapter" data-level="9.1.3" data-path="data-preparation.html"><a href="data-preparation.html#splitting-strings"><i class="fa fa-check"></i><b>9.1.3</b> Splitting strings</a></li>
+<li class="chapter" data-level="9.1.4" data-path="data-preparation.html"><a href="data-preparation.html#parsing-dates"><i class="fa fa-check"></i><b>9.1.4</b> Parsing dates</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#estimation-and-application"><i class="fa fa-check"></i><b>9.2</b> Estimation and Application</a>
+<li class="chapter" data-level="9.2" data-path="data-preparation.html"><a href="data-preparation.html#reshaping-datasets"><i class="fa fa-check"></i><b>9.2</b> Reshaping datasets</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#model-specification"><i class="fa fa-check"></i><b>9.2.1</b> Model specification</a></li>
-<li class="chapter" data-level="9.2.2" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#raw-data"><i class="fa fa-check"></i><b>9.2.2</b> Raw data</a></li>
+<li class="chapter" data-level="9.2.1" data-path="data-preparation.html"><a href="data-preparation.html#tidying-messy-datasets."><i class="fa fa-check"></i><b>9.2.1</b> Tidying messy datasets.</a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-preparation.html"><a href="data-preparation.html#pivoting-from-wide-to-long-gathering"><i class="fa fa-check"></i><b>9.2.2</b> Pivoting from ‘wide to long’ (“gathering”)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-preparation.html"><a href="data-preparation.html#pivoting-from-long-to-wide-spreading"><i class="fa fa-check"></i><b>9.2.3</b> Pivoting from ‘long to wide’ (“spreading”)</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#derivation-and-implementation-of-ols-estimator"><i class="fa fa-check"></i><b>9.3</b> Derivation and implementation of OLS estimator</a>
+<li class="chapter" data-level="9.3" data-path="data-preparation.html"><a href="data-preparation.html#tutorial-hotel-bookings-time-series"><i class="fa fa-check"></i><b>9.3</b> Tutorial: Hotel Bookings Time Series</a></li>
+<li class="chapter" data-level="9.4" data-path="data-preparation.html"><a href="data-preparation.html#set-up-and-import"><i class="fa fa-check"></i><b>9.4</b> Set up and import</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html"><i class="fa fa-check"></i><b>10</b> Data Analysis: First Steps</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#regression-toolbox-in-r"><i class="fa fa-check"></i><b>9.3.1</b> Regression toolbox in R</a></li>
+<li class="chapter" data-level="10.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#merging-datasets"><i class="fa fa-check"></i><b>10.1</b> Merging datasets</a></li>
+<li class="chapter" data-level="10.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#selecting-subsets"><i class="fa fa-check"></i><b>10.2</b> Selecting subsets</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#filtering-datasets"><i class="fa fa-check"></i><b>10.2.1</b> Filtering datasets</a></li>
+<li class="chapter" data-level="10.2.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#mutating-datasets"><i class="fa fa-check"></i><b>10.2.2</b> Mutating datasets</a></li>
+<li class="chapter" data-level="10.2.3" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#aggregation-and-summary-statistics"><i class="fa fa-check"></i><b>10.2.3</b> Aggregation and summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#tutorial-analise-messy-excel-sheets"><i class="fa fa-check"></i><b>10.3</b> Tutorial: Analise messy Excel sheets</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#preparatory-steps"><i class="fa fa-check"></i><b>10.3.1</b> Preparatory steps</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
+<li class="chapter" data-level="11" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>11</b> Basic Econometrics in R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>10.1</b> Data display</a></li>
-<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>10.2</b> Data visualization with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>10.3</b> ‘Grammar of Graphics’</a>
+<li class="chapter" data-level="11.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modeling"><i class="fa fa-check"></i><b>11.1</b> Statistical modeling</a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>10.3.1</b> <code>ggplot2</code> basics</a></li>
-<li class="chapter" data-level="10.3.2" data-path="data-visualization.html"><a href="data-visualization.html#tutorial"><i class="fa fa-check"></i><b>10.3.2</b> Tutorial</a></li>
-<li class="chapter" data-level="10.3.3" data-path="data-visualization.html"><a href="data-visualization.html#loadingpreparing-the-data"><i class="fa fa-check"></i><b>10.3.3</b> Loading/preparing the data</a></li>
-<li class="chapter" data-level="10.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>10.3.4</b> Geometries (~ type of plot)</a></li>
+<li class="chapter" data-level="11.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>11.1.1</b> Illustration with pseudo-data</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>10.4</b> Dynamic documents</a></li>
-<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualization"><i class="fa fa-check"></i><b>10.5</b> Tutorial: How to give the wrong impression with data visualization</a>
+<li class="chapter" data-level="11.2" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#estimation-and-application"><i class="fa fa-check"></i><b>11.2</b> Estimation and Application</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>10.5.1</b> Background and aim</a></li>
-<li class="chapter" data-level="10.5.2" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>10.5.2</b> Data import and preparation</a></li>
-<li class="chapter" data-level="10.5.3" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>10.5.3</b> Plot</a></li>
-<li class="chapter" data-level="10.5.4" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>10.5.4</b> Cosmetics: theme</a></li>
+<li class="chapter" data-level="11.2.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#model-specification"><i class="fa fa-check"></i><b>11.2.1</b> Model specification</a></li>
+<li class="chapter" data-level="11.2.2" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#raw-data"><i class="fa fa-check"></i><b>11.2.2</b> Raw data</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#derivation-and-implementation-of-ols-estimator"><i class="fa fa-check"></i><b>11.3</b> Derivation and implementation of OLS estimator</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#regression-toolbox-in-r"><i class="fa fa-check"></i><b>11.3.1</b> Regression toolbox in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>12</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>12.1</b> Data display</a></li>
+<li class="chapter" data-level="12.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>12.2</b> Data visualization with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="12.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>12.3</b> ‘Grammar of Graphics’</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>12.3.1</b> <code>ggplot2</code> basics</a></li>
+<li class="chapter" data-level="12.3.2" data-path="data-visualization.html"><a href="data-visualization.html#tutorial"><i class="fa fa-check"></i><b>12.3.2</b> Tutorial</a></li>
+<li class="chapter" data-level="12.3.3" data-path="data-visualization.html"><a href="data-visualization.html#loadingpreparing-the-data"><i class="fa fa-check"></i><b>12.3.3</b> Loading/preparing the data</a></li>
+<li class="chapter" data-level="12.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>12.3.4</b> Geometries (~ type of plot)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>12.4</b> Dynamic documents</a></li>
+<li class="chapter" data-level="12.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualization"><i class="fa fa-check"></i><b>12.5</b> Tutorial: How to give the wrong impression with data visualization</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>12.5.1</b> Background and aim</a></li>
+<li class="chapter" data-level="12.5.2" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>12.5.2</b> Data import and preparation</a></li>
+<li class="chapter" data-level="12.5.3" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>12.5.3</b> Plot</a></li>
+<li class="chapter" data-level="12.5.4" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>12.5.4</b> Cosmetics: theme</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -342,7 +354,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Handling</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Handling Pocket Reference</a>
           </h1>
         </div>
 
@@ -353,7 +365,7 @@ div.csl-indent {
 <div id="high-dimensional-data" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> High-Dimensional Data<a href="high-dimensional-data.html#high-dimensional-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>So far, we have only looked at data structured in a flat/table-like representation (e.g. CSV files). In applied econometrics/statistics, it is common to only work with data sets stored in such format. Data manipulation, filtering, aggregation, etc. presupposes data in a table-like format. Hence, storing data in this format makes perfect sense.</p>
-<p>As we observed in the previous chapter, the CSV structure has some disadvantages when representing more complex data in a text file. This is in particular true if the data contains nested observations (i.e., hierarchical structures). While a representation in a CSV file is theoretically possible, it is often far from practical to use other formats for such data. On the one hand, it is likely less intuitive to read the data correctly. On the other hand, storing the data in a CSV file might introduce a lot of redundancy. That is, the identical values of some variables would have to be repeated in the same column. The following code block illustrates this point for a data set on two families (<span class="citation">(<a href="#ref-murrell_2009" role="doc-biblioref">Murrell 2009</a>)</span>, p. 116).</p>
+<p>As we observed in the previous chapter, the CSV structure has some disadvantages when representing more complex data in a text file. This is in particular true if the data contains nested observations (i.e., hierarchical structures). While a representation in a CSV file is theoretically possible, it is often far from practical to use other formats for such data. On the one hand, it is likely less intuitive to read the data correctly. On the other hand, storing the data in a CSV file might introduce a lot of redundancy. That is, the identical values of some variables would have to be repeated in the same column. The following code block illustrates this point for a data set on two families (<span class="citation">(<a href="appendix-a.html#ref-murrell_2009" role="doc-biblioref">Murrell 2009</a>)</span>, p. 116).</p>
 <pre><code>father mother  name     age  gender
                John      33  male
                Julia     32  female
@@ -369,7 +381,7 @@ David  Debbie  Dianne    12  female
 <p>Issues with complex/hierarchical data (with several observation types), intuitive human readability (self-describing), and efficiency in storage, as well as transfer, are all of great importance on the Web. In the context of web technologies, several data formats have been put forward to address these issues. Here, we discuss the two most prominent of these formats: <a href="https://en.wikipedia.org/wiki/XML">Extensible Markup Language (XML)</a> and <a href="https://en.wikipedia.org/wiki/JSON">JavaScript Object Notation (JSON)</a>.</p>
 <div id="deciphering-xml" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Deciphering XML<a href="high-dimensional-data.html#deciphering-xml" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Before going into more technical details, let’s try to figure out the basic logic behind the XML format by simply looking at some raw example data. For this, we turn to the Point Nemo case study in <span class="citation">(<a href="#ref-murrell_2009" role="doc-biblioref">Murrell 2009</a>)</span>. The following code block shows the upper part of the data set downloaded from NASA’s LAS server (here in a CSV-type format).</p>
+<p>Before going into more technical details, let’s try to figure out the basic logic behind the XML format by simply looking at some raw example data. For this, we turn to the Point Nemo case study in <span class="citation">(<a href="appendix-a.html#ref-murrell_2009" role="doc-biblioref">Murrell 2009</a>)</span>. The following code block shows the upper part of the data set downloaded from NASA’s LAS server (here in a CSV-type format).</p>
 <pre><code>             VARIABLE : Monthly Surface Clear-sky Temperature (ISCCP) (Celsius)
              FILENAME : ISCCPMonthly_avg.nc
              FILEPATH : /usr/local/fer_data/data/
@@ -617,7 +629,7 @@ Figure 5.2: Source: <a href="https://en.wikipedia.org/wiki/Economy_of_Switzerlan
 ## [3] &quot;&lt;head&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 ## [4] &quot;&lt;meta charset=\&quot;UTF-8\&quot;/&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 ## [5] &quot;&lt;title&gt;Economy of Switzerland - Wikipedia&lt;/title&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-## [6] &quot;&lt;script&gt;document.documentElement.className=\&quot;client-js\&quot;;RLCONF={\&quot;wgBreakFrames\&quot;:false,\&quot;wgSeparatorTransformTable\&quot;:[\&quot;\&quot;,\&quot;\&quot;],\&quot;wgDigitTransformTable\&quot;:[\&quot;\&quot;,\&quot;\&quot;],\&quot;wgDefaultDateFormat\&quot;:\&quot;dmy\&quot;,\&quot;wgMonthNames\&quot;:[\&quot;\&quot;,\&quot;January\&quot;,\&quot;February\&quot;,\&quot;March\&quot;,\&quot;April\&quot;,\&quot;May\&quot;,\&quot;June\&quot;,\&quot;July\&quot;,\&quot;August\&quot;,\&quot;September\&quot;,\&quot;October\&quot;,\&quot;November\&quot;,\&quot;December\&quot;],\&quot;wgRequestId\&quot;:\&quot;d8acd662-9e23-4e2f-96db-a907014176c8\&quot;,\&quot;wgCSPNonce\&quot;:false,\&quot;wgCanonicalNamespace\&quot;:\&quot;\&quot;,\&quot;wgCanonicalSpecialPageName\&quot;:false,\&quot;wgNamespaceNumber\&quot;:0,\&quot;wgPageName\&quot;:\&quot;Economy_of_Switzerland\&quot;,\&quot;wgTitle\&quot;:\&quot;Economy of Switzerland\&quot;,\&quot;wgCurRevisionId\&quot;:1107876525,\&quot;wgRevisionId\&quot;:1107876525,\&quot;wgArticleId\&quot;:27465,\&quot;wgIsArticle\&quot;:true,\&quot;wgIsRedirect\&quot;:false,\&quot;wgAction\&quot;:\&quot;view\&quot;,\&quot;wgUserName\&quot;:null,\&quot;wgUserGroups\&quot;:[\&quot;*\&quot;],\&quot;wgCategories\&quot;:[\&quot;CS1 maint: archived copy as title\&quot;,\&quot;CS1 German-language sources (de)\&quot;,\&quot;Articles with German-language sources (de)\&quot;,\&quot;Webarchive template wayback links\&quot;,\&quot;Articles with French-language sources (fr)\&quot;,\&quot;Articles with short description\&quot;,\&quot;Short description is different from Wikidata\&quot;,&quot;</code></pre>
+## [6] &quot;&lt;script&gt;document.documentElement.className=\&quot;client-js\&quot;;RLCONF={\&quot;wgBreakFrames\&quot;:false,\&quot;wgSeparatorTransformTable\&quot;:[\&quot;\&quot;,\&quot;\&quot;],\&quot;wgDigitTransformTable\&quot;:[\&quot;\&quot;,\&quot;\&quot;],\&quot;wgDefaultDateFormat\&quot;:\&quot;dmy\&quot;,\&quot;wgMonthNames\&quot;:[\&quot;\&quot;,\&quot;January\&quot;,\&quot;February\&quot;,\&quot;March\&quot;,\&quot;April\&quot;,\&quot;May\&quot;,\&quot;June\&quot;,\&quot;July\&quot;,\&quot;August\&quot;,\&quot;September\&quot;,\&quot;October\&quot;,\&quot;November\&quot;,\&quot;December\&quot;],\&quot;wgRequestId\&quot;:\&quot;fe90a458-b0bc-477c-ad74-07372a8fd408\&quot;,\&quot;wgCSPNonce\&quot;:false,\&quot;wgCanonicalNamespace\&quot;:\&quot;\&quot;,\&quot;wgCanonicalSpecialPageName\&quot;:false,\&quot;wgNamespaceNumber\&quot;:0,\&quot;wgPageName\&quot;:\&quot;Economy_of_Switzerland\&quot;,\&quot;wgTitle\&quot;:\&quot;Economy of Switzerland\&quot;,\&quot;wgCurRevisionId\&quot;:1107876525,\&quot;wgRevisionId\&quot;:1107876525,\&quot;wgArticleId\&quot;:27465,\&quot;wgIsArticle\&quot;:true,\&quot;wgIsRedirect\&quot;:false,\&quot;wgAction\&quot;:\&quot;view\&quot;,\&quot;wgUserName\&quot;:null,\&quot;wgUserGroups\&quot;:[\&quot;*\&quot;],\&quot;wgCategories\&quot;:[\&quot;CS1 maint: archived copy as title\&quot;,\&quot;CS1 German-language sources (de)\&quot;,\&quot;Articles with German-language sources (de)\&quot;,\&quot;Webarchive template wayback links\&quot;,\&quot;Articles with French-language sources (fr)\&quot;,\&quot;Articles with short description\&quot;,\&quot;Short description is different from Wikidata\&quot;,&quot;</code></pre>
 <p>The next thing we do is to look at how we can filter the webpage for certain information. For example, we search in the source code for the line that contains the part of the webpage with the table showing data on the Swiss GDP:</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="high-dimensional-data.html#cb150-1" aria-hidden="true" tabindex="-1"></a>line_number <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&#39;US Dollar Exchange&#39;</span>, swiss_econ)</span></code></pre></div>
 <p>Recall: we ask R on which line in <code>swiss_econ</code> (the source code stored in RAM) the text <code>US Dollar Exchange</code> is and store the answer (the line number) in RAM under the variable name <code>line_number</code>.</p>
@@ -672,12 +684,6 @@ Figure 5.2: Source: <a href="https://en.wikipedia.org/wiki/Economy_of_Switzerlan
 </div>
 </div>
 </div>
-<h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-murrell_2009" class="csl-entry">
-Murrell, Paul. 2009. <em><span class="nocase">Introduction to Data Technologies</span></em>. London, UK: CRC Press.
-</div>
-</div>
 <div class="footnotes">
 <hr />
 <ol start="13">
@@ -691,7 +697,7 @@ Murrell, Paul. 2009. <em><span class="nocase">Introduction to Data Technologies<
         </div>
       </div>
 <a href="data-storage-and-data-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-sources-data-gathering-data-import.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="text-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Image data | Data Handling Pocket Reference</title>
+  <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Image data | Data Handling Pocket Reference" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://umatter.github.io/datahandling/img/cover.png" />
+  <meta property="og:description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
+  <meta name="github-repo" content="umatter/datahandling" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Image data | Data Handling Pocket Reference" />
+  
+  <meta name="twitter:description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
+  <meta name="twitter:image" content="https://umatter.github.io/datahandling/img/cover.png" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+<meta name="date" content="2022-09-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="text-data.html"/>
+<link rel="next" href="data-sources-data-gathering-data-import.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Handling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>2</b> Programming with Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#handling-data-programmatically"><i class="fa fa-check"></i><b>2.1</b> Handling data programmatically</a></li>
+<li class="chapter" data-level="2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#why-r"><i class="fa fa-check"></i><b>2.2</b> Why <em>R</em>?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-data-language"><i class="fa fa-check"></i><b>2.2.1</b> The ‘data language’</a></li>
+<li class="chapter" data-level="2.2.2" data-path="programming-with-data.html"><a href="programming-with-data.html#high-level-language-relatively-easy-to-learn"><i class="fa fa-check"></i><b>2.2.2</b> High-level language, relatively easy to learn</a></li>
+<li class="chapter" data-level="2.2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#free-open-source-large-community"><i class="fa fa-check"></i><b>2.2.3</b> Free, open source, large community</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="programming-with-data.html"><a href="programming-with-data.html#rrstudio-overview"><i class="fa fa-check"></i><b>2.3</b> <em>R</em>/RStudio overview</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="programming-with-data.html"><a href="programming-with-data.html#the-r-console"><i class="fa fa-check"></i><b>2.3.1</b> The <em>R</em>-Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="programming-with-data.html"><a href="programming-with-data.html#r-scripts"><i class="fa fa-check"></i><b>2.3.2</b> <em>R</em>-Scripts</a></li>
+<li class="chapter" data-level="2.3.3" data-path="programming-with-data.html"><a href="programming-with-data.html#r-environment"><i class="fa fa-check"></i><b>2.3.3</b> <em>R</em> Environment</a></li>
+<li class="chapter" data-level="2.3.4" data-path="programming-with-data.html"><a href="programming-with-data.html#file-browser"><i class="fa fa-check"></i><b>2.3.4</b> File Browser</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="programming-with-data.html"><a href="programming-with-data.html#first-steps-with-r"><i class="fa fa-check"></i><b>2.4</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="programming-with-data.html"><a href="programming-with-data.html#values-vectors-and-variables"><i class="fa fa-check"></i><b>2.4.1</b> Values, Vectors, and Variables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="programming-with-data.html"><a href="programming-with-data.html#math-operators"><i class="fa fa-check"></i><b>2.4.2</b> Math operators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="programming-with-data.html"><a href="programming-with-data.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.5</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="programming-with-data.html"><a href="programming-with-data.html#loops"><i class="fa fa-check"></i><b>2.5.1</b> Loops</a></li>
+<li class="chapter" data-level="2.5.2" data-path="programming-with-data.html"><a href="programming-with-data.html#for-loops"><i class="fa fa-check"></i><b>2.5.2</b> For-loops</a></li>
+<li class="chapter" data-level="2.5.3" data-path="programming-with-data.html"><a href="programming-with-data.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.5.3</b> Booleans and logical statements</a></li>
+<li class="chapter" data-level="2.5.4" data-path="programming-with-data.html"><a href="programming-with-data.html#r-functions"><i class="fa fa-check"></i><b>2.5.4</b> R functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#processing-data-simple-calculations-in-numeral-systems"><i class="fa fa-check"></i><b>3.1</b> Processing data: simple calculations in numeral systems</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data.html"><a href="data.html#the-binary-system"><i class="fa fa-check"></i><b>3.1.1</b> The binary system</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data.html"><a href="data.html#the-hexadecimal-system"><i class="fa fa-check"></i><b>3.1.2</b> The hexadecimal system</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#character-encoding"><i class="fa fa-check"></i><b>3.2</b> Character encoding</a></li>
+<li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#computer-code-and-text-files"><i class="fa fa-check"></i><b>3.3</b> Computer code and text files</a></li>
+<li class="chapter" data-level="3.4" data-path="data.html"><a href="data.html#data-processing-basics"><i class="fa fa-check"></i><b>3.4</b> Data processing basics</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data.html"><a href="data.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>3.4.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data.html"><a href="data.html#illustration"><i class="fa fa-check"></i><b>3.4.2</b> Illustration</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html"><i class="fa fa-check"></i><b>4</b> Data Storage and Data Structures</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#unstructured-data-in-text-files"><i class="fa fa-check"></i><b>4.1</b> Unstructured data in text files</a></li>
+<li class="chapter" data-level="4.2" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#structured-data-formats"><i class="fa fa-check"></i><b>4.2</b> Structured data formats</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#csvs-and-fixed-width-format"><i class="fa fa-check"></i><b>4.2.1</b> CSVs and fixed-width format</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>4.3</b> Units of information/data storage</a></li>
+<li class="chapter" data-level="4.4" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#data-structures-and-data-types-in-r"><i class="fa fa-check"></i><b>4.4</b> Data structures and data types in R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#data-types"><i class="fa fa-check"></i><b>4.4.1</b> Data types</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-storage-and-data-structures.html"><a href="data-storage-and-data-structures.html#data-structures"><i class="fa fa-check"></i><b>4.4.2</b> Data structures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html"><i class="fa fa-check"></i><b>5</b> High-Dimensional Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#deciphering-xml"><i class="fa fa-check"></i><b>5.1</b> Deciphering XML</a></li>
+<li class="chapter" data-level="5.2" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#deciphering-json"><i class="fa fa-check"></i><b>5.2</b> Deciphering JSON</a></li>
+<li class="chapter" data-level="5.3" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#parsing-xml-and-json-in-r"><i class="fa fa-check"></i><b>5.3</b> Parsing XML and JSON in R</a></li>
+<li class="chapter" data-level="5.4" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#html"><i class="fa fa-check"></i><b>5.4</b> HTML</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#write-a-simple-webpage-with-html"><i class="fa fa-check"></i><b>5.4.1</b> Write a simple webpage with HTML</a></li>
+<li class="chapter" data-level="5.4.2" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#two-ways-to-read-a-webpage-into-r"><i class="fa fa-check"></i><b>5.4.2</b> Two ways to read a webpage into R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>6</b> Text Data</a></li>
+<li class="chapter" data-level="7" data-path="image-data.html"><a href="image-data.html"><i class="fa fa-check"></i><b>7</b> Image data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="image-data.html"><a href="image-data.html#image-data-structure-and-storage"><i class="fa fa-check"></i><b>7.1</b> Image data structure and storage</a></li>
+<li class="chapter" data-level="7.2" data-path="image-data.html"><a href="image-data.html#vector-images-in-r"><i class="fa fa-check"></i><b>7.2</b> Vector images in R</a></li>
+<li class="chapter" data-level="7.3" data-path="image-data.html"><a href="image-data.html#raster-images-in-r"><i class="fa fa-check"></i><b>7.3</b> Raster images in R</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="image-data.html"><a href="image-data.html#basic-data-structure"><i class="fa fa-check"></i><b>7.3.1</b> Basic data structure</a></li>
+<li class="chapter" data-level="7.3.2" data-path="image-data.html"><a href="image-data.html#advanced-image-manipulation-using-imagemagick"><i class="fa fa-check"></i><b>7.3.2</b> Advanced Image Manipulation using ImageMagick</a></li>
+<li class="chapter" data-level="7.3.3" data-path="image-data.html"><a href="image-data.html#working-with-ocr-optical-character-recognition"><i class="fa fa-check"></i><b>7.3.3</b> Working with OCR (Optical Character Recognition)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html"><i class="fa fa-check"></i><b>8</b> Data Sources, Data Gathering, Data Import</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#sourcesformats"><i class="fa fa-check"></i><b>8.1</b> Sources/formats</a></li>
+<li class="chapter" data-level="8.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#data-gathering-procedure"><i class="fa fa-check"></i><b>8.2</b> Data gathering procedure</a></li>
+<li class="chapter" data-level="8.3" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loadingimporting-rectangular-data"><i class="fa fa-check"></i><b>8.3</b> Loading/importing rectangular data</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>8.3.1</b> Loading built-in datasets</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-rectangular-data-from-text-files"><i class="fa fa-check"></i><b>8.3.2</b> Importing rectangular data from text-files</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#import-and-parse-with-readr"><i class="fa fa-check"></i><b>8.4</b> Import and parse with <code>readr</code></a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#basic-usage-of-readr-functions"><i class="fa fa-check"></i><b>8.4.1</b> Basic usage of <code>readr</code> functions</a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#parsing-and-data-types"><i class="fa fa-check"></i><b>8.4.2</b> Parsing and data types</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#importing-web-data-formats"><i class="fa fa-check"></i><b>8.5</b> Importing web data formats</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#xml-in-r"><i class="fa fa-check"></i><b>8.5.1</b> XML in R</a></li>
+<li class="chapter" data-level="8.5.2" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#json-in-r"><i class="fa fa-check"></i><b>8.5.2</b> JSON in R</a></li>
+<li class="chapter" data-level="8.5.3" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html#tutorial-advanced-importing-data-from-a-html-table-on-a-website"><i class="fa fa-check"></i><b>8.5.3</b> Tutorial (advanced): Importing data from a HTML table (on a website)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>9</b> Data Preparation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="data-preparation.html"><a href="data-preparation.html#cleaning-data-with-basic-string-operations"><i class="fa fa-check"></i><b>9.1</b> Cleaning data with basic string operations</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="data-preparation.html"><a href="data-preparation.html#findreplace-character-strings-recode-factor-levels"><i class="fa fa-check"></i><b>9.1.1</b> Find/replace character strings, recode factor levels</a></li>
+<li class="chapter" data-level="9.1.2" data-path="data-preparation.html"><a href="data-preparation.html#removing-individual-characters-from-a-string"><i class="fa fa-check"></i><b>9.1.2</b> Removing individual characters from a string</a></li>
+<li class="chapter" data-level="9.1.3" data-path="data-preparation.html"><a href="data-preparation.html#splitting-strings"><i class="fa fa-check"></i><b>9.1.3</b> Splitting strings</a></li>
+<li class="chapter" data-level="9.1.4" data-path="data-preparation.html"><a href="data-preparation.html#parsing-dates"><i class="fa fa-check"></i><b>9.1.4</b> Parsing dates</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-preparation.html"><a href="data-preparation.html#reshaping-datasets"><i class="fa fa-check"></i><b>9.2</b> Reshaping datasets</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="data-preparation.html"><a href="data-preparation.html#tidying-messy-datasets."><i class="fa fa-check"></i><b>9.2.1</b> Tidying messy datasets.</a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-preparation.html"><a href="data-preparation.html#pivoting-from-wide-to-long-gathering"><i class="fa fa-check"></i><b>9.2.2</b> Pivoting from ‘wide to long’ (“gathering”)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-preparation.html"><a href="data-preparation.html#pivoting-from-long-to-wide-spreading"><i class="fa fa-check"></i><b>9.2.3</b> Pivoting from ‘long to wide’ (“spreading”)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="data-preparation.html"><a href="data-preparation.html#tutorial-hotel-bookings-time-series"><i class="fa fa-check"></i><b>9.3</b> Tutorial: Hotel Bookings Time Series</a></li>
+<li class="chapter" data-level="9.4" data-path="data-preparation.html"><a href="data-preparation.html#set-up-and-import"><i class="fa fa-check"></i><b>9.4</b> Set up and import</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html"><i class="fa fa-check"></i><b>10</b> Data Analysis: First Steps</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#merging-datasets"><i class="fa fa-check"></i><b>10.1</b> Merging datasets</a></li>
+<li class="chapter" data-level="10.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#selecting-subsets"><i class="fa fa-check"></i><b>10.2</b> Selecting subsets</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#filtering-datasets"><i class="fa fa-check"></i><b>10.2.1</b> Filtering datasets</a></li>
+<li class="chapter" data-level="10.2.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#mutating-datasets"><i class="fa fa-check"></i><b>10.2.2</b> Mutating datasets</a></li>
+<li class="chapter" data-level="10.2.3" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#aggregation-and-summary-statistics"><i class="fa fa-check"></i><b>10.2.3</b> Aggregation and summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#tutorial-analise-messy-excel-sheets"><i class="fa fa-check"></i><b>10.3</b> Tutorial: Analise messy Excel sheets</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#preparatory-steps"><i class="fa fa-check"></i><b>10.3.1</b> Preparatory steps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html"><i class="fa fa-check"></i><b>11</b> Basic Econometrics in R</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#statistical-modeling"><i class="fa fa-check"></i><b>11.1</b> Statistical modeling</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#illustration-with-pseudo-data"><i class="fa fa-check"></i><b>11.1.1</b> Illustration with pseudo-data</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#estimation-and-application"><i class="fa fa-check"></i><b>11.2</b> Estimation and Application</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#model-specification"><i class="fa fa-check"></i><b>11.2.1</b> Model specification</a></li>
+<li class="chapter" data-level="11.2.2" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#raw-data"><i class="fa fa-check"></i><b>11.2.2</b> Raw data</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#derivation-and-implementation-of-ols-estimator"><i class="fa fa-check"></i><b>11.3</b> Derivation and implementation of OLS estimator</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="basic-econometrics-in-r.html"><a href="basic-econometrics-in-r.html#regression-toolbox-in-r"><i class="fa fa-check"></i><b>11.3.1</b> Regression toolbox in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>12</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="data-visualization.html"><a href="data-visualization.html#data-display"><i class="fa fa-check"></i><b>12.1</b> Data display</a></li>
+<li class="chapter" data-level="12.2" data-path="data-visualization.html"><a href="data-visualization.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>12.2</b> Data visualization with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="12.3" data-path="data-visualization.html"><a href="data-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>12.3</b> ‘Grammar of Graphics’</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-basics"><i class="fa fa-check"></i><b>12.3.1</b> <code>ggplot2</code> basics</a></li>
+<li class="chapter" data-level="12.3.2" data-path="data-visualization.html"><a href="data-visualization.html#tutorial"><i class="fa fa-check"></i><b>12.3.2</b> Tutorial</a></li>
+<li class="chapter" data-level="12.3.3" data-path="data-visualization.html"><a href="data-visualization.html#loadingpreparing-the-data"><i class="fa fa-check"></i><b>12.3.3</b> Loading/preparing the data</a></li>
+<li class="chapter" data-level="12.3.4" data-path="data-visualization.html"><a href="data-visualization.html#geometries-type-of-plot"><i class="fa fa-check"></i><b>12.3.4</b> Geometries (~ type of plot)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="data-visualization.html"><a href="data-visualization.html#dynamic-documents"><i class="fa fa-check"></i><b>12.4</b> Dynamic documents</a></li>
+<li class="chapter" data-level="12.5" data-path="data-visualization.html"><a href="data-visualization.html#tutorial-how-to-give-the-wrong-impression-with-data-visualization"><i class="fa fa-check"></i><b>12.5</b> Tutorial: How to give the wrong impression with data visualization</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="data-visualization.html"><a href="data-visualization.html#background-and-aim"><i class="fa fa-check"></i><b>12.5.1</b> Background and aim</a></li>
+<li class="chapter" data-level="12.5.2" data-path="data-visualization.html"><a href="data-visualization.html#data-import-and-preparation"><i class="fa fa-check"></i><b>12.5.2</b> Data import and preparation</a></li>
+<li class="chapter" data-level="12.5.3" data-path="data-visualization.html"><a href="data-visualization.html#plot"><i class="fa fa-check"></i><b>12.5.3</b> Plot</a></li>
+<li class="chapter" data-level="12.5.4" data-path="data-visualization.html"><a href="data-visualization.html#cosmetics-theme"><i class="fa fa-check"></i><b>12.5.4</b> Cosmetics: theme</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#understanding-statistics-and-probability-with-code"><i class="fa fa-check"></i><b>A.1</b> Understanding statistics and probability with code</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#random-draws-and-distributions"><i class="fa fa-check"></i><b>A.1.1</b> Random draws and distributions</a></li>
+<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#illustration-of-variability"><i class="fa fa-check"></i><b>A.1.2</b> Illustration of variability</a></li>
+<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#skewness-and-kurtosis"><i class="fa fa-check"></i><b>A.1.3</b> Skewness and Kurtosis</a></li>
+<li class="chapter" data-level="A.1.4" data-path="appendix-a.html"><a href="appendix-a.html#the-law-of-large-numbers"><i class="fa fa-check"></i><b>A.1.4</b> The Law of Large Numbers</a></li>
+<li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Handling Pocket Reference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="image-data" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Image data<a href="image-data.html#image-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>With the advent of broadband internet and efforts in digitizing analogue archives a large part of the world’s available data is stored in the form of images (and moving images). Subsequent advances in computer vision (machine learning techniques focused on images and videos) have made usage of images for economic and social science purposes accessible to non-computer science researchers. Examples of how image data is used in economic research involve the quantification of urban appearance (based on the analysis of street-level images in cities, <span class="citation">Naik, Raskar, and Hidalgo (<a href="appendix-a.html#ref-naik_etal2016" role="doc-biblioref">2016</a>)</span>), the digitization of old text documents via optical character recognition (<span class="citation">Cesarini et al. (<a href="appendix-a.html#ref-cesarini_etal2016" role="doc-biblioref">2016</a>)</span>), and the measurement of economic development/wealth with nighttime light-intensity based on satellite image data (<span class="citation">Hodler and Raschky (<a href="appendix-a.html#ref-hodler_raschky2014" role="doc-biblioref">2014</a>)</span>). In the following subsections, you will first explore the most common image formats, and how the data behind digital images is structured and stored.</p>
+<div id="image-data-structure-and-storage" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Image data structure and storage<a href="image-data.html#image-data-structure-and-storage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are two important variants of how digital images are stored: raster images (for example, jpg files), and vector-based images (for example, eps files). In terms of data structure, the two formats differ quite substantially:</p>
+<ul>
+<li><p>The data structure behind raster images basically defines an image as a matrix of pixels, as well as the color of each pixel. Thereby, screen colors are combinations of the three base colors red, green, blue (RGB). Technically speaking, a raster image thus consists of an array of three matrices with the same dimension (one for each base color). The values of each array element are then indicating the intensity of each base color for the corresponding pixel. For example, a black pixel would be indicated as (0,0,0). Raster images play a major role in essentially all modern computer vision applications related to social science/economic research. Photos, videos, satellite imagery, and scans of old documents all stored as raster images.</p></li>
+<li><p>Vector images are essentially text files that store the coordinates of points on a surface and how these dots are connected (or not) by lines. Some of the commonly used formats to store vector images are based on XML (for example SVG files). The most common encounter of vector image files in a data analytics/research context are typically storing map data. Streets, borders, rivers, etc. can be defined as polygons (consisting of individual lines/vectors).</p></li>
+</ul>
+<p>Given the fundamental differences in how the data behind these two types of images is structured, practically handling such data in R differs quite substantially between the two formats with regard to the R packages used and the representation of the image object in RAM.</p>
+</div>
+<div id="vector-images-in-r" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Vector images in R<a href="image-data.html#vector-images-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="raster-images-in-r" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Raster images in R<a href="image-data.html#raster-images-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This is meant to showcase some of the most frequent tasks related to images in R.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="image-data.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load two common packages</span></span>
+<span id="cb160-2"><a href="image-data.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster) </span></code></pre></div>
+<pre><code>## Loading required package: sp</code></pre>
+<div id="basic-data-structure" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Basic data structure<a href="image-data.html#basic-data-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall that raster images are stored as arrays (<span class="math inline">\(X\times Y \times Z\)</span>). <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> define the number of pixels in each column and row (width and height) of the image and <span class="math inline">\(Z\)</span> the number of layers. Greyscale images usually have only one layer, whereas most colored images have 3 layers (in the case of RGB images).</p>
+<p>To get a better feeling for the corresponding data structure in R, we start with generating RGB-images step-by-step in R. First we generate three matrices (one for each base color), arrange these matrices in an array, and then save the plots to disk.</p>
+<div id="example-1-generating-a-red-image-rgb-code-25500" class="section level4 hasAnchor" number="7.3.1.1">
+<h4><span class="header-section-number">7.3.1.1</span> Example 1: Generating a red image (RGB code: 255,0,0)<a href="image-data.html#example-1-generating-a-red-image-rgb-code-25500" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="image-data.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
+<span id="cb162-2"><a href="image-data.html#cb162-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
+<span id="cb162-3"><a href="image-data.html#cb162-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
+<span id="cb162-4"><a href="image-data.html#cb162-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-5"><a href="image-data.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
+<span id="cb162-6"><a href="image-data.html#cb162-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb162-7"><a href="image-data.html#cb162-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-8"><a href="image-data.html#cb162-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
+<span id="cb162-9"><a href="image-data.html#cb162-9" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">255</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb162-10"><a href="image-data.html#cb162-10" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb162-11"><a href="image-data.html#cb162-11" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb162-12"><a href="image-data.html#cb162-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-13"><a href="image-data.html#cb162-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Generate an array by combining the three matrices</span></span>
+<span id="cb162-14"><a href="image-data.html#cb162-14" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
+<span id="cb162-15"><a href="image-data.html#cb162-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
+<pre><code>## [1] 300 300   3</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="image-data.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create RasterBrick</span></span>
+<span id="cb164-2"><a href="image-data.html#cb164-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
+<span id="cb164-3"><a href="image-data.html#cb164-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
+<pre><code>## class      : RasterBrick 
+## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
+## resolution : 0.003333, 0.003333  (x, y)
+## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+## crs        : NA 
+## source     : memory
+## names      : layer.1, layer.2, layer.3 
+## min values :     255,       0,       0 
+## max values :     255,       0,       0</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="image-data.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
+<span id="cb166-2"><a href="image-data.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-79-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="image-data.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
+<span id="cb168-2"><a href="image-data.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;red.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
+<span id="cb168-3"><a href="image-data.html#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude</code></pre>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="image-data.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>## pdf 
+##   2</code></pre>
+</div>
+<div id="example-2-generating-a-green-image-rgb-code-0-255-0" class="section level4 hasAnchor" number="7.3.1.2">
+<h4><span class="header-section-number">7.3.1.2</span> Example 2: Generating a green image (RGB code: 0, 255, 0)<a href="image-data.html#example-2-generating-a-green-image-rgb-code-0-255-0" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="image-data.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
+<span id="cb172-2"><a href="image-data.html#cb172-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
+<span id="cb172-3"><a href="image-data.html#cb172-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
+<span id="cb172-4"><a href="image-data.html#cb172-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-5"><a href="image-data.html#cb172-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
+<span id="cb172-6"><a href="image-data.html#cb172-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb172-7"><a href="image-data.html#cb172-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-8"><a href="image-data.html#cb172-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
+<span id="cb172-9"><a href="image-data.html#cb172-9" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb172-10"><a href="image-data.html#cb172-10" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">255</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb172-11"><a href="image-data.html#cb172-11" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb172-12"><a href="image-data.html#cb172-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-13"><a href="image-data.html#cb172-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Generate an array by combining the three matrices</span></span>
+<span id="cb172-14"><a href="image-data.html#cb172-14" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
+<span id="cb172-15"><a href="image-data.html#cb172-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
+<pre><code>## [1] 300 300   3</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="image-data.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create RasterBrick</span></span>
+<span id="cb174-2"><a href="image-data.html#cb174-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
+<span id="cb174-3"><a href="image-data.html#cb174-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
+<pre><code>## class      : RasterBrick 
+## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
+## resolution : 0.003333, 0.003333  (x, y)
+## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+## crs        : NA 
+## source     : memory
+## names      : layer.1, layer.2, layer.3 
+## min values :       0,     255,       0 
+## max values :       0,     255,       0</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="image-data.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
+<span id="cb176-2"><a href="image-data.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-80-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="image-data.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
+<span id="cb178-2"><a href="image-data.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;blue.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
+<span id="cb178-3"><a href="image-data.html#cb178-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="image-data.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>## pdf 
+##   2</code></pre>
+</div>
+<div id="example-3-generating-a-blue-image-rgb-code-0-0-255" class="section level4 hasAnchor" number="7.3.1.3">
+<h4><span class="header-section-number">7.3.1.3</span> Example 3: Generating a blue image (RGB code: 0, 0, 255)<a href="image-data.html#example-3-generating-a-blue-image-rgb-code-0-0-255" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="image-data.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
+<span id="cb182-2"><a href="image-data.html#cb182-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
+<span id="cb182-3"><a href="image-data.html#cb182-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
+<span id="cb182-4"><a href="image-data.html#cb182-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-5"><a href="image-data.html#cb182-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
+<span id="cb182-6"><a href="image-data.html#cb182-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb182-7"><a href="image-data.html#cb182-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-8"><a href="image-data.html#cb182-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
+<span id="cb182-9"><a href="image-data.html#cb182-9" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb182-10"><a href="image-data.html#cb182-10" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb182-11"><a href="image-data.html#cb182-11" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">255</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb182-12"><a href="image-data.html#cb182-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-13"><a href="image-data.html#cb182-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Generate an array by combining the three matrices</span></span>
+<span id="cb182-14"><a href="image-data.html#cb182-14" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
+<span id="cb182-15"><a href="image-data.html#cb182-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
+<pre><code>## [1] 300 300   3</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="image-data.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create RasterBrick</span></span>
+<span id="cb184-2"><a href="image-data.html#cb184-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
+<span id="cb184-3"><a href="image-data.html#cb184-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
+<pre><code>## class      : RasterBrick 
+## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
+## resolution : 0.003333, 0.003333  (x, y)
+## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+## crs        : NA 
+## source     : memory
+## names      : layer.1, layer.2, layer.3 
+## min values :       0,       0,     255 
+## max values :       0,       0,     255</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="image-data.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
+<span id="cb186-2"><a href="image-data.html#cb186-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-81-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="image-data.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
+<span id="cb188-2"><a href="image-data.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;green.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
+<span id="cb188-3"><a href="image-data.html#cb188-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="image-data.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>## pdf 
+##   2</code></pre>
+</div>
+<div id="example-4-generating-a-random-rgb-image" class="section level4 hasAnchor" number="7.3.1.4">
+<h4><span class="header-section-number">7.3.1.4</span> Example 4: Generating a random RGB image<a href="image-data.html#example-4-generating-a-random-rgb-image" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="image-data.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
+<span id="cb192-2"><a href="image-data.html#cb192-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
+<span id="cb192-3"><a href="image-data.html#cb192-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
+<span id="cb192-4"><a href="image-data.html#cb192-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-5"><a href="image-data.html#cb192-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
+<span id="cb192-6"><a href="image-data.html#cb192-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb192-7"><a href="image-data.html#cb192-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-8"><a href="image-data.html#cb192-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Draw random color intensities from a standard-normal distribution</span></span>
+<span id="cb192-9"><a href="image-data.html#cb192-9" aria-hidden="true" tabindex="-1"></a>shades_of_red <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> width<span class="sc">*</span>height, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb192-10"><a href="image-data.html#cb192-10" aria-hidden="true" tabindex="-1"></a>shades_of_green <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> width<span class="sc">*</span>height, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb192-11"><a href="image-data.html#cb192-11" aria-hidden="true" tabindex="-1"></a>shades_of_blue <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> width<span class="sc">*</span>height, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>The color intensity must be in the range 0 to 255, however, our values are
+standard normally distributed around 0:</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="image-data.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(shades_of_red))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-83-1.svg" width="672" />
+We first normalize them to a range of 0 to 1 using the formula:
+<span class="math inline">\(z_i = \frac{x_i - min(x)}{max(x)-min(x)}\)</span>
+and subsequently multiply by 255:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="image-data.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Normalize to 0,255 range of values</span></span>
+<span id="cb194-2"><a href="image-data.html#cb194-2" aria-hidden="true" tabindex="-1"></a>shades_of_red <span class="ot">=</span> (shades_of_red <span class="sc">-</span> <span class="fu">min</span>(shades_of_red))<span class="sc">/</span>(<span class="fu">max</span>(shades_of_red)<span class="sc">-</span><span class="fu">min</span>(shades_of_red))<span class="sc">*</span><span class="dv">255</span></span>
+<span id="cb194-3"><a href="image-data.html#cb194-3" aria-hidden="true" tabindex="-1"></a>shades_of_green <span class="ot">=</span> (shades_of_green <span class="sc">-</span> <span class="fu">min</span>(shades_of_green))<span class="sc">/</span>(<span class="fu">max</span>(shades_of_green)<span class="sc">-</span><span class="fu">min</span>(shades_of_green))<span class="sc">*</span><span class="dv">255</span></span>
+<span id="cb194-4"><a href="image-data.html#cb194-4" aria-hidden="true" tabindex="-1"></a>shades_of_blue <span class="ot">=</span> (shades_of_blue <span class="sc">-</span> <span class="fu">min</span>(shades_of_blue))<span class="sc">/</span>(<span class="fu">max</span>(shades_of_blue)<span class="sc">-</span><span class="fu">min</span>(shades_of_blue))<span class="sc">*</span><span class="dv">255</span></span>
+<span id="cb194-5"><a href="image-data.html#cb194-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-6"><a href="image-data.html#cb194-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(shades_of_red))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-84-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="image-data.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
+<span id="cb195-2"><a href="image-data.html#cb195-2" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(shades_of_red, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb195-3"><a href="image-data.html#cb195-3" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(shades_of_green, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb195-4"><a href="image-data.html#cb195-4" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(shades_of_blue, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb195-5"><a href="image-data.html#cb195-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-6"><a href="image-data.html#cb195-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Generate an array by combining the three matrices</span></span>
+<span id="cb195-7"><a href="image-data.html#cb195-7" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
+<span id="cb195-8"><a href="image-data.html#cb195-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
+<pre><code>## [1] 300 300   3</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="image-data.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: Create RasterBrick</span></span>
+<span id="cb197-2"><a href="image-data.html#cb197-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
+<span id="cb197-3"><a href="image-data.html#cb197-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
+<pre><code>## class      : RasterBrick 
+## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
+## resolution : 0.003333, 0.003333  (x, y)
+## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+## crs        : NA 
+## source     : memory
+## names      : layer.1, layer.2, layer.3 
+## min values :       0,       0,       0 
+## max values :     255,     255,     255</code></pre>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="image-data.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 8: Plot RGB</span></span>
+<span id="cb199-2"><a href="image-data.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-84-2.svg" width="672" /></p>
+<p>From the examples above, you recognize that in order to generate/manipulate raster images in R, we basically generate/manipulate matrices/arrays (i.e., structures very common to any data analytics task in R). Several additional R packages come with pre-defined functions for more advanced image manipulations in R.</p>
+</div>
+</div>
+<div id="advanced-image-manipulation-using-imagemagick" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Advanced Image Manipulation using ImageMagick<a href="image-data.html#advanced-image-manipulation-using-imagemagick" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="image-data.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb201-2"><a href="image-data.html#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span></code></pre></div>
+<pre><code>## Linking to ImageMagick 6.9.12.3
+## Enabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp
+## Disabled features: fftw, ghostscript, x11</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="image-data.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can import images from the web</span></span>
+<span id="cb203-2"><a href="image-data.html#cb203-2" aria-hidden="true" tabindex="-1"></a>frink <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/frink.png&quot;</span>)</span>
+<span id="cb203-3"><a href="image-data.html#cb203-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(frink)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 7
+##   format width height colorspace matte filesize density
+##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
+## 1 PNG      220    445 sRGB       TRUE     73494 72x72</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-85-1.png" width="110" /></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="image-data.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate</span></span>
+<span id="cb205-2"><a href="image-data.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_rotate</span>(frink, <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-85-2.png" width="236" /></p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="image-data.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flip</span></span>
+<span id="cb206-2"><a href="image-data.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_flip</span>(frink)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-85-3.png" width="110" /></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="image-data.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flop</span></span>
+<span id="cb207-2"><a href="image-data.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_flop</span>(frink)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-85-4.png" width="110" /></p>
+<!-- Working with GIFs -->
+<!-- ```{r } -->
+<!-- # Download earth gif -->
+<!-- earth <- image_read("https://jeroen.github.io/images/earth.gif") -->
+<!-- # Retrieve information -->
+<!-- length(earth) # The gif is made from 44 individual images -->
+<!-- # Working with pipelines  -->
+<!-- ## Let us make the earth spin the wrong way! -->
+<!-- earth %>% -->
+<!--   image_flop() -->
+<!-- # Adding Frink to the GIF -->
+<!-- frink.resize = frink %>%  -->
+<!--   image_resize('400x400!') %>%  -->
+<!--   image_animate() -->
+<!-- new_gif = image_animate(c(frink.resize, earth)) -->
+<!-- length(new_gif) -->
+<!-- new_gif -->
+<!-- ``` -->
+</div>
+<div id="working-with-ocr-optical-character-recognition" class="section level3 hasAnchor" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Working with OCR (Optical Character Recognition)<a href="image-data.html#working-with-ocr-optical-character-recognition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="image-data.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For Optical Character Recognition</span></span>
+<span id="cb208-2"><a href="image-data.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
+<span id="cb208-3"><a href="image-data.html#cb208-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb208-4"><a href="image-data.html#cb208-4" aria-hidden="true" tabindex="-1"></a>img <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://s3.amazonaws.com/libapps/accounts/30502/images/new_york_times.png&quot;</span>)</span>
+<span id="cb208-5"><a href="image-data.html#cb208-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(img)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 7
+##   format width height colorspace matte filesize density
+##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
+## 1 PNG      806    550 sRGB       FALSE   714189 38x38</code></pre>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-86-1.png" width="403" /></p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="image-data.html#cb210-1" aria-hidden="true" tabindex="-1"></a>headline <span class="ot">&lt;-</span> </span>
+<span id="cb210-2"><a href="image-data.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_crop</span>(<span class="at">image =</span> img, <span class="at">geometry =</span> <span class="st">&#39;806x180&#39;</span>)</span>
+<span id="cb210-3"><a href="image-data.html#cb210-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-4"><a href="image-data.html#cb210-4" aria-hidden="true" tabindex="-1"></a>headline</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-86-2.png" width="403" /></p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="image-data.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract text</span></span>
+<span id="cb211-2"><a href="image-data.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">image_ocr</span>(headline))</span></code></pre></div>
+<pre><code>## The New Work Times. [==S=
+## 
+## TITANIC SINKS FOUR HOURS AFTER HITTING ICEBERG;
+## 866 RESCUED BY CARPATHIA, PROBABLY 1250 PERISH;
+## ISMAY SAFE, MRS. ASTOR MAYBE, NOTED NAMES MISSING</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="text-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-sources-data-gathering-data-import.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["datahandling.pdf", "datahandling.html", "datahandling.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

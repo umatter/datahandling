@@ -1,3 +1,4 @@
+fig:venn
 fig:terminal
 fig:ide
 fig:rstudio
@@ -25,7 +26,7 @@ fig:swiss
 fig:causality
 introduction
 programming-with-data
-why-learn-to-program-to-handle-data
+handling-data-programmatically
 why-r
 the-data-language
 high-level-language-relatively-easy-to-learn
@@ -77,6 +78,18 @@ parsing-xml-and-json-in-r
 html
 write-a-simple-webpage-with-html
 two-ways-to-read-a-webpage-into-r
+text-data
+image-data
+image-data-structure-and-storage
+vector-images-in-r
+raster-images-in-r
+basic-data-structure
+example-1-generating-a-red-image-rgb-code-25500
+example-2-generating-a-green-image-rgb-code-0-255-0
+example-3-generating-a-blue-image-rgb-code-0-0-255
+example-4-generating-a-random-rgb-image
+advanced-image-manipulation-using-imagemagick
+working-with-ocr-optical-character-recognition
 data-sources-data-gathering-data-import
 sourcesformats
 data-gathering-procedure

@@ -39,7 +39,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Data Handling},
+  pdftitle={Data Handling Pocket Reference},
   pdfauthor={Ulrich Matter},
   colorlinks=true,
   linkcolor={Maroon},
@@ -227,9 +227,9 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{Data Handling}
+\title{Data Handling Pocket Reference}
 \author{Ulrich Matter}
-\date{2022-09-15}
+\date{2022-09-19}
 
 \begin{document}
 \maketitle
@@ -260,9 +260,9 @@
 \chapter*{Preface}\label{preface}}
 
 
-This textbook introduces students to the fundamental practices of Data Science in the context of economic research. The course
-covers basic theoretical concepts and practical skills in gathering, preparing/cleaning, visualizing, storing, and analyzing digital
-data for research purposes.
+In applied econometric research and business analytics alike, many steps in handling digital data are involved before running regression estimations and training machine learning algorithms. While often neglected in statistics and econometrics curricula, the steps of gathering, cleaning, storing, and filtering data for research/analytics purposes are of utmost importance to ensure accurate and reproducible analytic insights. This pocket reference first introduces and summarizes foundational and practically relevant data and data processing concepts, and then guides the reader through each step of how to get from the raw data to the final data analysis output.
+
+The book presupposes a basic knowledge of undergraduate economics and statistics and relates several case studies to practical questions in these fields. Finally, the aim is to give you firsthand practical insights into each part of the data science pipeline in the context of business and economics research.
 
 \begin{figure}
 \centering
@@ -286,19 +286,28 @@ Lower computing costs, a stark decrease in storage costs for digital data, as we
 
 The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of \href{https://en.wikipedia.org/wiki/Data_science}{`Data Science'} and increasing demand for `Data Scientists'. While nothing within Data Science is particularly new on its own, the combination of skills and insights from different fields (particularly Computer Science and Statistics) has proven to be very productive in meeting new challenges posed by a data-driven economy. In that sense, Data Science is rather a craft than a scientific field. As such, it presupposes a more practical and broader understanding of the data than traditional Computer Science and Statistics from which Data Science borrows its methods. This book focuses on the skills necessary for \emph{acquiring, cleaning, and manipulating} digital data for research/analytics purposes.
 
-The book presupposes a basic knowledge of undergraduate economics and statistics and relates several case studies to practical questions in these fields. Finally, the aim is to give you firsthand practical insights into each part of the data science pipeline in the context of business and economics research.
-
 \hypertarget{programming-with-data}{%
 \chapter{Programming with Data}\label{programming-with-data}}
 
-\hypertarget{why-learn-to-program-to-handle-data}{%
-\section{Why learn to program to handle data?}\label{why-learn-to-program-to-handle-data}}
+\hypertarget{handling-data-programmatically}{%
+\section{Handling data programmatically}\label{handling-data-programmatically}}
 
-With lower computing costs, lower storage costs for digital data, and the diffusion of the Internet, we have recently witnessed a stark increase in the availability of digital data describing all kind of every-day human activities \citep{einav_levin2014, matter_stutzer2015}. As a consequence, new business models and economic structures are emerging with data as their core commodity (i.e., AI-related technological and economic change). A `data-driven' economy heavily relies on processing/analyzing/handling large amounts of digital data.
+The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of \href{https://en.wikipedia.org/wiki/Data_science}{`Data Science'} as well as an increasing demand for `Data Scientists'. While nothing within Data Science is particularly new on its own, it is the combination of skills and insights from different fields (particularly Computer Science and Statistics) that has proven to be very productive in meeting new challenges posed by a data-driven economy. The various facets of this new craft are often illustrated in the `Data Science' Venn diagram, reflecting the combination of knowledge and skills from Mathematics/Statistics, substantive expertise in the particular scientific field in which Data Science is applied (here: Economics), and the skills for \emph{acquiring, cleaning, and analyzing} data \emph{programmatically}.
 
-The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of \href{https://en.wikipedia.org/wiki/Data_science}{`Data Science'} as well as an increasing demand for `Data Scientists'. While nothing within Data Science is particularly new on its own, it is the combination of skills and insights from different fields (particularly Computer Science and Statistics) that has proven to be very productive in meeting new challenges posed by a data-driven economy. The various facets of this new craft are often illustrated in the `Data Science' Venn-Diagram (see, for example, \url{http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/}), reflecting the combination of knowledge and skills from Mathematics/Statistics, substantive expertise in the particular scientific field in which Data Science is applied, and `hacking skills', that is, the skills necessary for \emph{acquiring, cleaning, and analyzing} data \emph{programmatically}.
+\begin{figure}
 
-Apart from the current `Data Science developments' and the related career opportunities for young economists, learning to program comes with many benefits for academic work in graduate economics. Many of the courses in your curriculum will at least partially touch upon practical programming exercises or concepts related to programming and scientific computing in an environment like R.
+{\centering \includegraphics[width=0.6\linewidth]{img/venn_diagramm} 
+
+}
+
+\caption{Venn diagram illustrating the domains of Data Science in the context of Economics.}\label{fig:venn}
+\end{figure}
+
+
+
+In the proposed framework of Data Science in Economics followed in this book, programming skills, basic knowledge about computing and in data technologies serve as a complement to engaging in modern economic analysis. They are necessary ingredients to both working new econometric approaches in machine learning (and the preceding feature engineering) as well as to solving complex problems in the domain of economic modeling. Moreover, programming (or `coding') is the basis to better understand and engage with the handling of data for analytics purposes.
+
+While industry-scale data science projects tend to include data processing frameworks and programming languages (such as Scala, Python, and SQL), we will see that the core steps of how to get from the raw data to the final analysis report can for most simpler data projects be easily managed with just one programming language. In the case of this book, we choose \emph{R}.
 
 \hypertarget{why-r}{%
 \section{\texorpdfstring{Why \emph{R}?}{Why R?}}\label{why-r}}
@@ -306,7 +315,7 @@ Apart from the current `Data Science developments' and the related career opport
 \hypertarget{the-data-language}{%
 \subsection{The `data language'}\label{the-data-language}}
 
-The programming language and open-source statistical computing environment \href{www.r-project.org}{\emph{R}} has over the last decade become a core tool for data science in industry and academia. It was originally designed as a tool for statistical analysis. Many characteristics of the language make \emph{R} particularly useful to work with data. With the rise of the `data economy' and `data science', \emph{R} is increasingly used in various domains, going well beyond the traditional applications of academic research.
+The programming language and open-source statistical computing environment \href{www.r-project.org}{\emph{R}} has over the last decade become a core tool for data science in industry and academia. It was originally designed as a tool for statistical analysis. Many characteristics of the language make \emph{R} particularly useful to work with data. \emph{R} is increasingly used in various domains, going well beyond the traditional applications of academic research.
 
 \hypertarget{high-level-language-relatively-easy-to-learn}{%
 \subsection{High-level language, relatively easy to learn}\label{high-level-language-relatively-easy-to-learn}}
@@ -2308,7 +2317,7 @@ And we can check if everything worked out well by having a look at the first lin
 ## [3] "<head>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 ## [4] "<meta charset=\"UTF-8\"/>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 ## [5] "<title>Economy of Switzerland - Wikipedia</title>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-## [6] "<script>document.documentElement.className=\"client-js\";RLCONF={\"wgBreakFrames\":false,\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgRequestId\":\"d8acd662-9e23-4e2f-96db-a907014176c8\",\"wgCSPNonce\":false,\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Economy_of_Switzerland\",\"wgTitle\":\"Economy of Switzerland\",\"wgCurRevisionId\":1107876525,\"wgRevisionId\":1107876525,\"wgArticleId\":27465,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"CS1 maint: archived copy as title\",\"CS1 German-language sources (de)\",\"Articles with German-language sources (de)\",\"Webarchive template wayback links\",\"Articles with French-language sources (fr)\",\"Articles with short description\",\"Short description is different from Wikidata\","
+## [6] "<script>document.documentElement.className=\"client-js\";RLCONF={\"wgBreakFrames\":false,\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgRequestId\":\"fe90a458-b0bc-477c-ad74-07372a8fd408\",\"wgCSPNonce\":false,\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Economy_of_Switzerland\",\"wgTitle\":\"Economy of Switzerland\",\"wgCurRevisionId\":1107876525,\"wgRevisionId\":1107876525,\"wgArticleId\":27465,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"CS1 maint: archived copy as title\",\"CS1 German-language sources (de)\",\"Articles with German-language sources (de)\",\"Webarchive template wayback links\",\"Articles with French-language sources (fr)\",\"Articles with short description\",\"Short description is different from Wikidata\","
 \end{verbatim}
 
 The next thing we do is to look at how we can filter the webpage for certain information. For example, we search in the source code for the line that contains the part of the webpage with the table showing data on the Swiss GDP:
@@ -2409,6 +2418,516 @@ Now we can easily separate the data/text from the HTML code. For example, we can
 ## 17  2016                     659 0.98 Francs         
 ## 18  2017                     668 1.01 Francs         
 ## 19  2018                     694 1.00 Francs
+\end{verbatim}
+
+\hypertarget{text-data}{%
+\chapter{Text Data}\label{text-data}}
+
+\hypertarget{image-data}{%
+\chapter{Image data}\label{image-data}}
+
+With the advent of broadband internet and efforts in digitizing analogue archives a large part of the world's available data is stored in the form of images (and moving images). Subsequent advances in computer vision (machine learning techniques focused on images and videos) have made usage of images for economic and social science purposes accessible to non-computer science researchers. Examples of how image data is used in economic research involve the quantification of urban appearance (based on the analysis of street-level images in cities, \citet{naik_etal2016}), the digitization of old text documents via optical character recognition (\citet{cesarini_etal2016}), and the measurement of economic development/wealth with nighttime light-intensity based on satellite image data (\citet{hodler_raschky2014}). In the following subsections, you will first explore the most common image formats, and how the data behind digital images is structured and stored.
+
+\hypertarget{image-data-structure-and-storage}{%
+\section{Image data structure and storage}\label{image-data-structure-and-storage}}
+
+There are two important variants of how digital images are stored: raster images (for example, jpg files), and vector-based images (for example, eps files). In terms of data structure, the two formats differ quite substantially:
+
+\begin{itemize}
+\item
+  The data structure behind raster images basically defines an image as a matrix of pixels, as well as the color of each pixel. Thereby, screen colors are combinations of the three base colors red, green, blue (RGB). Technically speaking, a raster image thus consists of an array of three matrices with the same dimension (one for each base color). The values of each array element are then indicating the intensity of each base color for the corresponding pixel. For example, a black pixel would be indicated as (0,0,0). Raster images play a major role in essentially all modern computer vision applications related to social science/economic research. Photos, videos, satellite imagery, and scans of old documents all stored as raster images.
+\item
+  Vector images are essentially text files that store the coordinates of points on a surface and how these dots are connected (or not) by lines. Some of the commonly used formats to store vector images are based on XML (for example SVG files). The most common encounter of vector image files in a data analytics/research context are typically storing map data. Streets, borders, rivers, etc. can be defined as polygons (consisting of individual lines/vectors).
+\end{itemize}
+
+Given the fundamental differences in how the data behind these two types of images is structured, practically handling such data in R differs quite substantially between the two formats with regard to the R packages used and the representation of the image object in RAM.
+
+\hypertarget{vector-images-in-r}{%
+\section{Vector images in R}\label{vector-images-in-r}}
+
+\hypertarget{raster-images-in-r}{%
+\section{Raster images in R}\label{raster-images-in-r}}
+
+This is meant to showcase some of the most frequent tasks related to images in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load two common packages}
+\FunctionTok{library}\NormalTok{(raster) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: sp
+\end{verbatim}
+
+\hypertarget{basic-data-structure}{%
+\subsection{Basic data structure}\label{basic-data-structure}}
+
+Recall that raster images are stored as arrays (\(X\times Y \times Z\)). \(X\) and \(Y\) define the number of pixels in each column and row (width and height) of the image and \(Z\) the number of layers. Greyscale images usually have only one layer, whereas most colored images have 3 layers (in the case of RGB images).
+
+To get a better feeling for the corresponding data structure in R, we start with generating RGB-images step-by-step in R. First we generate three matrices (one for each base color), arrange these matrices in an array, and then save the plots to disk.
+
+\hypertarget{example-1-generating-a-red-image-rgb-code-25500}{%
+\subsubsection{Example 1: Generating a red image (RGB code: 255,0,0)}\label{example-1-generating-a-red-image-rgb-code-25500}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 1: Define the width and height of the image}
+\NormalTok{width }\OtherTok{=} \DecValTok{300}\NormalTok{; }
+\NormalTok{height }\OtherTok{=} \DecValTok{300}
+
+\CommentTok{\# Step 2: Define the number of layers (RGB = 3)}
+\NormalTok{layers }\OtherTok{=} \DecValTok{3}
+
+\CommentTok{\# Step 3: Generate three matrices corresponding to Red, Green, and Blue values}
+\NormalTok{red }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\DecValTok{255}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+\NormalTok{green }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+\NormalTok{blue }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+
+\CommentTok{\# Step 4: Generate an array by combining the three matrices}
+\NormalTok{image.array }\OtherTok{=} \FunctionTok{array}\NormalTok{(}\FunctionTok{c}\NormalTok{(red, green, blue), }\AttributeTok{dim =} \FunctionTok{c}\NormalTok{(width, height, layers))}
+\FunctionTok{dim}\NormalTok{(image.array)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 300 300   3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 5: Create RasterBrick}
+\NormalTok{image }\OtherTok{=} \FunctionTok{brick}\NormalTok{(image.array)}
+\FunctionTok{print}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class      : RasterBrick 
+## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
+## resolution : 0.003333, 0.003333  (x, y)
+## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+## crs        : NA 
+## source     : memory
+## names      : layer.1, layer.2, layer.3 
+## min values :     255,       0,       0 
+## max values :     255,       0,       0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 6: Plot RGB}
+\FunctionTok{plotRGB}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude
+\end{verbatim}
+
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-79-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 7: (Optional) Save to disk}
+\FunctionTok{png}\NormalTok{(}\AttributeTok{filename =} \StringTok{"red.png"}\NormalTok{, }\AttributeTok{width =}\NormalTok{ width, }\AttributeTok{height =}\NormalTok{ height, }\AttributeTok{units =} \StringTok{"px"}\NormalTok{)}
+\FunctionTok{plotRGB}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## cairo_pdf 
+##         2
+\end{verbatim}
+
+\hypertarget{example-2-generating-a-green-image-rgb-code-0-255-0}{%
+\subsubsection{Example 2: Generating a green image (RGB code: 0, 255, 0)}\label{example-2-generating-a-green-image-rgb-code-0-255-0}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 1: Define the width and height of the image}
+\NormalTok{width }\OtherTok{=} \DecValTok{300}\NormalTok{; }
+\NormalTok{height }\OtherTok{=} \DecValTok{300}
+
+\CommentTok{\# Step 2: Define the number of layers (RGB = 3)}
+\NormalTok{layers }\OtherTok{=} \DecValTok{3}
+
+\CommentTok{\# Step 3: Generate three matrices corresponding to Red, Green, and Blue values}
+\NormalTok{red }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+\NormalTok{green }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\DecValTok{255}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+\NormalTok{blue }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+
+\CommentTok{\# Step 4: Generate an array by combining the three matrices}
+\NormalTok{image.array }\OtherTok{=} \FunctionTok{array}\NormalTok{(}\FunctionTok{c}\NormalTok{(red, green, blue), }\AttributeTok{dim =} \FunctionTok{c}\NormalTok{(width, height, layers))}
+\FunctionTok{dim}\NormalTok{(image.array)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 300 300   3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 5: Create RasterBrick}
+\NormalTok{image }\OtherTok{=} \FunctionTok{brick}\NormalTok{(image.array)}
+\FunctionTok{print}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class      : RasterBrick 
+## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
+## resolution : 0.003333, 0.003333  (x, y)
+## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+## crs        : NA 
+## source     : memory
+## names      : layer.1, layer.2, layer.3 
+## min values :       0,     255,       0 
+## max values :       0,     255,       0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 6: Plot RGB}
+\FunctionTok{plotRGB}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude
+\end{verbatim}
+
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-80-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 7: (Optional) Save to disk}
+\FunctionTok{png}\NormalTok{(}\AttributeTok{filename =} \StringTok{"blue.png"}\NormalTok{, }\AttributeTok{width =}\NormalTok{ width, }\AttributeTok{height =}\NormalTok{ height, }\AttributeTok{units =} \StringTok{"px"}\NormalTok{)}
+\FunctionTok{plotRGB}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## cairo_pdf 
+##         2
+\end{verbatim}
+
+\hypertarget{example-3-generating-a-blue-image-rgb-code-0-0-255}{%
+\subsubsection{Example 3: Generating a blue image (RGB code: 0, 0, 255)}\label{example-3-generating-a-blue-image-rgb-code-0-0-255}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 1: Define the width and height of the image}
+\NormalTok{width }\OtherTok{=} \DecValTok{300}\NormalTok{; }
+\NormalTok{height }\OtherTok{=} \DecValTok{300}
+
+\CommentTok{\# Step 2: Define the number of layers (RGB = 3)}
+\NormalTok{layers }\OtherTok{=} \DecValTok{3}
+
+\CommentTok{\# Step 3: Generate three matrices corresponding to Red, Green, and Blue values}
+\NormalTok{red }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+\NormalTok{green }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+\NormalTok{blue }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\DecValTok{255}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+
+\CommentTok{\# Step 4: Generate an array by combining the three matrices}
+\NormalTok{image.array }\OtherTok{=} \FunctionTok{array}\NormalTok{(}\FunctionTok{c}\NormalTok{(red, green, blue), }\AttributeTok{dim =} \FunctionTok{c}\NormalTok{(width, height, layers))}
+\FunctionTok{dim}\NormalTok{(image.array)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 300 300   3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 5: Create RasterBrick}
+\NormalTok{image }\OtherTok{=} \FunctionTok{brick}\NormalTok{(image.array)}
+\FunctionTok{print}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class      : RasterBrick 
+## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
+## resolution : 0.003333, 0.003333  (x, y)
+## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+## crs        : NA 
+## source     : memory
+## names      : layer.1, layer.2, layer.3 
+## min values :       0,       0,     255 
+## max values :       0,       0,     255
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 6: Plot RGB}
+\FunctionTok{plotRGB}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude
+\end{verbatim}
+
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-81-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 7: (Optional) Save to disk}
+\FunctionTok{png}\NormalTok{(}\AttributeTok{filename =} \StringTok{"green.png"}\NormalTok{, }\AttributeTok{width =}\NormalTok{ width, }\AttributeTok{height =}\NormalTok{ height, }\AttributeTok{units =} \StringTok{"px"}\NormalTok{)}
+\FunctionTok{plotRGB}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## cairo_pdf 
+##         2
+\end{verbatim}
+
+\hypertarget{example-4-generating-a-random-rgb-image}{%
+\subsubsection{Example 4: Generating a random RGB image}\label{example-4-generating-a-random-rgb-image}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 1: Define the width and height of the image}
+\NormalTok{width }\OtherTok{=} \DecValTok{300}\NormalTok{; }
+\NormalTok{height }\OtherTok{=} \DecValTok{300}
+
+\CommentTok{\# Step 2: Define the number of layers (RGB = 3)}
+\NormalTok{layers }\OtherTok{=} \DecValTok{3}
+
+\CommentTok{\# Step 3: Draw random color intensities from a standard{-}normal distribution}
+\NormalTok{shades\_of\_red }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ width}\SpecialCharTok{*}\NormalTok{height, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{shades\_of\_green }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ width}\SpecialCharTok{*}\NormalTok{height, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{shades\_of\_blue }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ width}\SpecialCharTok{*}\NormalTok{height, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The color intensity must be in the range 0 to 255, however, our values are
+standard normally distributed around 0:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{density}\NormalTok{(shades\_of\_red))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-83-1.pdf}
+We first normalize them to a range of 0 to 1 using the formula:
+\(z_i = \frac{x_i - min(x)}{max(x)-min(x)}\)
+and subsequently multiply by 255:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 4: Normalize to 0,255 range of values}
+\NormalTok{shades\_of\_red }\OtherTok{=}\NormalTok{ (shades\_of\_red }\SpecialCharTok{{-}} \FunctionTok{min}\NormalTok{(shades\_of\_red))}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{max}\NormalTok{(shades\_of\_red)}\SpecialCharTok{{-}}\FunctionTok{min}\NormalTok{(shades\_of\_red))}\SpecialCharTok{*}\DecValTok{255}
+\NormalTok{shades\_of\_green }\OtherTok{=}\NormalTok{ (shades\_of\_green }\SpecialCharTok{{-}} \FunctionTok{min}\NormalTok{(shades\_of\_green))}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{max}\NormalTok{(shades\_of\_green)}\SpecialCharTok{{-}}\FunctionTok{min}\NormalTok{(shades\_of\_green))}\SpecialCharTok{*}\DecValTok{255}
+\NormalTok{shades\_of\_blue }\OtherTok{=}\NormalTok{ (shades\_of\_blue }\SpecialCharTok{{-}} \FunctionTok{min}\NormalTok{(shades\_of\_blue))}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{max}\NormalTok{(shades\_of\_blue)}\SpecialCharTok{{-}}\FunctionTok{min}\NormalTok{(shades\_of\_blue))}\SpecialCharTok{*}\DecValTok{255}
+
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{density}\NormalTok{(shades\_of\_red))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-84-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 5: Generate three matrices corresponding to Red, Green, and Blue values}
+\NormalTok{red }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(shades\_of\_red, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+\NormalTok{green }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(shades\_of\_green, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+\NormalTok{blue }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(shades\_of\_blue, }\AttributeTok{nrow =}\NormalTok{ height, }\AttributeTok{ncol =}\NormalTok{ width)}
+
+\CommentTok{\# Step 6: Generate an array by combining the three matrices}
+\NormalTok{image.array }\OtherTok{=} \FunctionTok{array}\NormalTok{(}\FunctionTok{c}\NormalTok{(red, green, blue), }\AttributeTok{dim =} \FunctionTok{c}\NormalTok{(width, height, layers))}
+\FunctionTok{dim}\NormalTok{(image.array)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 300 300   3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 7: Create RasterBrick}
+\NormalTok{image }\OtherTok{=} \FunctionTok{brick}\NormalTok{(image.array)}
+\FunctionTok{print}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class      : RasterBrick 
+## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
+## resolution : 0.003333, 0.003333  (x, y)
+## extent     : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+## crs        : NA 
+## source     : memory
+## names      : layer.1, layer.2, layer.3 
+## min values :       0,       0,       0 
+## max values :     255,     255,     255
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Step 8: Plot RGB}
+\FunctionTok{plotRGB}\NormalTok{(image)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS
+## is NA. Assuming it is longitude/latitude
+\end{verbatim}
+
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-84-2.pdf}
+
+From the examples above, you recognize that in order to generate/manipulate raster images in R, we basically generate/manipulate matrices/arrays (i.e., structures very common to any data analytics task in R). Several additional R packages come with pre-defined functions for more advanced image manipulations in R.
+
+\hypertarget{advanced-image-manipulation-using-imagemagick}{%
+\subsection{Advanced Image Manipulation using ImageMagick}\label{advanced-image-manipulation-using-imagemagick}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load package}
+\FunctionTok{library}\NormalTok{(magick)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Linking to ImageMagick 6.9.12.3
+## Enabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp
+## Disabled features: fftw, ghostscript, x11
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We can import images from the web}
+\NormalTok{frink }\OtherTok{\textless{}{-}} \FunctionTok{image\_read}\NormalTok{(}\StringTok{"https://jeroen.github.io/images/frink.png"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(frink)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 7
+##   format width height colorspace matte filesize density
+##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
+## 1 PNG      220    445 sRGB       TRUE     73494 72x72
+\end{verbatim}
+
+\includegraphics[width=3.06in]{datahandling_files/figure-latex/unnamed-chunk-85-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Rotate}
+\FunctionTok{image\_rotate}\NormalTok{(frink, }\DecValTok{45}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=6.56in]{datahandling_files/figure-latex/unnamed-chunk-85-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Flip}
+\FunctionTok{image\_flip}\NormalTok{(frink)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=3.06in]{datahandling_files/figure-latex/unnamed-chunk-85-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Flop}
+\FunctionTok{image\_flop}\NormalTok{(frink)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=3.06in]{datahandling_files/figure-latex/unnamed-chunk-85-4}
+
+\hypertarget{working-with-ocr-optical-character-recognition}{%
+\subsection{Working with OCR (Optical Character Recognition)}\label{working-with-ocr-optical-character-recognition}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# For Optical Character Recognition}
+\FunctionTok{library}\NormalTok{(tesseract)}
+
+\NormalTok{img }\OtherTok{\textless{}{-}} \FunctionTok{image\_read}\NormalTok{(}\StringTok{"https://s3.amazonaws.com/libapps/accounts/30502/images/new\_york\_times.png"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(img)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 7
+##   format width height colorspace matte filesize density
+##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
+## 1 PNG      806    550 sRGB       FALSE   714189 38x38
+\end{verbatim}
+
+\includegraphics[width=11.19in]{datahandling_files/figure-latex/unnamed-chunk-86-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{headline }\OtherTok{\textless{}{-}} 
+  \FunctionTok{image\_crop}\NormalTok{(}\AttributeTok{image =}\NormalTok{ img, }\AttributeTok{geometry =} \StringTok{\textquotesingle{}806x180\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{headline}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=11.19in]{datahandling_files/figure-latex/unnamed-chunk-86-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Extract text}
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{image\_ocr}\NormalTok{(headline))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The New Work Times. [==S=
+## 
+## TITANIC SINKS FOUR HOURS AFTER HITTING ICEBERG;
+## 866 RESCUED BY CARPATHIA, PROBABLY 1250 PERISH;
+## ISMAY SAFE, MRS. ASTOR MAYBE, NOTED NAMES MISSING
 \end{verbatim}
 
 \hypertarget{data-sources-data-gathering-data-import}{%
@@ -2711,13 +3230,11 @@ For example, we can parse the first lines of the swiss dataset directly like thi
 
 \begin{verbatim}
 ## # A tibble: 1 x 7
-##   District   Fertility Agricu~1 Exami~2 Educa~3 Catho~4
-##   <chr>          <dbl>    <dbl>   <dbl>   <dbl>   <dbl>
-## 1 Courtelary      80.2       17      15      12    9.96
-## # ... with 1 more variable: Infant.Mortality <dbl>,
-## #   and abbreviated variable names 1: Agriculture,
-## #   2: Examination, 3: Education, 4: Catholic
-## # i Use `colnames()` to see all variable names
+##   District  Fertility Agriculture Examination Education
+##   <chr>         <dbl>       <dbl>       <dbl>     <dbl>
+## 1 Courtela~      80.2          17          15        12
+## # ... with 2 more variables: Catholic <dbl>,
+## #   Infant.Mortality <dbl>
 \end{verbatim}
 
 or read the entire \texttt{swiss} dataset by pointing to the file
@@ -2749,23 +3266,20 @@ In either case, the result is a \texttt{tibble}:
 
 \begin{verbatim}
 ## # A tibble: 47 x 7
-##    District     Ferti~1 Agric~2 Exami~3 Educa~4 Catho~5
-##    <chr>          <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
-##  1 Courtelary      80.2    17        15      12    9.96
-##  2 Delemont        83.1    45.1       6       9   84.8 
-##  3 Franches-Mnt    92.5    39.7       5       5   93.4 
-##  4 Moutier         85.8    36.5      12       7   33.8 
-##  5 Neuveville      76.9    43.5      17      15    5.16
-##  6 Porrentruy      76.1    35.3       9       7   90.6 
-##  7 Broye           83.8    70.2      16       7   92.8 
-##  8 Glane           92.4    67.8      14       8   97.2 
-##  9 Gruyere         82.4    53.3      12       7   97.7 
-## 10 Sarine          82.9    45.2      16      13   91.4 
-## # ... with 37 more rows, 1 more variable:
-## #   Infant.Mortality <dbl>, and abbreviated variable
-## #   names 1: Fertility, 2: Agriculture,
-## #   3: Examination, 4: Education, 5: Catholic
-## # i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
+##    District Fertility Agriculture Examination Education
+##    <chr>        <dbl>       <dbl>       <dbl>     <dbl>
+##  1 Courtel~      80.2        17            15        12
+##  2 Delemont      83.1        45.1           6         9
+##  3 Franche~      92.5        39.7           5         5
+##  4 Moutier       85.8        36.5          12         7
+##  5 Neuvevi~      76.9        43.5          17        15
+##  6 Porrent~      76.1        35.3           9         7
+##  7 Broye         83.8        70.2          16         7
+##  8 Glane         92.4        67.8          14         8
+##  9 Gruyere       82.4        53.3          12         7
+## 10 Sarine        82.9        45.2          16        13
+## # ... with 37 more rows, and 2 more variables:
+## #   Catholic <dbl>, Infant.Mortality <dbl>
 \end{verbatim}
 
 The other \texttt{readr} functions have practically the same syntax and behavior. They are used for fixed-width files or CSV-type files with other delimiters than commas.
@@ -3451,7 +3965,7 @@ This tutorial guides you step-by-step through the cleaning script (with a few ad
 
 The aim of the tutorial is to get the data in the form needed for the following plot.
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-130-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-140-1.pdf}
 
 The first few rows and columns of the final dataset should combine the two source datasets and look as follows:
 
@@ -3463,22 +3977,21 @@ The first few rows and columns of the final dataset should combine the two sourc
 
 \begin{verbatim}
 ## # A tibble: 6 x 32
-##   hotel is_ca~1 lead_~2 arriv~3 arriv~4 arriv~5 arriv~6
-##   <chr>   <dbl>   <dbl>   <dbl> <chr>     <dbl>   <dbl>
-## 1 Reso~       0     342    2015 July         27       1
-## 2 Reso~       0     737    2015 July         27       1
-## 3 Reso~       0       7    2015 July         27       1
-## 4 Reso~       0      13    2015 July         27       1
-## 5 Reso~       0      14    2015 July         27       1
-## 6 Reso~       0      14    2015 July         27       1
-## # ... with 25 more variables:
+##   hotel        is_canceled lead_time arrival_date_year
+##   <chr>              <dbl>     <dbl>             <dbl>
+## 1 Resort Hotel           0       342              2015
+## 2 Resort Hotel           0       737              2015
+## 3 Resort Hotel           0         7              2015
+## 4 Resort Hotel           0        13              2015
+## 5 Resort Hotel           0        14              2015
+## 6 Resort Hotel           0        14              2015
+## # ... with 28 more variables:
+## #   arrival_date_month <chr>,
+## #   arrival_date_week_number <dbl>,
+## #   arrival_date_day_of_month <dbl>,
 ## #   stays_in_weekend_nights <dbl>,
 ## #   stays_in_week_nights <dbl>, adults <dbl>,
-## #   children <dbl>, babies <dbl>, meal <chr>,
-## #   country <chr>, market_segment <chr>,
-## #   distribution_channel <chr>,
-## #   is_repeated_guest <dbl>, ...
-## # i Use `colnames()` to see all variable names
+## #   children <dbl>, babies <dbl>, meal <chr>, ...
 \end{verbatim}
 
 \hypertarget{set-up-and-import}{%
@@ -3529,22 +4042,21 @@ In the next step, we clean the column names and add columns to clarify which of 
 
 \begin{verbatim}
 ## # A tibble: 6 x 32
-##   is_canceled lead_time arriv~1 arriv~2 arriv~3 arriv~4
-##         <dbl>     <dbl>   <dbl> <chr>     <dbl>   <dbl>
-## 1           0       342    2015 July         27       1
-## 2           0       737    2015 July         27       1
-## 3           0         7    2015 July         27       1
-## 4           0        13    2015 July         27       1
-## 5           0        14    2015 July         27       1
-## 6           0        14    2015 July         27       1
-## # ... with 26 more variables:
+##   is_canceled lead_time arrival_date_year
+##         <dbl>     <dbl>             <dbl>
+## 1           0       342              2015
+## 2           0       737              2015
+## 3           0         7              2015
+## 4           0        13              2015
+## 5           0        14              2015
+## 6           0        14              2015
+## # ... with 29 more variables:
+## #   arrival_date_month <chr>,
+## #   arrival_date_week_number <dbl>,
+## #   arrival_date_day_of_month <dbl>,
 ## #   stays_in_weekend_nights <dbl>,
 ## #   stays_in_week_nights <dbl>, adults <dbl>,
-## #   children <dbl>, babies <dbl>, meal <chr>,
-## #   country <chr>, market_segment <chr>,
-## #   distribution_channel <chr>,
-## #   is_repeated_guest <dbl>, ...
-## # i Use `colnames()` to see all variable names
+## #   children <dbl>, babies <dbl>, meal <chr>, ...
 \end{verbatim}
 
 \hypertarget{data-analysis-first-steps}{%
@@ -3890,24 +4402,22 @@ Before diving into the data import and cleaning, it is helpful to first open the
 
 \begin{verbatim}
 ## # A tibble: 61 x 11
-##    Rank...1 Name...2 Count...3 since 20~1 since~2 ...6 
-##    <chr>    <chr>        <dbl> <chr>      <chr>   <lgl>
-##  1 <NA>     <NA>            NA <NA>       <NA>    NA   
-##  2 1        OLIVER        6941 ­           +4      NA   
-##  3 2        JACK          5371 ­           -1      NA   
-##  4 3        HARRY         5308 ­           +6      NA   
-##  5 4        GEORGE        4869 +3         +13     NA   
-##  6 5        JACOB         4850 -1         +16     NA   
-##  7 6        CHARLIE       4831 -1         +6      NA   
-##  8 7        NOAH          4148 +4         +44     NA   
-##  9 8        WILLIAM       4083 +2         ­        NA   
-## 10 9        THOMAS        4075 -3         -6      NA   
-## # ... with 51 more rows, 5 more variables:
+##    Rank...1 Name...2 Count...3 `since 2014...4`
+##    <chr>    <chr>        <dbl> <chr>           
+##  1 <NA>     <NA>            NA <NA>            
+##  2 1        OLIVER        6941 ­                
+##  3 2        JACK          5371 ­                
+##  4 3        HARRY         5308 ­                
+##  5 4        GEORGE        4869 +3              
+##  6 5        JACOB         4850 -1              
+##  7 6        CHARLIE       4831 -1              
+##  8 7        NOAH          4148 +4              
+##  9 8        WILLIAM       4083 +2              
+## 10 9        THOMAS        4075 -3              
+## # ... with 51 more rows, and 7 more variables:
+## #   `since 2005...5` <chr>, ...6 <lgl>,
 ## #   Rank...7 <chr>, Name...8 <chr>, Count...9 <dbl>,
-## #   `since 2014...10` <chr>, `since 2005...11` <chr>,
-## #   and abbreviated variable names
-## #   1: `since 2014...4`, 2: `since 2005...5`
-## # i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
+## #   `since 2014...10` <chr>, `since 2005...11` <chr>
 \end{verbatim}
 
 Note that by default, \texttt{read\_excel()} ``repairs'' the column names of imported datasets to ensure all columns have unique names. We do not need to worry about the automatically assigned column names. However, some of the columns are not needed for analytics purposes. In addition, we note that some rows are empty (contain \texttt{NA} values). In the next step we \emph{select} only those columns needed and \emph{filter} incomplete observations out.
@@ -3962,7 +4472,6 @@ Finally, we re-arrange the data by stacking them in a three-column format.
 ##  9 9     THOMAS   4075
 ## 10 10    OSCAR    4066
 ## # ... with 104 more rows
-## # i Use `print(n = ...)` to see more rows
 \end{verbatim}
 
 \hypertarget{basic-econometrics-in-r}{%
@@ -4033,7 +4542,7 @@ We can illustrate how \(y\) changes when \(x\) increases by plotting the raw dat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-156-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-166-1.pdf}
 
 We see that while individual observations can be way off the true values (the red line), `on average' the observations seem to follow the true relationship between \(x\) and \(y\). We can look at this closely by computing the average observed \(y\)-values for different intervals along the \(x\)-axis.
 
@@ -4062,7 +4571,7 @@ We see that while individual observations can be way off the true values (the re
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-157-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 The average values are much closer to the real values. That is, we can `average out' the \(u\) to get a good estimate for the effect of \(x\) on \(y\) (to get an estimate of \(\beta\)). With this understanding, we can now formalize how to compute \(\beta\) (or, to be more precise, an estimate of it: \(\hat{\beta}\)). For simplicity, we take \(\alpha=30\) as given.
 
@@ -4132,7 +4641,7 @@ First, look at how these two variables are jointly distributed with a scatter pl
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-161-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-171-1.pdf}
 There seems to be a positive relationship between the years of schooling and examination success. Considering the raw data, we can formulate the problem of estimating the parameters of interest (\(\alpha\) and \(\beta\)) as the question: What is the best way to draw a straight trend line through the cloud of dots? To further specify the problem, we need to specify a criterion to judge whether such a line `fits' the data well. A rather intuitive measure is the sum of the squared differences between the line and the actual data points on the \(y\)-axis. That is, we compare what \(y\)-value we would get for a given \(x\)-value according to our trend-line (i.e., the function defining this line) with the actual \(y\)-value in the data (for simplicity, we use the general formulation with \(y\) as the dependent and \(x\) as the explanatory variable).
 
 \hypertarget{derivation-and-implementation-of-ols-estimator}{%
@@ -4196,7 +4705,7 @@ Finally, we can visually inspect the estimated parameters (i.e., does the line f
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-163-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-173-1.pdf}
 
 The fit looks rather reasonable. There seems to be indeed a positive relationship between Education and Examination. In the next step, we would likely want to know whether we can say something meaningful about how precisely this relationship is measured statistically (i.e., how `significant' \(\hat{\beta}\) is). We will leave this issue for another class.
 
@@ -4462,7 +4971,7 @@ We initiate the most basic plot with \texttt{ggplot()} by defining which data to
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-173-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-183-1}
 
 As we have not yet defined according to what rules the data shall be visualized, all we get is an empty `canvas' and the axes (with the respective label and ticks indicating the range of the values).
 
@@ -4478,7 +4987,7 @@ To actually plot the data, we have to define the `geometries', defined according
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-174-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-184-1}
 
 The result indicates a positive correlation between the level of education and how well draftees do in the examination. We want to understand this correlation better. Particularly what other factors could drive this picture?
 
@@ -4495,7 +5004,7 @@ According to a popular thesis, the protestant reformation and the spread of the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-175-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-185-1}
 
 Draftees from protestant districts tend to do generally better (which might indicate better primary schools or a generally stronger focus on the educational achievements of Protestant children). However, the relationship between education (beyond primary schools) and examination success seems to hold for either type of district.
 
@@ -4517,7 +5026,7 @@ Let's visualize this relationship more clearly by drawing trend lines through th
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-176-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-186-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4532,7 +5041,7 @@ Let's visualize this relationship more clearly by drawing trend lines through th
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-177-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-187-1}
 
 \hypertarget{additional-aesthetics}{%
 \subsubsection{Additional aesthetics}\label{additional-aesthetics}}
@@ -4552,7 +5061,7 @@ Knowing a little about Swiss history and geography, we realize that rural canton
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-178-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-188-1}
 
 The resulting picture is in line with what we have expected. Overall, the districts with a lower share of agricultural occupation tend to have higher levels of education and achievements in the examination.
 
@@ -4575,7 +5084,7 @@ Finally, there are countless options to refine the plot further. For example, we
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-179-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-189-1}
 
 In addition, the \texttt{theme()}-function allows changing almost every aspect of the plot (margins, font face, font size, etc.). For example, we might prefer to have the plot legend at the bottom and have larger axis labels.
 
@@ -4593,7 +5102,7 @@ In addition, the \texttt{theme()}-function allows changing almost every aspect o
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-180-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-190-1}
 
 Moreover, several theme templates offer ready-made designs for plots:
 
@@ -4611,7 +5120,7 @@ Moreover, several theme templates offer ready-made designs for plots:
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-181-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-191-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4627,7 +5136,7 @@ Moreover, several theme templates offer ready-made designs for plots:
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-182-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-192-1}
 
 \hypertarget{dynamic-documents}{%
 \section{Dynamic documents}\label{dynamic-documents}}
@@ -4693,14 +5202,14 @@ The original raw data is provided in a zip-file (compressed file). The code chun
 
 \begin{verbatim}
 ## # A tibble: 6 x 20
-##   measure     county  report_date cases deaths cases_~1
-##   <chr>       <chr>   <date>      <dbl>  <dbl>    <dbl>
-## 1 state_total Georgia 2020-02-01      0      0        0
-## 2 state_total Georgia 2020-02-02      0      0        0
-## 3 state_total Georgia 2020-02-03      0      0        0
-## 4 state_total Georgia 2020-02-04      0      0        0
-## 5 state_total Georgia 2020-02-05      0      0        0
-## 6 state_total Georgia 2020-02-06      0      0        0
+##   measure     county report_date cases deaths cases_cum
+##   <chr>       <chr>  <date>      <dbl>  <dbl>     <dbl>
+## 1 state_total Georg~ 2020-02-01      0      0         0
+## 2 state_total Georg~ 2020-02-02      0      0         0
+## 3 state_total Georg~ 2020-02-03      0      0         0
+## 4 state_total Georg~ 2020-02-04      0      0         0
+## 5 state_total Georg~ 2020-02-05      0      0         0
+## 6 state_total Georg~ 2020-02-06      0      0         0
 ## # ... with 14 more variables: death_cum <dbl>,
 ## #   moving_avg_cases <dbl>, moving_avg_deaths <dbl>,
 ## #   antigen_cases <dbl>, probable_deaths <dbl>,
@@ -4708,7 +5217,6 @@ The original raw data is provided in a zip-file (compressed file). The code chun
 ## #   confirmed_case_hospitalization <dbl>,
 ## #   antigen_cases_cum <dbl>,
 ## #   probable_deaths_cum <dbl>, total_cases <dbl>, ...
-## # i Use `colnames()` to see all variable names
 \end{verbatim}
 
 Once the data is imported, we select/filter the part of the dataset used in the original bar plot. Note the tidyverse-functions introduced in previous lectures to prepare an analytic dataset out of the raw data efficiently. At one point, we use the \texttt{order()}-function to order the observations according to the report date of covid cases. This is done when displaying the frequency of cases over time. This way, in the following plot, the x-axis serves as a time axis, displaying the date of the corresponding reported case numbers from the beginning of the observation period on the left to the end of the observation period on the right).
@@ -4739,7 +5247,7 @@ First, we show what the actual (honest) plot would essentially look like.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-186-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-196-1}
 
 There is no obvious downward trend visible. Now, let us look at what steps are involved in manipulating the visualization in order to give the wrong impression of a downward trend. Importantly, all the manipulation is purely done via the data plotting. We do not touch/manipulate the underlying data (such as removing observations or falsifying numbers).
 
@@ -4755,7 +5263,7 @@ Two things become apparent when comparing the original plot with what we have so
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-187-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-197-1}
 
 Note that the number of cases is not exactly the same as in the original. Quite the reason for this is that the numbers have been updated during May. Given that the overall pattern is very similar, there is no reason to believe that the actual numbers underlying the original figure had been manipulated too. Now, let us address the second aspect (ordering of bars per date). For this, we use the \texttt{group} aesthetic, indicating to \texttt{ggplot} that we want the number of cases to be used to order the bars within each point in time (date). Setting \texttt{position\_dodge2(reverse=TRUE)} simply means we want the bars per date to be ordered in decreasing order (per default, it would be increasing; try out the difference by changing it to \texttt{position\_dodge2(reverse=FALSE)} or simply \texttt{position\_dodge2()}).
 
@@ -4767,7 +5275,7 @@ Note that the number of cases is not exactly the same as in the original. Quite 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-188-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-198-1}
 
 This already looks much more like the original plot.
 
@@ -4803,7 +5311,7 @@ Finally, we tweaked the plot's theme to make it look more similar to the origina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-189-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-199-1}
 
 \backmatter
 
@@ -4827,7 +5335,7 @@ Finally, we tweaked the plot's theme to make it look more similar to the origina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-190-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-200-1.pdf}
 
 \hypertarget{illustration-of-variability}{%
 \subsection{Illustration of variability}\label{illustration-of-variability}}
@@ -4846,7 +5354,7 @@ Finally, we tweaked the plot's theme to make it look more similar to the origina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-191-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-201-1.pdf}
 
 \textbf{Note:} the red curve illustrates the distribution of the sample with a large standard deviation (a lot of variability) whereas the blue curve illustrates the one with a rather small standard deviation.
 
@@ -4881,7 +5389,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-193-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-203-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4889,7 +5397,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-193-2.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-203-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4913,7 +5421,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-193-3.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-203-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4947,7 +5455,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-194-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4970,7 +5478,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-194-2.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
