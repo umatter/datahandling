@@ -33,7 +33,7 @@ remove_images <-
     if (!delete) {
       # move the unused images
       copied <- file.copy(from = images_not_used,
-                to = img_archive)
+                to = img_archive, overwrite = TRUE)
       if (all(copied)){
         lapply(images_not_used, unlink)
       }
