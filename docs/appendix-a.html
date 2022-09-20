@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-19" />
+<meta name="date" content="2022-09-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="data-visualization.html"/>
-
+<link rel="next" href="references.html"/>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -158,7 +158,10 @@ div.csl-indent {
 <li><a href="./">Data Handling</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites-and-aims"><i class="fa fa-check"></i>Prerequisites and aims</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>2</b> Programming with Data</a>
 <ul>
@@ -233,12 +236,15 @@ div.csl-indent {
 <li class="chapter" data-level="7" data-path="image-data.html"><a href="image-data.html"><i class="fa fa-check"></i><b>7</b> Image data</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="image-data.html"><a href="image-data.html#image-data-structure-and-storage"><i class="fa fa-check"></i><b>7.1</b> Image data structure and storage</a></li>
-<li class="chapter" data-level="7.2" data-path="image-data.html"><a href="image-data.html#vector-images-in-r"><i class="fa fa-check"></i><b>7.2</b> Vector images in R</a></li>
-<li class="chapter" data-level="7.3" data-path="image-data.html"><a href="image-data.html#raster-images-in-r"><i class="fa fa-check"></i><b>7.3</b> Raster images in R</a>
+<li class="chapter" data-level="7.2" data-path="image-data.html"><a href="image-data.html#raster-images-in-r"><i class="fa fa-check"></i><b>7.2</b> Raster images in R</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="image-data.html"><a href="image-data.html#basic-data-structure"><i class="fa fa-check"></i><b>7.3.1</b> Basic data structure</a></li>
-<li class="chapter" data-level="7.3.2" data-path="image-data.html"><a href="image-data.html#advanced-image-manipulation-using-imagemagick"><i class="fa fa-check"></i><b>7.3.2</b> Advanced Image Manipulation using ImageMagick</a></li>
-<li class="chapter" data-level="7.3.3" data-path="image-data.html"><a href="image-data.html#working-with-ocr-optical-character-recognition"><i class="fa fa-check"></i><b>7.3.3</b> Working with OCR (Optical Character Recognition)</a></li>
+<li class="chapter" data-level="7.2.1" data-path="image-data.html"><a href="image-data.html#basic-data-structure"><i class="fa fa-check"></i><b>7.2.1</b> Basic data structure</a></li>
+<li class="chapter" data-level="7.2.2" data-path="image-data.html"><a href="image-data.html#advanced-image-manipulation-using-imagemagick"><i class="fa fa-check"></i><b>7.2.2</b> Advanced Image Manipulation using ImageMagick</a></li>
+<li class="chapter" data-level="7.2.3" data-path="image-data.html"><a href="image-data.html#working-with-ocr-optical-character-recognition"><i class="fa fa-check"></i><b>7.2.3</b> Working with OCR (Optical Character Recognition)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="image-data.html"><a href="image-data.html#vector-images-in-r"><i class="fa fa-check"></i><b>7.3</b> Vector Images in R</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="image-data.html"><a href="image-data.html#example-maps"><i class="fa fa-check"></i><b>7.3.1</b> Example: Maps</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html"><i class="fa fa-check"></i><b>8</b> Data Sources, Data Gathering, Data Import</a>
@@ -342,6 +348,7 @@ div.csl-indent {
 <li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
 
@@ -368,98 +375,98 @@ div.csl-indent {
 <h2><span class="header-section-number">A.1</span> Understanding statistics and probability with code<a href="appendix-a.html#understanding-statistics-and-probability-with-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="random-draws-and-distributions" class="section level3 hasAnchor" number="13.1.1">
 <h3><span class="header-section-number">A.1.1</span> Random draws and distributions<a href="appendix-a.html#random-draws-and-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="appendix-a.html#cb395-1" aria-hidden="true" tabindex="-1"></a>normal_distr <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
-<span id="cb395-2"><a href="appendix-a.html#cb395-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(normal_distr)</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-200-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="appendix-a.html#cb402-1" aria-hidden="true" tabindex="-1"></a>normal_distr <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb402-2"><a href="appendix-a.html#cb402-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(normal_distr)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-201-1.svg" width="672" /></p>
 </div>
 <div id="illustration-of-variability" class="section level3 hasAnchor" number="13.1.2">
 <h3><span class="header-section-number">A.1.2</span> Illustration of variability<a href="appendix-a.html#illustration-of-variability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="appendix-a.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample from a normal distribution with a large standard deviation</span></span>
-<span id="cb396-2"><a href="appendix-a.html#cb396-2" aria-hidden="true" tabindex="-1"></a>largevar <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">5000</span>, <span class="at">sd =</span> <span class="dv">5</span>)</span>
-<span id="cb396-3"><a href="appendix-a.html#cb396-3" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample from a normal distribution with a small standard deviation</span></span>
-<span id="cb396-4"><a href="appendix-a.html#cb396-4" aria-hidden="true" tabindex="-1"></a>littlevar <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">5000</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb396-5"><a href="appendix-a.html#cb396-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb396-6"><a href="appendix-a.html#cb396-6" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the distributions of both samples with a density plot</span></span>
-<span id="cb396-7"><a href="appendix-a.html#cb396-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(littlevar), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
-<span id="cb396-8"><a href="appendix-a.html#cb396-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fu">min</span>(largevar), <span class="fu">max</span>(largevar)), <span class="at">main=</span><span class="st">&quot;Income Distribution&quot;</span>)</span>
-<span id="cb396-9"><a href="appendix-a.html#cb396-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(largevar), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-201-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="appendix-a.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample from a normal distribution with a large standard deviation</span></span>
+<span id="cb403-2"><a href="appendix-a.html#cb403-2" aria-hidden="true" tabindex="-1"></a>largevar <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">5000</span>, <span class="at">sd =</span> <span class="dv">5</span>)</span>
+<span id="cb403-3"><a href="appendix-a.html#cb403-3" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample from a normal distribution with a small standard deviation</span></span>
+<span id="cb403-4"><a href="appendix-a.html#cb403-4" aria-hidden="true" tabindex="-1"></a>littlevar <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">5000</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb403-5"><a href="appendix-a.html#cb403-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb403-6"><a href="appendix-a.html#cb403-6" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the distributions of both samples with a density plot</span></span>
+<span id="cb403-7"><a href="appendix-a.html#cb403-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(littlevar), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb403-8"><a href="appendix-a.html#cb403-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fu">min</span>(largevar), <span class="fu">max</span>(largevar)), <span class="at">main=</span><span class="st">&quot;Income Distribution&quot;</span>)</span>
+<span id="cb403-9"><a href="appendix-a.html#cb403-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(largevar), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-202-1.svg" width="672" /></p>
 <p><strong>Note:</strong> the red curve illustrates the distribution of the sample with a large standard deviation (a lot of variability) whereas the blue curve illustrates the one with a rather small standard deviation.</p>
 </div>
 <div id="skewness-and-kurtosis" class="section level3 hasAnchor" number="13.1.3">
 <h3><span class="header-section-number">A.1.3</span> Skewness and Kurtosis<a href="appendix-a.html#skewness-and-kurtosis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="appendix-a.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the R-package called &quot;moments&quot; with the following command (if not installed yet):</span></span>
-<span id="cb397-2"><a href="appendix-a.html#cb397-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;moments&quot;)</span></span>
-<span id="cb397-3"><a href="appendix-a.html#cb397-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb397-4"><a href="appendix-a.html#cb397-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package</span></span>
-<span id="cb397-5"><a href="appendix-a.html#cb397-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(moments)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="appendix-a.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the R-package called &quot;moments&quot; with the following command (if not installed yet):</span></span>
+<span id="cb404-2"><a href="appendix-a.html#cb404-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;moments&quot;)</span></span>
+<span id="cb404-3"><a href="appendix-a.html#cb404-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb404-4"><a href="appendix-a.html#cb404-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package</span></span>
+<span id="cb404-5"><a href="appendix-a.html#cb404-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(moments)</span></code></pre></div>
 <div id="skewness" class="section level4 hasAnchor" number="13.1.3.1">
 <h4><span class="header-section-number">A.1.3.1</span> Skewness<a href="appendix-a.html#skewness" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Skewness refers to how symmetric the frequency distribution of a variable is. For example, a distribution can be ‘positively skewed’ meaning it has a long tail on the right and a lot of ‘mass’ (observations) on the left. We can see that when visualizing the distribution in a histogram or a density plot. In R this looks as follow (consider the comments in the code explaining what each line does):</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="appendix-a.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample of simulated data from a normal distribution</span></span>
-<span id="cb398-2"><a href="appendix-a.html#cb398-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample is of size 1000 (hence, n = 1000)</span></span>
-<span id="cb398-3"><a href="appendix-a.html#cb398-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>)</span>
-<span id="cb398-4"><a href="appendix-a.html#cb398-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb398-5"><a href="appendix-a.html#cb398-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a histogram and a density plot of that sample</span></span>
-<span id="cb398-6"><a href="appendix-a.html#cb398-6" aria-hidden="true" tabindex="-1"></a><span class="co"># note that the distribution is neither strongly positively nor negatively skewed</span></span>
-<span id="cb398-7"><a href="appendix-a.html#cb398-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (this is to be expected, as we have drawn a sample from a normal distribution)</span></span>
-<span id="cb398-8"><a href="appendix-a.html#cb398-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample)</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-203-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="appendix-a.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-203-2.svg" width="672" /></p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="appendix-a.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now compute the skewness</span></span>
-<span id="cb400-2"><a href="appendix-a.html#cb400-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(sample)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="appendix-a.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample of simulated data from a normal distribution</span></span>
+<span id="cb405-2"><a href="appendix-a.html#cb405-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample is of size 1000 (hence, n = 1000)</span></span>
+<span id="cb405-3"><a href="appendix-a.html#cb405-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>)</span>
+<span id="cb405-4"><a href="appendix-a.html#cb405-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb405-5"><a href="appendix-a.html#cb405-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a histogram and a density plot of that sample</span></span>
+<span id="cb405-6"><a href="appendix-a.html#cb405-6" aria-hidden="true" tabindex="-1"></a><span class="co"># note that the distribution is neither strongly positively nor negatively skewed</span></span>
+<span id="cb405-7"><a href="appendix-a.html#cb405-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (this is to be expected, as we have drawn a sample from a normal distribution)</span></span>
+<span id="cb405-8"><a href="appendix-a.html#cb405-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-204-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="appendix-a.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-204-2.svg" width="672" /></p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="appendix-a.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now compute the skewness</span></span>
+<span id="cb407-2"><a href="appendix-a.html#cb407-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(sample)</span></code></pre></div>
 <pre><code>## [1] -0.01866</code></pre>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="appendix-a.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we intentionally change our sample to be strongly positively skewed</span></span>
-<span id="cb402-2"><a href="appendix-a.html#cb402-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We do that by adding some outliers (observations with very high values) to the sample </span></span>
-<span id="cb402-3"><a href="appendix-a.html#cb402-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">c</span>(sample, (<span class="fu">rnorm</span>(<span class="dv">200</span>) <span class="sc">+</span> <span class="dv">2</span>), (<span class="fu">rnorm</span>(<span class="dv">200</span>) <span class="sc">+</span> <span class="dv">3</span>))</span>
-<span id="cb402-4"><a href="appendix-a.html#cb402-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb402-5"><a href="appendix-a.html#cb402-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Have a look at the distribution and re-calculate the skewness</span></span>
-<span id="cb402-6"><a href="appendix-a.html#cb402-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-203-3.svg" width="672" /></p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="appendix-a.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(sample)</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="appendix-a.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we intentionally change our sample to be strongly positively skewed</span></span>
+<span id="cb409-2"><a href="appendix-a.html#cb409-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We do that by adding some outliers (observations with very high values) to the sample </span></span>
+<span id="cb409-3"><a href="appendix-a.html#cb409-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">c</span>(sample, (<span class="fu">rnorm</span>(<span class="dv">200</span>) <span class="sc">+</span> <span class="dv">2</span>), (<span class="fu">rnorm</span>(<span class="dv">200</span>) <span class="sc">+</span> <span class="dv">3</span>))</span>
+<span id="cb409-4"><a href="appendix-a.html#cb409-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb409-5"><a href="appendix-a.html#cb409-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Have a look at the distribution and re-calculate the skewness</span></span>
+<span id="cb409-6"><a href="appendix-a.html#cb409-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-204-3.svg" width="672" /></p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="appendix-a.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(sample)</span></code></pre></div>
 <pre><code>## [1] 0.4765</code></pre>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="appendix-a.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="appendix-a.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div>
 </div>
 <div id="kurtosis" class="section level4 hasAnchor" number="13.1.3.2">
 <h4><span class="header-section-number">A.1.3.2</span> Kurtosis<a href="appendix-a.html#kurtosis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Kurtosis refers to how much ‘mass’ a distribution has in its ‘tails’. It thus tells us something about whether a distribution tends to have a lot of outliers. Again, plotting the data can help us understand this concept of kurtosis. Lets have a look at this in R (consider the comments in the code explaining what each line does):</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="appendix-a.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample of simulated data from a normal distribution</span></span>
-<span id="cb406-2"><a href="appendix-a.html#cb406-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample is of size 1000 (hence, n = 1000)</span></span>
-<span id="cb406-3"><a href="appendix-a.html#cb406-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>)</span>
-<span id="cb406-4"><a href="appendix-a.html#cb406-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb406-5"><a href="appendix-a.html#cb406-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the density &amp; compute the kurtosis</span></span>
-<span id="cb406-6"><a href="appendix-a.html#cb406-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-204-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="appendix-a.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(sample)</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="appendix-a.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a random sample of simulated data from a normal distribution</span></span>
+<span id="cb413-2"><a href="appendix-a.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample is of size 1000 (hence, n = 1000)</span></span>
+<span id="cb413-3"><a href="appendix-a.html#cb413-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1000</span>)</span>
+<span id="cb413-4"><a href="appendix-a.html#cb413-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-5"><a href="appendix-a.html#cb413-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the density &amp; compute the kurtosis</span></span>
+<span id="cb413-6"><a href="appendix-a.html#cb413-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-205-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="appendix-a.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(sample)</span></code></pre></div>
 <pre><code>## [1] 2.763</code></pre>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="appendix-a.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now lets remove observations from the extremes in this distribution</span></span>
-<span id="cb409-2"><a href="appendix-a.html#cb409-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we thus intentionally alter the distribution to have less mass in its tails</span></span>
-<span id="cb409-3"><a href="appendix-a.html#cb409-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> sample[ sample <span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">0.6</span> <span class="sc">&amp;</span> sample <span class="sc">&lt;</span> <span class="fl">0.6</span>]</span>
-<span id="cb409-4"><a href="appendix-a.html#cb409-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb409-5"><a href="appendix-a.html#cb409-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the distribution again and see how the tails of it (and thus the kurtosis) has changed</span></span>
-<span id="cb409-6"><a href="appendix-a.html#cb409-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-204-2.svg" width="672" /></p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="appendix-a.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="co"># re-calculate the kurtosis</span></span>
-<span id="cb410-2"><a href="appendix-a.html#cb410-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(sample)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="appendix-a.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now lets remove observations from the extremes in this distribution</span></span>
+<span id="cb416-2"><a href="appendix-a.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we thus intentionally alter the distribution to have less mass in its tails</span></span>
+<span id="cb416-3"><a href="appendix-a.html#cb416-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> sample[ sample <span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">0.6</span> <span class="sc">&amp;</span> sample <span class="sc">&lt;</span> <span class="fl">0.6</span>]</span>
+<span id="cb416-4"><a href="appendix-a.html#cb416-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb416-5"><a href="appendix-a.html#cb416-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the distribution again and see how the tails of it (and thus the kurtosis) has changed</span></span>
+<span id="cb416-6"><a href="appendix-a.html#cb416-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(sample))</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-205-2.svg" width="672" /></p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="appendix-a.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="co"># re-calculate the kurtosis</span></span>
+<span id="cb417-2"><a href="appendix-a.html#cb417-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(sample)</span></code></pre></div>
 <pre><code>## [1] 1.888</code></pre>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="appendix-a.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as expected, the kurtosis has now a lower value</span></span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="appendix-a.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as expected, the kurtosis has now a lower value</span></span></code></pre></div>
 </div>
 <div id="implement-the-formulas-for-skewness-and-kurtosis-in-r" class="section level4 hasAnchor" number="13.1.3.3">
 <h4><span class="header-section-number">A.1.3.3</span> Implement the formulas for skewness and kurtosis in R<a href="appendix-a.html#implement-the-formulas-for-skewness-and-kurtosis-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Skewness</strong></p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="appendix-a.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="co"># own implementation</span></span>
-<span id="cb413-2"><a href="appendix-a.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((sample<span class="sc">-</span><span class="fu">mean</span>(sample))<span class="sc">^</span><span class="dv">3</span>) <span class="sc">/</span> ((<span class="fu">length</span>(sample)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sd</span>(sample)<span class="sc">^</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="appendix-a.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="co"># own implementation</span></span>
+<span id="cb420-2"><a href="appendix-a.html#cb420-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((sample<span class="sc">-</span><span class="fu">mean</span>(sample))<span class="sc">^</span><span class="dv">3</span>) <span class="sc">/</span> ((<span class="fu">length</span>(sample)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sd</span>(sample)<span class="sc">^</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.01567</code></pre>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="appendix-a.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implementation in moments package</span></span>
-<span id="cb415-2"><a href="appendix-a.html#cb415-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(sample)</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="appendix-a.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implementation in moments package</span></span>
+<span id="cb422-2"><a href="appendix-a.html#cb422-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(sample)</span></code></pre></div>
 <pre><code>## [1] 0.01569</code></pre>
 <p><strong>Kurtosis</strong></p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="appendix-a.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="co"># own implementation</span></span>
-<span id="cb417-2"><a href="appendix-a.html#cb417-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((sample<span class="sc">-</span><span class="fu">mean</span>(sample))<span class="sc">^</span><span class="dv">4</span>) <span class="sc">/</span> ((<span class="fu">length</span>(sample)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sd</span>(sample)<span class="sc">^</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="appendix-a.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="co"># own implementation</span></span>
+<span id="cb424-2"><a href="appendix-a.html#cb424-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((sample<span class="sc">-</span><span class="fu">mean</span>(sample))<span class="sc">^</span><span class="dv">4</span>) <span class="sc">/</span> ((<span class="fu">length</span>(sample)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sd</span>(sample)<span class="sc">^</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 1.883</code></pre>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="appendix-a.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implementation in moments package</span></span>
-<span id="cb419-2"><a href="appendix-a.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(sample)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="appendix-a.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implementation in moments package</span></span>
+<span id="cb426-2"><a href="appendix-a.html#cb426-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(sample)</span></code></pre></div>
 <pre><code>## [1] 1.888</code></pre>
 </div>
 </div>
@@ -468,48 +475,48 @@ div.csl-indent {
 <p>The Law of Large Numbers (LLN) is an important statistical property which essentially describes how the behavior of sample averages is related to sample size. Particularly, it states that the sample mean can come as close as we like to the mean of the population from which it is drawn by simply increasing the sample size. That is, the larger our randomly selected sample from a population, the closer is that sample’s mean to the mean of the population.</p>
 <p>Think of playing dice. Each time we roll a fair die, the result is either 1, 2, 3, 4, 5, or 6, whereby each possible outcome can occur with the same probability (1/6). In other words we randomly draw die-values. Thus we can expect that the average of the resulting die values is (1 + 2 + 3 + 4 + 5 + 6)/6 = 3.5.</p>
 <p>We can investigate this empirically: We roll a fair die once and record the result. We roll it again, and again we record the result. We keep rolling the die and recording results until we get 100 recorded results. Intuitively, we would expect to observe each possible die-value about equally often (given that the die is fair) because each time we roll the die, each possible value (1,2,..,6) is equally likely to be the result. And we would thus expect the average of the resulting die values to be around 3.5. However, just by chance it can obviously be the case that one value (say 5) occurs slightly more often than another value (say 1), leading to a sample mean slightly larger than 3.5. In this context, the LLN states that by increasing the number of times we are rolling the die, we will get closer and closer to 3.5. Now, let’s implement this experiment in R:</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="appendix-a.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first we define the potential values a die can take</span></span>
-<span id="cb421-2"><a href="appendix-a.html#cb421-2" aria-hidden="true" tabindex="-1"></a>dvalues <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span> <span class="co"># the : operator generates a regular sequence of numbers (from:to)</span></span>
-<span id="cb421-3"><a href="appendix-a.html#cb421-3" aria-hidden="true" tabindex="-1"></a>dvalues</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="appendix-a.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first we define the potential values a die can take</span></span>
+<span id="cb428-2"><a href="appendix-a.html#cb428-2" aria-hidden="true" tabindex="-1"></a>dvalues <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span> <span class="co"># the : operator generates a regular sequence of numbers (from:to)</span></span>
+<span id="cb428-3"><a href="appendix-a.html#cb428-3" aria-hidden="true" tabindex="-1"></a>dvalues</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5 6</code></pre>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="appendix-a.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the size of the sample n (how often do we roll the die...)</span></span>
-<span id="cb423-2"><a href="appendix-a.html#cb423-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for a start, we only roll the die ten times</span></span>
-<span id="cb423-3"><a href="appendix-a.html#cb423-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb423-4"><a href="appendix-a.html#cb423-4" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random sample: &#39;roll the die n times and record each result&#39;</span></span>
-<span id="cb423-5"><a href="appendix-a.html#cb423-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="at">x =</span> dvalues, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb423-6"><a href="appendix-a.html#cb423-6" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the mean</span></span>
-<span id="cb423-7"><a href="appendix-a.html#cb423-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="appendix-a.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the size of the sample n (how often do we roll the die...)</span></span>
+<span id="cb430-2"><a href="appendix-a.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for a start, we only roll the die ten times</span></span>
+<span id="cb430-3"><a href="appendix-a.html#cb430-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb430-4"><a href="appendix-a.html#cb430-4" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random sample: &#39;roll the die n times and record each result&#39;</span></span>
+<span id="cb430-5"><a href="appendix-a.html#cb430-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="at">x =</span> dvalues, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb430-6"><a href="appendix-a.html#cb430-6" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the mean</span></span>
+<span id="cb430-7"><a href="appendix-a.html#cb430-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(results)</span></code></pre></div>
 <pre><code>## [1] 4.2</code></pre>
 <p>As you can see we are relatively close to 3.5, but not quite there. So let’s roll the die more often and calculate the mean of the resulting values again:</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="appendix-a.html#cb425-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb425-2"><a href="appendix-a.html#cb425-2" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random sample: &#39;roll the die n times and record each result&#39;</span></span>
-<span id="cb425-3"><a href="appendix-a.html#cb425-3" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="at">x =</span> dvalues, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb425-4"><a href="appendix-a.html#cb425-4" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the mean</span></span>
-<span id="cb425-5"><a href="appendix-a.html#cb425-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="appendix-a.html#cb432-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb432-2"><a href="appendix-a.html#cb432-2" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random sample: &#39;roll the die n times and record each result&#39;</span></span>
+<span id="cb432-3"><a href="appendix-a.html#cb432-3" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="at">x =</span> dvalues, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb432-4"><a href="appendix-a.html#cb432-4" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the mean</span></span>
+<span id="cb432-5"><a href="appendix-a.html#cb432-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(results)</span></code></pre></div>
 <pre><code>## [1] 3.69</code></pre>
 <p>We are already close to 3.5! Now let’s scale up these comparisons and show how the sample means are getting even closer to 3.5 when increasing the number of times we roll the die up to 10’000.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="appendix-a.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Essentially, what we are doing here is repeating the experiment above many times, </span></span>
-<span id="cb427-2"><a href="appendix-a.html#cb427-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each time increasing n.</span></span>
-<span id="cb427-3"><a href="appendix-a.html#cb427-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define the set of sample sizes</span></span>
-<span id="cb427-4"><a href="appendix-a.html#cb427-4" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">10</span>, <span class="at">to =</span> <span class="dv">10000</span>, <span class="at">by =</span> <span class="dv">10</span>)</span>
-<span id="cb427-5"><a href="appendix-a.html#cb427-5" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate an empty list to record the results</span></span>
-<span id="cb427-6"><a href="appendix-a.html#cb427-6" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb427-7"><a href="appendix-a.html#cb427-7" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(means) <span class="ot">&lt;-</span> <span class="fu">length</span>(ns)</span>
-<span id="cb427-8"><a href="appendix-a.html#cb427-8" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each sample size: &#39;repeat the die experiment for each sample size&#39;</span></span>
-<span id="cb427-9"><a href="appendix-a.html#cb427-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(ns)) {</span>
-<span id="cb427-10"><a href="appendix-a.html#cb427-10" aria-hidden="true" tabindex="-1"></a>     </span>
-<span id="cb427-11"><a href="appendix-a.html#cb427-11" aria-hidden="true" tabindex="-1"></a>     means[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">sample</span>( <span class="at">x =</span> dvalues,</span>
-<span id="cb427-12"><a href="appendix-a.html#cb427-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size =</span> ns[i],</span>
-<span id="cb427-13"><a href="appendix-a.html#cb427-13" aria-hidden="true" tabindex="-1"></a>                                <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb427-14"><a href="appendix-a.html#cb427-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb427-15"><a href="appendix-a.html#cb427-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb427-16"><a href="appendix-a.html#cb427-16" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the result: plot sample means against sample size</span></span>
-<span id="cb427-17"><a href="appendix-a.html#cb427-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ns, <span class="fu">unlist</span>(means),</span>
-<span id="cb427-18"><a href="appendix-a.html#cb427-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sample Mean&quot;</span>,</span>
-<span id="cb427-19"><a href="appendix-a.html#cb427-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample Size&quot;</span>,</span>
-<span id="cb427-20"><a href="appendix-a.html#cb427-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>,</span>
-<span id="cb427-21"><a href="appendix-a.html#cb427-21" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> .<span class="dv">6</span>)</span>
-<span id="cb427-22"><a href="appendix-a.html#cb427-22" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">3.5</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="appendix-a.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Essentially, what we are doing here is repeating the experiment above many times, </span></span>
+<span id="cb434-2"><a href="appendix-a.html#cb434-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each time increasing n.</span></span>
+<span id="cb434-3"><a href="appendix-a.html#cb434-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define the set of sample sizes</span></span>
+<span id="cb434-4"><a href="appendix-a.html#cb434-4" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">10</span>, <span class="at">to =</span> <span class="dv">10000</span>, <span class="at">by =</span> <span class="dv">10</span>)</span>
+<span id="cb434-5"><a href="appendix-a.html#cb434-5" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate an empty list to record the results</span></span>
+<span id="cb434-6"><a href="appendix-a.html#cb434-6" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb434-7"><a href="appendix-a.html#cb434-7" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(means) <span class="ot">&lt;-</span> <span class="fu">length</span>(ns)</span>
+<span id="cb434-8"><a href="appendix-a.html#cb434-8" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each sample size: &#39;repeat the die experiment for each sample size&#39;</span></span>
+<span id="cb434-9"><a href="appendix-a.html#cb434-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(ns)) {</span>
+<span id="cb434-10"><a href="appendix-a.html#cb434-10" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb434-11"><a href="appendix-a.html#cb434-11" aria-hidden="true" tabindex="-1"></a>     means[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">sample</span>( <span class="at">x =</span> dvalues,</span>
+<span id="cb434-12"><a href="appendix-a.html#cb434-12" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size =</span> ns[i],</span>
+<span id="cb434-13"><a href="appendix-a.html#cb434-13" aria-hidden="true" tabindex="-1"></a>                                <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb434-14"><a href="appendix-a.html#cb434-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb434-15"><a href="appendix-a.html#cb434-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb434-16"><a href="appendix-a.html#cb434-16" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the result: plot sample means against sample size</span></span>
+<span id="cb434-17"><a href="appendix-a.html#cb434-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ns, <span class="fu">unlist</span>(means),</span>
+<span id="cb434-18"><a href="appendix-a.html#cb434-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sample Mean&quot;</span>,</span>
+<span id="cb434-19"><a href="appendix-a.html#cb434-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample Size&quot;</span>,</span>
+<span id="cb434-20"><a href="appendix-a.html#cb434-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb434-21"><a href="appendix-a.html#cb434-21" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> .<span class="dv">6</span>)</span>
+<span id="cb434-22"><a href="appendix-a.html#cb434-22" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">3.5</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/lln-1.svg" width="672" /></p>
 <p>We observe that with smaller sample sizes the sample means are broadly spread around the population mean of 3.5. However, the more we go to the right extreme of the x-axis (and thus the larger the sample size), the narrower the sample means are spread around the population mean.</p>
 </div>
@@ -518,146 +525,64 @@ div.csl-indent {
 <p>The Central Limit Theorem (CLT) is an almost miraculous statistical property enabling us to test the statistical significance of a statistic such as the mean. In essence, the CLT states that as long as we have a large enough sample, the t-statistic (applied, e.g., to test whether the mean is equal to a particular value) is approximately standard normal distributed. This holds independently of how the underlying data is distributed.</p>
 <p>Consider the dice-play-example above. We might want to statistically test whether we are indeed playing with a fair die. In order to test that we would roll the die 100 times and record each resulting value. We would then compute the sample mean and standard deviation in order to assess how likely it was to observe the mean we observe if the population mean actually is 3.5 (thus our H0 would be pop_mean = 3.5, or in plain English ‘the die is fair’). However, the distribution of the resulting die values are not standard normal distributed. So how can we interpret the sample standard deviation and the sample mean in the context of our hypothesis?</p>
 <p>The simplest way to interpret these measures is by means of a <em>t-statistic</em>. A t-statistic for the sample mean under our working hypothesis that pop_mean = 3.5 is constructed as <code>t(3.5) = (sample_mean - 3.5) / (sample_sd/sqrt(n))</code>. Let’s illustrate this in R:</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="appendix-a.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First we roll the die like above</span></span>
-<span id="cb428-2"><a href="appendix-a.html#cb428-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb428-3"><a href="appendix-a.html#cb428-3" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random sample: &#39;roll the die n times and record each result&#39;</span></span>
-<span id="cb428-4"><a href="appendix-a.html#cb428-4" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="at">x =</span> dvalues, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb428-5"><a href="appendix-a.html#cb428-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the mean</span></span>
-<span id="cb428-6"><a href="appendix-a.html#cb428-6" aria-hidden="true" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(results)</span>
-<span id="cb428-7"><a href="appendix-a.html#cb428-7" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the sample SD</span></span>
-<span id="cb428-8"><a href="appendix-a.html#cb428-8" aria-hidden="true" tabindex="-1"></a>sample_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(results)</span>
-<span id="cb428-9"><a href="appendix-a.html#cb428-9" aria-hidden="true" tabindex="-1"></a><span class="co"># estimated standard error of the mean</span></span>
-<span id="cb428-10"><a href="appendix-a.html#cb428-10" aria-hidden="true" tabindex="-1"></a>mean_se <span class="ot">&lt;-</span> sample_sd<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
-<span id="cb428-11"><a href="appendix-a.html#cb428-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb428-12"><a href="appendix-a.html#cb428-12" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the t-statistic:</span></span>
-<span id="cb428-13"><a href="appendix-a.html#cb428-13" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> (sample_mean <span class="sc">-</span> <span class="fl">3.5</span>) <span class="sc">/</span> mean_se</span>
-<span id="cb428-14"><a href="appendix-a.html#cb428-14" aria-hidden="true" tabindex="-1"></a>t</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="appendix-a.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First we roll the die like above</span></span>
+<span id="cb435-2"><a href="appendix-a.html#cb435-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb435-3"><a href="appendix-a.html#cb435-3" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random sample: &#39;roll the die n times and record each result&#39;</span></span>
+<span id="cb435-4"><a href="appendix-a.html#cb435-4" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="at">x =</span> dvalues, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb435-5"><a href="appendix-a.html#cb435-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the mean</span></span>
+<span id="cb435-6"><a href="appendix-a.html#cb435-6" aria-hidden="true" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(results)</span>
+<span id="cb435-7"><a href="appendix-a.html#cb435-7" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the sample SD</span></span>
+<span id="cb435-8"><a href="appendix-a.html#cb435-8" aria-hidden="true" tabindex="-1"></a>sample_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(results)</span>
+<span id="cb435-9"><a href="appendix-a.html#cb435-9" aria-hidden="true" tabindex="-1"></a><span class="co"># estimated standard error of the mean</span></span>
+<span id="cb435-10"><a href="appendix-a.html#cb435-10" aria-hidden="true" tabindex="-1"></a>mean_se <span class="ot">&lt;-</span> sample_sd<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb435-11"><a href="appendix-a.html#cb435-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb435-12"><a href="appendix-a.html#cb435-12" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the t-statistic:</span></span>
+<span id="cb435-13"><a href="appendix-a.html#cb435-13" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> (sample_mean <span class="sc">-</span> <span class="fl">3.5</span>) <span class="sc">/</span> mean_se</span>
+<span id="cb435-14"><a href="appendix-a.html#cb435-14" aria-hidden="true" tabindex="-1"></a>t</span></code></pre></div>
 <pre><code>## [1] 0.1671</code></pre>
 <p>At this point you might wonder what the use of <code>t</code> is if the underlying data is not drawn from a normal distribution. In other words: what is the use of <code>t</code> if we cannot interpret it as a value that tells us how likely it is to observe this sample mean, given our null hypothesis? Well, actually we can. And here is where the magic of the CLT comes in: It turns out that there is a mathematical proof (i.e. the CLT) which states that the t-statistic itself can arbitrarily well be approximated by the standard normal distribution. This is true independent of the distribution of the underlying data in our sample! That is, if we have a large enough sample, we can simply compute the t-statistic and look up how likely it is to observe a value at least as large as t, given the null hypothesis is true (-&gt; the p-value):</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="appendix-a.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the p-value associated with the t-value calculated above</span></span>
-<span id="cb430-2"><a href="appendix-a.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(t))</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="appendix-a.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the p-value associated with the t-value calculated above</span></span>
+<span id="cb437-2"><a href="appendix-a.html#cb437-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(t))</span></code></pre></div>
 <pre><code>## [1] 0.8673</code></pre>
 <p>In that case we could not reject the null hypothesis of a fair die. However, as pointed out above, the t-statistic is only asymptotically (meaning with very large samples) normally distributed. We might not want to trust this hypothesis test too much because we were using a sample of only 100 observations.</p>
 <p>Let’s turn back to R in order to illustrate the CLT at work. Similar to the illustration of the LLN above, we will repeatedly compute the t-statistic of our dice play experiment and for each trial increase the number of observations.</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="appendix-a.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the set of sample sizes</span></span>
-<span id="cb432-2"><a href="appendix-a.html#cb432-2" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">40</span>, <span class="dv">100</span>)</span>
-<span id="cb432-3"><a href="appendix-a.html#cb432-3" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate an empty list to record the results</span></span>
-<span id="cb432-4"><a href="appendix-a.html#cb432-4" aria-hidden="true" tabindex="-1"></a>ts <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb432-5"><a href="appendix-a.html#cb432-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ts) <span class="ot">&lt;-</span> <span class="fu">length</span>(ns)</span>
-<span id="cb432-6"><a href="appendix-a.html#cb432-6" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each sample size: &#39;repeat the die experiment for each sample size&#39;</span></span>
-<span id="cb432-7"><a href="appendix-a.html#cb432-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(ns)) {</span>
-<span id="cb432-8"><a href="appendix-a.html#cb432-8" aria-hidden="true" tabindex="-1"></a>     </span>
-<span id="cb432-9"><a href="appendix-a.html#cb432-9" aria-hidden="true" tabindex="-1"></a>     samples.i <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>, <span class="cf">function</span>(j) <span class="fu">sample</span>( <span class="at">x =</span> dvalues,</span>
-<span id="cb432-10"><a href="appendix-a.html#cb432-10" aria-hidden="true" tabindex="-1"></a>                                                       <span class="at">size =</span> ns[i],</span>
-<span id="cb432-11"><a href="appendix-a.html#cb432-11" aria-hidden="true" tabindex="-1"></a>                                                       <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb432-12"><a href="appendix-a.html#cb432-12" aria-hidden="true" tabindex="-1"></a>     ts[[i]] <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.i, <span class="cf">function</span>(x) (<span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fl">3.5</span>) <span class="sc">/</span> <span class="fu">sd</span>(x), <span class="at">MARGIN =</span> <span class="dv">2</span>)</span>
-<span id="cb432-13"><a href="appendix-a.html#cb432-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb432-14"><a href="appendix-a.html#cb432-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb432-15"><a href="appendix-a.html#cb432-15" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the result: plot the density for each sample size</span></span>
-<span id="cb432-16"><a href="appendix-a.html#cb432-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb432-17"><a href="appendix-a.html#cb432-17" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the density for each set of t values</span></span>
-<span id="cb432-18"><a href="appendix-a.html#cb432-18" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ts[[<span class="dv">1</span>]], <span class="at">main =</span> <span class="st">&quot;Sample size: 10&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;T-value&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="appendix-a.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the set of sample sizes</span></span>
+<span id="cb439-2"><a href="appendix-a.html#cb439-2" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">40</span>, <span class="dv">100</span>)</span>
+<span id="cb439-3"><a href="appendix-a.html#cb439-3" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate an empty list to record the results</span></span>
+<span id="cb439-4"><a href="appendix-a.html#cb439-4" aria-hidden="true" tabindex="-1"></a>ts <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb439-5"><a href="appendix-a.html#cb439-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ts) <span class="ot">&lt;-</span> <span class="fu">length</span>(ns)</span>
+<span id="cb439-6"><a href="appendix-a.html#cb439-6" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each sample size: &#39;repeat the die experiment for each sample size&#39;</span></span>
+<span id="cb439-7"><a href="appendix-a.html#cb439-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(ns)) {</span>
+<span id="cb439-8"><a href="appendix-a.html#cb439-8" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb439-9"><a href="appendix-a.html#cb439-9" aria-hidden="true" tabindex="-1"></a>     samples.i <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>, <span class="cf">function</span>(j) <span class="fu">sample</span>( <span class="at">x =</span> dvalues,</span>
+<span id="cb439-10"><a href="appendix-a.html#cb439-10" aria-hidden="true" tabindex="-1"></a>                                                       <span class="at">size =</span> ns[i],</span>
+<span id="cb439-11"><a href="appendix-a.html#cb439-11" aria-hidden="true" tabindex="-1"></a>                                                       <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb439-12"><a href="appendix-a.html#cb439-12" aria-hidden="true" tabindex="-1"></a>     ts[[i]] <span class="ot">&lt;-</span> <span class="fu">apply</span>(samples.i, <span class="cf">function</span>(x) (<span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fl">3.5</span>) <span class="sc">/</span> <span class="fu">sd</span>(x), <span class="at">MARGIN =</span> <span class="dv">2</span>)</span>
+<span id="cb439-13"><a href="appendix-a.html#cb439-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb439-14"><a href="appendix-a.html#cb439-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb439-15"><a href="appendix-a.html#cb439-15" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the result: plot the density for each sample size</span></span>
+<span id="cb439-16"><a href="appendix-a.html#cb439-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb439-17"><a href="appendix-a.html#cb439-17" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the density for each set of t values</span></span>
+<span id="cb439-18"><a href="appendix-a.html#cb439-18" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ts[[<span class="dv">1</span>]], <span class="at">main =</span> <span class="st">&quot;Sample size: 10&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;T-value&quot;</span>)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/clt-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="appendix-a.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ts[[<span class="dv">2</span>]], <span class="at">main =</span> <span class="st">&quot;Sample size: 40&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;T-value&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="appendix-a.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ts[[<span class="dv">2</span>]], <span class="at">main =</span> <span class="st">&quot;Sample size: 40&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;T-value&quot;</span>)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/clt-2.svg" width="672" /></p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="appendix-a.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ts[[<span class="dv">3</span>]], <span class="at">main =</span> <span class="st">&quot;Sample size: 100&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;T-value&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="appendix-a.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ts[[<span class="dv">3</span>]], <span class="at">main =</span> <span class="st">&quot;Sample size: 100&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;T-value&quot;</span>)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/clt-3.svg" width="672" /></p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="appendix-a.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="co"># finally have a look at the actual standard normal distribution as a reference point</span></span>
-<span id="cb435-2"><a href="appendix-a.html#cb435-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cf">function</span>(t)<span class="fu">dnorm</span>(t), <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">main =</span> <span class="st">&quot;Normal density&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="appendix-a.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="co"># finally have a look at the actual standard normal distribution as a reference point</span></span>
+<span id="cb442-2"><a href="appendix-a.html#cb442-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cf">function</span>(t)<span class="fu">dnorm</span>(t), <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">main =</span> <span class="st">&quot;Normal density&quot;</span>)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/clt-4.svg" width="672" /></p>
 <p>Note how the histogram is getting closer to a normal distribution with increasing sample size.</p>
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-nunes_etal2017" class="csl-entry">
-Antonio, N., A. de Almeida, and L. Nunes. 2017. <span>“Predicting Hotel Bookings Cancellation with a Machine Learning Classification Model.”</span> In <em>2017 16th IEEE International Conference on Machine Learning and Applications (ICMLA)</em>, 1049–54. <a href="https://doi.org/10.1109/ICMLA.2017.00-11">https://doi.org/10.1109/ICMLA.2017.00-11</a>.
-</div>
-<div id="ref-nuno_etal2019" class="csl-entry">
-Antonio, Nuno, Ana de Almeida, and Luis Nunes. 2019. <span>“Hotel Booking Demand Datasets.”</span> <em>Data in Brief</em> 22: 41–49. https://doi.org/<a href="https://doi.org/10.1016/j.dib.2018.11.126">https://doi.org/10.1016/j.dib.2018.11.126</a>.
-</div>
-<div id="ref-cesarini_etal2016" class="csl-entry">
-Cesarini, David, Erik Lindqvist, Robert Östling, and Björn Wallace. 2016. <span>“WEALTH, HEALTH, AND CHILD DEVELOPMENT: EVIDENCE FROM ADMINISTRATIVE DATA ON SWEDISH LOTTERY PLAYERS.”</span> <em>The Quarterly Journal of Economics</em> 131 (2): 687–738. <a href="https://www.jstor.org/stable/26372651">https://www.jstor.org/stable/26372651</a>.
-</div>
-<div id="ref-einav_levin2014" class="csl-entry">
-Einav, Liran, and Jonathan Levin. 2014. <span>“Economics in the Age of Big Data.”</span> <em>Science</em> 346 (6210): 1243089-1-1243089-6. <a href="https://doi.org/10.1126/science.1243089">https://doi.org/10.1126/science.1243089</a>.
-</div>
-<div id="ref-hodler_raschky2014" class="csl-entry">
-Hodler, Roland, and Paul A. Raschky. 2014. <span>“<span>Regional Favoritism</span>.”</span> <em>The Quarterly Journal of Economics</em> 129 (2): 995–1033. <a href="https://doi.org/10.1093/qje/qju004">https://doi.org/10.1093/qje/qju004</a>.
-</div>
-<div id="ref-hogben_1983" class="csl-entry">
-Hogben, Lancelot. 1983. <em><span class="nocase">Mathematics for the Million</span></em>. New York: W.W Norton &amp; Company.
-</div>
-<div id="ref-umatter_2018" class="csl-entry">
-Matter, Ulrich. 2018a. <span>“A Brief Introduction to Programming with r.”</span> Lecture notes. St. Gallen: University of St. Gallen.
-</div>
-<div id="ref-umatter_2018b" class="csl-entry">
-———. 2018b. <span>“Introduction to Web Data Mining for Social Scientists.”</span> Lecture notes. St. Gallen: University of St. Gallen.
-</div>
-<div id="ref-matter_stutzer2015" class="csl-entry">
-Matter, Ulrich, and Alois Stutzer. 2015. <span>“<span class="nocase">pvsR: An Open Source Interface to Big Data on the American Political Sphere</span>.”</span> <em>PLOS ONE</em> 10 (7): 1–21. <a href="https://doi.org/10.1371/journal.pone.0130501">https://doi.org/10.1371/journal.pone.0130501</a>.
-</div>
-<div id="ref-murrell_2009" class="csl-entry">
-Murrell, Paul. 2009. <em><span class="nocase">Introduction to Data Technologies</span></em>. London, UK: CRC Press.
-</div>
-<div id="ref-naik_etal2016" class="csl-entry">
-Naik, Nikhil, Ramesh Raskar, and César A. Hidalgo. 2016. <span>“Cities Are Physical Too: Using Computer Vision to Measure the Quality and Impact of Urban Appearance.”</span> <em>The American Economic Review</em> 106 (5): 128–32. <a href="http://www.jstor.org/stable/43861001">http://www.jstor.org/stable/43861001</a>.
-</div>
-<div id="ref-r_2018" class="csl-entry">
-R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
-</div>
-<div id="ref-lattice_2008" class="csl-entry">
-Sarkar, Deepayan. 2008. <em>Lattice: Multivariate Data Visualization with r</em>. New York: Springer. <a href="http://lmdvr.r-forge.r-project.org">http://lmdvr.r-forge.r-project.org</a>.
-</div>
-<div id="ref-wickham_2014" class="csl-entry">
-Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>Journal of Statistical Software</em> 59 (10): 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.
-</div>
-<div id="ref-wickham_2016" class="csl-entry">
-———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="http://ggplot2.org">http://ggplot2.org</a>.
-</div>
-<div id="ref-wickham_grolemund2017" class="csl-entry">
-Wickham, Hadley, and Garrett Grolemund. 2017. Sebastopol, CA: O’Reilly. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.
 </div>
 </div>
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-visualization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

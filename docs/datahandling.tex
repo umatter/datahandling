@@ -229,7 +229,7 @@
 
 \title{Data Handling Pocket Reference}
 \author{Ulrich Matter}
-\date{2022-09-19}
+\date{2022-09-20}
 
 \begin{document}
 \maketitle
@@ -261,6 +261,10 @@
 
 
 In applied econometric research and business analytics alike, many steps in handling digital data are involved before running regression estimations and training machine learning algorithms. While often neglected in statistics and econometrics curricula, the steps of gathering, cleaning, storing, and filtering data for research/analytics purposes are of utmost importance to ensure accurate and reproducible analytic insights. This pocket reference first introduces and summarizes foundational and practically relevant data and data processing concepts, and then guides the reader through each step of how to get from the raw data to the final data analysis output.
+
+\hypertarget{prerequisites-and-aims}{%
+\section*{Prerequisites and aims}\label{prerequisites-and-aims}}
+
 
 The book presupposes a basic knowledge of undergraduate economics and statistics and relates several case studies to practical questions in these fields. Finally, the aim is to give you firsthand practical insights into each part of the data science pipeline in the context of business and economics research.
 
@@ -2317,7 +2321,7 @@ And we can check if everything worked out well by having a look at the first lin
 ## [3] "<head>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 ## [4] "<meta charset=\"UTF-8\"/>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 ## [5] "<title>Economy of Switzerland - Wikipedia</title>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-## [6] "<script>document.documentElement.className=\"client-js\";RLCONF={\"wgBreakFrames\":false,\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgRequestId\":\"fe90a458-b0bc-477c-ad74-07372a8fd408\",\"wgCSPNonce\":false,\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Economy_of_Switzerland\",\"wgTitle\":\"Economy of Switzerland\",\"wgCurRevisionId\":1107876525,\"wgRevisionId\":1107876525,\"wgArticleId\":27465,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"CS1 maint: archived copy as title\",\"CS1 German-language sources (de)\",\"Articles with German-language sources (de)\",\"Webarchive template wayback links\",\"Articles with French-language sources (fr)\",\"Articles with short description\",\"Short description is different from Wikidata\","
+## [6] "<script>document.documentElement.className=\"client-js\";RLCONF={\"wgBreakFrames\":false,\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgRequestId\":\"06d9bfe6-3c1a-4856-99ad-35ab2104f5ba\",\"wgCSPNonce\":false,\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Economy_of_Switzerland\",\"wgTitle\":\"Economy of Switzerland\",\"wgCurRevisionId\":1107876525,\"wgRevisionId\":1107876525,\"wgArticleId\":27465,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"CS1 maint: archived copy as title\",\"CS1 German-language sources (de)\",\"Articles with German-language sources (de)\",\"Webarchive template wayback links\",\"Articles with French-language sources (fr)\",\"Articles with short description\",\"Short description is different from Wikidata\","
 \end{verbatim}
 
 The next thing we do is to look at how we can filter the webpage for certain information. For example, we search in the source code for the line that contains the part of the webpage with the table showing data on the Swiss GDP:
@@ -2441,9 +2445,6 @@ There are two important variants of how digital images are stored: raster images
 \end{itemize}
 
 Given the fundamental differences in how the data behind these two types of images is structured, practically handling such data in R differs quite substantially between the two formats with regard to the R packages used and the representation of the image object in RAM.
-
-\hypertarget{vector-images-in-r}{%
-\section{Vector images in R}\label{vector-images-in-r}}
 
 \hypertarget{raster-images-in-r}{%
 \section{Raster images in R}\label{raster-images-in-r}}
@@ -2929,6 +2930,79 @@ From the examples above, you recognize that in order to generate/manipulate rast
 ## 866 RESCUED BY CARPATHIA, PROBABLY 1250 PERISH;
 ## ISMAY SAFE, MRS. ASTOR MAYBE, NOTED NAMES MISSING
 \end{verbatim}
+
+\hypertarget{vector-images-in-r}{%
+\section{Vector Images in R}\label{vector-images-in-r}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Common Packages for Vector Files}
+\FunctionTok{library}\NormalTok{(magick)}
+
+\CommentTok{\# Download and read svg image from url}
+\NormalTok{URL }\OtherTok{\textless{}{-}} \StringTok{"https://upload.wikimedia.org/wikipedia/commons/1/1b/R\_logo.svg"}
+\NormalTok{Rlogo\_xml }\OtherTok{\textless{}{-}} \FunctionTok{read\_xml}\NormalTok{(URL)}
+
+\CommentTok{\# Data structure}
+\NormalTok{Rlogo\_xml }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## {xml_document}
+## <svg preserveAspectRatio="xMidYMid" width="724" height="561" viewBox="0 0 724 561" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+## [1] <defs>\n  <linearGradient id="gradientFill-1" x1 ...
+## [2] <path d="M361.453,485.937 C162.329,485.937 0.906 ...
+## [3] <path d="M550.000,377.000 C550.000,377.000 571.8 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{xml\_structure}\NormalTok{(Rlogo\_xml)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <svg [preserveAspectRatio, width, height, viewBox, xmlns, xmlns:xlink]>
+##   <defs>
+##     <linearGradient [id, x1, x2, y1, y2, gradientUnits, spreadMethod]>
+##       <stop [offset, stop-color, stop-opacity]>
+##       <stop [offset, stop-color, stop-opacity]>
+##     <linearGradient [id, x1, x2, y1, y2, gradientUnits, spreadMethod]>
+##       <stop [offset, stop-color, stop-opacity]>
+##       <stop [offset, stop-color, stop-opacity]>
+##   <path [d, fill, fill-rule]>
+##   <path [d, fill, fill-rule]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Raw data}
+\NormalTok{Rlogo\_text }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(Rlogo\_xml)}
+
+\CommentTok{\# Plot}
+\NormalTok{svg\_img }\OtherTok{=} \FunctionTok{image\_read\_svg}\NormalTok{(Rlogo\_text)}
+\FunctionTok{image\_info}\NormalTok{(svg\_img)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 7
+##   format width height colorspace matte filesize density
+##   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  
+## 1 PNG      724    561 sRGB       TRUE         0 72x72
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{svg\_img}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=10.06in]{datahandling_files/figure-latex/unnamed-chunk-88-1}
+
+\hypertarget{example-maps}{%
+\subsection{Example: Maps}\label{example-maps}}
 
 \hypertarget{data-sources-data-gathering-data-import}{%
 \chapter{Data Sources, Data Gathering, Data Import}\label{data-sources-data-gathering-data-import}}
@@ -3965,7 +4039,7 @@ This tutorial guides you step-by-step through the cleaning script (with a few ad
 
 The aim of the tutorial is to get the data in the form needed for the following plot.
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-140-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-141-1.pdf}
 
 The first few rows and columns of the final dataset should combine the two source datasets and look as follows:
 
@@ -4542,7 +4616,7 @@ We can illustrate how \(y\) changes when \(x\) increases by plotting the raw dat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-166-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 We see that while individual observations can be way off the true values (the red line), `on average' the observations seem to follow the true relationship between \(x\) and \(y\). We can look at this closely by computing the average observed \(y\)-values for different intervals along the \(x\)-axis.
 
@@ -4571,7 +4645,7 @@ We see that while individual observations can be way off the true values (the re
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-167-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-168-1.pdf}
 
 The average values are much closer to the real values. That is, we can `average out' the \(u\) to get a good estimate for the effect of \(x\) on \(y\) (to get an estimate of \(\beta\)). With this understanding, we can now formalize how to compute \(\beta\) (or, to be more precise, an estimate of it: \(\hat{\beta}\)). For simplicity, we take \(\alpha=30\) as given.
 
@@ -4641,7 +4715,7 @@ First, look at how these two variables are jointly distributed with a scatter pl
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-171-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-172-1.pdf}
 There seems to be a positive relationship between the years of schooling and examination success. Considering the raw data, we can formulate the problem of estimating the parameters of interest (\(\alpha\) and \(\beta\)) as the question: What is the best way to draw a straight trend line through the cloud of dots? To further specify the problem, we need to specify a criterion to judge whether such a line `fits' the data well. A rather intuitive measure is the sum of the squared differences between the line and the actual data points on the \(y\)-axis. That is, we compare what \(y\)-value we would get for a given \(x\)-value according to our trend-line (i.e., the function defining this line) with the actual \(y\)-value in the data (for simplicity, we use the general formulation with \(y\) as the dependent and \(x\) as the explanatory variable).
 
 \hypertarget{derivation-and-implementation-of-ols-estimator}{%
@@ -4705,7 +4779,7 @@ Finally, we can visually inspect the estimated parameters (i.e., does the line f
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-173-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-174-1.pdf}
 
 The fit looks rather reasonable. There seems to be indeed a positive relationship between Education and Examination. In the next step, we would likely want to know whether we can say something meaningful about how precisely this relationship is measured statistically (i.e., how `significant' \(\hat{\beta}\) is). We will leave this issue for another class.
 
@@ -4971,7 +5045,7 @@ We initiate the most basic plot with \texttt{ggplot()} by defining which data to
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-183-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-184-1}
 
 As we have not yet defined according to what rules the data shall be visualized, all we get is an empty `canvas' and the axes (with the respective label and ticks indicating the range of the values).
 
@@ -4987,7 +5061,7 @@ To actually plot the data, we have to define the `geometries', defined according
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-184-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-185-1}
 
 The result indicates a positive correlation between the level of education and how well draftees do in the examination. We want to understand this correlation better. Particularly what other factors could drive this picture?
 
@@ -5004,7 +5078,7 @@ According to a popular thesis, the protestant reformation and the spread of the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-185-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-186-1}
 
 Draftees from protestant districts tend to do generally better (which might indicate better primary schools or a generally stronger focus on the educational achievements of Protestant children). However, the relationship between education (beyond primary schools) and examination success seems to hold for either type of district.
 
@@ -5026,7 +5100,7 @@ Let's visualize this relationship more clearly by drawing trend lines through th
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-186-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-187-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5041,7 +5115,7 @@ Let's visualize this relationship more clearly by drawing trend lines through th
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-187-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-188-1}
 
 \hypertarget{additional-aesthetics}{%
 \subsubsection{Additional aesthetics}\label{additional-aesthetics}}
@@ -5061,7 +5135,7 @@ Knowing a little about Swiss history and geography, we realize that rural canton
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-188-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-189-1}
 
 The resulting picture is in line with what we have expected. Overall, the districts with a lower share of agricultural occupation tend to have higher levels of education and achievements in the examination.
 
@@ -5084,7 +5158,7 @@ Finally, there are countless options to refine the plot further. For example, we
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-189-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-190-1}
 
 In addition, the \texttt{theme()}-function allows changing almost every aspect of the plot (margins, font face, font size, etc.). For example, we might prefer to have the plot legend at the bottom and have larger axis labels.
 
@@ -5102,7 +5176,7 @@ In addition, the \texttt{theme()}-function allows changing almost every aspect o
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-190-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-191-1}
 
 Moreover, several theme templates offer ready-made designs for plots:
 
@@ -5120,7 +5194,7 @@ Moreover, several theme templates offer ready-made designs for plots:
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-191-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-192-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5136,7 +5210,7 @@ Moreover, several theme templates offer ready-made designs for plots:
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-192-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-193-1}
 
 \hypertarget{dynamic-documents}{%
 \section{Dynamic documents}\label{dynamic-documents}}
@@ -5247,7 +5321,7 @@ First, we show what the actual (honest) plot would essentially look like.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-196-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-197-1}
 
 There is no obvious downward trend visible. Now, let us look at what steps are involved in manipulating the visualization in order to give the wrong impression of a downward trend. Importantly, all the manipulation is purely done via the data plotting. We do not touch/manipulate the underlying data (such as removing observations or falsifying numbers).
 
@@ -5263,7 +5337,7 @@ Two things become apparent when comparing the original plot with what we have so
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-197-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-198-1}
 
 Note that the number of cases is not exactly the same as in the original. Quite the reason for this is that the numbers have been updated during May. Given that the overall pattern is very similar, there is no reason to believe that the actual numbers underlying the original figure had been manipulated too. Now, let us address the second aspect (ordering of bars per date). For this, we use the \texttt{group} aesthetic, indicating to \texttt{ggplot} that we want the number of cases to be used to order the bars within each point in time (date). Setting \texttt{position\_dodge2(reverse=TRUE)} simply means we want the bars per date to be ordered in decreasing order (per default, it would be increasing; try out the difference by changing it to \texttt{position\_dodge2(reverse=FALSE)} or simply \texttt{position\_dodge2()}).
 
@@ -5275,7 +5349,7 @@ Note that the number of cases is not exactly the same as in the original. Quite 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-198-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-199-1}
 
 This already looks much more like the original plot.
 
@@ -5311,7 +5385,7 @@ Finally, we tweaked the plot's theme to make it look more similar to the origina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-199-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-200-1}
 
 \backmatter
 
@@ -5335,7 +5409,7 @@ Finally, we tweaked the plot's theme to make it look more similar to the origina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-200-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-201-1.pdf}
 
 \hypertarget{illustration-of-variability}{%
 \subsection{Illustration of variability}\label{illustration-of-variability}}
@@ -5354,7 +5428,7 @@ Finally, we tweaked the plot's theme to make it look more similar to the origina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-201-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-202-1.pdf}
 
 \textbf{Note:} the red curve illustrates the distribution of the sample with a large standard deviation (a lot of variability) whereas the blue curve illustrates the one with a rather small standard deviation.
 
@@ -5389,7 +5463,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-203-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5397,7 +5471,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-203-2.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5421,7 +5495,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-203-3.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5455,7 +5529,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-205-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5478,7 +5552,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-2.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-205-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]

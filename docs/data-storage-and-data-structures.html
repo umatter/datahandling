@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-19" />
+<meta name="date" content="2022-09-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +158,10 @@ div.csl-indent {
 <li><a href="./">Data Handling</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites-and-aims"><i class="fa fa-check"></i>Prerequisites and aims</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="programming-with-data.html"><a href="programming-with-data.html"><i class="fa fa-check"></i><b>2</b> Programming with Data</a>
 <ul>
@@ -233,12 +236,15 @@ div.csl-indent {
 <li class="chapter" data-level="7" data-path="image-data.html"><a href="image-data.html"><i class="fa fa-check"></i><b>7</b> Image data</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="image-data.html"><a href="image-data.html#image-data-structure-and-storage"><i class="fa fa-check"></i><b>7.1</b> Image data structure and storage</a></li>
-<li class="chapter" data-level="7.2" data-path="image-data.html"><a href="image-data.html#vector-images-in-r"><i class="fa fa-check"></i><b>7.2</b> Vector images in R</a></li>
-<li class="chapter" data-level="7.3" data-path="image-data.html"><a href="image-data.html#raster-images-in-r"><i class="fa fa-check"></i><b>7.3</b> Raster images in R</a>
+<li class="chapter" data-level="7.2" data-path="image-data.html"><a href="image-data.html#raster-images-in-r"><i class="fa fa-check"></i><b>7.2</b> Raster images in R</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="image-data.html"><a href="image-data.html#basic-data-structure"><i class="fa fa-check"></i><b>7.3.1</b> Basic data structure</a></li>
-<li class="chapter" data-level="7.3.2" data-path="image-data.html"><a href="image-data.html#advanced-image-manipulation-using-imagemagick"><i class="fa fa-check"></i><b>7.3.2</b> Advanced Image Manipulation using ImageMagick</a></li>
-<li class="chapter" data-level="7.3.3" data-path="image-data.html"><a href="image-data.html#working-with-ocr-optical-character-recognition"><i class="fa fa-check"></i><b>7.3.3</b> Working with OCR (Optical Character Recognition)</a></li>
+<li class="chapter" data-level="7.2.1" data-path="image-data.html"><a href="image-data.html#basic-data-structure"><i class="fa fa-check"></i><b>7.2.1</b> Basic data structure</a></li>
+<li class="chapter" data-level="7.2.2" data-path="image-data.html"><a href="image-data.html#advanced-image-manipulation-using-imagemagick"><i class="fa fa-check"></i><b>7.2.2</b> Advanced Image Manipulation using ImageMagick</a></li>
+<li class="chapter" data-level="7.2.3" data-path="image-data.html"><a href="image-data.html#working-with-ocr-optical-character-recognition"><i class="fa fa-check"></i><b>7.2.3</b> Working with OCR (Optical Character Recognition)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="image-data.html"><a href="image-data.html#vector-images-in-r"><i class="fa fa-check"></i><b>7.3</b> Vector Images in R</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="image-data.html"><a href="image-data.html#example-maps"><i class="fa fa-check"></i><b>7.3.1</b> Example: Maps</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html"><i class="fa fa-check"></i><b>8</b> Data Sources, Data Gathering, Data Import</a>
@@ -342,6 +348,7 @@ div.csl-indent {
 <li class="chapter" data-level="A.1.5" data-path="appendix-a.html"><a href="appendix-a.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>A.1.5</b> The Central Limit Theorem</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
 
@@ -395,7 +402,7 @@ div.csl-indent {
 </div>
 <div id="structured-data-formats" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Structured data formats<a href="data-storage-and-data-structures.html#structured-data-formats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As nicely pointed out by <span class="citation">Murrell (<a href="appendix-a.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span>, the most commonly used software today is designed in a very ‘user-friendly’ way, leading to situations in which we as users are ‘told’ by the computer what to do (rather than the other way around). A prominent symptom of this phenomenon is that specific software is automatically assigned to open files of specific formats, so we don’t have to bother about what the file’s format actually is but only have to click on the icon representing the file.</p>
+<p>As nicely pointed out by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span>, the most commonly used software today is designed in a very ‘user-friendly’ way, leading to situations in which we as users are ‘told’ by the computer what to do (rather than the other way around). A prominent symptom of this phenomenon is that specific software is automatically assigned to open files of specific formats, so we don’t have to bother about what the file’s format actually is but only have to click on the icon representing the file.</p>
 <p>However, if we actually want to engage seriously with a world driven by data, we have to go beyond the habit of simply clicking on (data-)files and let the computer choose what to do with it. Since most common formats to store data are in essence text files (in research contexts usually in ASCII or UTF-8 encoding), a good way to start engaging with a data set is to look at the raw text file containing the data in order to get an idea of how the data is structured.</p>
 <p>For example, let’s have a look at the file <code>ch_gdp.csv</code>. When opening the file in a text editor we see the following:</p>
 <pre><code>year,gdp_chfb
@@ -437,7 +444,7 @@ If you encounter the end of the line, create a new row and jump to the new row.<
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:bitbyteword"></span>
 <img src="img/store-bitbyteword.png" alt="Writing data stored in RAM to a Mass Storage device (hard drive). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="40%" />
 <p class="caption">
-Figure 4.1: Writing data stored in RAM to a Mass Storage device (hard drive). Figure by <span class="citation">Murrell (<a href="appendix-a.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.1: Writing data stored in RAM to a Mass Storage device (hard drive). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
@@ -504,7 +511,7 @@ Figure 4.1: Writing data stored in RAM to a Mass Storage device (hard drive). Fi
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:numvec"></span>
 <img src="img/numvec.png" alt="Illustration of a numeric vector (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="5%" />
 <p class="caption">
-Figure 4.2: Illustration of a numeric vector (symbolic). Figure by <span class="citation">Murrell (<a href="appendix-a.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.2: Illustration of a numeric vector (symbolic). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
@@ -523,7 +530,7 @@ Figure 4.2: Illustration of a numeric vector (symbolic). Figure by <span class="
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:factor"></span>
 <img src="img/factor.png" alt="Illustration of a factor (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="5%" />
 <p class="caption">
-Figure 4.3: Illustration of a factor (symbolic). Figure by <span class="citation">Murrell (<a href="appendix-a.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.3: Illustration of a factor (symbolic). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
@@ -539,7 +546,7 @@ Figure 4.3: Illustration of a factor (symbolic). Figure by <span class="citation
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:matrix"></span>
 <img src="img/matrix.png" alt="Illustration of a numeric matrix (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
 <p class="caption">
-Figure 4.4: Illustration of a numeric matrix (symbolic). Figure by <span class="citation">Murrell (<a href="appendix-a.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.4: Illustration of a numeric matrix (symbolic). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
@@ -571,7 +578,7 @@ Figure 4.4: Illustration of a numeric matrix (symbolic). Figure by <span class="
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:df"></span>
 <img src="img/df.png" alt="Illustration of a data frame (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
 <p class="caption">
-Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="citation">Murrell (<a href="appendix-a.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 
@@ -590,7 +597,7 @@ Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="cita
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:list"></span>
 <img src="img/list.png" alt="Illustration of a data frame (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
 <p class="caption">
-Figure 4.6: Illustration of a data frame (symbolic). Figure by <span class="citation">Murrell (<a href="appendix-a.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.6: Illustration of a data frame (symbolic). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
 </p>
 </div>
 

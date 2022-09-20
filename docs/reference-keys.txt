@@ -81,7 +81,6 @@ two-ways-to-read-a-webpage-into-r
 text-data
 image-data
 image-data-structure-and-storage
-vector-images-in-r
 raster-images-in-r
 basic-data-structure
 example-1-generating-a-red-image-rgb-code-25500
@@ -90,6 +89,8 @@ example-3-generating-a-blue-image-rgb-code-0-0-255
 example-4-generating-a-random-rgb-image
 advanced-image-manipulation-using-imagemagick
 working-with-ocr-optical-character-recognition
+vector-images-in-r
+example-maps
 data-sources-data-gathering-data-import
 sourcesformats
 data-gathering-procedure
