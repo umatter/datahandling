@@ -264,3 +264,6 @@ Note how the histogram is getting closer to a normal distribution with increasin
 
 
 
+`r if (knitr::is_html_output()) '
+# References {-}
+'`

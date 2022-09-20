@@ -272,26 +272,27 @@ xml_structure(Rlogo_xml)
 Rlogo_text <- as.character(Rlogo_xml)
 
 # Plot
-svg_img = image_read_svg(Rlogo)
+svg_img = image_read_svg(Rlogo_text)
 image_info(svg_img)
 svg_img
 ```
 
 
-### Example: Manipulating Output width and height of SVGs
-```{r}
-# Find information about output width and height in original source code
-# Take a look at the first line of the source code:
-Rlogo_raw[1]
+<!-- ### Example: Manipulating Output width and height of SVGs -->
+<!-- ```{r} -->
+<!-- # Find information about output width and height in original source code -->
+<!-- # Take a look at the first line of the source code: -->
+<!-- Rlogo_raw[1] -->
 
-# We want to have an image of size 400 x 800 instead:
-Rlogo_raw[1] <- "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" preserveAspectRatio=\"xMidYMid\" width=\"400\" height=\"800\" viewBox=\"0 0 724 561\">"
+<!-- # We want to have an image of size 400 x 800 instead: -->
+<!-- Rlogo_raw[1] <- "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" preserveAspectRatio=\"xMidYMid\" width=\"400\" height=\"800\" viewBox=\"0 0 724 561\">" -->
 
-# Save as magick object
-svg_new <- image_read_svg(paste0(Rlogo_raw, collapse =""))
-image_info(svg_new)
-svg_new
-```
+<!-- # Save as magick object -->
+<!-- svg_new <- image_read_svg(paste0(Rlogo_raw, collapse ="")) -->
+<!-- image_info(svg_new) -->
+<!-- svg_new -->
+<!-- ``` -->
+
 
 ### Example: Maps 
 
