@@ -53,4 +53,8 @@ materials/img/venn_diagramm_full.pdf
 archive/*
 materials/*
 latex/*
+_bookdown_files/
+*.png
+datahandling.Rmd
+datahandling.log
 
