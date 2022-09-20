@@ -1,0 +1,38 @@
+bookdown::gitbook:
+  dev: svglite
+  css: style/style.css
+  split_bib: no
+  config:
+    toc:
+      before: |
+        <li><a href="./">Data Handling</a></li>
+      after: |
+        <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+      collapse: "subsection"
+    download: ["pdf", "html", "epub"]
+    sharing:
+     github: yes
+     facebook: no
+     twitter: no
+    fontsettings:
+      theme: white
+      family: sans
+      size: 1
+
+bookdown::pdf_book:
+  includes:
+    in_header: latex/preamble.tex
+    before_body: latex/before_body.tex
+    after_body: latex/after_body.tex
+  keep_tex: yes
+  dev: "cairo_pdf"
+  latex_engine: xelatex
+  citation_package: natbib
+  template: null
+  pandoc_args: --top-level-division=chapter
+  toc_depth: 3
+  toc_unnumbered: no
+  toc_appendix: yes
+  quote_footer: ["\\VA{", "}{}"]
+  
+bookdown::epub_book: default

@@ -10,7 +10,7 @@ The need for proper handling of large amounts of digital data has given rise to 
 <!-- Maybe self-made figure on skills covered in this book  -->
 
 
-The book presupposes a basic knowledge of undergraduate economics and statistics and relates several case studies to practical questions in these fields. Finally, the aim is to give you firsthand practical insights into each part of the data science pipeline in the context of business and economics research.
+
 
 
 

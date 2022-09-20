@@ -1,9 +1,9 @@
 --- 
 knit: "bookdown::render_book"
-title: "Data Handling"
+title: "Data Handling Pocket Reference"
 author: "Ulrich Matter"
 date: "`r Sys.Date()`"
-description: "A guide to practical data handling with a focus on R and empirical economic research."
+description: "A guide to practical data handling with a focus on R and data analytics in economics and the social sciences."
 github-repo: "umatter/datahandling"
 url: "https://umatter.github.io/datahandling/"
 documentclass: style/krantz
@@ -18,7 +18,7 @@ monofontoptions: "Scale=0.7"
 site: bookdown::bookdown_site
 bibliography: [references/datahandling.bib, references/packages.bib]
 biblio-style: apalike
-cover-image: img/new_abacus.jpg
+cover-image: img/cover.png
 ---
 
 
@@ -40,15 +40,27 @@ options( htmltools.dir.version = FALSE, formatR.indent = 2,
 ```
 
 
+
+
 # Preface {-}
 
 ```{r fig.align='center', out.height="300px", echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
 knitr::include_graphics('img/cover.png', dpi = NA)
 ```
 
-This textbook introduces students to the fundamental practices of Data Science in the context of economic research. The course
-covers basic theoretical concepts and practical skills in gathering, preparing/cleaning, visualizing, storing, and analyzing digital
-data for research purposes.
+
+
+In applied econometric research and business analytics alike, many steps in handling digital data are involved before running regression estimations and training machine learning algorithms. While often neglected in statistics and econometrics curricula, the steps of gathering, cleaning, storing, and filtering data for research/analytics purposes are of utmost importance to ensure accurate and reproducible analytic insights. This pocket reference first introduces and summarizes foundational and practically relevant data and data processing concepts, and then guides the reader through each step of how to get from the raw data to the final data analysis output.
+
+## Prerequisites and aims {.unnumbered}
+
+The book presupposes a basic knowledge of undergraduate economics and statistics and relates several case studies to practical questions in these fields. Finally, the aim is to give you firsthand practical insights into each part of the data science pipeline in the context of business and economics research.
+
+<!-- This textbook introduces students and practitioners to the fundamental practices of data science in the context of economic and social science research. The book summarizes basic concepts and practices in gathering, preparing/cleaning, visualizing, storing, and analyzing digital -->
+<!-- data for research and analytics purposes. -->
+
+<!-- You'll learn both theoretical aspects of what digital data is and how to handle it for analytics purposes in R, focusing on different data structures and data formats from structured data to raw text data and images). This book addresses common practical challenges underlying the crucial first steps underlying empirical research projects and shows how to efficiently overcome them.  -->
+
 
 ![Creative Commons License](img/cc.png)  
 

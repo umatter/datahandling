@@ -1,19 +1,26 @@
 # Programming with Data
 
-## Why learn to program to handle data?
+## Handling data programmatically 
 
-With lower computing costs, lower storage costs for digital data, and the diffusion of the Internet, we have recently witnessed a stark increase in the availability of digital data describing all kind of every-day human activities [@einav_levin2014; @matter_stutzer2015]. As a consequence, new business models and economic structures are emerging with data as their core commodity (i.e., AI-related technological and economic change). A 'data-driven' economy heavily relies on processing/analyzing/handling large amounts of digital data.
+The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of ['Data Science'](https://en.wikipedia.org/wiki/Data_science) as well as an increasing demand for 'Data Scientists'. While nothing within Data Science is particularly new on its own, it is the combination of skills and insights from different fields (particularly Computer Science and Statistics) that has proven to be very productive in meeting new challenges posed by a data-driven economy. The various facets of this new craft are often illustrated in the 'Data Science' Venn diagram, reflecting the combination of knowledge and skills from Mathematics/Statistics, substantive expertise in the particular scientific field in which Data Science is applied (here: Economics), and the  skills for *acquiring, cleaning, and analyzing* data *programmatically*.
 
-The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of ['Data Science'](https://en.wikipedia.org/wiki/Data_science) as well as an increasing demand for 'Data Scientists'. While nothing within Data Science is particularly new on its own, it is the combination of skills and insights from different fields (particularly Computer Science and Statistics) that has proven to be very productive in meeting new challenges posed by a data-driven economy. The various facets of this new craft are often illustrated in the 'Data Science' Venn-Diagram (see, for example, http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/), reflecting the combination of knowledge and skills from Mathematics/Statistics, substantive expertise in the particular scientific field in which Data Science is applied, and 'hacking skills', that is, the skills necessary for *acquiring, cleaning, and analyzing* data *programmatically*.
+```{r venn, echo=FALSE, fig.align='center', fig.cap="(ref:venn)", out.width="60%", purl=FALSE}
+include_graphics("img/venn_diagramm.png")
+```
 
-Apart from the current 'Data Science developments' and the related career opportunities for young economists, learning to program comes with many benefits for academic work in graduate economics. Many of the courses in your curriculum will at least partially touch upon practical programming exercises or concepts related to programming and scientific computing in an environment like R.
+(ref:venn) Venn diagram illustrating the domains of Data Science in the context of Economics.
+
+In the proposed framework of Data Science in Economics followed in this book, programming skills, basic knowledge about computing and in data technologies serve as a complement to engaging in modern economic analysis. They are necessary ingredients to both working new econometric approaches in machine learning (and the preceding feature engineering) as well as to solving complex problems in the domain of economic modeling. Moreover, programming (or 'coding') is the basis to better understand and engage with the handling of data for analytics purposes.
+
+While industry-scale data science projects tend to include data processing frameworks and programming languages (such as Scala, Python, and SQL), we will see that the core steps of how to get from the raw data to the final analysis report can for most simpler data projects be easily managed with just one programming language. In the case of this book, we choose *R*.
+
 
 
 
 ## Why *R*?
 
 ### The 'data language'
-The programming language and open-source statistical computing environment [*R*](www.r-project.org) has over the last decade become a core tool for data science in industry and academia. It was originally designed as a tool for statistical analysis. Many characteristics of the language make *R* particularly useful to work with data. With the rise of the 'data economy' and 'data science', *R* is increasingly used in various domains, going well beyond the traditional applications of academic research.  
+The programming language and open-source statistical computing environment [*R*](www.r-project.org) has over the last decade become a core tool for data science in industry and academia. It was originally designed as a tool for statistical analysis. Many characteristics of the language make *R* particularly useful to work with data. *R* is increasingly used in various domains, going well beyond the traditional applications of academic research.  
 
 ### High-level language, relatively easy to learn
 *R* is a relatively easy computer language to learn for people with no previous programming experience. The syntax is rather intuitive and error messages are not too cryptic to understand (this facilitates learning by doing). Moreover, with *R*'s recent stark rise in popularity, there are plenty of freely accessible resources online that help beginners to learn the language.
