@@ -261,6 +261,12 @@ Note how the histogram is getting closer to a normal distribution with increasin
 
 
 
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+system("rm blue.png")
+system("rm red.png")
+system("rm green.png")
+system("rm epicurve.rpt_date.csv")
+```
 
 
 

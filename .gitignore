@@ -57,4 +57,7 @@ _bookdown_files/
 *.png
 datahandling.Rmd
 datahandling.log
+epicurve_rpt_date.csv
+img/dedication.pdf
+
 
