@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Data Storage and Data Structures | Data Handling Pocket Reference</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Data Storage and Data Structures | Data Handling Pocket Reference" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-20" />
+<meta name="date" content="2022-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -509,9 +509,9 @@ Figure 4.1: Writing data stored in RAM to a Mass Storage device (hard drive). Fi
 <h4><span class="header-section-number">4.4.2.1</span> Vectors<a href="data-storage-and-data-structures.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Vectors are collections of values of the same type. They can contain either all numeric values or all character values. We will use the following symbol to refer to vectors.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:numvec"></span>
-<img src="img/numvec.png" alt="Illustration of a numeric vector (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="5%" />
+<img src="img/numvec.png" alt="Illustration of a numeric vector." width="5%" />
 <p class="caption">
-Figure 4.2: Illustration of a numeric vector (symbolic). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.2: Illustration of a numeric vector.
 </p>
 </div>
 
@@ -528,9 +528,9 @@ Figure 4.2: Illustration of a numeric vector (symbolic). Figure by <span class="
 <h4><span class="header-section-number">4.4.2.2</span> Factors<a href="data-storage-and-data-structures.html#factors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Factors are sets of categories. Thus, the values come from a fixed set of possible values.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:factor"></span>
-<img src="img/factor.png" alt="Illustration of a factor (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="5%" />
+<img src="img/factor.png" alt="Illustration of a factor." width="5%" />
 <p class="caption">
-Figure 4.3: Illustration of a factor (symbolic). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.3: Illustration of a factor.
 </p>
 </div>
 
@@ -544,9 +544,9 @@ Figure 4.3: Illustration of a factor (symbolic). Figure by <span class="citation
 <h4><span class="header-section-number">4.4.2.3</span> Matrices/Arrays<a href="data-storage-and-data-structures.html#matricesarrays" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:matrix"></span>
-<img src="img/matrix.png" alt="Illustration of a numeric matrix (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
+<img src="img/matrix.png" alt="Illustration of a numeric matrix." width="20%" />
 <p class="caption">
-Figure 4.4: Illustration of a numeric matrix (symbolic). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.4: Illustration of a numeric matrix.
 </p>
 </div>
 
@@ -576,9 +576,9 @@ Figure 4.4: Illustration of a numeric matrix (symbolic). Figure by <span class="
 <h4><span class="header-section-number">4.4.2.4</span> Data frames, tibbles, and data tables<a href="data-storage-and-data-structures.html#data-frames-tibbles-and-data-tables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Data frames are the typical representation of a (table-like) data set in R. Each column can contain a vector of a given data type (or a factor), but all columns need to be of identical length. Thus in the context of data analysis, we would say that each row of a data frame contains an observation, and each column contains a characteristic of this observation.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:df"></span>
-<img src="img/df.png" alt="Illustration of a data frame (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
+<img src="img/dataframe.png" alt="Illustration of a data frame." width="20%" />
 <p class="caption">
-Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.5: Illustration of a data frame.
 </p>
 </div>
 
@@ -595,9 +595,9 @@ Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="cita
 <h4><span class="header-section-number">4.4.2.5</span> Lists<a href="data-storage-and-data-structures.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Unlike data frames, lists can contain different data types in each element. Moreover, they even can contain different data structures of <em>different dimensions</em> in each element. For example, a list could contain different other lists, data frames, and vectors with differing numbers of elements.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:list"></span>
-<img src="img/list.png" alt="Illustration of a data frame (symbolic). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="10%" />
+<img src="img/list.png" alt="Illustration of a data frame (symbolic)." width="20%" />
 <p class="caption">
-Figure 4.6: Illustration of a data frame (symbolic). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.6: Illustration of a data frame (symbolic).
 </p>
 </div>
 
@@ -711,7 +711,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -229,7 +229,7 @@
 
 \title{Data Handling Pocket Reference}
 \author{Ulrich Matter}
-\date{2022-09-20}
+\date{2022-09-22}
 
 \begin{document}
 \maketitle
@@ -1721,7 +1721,7 @@ Vectors are collections of values of the same type. They can contain either all 
 
 }
 
-\caption{Illustration of a numeric vector (symbolic). Figure by \citet{murrell_2009} (licensed under CC BY-NC-SA 3.0 NZ).}\label{fig:numvec}
+\caption{Illustration of a numeric vector.}\label{fig:numvec}
 \end{figure}
 
 
@@ -1763,7 +1763,7 @@ Factors are sets of categories. Thus, the values come from a fixed set of possib
 
 }
 
-\caption{Illustration of a factor (symbolic). Figure by \citet{murrell_2009} (licensed under CC BY-NC-SA 3.0 NZ).}\label{fig:factor}
+\caption{Illustration of a factor.}\label{fig:factor}
 \end{figure}
 
 
@@ -1789,11 +1789,11 @@ Matrices are two-dimensional collections of values, arrays of higher-dimensional
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.1\linewidth]{img/matrix} 
+{\centering \includegraphics[width=0.2\linewidth]{img/matrix} 
 
 }
 
-\caption{Illustration of a numeric matrix (symbolic). Figure by \citet{murrell_2009} (licensed under CC BY-NC-SA 3.0 NZ).}\label{fig:matrix}
+\caption{Illustration of a numeric matrix.}\label{fig:matrix}
 \end{figure}
 
 
@@ -1844,11 +1844,11 @@ Data frames are the typical representation of a (table-like) data set in R. Each
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.1\linewidth]{img/df} 
+{\centering \includegraphics[width=0.2\linewidth]{img/dataframe} 
 
 }
 
-\caption{Illustration of a data frame (symbolic). Figure by \citet{murrell_2009} (licensed under CC BY-NC-SA 3.0 NZ).}\label{fig:df}
+\caption{Illustration of a data frame.}\label{fig:df}
 \end{figure}
 
 
@@ -1878,11 +1878,11 @@ Unlike data frames, lists can contain different data types in each element. More
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.1\linewidth]{img/list} 
+{\centering \includegraphics[width=0.2\linewidth]{img/list} 
 
 }
 
-\caption{Illustration of a data frame (symbolic). Figure by \citet{murrell_2009} (licensed under CC BY-NC-SA 3.0 NZ).}\label{fig:list}
+\caption{Illustration of a data frame (symbolic).}\label{fig:list}
 \end{figure}
 
 
@@ -2157,7 +2157,18 @@ In many web applications, JSON serves the same purpose as XML\footnote{Not that 
 \end{Highlighting}
 \end{Shaded}
 
-Note that despite the syntax differences, the similarities regarding the nesting structure are visible in both formats. For example, \texttt{postalCode} is embedded in \texttt{address}, \texttt{firstname} and \texttt{lastname} are at the same nesting level, etc.
+Note that despite the syntax differences, the similarities regarding the nesting structure are visible in both formats. For example, \texttt{postalCode} is embedded in \texttt{address}, \texttt{firstname} and \texttt{lastname} are at the same nesting level, etc. The following figure, illustrating the nesting structure further illustrates this point. The basic logic of what element belongs to which higher-level element displayed in the tree diagramm is encoded in both the JSON and the XML excerpts shown above.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{img/hierarch_data} 
+
+}
+
+\caption{XML tree diagram.}\label{fig:xmltree}
+\end{figure}
+
+
 
 Both XML and JSON are predominantly used to store rather complex, multi-dimensional data. Because they are both human- and machine-readable, these formats are often used to transfer data between applications and users on the Web. Therefore, we encounter these data formats particularly often when we collect data from online sources. Moreover, in the economics/social science context, large and complex data sets (`Big Data') often come along in these formats exactly because of the increasing importance of the Internet as a data source for empirical research in these disciplines.
 
@@ -2269,7 +2280,7 @@ One way to think about an HTML document is to imagine it as a tree-diagram, with
 
 }
 
-\caption{HTML (DOM) tree diagram (by Lubaochuan 2014, licensed under the Creative Commons Attribution-Share Alike 4.0 International license).}\label{fig:html}
+\caption{HTML (DOM) tree diagram.}\label{fig:html}
 \end{figure}
 
 
@@ -2321,7 +2332,7 @@ And we can check if everything worked out well by having a look at the first lin
 ## [3] "<head>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 ## [4] "<meta charset=\"UTF-8\"/>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 ## [5] "<title>Economy of Switzerland - Wikipedia</title>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-## [6] "<script>document.documentElement.className=\"client-js\";RLCONF={\"wgBreakFrames\":false,\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgRequestId\":\"06d9bfe6-3c1a-4856-99ad-35ab2104f5ba\",\"wgCSPNonce\":false,\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Economy_of_Switzerland\",\"wgTitle\":\"Economy of Switzerland\",\"wgCurRevisionId\":1107876525,\"wgRevisionId\":1107876525,\"wgArticleId\":27465,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"CS1 maint: archived copy as title\",\"CS1 German-language sources (de)\",\"Articles with German-language sources (de)\",\"Webarchive template wayback links\",\"Articles with French-language sources (fr)\",\"Articles with short description\",\"Short description is different from Wikidata\","
+## [6] "<script>document.documentElement.className=\"client-js\";RLCONF={\"wgBreakFrames\":false,\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgRequestId\":\"1588b1a5-d8ea-4704-b998-42f9eaf6db68\",\"wgCSPNonce\":false,\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Economy_of_Switzerland\",\"wgTitle\":\"Economy of Switzerland\",\"wgCurRevisionId\":1107876525,\"wgRevisionId\":1107876525,\"wgArticleId\":27465,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"CS1 maint: archived copy as title\",\"CS1 German-language sources (de)\",\"Articles with German-language sources (de)\",\"Webarchive template wayback links\",\"Articles with French-language sources (fr)\",\"Articles with short description\",\"Short description is different from Wikidata\","
 \end{verbatim}
 
 The next thing we do is to look at how we can filter the webpage for certain information. For example, we search in the source code for the line that contains the part of the webpage with the table showing data on the Swiss GDP:
@@ -2834,9 +2845,13 @@ From the examples above, you recognize that in order to generate/manipulate rast
 \end{Shaded}
 
 \begin{verbatim}
-## Linking to ImageMagick 6.9.12.3
-## Enabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp
-## Disabled features: fftw, ghostscript, x11
+## Linking to ImageMagick 6.9.11.60
+## Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, webp, x11
+## Disabled features: cairo, ghostscript, raw, rsvg
+\end{verbatim}
+
+\begin{verbatim}
+## Using 4 threads
 \end{verbatim}
 
 \begin{Shaded}
@@ -2924,7 +2939,7 @@ From the examples above, you recognize that in order to generate/manipulate rast
 \end{Shaded}
 
 \begin{verbatim}
-## The New Work Times. [==S=
+## The New Work Times. ==S=
 ## 
 ## TITANIC SINKS FOUR HOURS AFTER HITTING ICEBERG;
 ## 866 RESCUED BY CARPATHIA, PROBABLY 1250 PERISH;

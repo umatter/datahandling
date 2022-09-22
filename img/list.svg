@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 459.46 440.88"
+   version="1.1"
+   sodipodi:docname="list.svg"
+   inkscape:export-filename="/home/umatter/Dropbox/Teaching/HSG/datahandling/datahandling/img/list.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview51"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.6308292"
+     inkscape:cx="229.94437"
+     inkscape:cy="220.13341"
+     inkscape:window-width="1680"
+     inkscape:window-height="981"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:#d1d1d1;}.cls-1,.cls-4,.cls-5{stroke:#000;stroke-miterlimit:10;}.cls-2{font-size:34px;}.cls-2,.cls-6{font-family:Roboto-Regular, Roboto;}.cls-3{letter-spacing:-0.01em;}.cls-4{fill:#eee;}.cls-5{fill:none;stroke-width:2px;}.cls-6{font-size:56px;}</style>
+  </defs>
+  <path
+     class="cls-1"
+     d="M9.32,63.92H117.14A8.82,8.82,0,0,1,126,72.74V189.38a0,0,0,0,1,0,0H.5a0,0,0,0,1,0,0V72.74A8.82,8.82,0,0,1,9.32,63.92Z"
+     id="path6" />
+  <text
+     class="cls-2"
+     transform="translate(7.72,140.68)"
+     id="text12"><tspan
+       x="18.440001"
+       y="0"
+       id="tspan10">Male</tspan></text>
+  <path
+     class="cls-1"
+     d="M.5,314.92H126a0,0,0,0,1,0,0V431.56a8.82,8.82,0,0,1-8.82,8.82H9.32A8.82,8.82,0,0,1,.5,431.56V314.92A0,0,0,0,1,.5,314.92Z"
+     id="path14" />
+  <text
+     class="cls-2"
+     transform="translate(7.72 391.68)"
+     id="text20"><tspan
+       class="cls-3"
+       id="tspan16">F</tspan><tspan
+       x="18.44"
+       y="0"
+       id="tspan18">emale</tspan></text>
+  <rect
+     class="cls-4"
+     x="0.5"
+     y="189.42"
+     width="125.46"
+     height="125.46"
+     id="rect22" />
+  <text
+     class="cls-2"
+     transform="translate(26.01 266.18)"
+     id="text24">Male</text>
+  <line
+     class="cls-5"
+     x1="63.23"
+     y1="63"
+     x2="63.23"
+     y2="14"
+     id="line26" />
+  <path
+     class="cls-4"
+     d="M175.82,63.92H283.64a8.82,8.82,0,0,1,8.82,8.82V182.29a7.09,7.09,0,0,1-7.09,7.09H174.09a7.09,7.09,0,0,1-7.09-7.09V72.74a8.82,8.82,0,0,1,8.82-8.82Z"
+     id="path28" />
+  <text
+     class="cls-6"
+     transform="translate(204.22 140.68)"
+     id="text30">df</text>
+  <line
+     class="cls-5"
+     x1="229.73"
+     y1="63"
+     x2="229.73"
+     y2="14"
+     id="line32" />
+  <path
+     class="cls-4"
+     d="M342.32,63.92H450.14A8.82,8.82,0,0,1,459,72.74V189.38a0,0,0,0,1,0,0H333.5a0,0,0,0,1,0,0V72.74A8.82,8.82,0,0,1,342.32,63.92Z"
+     id="path34" />
+  <text
+     class="cls-6"
+     transform="translate(380.51 140.68)"
+     id="text36">1</text>
+  <path
+     class="cls-4"
+     d="M333.5,189.42H459a0,0,0,0,1,0,0V307a7.9,7.9,0,0,1-7.9,7.9H341.4a7.9,7.9,0,0,1-7.9-7.9V189.42A0,0,0,0,1,333.5,189.42Z"
+     id="path38" />
+  <text
+     class="cls-6"
+     transform="translate(380.51 266.18)"
+     id="text40">2</text>
+  <polyline
+     class="cls-5"
+     points="396.23 63 396.23 14 63.23 14"
+     id="polyline42" />
+  <circle
+     cx="62.59"
+     cy="12"
+     r="12"
+     id="circle44" />
+  <circle
+     cx="229.59"
+     cy="14"
+     r="12"
+     id="circle46" />
+  <circle
+     cx="395.59"
+     cy="14"
+     r="12"
+     id="circle48" />
+</svg>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Image data | Data Handling Pocket Reference</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Image data | Data Handling Pocket Reference" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-20" />
+<meta name="date" content="2022-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -583,25 +583,26 @@ and subsequently multiply by 255:</p>
 <h3><span class="header-section-number">7.2.2</span> Advanced Image Manipulation using ImageMagick<a href="image-data.html#advanced-image-manipulation-using-imagemagick" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="image-data.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
 <span id="cb201-2"><a href="image-data.html#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span></code></pre></div>
-<pre><code>## Linking to ImageMagick 6.9.12.3
-## Enabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp
-## Disabled features: fftw, ghostscript, x11</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="image-data.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can import images from the web</span></span>
-<span id="cb203-2"><a href="image-data.html#cb203-2" aria-hidden="true" tabindex="-1"></a>frink <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/frink.png&quot;</span>)</span>
-<span id="cb203-3"><a href="image-data.html#cb203-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(frink)</span></code></pre></div>
+<pre><code>## Linking to ImageMagick 6.9.11.60
+## Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, webp, x11
+## Disabled features: cairo, ghostscript, raw, rsvg</code></pre>
+<pre><code>## Using 4 threads</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="image-data.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can import images from the web</span></span>
+<span id="cb204-2"><a href="image-data.html#cb204-2" aria-hidden="true" tabindex="-1"></a>frink <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/frink.png&quot;</span>)</span>
+<span id="cb204-3"><a href="image-data.html#cb204-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(frink)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
 ## 1 PNG      220    445 sRGB       TRUE     73494 72x72</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-85-1.png" width="110" /></p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="image-data.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate</span></span>
-<span id="cb205-2"><a href="image-data.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_rotate</span>(frink, <span class="dv">45</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="image-data.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate</span></span>
+<span id="cb206-2"><a href="image-data.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_rotate</span>(frink, <span class="dv">45</span>)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-85-2.png" width="236" /></p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="image-data.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flip</span></span>
-<span id="cb206-2"><a href="image-data.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_flip</span>(frink)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="image-data.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flip</span></span>
+<span id="cb207-2"><a href="image-data.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_flip</span>(frink)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-85-3.png" width="110" /></p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="image-data.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flop</span></span>
-<span id="cb207-2"><a href="image-data.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_flop</span>(frink)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="image-data.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flop</span></span>
+<span id="cb208-2"><a href="image-data.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_flop</span>(frink)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-85-4.png" width="110" /></p>
 <!-- Working with GIFs -->
 <!-- ```{r } -->
@@ -624,24 +625,24 @@ and subsequently multiply by 255:</p>
 </div>
 <div id="working-with-ocr-optical-character-recognition" class="section level3 hasAnchor" number="7.2.3">
 <h3><span class="header-section-number">7.2.3</span> Working with OCR (Optical Character Recognition)<a href="image-data.html#working-with-ocr-optical-character-recognition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="image-data.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For Optical Character Recognition</span></span>
-<span id="cb208-2"><a href="image-data.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
-<span id="cb208-3"><a href="image-data.html#cb208-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-4"><a href="image-data.html#cb208-4" aria-hidden="true" tabindex="-1"></a>img <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://s3.amazonaws.com/libapps/accounts/30502/images/new_york_times.png&quot;</span>)</span>
-<span id="cb208-5"><a href="image-data.html#cb208-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(img)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="image-data.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For Optical Character Recognition</span></span>
+<span id="cb209-2"><a href="image-data.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
+<span id="cb209-3"><a href="image-data.html#cb209-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-4"><a href="image-data.html#cb209-4" aria-hidden="true" tabindex="-1"></a>img <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://s3.amazonaws.com/libapps/accounts/30502/images/new_york_times.png&quot;</span>)</span>
+<span id="cb209-5"><a href="image-data.html#cb209-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(img)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
 ## 1 PNG      806    550 sRGB       FALSE   714189 38x38</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-86-1.png" width="403" /></p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="image-data.html#cb210-1" aria-hidden="true" tabindex="-1"></a>headline <span class="ot">&lt;-</span> </span>
-<span id="cb210-2"><a href="image-data.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_crop</span>(<span class="at">image =</span> img, <span class="at">geometry =</span> <span class="st">&#39;806x180&#39;</span>)</span>
-<span id="cb210-3"><a href="image-data.html#cb210-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb210-4"><a href="image-data.html#cb210-4" aria-hidden="true" tabindex="-1"></a>headline</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="image-data.html#cb211-1" aria-hidden="true" tabindex="-1"></a>headline <span class="ot">&lt;-</span> </span>
+<span id="cb211-2"><a href="image-data.html#cb211-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_crop</span>(<span class="at">image =</span> img, <span class="at">geometry =</span> <span class="st">&#39;806x180&#39;</span>)</span>
+<span id="cb211-3"><a href="image-data.html#cb211-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb211-4"><a href="image-data.html#cb211-4" aria-hidden="true" tabindex="-1"></a>headline</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-86-2.png" width="403" /></p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="image-data.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract text</span></span>
-<span id="cb211-2"><a href="image-data.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">image_ocr</span>(headline))</span></code></pre></div>
-<pre><code>## The New Work Times. [==S=
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="image-data.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract text</span></span>
+<span id="cb212-2"><a href="image-data.html#cb212-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">image_ocr</span>(headline))</span></code></pre></div>
+<pre><code>## The New Work Times. ==S=
 ## 
 ## TITANIC SINKS FOUR HOURS AFTER HITTING ICEBERG;
 ## 866 RESCUED BY CARPATHIA, PROBABLY 1250 PERISH;
@@ -650,21 +651,21 @@ and subsequently multiply by 255:</p>
 </div>
 <div id="vector-images-in-r" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Vector Images in R<a href="image-data.html#vector-images-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="image-data.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Common Packages for Vector Files</span></span>
-<span id="cb213-2"><a href="image-data.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
-<span id="cb213-3"><a href="image-data.html#cb213-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-4"><a href="image-data.html#cb213-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and read svg image from url</span></span>
-<span id="cb213-5"><a href="image-data.html#cb213-5" aria-hidden="true" tabindex="-1"></a>URL <span class="ot">&lt;-</span> <span class="st">&quot;https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg&quot;</span></span>
-<span id="cb213-6"><a href="image-data.html#cb213-6" aria-hidden="true" tabindex="-1"></a>Rlogo_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(URL)</span>
-<span id="cb213-7"><a href="image-data.html#cb213-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-8"><a href="image-data.html#cb213-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Data structure</span></span>
-<span id="cb213-9"><a href="image-data.html#cb213-9" aria-hidden="true" tabindex="-1"></a>Rlogo_xml </span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="image-data.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Common Packages for Vector Files</span></span>
+<span id="cb214-2"><a href="image-data.html#cb214-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
+<span id="cb214-3"><a href="image-data.html#cb214-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb214-4"><a href="image-data.html#cb214-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and read svg image from url</span></span>
+<span id="cb214-5"><a href="image-data.html#cb214-5" aria-hidden="true" tabindex="-1"></a>URL <span class="ot">&lt;-</span> <span class="st">&quot;https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg&quot;</span></span>
+<span id="cb214-6"><a href="image-data.html#cb214-6" aria-hidden="true" tabindex="-1"></a>Rlogo_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(URL)</span>
+<span id="cb214-7"><a href="image-data.html#cb214-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb214-8"><a href="image-data.html#cb214-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Data structure</span></span>
+<span id="cb214-9"><a href="image-data.html#cb214-9" aria-hidden="true" tabindex="-1"></a>Rlogo_xml </span></code></pre></div>
 <pre><code>## {xml_document}
 ## &lt;svg preserveAspectRatio=&quot;xMidYMid&quot; width=&quot;724&quot; height=&quot;561&quot; viewBox=&quot;0 0 724 561&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
 ## [1] &lt;defs&gt;\n  &lt;linearGradient id=&quot;gradientFill-1&quot; x1 ...
 ## [2] &lt;path d=&quot;M361.453,485.937 C162.329,485.937 0.906 ...
 ## [3] &lt;path d=&quot;M550.000,377.000 C550.000,377.000 571.8 ...</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="image-data.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_structure</span>(Rlogo_xml)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="image-data.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_structure</span>(Rlogo_xml)</span></code></pre></div>
 <pre><code>## &lt;svg [preserveAspectRatio, width, height, viewBox, xmlns, xmlns:xlink]&gt;
 ##   &lt;defs&gt;
 ##     &lt;linearGradient [id, x1, x2, y1, y2, gradientUnits, spreadMethod]&gt;
@@ -675,17 +676,17 @@ and subsequently multiply by 255:</p>
 ##       &lt;stop [offset, stop-color, stop-opacity]&gt;
 ##   &lt;path [d, fill, fill-rule]&gt;
 ##   &lt;path [d, fill, fill-rule]&gt;</code></pre>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="image-data.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Raw data</span></span>
-<span id="cb217-2"><a href="image-data.html#cb217-2" aria-hidden="true" tabindex="-1"></a>Rlogo_text <span class="ot">&lt;-</span> <span class="fu">as.character</span>(Rlogo_xml)</span>
-<span id="cb217-3"><a href="image-data.html#cb217-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb217-4"><a href="image-data.html#cb217-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb217-5"><a href="image-data.html#cb217-5" aria-hidden="true" tabindex="-1"></a>svg_img <span class="ot">=</span> <span class="fu">image_read_svg</span>(Rlogo_text)</span>
-<span id="cb217-6"><a href="image-data.html#cb217-6" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(svg_img)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="image-data.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Raw data</span></span>
+<span id="cb218-2"><a href="image-data.html#cb218-2" aria-hidden="true" tabindex="-1"></a>Rlogo_text <span class="ot">&lt;-</span> <span class="fu">as.character</span>(Rlogo_xml)</span>
+<span id="cb218-3"><a href="image-data.html#cb218-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb218-4"><a href="image-data.html#cb218-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb218-5"><a href="image-data.html#cb218-5" aria-hidden="true" tabindex="-1"></a>svg_img <span class="ot">=</span> <span class="fu">image_read_svg</span>(Rlogo_text)</span>
+<span id="cb218-6"><a href="image-data.html#cb218-6" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(svg_img)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
 ## 1 PNG      724    561 sRGB       TRUE         0 72x72</code></pre>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="image-data.html#cb219-1" aria-hidden="true" tabindex="-1"></a>svg_img</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="image-data.html#cb220-1" aria-hidden="true" tabindex="-1"></a>svg_img</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-88-1.png" width="362" /></p>
 <!-- ### Example: Manipulating Output width and height of SVGs -->
 <!-- ```{r} -->
@@ -771,7 +772,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Data Preparation | Data Handling Pocket Reference</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Data Preparation | Data Handling Pocket Reference" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-20" />
+<meta name="date" content="2022-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -376,31 +376,31 @@ div.csl-indent {
 <h2><span class="header-section-number">9.1</span> Cleaning data with basic string operations<a href="data-preparation.html#cleaning-data-with-basic-string-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recall that most of the data we read into R for analytic purposes is a collection of raw text (structured with special characters). When parsing the data to read it into R with high-level functions such as the ones provided in the <code>readr</code>-package, both the structure and the data types are considered. The resulting <code>data.frame</code>/<code>tibble</code> might thus contain variables (different columns) of type <code>character</code>, <code>factor</code>, or <code>integer</code>, etc. At this stage, it often happens that the raw data is not clean enough for the parser to recognize the data types in each column correctly, and it resorts to just parsing it as <code>character</code>. Indeed, if we have to deal with a very messy dataset, it can make a lot of sense to constrain the parser such that it reads each column a as <code>character</code>.</p>
 <p>We first load this package as we rely on functions provided in the <code>tidyverse</code>.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-preparation.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-preparation.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>Let’s create a sample dataset to illustrate some of the typical issues regarding unclean data that we might encounter in empirical economic research (and many similar domains of data analysis).<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a></p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-preparation.html#cb272-1" aria-hidden="true" tabindex="-1"></a>messy_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">last_name =</span> <span class="fu">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Karl Marx&quot;</span>),</span>
-<span id="cb272-2"><a href="data-preparation.html#cb272-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
-<span id="cb272-3"><a href="data-preparation.html#cb272-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;Man&quot;</span>),</span>
-<span id="cb272-4"><a href="data-preparation.html#cb272-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">date =</span> <span class="fu">c</span>(<span class="st">&quot;2018-11-15&quot;</span>, <span class="st">&quot;2018.11.01&quot;</span>, <span class="st">&quot;2018/11/02&quot;</span>),</span>
-<span id="cb272-5"><a href="data-preparation.html#cb272-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">income =</span> <span class="fu">c</span>(<span class="st">&quot;150,000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>),</span>
-<span id="cb272-6"><a href="data-preparation.html#cb272-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="data-preparation.html#cb273-1" aria-hidden="true" tabindex="-1"></a>messy_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">last_name =</span> <span class="fu">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Karl Marx&quot;</span>),</span>
+<span id="cb273-2"><a href="data-preparation.html#cb273-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
+<span id="cb273-3"><a href="data-preparation.html#cb273-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;Man&quot;</span>),</span>
+<span id="cb273-4"><a href="data-preparation.html#cb273-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">date =</span> <span class="fu">c</span>(<span class="st">&quot;2018-11-15&quot;</span>, <span class="st">&quot;2018.11.01&quot;</span>, <span class="st">&quot;2018/11/02&quot;</span>),</span>
+<span id="cb273-5"><a href="data-preparation.html#cb273-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">income =</span> <span class="fu">c</span>(<span class="st">&quot;150,000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>),</span>
+<span id="cb273-6"><a href="data-preparation.html#cb273-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Assuming we have managed to read this dataset from a local file (with all columns as type <code>character</code>), the next step is to clean each of the columns such that the dataset is ready for analysis. Thereby we want to make sure that each variable (column) is set to a meaningful data type, once it is cleaned. The <em>cleaning</em> of the parsed data is often easier to do when the data is of type <code>character</code>. Once it is cleaned, however, we can set it to a type that is more useful for the analysis part. For example, a column containing numeric values in the final dataset should be stored as <code>numeric</code> or <code>integer</code>, so we can perform math operations on it later on (compute sums, means, etc.).</p>
 <div id="findreplace-character-strings-recode-factor-levels" class="section level3 hasAnchor" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Find/replace character strings, recode factor levels<a href="data-preparation.html#findreplace-character-strings-recode-factor-levels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Our dataset contains a typical categorical variable: <code>gender</code>. In R, storing such variables as type <code>factor</code> is good practice. Without really looking at the data values, we might thus be inclined to do the following:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="data-preparation.html#cb273-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(messy_df<span class="sc">$</span>gender)</span>
-<span id="cb273-2"><a href="data-preparation.html#cb273-2" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="data-preparation.html#cb274-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(messy_df<span class="sc">$</span>gender)</span>
+<span id="cb274-2"><a href="data-preparation.html#cb274-2" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender</span></code></pre></div>
 <pre><code>## [1] male   female Man   
 ## Levels: female male Man</code></pre>
 <p>The column is now of type <code>factor</code>. And we see that R defined the factor variable such that an observation can be one of three categories (‘levels’): <code>female</code>, <code>male</code>, or <code>Man</code>. In terms of content, that probably does not make too much sense. If we were to analyze the data later and compute the sample’s share of males, we would only count one instead of two. Hence, we better <em>recode</em> the gender variable of male subjects as <code>male</code> and not <code>Man</code>. How can this be done programmatically?</p>
 <p>One approach is to select all entries in <code>messy_df$gender</code> that are equal to <code>"Man"</code> and replace these entries with <code>"male"</code>.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="data-preparation.html#cb275-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender[messy_df<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">&quot;Man&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;male&quot;</span></span>
-<span id="cb275-2"><a href="data-preparation.html#cb275-2" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="data-preparation.html#cb276-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender[messy_df<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">&quot;Man&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;male&quot;</span></span>
+<span id="cb276-2"><a href="data-preparation.html#cb276-2" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender</span></code></pre></div>
 <pre><code>## [1] male   female male  
 ## Levels: female male Man</code></pre>
 <p>Note, however, that this approach is not perfect because R still considers <code>Man</code> as a valid possible category in this column. This can have consequences for certain analyses we might want to run on this dataset later on.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> Alternatively, we can use a function <code>fct_recode()</code> (provided in <code>tidyverse</code>), specifically for such operations with factors.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="data-preparation.html#cb277-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">fct_recode</span>(messy_df<span class="sc">$</span>gender, <span class="st">&quot;male&quot;</span> <span class="ot">=</span> <span class="st">&quot;Man&quot;</span>)</span>
-<span id="cb277-2"><a href="data-preparation.html#cb277-2" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="data-preparation.html#cb278-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">fct_recode</span>(messy_df<span class="sc">$</span>gender, <span class="st">&quot;male&quot;</span> <span class="ot">=</span> <span class="st">&quot;Man&quot;</span>)</span>
+<span id="cb278-2"><a href="data-preparation.html#cb278-2" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>gender</span></code></pre></div>
 <pre><code>## [1] male   female male  
 ## Levels: female male</code></pre>
 <p>The latter can be very useful when several factor levels need to be recoded at once. Note that in both cases, the underlying logic is that we search for strings that are identical to <code>"Man"</code> and replace those values with <code>"male"</code>. Now, the gender variable is ready for analysis.</p>
@@ -408,30 +408,30 @@ div.csl-indent {
 <div id="removing-individual-characters-from-a-string" class="section level3 hasAnchor" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Removing individual characters from a string<a href="data-preparation.html#removing-individual-characters-from-a-string" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>income</code> column contains numbers, so let’s try to set this column to type <code>integer</code>.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="data-preparation.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(messy_df<span class="sc">$</span>income)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="data-preparation.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(messy_df<span class="sc">$</span>income)</span></code></pre></div>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <pre><code>## [1]     NA 250000  10000</code></pre>
 <p>R is warning us that something did not go well when executing this code. We see that the first value of the original column has been replaced with <code>NA</code> (‘Not Available’/‘Not Applicable’/‘No Answer’). The reason is that the original value contained a comma (<code>,</code>), a special character. The function <code>as integer()</code> does not know how to translate such a symbol to a number. Hence, the original data, value cannot be translated into a number (integer). In order to resolve this issue, we have to remove the comma (<code>,</code>) from this string. Or, more precisely, we will locate this specific character <em>within</em> the string and replace it with an empty string (<code>""</code>) To do so, we’ll use the function <code>str_replace()</code> (for ‘string replace’).</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="data-preparation.html#cb282-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(messy_df<span class="sc">$</span>income, <span class="at">pattern =</span> <span class="st">&quot;,&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="data-preparation.html#cb283-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(messy_df<span class="sc">$</span>income, <span class="at">pattern =</span> <span class="st">&quot;,&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>Now we can successfully set the column as type integer.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="data-preparation.html#cb283-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(messy_df<span class="sc">$</span>income)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="data-preparation.html#cb284-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(messy_df<span class="sc">$</span>income)</span></code></pre></div>
 </div>
 <div id="splitting-strings" class="section level3 hasAnchor" number="9.1.3">
 <h3><span class="header-section-number">9.1.3</span> Splitting strings<a href="data-preparation.html#splitting-strings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>From looking at the <code>last_name</code> and <code>first_name</code> columns of our messy dataset, it becomes clear that the last row is not accurately coded. <code>Karl</code> should show up in the <code>first_name</code> column. In order to correct this, we have to extract a part of one string and store this sub-string in another variable. There are several ways to do this. Here, it probably makes sense to split the original string into two parts, as the white space between <code>Karl</code> and <code>Marx</code> indicates the separation of first and last names. For this, we can use the function <code>str_split()</code>.</p>
 <p>First, we split the strings at every occurrence of white space (<code>" "</code>). Setting the option <code>simplify=TRUE</code>, we get a matrix containing the individual sub-strings after the splitting.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="data-preparation.html#cb284-1" aria-hidden="true" tabindex="-1"></a>splitnames <span class="ot">&lt;-</span> <span class="fu">str_split</span>(messy_df<span class="sc">$</span>last_name, <span class="at">pattern =</span> <span class="st">&quot; &quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb284-2"><a href="data-preparation.html#cb284-2" aria-hidden="true" tabindex="-1"></a>splitnames</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="data-preparation.html#cb285-1" aria-hidden="true" tabindex="-1"></a>splitnames <span class="ot">&lt;-</span> <span class="fu">str_split</span>(messy_df<span class="sc">$</span>last_name, <span class="at">pattern =</span> <span class="st">&quot; &quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb285-2"><a href="data-preparation.html#cb285-2" aria-hidden="true" tabindex="-1"></a>splitnames</span></code></pre></div>
 <pre><code>##      [,1]    [,2]  
 ## [1,] &quot;Wayne&quot; &quot;&quot;    
 ## [2,] &quot;Trump&quot; &quot;&quot;    
 ## [3,] &quot;Karl&quot;  &quot;Marx&quot;</code></pre>
 <p>As the first two observations did not contain any white space, there was nothing to split there, and the function simply returned empty strings <code>""</code>. In a second step, we replace empty observations in the <code>first_name</code> column with the corresponding values in <code>splitnames</code>.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="data-preparation.html#cb286-1" aria-hidden="true" tabindex="-1"></a>problem_cases <span class="ot">&lt;-</span> messy_df<span class="sc">$</span>first_name <span class="sc">==</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb286-2"><a href="data-preparation.html#cb286-2" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>first_name[problem_cases] <span class="ot">&lt;-</span> splitnames[problem_cases, <span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="data-preparation.html#cb287-1" aria-hidden="true" tabindex="-1"></a>problem_cases <span class="ot">&lt;-</span> messy_df<span class="sc">$</span>first_name <span class="sc">==</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb287-2"><a href="data-preparation.html#cb287-2" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>first_name[problem_cases] <span class="ot">&lt;-</span> splitnames[problem_cases, <span class="dv">1</span>]</span></code></pre></div>
 <p>Finally, we must correct the <code>last_name</code> column by replacing the respective values.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="data-preparation.html#cb287-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>last_name[problem_cases] <span class="ot">&lt;-</span> splitnames[problem_cases, <span class="dv">2</span>]</span>
-<span id="cb287-2"><a href="data-preparation.html#cb287-2" aria-hidden="true" tabindex="-1"></a>messy_df</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="data-preparation.html#cb288-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>last_name[problem_cases] <span class="ot">&lt;-</span> splitnames[problem_cases, <span class="dv">2</span>]</span>
+<span id="cb288-2"><a href="data-preparation.html#cb288-2" aria-hidden="true" tabindex="-1"></a>messy_df</span></code></pre></div>
 <pre><code>##   last_name first_name gender       date income
 ## 1     Wayne       John   male 2018-11-15 150000
 ## 2     Trump    Melania female 2018.11.01 250000
@@ -440,17 +440,17 @@ div.csl-indent {
 <div id="parsing-dates" class="section level3 hasAnchor" number="9.1.4">
 <h3><span class="header-section-number">9.1.4</span> Parsing dates<a href="data-preparation.html#parsing-dates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, we take a look at the <code>date</code>-column of our dataset. For many data preparation steps as well as visualization and analysis, it is advantageous to have times and dates properly parsed as type <code>Date</code>. In practice, dates and times are often particularly messy because no unique standard has been used to define the format in the data collection phase. This also seems to be the case in our dataset. In order to work with dates, we load the <code>lubridate</code> package.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="data-preparation.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="data-preparation.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
 <p>This package provides several functions to parse and manipulate date and time data. From the’ date’ column, we see that the format is year, month, and day. Thus, we can use the <code>ymd()</code>-function provided in the <code>lubridate</code>-package to parse the column as <code>Date</code> type.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="data-preparation.html#cb290-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(messy_df<span class="sc">$</span>date)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="data-preparation.html#cb291-1" aria-hidden="true" tabindex="-1"></a>messy_df<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(messy_df<span class="sc">$</span>date)</span></code></pre></div>
 <p>Note how this function automatically recognizes how different special characters have been used in different observations to separate years from months/days.</p>
 <p>Now, our dataset is cleaned up and ready to go.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="data-preparation.html#cb291-1" aria-hidden="true" tabindex="-1"></a>messy_df</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="data-preparation.html#cb292-1" aria-hidden="true" tabindex="-1"></a>messy_df</span></code></pre></div>
 <pre><code>##   last_name first_name gender       date income
 ## 1     Wayne       John   male 2018-11-15 150000
 ## 2     Trump    Melania female 2018-11-01 250000
 ## 3      Marx       Karl   male 2018-11-02  10000</code></pre>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="data-preparation.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(messy_df)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="data-preparation.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(messy_df)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    3 obs. of  5 variables:
 ##  $ last_name : chr  &quot;Wayne&quot; &quot;Trump&quot; &quot;Marx&quot;
 ##  $ first_name: chr  &quot;John&quot; &quot;Melania&quot; &quot;Karl&quot;
@@ -539,20 +539,20 @@ div.csl-indent {
 <div id="pivoting-from-wide-to-long-gathering" class="section level3 hasAnchor" number="9.2.2">
 <h3><span class="header-section-number">9.2.2</span> Pivoting from ‘wide to long’ (“gathering”)<a href="data-preparation.html#pivoting-from-wide-to-long-gathering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the <code>tidyverse</code> context, we call the transformation of columns to rows ‘pivoting from wide to long’. That is, we pivot columns into keys (or names) and values. A typical situation where this has to be done in applied data analysis is when a dataset contains several observations over time for the same subjects. To illustrate how <em>pivoting from wide to long</em> works in practice, consider the following example dataset (extending on the example above).</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="data-preparation.html#cb295-1" aria-hidden="true" tabindex="-1"></a>wide_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">last_name =</span> <span class="fu">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>),</span>
-<span id="cb295-2"><a href="data-preparation.html#cb295-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>),</span>
-<span id="cb295-3"><a href="data-preparation.html#cb295-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>),</span>
-<span id="cb295-4"><a href="data-preparation.html#cb295-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">income.2018 =</span> <span class="fu">c</span>(<span class="st">&quot;150000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>),</span>
-<span id="cb295-5"><a href="data-preparation.html#cb295-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">income.2017 =</span> <span class="fu">c</span>( <span class="st">&quot;140000&quot;</span>, <span class="st">&quot;230000&quot;</span>, <span class="st">&quot;15000&quot;</span>),</span>
-<span id="cb295-6"><a href="data-preparation.html#cb295-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb295-7"><a href="data-preparation.html#cb295-7" aria-hidden="true" tabindex="-1"></a>wide_df</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="data-preparation.html#cb296-1" aria-hidden="true" tabindex="-1"></a>wide_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">last_name =</span> <span class="fu">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>),</span>
+<span id="cb296-2"><a href="data-preparation.html#cb296-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>),</span>
+<span id="cb296-3"><a href="data-preparation.html#cb296-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>),</span>
+<span id="cb296-4"><a href="data-preparation.html#cb296-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">income.2018 =</span> <span class="fu">c</span>(<span class="st">&quot;150000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>),</span>
+<span id="cb296-5"><a href="data-preparation.html#cb296-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">income.2017 =</span> <span class="fu">c</span>( <span class="st">&quot;140000&quot;</span>, <span class="st">&quot;230000&quot;</span>, <span class="st">&quot;15000&quot;</span>),</span>
+<span id="cb296-6"><a href="data-preparation.html#cb296-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb296-7"><a href="data-preparation.html#cb296-7" aria-hidden="true" tabindex="-1"></a>wide_df</span></code></pre></div>
 <pre><code>##   last_name first_name gender income.2018 income.2017
 ## 1     Wayne       John   male      150000      140000
 ## 2     Trump    Melania female      250000      230000
 ## 3      Marx       Karl   male       10000       15000</code></pre>
 <p>The last two columns contain information on the same variable (<code>income</code>), but for different years. We thus want to pivot these two columns into a new <code>year</code> and <code>income</code> column, ensuring that columns correspond to variables and rows correspond to observations. For this, we call the <code>pivot_longer()</code>-function as follows:</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="data-preparation.html#cb297-1" aria-hidden="true" tabindex="-1"></a>long_df <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(wide_df, <span class="fu">c</span>(income<span class="fl">.2018</span>, income<span class="fl">.2017</span>), <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;income&quot;</span>)</span>
-<span id="cb297-2"><a href="data-preparation.html#cb297-2" aria-hidden="true" tabindex="-1"></a>long_df</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="data-preparation.html#cb298-1" aria-hidden="true" tabindex="-1"></a>long_df <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(wide_df, <span class="fu">c</span>(income<span class="fl">.2018</span>, income<span class="fl">.2017</span>), <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;income&quot;</span>)</span>
+<span id="cb298-2"><a href="data-preparation.html#cb298-2" aria-hidden="true" tabindex="-1"></a>long_df</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   last_name first_name gender year        income
 ##   &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt; 
@@ -563,8 +563,8 @@ div.csl-indent {
 ## 5 Marx      Karl       male   income.2018 10000 
 ## 6 Marx      Karl       male   income.2017 15000</code></pre>
 <p>We can further clean the <code>year</code> column to only contain the respective numeric values.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="data-preparation.html#cb299-1" aria-hidden="true" tabindex="-1"></a>long_df<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(long_df<span class="sc">$</span>year, <span class="st">&quot;income.&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
-<span id="cb299-2"><a href="data-preparation.html#cb299-2" aria-hidden="true" tabindex="-1"></a>long_df</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="data-preparation.html#cb300-1" aria-hidden="true" tabindex="-1"></a>long_df<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(long_df<span class="sc">$</span>year, <span class="st">&quot;income.&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb300-2"><a href="data-preparation.html#cb300-2" aria-hidden="true" tabindex="-1"></a>long_df</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   last_name first_name gender year  income
 ##   &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; 
@@ -578,23 +578,23 @@ div.csl-indent {
 <div id="pivoting-from-long-to-wide-spreading" class="section level3 hasAnchor" number="9.2.3">
 <h3><span class="header-section-number">9.2.3</span> Pivoting from ‘long to wide’ (“spreading”)<a href="data-preparation.html#pivoting-from-long-to-wide-spreading" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As we want to adhere to the ‘tidy’ paradigm of keeping our data in long format, transforming ‘long to wide’ is less common. However, it might be necessary if the dataset at hand is particularly messy. The following example illustrates such a situation.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="data-preparation.html#cb301-1" aria-hidden="true" tabindex="-1"></a>weird_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">last_name =</span> <span class="fu">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>,</span>
-<span id="cb301-2"><a href="data-preparation.html#cb301-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>,</span>
-<span id="cb301-3"><a href="data-preparation.html#cb301-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>),</span>
-<span id="cb301-4"><a href="data-preparation.html#cb301-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>,</span>
-<span id="cb301-5"><a href="data-preparation.html#cb301-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>,</span>
-<span id="cb301-6"><a href="data-preparation.html#cb301-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>),</span>
-<span id="cb301-7"><a href="data-preparation.html#cb301-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>,</span>
-<span id="cb301-8"><a href="data-preparation.html#cb301-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>,</span>
-<span id="cb301-9"><a href="data-preparation.html#cb301-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>),</span>
-<span id="cb301-10"><a href="data-preparation.html#cb301-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">value =</span> <span class="fu">c</span>(<span class="st">&quot;150000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>,</span>
-<span id="cb301-11"><a href="data-preparation.html#cb301-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;2000000&quot;</span>, <span class="st">&quot;5000000&quot;</span>, <span class="st">&quot;NA&quot;</span>,</span>
-<span id="cb301-12"><a href="data-preparation.html#cb301-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;50&quot;</span>, <span class="st">&quot;25&quot;</span>, <span class="st">&quot;NA&quot;</span>),</span>
-<span id="cb301-13"><a href="data-preparation.html#cb301-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">variable =</span> <span class="fu">c</span>(<span class="st">&quot;income&quot;</span>, <span class="st">&quot;income&quot;</span>, <span class="st">&quot;income&quot;</span>,</span>
-<span id="cb301-14"><a href="data-preparation.html#cb301-14" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;assets&quot;</span>, <span class="st">&quot;assets&quot;</span>, <span class="st">&quot;assets&quot;</span>,</span>
-<span id="cb301-15"><a href="data-preparation.html#cb301-15" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;age&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;age&quot;</span>),</span>
-<span id="cb301-16"><a href="data-preparation.html#cb301-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb301-17"><a href="data-preparation.html#cb301-17" aria-hidden="true" tabindex="-1"></a>weird_df</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="data-preparation.html#cb302-1" aria-hidden="true" tabindex="-1"></a>weird_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">last_name =</span> <span class="fu">c</span>(<span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>,</span>
+<span id="cb302-2"><a href="data-preparation.html#cb302-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>,</span>
+<span id="cb302-3"><a href="data-preparation.html#cb302-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">&quot;Wayne&quot;</span>, <span class="st">&quot;Trump&quot;</span>, <span class="st">&quot;Marx&quot;</span>),</span>
+<span id="cb302-4"><a href="data-preparation.html#cb302-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>,</span>
+<span id="cb302-5"><a href="data-preparation.html#cb302-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>,</span>
+<span id="cb302-6"><a href="data-preparation.html#cb302-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">&quot;John&quot;</span>, <span class="st">&quot;Melania&quot;</span>, <span class="st">&quot;Karl&quot;</span>),</span>
+<span id="cb302-7"><a href="data-preparation.html#cb302-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>,</span>
+<span id="cb302-8"><a href="data-preparation.html#cb302-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>,</span>
+<span id="cb302-9"><a href="data-preparation.html#cb302-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>),</span>
+<span id="cb302-10"><a href="data-preparation.html#cb302-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">value =</span> <span class="fu">c</span>(<span class="st">&quot;150000&quot;</span>, <span class="st">&quot;250000&quot;</span>, <span class="st">&quot;10000&quot;</span>,</span>
+<span id="cb302-11"><a href="data-preparation.html#cb302-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;2000000&quot;</span>, <span class="st">&quot;5000000&quot;</span>, <span class="st">&quot;NA&quot;</span>,</span>
+<span id="cb302-12"><a href="data-preparation.html#cb302-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;50&quot;</span>, <span class="st">&quot;25&quot;</span>, <span class="st">&quot;NA&quot;</span>),</span>
+<span id="cb302-13"><a href="data-preparation.html#cb302-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">variable =</span> <span class="fu">c</span>(<span class="st">&quot;income&quot;</span>, <span class="st">&quot;income&quot;</span>, <span class="st">&quot;income&quot;</span>,</span>
+<span id="cb302-14"><a href="data-preparation.html#cb302-14" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;assets&quot;</span>, <span class="st">&quot;assets&quot;</span>, <span class="st">&quot;assets&quot;</span>,</span>
+<span id="cb302-15"><a href="data-preparation.html#cb302-15" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">&quot;age&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;age&quot;</span>),</span>
+<span id="cb302-16"><a href="data-preparation.html#cb302-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb302-17"><a href="data-preparation.html#cb302-17" aria-hidden="true" tabindex="-1"></a>weird_df</span></code></pre></div>
 <pre><code>##   last_name first_name gender   value variable
 ## 1     Wayne       John   male  150000   income
 ## 2     Trump    Melania female  250000   income
@@ -606,8 +606,8 @@ div.csl-indent {
 ## 8     Trump    Melania female      25      age
 ## 9      Marx       Karl   male      NA      age</code></pre>
 <p>While the data is somehow in a long format, the rule that each column should correspond to a variable (and vice versa) is ignored. Data on income, assets, and the age of the individuals in the dataset, are all put in the same column. We can call the function <code>pivot_wider()</code> with the two parameters <code>names</code> and <code>value</code> to correct this.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="data-preparation.html#cb303-1" aria-hidden="true" tabindex="-1"></a>tidy_df <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(weird_df, <span class="at">names_from =</span> <span class="st">&quot;variable&quot;</span>, <span class="at">values_from =</span> <span class="st">&quot;value&quot;</span>)</span>
-<span id="cb303-2"><a href="data-preparation.html#cb303-2" aria-hidden="true" tabindex="-1"></a>tidy_df</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="data-preparation.html#cb304-1" aria-hidden="true" tabindex="-1"></a>tidy_df <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(weird_df, <span class="at">names_from =</span> <span class="st">&quot;variable&quot;</span>, <span class="at">values_from =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb304-2"><a href="data-preparation.html#cb304-2" aria-hidden="true" tabindex="-1"></a>tidy_df</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 6
 ##   last_name first_name gender income assets  age  
 ##   &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;
@@ -623,7 +623,7 @@ div.csl-indent {
 <p>The aim of the tutorial is to get the data in the form needed for the following plot.</p>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-141-1.svg" width="672" /></p>
 <p>The first few rows and columns of the final dataset should combine the two source datasets and look as follows:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="data-preparation.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hotel_df)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="data-preparation.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hotel_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 32
 ##   hotel        is_canceled lead_time arrival_date_year
 ##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt;
@@ -644,36 +644,36 @@ div.csl-indent {
 <div id="set-up-and-import" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Set up and import<a href="data-preparation.html#set-up-and-import" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>All the tools we need for this tutorial are provided in <code>tidyverse</code> and <code>janitor</code>, and the data is directly available from the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-02-11">tidytuesday GitHub repository</a>. The original data is provided in CSV format.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="data-preparation.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP --------------</span></span>
-<span id="cb307-2"><a href="data-preparation.html#cb307-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb307-3"><a href="data-preparation.html#cb307-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb307-4"><a href="data-preparation.html#cb307-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb307-5"><a href="data-preparation.html#cb307-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># install.packages(&quot;janitor&quot;) (if not yet installed)</span></span>
-<span id="cb307-6"><a href="data-preparation.html#cb307-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb307-7"><a href="data-preparation.html#cb307-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
-<span id="cb307-8"><a href="data-preparation.html#cb307-8" aria-hidden="true" tabindex="-1"></a>url_h1 <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/H1.csv&quot;</span></span>
-<span id="cb307-9"><a href="data-preparation.html#cb307-9" aria-hidden="true" tabindex="-1"></a>url_h2 <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/H2.csv&quot;</span></span>
-<span id="cb307-10"><a href="data-preparation.html#cb307-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb307-11"><a href="data-preparation.html#cb307-11" aria-hidden="true" tabindex="-1"></a><span class="do">## DATA IMPORT -----------------</span></span>
-<span id="cb307-12"><a href="data-preparation.html#cb307-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb307-13"><a href="data-preparation.html#cb307-13" aria-hidden="true" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_h1)</span>
-<span id="cb307-14"><a href="data-preparation.html#cb307-14" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_h2)</span></code></pre></div>
-<p>In the next step, we clean the column names and add columns to clarify which of the two hotels the corresponding observations belong to (see dataset description above). Finally, we stack the observations (rows) together in one tibble/data.frame.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="data-preparation.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="do">## CLEAN DATA -------------------------</span></span>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="data-preparation.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP --------------</span></span>
 <span id="cb308-2"><a href="data-preparation.html#cb308-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb308-3"><a href="data-preparation.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use the janitor-package clean_names function. see ?clean_names for details</span></span>
-<span id="cb308-4"><a href="data-preparation.html#cb308-4" aria-hidden="true" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(h1)</span>
-<span id="cb308-5"><a href="data-preparation.html#cb308-5" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(h2)</span>
+<span id="cb308-3"><a href="data-preparation.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb308-4"><a href="data-preparation.html#cb308-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb308-5"><a href="data-preparation.html#cb308-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># install.packages(&quot;janitor&quot;) (if not yet installed)</span></span>
 <span id="cb308-6"><a href="data-preparation.html#cb308-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb308-7"><a href="data-preparation.html#cb308-7" aria-hidden="true" tabindex="-1"></a><span class="co"># add a column to clarify the origin of observation</span></span>
-<span id="cb308-8"><a href="data-preparation.html#cb308-8" aria-hidden="true" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(h1, <span class="at">hotel=</span><span class="st">&quot;Resort Hotel&quot;</span>)</span>
-<span id="cb308-9"><a href="data-preparation.html#cb308-9" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(h2, <span class="at">hotel=</span><span class="st">&quot;City Hotel&quot;</span>)</span>
+<span id="cb308-7"><a href="data-preparation.html#cb308-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb308-8"><a href="data-preparation.html#cb308-8" aria-hidden="true" tabindex="-1"></a>url_h1 <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/H1.csv&quot;</span></span>
+<span id="cb308-9"><a href="data-preparation.html#cb308-9" aria-hidden="true" tabindex="-1"></a>url_h2 <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/H2.csv&quot;</span></span>
 <span id="cb308-10"><a href="data-preparation.html#cb308-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb308-11"><a href="data-preparation.html#cb308-11" aria-hidden="true" tabindex="-1"></a><span class="co"># stack observations</span></span>
-<span id="cb308-12"><a href="data-preparation.html#cb308-12" aria-hidden="true" tabindex="-1"></a>hotel_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(h1,h2)</span>
-<span id="cb308-13"><a href="data-preparation.html#cb308-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb308-14"><a href="data-preparation.html#cb308-14" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the first observations</span></span>
-<span id="cb308-15"><a href="data-preparation.html#cb308-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hotel_df)</span></code></pre></div>
+<span id="cb308-11"><a href="data-preparation.html#cb308-11" aria-hidden="true" tabindex="-1"></a><span class="do">## DATA IMPORT -----------------</span></span>
+<span id="cb308-12"><a href="data-preparation.html#cb308-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb308-13"><a href="data-preparation.html#cb308-13" aria-hidden="true" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_h1)</span>
+<span id="cb308-14"><a href="data-preparation.html#cb308-14" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_h2)</span></code></pre></div>
+<p>In the next step, we clean the column names and add columns to clarify which of the two hotels the corresponding observations belong to (see dataset description above). Finally, we stack the observations (rows) together in one tibble/data.frame.</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="data-preparation.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="do">## CLEAN DATA -------------------------</span></span>
+<span id="cb309-2"><a href="data-preparation.html#cb309-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-3"><a href="data-preparation.html#cb309-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use the janitor-package clean_names function. see ?clean_names for details</span></span>
+<span id="cb309-4"><a href="data-preparation.html#cb309-4" aria-hidden="true" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(h1)</span>
+<span id="cb309-5"><a href="data-preparation.html#cb309-5" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(h2)</span>
+<span id="cb309-6"><a href="data-preparation.html#cb309-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-7"><a href="data-preparation.html#cb309-7" aria-hidden="true" tabindex="-1"></a><span class="co"># add a column to clarify the origin of observation</span></span>
+<span id="cb309-8"><a href="data-preparation.html#cb309-8" aria-hidden="true" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(h1, <span class="at">hotel=</span><span class="st">&quot;Resort Hotel&quot;</span>)</span>
+<span id="cb309-9"><a href="data-preparation.html#cb309-9" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(h2, <span class="at">hotel=</span><span class="st">&quot;City Hotel&quot;</span>)</span>
+<span id="cb309-10"><a href="data-preparation.html#cb309-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-11"><a href="data-preparation.html#cb309-11" aria-hidden="true" tabindex="-1"></a><span class="co"># stack observations</span></span>
+<span id="cb309-12"><a href="data-preparation.html#cb309-12" aria-hidden="true" tabindex="-1"></a>hotel_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(h1,h2)</span>
+<span id="cb309-13"><a href="data-preparation.html#cb309-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-14"><a href="data-preparation.html#cb309-14" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the first observations</span></span>
+<span id="cb309-15"><a href="data-preparation.html#cb309-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hotel_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 32
 ##   is_canceled lead_time arrival_date_year
 ##         &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt;
@@ -767,7 +767,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

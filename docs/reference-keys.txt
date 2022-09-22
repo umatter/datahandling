@@ -21,6 +21,7 @@ fig:factor
 fig:matrix
 fig:df
 fig:list
+fig:xmltree
 fig:html
 fig:swiss
 fig:causality

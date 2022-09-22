@@ -212,7 +212,17 @@ In many web applications, JSON serves the same purpose as XML^[Not that programs
 ```
 
 
-Note that despite the syntax differences, the similarities regarding the nesting structure are visible in both formats. For example, `postalCode` is embedded in `address`, `firstname` and `lastname` are at the same nesting level, etc.
+Note that despite the syntax differences, the similarities regarding the nesting structure are visible in both formats. For example, `postalCode` is embedded in `address`, `firstname` and `lastname` are at the same nesting level, etc. The following figure, illustrating the nesting structure further illustrates this point. The basic logic of what element belongs to which higher-level element displayed in the tree diagramm is encoded in both the JSON and the XML excerpts shown above.
+
+
+
+```{r xmltree, echo=FALSE, fig.align="center", out.width="75%", fig.cap="(ref:xmltree)"}
+include_graphics("img/hierarch_data.svg")
+```
+
+(ref:xmltree) XML tree diagram.
+
+
 
 Both XML and JSON are predominantly used to store rather complex, multi-dimensional data. Because they are both human- and machine-readable, these formats are often used to transfer data between applications and users on the Web. Therefore, we encounter these data formats particularly often when we collect data from online sources. Moreover, in the economics/social science context, large and complex data sets ('Big Data') often come along in these formats exactly because of the increasing importance of the Internet as a data source for empirical research in these disciplines.
 
@@ -308,7 +318,7 @@ One way to think about an HTML document is to imagine it as a tree-diagram, with
 include_graphics("img/dom_tree.png")
 ```
 
-(ref:caphtml) HTML (DOM) tree diagram (by Lubaochuan 2014, licensed under the Creative Commons Attribution-Share Alike 4.0 International license).
+(ref:caphtml) HTML (DOM) tree diagram.
 
 The illustration of the nested structure can help to understand how we can instruct the computer to find/extract a specific part of the data from such a document. In the following exercise, we revisit the example shown in the chapter on data processing to do exactly this.
 

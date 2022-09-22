@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 High-Dimensional Data | Data Handling Pocket Reference</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 High-Dimensional Data | Data Handling Pocket Reference" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-20" />
+<meta name="date" content="2022-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -535,7 +535,14 @@ David  Debbie  Dianne    12  female
 <span id="cb140-21"><a href="high-dimensional-data.html#cb140-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;male&quot;</span></span>
 <span id="cb140-22"><a href="high-dimensional-data.html#cb140-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
 <span id="cb140-23"><a href="high-dimensional-data.html#cb140-23" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
-<p>Note that despite the syntax differences, the similarities regarding the nesting structure are visible in both formats. For example, <code>postalCode</code> is embedded in <code>address</code>, <code>firstname</code> and <code>lastname</code> are at the same nesting level, etc.</p>
+<p>Note that despite the syntax differences, the similarities regarding the nesting structure are visible in both formats. For example, <code>postalCode</code> is embedded in <code>address</code>, <code>firstname</code> and <code>lastname</code> are at the same nesting level, etc. The following figure, illustrating the nesting structure further illustrates this point. The basic logic of what element belongs to which higher-level element displayed in the tree diagramm is encoded in both the JSON and the XML excerpts shown above.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:xmltree"></span>
+<img src="img/hierarch_data.svg" alt="XML tree diagram." width="75%" />
+<p class="caption">
+Figure 5.1: XML tree diagram.
+</p>
+</div>
+
 <p>Both XML and JSON are predominantly used to store rather complex, multi-dimensional data. Because they are both human- and machine-readable, these formats are often used to transfer data between applications and users on the Web. Therefore, we encounter these data formats particularly often when we collect data from online sources. Moreover, in the economics/social science context, large and complex data sets (‘Big Data’) often come along in these formats exactly because of the increasing importance of the Internet as a data source for empirical research in these disciplines.</p>
 </div>
 <div id="parsing-xml-and-json-in-r" class="section level2 hasAnchor" number="5.3">
@@ -603,11 +610,11 @@ David  Debbie  Dianne    12  female
 <li>We recognize that HTML code essentially expresses what is what in a document (note the similarity of the concept to storing data in XML). HTML code does not contain explicit instructions like programming languages, telling the computer what to do. If an HTML document contains a link to another website, all that is needed, is to define (with HTML tag <code>&lt;a href=...&gt;</code>) that this is a link. We do not have to explicitly express something like “if the user clicks on a link, then execute this and that…”.</li>
 </ol>
 <p>What to do with the HTML document is thus in the hands of the person who works with it. From the data scientist’s perspective, we need to know how to traverse and exploit the structure of an HTML document in order to systematically extract the specific content/data that we are interested in. We thus have to learn how to tell the computer (with R) to extract a specific part of an HTML document. And to do so, we have to acquire a basic understanding of the nesting structure implied by HTML (essentially the same logic as with XML).</p>
-<p>One way to think about an HTML document is to imagine it as a tree-diagram, with <code>&lt;html&gt;..&lt;/html&gt;</code> as the ‘root’, <code>&lt;head&gt;...&lt;/head&gt;</code> and <code>&lt;body&gt;...&lt;/body&gt;</code> as the ‘children’ of <code>&lt;html&gt;..&lt;/html&gt;</code> (and ‘siblings’ of each other), <code>&lt;title&gt;...&lt;/title&gt;</code> as the child of <code>&lt;head&gt;...&lt;/head&gt;</code>, etc. Figure <a href="high-dimensional-data.html#fig:html">5.1</a> illustrates this point.</p>
+<p>One way to think about an HTML document is to imagine it as a tree-diagram, with <code>&lt;html&gt;..&lt;/html&gt;</code> as the ‘root’, <code>&lt;head&gt;...&lt;/head&gt;</code> and <code>&lt;body&gt;...&lt;/body&gt;</code> as the ‘children’ of <code>&lt;html&gt;..&lt;/html&gt;</code> (and ‘siblings’ of each other), <code>&lt;title&gt;...&lt;/title&gt;</code> as the child of <code>&lt;head&gt;...&lt;/head&gt;</code>, etc. Figure <a href="high-dimensional-data.html#fig:html">5.2</a> illustrates this point.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:html"></span>
-<img src="img/dom_tree.png" alt="HTML (DOM) tree diagram (by Lubaochuan 2014, licensed under the Creative Commons Attribution-Share Alike 4.0 International license)." width="50%" />
+<img src="img/dom_tree.png" alt="HTML (DOM) tree diagram." width="50%" />
 <p class="caption">
-Figure 5.1: HTML (DOM) tree diagram (by Lubaochuan 2014, licensed under the Creative Commons Attribution-Share Alike 4.0 International license).
+Figure 5.2: HTML (DOM) tree diagram.
 </p>
 </div>
 
@@ -619,7 +626,7 @@ Figure 5.1: HTML (DOM) tree diagram (by Lubaochuan 2014, licensed under the Crea
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:swiss"></span>
 <img src="img/1_SwissGDP.png" alt="Source: https://en.wikipedia.org/wiki/Economy_of_Switzerland." width="50%" />
 <p class="caption">
-Figure 5.2: Source: <a href="https://en.wikipedia.org/wiki/Economy_of_Switzerland" class="uri">https://en.wikipedia.org/wiki/Economy_of_Switzerland</a>.
+Figure 5.3: Source: <a href="https://en.wikipedia.org/wiki/Economy_of_Switzerland" class="uri">https://en.wikipedia.org/wiki/Economy_of_Switzerland</a>.
 </p>
 </div>
 
@@ -636,7 +643,7 @@ Figure 5.2: Source: <a href="https://en.wikipedia.org/wiki/Economy_of_Switzerlan
 ## [3] &quot;&lt;head&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 ## [4] &quot;&lt;meta charset=\&quot;UTF-8\&quot;/&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 ## [5] &quot;&lt;title&gt;Economy of Switzerland - Wikipedia&lt;/title&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-## [6] &quot;&lt;script&gt;document.documentElement.className=\&quot;client-js\&quot;;RLCONF={\&quot;wgBreakFrames\&quot;:false,\&quot;wgSeparatorTransformTable\&quot;:[\&quot;\&quot;,\&quot;\&quot;],\&quot;wgDigitTransformTable\&quot;:[\&quot;\&quot;,\&quot;\&quot;],\&quot;wgDefaultDateFormat\&quot;:\&quot;dmy\&quot;,\&quot;wgMonthNames\&quot;:[\&quot;\&quot;,\&quot;January\&quot;,\&quot;February\&quot;,\&quot;March\&quot;,\&quot;April\&quot;,\&quot;May\&quot;,\&quot;June\&quot;,\&quot;July\&quot;,\&quot;August\&quot;,\&quot;September\&quot;,\&quot;October\&quot;,\&quot;November\&quot;,\&quot;December\&quot;],\&quot;wgRequestId\&quot;:\&quot;06d9bfe6-3c1a-4856-99ad-35ab2104f5ba\&quot;,\&quot;wgCSPNonce\&quot;:false,\&quot;wgCanonicalNamespace\&quot;:\&quot;\&quot;,\&quot;wgCanonicalSpecialPageName\&quot;:false,\&quot;wgNamespaceNumber\&quot;:0,\&quot;wgPageName\&quot;:\&quot;Economy_of_Switzerland\&quot;,\&quot;wgTitle\&quot;:\&quot;Economy of Switzerland\&quot;,\&quot;wgCurRevisionId\&quot;:1107876525,\&quot;wgRevisionId\&quot;:1107876525,\&quot;wgArticleId\&quot;:27465,\&quot;wgIsArticle\&quot;:true,\&quot;wgIsRedirect\&quot;:false,\&quot;wgAction\&quot;:\&quot;view\&quot;,\&quot;wgUserName\&quot;:null,\&quot;wgUserGroups\&quot;:[\&quot;*\&quot;],\&quot;wgCategories\&quot;:[\&quot;CS1 maint: archived copy as title\&quot;,\&quot;CS1 German-language sources (de)\&quot;,\&quot;Articles with German-language sources (de)\&quot;,\&quot;Webarchive template wayback links\&quot;,\&quot;Articles with French-language sources (fr)\&quot;,\&quot;Articles with short description\&quot;,\&quot;Short description is different from Wikidata\&quot;,&quot;</code></pre>
+## [6] &quot;&lt;script&gt;document.documentElement.className=\&quot;client-js\&quot;;RLCONF={\&quot;wgBreakFrames\&quot;:false,\&quot;wgSeparatorTransformTable\&quot;:[\&quot;\&quot;,\&quot;\&quot;],\&quot;wgDigitTransformTable\&quot;:[\&quot;\&quot;,\&quot;\&quot;],\&quot;wgDefaultDateFormat\&quot;:\&quot;dmy\&quot;,\&quot;wgMonthNames\&quot;:[\&quot;\&quot;,\&quot;January\&quot;,\&quot;February\&quot;,\&quot;March\&quot;,\&quot;April\&quot;,\&quot;May\&quot;,\&quot;June\&quot;,\&quot;July\&quot;,\&quot;August\&quot;,\&quot;September\&quot;,\&quot;October\&quot;,\&quot;November\&quot;,\&quot;December\&quot;],\&quot;wgRequestId\&quot;:\&quot;1588b1a5-d8ea-4704-b998-42f9eaf6db68\&quot;,\&quot;wgCSPNonce\&quot;:false,\&quot;wgCanonicalNamespace\&quot;:\&quot;\&quot;,\&quot;wgCanonicalSpecialPageName\&quot;:false,\&quot;wgNamespaceNumber\&quot;:0,\&quot;wgPageName\&quot;:\&quot;Economy_of_Switzerland\&quot;,\&quot;wgTitle\&quot;:\&quot;Economy of Switzerland\&quot;,\&quot;wgCurRevisionId\&quot;:1107876525,\&quot;wgRevisionId\&quot;:1107876525,\&quot;wgArticleId\&quot;:27465,\&quot;wgIsArticle\&quot;:true,\&quot;wgIsRedirect\&quot;:false,\&quot;wgAction\&quot;:\&quot;view\&quot;,\&quot;wgUserName\&quot;:null,\&quot;wgUserGroups\&quot;:[\&quot;*\&quot;],\&quot;wgCategories\&quot;:[\&quot;CS1 maint: archived copy as title\&quot;,\&quot;CS1 German-language sources (de)\&quot;,\&quot;Articles with German-language sources (de)\&quot;,\&quot;Webarchive template wayback links\&quot;,\&quot;Articles with French-language sources (fr)\&quot;,\&quot;Articles with short description\&quot;,\&quot;Short description is different from Wikidata\&quot;,&quot;</code></pre>
 <p>The next thing we do is to look at how we can filter the webpage for certain information. For example, we search in the source code for the line that contains the part of the webpage with the table showing data on the Swiss GDP:</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="high-dimensional-data.html#cb150-1" aria-hidden="true" tabindex="-1"></a>line_number <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&#39;US Dollar Exchange&#39;</span>, swiss_econ)</span></code></pre></div>
 <p>Recall: we ask R on which line in <code>swiss_econ</code> (the source code stored in RAM) the text <code>US Dollar Exchange</code> is and store the answer (the line number) in RAM under the variable name <code>line_number</code>.</p>
@@ -764,7 +771,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

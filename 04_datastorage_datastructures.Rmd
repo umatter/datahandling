@@ -251,7 +251,7 @@ Vectors are collections of values of the same type. They can contain either all 
 include_graphics("img/numvec.png")
 ```
 
-(ref:capnumvec) Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ).
+(ref:capnumvec) Illustration of a numeric vector.
 
 For example, we can initiate a character vector containing the names of persons:
 ```{r}
@@ -273,7 +273,7 @@ Factors are sets of categories. Thus, the values come from a fixed set of possib
 include_graphics("img/factor.png")
 ```
 
-(ref:capfactor) Illustration of a factor (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ).
+(ref:capfactor) Illustration of a factor.
 
 For example, we might want to initiate a factor that indicates the gender of a number of people.
 
@@ -287,11 +287,11 @@ gender
 #### Matrices/Arrays
 Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type.
 
-```{r matrix, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:capmatrix)", purl=FALSE}
+```{r matrix, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "(ref:capmatrix)", purl=FALSE}
 include_graphics("img/matrix.png")
 ```
 
-(ref:capmatrix) Illustration of a numeric matrix (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ).
+(ref:capmatrix) Illustration of a numeric matrix.
 
 For example, we can initiate a three-row/two-column numeric matrix as follows
 
@@ -313,12 +313,12 @@ my_array
 #### Data frames, tibbles, and data tables
 Data frames are the typical representation of a (table-like) data set in R. Each column can contain a vector of a given data type (or a factor), but all columns need to be of identical length. Thus in the context of data analysis, we would say that each row of a data frame contains an observation, and each column contains a characteristic of this observation.
 
-```{r df, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:capdf)", purl=FALSE}
-include_graphics("img/df.png")
+```{r df, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "(ref:capdf)", purl=FALSE}
+include_graphics("img/dataframe.png")
 ```
 
 
-(ref:capdf) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ).
+(ref:capdf) Illustration of a data frame.
 
 The historical implementation of data frames in R is not very appropriate to work with large datasets. ^[In the early days of R, this was not an issue because datasets that are rather large by today's standards (in the Gigabytes) could not have been handled properly by normal computers anyway (due to a lack of RAM).] These days there are new implementations of the data frame concept in R provided by different packages, which aim at making data processing based on 'data frames' faster. One is called `tibbles`,  implemented and used in the `tidyverse` packages. The other is called `data table`, implemented in the `data. table`-package. In this book, we will encounter primarily classical `data. frame` and `tibble` (however, there will also be some hints to tutorials with `data. table`). In any case, once we understand data frames in general, working with `tibble` and `data. table` is quite easy because functions that accept classical data frames as arguments also accept those newer implementations.
 
@@ -332,13 +332,14 @@ df
 
 
 #### Lists
+
 Unlike data frames, lists can contain different data types in each element. Moreover, they even can contain different data structures of *different dimensions* in each element. For example, a list could contain different other lists, data frames, and vectors with differing numbers of elements.
 
-```{r list, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:caplist)", purl=FALSE}
+```{r list, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "(ref:caplist)", purl=FALSE}
 include_graphics("img/list.png")
 ```
 
-(ref:caplist) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ).
+(ref:caplist) Illustration of a data frame (symbolic).
 
 This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:
 
