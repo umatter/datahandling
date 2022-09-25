@@ -67,10 +67,11 @@ A few years back, statistician and computer scientist Leland Wilkinson wrote an 
 
 
 
-```{r gg, echo=FALSE, fig.align='center', fig.cap="(ref:ff)", out.width="50%", purl=FALSE}
+```{r gg, echo=FALSE, fig.align='center', fig.cap="(ref:gg)", out.width="40%", purl=FALSE}
 include_graphics("img/grammargraphics.png")
 ```
-(ref:ff) Illustration of the Grammar of Graphics concept.
+
+(ref:gg) Illustration of the Grammar of Graphics concept.
 
 
 This framework got implemented in R with the prominent `ggplot2`-package, building on the already powerful R graphics engine. The result is a user-friendly environment to visualize data with enormous potential to plot almost any graphic illustrating data.
