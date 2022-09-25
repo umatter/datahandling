@@ -74,6 +74,16 @@ include_graphics("img/grammargraphics.png")
 (ref:gg) Illustration of the Grammar of Graphics concept.
 
 
+
+```{r gg2, echo=FALSE, fig.align='center', fig.cap="(ref:gg2)", out.width="40%", purl=FALSE}
+include_graphics("img/gg.jpg")
+```
+
+(ref:gg2) Illustration of the Grammar of Graphics concept.
+
+
+
+
 This framework got implemented in R with the prominent `ggplot2`-package, building on the already powerful R graphics engine. The result is a user-friendly environment to visualize data with enormous potential to plot almost any graphic illustrating data.
 
 ### `ggplot2` basics
