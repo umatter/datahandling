@@ -67,13 +67,6 @@ A few years back, statistician and computer scientist Leland Wilkinson wrote an 
 
 
 
-```{r gg, echo=FALSE, fig.align='center', fig.cap="(ref:gg)", out.width="40%", purl=FALSE}
-include_graphics("img/grammargraphics.png")
-```
-
-(ref:gg) Illustration of the Grammar of Graphics concept.
-
-
 
 ```{r gg2, echo=FALSE, fig.align='center', fig.cap="(ref:gg2)", out.width="40%", purl=FALSE}
 include_graphics("img/gg.jpg")

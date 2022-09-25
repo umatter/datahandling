@@ -25,7 +25,6 @@ fig:xmltree
 fig:html
 fig:swiss
 fig:causality
-fig:gg
 fig:gg2
 introduction
 programming-with-data
