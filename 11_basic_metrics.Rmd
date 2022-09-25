@@ -13,60 +13,9 @@ $y_{i}= \alpha + \beta x_{i} + u_{i}$.
 
 The overarching goal of modern econometrics for such problems is to assess whether $x$ has a *causal* effect on $y$. A key aspect of such an interpretation is that $u_{i}$ is unrelated to $x_i$. Other unobservable factors might also play a role for $y$, but they must not affect both $y$ and $x$. The great computer scientist [Judea Pearl](https://en.wikipedia.org/wiki/Judea_Pearl) has introduced an intuitive approach to illustrating such causality problems. In the left panel of the figure below, we illustrate the unfortunate case where we have a so-called *' endogeneity'* problem, a situation in which other factors affect both $x$ and $y$.
 
-```{r warning=FALSE, message=FALSE, echo=FALSE}
-# see http://dagitty.net/primer/ for background about the packages
-library(dagitty)
-library(ggdag)
-library(ggraph)
-library(cowplot)
-library(dplyr)
-library(gridExtra)
 
 
-# causal diagram with endogeneity
-dag <- dagitty( 'dag {
-  X [pos="0,1"]
-  Y [pos="1,1"]
-  U [pos="0.5,0"]
-  Y <- X
-  Y <- U
-  X <- U
-  X [exposure]
-  Y [outcome]
-  }')
-dag <- dag %>%
-  tidy_dagitty( seed=1) %>%
-  arrange(name)
-
-
-# causal diagram
-dag2 <- dag
-dag2$data <- dag2$data[-1,]
-
-endo_plot <-
-  ggplot(dag, aes(x = x, y = y, xend = xend, yend = yend)) +
-  geom_dag_point() +
-  geom_dag_edges() +
-  geom_dag_text(parse = TRUE, label = c( expression(u[i]), expression(x[i]),  expression(y[i]))) +
-  theme_dag(base_size = 20)
-ggsave("img/causal_diagram_endo.png", plot = endo_plot, device = "png", width = 6, height = 4)
-
-exo_plot <-
-  ggplot(dag2, aes(x = x, y = y, xend = xend, yend = yend)) +
-  geom_dag_point() +
-  geom_dag_edges() +
-  geom_dag_text(parse = TRUE, label = c( expression(u[i]), expression(x[i]),  expression(y[i]))) +
-  theme_dag(base_size = 20)
-ggsave("img/causal_diagram_exo.png", plot = exo_plot, device = "png", width = 6, height = 4)
-
-
-
-```
-
-
-
-
-```{r causality, warning=FALSE, message=FALSE, echo=FALSE, out.width="49%",out.height="49%",fig.show='hold', fig.align='center', fig.cap= "(ref:causality)", purl=FALSE}
+```{r causality, warning=FALSE, message=FALSE, echo=FALSE, out.width="40%",out.height="40%",fig.show='hold', fig.align='center', fig.cap= "(ref:causality)", purl=FALSE}
 include_graphics(c("img/causal_diagram_endo.png", "img/causal_diagram_exo.png"))
 
 ```

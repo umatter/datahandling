@@ -442,9 +442,9 @@ If you encounter the end of the line, create a new row and jump to the new row.<
 <h2><span class="header-section-number">4.3</span> Units of information/data storage<a href="data-storage-and-data-structures.html#units-of-informationdata-storage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The question of how to store digital data on computers also raises the question of storage capacity. Because every type of digital data can, in the end, only be stored as <code>0</code>s and <code>1</code>s, it makes perfect sense to define the smallest unit of information in computing as consisting of either a <code>0</code> or a <code>1</code>. We call this basic unit a <em>bit</em> (from <em>bi</em>nary dig<em>it</em>; abbrev. ‘b’). Recall that the decimal number <code>139</code> corresponds to the binary number <code>10001011</code>. To store this number on a hard disk, we require a capacity of 8 bits or one <em>byte</em> (1 byte = 8 bits; abbrev. ‘B’). Historically, one byte encoded a single character of text (i.e., in the ASCII character encoding system). 4 bytes (or 32 bits) are called a <em>word</em>. The following figure illustrates this point.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:bitbyteword"></span>
-<img src="img/store-bitbyteword.png" alt="Writing data stored in RAM to a Mass Storage device (hard drive). Figure by Murrell (2009) (licensed under CC BY-NC-SA 3.0 NZ)." width="40%" />
+<img src="img/bitbyte.png" alt="Byte and bit." width="40%" />
 <p class="caption">
-Figure 4.1: Writing data stored in RAM to a Mass Storage device (hard drive). Figure by <span class="citation">Murrell (<a href="references.html#ref-murrell_2009" role="doc-biblioref">2009</a>)</span> (licensed under CC BY-NC-SA 3.0 NZ).
+Figure 4.1: Byte and bit.
 </p>
 </div>
 
@@ -542,35 +542,70 @@ Figure 4.3: Illustration of a factor.
 </div>
 <div id="matricesarrays" class="section level4 hasAnchor" number="4.4.2.3">
 <h4><span class="header-section-number">4.4.2.3</span> Matrices/Arrays<a href="data-storage-and-data-structures.html#matricesarrays" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type.</p>
+<p>Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type. For an illustration, consider the following <span class="math inline">\(3\times3\)</span> integer matrix and the <span class="math inline">\(3\times3\times3\)</span> integer array.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:matrix"></span>
-<img src="img/matrix.png" alt="Illustration of a numeric matrix." width="20%" />
+<img src="img/matrix.png" alt="Illustration of an integer matrix and array." width="40%" height="40%" /><img src="img/array.jpg" alt="Illustration of an integer matrix and array." width="40%" height="40%" />
 <p class="caption">
-Figure 4.4: Illustration of a numeric matrix.
+Figure 4.4: Illustration of an integer matrix and array.
 </p>
 </div>
 
-<p>For example, we can initiate a three-row/two-column numeric matrix as follows</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-storage-and-data-structures.html#cb123-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<p>In R, we can, for example, initiate a three-row/three-column numeric matrix as follows</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-storage-and-data-structures.html#cb123-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
 <span id="cb123-2"><a href="data-storage-and-data-structures.html#cb123-2" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code></pre></div>
-<pre><code>##      [,1] [,2]
-## [1,]    1    4
-## [2,]    2    5
-## [3,]    3    6</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
 <p>And a three-dimensional numeric array as follows.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-storage-and-data-structures.html#cb125-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>), <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-storage-and-data-structures.html#cb125-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span>(<span class="dv">3</span><span class="sc">*</span><span class="dv">3</span><span class="sc">*</span><span class="dv">3</span>)), <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
 <span id="cb125-2"><a href="data-storage-and-data-structures.html#cb125-2" aria-hidden="true" tabindex="-1"></a>my_array</span></code></pre></div>
 <pre><code>## , , 1
 ## 
-##      [,1] [,2]
-## [1,]    1    3
-## [2,]    2    4
+##      [,1] [,2] [,3]
+## [1,]   12   20   27
+## [2,]   22   26   25
+## [3,]   23    9   13
 ## 
 ## , , 2
 ## 
-##      [,1] [,2]
-## [1,]    5    7
-## [2,]    6    8</code></pre>
+##      [,1] [,2] [,3]
+## [1,]   18    0    2
+## [2,]   24   21    7
+## [3,]   15   11    1
+## 
+## , , 3
+## 
+##      [,1] [,2] [,3]
+## [1,]    6    8   14
+## [2,]   16   19    3
+## [3,]   10    5    4</code></pre>
+<p>We can access parts of matrices and arrays via indexing implemented with the <code>[]</code>-syntax. For example, select a particular row, column, or individual element of a matrix.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-storage-and-data-structures.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the first row</span></span>
+<span id="cb127-2"><a href="data-storage-and-data-structures.html#cb127-2" aria-hidden="true" tabindex="-1"></a>my_matrix[<span class="dv">1</span>,]</span></code></pre></div>
+<pre><code>## [1] 1 4 7</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-storage-and-data-structures.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the second column</span></span>
+<span id="cb129-2"><a href="data-storage-and-data-structures.html#cb129-2" aria-hidden="true" tabindex="-1"></a>my_matrix[,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 4 5 6</code></pre>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="data-storage-and-data-structures.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the value in the second column, third row.</span></span>
+<span id="cb131-2"><a href="data-storage-and-data-structures.html#cb131-2" aria-hidden="true" tabindex="-1"></a>my_matrix[<span class="dv">3</span>,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>Following the same syntax, we can access specific parts of an array. Note, though, that we need to consider the correct number of dimensions of the corresponding array object. In the example of above, we have generated three-dimensional array, hence there needs to be three parts within the <code>[]</code>.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data-storage-and-data-structures.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the first rows</span></span>
+<span id="cb133-2"><a href="data-storage-and-data-structures.html#cb133-2" aria-hidden="true" tabindex="-1"></a>my_array[<span class="dv">1</span>,,]</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   12   18    6
+## [2,]   20    0    8
+## [3,]   27    2   14</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-storage-and-data-structures.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the &quot;third matrix&quot;</span></span>
+<span id="cb135-2"><a href="data-storage-and-data-structures.html#cb135-2" aria-hidden="true" tabindex="-1"></a>my_array[,,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    6    8   14
+## [2,]   16   19    3
+## [3,]   10    5    4</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-storage-and-data-structures.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the &quot;last&quot; element in the array</span></span>
+<span id="cb137-2"><a href="data-storage-and-data-structures.html#cb137-2" aria-hidden="true" tabindex="-1"></a>my_array[<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
 </div>
 <div id="data-frames-tibbles-and-data-tables" class="section level4 hasAnchor" number="4.4.2.4">
 <h4><span class="header-section-number">4.4.2.4</span> Data frames, tibbles, and data tables<a href="data-storage-and-data-structures.html#data-frames-tibbles-and-data-tables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -584,8 +619,8 @@ Figure 4.5: Illustration of a data frame.
 
 <p>The historical implementation of data frames in R is not very appropriate to work with large datasets. <a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> These days there are new implementations of the data frame concept in R provided by different packages, which aim at making data processing based on ‘data frames’ faster. One is called <code>tibbles</code>, implemented and used in the <code>tidyverse</code> packages. The other is called <code>data table</code>, implemented in the <code>data. table</code>-package. In this book, we will encounter primarily classical <code>data. frame</code> and <code>tibble</code> (however, there will also be some hints to tutorials with <code>data. table</code>). In any case, once we understand data frames in general, working with <code>tibble</code> and <code>data. table</code> is quite easy because functions that accept classical data frames as arguments also accept those newer implementations.</p>
 <p>Here is how we define a data frame in R, based on the examples of vectors and factors shown above.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-storage-and-data-structures.html#cb127-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">person =</span> persons, <span class="at">age =</span> ages, <span class="at">gender =</span> gender)</span>
-<span id="cb127-2"><a href="data-storage-and-data-structures.html#cb127-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-storage-and-data-structures.html#cb139-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">person =</span> persons, <span class="at">age =</span> ages, <span class="at">gender =</span> gender)</span>
+<span id="cb139-2"><a href="data-storage-and-data-structures.html#cb139-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##   person age gender
 ## 1   Andy  24   Male
 ## 2  Brian  50   Male
@@ -602,27 +637,36 @@ Figure 4.6: Illustration of a data frame (symbolic).
 </div>
 
 <p>This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-storage-and-data-structures.html#cb129-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(my_array, my_matrix, df)</span>
-<span id="cb129-2"><a href="data-storage-and-data-structures.html#cb129-2" aria-hidden="true" tabindex="-1"></a>my_list</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data-storage-and-data-structures.html#cb141-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(my_array, my_matrix, df)</span>
+<span id="cb141-2"><a href="data-storage-and-data-structures.html#cb141-2" aria-hidden="true" tabindex="-1"></a>my_list</span></code></pre></div>
 <pre><code>## [[1]]
 ## , , 1
 ## 
-##      [,1] [,2]
-## [1,]    1    3
-## [2,]    2    4
+##      [,1] [,2] [,3]
+## [1,]   12   20   27
+## [2,]   22   26   25
+## [3,]   23    9   13
 ## 
 ## , , 2
 ## 
-##      [,1] [,2]
-## [1,]    5    7
-## [2,]    6    8
+##      [,1] [,2] [,3]
+## [1,]   18    0    2
+## [2,]   24   21    7
+## [3,]   15   11    1
+## 
+## , , 3
+## 
+##      [,1] [,2] [,3]
+## [1,]    6    8   14
+## [2,]   16   19    3
+## [3,]   10    5    4
 ## 
 ## 
 ## [[2]]
-##      [,1] [,2]
-## [1,]    1    4
-## [2,]    2    5
-## [3,]    3    6
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
 ## 
 ## [[3]]
 ##   person age gender

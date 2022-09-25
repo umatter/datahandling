@@ -148,11 +148,9 @@ While CSV files have become a very common way to store 'flat'/table-like data in
 The question of how to store digital data on computers also raises the question of storage capacity. Because every type of digital data can, in the end, only be stored as `0`s and `1`s, it makes perfect sense to define the smallest unit of information in computing as consisting of either a `0` or a `1`. We call this basic unit a *bit* (from *bi*nary dig*it*; abbrev. 'b'). Recall that the decimal number `139` corresponds to the binary number `10001011`. To store this number on a hard disk, we require a capacity of 8 bits or one *byte* (1 byte = 8 bits; abbrev. 'B'). Historically, one byte encoded a single character of text (i.e., in the ASCII character encoding system). 4 bytes (or 32 bits) are called a *word*. The following figure illustrates this point.
 
 ```{r bitbyteword, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "(ref:capbitbyteword)", purl=FALSE}
-include_graphics("img/store-bitbyteword.png")
+include_graphics("img/bitbyte.png")
 ```
-
-
-(ref:capbitbyteword) Writing data stored in RAM to a Mass Storage device (hard drive). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ).
+(ref:capbitbyteword) Byte and bit.
 
 
 
@@ -285,18 +283,19 @@ gender
 
 
 #### Matrices/Arrays
-Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type.
 
-```{r matrix, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "(ref:capmatrix)", purl=FALSE}
-include_graphics("img/matrix.png")
+Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type. For an illustration, consider the following $3\times3$ integer matrix and the $3\times3\times3$ integer array.
+
+```{r matrix, warning=FALSE, message=FALSE, echo=FALSE, out.width="40%",out.height="40%",fig.show='hold', fig.align='center', fig.cap= "(ref:capmatrix)", purl=FALSE}
+include_graphics(c("img/matrix.png", "img/array.jpg"))
 ```
 
-(ref:capmatrix) Illustration of a numeric matrix.
+(ref:capmatrix) Illustration of an integer matrix and array.
 
-For example, we can initiate a three-row/two-column numeric matrix as follows
+In R, we can, for example, initiate a three-row/three-column numeric matrix as follows
 
 ```{r}
-my_matrix <- matrix(c(1,2,3,4,5,6), nrow = 3)
+my_matrix <- matrix(1:9, nrow = 3)
 my_matrix
 
 ```
@@ -304,10 +303,41 @@ my_matrix
 And a three-dimensional numeric array as follows.
 
 ```{r}
-my_array <- array(c(1,2,3,4,5,6,7,8), dim = c(2,2,2))
+my_array <- array(sample(0:(3*3*3)), dim = c(3,3,3))
 my_array
 
 ```
+
+We can access parts of matrices and arrays via indexing implemented with the `[]`-syntax. For example, select a particular row, column, or individual element of a matrix.
+
+```{r}
+# Select the first row
+my_matrix[1,]
+
+# Select the second column
+my_matrix[,2]
+
+# Select the value in the second column, third row.
+my_matrix[3,2]
+
+```
+Following the same syntax, we can access specific parts of an array. Note, though, that we need to consider the correct number of dimensions of the corresponding array object. In the example of above, we have generated three-dimensional array, hence there needs to be three parts within the `[]`.
+
+```{r}
+
+# Select the first rows
+my_array[1,,]
+
+# Select the "third matrix"
+my_array[,,3]
+
+# Select the "last" element in the array
+my_array[3,3,3]
+
+```
+
+
+
 
 
 #### Data frames, tibbles, and data tables
