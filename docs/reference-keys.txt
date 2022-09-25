@@ -25,6 +25,7 @@ fig:xmltree
 fig:html
 fig:swiss
 fig:causality
+fig:gg
 introduction
 programming-with-data
 handling-data-programmatically

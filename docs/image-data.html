@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Image data | Data Handling Pocket Reference</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Image data | Data Handling Pocket Reference" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-22" />
+<meta name="date" content="2022-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -586,7 +586,7 @@ and subsequently multiply by 255:</p>
 <pre><code>## Linking to ImageMagick 6.9.11.60
 ## Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, webp, x11
 ## Disabled features: cairo, ghostscript, raw, rsvg</code></pre>
-<pre><code>## Using 4 threads</code></pre>
+<pre><code>## Using 12 threads</code></pre>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="image-data.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can import images from the web</span></span>
 <span id="cb204-2"><a href="image-data.html#cb204-2" aria-hidden="true" tabindex="-1"></a>frink <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/frink.png&quot;</span>)</span>
 <span id="cb204-3"><a href="image-data.html#cb204-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(frink)</span></code></pre></div>
@@ -772,7 +772,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

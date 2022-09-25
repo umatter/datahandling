@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Basic Econometrics in R | Data Handling Pocket Reference</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Basic Econometrics in R | Data Handling Pocket Reference" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-22" />
+<meta name="date" content="2022-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -378,12 +378,12 @@ div.csl-indent {
 <p><span class="math inline">\(y_{i}= \alpha + \beta x_{i} + u_{i}\)</span>.</p>
 <p>The overarching goal of modern econometrics for such problems is to assess whether <span class="math inline">\(x\)</span> has a <em>causal</em> effect on <span class="math inline">\(y\)</span>. A key aspect of such an interpretation is that <span class="math inline">\(u_{i}\)</span> is unrelated to <span class="math inline">\(x_i\)</span>. Other unobservable factors might also play a role for <span class="math inline">\(y\)</span>, but they must not affect both <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>. The great computer scientist <a href="https://en.wikipedia.org/wiki/Judea_Pearl">Judea Pearl</a> has introduced an intuitive approach to illustrating such causality problems. In the left panel of the figure below, we illustrate the unfortunate case where we have a so-called <em>’ endogeneity’</em> problem, a situation in which other factors affect both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:causality"></span>
-<img src="img/causal_diagram_endo.png" alt="(ref:causality)" width="49%" height="49%" /><img src="img/causal_diagram_exo.png" alt="(ref:causality)" width="49%" height="49%" />
+<img src="img/causal_diagram_endo.png" alt="Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable), and on the right without this endogeneity issue." width="49%" height="49%" /><img src="img/causal_diagram_exo.png" alt="Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable), and on the right without this endogeneity issue." width="49%" height="49%" />
 <p class="caption">
-Figure 11.1: (ref:causality)
+Figure 11.1: Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable), and on the right without this endogeneity issue.
 </p>
 </div>
-<p>(ref: causality) Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable), and on the right without this endogeneity issue.</p>
+
 <div id="illustration-with-pseudo-data" class="section level3 hasAnchor" number="11.1.1">
 <h3><span class="header-section-number">11.1.1</span> Illustration with pseudo-data<a href="basic-econometrics-in-r.html#illustration-with-pseudo-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let us now look at how we can estimate <span class="math inline">\(\beta\)</span> under the assumption that <span class="math inline">\(u\)</span> does not affect <span class="math inline">\(x\)</span>. To make this more general and easily accessible, let us, for the moment, ignore the dataset above and generate simulated data for which this assumption certainly holds. The basic R installation provides a number of functions to easily generate vectors of pseudo-random numbers<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> The great advantage of using simulated data and code to understand statistical models is that we have full control over what the <em>actual</em> relationship between variables is. We can then easily assess how well an estimation procedure for a parameter is by comparing the parameter estimate with its true value (something we never observe when working with real-life data).</p>
@@ -609,7 +609,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

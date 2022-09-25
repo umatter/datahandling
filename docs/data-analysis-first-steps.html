@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Data Analysis: First Steps | Data Handling Pocket Reference</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Data Analysis: First Steps | Data Handling Pocket Reference" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-22" />
+<meta name="date" content="2022-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -565,22 +565,24 @@ div.csl-indent {
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="data-analysis-first-steps.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
 <span id="cb340-2"><a href="data-analysis-first-steps.html#cb340-2" aria-hidden="true" tabindex="-1"></a>boys</span></code></pre></div>
 <pre><code>## # A tibble: 61 × 11
-##    Rank...1 Name...2 Count...3 `since 2014...4`
-##    &lt;chr&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;           
-##  1 &lt;NA&gt;     &lt;NA&gt;            NA &lt;NA&gt;            
-##  2 1        OLIVER        6941 ­                
-##  3 2        JACK          5371 ­                
-##  4 3        HARRY         5308 ­                
-##  5 4        GEORGE        4869 +3              
-##  6 5        JACOB         4850 -1              
-##  7 6        CHARLIE       4831 -1              
-##  8 7        NOAH          4148 +4              
-##  9 8        WILLIAM       4083 +2              
-## 10 9        THOMAS        4075 -3              
-## # … with 51 more rows, and 7 more variables:
-## #   `since 2005...5` &lt;chr&gt;, ...6 &lt;lgl&gt;,
+##    Rank...1 Name...2 Count...3 since 20…¹ since…² ...6 
+##    &lt;chr&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;lgl&gt;
+##  1 &lt;NA&gt;     &lt;NA&gt;            NA &lt;NA&gt;       &lt;NA&gt;    NA   
+##  2 1        OLIVER        6941 ­           +4      NA   
+##  3 2        JACK          5371 ­           -1      NA   
+##  4 3        HARRY         5308 ­           +6      NA   
+##  5 4        GEORGE        4869 +3         +13     NA   
+##  6 5        JACOB         4850 -1         +16     NA   
+##  7 6        CHARLIE       4831 -1         +6      NA   
+##  8 7        NOAH          4148 +4         +44     NA   
+##  9 8        WILLIAM       4083 +2         ­        NA   
+## 10 9        THOMAS        4075 -3         -6      NA   
+## # … with 51 more rows, 5 more variables:
 ## #   Rank...7 &lt;chr&gt;, Name...8 &lt;chr&gt;, Count...9 &lt;dbl&gt;,
-## #   `since 2014...10` &lt;chr&gt;, `since 2005...11` &lt;chr&gt;</code></pre>
+## #   `since 2014...10` &lt;chr&gt;, `since 2005...11` &lt;chr&gt;,
+## #   and abbreviated variable names ¹​`since 2014...4`,
+## #   ²​`since 2005...5`
+## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
 <p>Note that by default, <code>read_excel()</code> “repairs” the column names of imported datasets to ensure all columns have unique names. We do not need to worry about the automatically assigned column names. However, some of the columns are not needed for analytics purposes. In addition, we note that some rows are empty (contain <code>NA</code> values). In the next step we <em>select</em> only those columns needed and <em>filter</em> incomplete observations out.</p>
 <div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="data-analysis-first-steps.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FILTER/CLEAN ---------------------------</span></span>
 <span id="cb342-2"><a href="data-analysis-first-steps.html#cb342-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -611,7 +613,8 @@ div.csl-indent {
 ##  8 8     WILLIAM  4083
 ##  9 9     THOMAS   4075
 ## 10 10    OSCAR    4066
-## # … with 104 more rows</code></pre>
+## # … with 104 more rows
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
 
 </div>
 </div>
@@ -688,7 +691,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

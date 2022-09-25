@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Data Preparation | Data Handling Pocket Reference</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Data Preparation | Data Handling Pocket Reference" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-22" />
+<meta name="date" content="2022-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -625,21 +625,22 @@ div.csl-indent {
 <p>The first few rows and columns of the final dataset should combine the two source datasets and look as follows:</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="data-preparation.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hotel_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 32
-##   hotel        is_canceled lead_time arrival_date_year
-##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt;
-## 1 Resort Hotel           0       342              2015
-## 2 Resort Hotel           0       737              2015
-## 3 Resort Hotel           0         7              2015
-## 4 Resort Hotel           0        13              2015
-## 5 Resort Hotel           0        14              2015
-## 6 Resort Hotel           0        14              2015
-## # … with 28 more variables: arrival_date_month &lt;chr&gt;,
-## #   arrival_date_week_number &lt;dbl&gt;,
-## #   arrival_date_day_of_month &lt;dbl&gt;,
+##   hotel is_ca…¹ lead_…² arriv…³ arriv…⁴ arriv…⁵ arriv…⁶
+##   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Reso…       0     342    2015 July         27       1
+## 2 Reso…       0     737    2015 July         27       1
+## 3 Reso…       0       7    2015 July         27       1
+## 4 Reso…       0      13    2015 July         27       1
+## 5 Reso…       0      14    2015 July         27       1
+## 6 Reso…       0      14    2015 July         27       1
+## # … with 25 more variables:
 ## #   stays_in_weekend_nights &lt;dbl&gt;,
 ## #   stays_in_week_nights &lt;dbl&gt;, adults &lt;dbl&gt;,
 ## #   children &lt;dbl&gt;, babies &lt;dbl&gt;, meal &lt;chr&gt;,
-## #   country &lt;chr&gt;, market_segment &lt;chr&gt;, …</code></pre>
+## #   country &lt;chr&gt;, market_segment &lt;chr&gt;,
+## #   distribution_channel &lt;chr&gt;,
+## #   is_repeated_guest &lt;dbl&gt;, …
+## # ℹ Use `colnames()` to see all variable names</code></pre>
 </div>
 <div id="set-up-and-import" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Set up and import<a href="data-preparation.html#set-up-and-import" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -675,21 +676,22 @@ div.csl-indent {
 <span id="cb309-14"><a href="data-preparation.html#cb309-14" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the first observations</span></span>
 <span id="cb309-15"><a href="data-preparation.html#cb309-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hotel_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 32
-##   is_canceled lead_time arrival_date_year
-##         &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt;
-## 1           0       342              2015
-## 2           0       737              2015
-## 3           0         7              2015
-## 4           0        13              2015
-## 5           0        14              2015
-## 6           0        14              2015
-## # … with 29 more variables: arrival_date_month &lt;chr&gt;,
-## #   arrival_date_week_number &lt;dbl&gt;,
-## #   arrival_date_day_of_month &lt;dbl&gt;,
+##   is_canceled lead_time arriv…¹ arriv…² arriv…³ arriv…⁴
+##         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1           0       342    2015 July         27       1
+## 2           0       737    2015 July         27       1
+## 3           0         7    2015 July         27       1
+## 4           0        13    2015 July         27       1
+## 5           0        14    2015 July         27       1
+## 6           0        14    2015 July         27       1
+## # … with 26 more variables:
 ## #   stays_in_weekend_nights &lt;dbl&gt;,
 ## #   stays_in_week_nights &lt;dbl&gt;, adults &lt;dbl&gt;,
 ## #   children &lt;dbl&gt;, babies &lt;dbl&gt;, meal &lt;chr&gt;,
-## #   country &lt;chr&gt;, market_segment &lt;chr&gt;, …</code></pre>
+## #   country &lt;chr&gt;, market_segment &lt;chr&gt;,
+## #   distribution_channel &lt;chr&gt;,
+## #   is_repeated_guest &lt;dbl&gt;, …
+## # ℹ Use `colnames()` to see all variable names</code></pre>
 
 </div>
 </div>
@@ -767,7 +769,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

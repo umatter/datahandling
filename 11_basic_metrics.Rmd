@@ -70,7 +70,7 @@ ggsave("img/causal_diagram_exo.png", plot = exo_plot, device = "png", width = 6,
 include_graphics(c("img/causal_diagram_endo.png", "img/causal_diagram_exo.png"))
 
 ```
-(ref: causality) Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable), and on the right without this endogeneity issue.
+(ref:causality) Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable), and on the right without this endogeneity issue.
 
 
 ### Illustration with pseudo-data
