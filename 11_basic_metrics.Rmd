@@ -15,8 +15,8 @@ The overarching goal of modern econometrics for such problems is to assess wheth
 
 
 
-```{r causality, warning=FALSE, message=FALSE, echo=FALSE, out.width="40%",out.height="40%",fig.show='hold', fig.align='center', fig.cap= "(ref:causality)", purl=FALSE}
-include_graphics(c("img/causal_diagram_endo.png", "img/causal_diagram_exo.png"))
+```{r causality, warning=FALSE, message=FALSE, echo=FALSE, out.width="60%", fig.show='hold', fig.align='center', fig.cap= "(ref:causality)", purl=FALSE}
+include_graphics("img/causal_diagram.png")
 
 ```
 (ref:causality) Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable), and on the right without this endogeneity issue.
