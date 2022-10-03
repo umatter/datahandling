@@ -24,6 +24,7 @@ fig:list
 fig:xmltree
 fig:html
 fig:swiss
+fig:widetolong
 fig:causality
 fig:gg2
 introduction
@@ -117,7 +118,7 @@ splitting-strings
 parsing-dates
 reshaping-datasets
 tidying-messy-datasets.
-pivoting-from-wide-to-long-gathering
+pivoting-from-wide-to-long
 pivoting-from-long-to-wide-spreading
 tutorial-hotel-bookings-time-series
 set-up-and-import
