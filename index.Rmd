@@ -36,7 +36,7 @@ knitr::write_bib(c(
 
 opts_chunk$set(size="small")
 options( htmltools.dir.version = FALSE, formatR.indent = 2,
-  width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE)
+  width = 65, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE)
 ```
 
 
