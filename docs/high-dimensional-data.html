@@ -288,7 +288,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html"><i class="fa fa-check"></i><b>10</b> Data Analysis: First Steps</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#merging-datasets"><i class="fa fa-check"></i><b>10.1</b> Merging datasets</a></li>
+<li class="chapter" data-level="10.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#mergingjoining-datasets"><i class="fa fa-check"></i><b>10.1</b> Merging/joining datasets</a></li>
 <li class="chapter" data-level="10.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#selecting-subsets"><i class="fa fa-check"></i><b>10.2</b> Selecting subsets</a>
 <ul>
 <li class="chapter" data-level="10.2.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#filtering-datasets"><i class="fa fa-check"></i><b>10.2.1</b> Filtering datasets</a></li>
@@ -559,9 +559,9 @@ Figure 5.1: XML tree diagram.
 ## [1] &lt;firstName&gt;John&lt;/firstName&gt;
 ## [2] &lt;lastName&gt;Smith&lt;/lastName&gt;
 ## [3] &lt;age&gt;25&lt;/age&gt;
-## [4] &lt;address&gt;\n  &lt;streetAddress&gt;21 2nd Street&lt;/stree ...
-## [5] &lt;phoneNumber&gt;\n  &lt;type&gt;home&lt;/type&gt;\n  &lt;number&gt;21 ...
-## [6] &lt;phoneNumber&gt;\n  &lt;type&gt;fax&lt;/type&gt;\n  &lt;number&gt;646 ...
+## [4] &lt;address&gt;\n  &lt;streetAddress&gt;21 2nd Street&lt;/streetAddress&gt;\ ...
+## [5] &lt;phoneNumber&gt;\n  &lt;type&gt;home&lt;/type&gt;\n  &lt;number&gt;212 555-1234 ...
+## [6] &lt;phoneNumber&gt;\n  &lt;type&gt;fax&lt;/type&gt;\n  &lt;number&gt;646 555-4567&lt; ...
 ## [7] &lt;gender&gt;\n  &lt;type&gt;male&lt;/type&gt;\n&lt;/gender&gt;</code></pre>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="high-dimensional-data.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
 <span id="cb155-2"><a href="high-dimensional-data.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
@@ -632,10 +632,9 @@ Figure 5.3: Source: <a href="https://en.wikipedia.org/wiki/Economy_of_Switzerlan
 
 <p>As in the example shown in the data processing chapter (‘world population clock’), we first tell R to read the lines of text from the HTML document that constitutes the webpage.</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="high-dimensional-data.html#cb158-1" aria-hidden="true" tabindex="-1"></a>swiss_econ <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/Economy_of_Switzerland&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in readLines(&quot;https://en.wikipedia.org/
-## wiki/Economy_of_Switzerland&quot;): incomplete final
-## line found on &#39;https://en.wikipedia.org/wiki/
-## Economy_of_Switzerland&#39;</code></pre>
+<pre><code>## Warning in readLines(&quot;https://en.wikipedia.org/wiki/
+## Economy_of_Switzerland&quot;): incomplete final line found on
+## &#39;https://en.wikipedia.org/wiki/Economy_of_Switzerland&#39;</code></pre>
 <p>And we can check if everything worked out well by having a look at the first lines of the web page’s HTML code:</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="high-dimensional-data.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(swiss_econ)</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;!DOCTYPE html&gt;&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
@@ -666,8 +665,8 @@ Figure 5.3: Source: <a href="https://en.wikipedia.org/wiki/Economy_of_Switzerlan
 <span id="cb168-3"><a href="high-dimensional-data.html#cb168-3" aria-hidden="true" tabindex="-1"></a>swiss_econ_parsed</span></code></pre></div>
 <pre><code>## {html_document}
 ## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content= ...
-## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-e ...</code></pre>
+## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html ...
+## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt n ...</code></pre>
 <p>Now we can easily separate the data/text from the HTML code. For example, we can extract the HTML table containing the data we are interested in as <code>data frames</code>.</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="high-dimensional-data.html#cb170-1" aria-hidden="true" tabindex="-1"></a>tab_node <span class="ot">&lt;-</span> <span class="fu">html_node</span>(swiss_econ_parsed, <span class="at">xpath =</span> <span class="st">&quot;//*[@id=&#39;mw-content-text&#39;]/div/table[2]&quot;</span>)</span>
 <span id="cb170-2"><a href="high-dimensional-data.html#cb170-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">html_table</span>(tab_node)</span>

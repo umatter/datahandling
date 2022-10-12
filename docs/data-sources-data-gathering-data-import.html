@@ -288,7 +288,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html"><i class="fa fa-check"></i><b>10</b> Data Analysis: First Steps</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#merging-datasets"><i class="fa fa-check"></i><b>10.1</b> Merging datasets</a></li>
+<li class="chapter" data-level="10.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#mergingjoining-datasets"><i class="fa fa-check"></i><b>10.1</b> Merging/joining datasets</a></li>
 <li class="chapter" data-level="10.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#selecting-subsets"><i class="fa fa-check"></i><b>10.2</b> Selecting subsets</a>
 <ul>
 <li class="chapter" data-level="10.2.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#filtering-datasets"><i class="fa fa-check"></i><b>10.2.1</b> Filtering datasets</a></li>
@@ -466,20 +466,20 @@ div.csl-indent {
 ##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...</code></pre>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="data-sources-data-gathering-data-import.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the first few rows</span></span>
 <span id="cb239-2"><a href="data-sources-data-gathering-data-import.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(swiss)</span></code></pre></div>
-<pre><code>##              Fertility Agriculture Examination
-## Courtelary        80.2        17.0          15
-## Delemont          83.1        45.1           6
-## Franches-Mnt      92.5        39.7           5
-## Moutier           85.8        36.5          12
-## Neuveville        76.9        43.5          17
-## Porrentruy        76.1        35.3           9
-##              Education Catholic Infant.Mortality
-## Courtelary          12     9.96             22.2
-## Delemont             9    84.84             22.2
-## Franches-Mnt         5    93.40             20.2
-## Moutier              7    33.77             20.3
-## Neuveville          15     5.16             20.6
-## Porrentruy           7    90.57             26.6</code></pre>
+<pre><code>##              Fertility Agriculture Examination Education
+## Courtelary        80.2        17.0          15        12
+## Delemont          83.1        45.1           6         9
+## Franches-Mnt      92.5        39.7           5         5
+## Moutier           85.8        36.5          12         7
+## Neuveville        76.9        43.5          17        15
+## Porrentruy        76.1        35.3           9         7
+##              Catholic Infant.Mortality
+## Courtelary       9.96             22.2
+## Delemont        84.84             22.2
+## Franches-Mnt    93.40             20.2
+## Moutier         33.77             20.3
+## Neuveville       5.16             20.6
+## Porrentruy      90.57             26.6</code></pre>
 <p>To get a list of all the built-in datasets, type <code>data()</code> into the console and hit enter. To get more information about a given dataset, use the help function (e.g., <code>?swiss</code>)</p>
 </div>
 <div id="importing-rectangular-data-from-text-files" class="section level3 hasAnchor" number="8.3.2">
@@ -538,51 +538,48 @@ div.csl-indent {
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-sources-data-gathering-data-import.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&#39;&quot;District&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;</span></span>
 <span id="cb250-2"><a href="data-sources-data-gathering-data-import.html#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 1 Columns: 7</code></pre>
-<pre><code>## ── Column specification ───────────────────────────────
+<pre><code>## ── Column specification ─────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): District
-## dbl (6): Fertility, Agriculture, Examination, Educa...
+## dbl (6): Fertility, Agriculture, Examination, Education, Cath...
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre><code>## # A tibble: 1 × 7
-##   District   Fertility Agricu…¹ Exami…² Educa…³ Catho…⁴
-##   &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-## 1 Courtelary      80.2       17      15      12    9.96
-## # … with 1 more variable: Infant.Mortality &lt;dbl&gt;, and
-## #   abbreviated variable names ¹​Agriculture,
-## #   ²​Examination, ³​Education, ⁴​Catholic
-## # ℹ Use `colnames()` to see all variable names</code></pre>
+##   District   Fertility Agricult…¹ Exami…² Educa…³ Catho…⁴ Infan…⁵
+##   &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Courtelary      80.2         17      15      12    9.96    22.2
+## # … with abbreviated variable names ¹​Agriculture, ²​Examination,
+## #   ³​Education, ⁴​Catholic, ⁵​Infant.Mortality</code></pre>
 <p>or read the entire <code>swiss</code> dataset by pointing to the file</p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="data-sources-data-gathering-data-import.html#cb254-1" aria-hidden="true" tabindex="-1"></a>swiss <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 47 Columns: 7
-## ── Column specification ───────────────────────────────
+## ── Column specification ─────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): District
-## dbl (6): Fertility, Agriculture, Examination, Educa...
+## dbl (6): Fertility, Agriculture, Examination, Education, Cath...
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p>In either case, the result is a <code>tibble</code>:</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="data-sources-data-gathering-data-import.html#cb256-1" aria-hidden="true" tabindex="-1"></a>swiss</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 7
-##    District     Ferti…¹ Agric…² Exami…³ Educa…⁴ Catho…⁵
-##    &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-##  1 Courtelary      80.2    17        15      12    9.96
-##  2 Delemont        83.1    45.1       6       9   84.8 
-##  3 Franches-Mnt    92.5    39.7       5       5   93.4 
-##  4 Moutier         85.8    36.5      12       7   33.8 
-##  5 Neuveville      76.9    43.5      17      15    5.16
-##  6 Porrentruy      76.1    35.3       9       7   90.6 
-##  7 Broye           83.8    70.2      16       7   92.8 
-##  8 Glane           92.4    67.8      14       8   97.2 
-##  9 Gruyere         82.4    53.3      12       7   97.7 
-## 10 Sarine          82.9    45.2      16      13   91.4 
-## # … with 37 more rows, 1 more variable:
-## #   Infant.Mortality &lt;dbl&gt;, and abbreviated variable
-## #   names ¹​Fertility, ²​Agriculture, ³​Examination,
-## #   ⁴​Education, ⁵​Catholic
-## # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+##    District     Fertility Agric…¹ Exami…² Educa…³ Catho…⁴ Infan…⁵
+##    &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Courtelary        80.2    17        15      12    9.96    22.2
+##  2 Delemont          83.1    45.1       6       9   84.8     22.2
+##  3 Franches-Mnt      92.5    39.7       5       5   93.4     20.2
+##  4 Moutier           85.8    36.5      12       7   33.8     20.3
+##  5 Neuveville        76.9    43.5      17      15    5.16    20.6
+##  6 Porrentruy        76.1    35.3       9       7   90.6     26.6
+##  7 Broye             83.8    70.2      16       7   92.8     23.6
+##  8 Glane             92.4    67.8      14       8   97.2     24.9
+##  9 Gruyere           82.4    53.3      12       7   97.7     21  
+## 10 Sarine            82.9    45.2      16      13   91.4     24.4
+## # … with 37 more rows, and abbreviated variable names
+## #   ¹​Agriculture, ²​Examination, ³​Education, ⁴​Catholic,
+## #   ⁵​Infant.Mortality
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
 <p>The other <code>readr</code> functions have practically the same syntax and behavior. They are used for fixed-width files or CSV-type files with other delimiters than commas.</p>
 </div>
 <div id="parsing-and-data-types" class="section level3 hasAnchor" number="8.4.2">
@@ -594,7 +591,7 @@ div.csl-indent {
 <span id="cb258-3"><a href="data-sources-data-gathering-data-import.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="st">         14:30, midnight</span></span>
 <span id="cb258-4"><a href="data-sources-data-gathering-data-import.html#cb258-4" aria-hidden="true" tabindex="-1"></a><span class="st">         20:01, noon&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 3 Columns: 2
-## ── Column specification ───────────────────────────────
+## ── Column specification ─────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (1): B
 ## time (1): A
@@ -627,8 +624,8 @@ div.csl-indent {
 <span id="cb265-6"><a href="data-sources-data-gathering-data-import.html#cb265-6" aria-hidden="true" tabindex="-1"></a>xml_doc</span></code></pre></div>
 <pre><code>## {xml_document}
 ## &lt;customers&gt;
-## [1] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n  ...
-## [2] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n ...</code></pre>
+## [1] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;produc ...
+## [2] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;produ ...</code></pre>
 <p>The same package also has various functions to access, extract, and manipulate data from a parsed XML document. In the following code example, we have a look at the most useful functions for our purposes (see the package’s <a href="https://cran.r-project.org/web/packages/xml2/vignettes/modification.html">vignette</a> for more details).</p>
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-sources-data-gathering-data-import.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate through the XML document (recall the tree-like nested structure similar to HTML)</span></span>
 <span id="cb267-2"><a href="data-sources-data-gathering-data-import.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate downwards</span></span>
@@ -637,12 +634,12 @@ div.csl-indent {
 <span id="cb267-5"><a href="data-sources-data-gathering-data-import.html#cb267-5" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate sidewards</span></span>
 <span id="cb267-6"><a href="data-sources-data-gathering-data-import.html#cb267-6" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_siblings</span>(persons)</span></code></pre></div>
 <pre><code>## {xml_nodeset (2)}
-## [1] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n ...
-## [2] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n  ...</code></pre>
+## [1] &lt;person&gt;\n  &lt;name&gt;Peter Pan&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;produ ...
+## [2] &lt;person&gt;\n  &lt;name&gt;John Doe&lt;/name&gt;\n  &lt;orders&gt;\n    &lt;produc ...</code></pre>
 <div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-sources-data-gathering-data-import.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># navigate upwards</span></span>
 <span id="cb269-2"><a href="data-sources-data-gathering-data-import.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_parents</span>(persons)</span></code></pre></div>
 <pre><code>## {xml_nodeset (1)}
-## [1] &lt;customers&gt;\n  &lt;person&gt;\n    &lt;name&gt;John Doe&lt;/nam ...</code></pre>
+## [1] &lt;customers&gt;\n  &lt;person&gt;\n    &lt;name&gt;John Doe&lt;/name&gt;\n    &lt;o ...</code></pre>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-sources-data-gathering-data-import.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find data via XPath</span></span>
 <span id="cb271-2"><a href="data-sources-data-gathering-data-import.html#cb271-2" aria-hidden="true" tabindex="-1"></a>customer_names <span class="ot">&lt;-</span> <span class="fu">xml_find_all</span>(xml_doc, <span class="at">xpath =</span> <span class="st">&quot;.//name&quot;</span>)</span>
 <span id="cb271-3"><a href="data-sources-data-gathering-data-import.html#cb271-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the data as text</span></span>

@@ -4,7 +4,7 @@
 
 In the first part of this chapter, we look at some key functions for applied data analysis in R. At this point, we have already implemented collecting/importing and cleaning the raw data. The analysis part can be thought of as a collection of tasks with the aim of making sense of the data. In practice, this can be explorative (discovering interesting patterns in the data) or inductive (testing of a specific hypothesis). Moreover, it typically involves functions for actual statistical analysis and various functions to select, combine, filter, and aggregate data. Similar to the topic of data cleaning/preparation, covering all aspects of applied data analysis with R goes well beyond the scope of one chapter. The aim is thus to give a practical overview of some of the basic concepts and their corresponding R functions (here from `tidyverse`).  
 
-## Merging datasets
+## Merging/joining datasets
 
 The following two data sets contain data on persons' characteristics and their consumption spending. Both are cleaned datasets. But, for analysis purposes, we have to combine the two datasets. There are several ways to do this in R, but most commonly (for `data.frames` as well as `tibbles`), we can use the `merge()`-function.
 
@@ -34,13 +34,41 @@ df_merged <- merge(df_p, df_c, by="id")
 df_merged
 ```
 
-Note how only the exact matches are merged. The observation of `"Diane"` is not part of the merged data frame because there is no corresponding row in `df_c` with her spending information. If for some reason, we would like to have all persons in the merged dataset, we can specify the `merge()`-call accordingly:
+Note how only the exact matches are merged. The observation of `"Diane"` is not part of the merged data frame because there is no corresponding row in `df_c` with her spending information. This approach to merging two data sets (only keeping the matched rows on both sides) is often referred to as an *inner join*. If for some reason, we would like to have all persons in the merged dataset, we can specify the `merge()`-call accordingly:
 
 
 ```{r}
 df_merged2 <- merge(df_p, df_c, by="id", all = TRUE)
 df_merged2
 ```
+
+this version of merging two data sets is also often referred to as an *outer join*.
+
+Finally, you might be in a situation in which keeping all rows of the first (left) dataset or the ones of the second (right) dataset makes sense, but not both. You can do this by specifying `all.x=TRUE` (keep all rows of the first dataset) or `all.y=TRUE` (keep all of the second dataset). These types of merging datasets are often also referred to *left join* and *right join*, respectively.
+
+```{r}
+# left join
+df_merged3 <- merge(df_p, df_c, by="id", all.x = TRUE)
+df_merged3
+```
+
+```{r}
+# right join
+df_merged4 <- merge(df_p, df_c, by="id", all.y = TRUE)
+df_merged4
+```
+
+
+The following figure illustrates the four types of joins.
+
+
+
+```{r joins, echo=FALSE, out.width = "99%", fig.align='center', fig.cap= "(ref:joins)", purl=FALSE}
+include_graphics("img/joins.png")
+```
+(ref:joins) Different approaches to merging two datasets: left join, right join, inner join, outer join.
+
+
 
 ## Selecting subsets
 

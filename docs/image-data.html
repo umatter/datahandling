@@ -288,7 +288,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html"><i class="fa fa-check"></i><b>10</b> Data Analysis: First Steps</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#merging-datasets"><i class="fa fa-check"></i><b>10.1</b> Merging datasets</a></li>
+<li class="chapter" data-level="10.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#mergingjoining-datasets"><i class="fa fa-check"></i><b>10.1</b> Merging/joining datasets</a></li>
 <li class="chapter" data-level="10.2" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#selecting-subsets"><i class="fa fa-check"></i><b>10.2</b> Selecting subsets</a>
 <ul>
 <li class="chapter" data-level="10.2.1" data-path="data-analysis-first-steps.html"><a href="data-analysis-first-steps.html#filtering-datasets"><i class="fa fa-check"></i><b>10.2.1</b> Filtering datasets</a></li>
@@ -423,14 +423,14 @@ div.csl-indent {
 ## max values :     255,       0,       0</code></pre>
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="image-data.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
 <span id="cb178-2"><a href="image-data.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
-<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude</code></pre>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-81-1.svg" width="672" /></p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="image-data.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
 <span id="cb180-2"><a href="image-data.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;red.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
 <span id="cb180-3"><a href="image-data.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
-<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude</code></pre>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude</code></pre>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="image-data.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## pdf 
 ##   2</code></pre>
@@ -467,14 +467,14 @@ div.csl-indent {
 ## max values :       0,     255,       0</code></pre>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="image-data.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
 <span id="cb188-2"><a href="image-data.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
-<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude</code></pre>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-82-1.svg" width="672" /></p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="image-data.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
 <span id="cb190-2"><a href="image-data.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;blue.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
 <span id="cb190-3"><a href="image-data.html#cb190-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
-<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude</code></pre>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude</code></pre>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="image-data.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## pdf 
 ##   2</code></pre>
@@ -511,14 +511,14 @@ div.csl-indent {
 ## max values :       0,       0,     255</code></pre>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="image-data.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
 <span id="cb198-2"><a href="image-data.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
-<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude</code></pre>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-83-1.svg" width="672" /></p>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="image-data.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
 <span id="cb200-2"><a href="image-data.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;green.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
 <span id="cb200-3"><a href="image-data.html#cb200-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
-<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude</code></pre>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude</code></pre>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="image-data.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## pdf 
 ##   2</code></pre>
@@ -573,8 +573,8 @@ and subsequently multiply by 255:</p>
 ## max values :     255,     255,     255</code></pre>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="image-data.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 8: Plot RGB</span></span>
 <span id="cb211-2"><a href="image-data.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
-<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude</code></pre>
+<pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-86-2.svg" width="672" /></p>
 <p>From the examples above, you recognize that in order to generate/manipulate raster images in R, we basically generate/manipulate matrices/arrays (i.e., structures very common to any data analytics task in R). Several additional R packages come with pre-defined functions for more advanced image manipulations in R.</p>
 </div>
@@ -662,9 +662,9 @@ and subsequently multiply by 255:</p>
 <span id="cb226-9"><a href="image-data.html#cb226-9" aria-hidden="true" tabindex="-1"></a>Rlogo_xml </span></code></pre></div>
 <pre><code>## {xml_document}
 ## &lt;svg preserveAspectRatio=&quot;xMidYMid&quot; width=&quot;724&quot; height=&quot;561&quot; viewBox=&quot;0 0 724 561&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
-## [1] &lt;defs&gt;\n  &lt;linearGradient id=&quot;gradientFill-1&quot; x1 ...
-## [2] &lt;path d=&quot;M361.453,485.937 C162.329,485.937 0.906 ...
-## [3] &lt;path d=&quot;M550.000,377.000 C550.000,377.000 571.8 ...</code></pre>
+## [1] &lt;defs&gt;\n  &lt;linearGradient id=&quot;gradientFill-1&quot; x1=&quot;0&quot; x2=&quot;1 ...
+## [2] &lt;path d=&quot;M361.453,485.937 C162.329,485.937 0.906,377.828 0 ...
+## [3] &lt;path d=&quot;M550.000,377.000 C550.000,377.000 571.822,383.585 ...</code></pre>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="image-data.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_structure</span>(Rlogo_xml)</span></code></pre></div>
 <pre><code>## &lt;svg [preserveAspectRatio, width, height, viewBox, xmlns, xmlns:xlink]&gt;
 ##   &lt;defs&gt;

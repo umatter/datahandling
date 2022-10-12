@@ -26,6 +26,7 @@ fig:xmltree
 fig:html
 fig:swiss
 fig:widetolong
+fig:joins
 fig:causality
 fig:gg2
 introduction
@@ -124,7 +125,7 @@ pivoting-from-long-to-wide-spreading
 tutorial-hotel-bookings-time-series
 set-up-and-import
 data-analysis-first-steps
-merging-datasets
+mergingjoining-datasets
 selecting-subsets
 filtering-datasets
 mutating-datasets
