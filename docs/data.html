@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-10-03" />
+<meta name="date" content="2022-10-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -612,7 +612,7 @@ Figure 3.5: Data involved in visiting a website.
 <p>That is, we ask R on which line in <code>clockHTML</code> (the source code stored in RAM) the text <code>id="world-pop-container"</code> is and store the answer (the line number) in RAM under the variable name <code>line_number</code>.</p>
 <p>We can now check on which line the text was found.</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="data.html#cb84-1" aria-hidden="true" tabindex="-1"></a>line_number</span></code></pre></div>
-<pre><code>## [1] 441</code></pre>
+<pre><code>## [1] 444</code></pre>
 <p>Again, we can illustrate with a simple diagram which computer components were involved in this task. First, we entered an R command with the keyboard; the CPU is processing it and as a result accesses <code>clockHTML</code> in RAM, executes the search, returns the line number, and stores it in a new variable called <code>line_number</code> in RAM. In our current R session, we thus now have two ‘objects’ stored in RAM: <code>clockHTML</code> and <code>line_number</code>, which we can further process with R.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ramcalc"></span>
 <img src="img/script-ramcalc_w.jpg" alt="Accessing data in RAM, processing it, and storing the result in RAM." width="40%" />

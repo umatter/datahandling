@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-10-03" />
+<meta name="date" content="2022-10-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -544,42 +544,49 @@ Figure 4.3: Illustration of a factor.
 <h4><span class="header-section-number">4.4.2.3</span> Matrices/Arrays<a href="data-storage-and-data-structures.html#matricesarrays" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type. For an illustration, consider the following <span class="math inline">\(3\times3\)</span> integer matrix and the <span class="math inline">\(3\times3\times3\)</span> integer array.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:matrix"></span>
-<img src="img/matrix.png" alt="Illustration of an integer matrix and array." width="40%" height="40%" /><img src="img/array.jpg" alt="Illustration of an integer matrix and array." width="40%" height="40%" />
+<img src="img/matrix.png" alt="Illustration of an integer matrix." width="15%" />
 <p class="caption">
-Figure 4.4: Illustration of an integer matrix and array.
+Figure 4.4: Illustration of an integer matrix.
 </p>
 </div>
 
-<p>In R, we can, for example, initiate a three-row/three-column numeric matrix as follows</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:array"></span>
+<img src="img/array.jpg" alt="Illustration of three-dimensional integer array." width="25%" />
+<p class="caption">
+Figure 4.5: Illustration of three-dimensional integer array.
+</p>
+</div>
+
+<p>In R, we can, for example, initiate a three-row/three-column integer matrix as follows.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-storage-and-data-structures.html#cb123-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
 <span id="cb123-2"><a href="data-storage-and-data-structures.html#cb123-2" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    4    7
 ## [2,]    2    5    8
 ## [3,]    3    6    9</code></pre>
-<p>And a three-dimensional numeric array as follows.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-storage-and-data-structures.html#cb125-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span>(<span class="dv">3</span><span class="sc">*</span><span class="dv">3</span><span class="sc">*</span><span class="dv">3</span>)), <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<p>Similarly, we can initiate a three-dimensional array via the <code>array()</code>-function as shown below. Note that instead of defining only the numbers of rows (columns), you need to define the number of elements in each dimension via the <code>dim</code>-parameter.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-storage-and-data-structures.html#cb125-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">27</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
 <span id="cb125-2"><a href="data-storage-and-data-structures.html#cb125-2" aria-hidden="true" tabindex="-1"></a>my_array</span></code></pre></div>
 <pre><code>## , , 1
 ## 
 ##      [,1] [,2] [,3]
-## [1,]   12   20   27
-## [2,]   22   26   25
-## [3,]   23    9   13
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
 ## 
 ## , , 2
 ## 
 ##      [,1] [,2] [,3]
-## [1,]   18    0    2
-## [2,]   24   21    7
-## [3,]   15   11    1
+## [1,]   10   13   16
+## [2,]   11   14   17
+## [3,]   12   15   18
 ## 
 ## , , 3
 ## 
 ##      [,1] [,2] [,3]
-## [1,]    6    8   14
-## [2,]   16   19    3
-## [3,]   10    5    4</code></pre>
+## [1,]   19   22   25
+## [2,]   20   23   26
+## [3,]   21   24   27</code></pre>
 <p>We can access parts of matrices and arrays via indexing implemented with the <code>[]</code>-syntax. For example, select a particular row, column, or individual element of a matrix.</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-storage-and-data-structures.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the first row</span></span>
 <span id="cb127-2"><a href="data-storage-and-data-structures.html#cb127-2" aria-hidden="true" tabindex="-1"></a>my_matrix[<span class="dv">1</span>,]</span></code></pre></div>
@@ -594,18 +601,18 @@ Figure 4.4: Illustration of an integer matrix and array.
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data-storage-and-data-structures.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the first rows</span></span>
 <span id="cb133-2"><a href="data-storage-and-data-structures.html#cb133-2" aria-hidden="true" tabindex="-1"></a>my_array[<span class="dv">1</span>,,]</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
-## [1,]   12   18    6
-## [2,]   20    0    8
-## [3,]   27    2   14</code></pre>
+## [1,]    1   10   19
+## [2,]    4   13   22
+## [3,]    7   16   25</code></pre>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-storage-and-data-structures.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the &quot;third matrix&quot;</span></span>
 <span id="cb135-2"><a href="data-storage-and-data-structures.html#cb135-2" aria-hidden="true" tabindex="-1"></a>my_array[,,<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
-## [1,]    6    8   14
-## [2,]   16   19    3
-## [3,]   10    5    4</code></pre>
+## [1,]   19   22   25
+## [2,]   20   23   26
+## [3,]   21   24   27</code></pre>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-storage-and-data-structures.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the &quot;last&quot; element in the array</span></span>
 <span id="cb137-2"><a href="data-storage-and-data-structures.html#cb137-2" aria-hidden="true" tabindex="-1"></a>my_array[<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>]</span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
+<pre><code>## [1] 27</code></pre>
 </div>
 <div id="data-frames-tibbles-and-data-tables" class="section level4 hasAnchor" number="4.4.2.4">
 <h4><span class="header-section-number">4.4.2.4</span> Data frames, tibbles, and data tables<a href="data-storage-and-data-structures.html#data-frames-tibbles-and-data-tables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -613,7 +620,7 @@ Figure 4.4: Illustration of an integer matrix and array.
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:df"></span>
 <img src="img/dataframe.png" alt="Illustration of a data frame." width="20%" />
 <p class="caption">
-Figure 4.5: Illustration of a data frame.
+Figure 4.6: Illustration of a data frame.
 </p>
 </div>
 
@@ -630,9 +637,9 @@ Figure 4.5: Illustration of a data frame.
 <h4><span class="header-section-number">4.4.2.5</span> Lists<a href="data-storage-and-data-structures.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Unlike data frames, lists can contain different data types in each element. Moreover, they even can contain different data structures of <em>different dimensions</em> in each element. For example, a list could contain different other lists, data frames, and vectors with differing numbers of elements.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:list"></span>
-<img src="img/list.png" alt="Illustration of a data frame (symbolic)." width="20%" />
+<img src="img/list.png" alt="Illustration of a list." width="20%" />
 <p class="caption">
-Figure 4.6: Illustration of a data frame (symbolic).
+Figure 4.7: Illustration of a list.
 </p>
 </div>
 
@@ -643,23 +650,23 @@ Figure 4.6: Illustration of a data frame (symbolic).
 ## , , 1
 ## 
 ##      [,1] [,2] [,3]
-## [1,]   12   20   27
-## [2,]   22   26   25
-## [3,]   23    9   13
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
 ## 
 ## , , 2
 ## 
 ##      [,1] [,2] [,3]
-## [1,]   18    0    2
-## [2,]   24   21    7
-## [3,]   15   11    1
+## [1,]   10   13   16
+## [2,]   11   14   17
+## [3,]   12   15   18
 ## 
 ## , , 3
 ## 
 ##      [,1] [,2] [,3]
-## [1,]    6    8   14
-## [2,]   16   19    3
-## [3,]   10    5    4
+## [1,]   19   22   25
+## [2,]   20   23   26
+## [3,]   21   24   27
 ## 
 ## 
 ## [[2]]

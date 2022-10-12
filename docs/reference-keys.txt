@@ -19,6 +19,7 @@ fig:bitbyteword
 fig:numvec
 fig:factor
 fig:matrix
+fig:array
 fig:df
 fig:list
 fig:xmltree

@@ -286,13 +286,19 @@ gender
 
 Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type. For an illustration, consider the following $3\times3$ integer matrix and the $3\times3\times3$ integer array.
 
-```{r matrix, warning=FALSE, message=FALSE, echo=FALSE, out.width="40%",out.height="40%",fig.show='hold', fig.align='center', fig.cap= "(ref:capmatrix)", purl=FALSE}
-include_graphics(c("img/matrix.png", "img/array.jpg"))
+```{r matrix, warning=FALSE, message=FALSE, echo=FALSE, out.width="15%",fig.align='center', fig.cap= "(ref:capmatrix)", purl=FALSE}
+include_graphics("img/matrix.png")
 ```
 
-(ref:capmatrix) Illustration of an integer matrix and array.
+(ref:capmatrix) Illustration of an integer matrix.
 
-In R, we can, for example, initiate a three-row/three-column numeric matrix as follows
+```{r array, warning=FALSE, message=FALSE, echo=FALSE, out.width="25%", fig.align='center', fig.cap= "(ref:caparray)", purl=FALSE}
+include_graphics( "img/array.jpg")
+```
+
+(ref:caparray) Illustration of three-dimensional integer array.
+
+In R, we can, for example, initiate a three-row/three-column integer matrix as follows.
 
 ```{r}
 my_matrix <- matrix(1:9, nrow = 3)
@@ -300,13 +306,16 @@ my_matrix
 
 ```
 
-And a three-dimensional numeric array as follows.
+
+Similarly, we can initiate a three-dimensional array via the `array()`-function as shown below. Note that instead of defining only the numbers of rows (columns), you need to define the number of elements in each dimension via the `dim`-parameter.
+
 
 ```{r}
-my_array <- array(sample(0:(3*3*3)), dim = c(3,3,3))
+my_array <- array(1:27, dim = c(3,3,3))
 my_array
 
 ```
+
 
 We can access parts of matrices and arrays via indexing implemented with the `[]`-syntax. For example, select a particular row, column, or individual element of a matrix.
 
@@ -369,7 +378,7 @@ Unlike data frames, lists can contain different data types in each element. More
 include_graphics("img/list.png")
 ```
 
-(ref:caplist) Illustration of a data frame (symbolic).
+(ref:caplist) Illustration of a list.
 
 This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:
 
