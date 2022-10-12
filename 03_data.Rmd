@@ -105,7 +105,7 @@ This section briefly summarizes the key components of processing data with a com
 
 ### Components of a standard computing environment
 
-Figure \@ref(fig: components) illustrates the key components of a standard computing environment (PC, notebook, tablet, etc.) with which we can process data. A programming language (such as R) allows us to work with these hardware components (i.e., control them) in order to perform our tasks (e.g., cleaning/analyzing data).
+Figure \@ref(fig:components) illustrates the key components of a standard computing environment (PC, notebook, tablet, etc.) with which we can process data. A programming language (such as R) allows us to work with these hardware components (i.e., control them) in order to perform our tasks (e.g., cleaning/analyzing data).
 
 ```{r components, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "(ref:components)", purl=FALSE}
 include_graphics("img/script-hardware_w.jpg")
