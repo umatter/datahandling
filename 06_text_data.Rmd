@@ -134,7 +134,7 @@ head(toks_neg_bigram_select[[1]], 30)
 
 \
 
-### 3. From tokens to document-term-matrix (dtm): steps (3) and (4)
+### From tokens to document-term-matrix (dtm): steps (3) and (4)
 The last step of our introduction is to make our collection of tokens usable for quantitative analysis, i.e. to set the tokens into a structure that we can use to train machine learning models, compute statistics, word frequencies, or add to regression models. 
 
 Tokens are usually represented as a document-term-matrix (dtm, also known as document-feature-matrix, dfm). dtms have as rows the document, and as columns the tokens. They contain the count frequency, or sometimes an indicator for whether a given token appears in a document. To create a dtm, we can use `quanteda`'s `dfm` command, as shown below. 
@@ -155,7 +155,7 @@ dfmat <- dfm_trim(dfmat, min_termfreq = 2) # remove tokens that appear less than
 
 \ 
 
-### 4. From dtm to analysis and insights
+### From dtm to analysis and insights
 Dtms are the basis of all text analyses. From a dtm, we can train machine learning methods to predict the sentiment of a text, to classify the documents into clusters (for instance, classifying spam and non-spam emails), to retrieve missing information, or to predict the autorship. 
 
 Very basic statistics about documents are the **top features** of each document, the frequency of expressions in the corpus

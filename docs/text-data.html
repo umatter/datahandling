@@ -239,8 +239,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="text-data.html"><a href="text-data.html#from-raw-text-to-corpus-step-1"><i class="fa fa-check"></i><b>6.2.1</b> From raw text to corpus: step (1)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="text-data.html"><a href="text-data.html#from-corpus-to-tokens-steps-2-and-3"><i class="fa fa-check"></i><b>6.2.2</b> From corpus to tokens: steps (2) and (3)</a></li>
-<li class="chapter" data-level="6.2.3" data-path="text-data.html"><a href="text-data.html#from-tokens-to-document-term-matrix-dtm-steps-3-and-4"><i class="fa fa-check"></i><b>6.2.3</b> 3. From tokens to document-term-matrix (dtm): steps (3) and (4)</a></li>
-<li class="chapter" data-level="6.2.4" data-path="text-data.html"><a href="text-data.html#from-dtm-to-analysis-and-insights"><i class="fa fa-check"></i><b>6.2.4</b> 4. From dtm to analysis and insights</a></li>
+<li class="chapter" data-level="6.2.3" data-path="text-data.html"><a href="text-data.html#from-tokens-to-document-term-matrix-dtm-steps-3-and-4"><i class="fa fa-check"></i><b>6.2.3</b> From tokens to document-term-matrix (dtm): steps (3) and (4)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="text-data.html"><a href="text-data.html#from-dtm-to-analysis-and-insights"><i class="fa fa-check"></i><b>6.2.4</b> From dtm to analysis and insights</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="image-data.html"><a href="image-data.html"><i class="fa fa-check"></i><b>7</b> Image data</a>
@@ -606,7 +606,7 @@ Figure 6.1: Illustration of the data structure behind a text corpus.
 </p>
 </div>
 <div id="from-tokens-to-document-term-matrix-dtm-steps-3-and-4" class="section level3 hasAnchor" number="6.2.3">
-<h3><span class="header-section-number">6.2.3</span> 3. From tokens to document-term-matrix (dtm): steps (3) and (4)<a href="text-data.html#from-tokens-to-document-term-matrix-dtm-steps-3-and-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">6.2.3</span> From tokens to document-term-matrix (dtm): steps (3) and (4)<a href="text-data.html#from-tokens-to-document-term-matrix-dtm-steps-3-and-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The last step of our introduction is to make our collection of tokens usable for quantitative analysis, i.e. to set the tokens into a structure that we can use to train machine learning models, compute statistics, word frequencies, or add to regression models.</p>
 <p>Tokens are usually represented as a document-term-matrix (dtm, also known as document-feature-matrix, dfm). dtms have as rows the document, and as columns the tokens. They contain the count frequency, or sometimes an indicator for whether a given token appears in a document. To create a dtm, we can use <code>quanteda</code>’s <code>dfm</code> command, as shown below.</p>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="text-data.html#cb202-1" aria-hidden="true" tabindex="-1"></a>dfmat <span class="ot">&lt;-</span> <span class="fu">dfm</span>(toks)</span>
@@ -634,7 +634,7 @@ Figure 6.1: Illustration of the data structure behind a text corpus.
 <p> </p>
 </div>
 <div id="from-dtm-to-analysis-and-insights" class="section level3 hasAnchor" number="6.2.4">
-<h3><span class="header-section-number">6.2.4</span> 4. From dtm to analysis and insights<a href="text-data.html#from-dtm-to-analysis-and-insights" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">6.2.4</span> From dtm to analysis and insights<a href="text-data.html#from-dtm-to-analysis-and-insights" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Dtms are the basis of all text analyses. From a dtm, we can train machine learning methods to predict the sentiment of a text, to classify the documents into clusters (for instance, classifying spam and non-spam emails), to retrieve missing information, or to predict the autorship.</p>
 <p>Very basic statistics about documents are the <strong>top features</strong> of each document, the frequency of expressions in the corpus</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="text-data.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">topfeatures</span>(dfmat, <span class="dv">10</span>)</span></code></pre></div>
