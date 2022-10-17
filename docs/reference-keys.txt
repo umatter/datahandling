@@ -25,6 +25,7 @@ fig:list
 fig:xmltree
 fig:html
 fig:swiss
+fig:nlp
 fig:corpus
 fig:rgb
 fig:widetolong

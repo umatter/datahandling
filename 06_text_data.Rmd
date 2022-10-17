@@ -11,7 +11,10 @@ Working with text data can be broken down into eight steps, as depicted in the f
 
 In this introduction, we will focus on steps (1) to (4). Steps (5) to (8) are beyond the scope of a data handling course, as they involve modeling the text through machine learning or other statistical methods, deploying these models for statistical analyses (for research or industrial purpose), and the plausibilization of such models. 
 
-![NLP Pipeline (Credits to Sowmya Vajjala, https://github.com/econnlpcourse/econnlpcourse.github.io/blob/master/docs/slides/2022-Lecture3-7Oct.pdf)](img/NLP.jpg)
+```{r nlp, echo=FALSE, out.width = "85%", fig.align='center', fig.cap= "(ref:nlp)", purl=FALSE}
+include_graphics("img/NLP.png")
+```
+(ref:nlp) Illustration of a NLP pipeline.
 
 
 \
