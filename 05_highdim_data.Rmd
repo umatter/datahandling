@@ -325,7 +325,7 @@ The illustration of the nested structure can help to understand how we can instr
 
 ### Two ways to read a webpage into R
 
-In this example, we look at [Wikipedia's Economy of Switzerland page](https://en.wikipedia.org/wiki/Economy_of_Switzerland), which contains the table depicted in Figure \@ref(fig: swiss).
+In this example, we look at [Wikipedia's Economy of Switzerland page](https://en.wikipedia.org/wiki/Economy_of_Switzerland), which contains the table depicted in Figure \@ref(fig:swiss).
 
 ```{r swiss, echo=FALSE, out.width = "50%", fig.align='center', fig.cap= "(ref:capswiss)"}
 include_graphics("img/1_SwissGDP.png")

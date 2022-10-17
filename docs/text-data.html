@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-10-12" />
+<meta name="date" content="2022-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,7 +232,17 @@ div.csl-indent {
 <li class="chapter" data-level="5.4.2" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#two-ways-to-read-a-webpage-into-r"><i class="fa fa-check"></i><b>5.4.2</b> Two ways to read a webpage into R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>6</b> Text Data</a></li>
+<li class="chapter" data-level="6" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>6</b> Text Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="text-data.html"><a href="text-data.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="text-data.html"><a href="text-data.html#one-package-to-rule-them-all-quanteda"><i class="fa fa-check"></i><b>6.2</b> One Package To Rule Them All: Quanteda</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="text-data.html"><a href="text-data.html#from-raw-text-to-corpus-step-1"><i class="fa fa-check"></i><b>6.2.1</b> From raw text to corpus: step (1)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="text-data.html"><a href="text-data.html#from-corpus-to-tokens-steps-2-and-3"><i class="fa fa-check"></i><b>6.2.2</b> From corpus to tokens: steps (2) and (3)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="text-data.html"><a href="text-data.html#from-tokens-to-document-term-matrix-dtm-steps-3-and-4"><i class="fa fa-check"></i><b>6.2.3</b> 3. From tokens to document-term-matrix (dtm): steps (3) and (4)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="text-data.html"><a href="text-data.html#from-dtm-to-analysis-and-insights"><i class="fa fa-check"></i><b>6.2.4</b> 4. From dtm to analysis and insights</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="image-data.html"><a href="image-data.html"><i class="fa fa-check"></i><b>7</b> Image data</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="image-data.html"><a href="image-data.html#image-data-structure-and-storage"><i class="fa fa-check"></i><b>7.1</b> Image data structure and storage</a></li>
@@ -240,12 +250,9 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="image-data.html"><a href="image-data.html#basic-data-structure"><i class="fa fa-check"></i><b>7.2.1</b> Basic data structure</a></li>
 <li class="chapter" data-level="7.2.2" data-path="image-data.html"><a href="image-data.html#advanced-image-manipulation-using-imagemagick"><i class="fa fa-check"></i><b>7.2.2</b> Advanced Image Manipulation using ImageMagick</a></li>
-<li class="chapter" data-level="7.2.3" data-path="image-data.html"><a href="image-data.html#working-with-ocr-optical-character-recognition"><i class="fa fa-check"></i><b>7.2.3</b> Working with OCR (Optical Character Recognition)</a></li>
+<li class="chapter" data-level="7.2.3" data-path="image-data.html"><a href="image-data.html#optical-character-recognition"><i class="fa fa-check"></i><b>7.2.3</b> Optical Character Recognition</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="image-data.html"><a href="image-data.html#vector-images-in-r"><i class="fa fa-check"></i><b>7.3</b> Vector Images in R</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="image-data.html"><a href="image-data.html#example-maps"><i class="fa fa-check"></i><b>7.3.1</b> Example: Maps</a></li>
-</ul></li>
+<li class="chapter" data-level="7.3" data-path="image-data.html"><a href="image-data.html#vector-images-in-r"><i class="fa fa-check"></i><b>7.3</b> Vector Images in R</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html"><i class="fa fa-check"></i><b>8</b> Data Sources, Data Gathering, Data Import</a>
 <ul>
@@ -371,7 +378,277 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="text-data" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Text Data<a href="text-data.html#text-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>This chapter has been contributed by Aurélien Salling (<a href="https://github.com/ASallin">ASallin</a>)</em>.</p>
+<div id="introduction-1" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introduction<a href="text-data.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Text as data has become increasingly available in the past years, especially following the spread of the Internet and the numerisation of text sources. We are now able to make use of literary texts, analyses (such as financial analyses), reactions on social media (e.g., sentiment analysis to predict financial prices), political discourses, judicial decisions, central bank minutes, etc. in quantitative analyses.</p>
+<p>The main challenge of working with text is that text is <strong>unstructured</strong>. Structured data are coded in such a way that variables can be directly used for analysis without too much loss of content. For instance, data are coded into binary or categorical variables in order to reduce and summarize the complexity of the information. In contrast, with unstructured text data, information is not easily summarized and requires a substantial amount of preparation in order to be used for analysis.</p>
+<p>Working with text data can be broken down into eight steps, as depicted in the figure below. (1) Data acquisition: text data are collected from disparate sources. Examples are webpage scrapping, numerization of old administrative records, collection of tweets through an API, etc. (2) Text cleaning and (3) text preprocessing require the analyst to prepare the text in such a way that text information can be read by a statistical software. Most importantly, cleaning and preprocessing are important to remove all the “noise” from the text and get the relevant information. For instance, in many applications, punctuation and so-called “stopwords” are removed. At this step, text information is “transformed” into a matrix. (4) Feature engineering is the process of using domain knowledge to extract features (characteristics, properties, attributes) from raw data. The extraction of the relevant and meaningful features from the text must make sense and be informative in light of the context.</p>
+<p>In this introduction, we will focus on steps (1) to (4). Steps (5) to (8) are beyond the scope of a data handling course, as they involve modeling the text through machine learning or other statistical methods, deploying these models for statistical analyses (for research or industrial purpose), and the plausibilization of such models.</p>
+<div class="figure">
+<img src="img/NLP.jpg" alt="" />
+<p class="caption">NLP Pipeline (Credits to Sowmya Vajjala, <a href="https://github.com/econnlpcourse/econnlpcourse.github.io/blob/master/docs/slides/2022-Lecture3-7Oct.pdf" class="uri">https://github.com/econnlpcourse/econnlpcourse.github.io/blob/master/docs/slides/2022-Lecture3-7Oct.pdf</a>)</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="one-package-to-rule-them-all-quanteda" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> One Package To Rule Them All: Quanteda<a href="text-data.html#one-package-to-rule-them-all-quanteda" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In R, steps (2) to (4) can be performed using the <code>quanteda</code> or the <code>tidytext</code> package. <code>tidytext</code> works very well with the packages of the <code>tidyverse</code> family, such as <code>dplyr</code> or <code>tidyr</code>. This package converts text to and from tidy formats.</p>
+<p>The package <code>quanteda</code> remains, however, the most complete and go-to package for text analysis in R. It allows R users to perform all the preprocessing steps very easily, and provides all the functions necessary for preprocessing, visualization, and even statistical analyses of the corpus.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="text-data.html#cb172-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb172-2"><a href="text-data.html#cb172-2" aria-hidden="true" tabindex="-1"></a>    tidytext,</span>
+<span id="cb172-3"><a href="text-data.html#cb172-3" aria-hidden="true" tabindex="-1"></a>    quanteda,</span>
+<span id="cb172-4"><a href="text-data.html#cb172-4" aria-hidden="true" tabindex="-1"></a>    readtext,</span>
+<span id="cb172-5"><a href="text-data.html#cb172-5" aria-hidden="true" tabindex="-1"></a>    stringr,</span>
+<span id="cb172-6"><a href="text-data.html#cb172-6" aria-hidden="true" tabindex="-1"></a>    quanteda.textstats,</span>
+<span id="cb172-7"><a href="text-data.html#cb172-7" aria-hidden="true" tabindex="-1"></a>    quanteda.textplots</span>
+<span id="cb172-8"><a href="text-data.html#cb172-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><br />
+</p>
+<div id="from-raw-text-to-corpus-step-1" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> From raw text to corpus: step (1)<a href="text-data.html#from-raw-text-to-corpus-step-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The base, raw material, of quantitative text analysis is a <strong>corpus</strong>. A corpus is, in NLP, <em>a collection of authentic text organized into datasets</em>. A corpus can be made up of everything from newspapers, novels, recipes, radio broadcasts to television shows, movies, and tweets. Typically, the data structure of a corpus organizes the individual text documents (e.g., tweets) as individual components of a larger object (the entire corpus), whereby each document-component is linked to its corresponding metadata-component (containing data describing the characteristics of a document; e.g., the timestamp a tweet was posted, the author of the tweet, etc.). The following figure illustrates this data structure for a generic text corpus.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:corpus"></span>
+<img src="img/text_corpus.jpg" alt="Illustration of the data structure behind a text corpus." width="25%" />
+<p class="caption">
+Figure 6.1: Illustration of the data structure behind a text corpus.
+</p>
+</div>
 
+<p>In the specific case of <code>quanteda</code>, a corpus is a <strong>a data frame consisting of a character vector for documents, and additional vectors for document-level variables</strong>. In other words, a corpus is a data frame that contains, in each row, a text document, and additional columns with the corresponding metadata about the text.</p>
+<p>Text in a raw form is often found in a <code>.json</code> format (after web scraping), in a <code>.csv</code> format, or in simple <code>.txt</code> files. The first task is then to import the text data in R and transform it as a corpus. For this introduction, we will use the <code>inauguration</code> corpus from <code>quanteda</code>, which is a standard corpus used in introductory text analysis. It contains the inauguration discourses of the five first US presidents. This text data can be loaded from the <code>readtext</code> package. The text is contained in a csv file, and is loaded with the <code>read.csv()</code> function. The metadata of this corpus is the year of the inauguration and the name of the president taking office.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="text-data.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set path</span></span>
+<span id="cb173-2"><a href="text-data.html#cb173-2" aria-hidden="true" tabindex="-1"></a>path_data <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/&quot;</span>, <span class="at">package =</span> <span class="st">&quot;readtext&quot;</span>)</span>
+<span id="cb173-3"><a href="text-data.html#cb173-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-4"><a href="text-data.html#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import csv file</span></span>
+<span id="cb173-5"><a href="text-data.html#cb173-5" aria-hidden="true" tabindex="-1"></a>dat_inaug <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">paste0</span>(path_data, <span class="st">&quot;/csv/inaugCorpus.csv&quot;</span>))</span>
+<span id="cb173-6"><a href="text-data.html#cb173-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dat_inaug)</span></code></pre></div>
+<pre><code>## [1] &quot;texts&quot;     &quot;Year&quot;      &quot;President&quot; &quot;FirstName&quot;</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="text-data.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a corpus</span></span>
+<span id="cb175-2"><a href="text-data.html#cb175-2" aria-hidden="true" tabindex="-1"></a>corp <span class="ot">&lt;-</span> <span class="fu">corpus</span>(dat_inaug, <span class="at">text_field =</span> <span class="st">&quot;texts&quot;</span>)</span>
+<span id="cb175-3"><a href="text-data.html#cb175-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(corp)</span></code></pre></div>
+<pre><code>## Corpus consisting of 5 documents and 3 docvars.
+## text1 :
+## &quot;Fellow-Citizens of the Senate and of the House of Representa...&quot;
+## 
+## text2 :
+## &quot;Fellow citizens, I am again called upon by the voice of my c...&quot;
+## 
+## text3 :
+## &quot;When it was first perceived, in early times, that no middle ...&quot;
+## 
+## text4 :
+## &quot;Friends and Fellow Citizens: Called upon to undertake the du...&quot;
+## 
+## text5 :
+## &quot;Proceeding, fellow citizens, to that qualification which the...&quot;</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="text-data.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the metadata in the corpus using `docvars`</span></span>
+<span id="cb177-2"><a href="text-data.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">docvars</span>(corp)</span></code></pre></div>
+<pre><code>##   Year  President FirstName
+## 1 1789 Washington    George
+## 2 1793 Washington    George
+## 3 1797      Adams      John
+## 4 1801  Jefferson    Thomas
+## 5 1805  Jefferson    Thomas</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="text-data.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In quanteda, the metadata in a corpus can be handled like data frames.</span></span>
+<span id="cb179-2"><a href="text-data.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">docvars</span>(corp, <span class="at">field =</span> <span class="st">&quot;Century&quot;</span>) <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">docvars</span>(corp, <span class="at">field =</span> <span class="st">&quot;Year&quot;</span>) <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<p><br />
+</p>
+<div id="text-the-traditional-way-regular-expressions" class="section level4 hasAnchor" number="6.2.1.1">
+<h4><span class="header-section-number">6.2.1.1</span> Text the traditional way: regular expressions<a href="text-data.html#text-the-traditional-way-regular-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A first basic step to extract simple information from written information is to use traditional <strong>regular expressions</strong>. Regular expressions are a flexible syntax used to detect and describe patterns in strings. They are used not only in R, but in other softwares. For an introduction, see <a href="https://rstudio-pubs-static.s3.amazonaws.com/74603_76cd14d5983f47408fdf0b323550b846.html" class="uri">https://rstudio-pubs-static.s3.amazonaws.com/74603_76cd14d5983f47408fdf0b323550b846.html</a>. Regular expressions in R can be used with <code>base</code> R, but also with more practical packages such as <code>stringr</code> and <code>stringi</code>.</p>
+<p>In the following example, we use regular expressions to count the number of occurences of the word <em>peace</em> in the inaugural discourses using the command <code>str_count()</code> from <code>stringr</code>. In an additional step, we count the number of occurences of the pronoun “I”. Finally, we program a regular expression to extract the first five words of each discourse.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="text-data.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count occurences of the word &quot;peace&quot;</span></span>
+<span id="cb180-2"><a href="text-data.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(corp, <span class="st">&quot;[Pp]eace&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0 0 5 7 4</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="text-data.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count occurences of the words &quot;peace&quot; OR &quot;war&quot;</span></span>
+<span id="cb182-2"><a href="text-data.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(corp, <span class="st">&quot;[Pp]eace|[Ww]ar&quot;</span>)</span></code></pre></div>
+<pre><code>## [1]  1  0 10 10  8</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="text-data.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count occurences of the mention of the first person pronoun &quot;I&quot;</span></span>
+<span id="cb184-2"><a href="text-data.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(corp, <span class="st">&quot;I&quot;</span>) <span class="co"># counts the number of &quot;I&quot; occurences. This is not what we want.</span></span></code></pre></div>
+<pre><code>## [1] 30  6 24 23 28</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="text-data.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(corp, <span class="st">&quot;[I][[:space:]]&quot;</span>) <span class="co"># counts the number of &quot;I&quot; followed by a space.</span></span></code></pre></div>
+<pre><code>## [1] 23  6 13 21 18</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="text-data.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the first five words of each discourse</span></span>
+<span id="cb188-2"><a href="text-data.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(corp, <span class="st">&quot;^(</span><span class="sc">\\</span><span class="st">S+</span><span class="sc">\\</span><span class="st">s|[[:punct:]]|</span><span class="sc">\\</span><span class="st">n){5}&quot;</span>) <span class="co"># ^serves to anchor at the beginning of the string, (){5} shows the group of signs must be detected five times. \S if for any non-space character,  \s is for space, [[:punct:]] for punctuation, and \n for the string representation of paragraphs. Basically, it means: five the first five occurences of many non-space characters (+) followed either (|) by a space, a punctuation sign, or a paragraph sign.</span></span></code></pre></div>
+<pre><code>## [1] &quot;Fellow-Citizens of the Senate and &quot;   
+## [2] &quot;Fellow citizens, I am again &quot;         
+## [3] &quot;When it was first perceived, &quot;        
+## [4] &quot;Friends and Fellow Citizens:\n\n&quot;     
+## [5] &quot;Proceeding, fellow citizens, to that &quot;</code></pre>
+<p><br />
+</p>
+</div>
+</div>
+<div id="from-corpus-to-tokens-steps-2-and-3" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> From corpus to tokens: steps (2) and (3)<a href="text-data.html#from-corpus-to-tokens-steps-2-and-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Once we have a corpus, we want to extract the substance of the text. This means, in <code>quanteda</code> language, that we want to extract <strong>tokens</strong>, i.e. to isolate the elements that constitute a corpus in order to, in a second phase, to quantify them. Basically, tokens are expressions that form the building blocks (both grammatically and from a meaning perspective) of the text. In many quantitative text analyses, researchers want to remove all words that are unlikely to be informative of a document’s content. This means that punctuation as well as so-called “stopwords” (e.g. “and”, “a”, “the”, “or”, “but”, etc.) are removed.</p>
+<p>In our example, we first create tokens from each document of our corpus. For instance, the first document of the corpus is made out of 1537 tokens. Most of these tokens are not relevant. So we proceed by removing punctuation and stopwords. <code>quanteda</code> has a built-in list of stopwords in English. We also want to remove the words <em>fellow</em> and <em>citizens</em>, as those words appear in each document.</p>
+<p>Finally, not only are tokens for single words interesting, but also tokens of combined words (called “N-grams”). N-grams are a sequence of tokens from already tokenized text objects. Usually, these N-grams are generated in all possible combinations of tokens. For instance, if the expression “not friendly” appears often, we might lose valuable information when building tokens that do not account for the co-occurence of these terms. We identify bigrams with the word “never”.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="text-data.html#cb190-1" aria-hidden="true" tabindex="-1"></a>toks <span class="ot">&lt;-</span> <span class="fu">tokens</span>(corp)</span>
+<span id="cb190-2"><a href="text-data.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(toks[[<span class="dv">1</span>]], <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;Fellow-Citizens&quot; &quot;of&quot;              &quot;the&quot;            
+##  [4] &quot;Senate&quot;          &quot;and&quot;             &quot;of&quot;             
+##  [7] &quot;the&quot;             &quot;House&quot;           &quot;of&quot;             
+## [10] &quot;Representatives&quot; &quot;:&quot;               &quot;Among&quot;          
+## [13] &quot;the&quot;             &quot;vicissitudes&quot;    &quot;incident&quot;       
+## [16] &quot;to&quot;              &quot;life&quot;            &quot;no&quot;             
+## [19] &quot;event&quot;           &quot;could&quot;</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="text-data.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove punctuation</span></span>
+<span id="cb192-2"><a href="text-data.html#cb192-2" aria-hidden="true" tabindex="-1"></a>toks <span class="ot">&lt;-</span> <span class="fu">tokens</span>(corp, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb192-3"><a href="text-data.html#cb192-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(toks[[<span class="dv">1</span>]], <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;Fellow-Citizens&quot; &quot;of&quot;              &quot;the&quot;            
+##  [4] &quot;Senate&quot;          &quot;and&quot;             &quot;of&quot;             
+##  [7] &quot;the&quot;             &quot;House&quot;           &quot;of&quot;             
+## [10] &quot;Representatives&quot; &quot;Among&quot;           &quot;the&quot;            
+## [13] &quot;vicissitudes&quot;    &quot;incident&quot;        &quot;to&quot;             
+## [16] &quot;life&quot;            &quot;no&quot;              &quot;event&quot;          
+## [19] &quot;could&quot;           &quot;have&quot;</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="text-data.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove stopwords</span></span>
+<span id="cb194-2"><a href="text-data.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopwords</span>(<span class="st">&quot;en&quot;</span>)</span></code></pre></div>
+<pre><code>##   [1] &quot;i&quot;          &quot;me&quot;         &quot;my&quot;         &quot;myself&quot;    
+##   [5] &quot;we&quot;         &quot;our&quot;        &quot;ours&quot;       &quot;ourselves&quot; 
+##   [9] &quot;you&quot;        &quot;your&quot;       &quot;yours&quot;      &quot;yourself&quot;  
+##  [13] &quot;yourselves&quot; &quot;he&quot;         &quot;him&quot;        &quot;his&quot;       
+##  [17] &quot;himself&quot;    &quot;she&quot;        &quot;her&quot;        &quot;hers&quot;      
+##  [21] &quot;herself&quot;    &quot;it&quot;         &quot;its&quot;        &quot;itself&quot;    
+##  [25] &quot;they&quot;       &quot;them&quot;       &quot;their&quot;      &quot;theirs&quot;    
+##  [29] &quot;themselves&quot; &quot;what&quot;       &quot;which&quot;      &quot;who&quot;       
+##  [33] &quot;whom&quot;       &quot;this&quot;       &quot;that&quot;       &quot;these&quot;     
+##  [37] &quot;those&quot;      &quot;am&quot;         &quot;is&quot;         &quot;are&quot;       
+##  [41] &quot;was&quot;        &quot;were&quot;       &quot;be&quot;         &quot;been&quot;      
+##  [45] &quot;being&quot;      &quot;have&quot;       &quot;has&quot;        &quot;had&quot;       
+##  [49] &quot;having&quot;     &quot;do&quot;         &quot;does&quot;       &quot;did&quot;       
+##  [53] &quot;doing&quot;      &quot;would&quot;      &quot;should&quot;     &quot;could&quot;     
+##  [57] &quot;ought&quot;      &quot;i&#39;m&quot;        &quot;you&#39;re&quot;     &quot;he&#39;s&quot;      
+##  [61] &quot;she&#39;s&quot;      &quot;it&#39;s&quot;       &quot;we&#39;re&quot;      &quot;they&#39;re&quot;   
+##  [65] &quot;i&#39;ve&quot;       &quot;you&#39;ve&quot;     &quot;we&#39;ve&quot;      &quot;they&#39;ve&quot;   
+##  [69] &quot;i&#39;d&quot;        &quot;you&#39;d&quot;      &quot;he&#39;d&quot;       &quot;she&#39;d&quot;     
+##  [73] &quot;we&#39;d&quot;       &quot;they&#39;d&quot;     &quot;i&#39;ll&quot;       &quot;you&#39;ll&quot;    
+##  [77] &quot;he&#39;ll&quot;      &quot;she&#39;ll&quot;     &quot;we&#39;ll&quot;      &quot;they&#39;ll&quot;   
+##  [81] &quot;isn&#39;t&quot;      &quot;aren&#39;t&quot;     &quot;wasn&#39;t&quot;     &quot;weren&#39;t&quot;   
+##  [85] &quot;hasn&#39;t&quot;     &quot;haven&#39;t&quot;    &quot;hadn&#39;t&quot;     &quot;doesn&#39;t&quot;   
+##  [89] &quot;don&#39;t&quot;      &quot;didn&#39;t&quot;     &quot;won&#39;t&quot;      &quot;wouldn&#39;t&quot;  
+##  [93] &quot;shan&#39;t&quot;     &quot;shouldn&#39;t&quot;  &quot;can&#39;t&quot;      &quot;cannot&quot;    
+##  [97] &quot;couldn&#39;t&quot;   &quot;mustn&#39;t&quot;    &quot;let&#39;s&quot;      &quot;that&#39;s&quot;    
+## [101] &quot;who&#39;s&quot;      &quot;what&#39;s&quot;     &quot;here&#39;s&quot;     &quot;there&#39;s&quot;   
+## [105] &quot;when&#39;s&quot;     &quot;where&#39;s&quot;    &quot;why&#39;s&quot;      &quot;how&#39;s&quot;     
+## [109] &quot;a&quot;          &quot;an&quot;         &quot;the&quot;        &quot;and&quot;       
+## [113] &quot;but&quot;        &quot;if&quot;         &quot;or&quot;         &quot;because&quot;   
+## [117] &quot;as&quot;         &quot;until&quot;      &quot;while&quot;      &quot;of&quot;        
+## [121] &quot;at&quot;         &quot;by&quot;         &quot;for&quot;        &quot;with&quot;      
+## [125] &quot;about&quot;      &quot;against&quot;    &quot;between&quot;    &quot;into&quot;      
+## [129] &quot;through&quot;    &quot;during&quot;     &quot;before&quot;     &quot;after&quot;     
+## [133] &quot;above&quot;      &quot;below&quot;      &quot;to&quot;         &quot;from&quot;      
+## [137] &quot;up&quot;         &quot;down&quot;       &quot;in&quot;         &quot;out&quot;       
+## [141] &quot;on&quot;         &quot;off&quot;        &quot;over&quot;       &quot;under&quot;     
+## [145] &quot;again&quot;      &quot;further&quot;    &quot;then&quot;       &quot;once&quot;      
+## [149] &quot;here&quot;       &quot;there&quot;      &quot;when&quot;       &quot;where&quot;     
+## [153] &quot;why&quot;        &quot;how&quot;        &quot;all&quot;        &quot;any&quot;       
+## [157] &quot;both&quot;       &quot;each&quot;       &quot;few&quot;        &quot;more&quot;      
+## [161] &quot;most&quot;       &quot;other&quot;      &quot;some&quot;       &quot;such&quot;      
+## [165] &quot;no&quot;         &quot;nor&quot;        &quot;not&quot;        &quot;only&quot;      
+## [169] &quot;own&quot;        &quot;same&quot;       &quot;so&quot;         &quot;than&quot;      
+## [173] &quot;too&quot;        &quot;very&quot;       &quot;will&quot;</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="text-data.html#cb196-1" aria-hidden="true" tabindex="-1"></a>toks <span class="ot">&lt;-</span> <span class="fu">tokens_remove</span>(toks, <span class="at">pattern =</span> <span class="fu">stopwords</span>(<span class="st">&quot;en&quot;</span>))</span>
+<span id="cb196-2"><a href="text-data.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(toks[[<span class="dv">1</span>]], <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;Fellow-Citizens&quot; &quot;Senate&quot;          &quot;House&quot;          
+##  [4] &quot;Representatives&quot; &quot;Among&quot;           &quot;vicissitudes&quot;   
+##  [7] &quot;incident&quot;        &quot;life&quot;            &quot;event&quot;          
+## [10] &quot;filled&quot;          &quot;greater&quot;         &quot;anxieties&quot;      
+## [13] &quot;notification&quot;    &quot;transmitted&quot;     &quot;order&quot;          
+## [16] &quot;received&quot;        &quot;14th&quot;            &quot;day&quot;            
+## [19] &quot;present&quot;         &quot;month&quot;</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="text-data.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can keep words we are interested in</span></span>
+<span id="cb198-2"><a href="text-data.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tokens_select</span>(toks, <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">&quot;peace&quot;</span>, <span class="st">&quot;war&quot;</span>, <span class="st">&quot;great*&quot;</span>, <span class="st">&quot;unit*&quot;</span>))</span></code></pre></div>
+<pre><code>## Tokens consisting of 5 documents and 4 docvars.
+## text1 :
+## [1] &quot;greater&quot; &quot;United&quot;  &quot;Great&quot;   &quot;United&quot;  &quot;united&quot;  &quot;great&quot;  
+## [7] &quot;great&quot;   &quot;united&quot; 
+## 
+## text2 :
+## [1] &quot;united&quot;
+## 
+## text3 :
+##  [1] &quot;war&quot;    &quot;great&quot;  &quot;United&quot; &quot;great&quot;  &quot;great&quot;  &quot;peace&quot; 
+##  [7] &quot;great&quot;  &quot;peace&quot;  &quot;peace&quot;  &quot;United&quot; &quot;peace&quot;  &quot;peace&quot; 
+## [ ... and 2 more ]
+## 
+## text4 :
+##  [1] &quot;greatness&quot; &quot;unite&quot;     &quot;unite&quot;     &quot;greater&quot;   &quot;peace&quot;    
+##  [6] &quot;peace&quot;     &quot;peace&quot;     &quot;war&quot;       &quot;peace&quot;     &quot;greatest&quot; 
+## [11] &quot;greatest&quot;  &quot;great&quot;    
+## [ ... and 1 more ]
+## 
+## text5 :
+## [1] &quot;United&quot; &quot;peace&quot;  &quot;great&quot;  &quot;war&quot;    &quot;war&quot;    &quot;War&quot;   
+## [7] &quot;peace&quot;  &quot;peace&quot;  &quot;peace&quot;</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="text-data.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove &quot;fellow&quot; and &quot;citizen&quot;</span></span>
+<span id="cb200-2"><a href="text-data.html#cb200-2" aria-hidden="true" tabindex="-1"></a>toks <span class="ot">&lt;-</span> <span class="fu">tokens_remove</span>(toks, <span class="at">pattern =</span> <span class="fu">c</span>(</span>
+<span id="cb200-3"><a href="text-data.html#cb200-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;fellow*&quot;</span>,</span>
+<span id="cb200-4"><a href="text-data.html#cb200-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;citizen*&quot;</span>,</span>
+<span id="cb200-5"><a href="text-data.html#cb200-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;senate&quot;</span>,</span>
+<span id="cb200-6"><a href="text-data.html#cb200-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;house&quot;</span>,</span>
+<span id="cb200-7"><a href="text-data.html#cb200-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;representative*&quot;</span>,</span>
+<span id="cb200-8"><a href="text-data.html#cb200-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;constitution&quot;</span></span>
+<span id="cb200-9"><a href="text-data.html#cb200-9" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb200-10"><a href="text-data.html#cb200-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-11"><a href="text-data.html#cb200-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Build N-grams (onegrams, bigrams, and 3-grams)</span></span>
+<span id="cb200-12"><a href="text-data.html#cb200-12" aria-hidden="true" tabindex="-1"></a>toks_ngrams <span class="ot">&lt;-</span> <span class="fu">tokens_ngrams</span>(toks, <span class="at">n =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb200-13"><a href="text-data.html#cb200-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-14"><a href="text-data.html#cb200-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Build N-grams based on a structure: keep n-grams that containt a &quot;not&quot;</span></span>
+<span id="cb200-15"><a href="text-data.html#cb200-15" aria-hidden="true" tabindex="-1"></a>toks_neg_bigram_select <span class="ot">&lt;-</span> <span class="fu">tokens_select</span>(toks_ngrams, <span class="at">pattern =</span> <span class="fu">phrase</span>(<span class="st">&quot;never_*&quot;</span>))</span>
+<span id="cb200-16"><a href="text-data.html#cb200-16" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(toks_neg_bigram_select[[<span class="dv">1</span>]], <span class="dv">30</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;never_hear&quot;            &quot;never_expected&quot;       
+## [3] &quot;never_hear_veneration&quot; &quot;never_expected_nation&quot;</code></pre>
+<p><br />
+</p>
+</div>
+<div id="from-tokens-to-document-term-matrix-dtm-steps-3-and-4" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> 3. From tokens to document-term-matrix (dtm): steps (3) and (4)<a href="text-data.html#from-tokens-to-document-term-matrix-dtm-steps-3-and-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The last step of our introduction is to make our collection of tokens usable for quantitative analysis, i.e. to set the tokens into a structure that we can use to train machine learning models, compute statistics, word frequencies, or add to regression models.</p>
+<p>Tokens are usually represented as a document-term-matrix (dtm, also known as document-feature-matrix, dfm). dtms have as rows the document, and as columns the tokens. They contain the count frequency, or sometimes an indicator for whether a given token appears in a document. To create a dtm, we can use <code>quanteda</code>’s <code>dfm</code> command, as shown below.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="text-data.html#cb202-1" aria-hidden="true" tabindex="-1"></a>dfmat <span class="ot">&lt;-</span> <span class="fu">dfm</span>(toks)</span>
+<span id="cb202-2"><a href="text-data.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dfmat)</span></code></pre></div>
+<pre><code>## Document-feature matrix of: 5 documents, 1,817 features (72.31% sparse) and 4 docvars.
+##        features
+## docs    among vicissitudes incident life event filled greater
+##   text1     1            1        1    1     2      1       1
+##   text2     0            0        0    0     0      0       0
+##   text3     4            0        0    2     0      0       0
+##   text4     1            0        0    1     0      0       1
+##   text5     7            0        0    2     0      0       0
+##        features
+## docs    anxieties notification transmitted
+##   text1         1            1           1
+##   text2         0            0           0
+##   text3         0            0           0
+##   text4         0            0           0
+##   text5         0            0           0
+## [ reached max_nfeat ... 1,807 more features ]</code></pre>
+<p>Our dtm has five rows for our five documents, and 6,694 (!) columns. Each column is a single token. The dtm is 79.88% sparse, which means that 79.88% of the cells are 0. Handling such large matrices is not trivial, as the number of columns might in many cases increase much faster than the number of rows. For this reason, it is important to clean the text, to remove stopwords, and to be selective about which tokens are kept in the dtm. Moreover, it might sound like a good idea to include N-grams at first, but N-grams are less likely to be matched across documents, which increases the dimension and sparsity of the matrix even more.</p>
+<p>The importance of feature engineering and the need to use domain knowledge becomes clear at this point. Everyone working with text faces a tradeoff between quantity of information and quality of information. Moreover, dts that are too large will be difficult to model and used in subsequent analyses. Domain knowledge is necessary to reduce the dimensino of the dtm matrix. Because our dtm is too large and not informative, we want to trim it and remove columns based on their frequencies. When removing tokens that appear less than two times, we are left with a dtm of 72 columns.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="text-data.html#cb204-1" aria-hidden="true" tabindex="-1"></a>dfmat <span class="ot">&lt;-</span> <span class="fu">dfm</span>(toks)</span>
+<span id="cb204-2"><a href="text-data.html#cb204-2" aria-hidden="true" tabindex="-1"></a>dfmat <span class="ot">&lt;-</span> <span class="fu">dfm_trim</span>(dfmat, <span class="at">min_termfreq =</span> <span class="dv">2</span>) <span class="co"># remove tokens that appear less than 1 times</span></span></code></pre></div>
+<p> </p>
+</div>
+<div id="from-dtm-to-analysis-and-insights" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> 4. From dtm to analysis and insights<a href="text-data.html#from-dtm-to-analysis-and-insights" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dtms are the basis of all text analyses. From a dtm, we can train machine learning methods to predict the sentiment of a text, to classify the documents into clusters (for instance, classifying spam and non-spam emails), to retrieve missing information, or to predict the autorship.</p>
+<p>Very basic statistics about documents are the <strong>top features</strong> of each document, the frequency of expressions in the corpus</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="text-data.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">topfeatures</span>(dfmat, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## government        may     public        can     people 
+##         40         38         30         27         27 
+##      shall    country      every         us    nations 
+##         23         22         20         20         18</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="text-data.html#cb207-1" aria-hidden="true" tabindex="-1"></a>tstat_freq <span class="ot">&lt;-</span> <span class="fu">textstat_frequency</span>(dfmat, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb207-2"><a href="text-data.html#cb207-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-3"><a href="text-data.html#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_wordcloud</span>(dfmat, <span class="at">max_words =</span> <span class="dv">100</span>)</span></code></pre></div>
+<p><img src="datahandling_files/figure-html/stats-1.svg" width="672" /></p>
+
+</div>
+</div>
 </div>
             </section>
 

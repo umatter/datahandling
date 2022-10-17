@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-10-12" />
+<meta name="date" content="2022-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,7 +232,17 @@ div.csl-indent {
 <li class="chapter" data-level="5.4.2" data-path="high-dimensional-data.html"><a href="high-dimensional-data.html#two-ways-to-read-a-webpage-into-r"><i class="fa fa-check"></i><b>5.4.2</b> Two ways to read a webpage into R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>6</b> Text Data</a></li>
+<li class="chapter" data-level="6" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>6</b> Text Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="text-data.html"><a href="text-data.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="text-data.html"><a href="text-data.html#one-package-to-rule-them-all-quanteda"><i class="fa fa-check"></i><b>6.2</b> One Package To Rule Them All: Quanteda</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="text-data.html"><a href="text-data.html#from-raw-text-to-corpus-step-1"><i class="fa fa-check"></i><b>6.2.1</b> From raw text to corpus: step (1)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="text-data.html"><a href="text-data.html#from-corpus-to-tokens-steps-2-and-3"><i class="fa fa-check"></i><b>6.2.2</b> From corpus to tokens: steps (2) and (3)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="text-data.html"><a href="text-data.html#from-tokens-to-document-term-matrix-dtm-steps-3-and-4"><i class="fa fa-check"></i><b>6.2.3</b> 3. From tokens to document-term-matrix (dtm): steps (3) and (4)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="text-data.html"><a href="text-data.html#from-dtm-to-analysis-and-insights"><i class="fa fa-check"></i><b>6.2.4</b> 4. From dtm to analysis and insights</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="image-data.html"><a href="image-data.html"><i class="fa fa-check"></i><b>7</b> Image data</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="image-data.html"><a href="image-data.html#image-data-structure-and-storage"><i class="fa fa-check"></i><b>7.1</b> Image data structure and storage</a></li>
@@ -240,12 +250,9 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="image-data.html"><a href="image-data.html#basic-data-structure"><i class="fa fa-check"></i><b>7.2.1</b> Basic data structure</a></li>
 <li class="chapter" data-level="7.2.2" data-path="image-data.html"><a href="image-data.html#advanced-image-manipulation-using-imagemagick"><i class="fa fa-check"></i><b>7.2.2</b> Advanced Image Manipulation using ImageMagick</a></li>
-<li class="chapter" data-level="7.2.3" data-path="image-data.html"><a href="image-data.html#working-with-ocr-optical-character-recognition"><i class="fa fa-check"></i><b>7.2.3</b> Working with OCR (Optical Character Recognition)</a></li>
+<li class="chapter" data-level="7.2.3" data-path="image-data.html"><a href="image-data.html#optical-character-recognition"><i class="fa fa-check"></i><b>7.2.3</b> Optical Character Recognition</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="image-data.html"><a href="image-data.html#vector-images-in-r"><i class="fa fa-check"></i><b>7.3</b> Vector Images in R</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="image-data.html"><a href="image-data.html#example-maps"><i class="fa fa-check"></i><b>7.3.1</b> Example: Maps</a></li>
-</ul></li>
+<li class="chapter" data-level="7.3" data-path="image-data.html"><a href="image-data.html#vector-images-in-r"><i class="fa fa-check"></i><b>7.3</b> Vector Images in R</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-sources-data-gathering-data-import.html"><a href="data-sources-data-gathering-data-import.html"><i class="fa fa-check"></i><b>8</b> Data Sources, Data Gathering, Data Import</a>
 <ul>
@@ -371,6 +378,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="image-data" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Image data<a href="image-data.html#image-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>This chapter has substantially benefitted from contributions by Michael Tüting (<a href="https://github.com/MTueting">MTueting</a>)</em>.</p>
 <p>With the advent of broadband internet and efforts in digitizing analogue archives a large part of the world’s available data is stored in the form of images (and moving images). Subsequent advances in computer vision (machine learning techniques focused on images and videos) have made usage of images for economic and social science purposes accessible to non-computer science researchers. Examples of how image data is used in economic research involve the quantification of urban appearance (based on the analysis of street-level images in cities, <span class="citation">Naik, Raskar, and Hidalgo (<a href="references.html#ref-naik_etal2016" role="doc-biblioref">2016</a>)</span>), the digitization of old text documents via optical character recognition (<span class="citation">Cesarini et al. (<a href="references.html#ref-cesarini_etal2016" role="doc-biblioref">2016</a>)</span>), and the measurement of economic development/wealth with nighttime light-intensity based on satellite image data (<span class="citation">Hodler and Raschky (<a href="references.html#ref-hodler_raschky2014" role="doc-biblioref">2014</a>)</span>). In the following subsections, you will first explore the most common image formats, and how the data behind digital images is structured and stored.</p>
 <div id="image-data-structure-and-storage" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Image data structure and storage<a href="image-data.html#image-data-structure-and-storage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -384,34 +392,41 @@ div.csl-indent {
 <div id="raster-images-in-r" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Raster images in R<a href="image-data.html#raster-images-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This is meant to showcase some of the most frequent tasks related to images in R.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="image-data.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load two common packages</span></span>
-<span id="cb172-2"><a href="image-data.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster) </span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="image-data.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load two common packages</span></span>
+<span id="cb208-2"><a href="image-data.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster) </span></code></pre></div>
 <pre><code>## Loading required package: sp</code></pre>
 <div id="basic-data-structure" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Basic data structure<a href="image-data.html#basic-data-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Recall that raster images are stored as arrays (<span class="math inline">\(X\times Y \times Z\)</span>). <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> define the number of pixels in each column and row (width and height) of the image and <span class="math inline">\(Z\)</span> the number of layers. Greyscale images usually have only one layer, whereas most colored images have 3 layers (in the case of RGB images).</p>
+<p>Recall that raster images are stored as arrays (<span class="math inline">\(X\times Y \times Z\)</span>). <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> define the number of pixels in each column and row (width and height) of the image and <span class="math inline">\(Z\)</span> the number of layers. Greyscale images usually have only one layer, whereas most colored images have 3 layers (such as in the case of RGB images). The following figure illustrates this point based on a <span class="math inline">\(3 \times 3\)</span> pixels bitmap image.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rgb"></span>
+<img src="img/rgb_structure.png" alt="Illustration of a bitmap file data structure (with RGB schema). Panel A shows a 3x3 pixels bitmap image as it is shown on screen. Panel B illustrates the corresponding bitmap file’s data structure: a three-dimensional array with 3x3 elements represents the image matrix in the three base screen colors red, green, and blue. As a reading example, consider the highlighted upper left pixel in A with the correspondingly highlighted values in the RGB array in B. The color of this pixel is RGB code 255 (full red), 51 (some green), and 51 (some blue): (255,51,51)." width="75%" />
+<p class="caption">
+Figure 7.1: Illustration of a bitmap file data structure (with RGB schema). Panel A shows a 3x3 pixels bitmap image as it is shown on screen. Panel B illustrates the corresponding bitmap file’s data structure: a three-dimensional array with 3x3 elements represents the image matrix in the three base screen colors red, green, and blue. As a reading example, consider the highlighted upper left pixel in A with the correspondingly highlighted values in the RGB array in B. The color of this pixel is RGB code 255 (full red), 51 (some green), and 51 (some blue): (255,51,51).
+</p>
+</div>
+
 <p>To get a better feeling for the corresponding data structure in R, we start with generating RGB-images step-by-step in R. First we generate three matrices (one for each base color), arrange these matrices in an array, and then save the plots to disk.</p>
 <div id="example-1-generating-a-red-image-rgb-code-25500" class="section level4 hasAnchor" number="7.2.1.1">
 <h4><span class="header-section-number">7.2.1.1</span> Example 1: Generating a red image (RGB code: 255,0,0)<a href="image-data.html#example-1-generating-a-red-image-rgb-code-25500" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="image-data.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
-<span id="cb174-2"><a href="image-data.html#cb174-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
-<span id="cb174-3"><a href="image-data.html#cb174-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
-<span id="cb174-4"><a href="image-data.html#cb174-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-5"><a href="image-data.html#cb174-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
-<span id="cb174-6"><a href="image-data.html#cb174-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb174-7"><a href="image-data.html#cb174-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-8"><a href="image-data.html#cb174-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
-<span id="cb174-9"><a href="image-data.html#cb174-9" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">255</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb174-10"><a href="image-data.html#cb174-10" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb174-11"><a href="image-data.html#cb174-11" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb174-12"><a href="image-data.html#cb174-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-13"><a href="image-data.html#cb174-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Generate an array by combining the three matrices</span></span>
-<span id="cb174-14"><a href="image-data.html#cb174-14" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
-<span id="cb174-15"><a href="image-data.html#cb174-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="image-data.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
+<span id="cb210-2"><a href="image-data.html#cb210-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
+<span id="cb210-3"><a href="image-data.html#cb210-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
+<span id="cb210-4"><a href="image-data.html#cb210-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-5"><a href="image-data.html#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
+<span id="cb210-6"><a href="image-data.html#cb210-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb210-7"><a href="image-data.html#cb210-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-8"><a href="image-data.html#cb210-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
+<span id="cb210-9"><a href="image-data.html#cb210-9" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">255</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb210-10"><a href="image-data.html#cb210-10" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb210-11"><a href="image-data.html#cb210-11" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb210-12"><a href="image-data.html#cb210-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-13"><a href="image-data.html#cb210-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Generate an array by combining the three matrices</span></span>
+<span id="cb210-14"><a href="image-data.html#cb210-14" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
+<span id="cb210-15"><a href="image-data.html#cb210-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
 <pre><code>## [1] 300 300   3</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="image-data.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create RasterBrick</span></span>
-<span id="cb176-2"><a href="image-data.html#cb176-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
-<span id="cb176-3"><a href="image-data.html#cb176-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="image-data.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create RasterBrick</span></span>
+<span id="cb212-2"><a href="image-data.html#cb212-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
+<span id="cb212-3"><a href="image-data.html#cb212-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
 <pre><code>## class      : RasterBrick 
 ## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
 ## resolution : 0.003333, 0.003333  (x, y)
@@ -421,41 +436,41 @@ div.csl-indent {
 ## names      : layer.1, layer.2, layer.3 
 ## min values :     255,       0,       0 
 ## max values :     255,       0,       0</code></pre>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="image-data.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
-<span id="cb178-2"><a href="image-data.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="image-data.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
+<span id="cb214-2"><a href="image-data.html#cb214-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
 <pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
 ## Assuming it is longitude/latitude</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-81-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="image-data.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
-<span id="cb180-2"><a href="image-data.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;red.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
-<span id="cb180-3"><a href="image-data.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="image-data.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
+<span id="cb216-2"><a href="image-data.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;red.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
+<span id="cb216-3"><a href="image-data.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
 <pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
 ## Assuming it is longitude/latitude</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="image-data.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="image-data.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## pdf 
 ##   2</code></pre>
 </div>
 <div id="example-2-generating-a-green-image-rgb-code-0-255-0" class="section level4 hasAnchor" number="7.2.1.2">
 <h4><span class="header-section-number">7.2.1.2</span> Example 2: Generating a green image (RGB code: 0, 255, 0)<a href="image-data.html#example-2-generating-a-green-image-rgb-code-0-255-0" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="image-data.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
-<span id="cb184-2"><a href="image-data.html#cb184-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
-<span id="cb184-3"><a href="image-data.html#cb184-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
-<span id="cb184-4"><a href="image-data.html#cb184-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb184-5"><a href="image-data.html#cb184-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
-<span id="cb184-6"><a href="image-data.html#cb184-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb184-7"><a href="image-data.html#cb184-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb184-8"><a href="image-data.html#cb184-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
-<span id="cb184-9"><a href="image-data.html#cb184-9" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb184-10"><a href="image-data.html#cb184-10" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">255</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb184-11"><a href="image-data.html#cb184-11" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb184-12"><a href="image-data.html#cb184-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb184-13"><a href="image-data.html#cb184-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Generate an array by combining the three matrices</span></span>
-<span id="cb184-14"><a href="image-data.html#cb184-14" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
-<span id="cb184-15"><a href="image-data.html#cb184-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="image-data.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
+<span id="cb220-2"><a href="image-data.html#cb220-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
+<span id="cb220-3"><a href="image-data.html#cb220-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
+<span id="cb220-4"><a href="image-data.html#cb220-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb220-5"><a href="image-data.html#cb220-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
+<span id="cb220-6"><a href="image-data.html#cb220-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb220-7"><a href="image-data.html#cb220-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb220-8"><a href="image-data.html#cb220-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
+<span id="cb220-9"><a href="image-data.html#cb220-9" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb220-10"><a href="image-data.html#cb220-10" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">255</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb220-11"><a href="image-data.html#cb220-11" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb220-12"><a href="image-data.html#cb220-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb220-13"><a href="image-data.html#cb220-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Generate an array by combining the three matrices</span></span>
+<span id="cb220-14"><a href="image-data.html#cb220-14" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
+<span id="cb220-15"><a href="image-data.html#cb220-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
 <pre><code>## [1] 300 300   3</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="image-data.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create RasterBrick</span></span>
-<span id="cb186-2"><a href="image-data.html#cb186-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
-<span id="cb186-3"><a href="image-data.html#cb186-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="image-data.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create RasterBrick</span></span>
+<span id="cb222-2"><a href="image-data.html#cb222-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
+<span id="cb222-3"><a href="image-data.html#cb222-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
 <pre><code>## class      : RasterBrick 
 ## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
 ## resolution : 0.003333, 0.003333  (x, y)
@@ -465,41 +480,41 @@ div.csl-indent {
 ## names      : layer.1, layer.2, layer.3 
 ## min values :       0,     255,       0 
 ## max values :       0,     255,       0</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="image-data.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
-<span id="cb188-2"><a href="image-data.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="image-data.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
+<span id="cb224-2"><a href="image-data.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
 <pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
 ## Assuming it is longitude/latitude</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-82-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="image-data.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
-<span id="cb190-2"><a href="image-data.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;blue.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
-<span id="cb190-3"><a href="image-data.html#cb190-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="image-data.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
+<span id="cb226-2"><a href="image-data.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;blue.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
+<span id="cb226-3"><a href="image-data.html#cb226-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
 <pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
 ## Assuming it is longitude/latitude</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="image-data.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="image-data.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## pdf 
 ##   2</code></pre>
 </div>
 <div id="example-3-generating-a-blue-image-rgb-code-0-0-255" class="section level4 hasAnchor" number="7.2.1.3">
 <h4><span class="header-section-number">7.2.1.3</span> Example 3: Generating a blue image (RGB code: 0, 0, 255)<a href="image-data.html#example-3-generating-a-blue-image-rgb-code-0-0-255" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="image-data.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
-<span id="cb194-2"><a href="image-data.html#cb194-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
-<span id="cb194-3"><a href="image-data.html#cb194-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
-<span id="cb194-4"><a href="image-data.html#cb194-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-5"><a href="image-data.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
-<span id="cb194-6"><a href="image-data.html#cb194-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb194-7"><a href="image-data.html#cb194-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-8"><a href="image-data.html#cb194-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
-<span id="cb194-9"><a href="image-data.html#cb194-9" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb194-10"><a href="image-data.html#cb194-10" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb194-11"><a href="image-data.html#cb194-11" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">255</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb194-12"><a href="image-data.html#cb194-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-13"><a href="image-data.html#cb194-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Generate an array by combining the three matrices</span></span>
-<span id="cb194-14"><a href="image-data.html#cb194-14" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
-<span id="cb194-15"><a href="image-data.html#cb194-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="image-data.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
+<span id="cb230-2"><a href="image-data.html#cb230-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
+<span id="cb230-3"><a href="image-data.html#cb230-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
+<span id="cb230-4"><a href="image-data.html#cb230-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb230-5"><a href="image-data.html#cb230-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
+<span id="cb230-6"><a href="image-data.html#cb230-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb230-7"><a href="image-data.html#cb230-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb230-8"><a href="image-data.html#cb230-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
+<span id="cb230-9"><a href="image-data.html#cb230-9" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb230-10"><a href="image-data.html#cb230-10" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb230-11"><a href="image-data.html#cb230-11" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">255</span>, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb230-12"><a href="image-data.html#cb230-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb230-13"><a href="image-data.html#cb230-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Generate an array by combining the three matrices</span></span>
+<span id="cb230-14"><a href="image-data.html#cb230-14" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
+<span id="cb230-15"><a href="image-data.html#cb230-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
 <pre><code>## [1] 300 300   3</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="image-data.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create RasterBrick</span></span>
-<span id="cb196-2"><a href="image-data.html#cb196-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
-<span id="cb196-3"><a href="image-data.html#cb196-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="image-data.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create RasterBrick</span></span>
+<span id="cb232-2"><a href="image-data.html#cb232-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
+<span id="cb232-3"><a href="image-data.html#cb232-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
 <pre><code>## class      : RasterBrick 
 ## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
 ## resolution : 0.003333, 0.003333  (x, y)
@@ -509,59 +524,59 @@ div.csl-indent {
 ## names      : layer.1, layer.2, layer.3 
 ## min values :       0,       0,     255 
 ## max values :       0,       0,     255</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="image-data.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
-<span id="cb198-2"><a href="image-data.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="image-data.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Plot RGB</span></span>
+<span id="cb234-2"><a href="image-data.html#cb234-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
 <pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
 ## Assuming it is longitude/latitude</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-83-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="image-data.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
-<span id="cb200-2"><a href="image-data.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;green.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
-<span id="cb200-3"><a href="image-data.html#cb200-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="image-data.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: (Optional) Save to disk</span></span>
+<span id="cb236-2"><a href="image-data.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">&quot;green.png&quot;</span>, <span class="at">width =</span> width, <span class="at">height =</span> height, <span class="at">units =</span> <span class="st">&quot;px&quot;</span>)</span>
+<span id="cb236-3"><a href="image-data.html#cb236-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
 <pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
 ## Assuming it is longitude/latitude</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="image-data.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="image-data.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## pdf 
 ##   2</code></pre>
 </div>
 <div id="example-4-generating-a-random-rgb-image" class="section level4 hasAnchor" number="7.2.1.4">
 <h4><span class="header-section-number">7.2.1.4</span> Example 4: Generating a random RGB image<a href="image-data.html#example-4-generating-a-random-rgb-image" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="image-data.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
-<span id="cb204-2"><a href="image-data.html#cb204-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
-<span id="cb204-3"><a href="image-data.html#cb204-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
-<span id="cb204-4"><a href="image-data.html#cb204-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-5"><a href="image-data.html#cb204-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
-<span id="cb204-6"><a href="image-data.html#cb204-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb204-7"><a href="image-data.html#cb204-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-8"><a href="image-data.html#cb204-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Draw random color intensities from a standard-normal distribution</span></span>
-<span id="cb204-9"><a href="image-data.html#cb204-9" aria-hidden="true" tabindex="-1"></a>shades_of_red <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> width<span class="sc">*</span>height, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb204-10"><a href="image-data.html#cb204-10" aria-hidden="true" tabindex="-1"></a>shades_of_green <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> width<span class="sc">*</span>height, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb204-11"><a href="image-data.html#cb204-11" aria-hidden="true" tabindex="-1"></a>shades_of_blue <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> width<span class="sc">*</span>height, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="image-data.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Define the width and height of the image</span></span>
+<span id="cb240-2"><a href="image-data.html#cb240-2" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="dv">300</span>; </span>
+<span id="cb240-3"><a href="image-data.html#cb240-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> <span class="dv">300</span></span>
+<span id="cb240-4"><a href="image-data.html#cb240-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-5"><a href="image-data.html#cb240-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Define the number of layers (RGB = 3)</span></span>
+<span id="cb240-6"><a href="image-data.html#cb240-6" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb240-7"><a href="image-data.html#cb240-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-8"><a href="image-data.html#cb240-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Draw random color intensities from a standard-normal distribution</span></span>
+<span id="cb240-9"><a href="image-data.html#cb240-9" aria-hidden="true" tabindex="-1"></a>shades_of_red <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> width<span class="sc">*</span>height, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb240-10"><a href="image-data.html#cb240-10" aria-hidden="true" tabindex="-1"></a>shades_of_green <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> width<span class="sc">*</span>height, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb240-11"><a href="image-data.html#cb240-11" aria-hidden="true" tabindex="-1"></a>shades_of_blue <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> width<span class="sc">*</span>height, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>The color intensity must be in the range 0 to 255, however, our values are
 standard normally distributed around 0:</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="image-data.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(shades_of_red))</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="image-data.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(shades_of_red))</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-85-1.svg" width="672" />
 We first normalize them to a range of 0 to 1 using the formula:
 <span class="math inline">\(z_i = \frac{x_i - min(x)}{max(x)-min(x)}\)</span>
 and subsequently multiply by 255:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="image-data.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Normalize to 0,255 range of values</span></span>
-<span id="cb206-2"><a href="image-data.html#cb206-2" aria-hidden="true" tabindex="-1"></a>shades_of_red <span class="ot">=</span> (shades_of_red <span class="sc">-</span> <span class="fu">min</span>(shades_of_red))<span class="sc">/</span>(<span class="fu">max</span>(shades_of_red)<span class="sc">-</span><span class="fu">min</span>(shades_of_red))<span class="sc">*</span><span class="dv">255</span></span>
-<span id="cb206-3"><a href="image-data.html#cb206-3" aria-hidden="true" tabindex="-1"></a>shades_of_green <span class="ot">=</span> (shades_of_green <span class="sc">-</span> <span class="fu">min</span>(shades_of_green))<span class="sc">/</span>(<span class="fu">max</span>(shades_of_green)<span class="sc">-</span><span class="fu">min</span>(shades_of_green))<span class="sc">*</span><span class="dv">255</span></span>
-<span id="cb206-4"><a href="image-data.html#cb206-4" aria-hidden="true" tabindex="-1"></a>shades_of_blue <span class="ot">=</span> (shades_of_blue <span class="sc">-</span> <span class="fu">min</span>(shades_of_blue))<span class="sc">/</span>(<span class="fu">max</span>(shades_of_blue)<span class="sc">-</span><span class="fu">min</span>(shades_of_blue))<span class="sc">*</span><span class="dv">255</span></span>
-<span id="cb206-5"><a href="image-data.html#cb206-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb206-6"><a href="image-data.html#cb206-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(shades_of_red))</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="image-data.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Normalize to 0,255 range of values</span></span>
+<span id="cb242-2"><a href="image-data.html#cb242-2" aria-hidden="true" tabindex="-1"></a>shades_of_red <span class="ot">=</span> (shades_of_red <span class="sc">-</span> <span class="fu">min</span>(shades_of_red))<span class="sc">/</span>(<span class="fu">max</span>(shades_of_red)<span class="sc">-</span><span class="fu">min</span>(shades_of_red))<span class="sc">*</span><span class="dv">255</span></span>
+<span id="cb242-3"><a href="image-data.html#cb242-3" aria-hidden="true" tabindex="-1"></a>shades_of_green <span class="ot">=</span> (shades_of_green <span class="sc">-</span> <span class="fu">min</span>(shades_of_green))<span class="sc">/</span>(<span class="fu">max</span>(shades_of_green)<span class="sc">-</span><span class="fu">min</span>(shades_of_green))<span class="sc">*</span><span class="dv">255</span></span>
+<span id="cb242-4"><a href="image-data.html#cb242-4" aria-hidden="true" tabindex="-1"></a>shades_of_blue <span class="ot">=</span> (shades_of_blue <span class="sc">-</span> <span class="fu">min</span>(shades_of_blue))<span class="sc">/</span>(<span class="fu">max</span>(shades_of_blue)<span class="sc">-</span><span class="fu">min</span>(shades_of_blue))<span class="sc">*</span><span class="dv">255</span></span>
+<span id="cb242-5"><a href="image-data.html#cb242-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-6"><a href="image-data.html#cb242-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(shades_of_red))</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-86-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="image-data.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
-<span id="cb207-2"><a href="image-data.html#cb207-2" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(shades_of_red, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb207-3"><a href="image-data.html#cb207-3" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(shades_of_green, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb207-4"><a href="image-data.html#cb207-4" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(shades_of_blue, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
-<span id="cb207-5"><a href="image-data.html#cb207-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb207-6"><a href="image-data.html#cb207-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Generate an array by combining the three matrices</span></span>
-<span id="cb207-7"><a href="image-data.html#cb207-7" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
-<span id="cb207-8"><a href="image-data.html#cb207-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="image-data.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Generate three matrices corresponding to Red, Green, and Blue values</span></span>
+<span id="cb243-2"><a href="image-data.html#cb243-2" aria-hidden="true" tabindex="-1"></a>red <span class="ot">=</span> <span class="fu">matrix</span>(shades_of_red, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb243-3"><a href="image-data.html#cb243-3" aria-hidden="true" tabindex="-1"></a>green <span class="ot">=</span> <span class="fu">matrix</span>(shades_of_green, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb243-4"><a href="image-data.html#cb243-4" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">=</span> <span class="fu">matrix</span>(shades_of_blue, <span class="at">nrow =</span> height, <span class="at">ncol =</span> width)</span>
+<span id="cb243-5"><a href="image-data.html#cb243-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb243-6"><a href="image-data.html#cb243-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Generate an array by combining the three matrices</span></span>
+<span id="cb243-7"><a href="image-data.html#cb243-7" aria-hidden="true" tabindex="-1"></a>image.array <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(red, green, blue), <span class="at">dim =</span> <span class="fu">c</span>(width, height, layers))</span>
+<span id="cb243-8"><a href="image-data.html#cb243-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(image.array)</span></code></pre></div>
 <pre><code>## [1] 300 300   3</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="image-data.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: Create RasterBrick</span></span>
-<span id="cb209-2"><a href="image-data.html#cb209-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
-<span id="cb209-3"><a href="image-data.html#cb209-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="image-data.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: Create RasterBrick</span></span>
+<span id="cb245-2"><a href="image-data.html#cb245-2" aria-hidden="true" tabindex="-1"></a>image <span class="ot">=</span> <span class="fu">brick</span>(image.array)</span>
+<span id="cb245-3"><a href="image-data.html#cb245-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(image)</span></code></pre></div>
 <pre><code>## class      : RasterBrick 
 ## dimensions : 300, 300, 90000, 3  (nrow, ncol, ncell, nlayers)
 ## resolution : 0.003333, 0.003333  (x, y)
@@ -571,8 +586,8 @@ and subsequently multiply by 255:</p>
 ## names      : layer.1, layer.2, layer.3 
 ## min values :       0,       0,       0 
 ## max values :     255,     255,     255</code></pre>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="image-data.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 8: Plot RGB</span></span>
-<span id="cb211-2"><a href="image-data.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="image-data.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 8: Plot RGB</span></span>
+<span id="cb247-2"><a href="image-data.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotRGB</span>(image)</span></code></pre></div>
 <pre><code>## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
 ## Assuming it is longitude/latitude</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-86-2.svg" width="672" /></p>
@@ -581,28 +596,28 @@ and subsequently multiply by 255:</p>
 </div>
 <div id="advanced-image-manipulation-using-imagemagick" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Advanced Image Manipulation using ImageMagick<a href="image-data.html#advanced-image-manipulation-using-imagemagick" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="image-data.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
-<span id="cb213-2"><a href="image-data.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="image-data.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb249-2"><a href="image-data.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span></code></pre></div>
 <pre><code>## Linking to ImageMagick 6.9.11.60
 ## Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, webp, x11
 ## Disabled features: cairo, ghostscript, raw, rsvg</code></pre>
 <pre><code>## Using 12 threads</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="image-data.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can import images from the web</span></span>
-<span id="cb216-2"><a href="image-data.html#cb216-2" aria-hidden="true" tabindex="-1"></a>frink <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/frink.png&quot;</span>)</span>
-<span id="cb216-3"><a href="image-data.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(frink)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="image-data.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can import images from the web</span></span>
+<span id="cb252-2"><a href="image-data.html#cb252-2" aria-hidden="true" tabindex="-1"></a>frink <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/frink.png&quot;</span>)</span>
+<span id="cb252-3"><a href="image-data.html#cb252-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(frink)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
 ## 1 PNG      220    445 sRGB       TRUE     73494 72x72</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-87-1.png" width="110" /></p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="image-data.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate</span></span>
-<span id="cb218-2"><a href="image-data.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_rotate</span>(frink, <span class="dv">45</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="image-data.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate</span></span>
+<span id="cb254-2"><a href="image-data.html#cb254-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_rotate</span>(frink, <span class="dv">45</span>)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-87-2.png" width="236" /></p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="image-data.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flip</span></span>
-<span id="cb219-2"><a href="image-data.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_flip</span>(frink)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="image-data.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flip</span></span>
+<span id="cb255-2"><a href="image-data.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_flip</span>(frink)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-87-3.png" width="110" /></p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="image-data.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flop</span></span>
-<span id="cb220-2"><a href="image-data.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_flop</span>(frink)</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="image-data.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flop</span></span>
+<span id="cb256-2"><a href="image-data.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image_flop</span>(frink)</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-87-4.png" width="110" /></p>
 <!-- Working with GIFs -->
 <!-- ```{r } -->
@@ -623,25 +638,27 @@ and subsequently multiply by 255:</p>
 <!-- new_gif -->
 <!-- ``` -->
 </div>
-<div id="working-with-ocr-optical-character-recognition" class="section level3 hasAnchor" number="7.2.3">
-<h3><span class="header-section-number">7.2.3</span> Working with OCR (Optical Character Recognition)<a href="image-data.html#working-with-ocr-optical-character-recognition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="image-data.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For Optical Character Recognition</span></span>
-<span id="cb221-2"><a href="image-data.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
-<span id="cb221-3"><a href="image-data.html#cb221-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb221-4"><a href="image-data.html#cb221-4" aria-hidden="true" tabindex="-1"></a>img <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://s3.amazonaws.com/libapps/accounts/30502/images/new_york_times.png&quot;</span>)</span>
-<span id="cb221-5"><a href="image-data.html#cb221-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(img)</span></code></pre></div>
+<div id="optical-character-recognition" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Optical Character Recognition<a href="image-data.html#optical-character-recognition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A common context to encounter image data in empirical economic research is the digitization of old texts. In that context, oprical character recognition (OCR) is used to extract text from scanned images. For example, in a setting where an archive of old newspapers is digitized in order to analyze historical news reports. R provides a straightforward approach to OCR in which the input is an image file (e.g., a png-file) and the output is a character string.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="image-data.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For Optical Character Recognition</span></span>
+<span id="cb257-2"><a href="image-data.html#cb257-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
+<span id="cb257-3"><a href="image-data.html#cb257-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-4"><a href="image-data.html#cb257-4" aria-hidden="true" tabindex="-1"></a>img <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://s3.amazonaws.com/libapps/accounts/30502/images/new_york_times.png&quot;</span>)</span>
+<span id="cb257-5"><a href="image-data.html#cb257-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(img)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
 ## 1 PNG      806    550 sRGB       FALSE   714189 38x38</code></pre>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-88-1.png" width="403" /></p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="image-data.html#cb223-1" aria-hidden="true" tabindex="-1"></a>headline <span class="ot">&lt;-</span> </span>
-<span id="cb223-2"><a href="image-data.html#cb223-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_crop</span>(<span class="at">image =</span> img, <span class="at">geometry =</span> <span class="st">&#39;806x180&#39;</span>)</span>
-<span id="cb223-3"><a href="image-data.html#cb223-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb223-4"><a href="image-data.html#cb223-4" aria-hidden="true" tabindex="-1"></a>headline</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="image-data.html#cb259-1" aria-hidden="true" tabindex="-1"></a>headline <span class="ot">&lt;-</span> </span>
+<span id="cb259-2"><a href="image-data.html#cb259-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_crop</span>(<span class="at">image =</span> img, <span class="at">geometry =</span> <span class="st">&#39;806x180&#39;</span>)</span>
+<span id="cb259-3"><a href="image-data.html#cb259-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-4"><a href="image-data.html#cb259-4" aria-hidden="true" tabindex="-1"></a>headline</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-88-2.png" width="403" /></p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="image-data.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract text</span></span>
-<span id="cb224-2"><a href="image-data.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">image_ocr</span>(headline))</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="image-data.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract text</span></span>
+<span id="cb260-2"><a href="image-data.html#cb260-2" aria-hidden="true" tabindex="-1"></a>headline_text <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(headline)</span>
+<span id="cb260-3"><a href="image-data.html#cb260-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(headline_text)</span></code></pre></div>
 <pre><code>## The New Work Times. ==S=
 ## 
 ## TITANIC SINKS FOUR HOURS AFTER HITTING ICEBERG;
@@ -651,21 +668,22 @@ and subsequently multiply by 255:</p>
 </div>
 <div id="vector-images-in-r" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Vector Images in R<a href="image-data.html#vector-images-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="image-data.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Common Packages for Vector Files</span></span>
-<span id="cb226-2"><a href="image-data.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
-<span id="cb226-3"><a href="image-data.html#cb226-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb226-4"><a href="image-data.html#cb226-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and read svg image from url</span></span>
-<span id="cb226-5"><a href="image-data.html#cb226-5" aria-hidden="true" tabindex="-1"></a>URL <span class="ot">&lt;-</span> <span class="st">&quot;https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg&quot;</span></span>
-<span id="cb226-6"><a href="image-data.html#cb226-6" aria-hidden="true" tabindex="-1"></a>Rlogo_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(URL)</span>
-<span id="cb226-7"><a href="image-data.html#cb226-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb226-8"><a href="image-data.html#cb226-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Data structure</span></span>
-<span id="cb226-9"><a href="image-data.html#cb226-9" aria-hidden="true" tabindex="-1"></a>Rlogo_xml </span></code></pre></div>
+<p>An alternative to storing figures in matrix/bitmap-based image-files are vector-based graphics. Vector-based formats are not stored in the form of arrays/matrices that contain the color information of each pixel of an image. Instead they define the shapes, colors and coordinates of the objects shown in an image. Typically such vector-based images are computer drawings, plots, maps, and blueprints of technical infstructure (and not, for example, photos). There are different specific file-formats to store vector-based graphics, but typically they use a nesting structure and basic syntax that is similar to or a version of XML. That is, in order to work with the basic data contained in such files, we often can use familiar functions like <code>read_xml()</code>. To translate the basic vector-image data into images and modify these images additional packages such as <code>magick</code> are available. The following code example demonstrates these points. We first import the raw vector-image data of the R logo (stored as a SVG-file) as a XML-file into R. This allows us to have a closer look at the underlying data structure of such files. Then, we import it as an actual vector-based graphic via <code>image_read_svg()</code></p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="image-data.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Common Packages for Vector Files</span></span>
+<span id="cb262-2"><a href="image-data.html#cb262-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
+<span id="cb262-3"><a href="image-data.html#cb262-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-4"><a href="image-data.html#cb262-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and read svg image from url</span></span>
+<span id="cb262-5"><a href="image-data.html#cb262-5" aria-hidden="true" tabindex="-1"></a>URL <span class="ot">&lt;-</span> <span class="st">&quot;https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg&quot;</span></span>
+<span id="cb262-6"><a href="image-data.html#cb262-6" aria-hidden="true" tabindex="-1"></a>Rlogo_xml <span class="ot">&lt;-</span> <span class="fu">read_xml</span>(URL)</span>
+<span id="cb262-7"><a href="image-data.html#cb262-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-8"><a href="image-data.html#cb262-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Data structure</span></span>
+<span id="cb262-9"><a href="image-data.html#cb262-9" aria-hidden="true" tabindex="-1"></a>Rlogo_xml </span></code></pre></div>
 <pre><code>## {xml_document}
 ## &lt;svg preserveAspectRatio=&quot;xMidYMid&quot; width=&quot;724&quot; height=&quot;561&quot; viewBox=&quot;0 0 724 561&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
 ## [1] &lt;defs&gt;\n  &lt;linearGradient id=&quot;gradientFill-1&quot; x1=&quot;0&quot; x2=&quot;1 ...
 ## [2] &lt;path d=&quot;M361.453,485.937 C162.329,485.937 0.906,377.828 0 ...
 ## [3] &lt;path d=&quot;M550.000,377.000 C550.000,377.000 571.822,383.585 ...</code></pre>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="image-data.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_structure</span>(Rlogo_xml)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="image-data.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_structure</span>(Rlogo_xml)</span></code></pre></div>
 <pre><code>## &lt;svg [preserveAspectRatio, width, height, viewBox, xmlns, xmlns:xlink]&gt;
 ##   &lt;defs&gt;
 ##     &lt;linearGradient [id, x1, x2, y1, y2, gradientUnits, spreadMethod]&gt;
@@ -676,17 +694,17 @@ and subsequently multiply by 255:</p>
 ##       &lt;stop [offset, stop-color, stop-opacity]&gt;
 ##   &lt;path [d, fill, fill-rule]&gt;
 ##   &lt;path [d, fill, fill-rule]&gt;</code></pre>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="image-data.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Raw data</span></span>
-<span id="cb230-2"><a href="image-data.html#cb230-2" aria-hidden="true" tabindex="-1"></a>Rlogo_text <span class="ot">&lt;-</span> <span class="fu">as.character</span>(Rlogo_xml)</span>
-<span id="cb230-3"><a href="image-data.html#cb230-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-4"><a href="image-data.html#cb230-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb230-5"><a href="image-data.html#cb230-5" aria-hidden="true" tabindex="-1"></a>svg_img <span class="ot">=</span> <span class="fu">image_read_svg</span>(Rlogo_text)</span>
-<span id="cb230-6"><a href="image-data.html#cb230-6" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(svg_img)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="image-data.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Raw data</span></span>
+<span id="cb266-2"><a href="image-data.html#cb266-2" aria-hidden="true" tabindex="-1"></a>Rlogo_text <span class="ot">&lt;-</span> <span class="fu">as.character</span>(Rlogo_xml)</span>
+<span id="cb266-3"><a href="image-data.html#cb266-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-4"><a href="image-data.html#cb266-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb266-5"><a href="image-data.html#cb266-5" aria-hidden="true" tabindex="-1"></a>svg_img <span class="ot">=</span> <span class="fu">image_read_svg</span>(Rlogo_text)</span>
+<span id="cb266-6"><a href="image-data.html#cb266-6" aria-hidden="true" tabindex="-1"></a><span class="fu">image_info</span>(svg_img)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   format width height colorspace matte filesize density
 ##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
 ## 1 PNG      724    561 sRGB       TRUE         0 72x72</code></pre>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="image-data.html#cb232-1" aria-hidden="true" tabindex="-1"></a>svg_img</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="image-data.html#cb268-1" aria-hidden="true" tabindex="-1"></a>svg_img</span></code></pre></div>
 <p><img src="datahandling_files/figure-html/unnamed-chunk-90-1.png" width="362" /></p>
 <!-- ### Example: Manipulating Output width and height of SVGs -->
 <!-- ```{r} -->
@@ -700,10 +718,8 @@ and subsequently multiply by 255:</p>
 <!-- image_info(svg_new) -->
 <!-- svg_new -->
 <!-- ``` -->
-<div id="example-maps" class="section level3 hasAnchor" number="7.3.1">
-<h3><span class="header-section-number">7.3.1</span> Example: Maps<a href="image-data.html#example-maps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<!-- ### Example: Maps  -->
 
-</div>
 </div>
 </div>
             </section>

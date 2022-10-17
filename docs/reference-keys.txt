@@ -25,6 +25,8 @@ fig:list
 fig:xmltree
 fig:html
 fig:swiss
+fig:corpus
+fig:rgb
 fig:widetolong
 fig:joins
 fig:causality
@@ -84,6 +86,13 @@ html
 write-a-simple-webpage-with-html
 two-ways-to-read-a-webpage-into-r
 text-data
+introduction-1
+one-package-to-rule-them-all-quanteda
+from-raw-text-to-corpus-step-1
+text-the-traditional-way-regular-expressions
+from-corpus-to-tokens-steps-2-and-3
+from-tokens-to-document-term-matrix-dtm-steps-3-and-4
+from-dtm-to-analysis-and-insights
 image-data
 image-data-structure-and-storage
 raster-images-in-r
@@ -93,9 +102,8 @@ example-2-generating-a-green-image-rgb-code-0-255-0
 example-3-generating-a-blue-image-rgb-code-0-0-255
 example-4-generating-a-random-rgb-image
 advanced-image-manipulation-using-imagemagick
-working-with-ocr-optical-character-recognition
+optical-character-recognition
 vector-images-in-r
-example-maps
 data-sources-data-gathering-data-import
 sourcesformats
 data-gathering-procedure

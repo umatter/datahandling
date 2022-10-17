@@ -1,5 +1,7 @@
 
 # Image data
+*This chapter has substantially benefitted from contributions by Michael Tüting ([MTueting](https://github.com/MTueting))*.
+
 
 With the advent of broadband internet and efforts in digitizing analogue archives  a large part of the world's available data is stored in the form of images (and moving images). Subsequent advances in computer vision (machine learning techniques focused on images and videos) have made usage of images for economic and social science purposes accessible to non-computer science researchers. Examples of how image data is used in economic research involve the quantification of urban appearance (based on the analysis of street-level images in cities, @naik_etal2016), the digitization of old text documents via optical character recognition (@cesarini_etal2016), and the measurement of economic development/wealth with nighttime light-intensity based on satellite image data (@hodler_raschky2014). In the following subsections, you will first explore the most common image formats, and how the data behind digital images is structured and stored.
 
@@ -26,7 +28,14 @@ library(raster)
 
 ### Basic data structure
 
-Recall that raster images are stored as arrays ($X\times Y \times Z$). $X$ and $Y$ define the number of pixels in each column and row (width and height) of the image and $Z$ the number of layers. Greyscale images usually have only one layer, whereas most colored images have 3 layers (in the case of RGB images). 
+Recall that raster images are stored as arrays ($X\times Y \times Z$). $X$ and $Y$ define the number of pixels in each column and row (width and height) of the image and $Z$ the number of layers. Greyscale images usually have only one layer, whereas most colored images have 3 layers (such as in the case of RGB images). The following figure illustrates this point based on a $3 \times 3$ pixels bitmap image. 
+
+```{r rgb, echo=FALSE, out.width = "75%", fig.align='center', fig.cap= "(ref:rgb)", purl=FALSE}
+include_graphics("img/rgb_structure.png")
+```
+
+(ref:rgb) Illustration of a bitmap file data structure (with RGB schema). Panel A shows a 3x3 pixels bitmap image as it is shown on screen. Panel B illustrates the corresponding bitmap file's data structure: a three-dimensional array with 3x3 elements represents the image matrix in the three base screen colors red, green, and blue. As a reading example, consider the highlighted upper left pixel in A with the correspondingly highlighted values in the RGB array in B. The color of this pixel is RGB code 255 (full red), 51 (some green), and 51 (some blue): (255,51,51). 
+
 
 To get a better feeling for the corresponding data structure in R, we start with generating RGB-images step-by-step in R. First we generate three matrices (one for each base color), arrange these matrices in an array, and then save the plots to disk.
 
@@ -222,7 +231,11 @@ image_flop(frink)
 
 <!-- ``` -->
 
-### Working with OCR (Optical Character Recognition)
+### Optical Character Recognition 
+
+A common context to encounter image data in empirical economic research is the digitization of old texts. In that context, oprical character recognition (OCR) is used to extract text from scanned images. For example, in a setting where an archive of old newspapers is digitized in order to analyze historical news reports. R provides a straightforward approach to OCR in which the input is an image file (e.g., a png-file) and the output is a character string.
+
+
 ```{r, message=FALSE, warning=FALSE}
 
 # For Optical Character Recognition
@@ -237,8 +250,8 @@ headline <-
 headline
 
 # Extract text
-cat(image_ocr(headline))
-
+headline_text <- image_ocr(headline)
+cat(headline_text)
 
 ```
 
@@ -254,6 +267,8 @@ detach("package:raster", unload=TRUE)
 
 
 ## Vector Images in R
+
+An alternative to storing figures in matrix/bitmap-based image-files are vector-based graphics. Vector-based formats are not stored in the form of arrays/matrices that contain the color information of each pixel of an image. Instead they define the shapes, colors and coordinates of the objects shown in an image. Typically such vector-based images are computer drawings, plots, maps, and blueprints of technical infstructure (and not, for example, photos). There are different specific file-formats to store vector-based graphics, but typically they use a nesting structure and basic syntax that is similar to or a version of XML. That is, in order to work with the basic data contained in such files, we often can use familiar functions like `read_xml()`. To translate the basic vector-image data into images and modify these images additional packages such as `magick` are available. The following code example demonstrates these points. We first import the raw vector-image data of the R logo (stored as a SVG-file) as a XML-file into R. This allows us to have a closer look at the underlying data structure of such files. Then, we import it as an actual vector-based graphic via `image_read_svg()`
 
 
 ```{r}
@@ -294,6 +309,6 @@ svg_img
 <!-- ``` -->
 
 
-### Example: Maps 
+<!-- ### Example: Maps  -->
 
 
