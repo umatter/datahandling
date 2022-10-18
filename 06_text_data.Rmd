@@ -11,8 +11,9 @@ Working with text data can be broken down into eight steps, as depicted in the f
 
 In this introduction, we will focus on steps (1) to (4). Steps (5) to (8) are beyond the scope of a data handling course, as they involve modeling the text through machine learning or other statistical methods, deploying these models for statistical analyses (for research or industrial purpose), and the plausibilization of such models. 
 
-```{r nlp, echo=FALSE, out.width = "85%", fig.align='center', fig.cap= "(ref:nlp)", purl=FALSE}
-include_graphics("img/nlp.jpg")
+
+```{r nlpfig, echo=FALSE, out.width = "95%", fig.align='center', fig.cap= "(ref:nlp)", purl=FALSE}
+include_graphics("img/NLP.png")
 ```
 (ref:nlp) Illustration of a NLP pipeline.
 
@@ -24,7 +25,8 @@ include_graphics("img/nlp.jpg")
 In R, steps (2) to (4) can be performed using the `quanteda` or the `tidytext` package. `tidytext` works very well with the packages of the `tidyverse` family, such as `dplyr` or `tidyr`. This package converts text to and from tidy formats. 
 
 The package `quanteda` remains, however, the most complete and go-to package for text analysis in R. It allows R users to perform all the preprocessing steps very easily, and provides all the functions necessary for preprocessing, visualization, and even statistical analyses of the corpus.   
-```{r packages}
+
+```{r packages, echo=FALSE}
 pacman::p_load(
     tidytext,
     quanteda,
