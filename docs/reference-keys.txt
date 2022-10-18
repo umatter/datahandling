@@ -26,6 +26,7 @@ fig:xmltree
 fig:html
 fig:swiss
 fig:nlpfig
+fig:nlppipeline
 fig:corpus
 fig:rgb
 fig:widetolong

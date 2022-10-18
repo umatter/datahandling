@@ -18,7 +18,15 @@ include_graphics("img/NLP2.png")
 (ref:nlp) Illustration of a NLP pipeline.
 
 
-\
+
+```{r nlppipeline, echo=FALSE, out.width = "95%", fig.align='center', fig.cap= "(ref:nlppipeline)", purl=FALSE}
+include_graphics("img/nlp_pipeline.svg")
+```
+(ref:nlppipeline) Illustration of a NLP pipeline.
+
+
+
+
 
 ## One Package To Rule Them All: Quanteda
 
