@@ -13,7 +13,7 @@ In this introduction, we will focus on steps (1) to (4). Steps (5) to (8) are be
 
 
 ```{r nlpfig, echo=FALSE, out.width = "95%", fig.align='center', fig.cap= "(ref:nlp)", purl=FALSE}
-include_graphics("img/NLP.png")
+include_graphics("img/NLP2.png")
 ```
 (ref:nlp) Illustration of a NLP pipeline.
 
