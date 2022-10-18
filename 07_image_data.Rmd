@@ -289,7 +289,15 @@ Rlogo_text <- as.character(Rlogo_xml)
 # Plot
 svg_img = image_read_svg(Rlogo_text)
 image_info(svg_img)
+```
+
+
+```{r eval=FALSE}
 svg_img
+```
+
+```{r rlogo, echo=FALSE, out.width = "15%", fig.align='center',  purl=FALSE}
+include_graphics("img/R_logo.svg.png")
 ```
 
 

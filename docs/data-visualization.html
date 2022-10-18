@@ -487,7 +487,7 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <h4><span class="header-section-number">12.3.3.1</span> Data and aesthetics<a href="data-visualization.html#data-and-aesthetics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We initiate the most basic plot with <code>ggplot()</code> by defining which data to use and, in the plot aesthetics, which variable to use on the x and y axes. Here, we are interested in whether the level of education beyond primary school in a given district is related to how well draftees from the same district do in a standardized army examination (% of draftees that get the highest mark in the examination).</p>
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="data-visualization.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination))</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-187-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-188-1.svg" width="85%" /></p>
 <p>As we have not yet defined according to what rules the data shall be visualized, all we get is an empty ‘canvas’ and the axes (with the respective label and ticks indicating the range of the values).</p>
 </div>
 </div>
@@ -496,7 +496,7 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <p>To actually plot the data, we have to define the ‘geometries’, defined according to which function the data should be mapped/visualized. In other words, geometries define which ‘type of plot’ we use to visualize the data (histogram, lines, points, etc.). In the example code below, we use <code>geom_point()</code> to get a simple point plot.</p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="data-visualization.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span></span>
 <span id="cb431-2"><a href="data-visualization.html#cb431-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-188-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-189-1.svg" width="85%" /></p>
 <p>The result indicates a positive correlation between the level of education and how well draftees do in the examination. We want to understand this correlation better. Particularly what other factors could drive this picture?</p>
 <div id="facets" class="section level4 hasAnchor" number="12.3.4.1">
 <h4><span class="header-section-number">12.3.4.1</span> Facets<a href="data-visualization.html#facets" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -504,7 +504,7 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="data-visualization.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span></span>
 <span id="cb432-2"><a href="data-visualization.html#cb432-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb432-3"><a href="data-visualization.html#cb432-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-189-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-190-1.svg" width="85%" /></p>
 <p>Draftees from protestant districts tend to do generally better (which might indicate better primary schools or a generally stronger focus on the educational achievements of Protestant children). However, the relationship between education (beyond primary schools) and examination success seems to hold for either type of district.</p>
 </div>
 <div id="additional-layers-and-statistics" class="section level4 hasAnchor" number="12.3.4.2">
@@ -515,13 +515,13 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <span id="cb433-3"><a href="data-visualization.html#cb433-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;loess&#39;</span>) <span class="sc">+</span></span>
 <span id="cb433-4"><a href="data-visualization.html#cb433-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-190-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-191-1.svg" width="85%" /></p>
 <div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="data-visualization.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span></span>
 <span id="cb435-2"><a href="data-visualization.html#cb435-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb435-3"><a href="data-visualization.html#cb435-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
 <span id="cb435-4"><a href="data-visualization.html#cb435-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-191-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-192-1.svg" width="85%" /></p>
 </div>
 <div id="additional-aesthetics" class="section level4 hasAnchor" number="12.3.4.3">
 <h4><span class="header-section-number">12.3.4.3</span> Additional aesthetics<a href="data-visualization.html#additional-aesthetics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -531,7 +531,7 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <span id="cb437-3"><a href="data-visualization.html#cb437-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
 <span id="cb437-4"><a href="data-visualization.html#cb437-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-192-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-193-1.svg" width="85%" /></p>
 <p>The resulting picture is in line with what we have expected. Overall, the districts with a lower share of agricultural occupation tend to have higher levels of education and achievements in the examination.</p>
 </div>
 <div id="coordinatesthemes-fine-tuning-the-plot" class="section level4 hasAnchor" number="12.3.4.4">
@@ -543,7 +543,7 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <span id="cb439-4"><a href="data-visualization.html#cb439-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
 <span id="cb439-5"><a href="data-visualization.html#cb439-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">coord_flip</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-193-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-194-1.svg" width="85%" /></p>
 <p>In addition, the <code>theme()</code>-function allows changing almost every aspect of the plot (margins, font face, font size, etc.). For example, we might prefer to have the plot legend at the bottom and have larger axis labels.</p>
 <div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="data-visualization.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span></span>
 <span id="cb441-2"><a href="data-visualization.html#cb441-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
@@ -551,7 +551,7 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <span id="cb441-4"><a href="data-visualization.html#cb441-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
 <span id="cb441-5"><a href="data-visualization.html#cb441-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, <span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>) )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-194-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-195-1.svg" width="85%" /></p>
 <p>Moreover, several theme templates offer ready-made designs for plots:</p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="data-visualization.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span></span>
 <span id="cb443-2"><a href="data-visualization.html#cb443-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
@@ -559,14 +559,14 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <span id="cb443-4"><a href="data-visualization.html#cb443-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
 <span id="cb443-5"><a href="data-visualization.html#cb443-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-195-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-196-1.svg" width="85%" /></p>
 <div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="data-visualization.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span></span>
 <span id="cb445-2"><a href="data-visualization.html#cb445-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
 <span id="cb445-3"><a href="data-visualization.html#cb445-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
 <span id="cb445-4"><a href="data-visualization.html#cb445-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
 <span id="cb445-5"><a href="data-visualization.html#cb445-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_dark</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-196-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-197-1.svg" width="85%" /></p>
 </div>
 </div>
 </div>
@@ -646,7 +646,7 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="data-visualization.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cases, <span class="fu">aes</span>(<span class="at">y=</span>cases, <span class="at">x=</span>date, <span class="at">fill=</span>county)) <span class="sc">+</span></span>
 <span id="cb450-2"><a href="data-visualization.html#cb450-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
 <span id="cb450-3"><a href="data-visualization.html#cb450-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">n.dodge =</span> <span class="dv">2</span>)) <span class="co"># this avoids overlapping of x-axis labels (and is similar to what is done in the original plot)</span></span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-200-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-201-1.svg" width="85%" /></p>
 <p>There is no obvious downward trend visible. Now, let us look at what steps are involved in manipulating the visualization in order to give the wrong impression of a downward trend. Importantly, all the manipulation is purely done via the data plotting. We do not touch/manipulate the underlying data (such as removing observations or falsifying numbers).</p>
 <p>Two things become apparent when comparing the original plot with what we have so far. First, the order of days on the X-axis is not chronological but seems to be based on the total number of cases per day. Second, the order of the bars of a given day does not follow the alphabetical order of the county names but the number of cases in each of the counties. Let’s address the two aspects one at the time. To change the order on the x-axis, we have to re-order the factor levels in <code>date</code>.</p>
 <div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="data-visualization.html#cb451-1" aria-hidden="true" tabindex="-1"></a>cases2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(cases, <span class="at">date=</span> <span class="fu">fct_reorder</span>(date, cases, sum,<span class="at">.desc =</span> <span class="cn">TRUE</span>)) <span class="co"># re-order the dates based on the total number of cases per date.</span></span>
@@ -654,12 +654,12 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <span id="cb451-3"><a href="data-visualization.html#cb451-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cases2, <span class="fu">aes</span>(<span class="at">y=</span>cases, <span class="at">x=</span>date, <span class="at">fill=</span>county)) <span class="sc">+</span></span>
 <span id="cb451-4"><a href="data-visualization.html#cb451-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
 <span id="cb451-5"><a href="data-visualization.html#cb451-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">n.dodge =</span> <span class="dv">2</span>))  <span class="co"># this avoids overlapping of x-axis labels (and is similar to what is done in the original plot)</span></span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-201-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-202-1.svg" width="85%" /></p>
 <p>Note that the number of cases is not exactly the same as in the original. Quite the reason for this is that the numbers have been updated during May. Given that the overall pattern is very similar, there is no reason to believe that the actual numbers underlying the original figure had been manipulated too. Now, let us address the second aspect (ordering of bars per date). For this, we use the <code>group</code> aesthetic, indicating to <code>ggplot</code> that we want the number of cases to be used to order the bars within each point in time (date). Setting <code>position_dodge2(reverse=TRUE)</code> simply means we want the bars per date to be ordered in decreasing order (per default, it would be increasing; try out the difference by changing it to <code>position_dodge2(reverse=FALSE)</code> or simply <code>position_dodge2()</code>).</p>
 <div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="data-visualization.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cases2, <span class="fu">aes</span>(<span class="at">y=</span>cases, <span class="at">x=</span>date, <span class="at">fill=</span>county, <span class="at">group=</span>cases)) <span class="sc">+</span></span>
 <span id="cb452-2"><a href="data-visualization.html#cb452-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">group=</span>cases), <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">reverse=</span><span class="cn">TRUE</span>), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
 <span id="cb452-3"><a href="data-visualization.html#cb452-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">n.dodge =</span> <span class="dv">2</span>))  <span class="co"># this avoids overlapping of x-axis labels (and is similar to what is done in the original plot)</span></span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-202-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-203-1.svg" width="85%" /></p>
 <p>This already looks much more like the original plot.</p>
 </div>
 <div id="cosmetics-theme" class="section level3 hasAnchor" number="12.5.4">
@@ -687,7 +687,7 @@ Figure 12.1: Illustration of the Grammar of Graphics concept.
 <span id="cb453-20"><a href="data-visualization.html#cb453-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;#71869e&quot;</span>),</span>
 <span id="cb453-21"><a href="data-visualization.html#cb453-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour=</span><span class="st">&quot;#71869e&quot;</span>),</span>
 <span id="cb453-22"><a href="data-visualization.html#cb453-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="datahandling_files/figure-html/unnamed-chunk-203-1.svg" width="85%" /></p>
+<p><img src="datahandling_files/figure-html/unnamed-chunk-204-1.svg" width="85%" /></p>
 
 </div>
 </div>
