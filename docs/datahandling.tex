@@ -229,7 +229,7 @@
 
 \title{Data Handling Pocket Reference}
 \author{Ulrich Matter}
-\date{2022-09-25}
+\date{2022-10-18}
 
 \begin{document}
 \maketitle
@@ -1216,7 +1216,7 @@ This section briefly summarizes the key components of processing data with a com
 \hypertarget{components-of-a-standard-computing-environment}{%
 \subsection{Components of a standard computing environment}\label{components-of-a-standard-computing-environment}}
 
-Figure @ref(fig: components) illustrates the key components of a standard computing environment (PC, notebook, tablet, etc.) with which we can process data. A programming language (such as R) allows us to work with these hardware components (i.e., control them) in order to perform our tasks (e.g., cleaning/analyzing data).
+Figure \ref{fig:components} illustrates the key components of a standard computing environment (PC, notebook, tablet, etc.) with which we can process data. A programming language (such as R) allows us to work with these hardware components (i.e., control them) in order to perform our tasks (e.g., cleaning/analyzing data).
 
 \begin{figure}
 
@@ -1349,7 +1349,7 @@ We can now check on which line the text was found.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 441
+## [1] 444
 \end{verbatim}
 
 Again, we can illustrate with a simple diagram which computer components were involved in this task. First, we entered an R command with the keyboard; the CPU is processing it and as a result accesses \texttt{clockHTML} in RAM, executes the search, returns the line number, and stores it in a new variable called \texttt{line\_number} in RAM. In our current R session, we thus now have two `objects' stored in RAM: \texttt{clockHTML} and \texttt{line\_number}, which we can further process with R.
@@ -1556,11 +1556,11 @@ The question of how to store digital data on computers also raises the question 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.4\linewidth]{img/store-bitbyteword} 
+{\centering \includegraphics[width=0.4\linewidth]{img/bitbyte} 
 
 }
 
-\caption{Writing data stored in RAM to a Mass Storage device (hard drive). Figure by \citet{murrell_2009} (licensed under CC BY-NC-SA 3.0 NZ).}\label{fig:bitbyteword}
+\caption{Byte and bit.}\label{fig:bitbyteword}
 \end{figure}
 
 
@@ -1785,40 +1785,51 @@ For example, we might want to initiate a factor that indicates the gender of a n
 \hypertarget{matricesarrays}{%
 \subsubsection{Matrices/Arrays}\label{matricesarrays}}
 
-Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type.
+Matrices are two-dimensional collections of values, arrays of higher-dimensional collections of values of the same type. For an illustration, consider the following \(3\times3\) integer matrix and the \(3\times3\times3\) integer array.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.2\linewidth]{img/matrix} 
+{\centering \includegraphics[width=0.15\linewidth]{img/matrix} 
 
 }
 
-\caption{Illustration of a numeric matrix.}\label{fig:matrix}
+\caption{Illustration of an integer matrix.}\label{fig:matrix}
 \end{figure}
 
 
 
-For example, we can initiate a three-row/two-column numeric matrix as follows
+\begin{figure}
+
+{\centering \includegraphics[width=0.25\linewidth]{img/array} 
+
+}
+
+\caption{Illustration of three-dimensional integer array.}\label{fig:array}
+\end{figure}
+
+
+
+In R, we can, for example, initiate a three-row/three-column integer matrix as follows.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{my\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{)}
+\NormalTok{my\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{)}
 \NormalTok{my\_matrix}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      [,1] [,2]
-## [1,]    1    4
-## [2,]    2    5
-## [3,]    3    6
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
 \end{verbatim}
 
-And a three-dimensional numeric array as follows.
+Similarly, we can initiate a three-dimensional array via the \texttt{array()}-function as shown below. Note that instead of defining only the numbers of rows (columns), you need to define the number of elements in each dimension via the \texttt{dim}-parameter.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{my\_array }\OtherTok{\textless{}{-}} \FunctionTok{array}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{), }\AttributeTok{dim =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\NormalTok{my\_array }\OtherTok{\textless{}{-}} \FunctionTok{array}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{27}\NormalTok{, }\AttributeTok{dim =} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{))}
 \NormalTok{my\_array}
 \end{Highlighting}
 \end{Shaded}
@@ -1826,15 +1837,100 @@ And a three-dimensional numeric array as follows.
 \begin{verbatim}
 ## , , 1
 ## 
-##      [,1] [,2]
-## [1,]    1    3
-## [2,]    2    4
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
 ## 
 ## , , 2
 ## 
-##      [,1] [,2]
-## [1,]    5    7
-## [2,]    6    8
+##      [,1] [,2] [,3]
+## [1,]   10   13   16
+## [2,]   11   14   17
+## [3,]   12   15   18
+## 
+## , , 3
+## 
+##      [,1] [,2] [,3]
+## [1,]   19   22   25
+## [2,]   20   23   26
+## [3,]   21   24   27
+\end{verbatim}
+
+We can access parts of matrices and arrays via indexing implemented with the \texttt{{[}{]}}-syntax. For example, select a particular row, column, or individual element of a matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select the first row}
+\NormalTok{my\_matrix[}\DecValTok{1}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 4 7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select the second column}
+\NormalTok{my\_matrix[,}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4 5 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select the value in the second column, third row.}
+\NormalTok{my\_matrix[}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+Following the same syntax, we can access specific parts of an array. Note, though, that we need to consider the correct number of dimensions of the corresponding array object. In the example of above, we have generated three-dimensional array, hence there needs to be three parts within the \texttt{{[}{]}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select the first rows}
+\NormalTok{my\_array[}\DecValTok{1}\NormalTok{,,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1   10   19
+## [2,]    4   13   22
+## [3,]    7   16   25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select the "third matrix"}
+\NormalTok{my\_array[,,}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]   19   22   25
+## [2,]   20   23   26
+## [3,]   21   24   27
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select the "last" element in the array}
+\NormalTok{my\_array[}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 27
 \end{verbatim}
 
 \hypertarget{data-frames-tibbles-and-data-tables}{%
@@ -1882,7 +1978,7 @@ Unlike data frames, lists can contain different data types in each element. More
 
 }
 
-\caption{Illustration of a data frame (symbolic).}\label{fig:list}
+\caption{Illustration of a list.}\label{fig:list}
 \end{figure}
 
 
@@ -1900,22 +1996,31 @@ This flexibility can easily be demonstrated by combining some of the data struct
 ## [[1]]
 ## , , 1
 ## 
-##      [,1] [,2]
-## [1,]    1    3
-## [2,]    2    4
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
 ## 
 ## , , 2
 ## 
-##      [,1] [,2]
-## [1,]    5    7
-## [2,]    6    8
+##      [,1] [,2] [,3]
+## [1,]   10   13   16
+## [2,]   11   14   17
+## [3,]   12   15   18
+## 
+## , , 3
+## 
+##      [,1] [,2] [,3]
+## [1,]   19   22   25
+## [2,]   20   23   26
+## [3,]   21   24   27
 ## 
 ## 
 ## [[2]]
-##      [,1] [,2]
-## [1,]    1    4
-## [2,]    2    5
-## [3,]    3    6
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
 ## 
 ## [[3]]
 ##   person age gender
@@ -2194,9 +2299,9 @@ As in the case of CSV-like formats, there are several parsers in R that we can u
 ## [1] <firstName>John</firstName>
 ## [2] <lastName>Smith</lastName>
 ## [3] <age>25</age>
-## [4] <address>\n  <streetAddress>21 2nd Street</stree ...
-## [5] <phoneNumber>\n  <type>home</type>\n  <number>21 ...
-## [6] <phoneNumber>\n  <type>fax</type>\n  <number>646 ...
+## [4] <address>\n  <streetAddress>21 2nd Street</streetAddress>\ ...
+## [5] <phoneNumber>\n  <type>home</type>\n  <number>212 555-1234 ...
+## [6] <phoneNumber>\n  <type>fax</type>\n  <number>646 555-4567< ...
 ## [7] <gender>\n  <type>male</type>\n</gender>
 \end{verbatim}
 
@@ -2290,7 +2395,7 @@ The illustration of the nested structure can help to understand how we can instr
 \hypertarget{two-ways-to-read-a-webpage-into-r}{%
 \subsection{Two ways to read a webpage into R}\label{two-ways-to-read-a-webpage-into-r}}
 
-In this example, we look at \href{https://en.wikipedia.org/wiki/Economy_of_Switzerland}{Wikipedia's Economy of Switzerland page}, which contains the table depicted in Figure @ref(fig: swiss).
+In this example, we look at \href{https://en.wikipedia.org/wiki/Economy_of_Switzerland}{Wikipedia's Economy of Switzerland page}, which contains the table depicted in Figure \ref{fig:swiss}.
 
 \begin{figure}
 
@@ -2312,10 +2417,9 @@ As in the example shown in the data processing chapter (`world population clock'
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in readLines("https://en.wikipedia.org/
-## wiki/Economy_of_Switzerland"): incomplete final
-## line found on 'https://en.wikipedia.org/wiki/
-## Economy_of_Switzerland'
+## Warning in readLines("https://en.wikipedia.org/wiki/
+## Economy_of_Switzerland"): incomplete final line found on
+## 'https://en.wikipedia.org/wiki/Economy_of_Switzerland'
 \end{verbatim}
 
 And we can check if everything worked out well by having a look at the first lines of the web page's HTML code:
@@ -2332,7 +2436,7 @@ And we can check if everything worked out well by having a look at the first lin
 ## [3] "<head>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 ## [4] "<meta charset=\"UTF-8\"/>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 ## [5] "<title>Economy of Switzerland - Wikipedia</title>"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-## [6] "<script>document.documentElement.className=\"client-js\";RLCONF={\"wgBreakFrames\":false,\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgRequestId\":\"e4079780-44a7-4e60-a9a6-5ffd7ea8587f\",\"wgCSPNonce\":false,\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Economy_of_Switzerland\",\"wgTitle\":\"Economy of Switzerland\",\"wgCurRevisionId\":1107876525,\"wgRevisionId\":1107876525,\"wgArticleId\":27465,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"CS1 maint: archived copy as title\",\"CS1 German-language sources (de)\",\"Articles with German-language sources (de)\",\"Webarchive template wayback links\",\"Articles with French-language sources (fr)\",\"Articles with short description\",\"Short description is different from Wikidata\","
+## [6] "<script>document.documentElement.className=\"client-js\";RLCONF={\"wgBreakFrames\":false,\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgRequestId\":\"42ab162f-76cc-4730-b662-73f91d4d0f98\",\"wgCSPNonce\":false,\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Economy_of_Switzerland\",\"wgTitle\":\"Economy of Switzerland\",\"wgCurRevisionId\":1115528632,\"wgRevisionId\":1115528632,\"wgArticleId\":27465,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"CS1 maint: archived copy as title\",\"CS1 German-language sources (de)\",\"Articles with German-language sources (de)\",\"Webarchive template wayback links\",\"Articles with French-language sources (fr)\",\"Articles with short description\",\"Short description is different from Wikidata\","
 \end{verbatim}
 
 The next thing we do is to look at how we can filter the webpage for certain information. For example, we search in the source code for the line that contains the part of the webpage with the table showing data on the Swiss GDP:
@@ -2354,7 +2458,7 @@ Then, we check on which line the text was found.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 230
+## [1] 231
 \end{verbatim}
 
 Knowing that the R object \texttt{swiss\_econ} is a character vector (with each element containing one line of HTML code as a character string), we can look at this particular code:
@@ -2396,8 +2500,8 @@ After loading the package, we read the webpage into R, but this time using a fun
 \begin{verbatim}
 ## {html_document}
 ## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content= ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-e ...
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt n ...
 \end{verbatim}
 
 Now we can easily separate the data/text from the HTML code. For example, we can extract the HTML table containing the data we are interested in as \texttt{data\ frames}.
@@ -2438,8 +2542,462 @@ Now we can easily separate the data/text from the HTML code. For example, we can
 \hypertarget{text-data}{%
 \chapter{Text Data}\label{text-data}}
 
+\emph{This chapter has been contributed by Aurélien Salling (\href{https://github.com/ASallin}{ASallin})}.
+
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
+
+Text as data has become increasingly available in the past years, especially following the spread of the Internet and the numerisation of text sources. We are now able to make use of literary texts, analyses (such as financial analyses), reactions on social media (e.g., sentiment analysis to predict financial prices), political discourses, judicial decisions, central bank minutes, etc. in quantitative analyses.
+
+The main challenge of working with text is that text is \textbf{unstructured}. Structured data are coded in such a way that variables can be directly used for analysis without too much loss of content. For instance, data are coded into binary or categorical variables in order to reduce and summarize the complexity of the information. In contrast, with unstructured text data, information is not easily summarized and requires a substantial amount of preparation in order to be used for analysis.
+
+Working with text data can be broken down into eight steps, as depicted in the figure below. (1) Data acquisition: text data are collected from disparate sources. Examples are webpage scrapping, numerization of old administrative records, collection of tweets through an API, etc. (2) Text cleaning and (3) text preprocessing require the analyst to prepare the text in such a way that text information can be read by a statistical software. Most importantly, cleaning and preprocessing are important to remove all the ``noise'' from the text and get the relevant information. For instance, in many applications, punctuation and so-called ``stopwords'' are removed. At this step, text information is ``transformed'' into a matrix. (4) Feature engineering is the process of using domain knowledge to extract features (characteristics, properties, attributes) from raw data. The extraction of the relevant and meaningful features from the text must make sense and be informative in light of the context.
+
+In this introduction, we will focus on steps (1) to (4). Steps (5) to (8) are beyond the scope of a data handling course, as they involve modeling the text through machine learning or other statistical methods, deploying these models for statistical analyses (for research or industrial purpose), and the plausibilization of such models.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{img/nlp} 
+
+}
+
+\caption{Illustration of a NLP pipeline.}\label{fig:nlp}
+\end{figure}
+
+
+
+\hfill\break
+
+\hypertarget{one-package-to-rule-them-all-quanteda}{%
+\section{One Package To Rule Them All: Quanteda}\label{one-package-to-rule-them-all-quanteda}}
+
+In R, steps (2) to (4) can be performed using the \texttt{quanteda} or the \texttt{tidytext} package. \texttt{tidytext} works very well with the packages of the \texttt{tidyverse} family, such as \texttt{dplyr} or \texttt{tidyr}. This package converts text to and from tidy formats.
+
+The package \texttt{quanteda} remains, however, the most complete and go-to package for text analysis in R. It allows R users to perform all the preprocessing steps very easily, and provides all the functions necessary for preprocessing, visualization, and even statistical analyses of the corpus.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(}
+\NormalTok{    tidytext,}
+\NormalTok{    quanteda,}
+\NormalTok{    readtext,}
+\NormalTok{    stringr,}
+\NormalTok{    quanteda.textstats,}
+\NormalTok{    quanteda.textplots}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+\hypertarget{from-raw-text-to-corpus-step-1}{%
+\subsection{From raw text to corpus: step (1)}\label{from-raw-text-to-corpus-step-1}}
+
+The base, raw material, of quantitative text analysis is a \textbf{corpus}. A corpus is, in NLP, \emph{a collection of authentic text organized into datasets}. A corpus can be made up of everything from newspapers, novels, recipes, radio broadcasts to television shows, movies, and tweets. Typically, the data structure of a corpus organizes the individual text documents (e.g., tweets) as individual components of a larger object (the entire corpus), whereby each document-component is linked to its corresponding metadata-component (containing data describing the characteristics of a document; e.g., the timestamp a tweet was posted, the author of the tweet, etc.). The following figure illustrates this data structure for a generic text corpus.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.25\linewidth]{img/text_corpus} 
+
+}
+
+\caption{Illustration of the data structure behind a text corpus.}\label{fig:corpus}
+\end{figure}
+
+
+
+In the specific case of \texttt{quanteda}, a corpus is a \textbf{a data frame consisting of a character vector for documents, and additional vectors for document-level variables}. In other words, a corpus is a data frame that contains, in each row, a text document, and additional columns with the corresponding metadata about the text.
+
+Text in a raw form is often found in a \texttt{.json} format (after web scraping), in a \texttt{.csv} format, or in simple \texttt{.txt} files. The first task is then to import the text data in R and transform it as a corpus. For this introduction, we will use the \texttt{inauguration} corpus from \texttt{quanteda}, which is a standard corpus used in introductory text analysis. It contains the inauguration discourses of the five first US presidents. This text data can be loaded from the \texttt{readtext} package. The text is contained in a csv file, and is loaded with the \texttt{read.csv()} function. The metadata of this corpus is the year of the inauguration and the name of the president taking office.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# set path}
+\NormalTok{path\_data }\OtherTok{\textless{}{-}} \FunctionTok{system.file}\NormalTok{(}\StringTok{"extdata/"}\NormalTok{, }\AttributeTok{package =} \StringTok{"readtext"}\NormalTok{)}
+
+\CommentTok{\# import csv file}
+\NormalTok{dat\_inaug }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(path\_data, }\StringTok{"/csv/inaugCorpus.csv"}\NormalTok{))}
+\FunctionTok{names}\NormalTok{(dat\_inaug)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "texts"     "Year"      "President" "FirstName"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a corpus}
+\NormalTok{corp }\OtherTok{\textless{}{-}} \FunctionTok{corpus}\NormalTok{(dat\_inaug, }\AttributeTok{text\_field =} \StringTok{"texts"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(corp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Corpus consisting of 5 documents and 3 docvars.
+## text1 :
+## "Fellow-Citizens of the Senate and of the House of Representa..."
+## 
+## text2 :
+## "Fellow citizens, I am again called upon by the voice of my c..."
+## 
+## text3 :
+## "When it was first perceived, in early times, that no middle ..."
+## 
+## text4 :
+## "Friends and Fellow Citizens: Called upon to undertake the du..."
+## 
+## text5 :
+## "Proceeding, fellow citizens, to that qualification which the..."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Look at the metadata in the corpus using \textasciigrave{}docvars\textasciigrave{}}
+\FunctionTok{docvars}\NormalTok{(corp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Year  President FirstName
+## 1 1789 Washington    George
+## 2 1793 Washington    George
+## 3 1797      Adams      John
+## 4 1801  Jefferson    Thomas
+## 5 1805  Jefferson    Thomas
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# In quanteda, the metadata in a corpus can be handled like data frames.}
+\FunctionTok{docvars}\NormalTok{(corp, }\AttributeTok{field =} \StringTok{"Century"}\NormalTok{) }\OtherTok{\textless{}{-}} \FunctionTok{floor}\NormalTok{(}\FunctionTok{docvars}\NormalTok{(corp, }\AttributeTok{field =} \StringTok{"Year"}\NormalTok{) }\SpecialCharTok{/} \DecValTok{100}\NormalTok{) }\SpecialCharTok{+} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+\hypertarget{text-the-traditional-way-regular-expressions}{%
+\subsubsection{Text the traditional way: regular expressions}\label{text-the-traditional-way-regular-expressions}}
+
+A first basic step to extract simple information from written information is to use traditional \textbf{regular expressions}. Regular expressions are a flexible syntax used to detect and describe patterns in strings. They are used not only in R, but in other softwares. For an introduction, see \url{https://rstudio-pubs-static.s3.amazonaws.com/74603_76cd14d5983f47408fdf0b323550b846.html}. Regular expressions in R can be used with \texttt{base} R, but also with more practical packages such as \texttt{stringr} and \texttt{stringi}.
+
+In the following example, we use regular expressions to count the number of occurences of the word \emph{peace} in the inaugural discourses using the command \texttt{str\_count()} from \texttt{stringr}. In an additional step, we count the number of occurences of the pronoun ``I''. Finally, we program a regular expression to extract the first five words of each discourse.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Count occurences of the word "peace"}
+\FunctionTok{str\_count}\NormalTok{(corp, }\StringTok{"[Pp]eace"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0 0 5 7 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Count occurences of the words "peace" OR "war"}
+\FunctionTok{str\_count}\NormalTok{(corp, }\StringTok{"[Pp]eace|[Ww]ar"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  1  0 10 10  8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Count occurences of the mention of the first person pronoun "I"}
+\FunctionTok{str\_count}\NormalTok{(corp, }\StringTok{"I"}\NormalTok{) }\CommentTok{\# counts the number of "I" occurences. This is not what we want.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 30  6 24 23 28
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str\_count}\NormalTok{(corp, }\StringTok{"[I][[:space:]]"}\NormalTok{) }\CommentTok{\# counts the number of "I" followed by a space.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 23  6 13 21 18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Extract the first five words of each discourse}
+\FunctionTok{str\_extract}\NormalTok{(corp, }\StringTok{"\^{}(}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{S+}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{s|[[:punct:]]|}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{n)\{5\}"}\NormalTok{) }\CommentTok{\# \^{}serves to anchor at the beginning of the string, ()\{5\} shows the group of signs must be detected five times. \textbackslash{}S if for any non{-}space character,  \textbackslash{}s is for space, [[:punct:]] for punctuation, and \textbackslash{}n for the string representation of paragraphs. Basically, it means: five the first five occurences of many non{-}space characters (+) followed either (|) by a space, a punctuation sign, or a paragraph sign.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Fellow-Citizens of the Senate and "   
+## [2] "Fellow citizens, I am again "         
+## [3] "When it was first perceived, "        
+## [4] "Friends and Fellow Citizens:\n\n"     
+## [5] "Proceeding, fellow citizens, to that "
+\end{verbatim}
+
+\hfill\break
+
+\hypertarget{from-corpus-to-tokens-steps-2-and-3}{%
+\subsection{From corpus to tokens: steps (2) and (3)}\label{from-corpus-to-tokens-steps-2-and-3}}
+
+Once we have a corpus, we want to extract the substance of the text. This means, in \texttt{quanteda} language, that we want to extract \textbf{tokens}, i.e.~to isolate the elements that constitute a corpus in order to, in a second phase, to quantify them. Basically, tokens are expressions that form the building blocks (both grammatically and from a meaning perspective) of the text. In many quantitative text analyses, researchers want to remove all words that are unlikely to be informative of a document's content. This means that punctuation as well as so-called ``stopwords'' (e.g.~``and'', ``a'', ``the'', ``or'', ``but'', etc.) are removed.
+
+In our example, we first create tokens from each document of our corpus. For instance, the first document of the corpus is made out of 1537 tokens. Most of these tokens are not relevant. So we proceed by removing punctuation and stopwords. \texttt{quanteda} has a built-in list of stopwords in English. We also want to remove the words \emph{fellow} and \emph{citizens}, as those words appear in each document.
+
+Finally, not only are tokens for single words interesting, but also tokens of combined words (called ``N-grams''). N-grams are a sequence of tokens from already tokenized text objects. Usually, these N-grams are generated in all possible combinations of tokens. For instance, if the expression ``not friendly'' appears often, we might lose valuable information when building tokens that do not account for the co-occurence of these terms. We identify bigrams with the word ``never''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{toks }\OtherTok{\textless{}{-}} \FunctionTok{tokens}\NormalTok{(corp)}
+\FunctionTok{head}\NormalTok{(toks[[}\DecValTok{1}\NormalTok{]], }\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Fellow-Citizens" "of"              "the"            
+##  [4] "Senate"          "and"             "of"             
+##  [7] "the"             "House"           "of"             
+## [10] "Representatives" ":"               "Among"          
+## [13] "the"             "vicissitudes"    "incident"       
+## [16] "to"              "life"            "no"             
+## [19] "event"           "could"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove punctuation}
+\NormalTok{toks }\OtherTok{\textless{}{-}} \FunctionTok{tokens}\NormalTok{(corp, }\AttributeTok{remove\_punct =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(toks[[}\DecValTok{1}\NormalTok{]], }\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Fellow-Citizens" "of"              "the"            
+##  [4] "Senate"          "and"             "of"             
+##  [7] "the"             "House"           "of"             
+## [10] "Representatives" "Among"           "the"            
+## [13] "vicissitudes"    "incident"        "to"             
+## [16] "life"            "no"              "event"          
+## [19] "could"           "have"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove stopwords}
+\FunctionTok{stopwords}\NormalTok{(}\StringTok{"en"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] "i"          "me"         "my"         "myself"    
+##   [5] "we"         "our"        "ours"       "ourselves" 
+##   [9] "you"        "your"       "yours"      "yourself"  
+##  [13] "yourselves" "he"         "him"        "his"       
+##  [17] "himself"    "she"        "her"        "hers"      
+##  [21] "herself"    "it"         "its"        "itself"    
+##  [25] "they"       "them"       "their"      "theirs"    
+##  [29] "themselves" "what"       "which"      "who"       
+##  [33] "whom"       "this"       "that"       "these"     
+##  [37] "those"      "am"         "is"         "are"       
+##  [41] "was"        "were"       "be"         "been"      
+##  [45] "being"      "have"       "has"        "had"       
+##  [49] "having"     "do"         "does"       "did"       
+##  [53] "doing"      "would"      "should"     "could"     
+##  [57] "ought"      "i'm"        "you're"     "he's"      
+##  [61] "she's"      "it's"       "we're"      "they're"   
+##  [65] "i've"       "you've"     "we've"      "they've"   
+##  [69] "i'd"        "you'd"      "he'd"       "she'd"     
+##  [73] "we'd"       "they'd"     "i'll"       "you'll"    
+##  [77] "he'll"      "she'll"     "we'll"      "they'll"   
+##  [81] "isn't"      "aren't"     "wasn't"     "weren't"   
+##  [85] "hasn't"     "haven't"    "hadn't"     "doesn't"   
+##  [89] "don't"      "didn't"     "won't"      "wouldn't"  
+##  [93] "shan't"     "shouldn't"  "can't"      "cannot"    
+##  [97] "couldn't"   "mustn't"    "let's"      "that's"    
+## [101] "who's"      "what's"     "here's"     "there's"   
+## [105] "when's"     "where's"    "why's"      "how's"     
+## [109] "a"          "an"         "the"        "and"       
+## [113] "but"        "if"         "or"         "because"   
+## [117] "as"         "until"      "while"      "of"        
+## [121] "at"         "by"         "for"        "with"      
+## [125] "about"      "against"    "between"    "into"      
+## [129] "through"    "during"     "before"     "after"     
+## [133] "above"      "below"      "to"         "from"      
+## [137] "up"         "down"       "in"         "out"       
+## [141] "on"         "off"        "over"       "under"     
+## [145] "again"      "further"    "then"       "once"      
+## [149] "here"       "there"      "when"       "where"     
+## [153] "why"        "how"        "all"        "any"       
+## [157] "both"       "each"       "few"        "more"      
+## [161] "most"       "other"      "some"       "such"      
+## [165] "no"         "nor"        "not"        "only"      
+## [169] "own"        "same"       "so"         "than"      
+## [173] "too"        "very"       "will"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{toks }\OtherTok{\textless{}{-}} \FunctionTok{tokens\_remove}\NormalTok{(toks, }\AttributeTok{pattern =} \FunctionTok{stopwords}\NormalTok{(}\StringTok{"en"}\NormalTok{))}
+\FunctionTok{head}\NormalTok{(toks[[}\DecValTok{1}\NormalTok{]], }\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Fellow-Citizens" "Senate"          "House"          
+##  [4] "Representatives" "Among"           "vicissitudes"   
+##  [7] "incident"        "life"            "event"          
+## [10] "filled"          "greater"         "anxieties"      
+## [13] "notification"    "transmitted"     "order"          
+## [16] "received"        "14th"            "day"            
+## [19] "present"         "month"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We can keep words we are interested in}
+\FunctionTok{tokens\_select}\NormalTok{(toks, }\AttributeTok{pattern =} \FunctionTok{c}\NormalTok{(}\StringTok{"peace"}\NormalTok{, }\StringTok{"war"}\NormalTok{, }\StringTok{"great*"}\NormalTok{, }\StringTok{"unit*"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Tokens consisting of 5 documents and 4 docvars.
+## text1 :
+## [1] "greater" "United"  "Great"   "United"  "united"  "great"  
+## [7] "great"   "united" 
+## 
+## text2 :
+## [1] "united"
+## 
+## text3 :
+##  [1] "war"    "great"  "United" "great"  "great"  "peace" 
+##  [7] "great"  "peace"  "peace"  "United" "peace"  "peace" 
+## [ ... and 2 more ]
+## 
+## text4 :
+##  [1] "greatness" "unite"     "unite"     "greater"   "peace"    
+##  [6] "peace"     "peace"     "war"       "peace"     "greatest" 
+## [11] "greatest"  "great"    
+## [ ... and 1 more ]
+## 
+## text5 :
+## [1] "United" "peace"  "great"  "war"    "war"    "War"   
+## [7] "peace"  "peace"  "peace"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove "fellow" and "citizen"}
+\NormalTok{toks }\OtherTok{\textless{}{-}} \FunctionTok{tokens\_remove}\NormalTok{(toks, }\AttributeTok{pattern =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"fellow*"}\NormalTok{,}
+    \StringTok{"citizen*"}\NormalTok{,}
+    \StringTok{"senate"}\NormalTok{,}
+    \StringTok{"house"}\NormalTok{,}
+    \StringTok{"representative*"}\NormalTok{,}
+    \StringTok{"constitution"}
+\NormalTok{))}
+
+\CommentTok{\# Build N{-}grams (onegrams, bigrams, and 3{-}grams)}
+\NormalTok{toks\_ngrams }\OtherTok{\textless{}{-}} \FunctionTok{tokens\_ngrams}\NormalTok{(toks, }\AttributeTok{n =} \DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)}
+
+\CommentTok{\# Build N{-}grams based on a structure: keep n{-}grams that containt a "not"}
+\NormalTok{toks\_neg\_bigram\_select }\OtherTok{\textless{}{-}} \FunctionTok{tokens\_select}\NormalTok{(toks\_ngrams, }\AttributeTok{pattern =} \FunctionTok{phrase}\NormalTok{(}\StringTok{"never\_*"}\NormalTok{))}
+\FunctionTok{head}\NormalTok{(toks\_neg\_bigram\_select[[}\DecValTok{1}\NormalTok{]], }\DecValTok{30}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "never_hear"            "never_expected"       
+## [3] "never_hear_veneration" "never_expected_nation"
+\end{verbatim}
+
+\hfill\break
+
+\hypertarget{from-tokens-to-document-term-matrix-dtm-steps-3-and-4}{%
+\subsection{From tokens to document-term-matrix (dtm): steps (3) and (4)}\label{from-tokens-to-document-term-matrix-dtm-steps-3-and-4}}
+
+The last step of our introduction is to make our collection of tokens usable for quantitative analysis, i.e.~to set the tokens into a structure that we can use to train machine learning models, compute statistics, word frequencies, or add to regression models.
+
+Tokens are usually represented as a document-term-matrix (dtm, also known as document-feature-matrix, dfm). dtms have as rows the document, and as columns the tokens. They contain the count frequency, or sometimes an indicator for whether a given token appears in a document. To create a dtm, we can use \texttt{quanteda}'s \texttt{dfm} command, as shown below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfmat }\OtherTok{\textless{}{-}} \FunctionTok{dfm}\NormalTok{(toks)}
+\FunctionTok{print}\NormalTok{(dfmat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Document-feature matrix of: 5 documents, 1,817 features (72.31% sparse) and 4 docvars.
+##        features
+## docs    among vicissitudes incident life event filled greater
+##   text1     1            1        1    1     2      1       1
+##   text2     0            0        0    0     0      0       0
+##   text3     4            0        0    2     0      0       0
+##   text4     1            0        0    1     0      0       1
+##   text5     7            0        0    2     0      0       0
+##        features
+## docs    anxieties notification transmitted
+##   text1         1            1           1
+##   text2         0            0           0
+##   text3         0            0           0
+##   text4         0            0           0
+##   text5         0            0           0
+## [ reached max_nfeat ... 1,807 more features ]
+\end{verbatim}
+
+Our dtm has five rows for our five documents, and 6,694 (!) columns. Each column is a single token. The dtm is 79.88\% sparse, which means that 79.88\% of the cells are 0. Handling such large matrices is not trivial, as the number of columns might in many cases increase much faster than the number of rows. For this reason, it is important to clean the text, to remove stopwords, and to be selective about which tokens are kept in the dtm. Moreover, it might sound like a good idea to include N-grams at first, but N-grams are less likely to be matched across documents, which increases the dimension and sparsity of the matrix even more.
+
+The importance of feature engineering and the need to use domain knowledge becomes clear at this point. Everyone working with text faces a tradeoff between quantity of information and quality of information. Moreover, dts that are too large will be difficult to model and used in subsequent analyses. Domain knowledge is necessary to reduce the dimensino of the dtm matrix. Because our dtm is too large and not informative, we want to trim it and remove columns based on their frequencies. When removing tokens that appear less than two times, we are left with a dtm of 72 columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfmat }\OtherTok{\textless{}{-}} \FunctionTok{dfm}\NormalTok{(toks)}
+\NormalTok{dfmat }\OtherTok{\textless{}{-}} \FunctionTok{dfm\_trim}\NormalTok{(dfmat, }\AttributeTok{min\_termfreq =} \DecValTok{2}\NormalTok{) }\CommentTok{\# remove tokens that appear less than 1 times}
+\end{Highlighting}
+\end{Shaded}
+
+~
+
+\hypertarget{from-dtm-to-analysis-and-insights}{%
+\subsection{From dtm to analysis and insights}\label{from-dtm-to-analysis-and-insights}}
+
+Dtms are the basis of all text analyses. From a dtm, we can train machine learning methods to predict the sentiment of a text, to classify the documents into clusters (for instance, classifying spam and non-spam emails), to retrieve missing information, or to predict the autorship.
+
+Very basic statistics about documents are the \textbf{top features} of each document, the frequency of expressions in the corpus
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{topfeatures}\NormalTok{(dfmat, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## government        may     public        can     people 
+##         40         38         30         27         27 
+##      shall    country      every         us    nations 
+##         23         22         20         20         18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tstat\_freq }\OtherTok{\textless{}{-}} \FunctionTok{textstat\_frequency}\NormalTok{(dfmat, }\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
+
+\FunctionTok{textplot\_wordcloud}\NormalTok{(dfmat, }\AttributeTok{max\_words =} \DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{datahandling_files/figure-latex/stats-1.pdf}
+
 \hypertarget{image-data}{%
 \chapter{Image data}\label{image-data}}
+
+\emph{This chapter has substantially benefitted from contributions by Michael Tüting (\href{https://github.com/MTueting}{MTueting})}.
 
 With the advent of broadband internet and efforts in digitizing analogue archives a large part of the world's available data is stored in the form of images (and moving images). Subsequent advances in computer vision (machine learning techniques focused on images and videos) have made usage of images for economic and social science purposes accessible to non-computer science researchers. Examples of how image data is used in economic research involve the quantification of urban appearance (based on the analysis of street-level images in cities, \citet{naik_etal2016}), the digitization of old text documents via optical character recognition (\citet{cesarini_etal2016}), and the measurement of economic development/wealth with nighttime light-intensity based on satellite image data (\citet{hodler_raschky2014}). In the following subsections, you will first explore the most common image formats, and how the data behind digital images is structured and stored.
 
@@ -2476,7 +3034,18 @@ This is meant to showcase some of the most frequent tasks related to images in R
 \hypertarget{basic-data-structure}{%
 \subsection{Basic data structure}\label{basic-data-structure}}
 
-Recall that raster images are stored as arrays (\(X\times Y \times Z\)). \(X\) and \(Y\) define the number of pixels in each column and row (width and height) of the image and \(Z\) the number of layers. Greyscale images usually have only one layer, whereas most colored images have 3 layers (in the case of RGB images).
+Recall that raster images are stored as arrays (\(X\times Y \times Z\)). \(X\) and \(Y\) define the number of pixels in each column and row (width and height) of the image and \(Z\) the number of layers. Greyscale images usually have only one layer, whereas most colored images have 3 layers (such as in the case of RGB images). The following figure illustrates this point based on a \(3 \times 3\) pixels bitmap image.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{img/rgb_structure} 
+
+}
+
+\caption{Illustration of a bitmap file data structure (with RGB schema). Panel A shows a 3x3 pixels bitmap image as it is shown on screen. Panel B illustrates the corresponding bitmap file's data structure: a three-dimensional array with 3x3 elements represents the image matrix in the three base screen colors red, green, and blue. As a reading example, consider the highlighted upper left pixel in A with the correspondingly highlighted values in the RGB array in B. The color of this pixel is RGB code 255 (full red), 51 (some green), and 51 (some blue): (255,51,51).}\label{fig:rgb}
+\end{figure}
+
+
 
 To get a better feeling for the corresponding data structure in R, we start with generating RGB-images step-by-step in R. First we generate three matrices (one for each base color), arrange these matrices in an array, and then save the plots to disk.
 
@@ -2535,11 +3104,11 @@ To get a better feeling for the corresponding data structure in R, we start with
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude
 \end{verbatim}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-79-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-81-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2550,8 +3119,8 @@ To get a better feeling for the corresponding data structure in R, we start with
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude
 \end{verbatim}
 
 \begin{Shaded}
@@ -2620,11 +3189,11 @@ To get a better feeling for the corresponding data structure in R, we start with
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude
 \end{verbatim}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-80-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-82-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2635,8 +3204,8 @@ To get a better feeling for the corresponding data structure in R, we start with
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude
 \end{verbatim}
 
 \begin{Shaded}
@@ -2705,11 +3274,11 @@ To get a better feeling for the corresponding data structure in R, we start with
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude
 \end{verbatim}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-81-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-83-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2720,8 +3289,8 @@ To get a better feeling for the corresponding data structure in R, we start with
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude
 \end{verbatim}
 
 \begin{Shaded}
@@ -2763,7 +3332,7 @@ standard normally distributed around 0:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-83-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-85-1.pdf}
 We first normalize them to a range of 0 to 1 using the formula:
 \(z_i = \frac{x_i - min(x)}{max(x)-min(x)}\)
 and subsequently multiply by 255:
@@ -2779,7 +3348,7 @@ and subsequently multiply by 255:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-84-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-86-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2826,11 +3395,11 @@ and subsequently multiply by 255:
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in .couldBeLonLat(x, warnings = warnings): CRS
-## is NA. Assuming it is longitude/latitude
+## Warning in .couldBeLonLat(x, warnings = warnings): CRS is NA.
+## Assuming it is longitude/latitude
 \end{verbatim}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-84-2.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-86-2.pdf}
 
 From the examples above, you recognize that in order to generate/manipulate raster images in R, we basically generate/manipulate matrices/arrays (i.e., structures very common to any data analytics task in R). Several additional R packages come with pre-defined functions for more advanced image manipulations in R.
 
@@ -2845,13 +3414,9 @@ From the examples above, you recognize that in order to generate/manipulate rast
 \end{Shaded}
 
 \begin{verbatim}
-## Linking to ImageMagick 6.9.11.60
-## Enabled features: fontconfig, freetype, fftw, heic, lcms, pango, webp, x11
-## Disabled features: cairo, ghostscript, raw, rsvg
-\end{verbatim}
-
-\begin{verbatim}
-## Using 12 threads
+## Linking to ImageMagick 6.9.12.3
+## Enabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp
+## Disabled features: fftw, ghostscript, x11
 \end{verbatim}
 
 \begin{Shaded}
@@ -2869,7 +3434,7 @@ From the examples above, you recognize that in order to generate/manipulate rast
 ## 1 PNG      220    445 sRGB       TRUE     73494 72x72
 \end{verbatim}
 
-\includegraphics[width=3.06in]{datahandling_files/figure-latex/unnamed-chunk-85-1}
+\includegraphics[width=3.06in]{datahandling_files/figure-latex/unnamed-chunk-87-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2878,7 +3443,7 @@ From the examples above, you recognize that in order to generate/manipulate rast
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=6.56in]{datahandling_files/figure-latex/unnamed-chunk-85-2}
+\includegraphics[width=6.56in]{datahandling_files/figure-latex/unnamed-chunk-87-2}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2887,7 +3452,7 @@ From the examples above, you recognize that in order to generate/manipulate rast
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=3.06in]{datahandling_files/figure-latex/unnamed-chunk-85-3}
+\includegraphics[width=3.06in]{datahandling_files/figure-latex/unnamed-chunk-87-3}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2896,10 +3461,12 @@ From the examples above, you recognize that in order to generate/manipulate rast
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=3.06in]{datahandling_files/figure-latex/unnamed-chunk-85-4}
+\includegraphics[width=3.06in]{datahandling_files/figure-latex/unnamed-chunk-87-4}
 
-\hypertarget{working-with-ocr-optical-character-recognition}{%
-\subsection{Working with OCR (Optical Character Recognition)}\label{working-with-ocr-optical-character-recognition}}
+\hypertarget{optical-character-recognition}{%
+\subsection{Optical Character Recognition}\label{optical-character-recognition}}
+
+A common context to encounter image data in empirical economic research is the digitization of old texts. In that context, oprical character recognition (OCR) is used to extract text from scanned images. For example, in a setting where an archive of old newspapers is digitized in order to analyze historical news reports. R provides a straightforward approach to OCR in which the input is an image file (e.g., a png-file) and the output is a character string.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2918,7 +3485,7 @@ From the examples above, you recognize that in order to generate/manipulate rast
 ## 1 PNG      806    550 sRGB       FALSE   714189 38x38
 \end{verbatim}
 
-\includegraphics[width=11.19in]{datahandling_files/figure-latex/unnamed-chunk-86-1}
+\includegraphics[width=11.19in]{datahandling_files/figure-latex/unnamed-chunk-88-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2929,17 +3496,18 @@ From the examples above, you recognize that in order to generate/manipulate rast
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=11.19in]{datahandling_files/figure-latex/unnamed-chunk-86-2}
+\includegraphics[width=11.19in]{datahandling_files/figure-latex/unnamed-chunk-88-2}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Extract text}
-\FunctionTok{cat}\NormalTok{(}\FunctionTok{image\_ocr}\NormalTok{(headline))}
+\NormalTok{headline\_text }\OtherTok{\textless{}{-}} \FunctionTok{image\_ocr}\NormalTok{(headline)}
+\FunctionTok{cat}\NormalTok{(headline\_text)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## The New Work Times. ==S=
+## The New Work Times. [==S=
 ## 
 ## TITANIC SINKS FOUR HOURS AFTER HITTING ICEBERG;
 ## 866 RESCUED BY CARPATHIA, PROBABLY 1250 PERISH;
@@ -2948,6 +3516,8 @@ From the examples above, you recognize that in order to generate/manipulate rast
 
 \hypertarget{vector-images-in-r}{%
 \section{Vector Images in R}\label{vector-images-in-r}}
+
+An alternative to storing figures in matrix/bitmap-based image-files are vector-based graphics. Vector-based formats are not stored in the form of arrays/matrices that contain the color information of each pixel of an image. Instead they define the shapes, colors and coordinates of the objects shown in an image. Typically such vector-based images are computer drawings, plots, maps, and blueprints of technical infstructure (and not, for example, photos). There are different specific file-formats to store vector-based graphics, but typically they use a nesting structure and basic syntax that is similar to or a version of XML. That is, in order to work with the basic data contained in such files, we often can use familiar functions like \texttt{read\_xml()}. To translate the basic vector-image data into images and modify these images additional packages such as \texttt{magick} are available. The following code example demonstrates these points. We first import the raw vector-image data of the R logo (stored as a SVG-file) as a XML-file into R. This allows us to have a closer look at the underlying data structure of such files. Then, we import it as an actual vector-based graphic via \texttt{image\_read\_svg()}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2966,9 +3536,9 @@ From the examples above, you recognize that in order to generate/manipulate rast
 \begin{verbatim}
 ## {xml_document}
 ## <svg preserveAspectRatio="xMidYMid" width="724" height="561" viewBox="0 0 724 561" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-## [1] <defs>\n  <linearGradient id="gradientFill-1" x1 ...
-## [2] <path d="M361.453,485.937 C162.329,485.937 0.906 ...
-## [3] <path d="M550.000,377.000 C550.000,377.000 571.8 ...
+## [1] <defs>\n  <linearGradient id="gradientFill-1" x1="0" x2="1 ...
+## [2] <path d="M361.453,485.937 C162.329,485.937 0.906,377.828 0 ...
+## [3] <path d="M550.000,377.000 C550.000,377.000 571.822,383.585 ...
 \end{verbatim}
 
 \begin{Shaded}
@@ -3014,10 +3584,7 @@ From the examples above, you recognize that in order to generate/manipulate rast
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=10.06in]{datahandling_files/figure-latex/unnamed-chunk-88-1}
-
-\hypertarget{example-maps}{%
-\subsection{Example: Maps}\label{example-maps}}
+\includegraphics[width=10.06in]{datahandling_files/figure-latex/unnamed-chunk-90-1}
 
 \hypertarget{data-sources-data-gathering-data-import}{%
 \chapter{Data Sources, Data Gathering, Data Import}\label{data-sources-data-gathering-data-import}}
@@ -3177,20 +3744,20 @@ In this case, we load a dataset called \texttt{swiss}. After loading it, the dat
 \end{Shaded}
 
 \begin{verbatim}
-##              Fertility Agriculture Examination
-## Courtelary        80.2        17.0          15
-## Delemont          83.1        45.1           6
-## Franches-Mnt      92.5        39.7           5
-## Moutier           85.8        36.5          12
-## Neuveville        76.9        43.5          17
-## Porrentruy        76.1        35.3           9
-##              Education Catholic Infant.Mortality
-## Courtelary          12     9.96             22.2
-## Delemont             9    84.84             22.2
-## Franches-Mnt         5    93.40             20.2
-## Moutier              7    33.77             20.3
-## Neuveville          15     5.16             20.6
-## Porrentruy           7    90.57             26.6
+##              Fertility Agriculture Examination Education
+## Courtelary        80.2        17.0          15        12
+## Delemont          83.1        45.1           6         9
+## Franches-Mnt      92.5        39.7           5         5
+## Moutier           85.8        36.5          12         7
+## Neuveville        76.9        43.5          17        15
+## Porrentruy        76.1        35.3           9         7
+##              Catholic Infant.Mortality
+## Courtelary       9.96             22.2
+## Delemont        84.84             22.2
+## Franches-Mnt    93.40             20.2
+## Moutier         33.77             20.3
+## Neuveville       5.16             20.6
+## Porrentruy      90.57             26.6
 \end{verbatim}
 
 To get a list of all the built-in datasets, type \texttt{data()} into the console and hit enter. To get more information about a given dataset, use the help function (e.g., \texttt{?swiss})
@@ -3308,10 +3875,10 @@ For example, we can parse the first lines of the swiss dataset directly like thi
 \end{verbatim}
 
 \begin{verbatim}
-## -- Column specification -------------------------------
+## -- Column specification -----------------------------------------
 ## Delimiter: ","
 ## chr (1): District
-## dbl (6): Fertility, Agriculture, Examination, Educa...
+## dbl (6): Fertility, Agriculture, Examination, Education, Cath...
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -3319,13 +3886,10 @@ For example, we can parse the first lines of the swiss dataset directly like thi
 
 \begin{verbatim}
 ## # A tibble: 1 x 7
-##   District   Fertility Agricu~1 Exami~2 Educa~3 Catho~4
-##   <chr>          <dbl>    <dbl>   <dbl>   <dbl>   <dbl>
-## 1 Courtelary      80.2       17      15      12    9.96
-## # ... with 1 more variable: Infant.Mortality <dbl>,
-## #   and abbreviated variable names 1: Agriculture,
-## #   2: Examination, 3: Education, 4: Catholic
-## # i Use `colnames()` to see all variable names
+##   District   Fertility Agriculture Examination Education Catholic
+##   <chr>          <dbl>       <dbl>       <dbl>     <dbl>    <dbl>
+## 1 Courtelary      80.2          17          15        12     9.96
+## # ... with 1 more variable: Infant.Mortality <dbl>
 \end{verbatim}
 
 or read the entire \texttt{swiss} dataset by pointing to the file
@@ -3338,10 +3902,10 @@ or read the entire \texttt{swiss} dataset by pointing to the file
 
 \begin{verbatim}
 ## Rows: 47 Columns: 7
-## -- Column specification -------------------------------
+## -- Column specification -----------------------------------------
 ## Delimiter: ","
 ## chr (1): District
-## dbl (6): Fertility, Agriculture, Examination, Educa...
+## dbl (6): Fertility, Agriculture, Examination, Education, Cath...
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -3357,23 +3921,20 @@ In either case, the result is a \texttt{tibble}:
 
 \begin{verbatim}
 ## # A tibble: 47 x 7
-##    District     Ferti~1 Agric~2 Exami~3 Educa~4 Catho~5
-##    <chr>          <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
-##  1 Courtelary      80.2    17        15      12    9.96
-##  2 Delemont        83.1    45.1       6       9   84.8 
-##  3 Franches-Mnt    92.5    39.7       5       5   93.4 
-##  4 Moutier         85.8    36.5      12       7   33.8 
-##  5 Neuveville      76.9    43.5      17      15    5.16
-##  6 Porrentruy      76.1    35.3       9       7   90.6 
-##  7 Broye           83.8    70.2      16       7   92.8 
-##  8 Glane           92.4    67.8      14       8   97.2 
-##  9 Gruyere         82.4    53.3      12       7   97.7 
-## 10 Sarine          82.9    45.2      16      13   91.4 
-## # ... with 37 more rows, 1 more variable:
-## #   Infant.Mortality <dbl>, and abbreviated variable
-## #   names 1: Fertility, 2: Agriculture,
-## #   3: Examination, 4: Education, 5: Catholic
-## # i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
+##    District  Fertility Agriculture Examination Education Catholic
+##    <chr>         <dbl>       <dbl>       <dbl>     <dbl>    <dbl>
+##  1 Courtela~      80.2        17            15        12     9.96
+##  2 Delemont       83.1        45.1           6         9    84.8 
+##  3 Franches~      92.5        39.7           5         5    93.4 
+##  4 Moutier        85.8        36.5          12         7    33.8 
+##  5 Neuvevil~      76.9        43.5          17        15     5.16
+##  6 Porrentr~      76.1        35.3           9         7    90.6 
+##  7 Broye          83.8        70.2          16         7    92.8 
+##  8 Glane          92.4        67.8          14         8    97.2 
+##  9 Gruyere        82.4        53.3          12         7    97.7 
+## 10 Sarine         82.9        45.2          16        13    91.4 
+## # ... with 37 more rows, and 1 more variable:
+## #   Infant.Mortality <dbl>
 \end{verbatim}
 
 The other \texttt{readr} functions have practically the same syntax and behavior. They are used for fixed-width files or CSV-type files with other delimiters than commas.
@@ -3396,7 +3957,7 @@ If \texttt{"12:00"} is an element of the vector \texttt{c("12:00",\ "midnight",\
 
 \begin{verbatim}
 ## Rows: 3 Columns: 2
-## -- Column specification -------------------------------
+## -- Column specification -----------------------------------------
 ## Delimiter: ","
 ## chr  (1): B
 ## time (1): A
@@ -3458,8 +4019,8 @@ There are several XML-parsers already implemented in R packages specifically wri
 \begin{verbatim}
 ## {xml_document}
 ## <customers>
-## [1] <person>\n  <name>John Doe</name>\n  <orders>\n  ...
-## [2] <person>\n  <name>Peter Pan</name>\n  <orders>\n ...
+## [1] <person>\n  <name>John Doe</name>\n  <orders>\n    <produc ...
+## [2] <person>\n  <name>Peter Pan</name>\n  <orders>\n    <produ ...
 \end{verbatim}
 
 The same package also has various functions to access, extract, and manipulate data from a parsed XML document. In the following code example, we have a look at the most useful functions for our purposes (see the package's \href{https://cran.r-project.org/web/packages/xml2/vignettes/modification.html}{vignette} for more details).
@@ -3477,8 +4038,8 @@ The same package also has various functions to access, extract, and manipulate d
 
 \begin{verbatim}
 ## {xml_nodeset (2)}
-## [1] <person>\n  <name>Peter Pan</name>\n  <orders>\n ...
-## [2] <person>\n  <name>John Doe</name>\n  <orders>\n  ...
+## [1] <person>\n  <name>Peter Pan</name>\n  <orders>\n    <produ ...
+## [2] <person>\n  <name>John Doe</name>\n  <orders>\n    <produc ...
 \end{verbatim}
 
 \begin{Shaded}
@@ -3490,7 +4051,7 @@ The same package also has various functions to access, extract, and manipulate d
 
 \begin{verbatim}
 ## {xml_nodeset (1)}
-## [1] <customers>\n  <person>\n    <name>John Doe</nam ...
+## [1] <customers>\n  <person>\n    <name>John Doe</name>\n    <o ...
 \end{verbatim}
 
 \begin{Shaded}
@@ -3926,10 +4487,23 @@ Mary Johnson & b & 1\\
 
 This \emph{long}/\emph{tidy} shape of the dataset has several advantages. First, it is now clear what the numeric values refer to. Second, it is much easier to filter/select the observations in this format.
 
-\hypertarget{pivoting-from-wide-to-long-gathering}{%
-\subsection{Pivoting from `wide to long' (``gathering'')}\label{pivoting-from-wide-to-long-gathering}}
+\hypertarget{pivoting-from-wide-to-long}{%
+\subsection{Pivoting from `wide to long'}\label{pivoting-from-wide-to-long}}
 
-In the \texttt{tidyverse} context, we call the transformation of columns to rows `pivoting from wide to long'. That is, we pivot columns into keys (or names) and values. A typical situation where this has to be done in applied data analysis is when a dataset contains several observations over time for the same subjects. To illustrate how \emph{pivoting from wide to long} works in practice, consider the following example dataset (extending on the example above).
+In the \texttt{tidyverse} context, we call the transformation of columns to rows `pivoting from wide to long'. That is, we pivot columns into keys (or names) and values. A typical situation where this has to be done in applied data analysis is when a dataset contains several observations over time for the same subjects. The following figure illustrates the basic concept. On the left, you see a wide data frame, which is not in line with the tidy data concept. Reshaping it to long format yields the new data frame on the right.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.4\linewidth]{img/reshape} 
+
+}
+
+\caption{Reshaping of a data frame from wide to long format.}\label{fig:widetolong}
+\end{figure}
+
+
+
+To illustrate how \emph{pivoting from wide to long} works in practice, consider the following example dataset (extending on the example above).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4059,7 +4633,7 @@ This tutorial guides you step-by-step through the cleaning script (with a few ad
 
 The aim of the tutorial is to get the data in the form needed for the following plot.
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-141-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 The first few rows and columns of the final dataset should combine the two source datasets and look as follows:
 
@@ -4071,22 +4645,21 @@ The first few rows and columns of the final dataset should combine the two sourc
 
 \begin{verbatim}
 ## # A tibble: 6 x 32
-##   hotel is_ca~1 lead_~2 arriv~3 arriv~4 arriv~5 arriv~6
-##   <chr>   <dbl>   <dbl>   <dbl> <chr>     <dbl>   <dbl>
-## 1 Reso~       0     342    2015 July         27       1
-## 2 Reso~       0     737    2015 July         27       1
-## 3 Reso~       0       7    2015 July         27       1
-## 4 Reso~       0      13    2015 July         27       1
-## 5 Reso~       0      14    2015 July         27       1
-## 6 Reso~       0      14    2015 July         27       1
-## # ... with 25 more variables:
-## #   stays_in_weekend_nights <dbl>,
-## #   stays_in_week_nights <dbl>, adults <dbl>,
-## #   children <dbl>, babies <dbl>, meal <chr>,
+##   hotel   is_canceled lead_time arrival_date_ye~ arrival_date_mo~
+##   <chr>         <dbl>     <dbl>            <dbl> <chr>           
+## 1 Resort~           0       342             2015 July            
+## 2 Resort~           0       737             2015 July            
+## 3 Resort~           0         7             2015 July            
+## 4 Resort~           0        13             2015 July            
+## 5 Resort~           0        14             2015 July            
+## 6 Resort~           0        14             2015 July            
+## # ... with 27 more variables: arrival_date_week_number <dbl>,
+## #   arrival_date_day_of_month <dbl>,
+## #   stays_in_weekend_nights <dbl>, stays_in_week_nights <dbl>,
+## #   adults <dbl>, children <dbl>, babies <dbl>, meal <chr>,
 ## #   country <chr>, market_segment <chr>,
-## #   distribution_channel <chr>,
-## #   is_repeated_guest <dbl>, ...
-## # i Use `colnames()` to see all variable names
+## #   distribution_channel <chr>, is_repeated_guest <dbl>,
+## #   previous_cancellations <dbl>, ...
 \end{verbatim}
 
 \hypertarget{set-up-and-import}{%
@@ -4137,22 +4710,21 @@ In the next step, we clean the column names and add columns to clarify which of 
 
 \begin{verbatim}
 ## # A tibble: 6 x 32
-##   is_canceled lead_time arriv~1 arriv~2 arriv~3 arriv~4
-##         <dbl>     <dbl>   <dbl> <chr>     <dbl>   <dbl>
-## 1           0       342    2015 July         27       1
-## 2           0       737    2015 July         27       1
-## 3           0         7    2015 July         27       1
-## 4           0        13    2015 July         27       1
-## 5           0        14    2015 July         27       1
-## 6           0        14    2015 July         27       1
-## # ... with 26 more variables:
-## #   stays_in_weekend_nights <dbl>,
-## #   stays_in_week_nights <dbl>, adults <dbl>,
-## #   children <dbl>, babies <dbl>, meal <chr>,
+##   is_canceled lead_time arrival_date_year arrival_date_month
+##         <dbl>     <dbl>             <dbl> <chr>             
+## 1           0       342              2015 July              
+## 2           0       737              2015 July              
+## 3           0         7              2015 July              
+## 4           0        13              2015 July              
+## 5           0        14              2015 July              
+## 6           0        14              2015 July              
+## # ... with 28 more variables: arrival_date_week_number <dbl>,
+## #   arrival_date_day_of_month <dbl>,
+## #   stays_in_weekend_nights <dbl>, stays_in_week_nights <dbl>,
+## #   adults <dbl>, children <dbl>, babies <dbl>, meal <chr>,
 ## #   country <chr>, market_segment <chr>,
-## #   distribution_channel <chr>,
-## #   is_repeated_guest <dbl>, ...
-## # i Use `colnames()` to see all variable names
+## #   distribution_channel <chr>, is_repeated_guest <dbl>,
+## #   previous_cancellations <dbl>, ...
 \end{verbatim}
 
 \hypertarget{data-analysis-first-steps}{%
@@ -4160,8 +4732,8 @@ In the next step, we clean the column names and add columns to clarify which of 
 
 In the first part of this chapter, we look at some key functions for applied data analysis in R. At this point, we have already implemented collecting/importing and cleaning the raw data. The analysis part can be thought of as a collection of tasks with the aim of making sense of the data. In practice, this can be explorative (discovering interesting patterns in the data) or inductive (testing of a specific hypothesis). Moreover, it typically involves functions for actual statistical analysis and various functions to select, combine, filter, and aggregate data. Similar to the topic of data cleaning/preparation, covering all aspects of applied data analysis with R goes well beyond the scope of one chapter. The aim is thus to give a practical overview of some of the basic concepts and their corresponding R functions (here from \texttt{tidyverse}).
 
-\hypertarget{merging-datasets}{%
-\section{Merging datasets}\label{merging-datasets}}
+\hypertarget{mergingjoining-datasets}{%
+\section{Merging/joining datasets}\label{mergingjoining-datasets}}
 
 The following two data sets contain data on persons' characteristics and their consumption spending. Both are cleaned datasets. But, for analysis purposes, we have to combine the two datasets. There are several ways to do this in R, but most commonly (for \texttt{data.frames} as well as \texttt{tibbles}), we can use the \texttt{merge()}-function.
 
@@ -4218,23 +4790,16 @@ Our aim is to compute the average spending by profession. Therefore, we want to 
 \end{Shaded}
 
 \begin{verbatim}
-##   id first_name     profession money_spent currency
-## 1  1       Anna      Economist        1000      CHF
-## 2  1       Anna      Economist        1500      EUR
-## 3  2      Betty Data Scientist        2000      CHF
-## 4  2      Betty Data Scientist        3000      CHF
-## 5  3     Claire Data Scientist        6000      USD
-## 6  3     Claire Data Scientist        5500      USD
-##   year
-## 1 2017
-## 2 2018
-## 3 2017
-## 4 2018
-## 5 2017
-## 6 2018
+##   id first_name     profession money_spent currency year
+## 1  1       Anna      Economist        1000      CHF 2017
+## 2  1       Anna      Economist        1500      EUR 2018
+## 3  2      Betty Data Scientist        2000      CHF 2017
+## 4  2      Betty Data Scientist        3000      CHF 2018
+## 5  3     Claire Data Scientist        6000      USD 2017
+## 6  3     Claire Data Scientist        5500      USD 2018
 \end{verbatim}
 
-Note how only the exact matches are merged. The observation of \texttt{"Diane"} is not part of the merged data frame because there is no corresponding row in \texttt{df\_c} with her spending information. If for some reason, we would like to have all persons in the merged dataset, we can specify the \texttt{merge()}-call accordingly:
+Note how only the exact matches are merged. The observation of \texttt{"Diane"} is not part of the merged data frame because there is no corresponding row in \texttt{df\_c} with her spending information. This approach to merging two data sets (only keeping the matched rows on both sides) is often referred to as an \emph{inner join}. If for some reason, we would like to have all persons in the merged dataset, we can specify the \texttt{merge()}-call accordingly:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4244,23 +4809,69 @@ Note how only the exact matches are merged. The observation of \texttt{"Diane"} 
 \end{Shaded}
 
 \begin{verbatim}
-##   id first_name     profession money_spent currency
-## 1  1       Anna      Economist        1000      CHF
-## 2  1       Anna      Economist        1500      EUR
-## 3  2      Betty Data Scientist        2000      CHF
-## 4  2      Betty Data Scientist        3000      CHF
-## 5  3     Claire Data Scientist        6000      USD
-## 6  3     Claire Data Scientist        5500      USD
-## 7  4      Diane      Economist          NA     <NA>
-##   year
-## 1 2017
-## 2 2018
-## 3 2017
-## 4 2018
-## 5 2017
-## 6 2018
-## 7   NA
+##   id first_name     profession money_spent currency year
+## 1  1       Anna      Economist        1000      CHF 2017
+## 2  1       Anna      Economist        1500      EUR 2018
+## 3  2      Betty Data Scientist        2000      CHF 2017
+## 4  2      Betty Data Scientist        3000      CHF 2018
+## 5  3     Claire Data Scientist        6000      USD 2017
+## 6  3     Claire Data Scientist        5500      USD 2018
+## 7  4      Diane      Economist          NA     <NA>   NA
 \end{verbatim}
+
+this version of merging two data sets is also often referred to as an \emph{outer join}.
+
+Finally, you might be in a situation in which keeping all rows of the first (left) dataset or the ones of the second (right) dataset makes sense, but not both. You can do this by specifying \texttt{all.x=TRUE} (keep all rows of the first dataset) or \texttt{all.y=TRUE} (keep all of the second dataset). These types of merging datasets are often also referred to \emph{left join} and \emph{right join}, respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# left join}
+\NormalTok{df\_merged3 }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(df\_p, df\_c, }\AttributeTok{by=}\StringTok{"id"}\NormalTok{, }\AttributeTok{all.x =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{df\_merged3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id first_name     profession money_spent currency year
+## 1  1       Anna      Economist        1000      CHF 2017
+## 2  1       Anna      Economist        1500      EUR 2018
+## 3  2      Betty Data Scientist        2000      CHF 2017
+## 4  2      Betty Data Scientist        3000      CHF 2018
+## 5  3     Claire Data Scientist        6000      USD 2017
+## 6  3     Claire Data Scientist        5500      USD 2018
+## 7  4      Diane      Economist          NA     <NA>   NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# right join}
+\NormalTok{df\_merged4 }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(df\_p, df\_c, }\AttributeTok{by=}\StringTok{"id"}\NormalTok{, }\AttributeTok{all.y =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{df\_merged4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id first_name     profession money_spent currency year
+## 1  1       Anna      Economist        1000      CHF 2017
+## 2  1       Anna      Economist        1500      EUR 2018
+## 3  2      Betty Data Scientist        2000      CHF 2017
+## 4  2      Betty Data Scientist        3000      CHF 2018
+## 5  3     Claire Data Scientist        6000      USD 2017
+## 6  3     Claire Data Scientist        5500      USD 2018
+\end{verbatim}
+
+The following figure illustrates the four types of joins.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.99\linewidth]{img/joins} 
+
+}
+
+\caption{Different approaches to merging two datasets: left join, right join, inner join, outer join.}\label{fig:joins}
+\end{figure}
+
+
 
 \hypertarget{selecting-subsets}{%
 \section{Selecting subsets}\label{selecting-subsets}}
@@ -4340,20 +4951,13 @@ Now we can define an additional variable with the money spent in CHF via \texttt
 \end{Shaded}
 
 \begin{verbatim}
-##   currency id year money_spent exchange_rate
-## 1      CHF  1 2017        1000           1.0
-## 2      CHF  2 2017        2000           1.0
-## 3      CHF  2 2018        3000           1.0
-## 4      EUR  1 2018        1500           1.2
-## 5      USD  3 2017        6000           0.9
-## 6      USD  3 2018        5500           0.9
-##   money_spent_chf
-## 1            1000
-## 2            2000
-## 3            3000
-## 4            1800
-## 5            5400
-## 6            4950
+##   currency id year money_spent exchange_rate money_spent_chf
+## 1      CHF  1 2017        1000           1.0            1000
+## 2      CHF  2 2017        2000           1.0            2000
+## 3      CHF  2 2018        3000           1.0            3000
+## 4      EUR  1 2018        1500           1.2            1800
+## 5      USD  3 2017        6000           0.9            5400
+## 6      USD  3 2018        5500           0.9            4950
 \end{verbatim}
 
 \hypertarget{aggregation-and-summary-statistics}{%
@@ -4498,24 +5102,21 @@ Before diving into the data import and cleaning, it is helpful to first open the
 
 \begin{verbatim}
 ## # A tibble: 61 x 11
-##    Rank...1 Name...2 Count...3 since 20~1 since~2 ...6 
-##    <chr>    <chr>        <dbl> <chr>      <chr>   <lgl>
-##  1 <NA>     <NA>            NA <NA>       <NA>    NA   
-##  2 1        OLIVER        6941 ­           +4      NA   
-##  3 2        JACK          5371 ­           -1      NA   
-##  4 3        HARRY         5308 ­           +6      NA   
-##  5 4        GEORGE        4869 +3         +13     NA   
-##  6 5        JACOB         4850 -1         +16     NA   
-##  7 6        CHARLIE       4831 -1         +6      NA   
-##  8 7        NOAH          4148 +4         +44     NA   
-##  9 8        WILLIAM       4083 +2         ­        NA   
-## 10 9        THOMAS        4075 -3         -6      NA   
-## # ... with 51 more rows, 5 more variables:
+##    Rank...1 Name...2 Count...3 `since 2014...4` `since 2005...5`
+##    <chr>    <chr>        <dbl> <chr>            <chr>           
+##  1 <NA>     <NA>            NA <NA>             <NA>            
+##  2 1        OLIVER        6941 ­                 +4              
+##  3 2        JACK          5371 ­                 -1              
+##  4 3        HARRY         5308 ­                 +6              
+##  5 4        GEORGE        4869 +3               +13             
+##  6 5        JACOB         4850 -1               +16             
+##  7 6        CHARLIE       4831 -1               +6              
+##  8 7        NOAH          4148 +4               +44             
+##  9 8        WILLIAM       4083 +2               ­                
+## 10 9        THOMAS        4075 -3               -6              
+## # ... with 51 more rows, and 6 more variables: ...6 <lgl>,
 ## #   Rank...7 <chr>, Name...8 <chr>, Count...9 <dbl>,
-## #   `since 2014...10` <chr>, `since 2005...11` <chr>,
-## #   and abbreviated variable names
-## #   1: `since 2014...4`, 2: `since 2005...5`
-## # i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
+## #   `since 2014...10` <chr>, `since 2005...11` <chr>
 \end{verbatim}
 
 Note that by default, \texttt{read\_excel()} ``repairs'' the column names of imported datasets to ensure all columns have unique names. We do not need to worry about the automatically assigned column names. However, some of the columns are not needed for analytics purposes. In addition, we note that some rows are empty (contain \texttt{NA} values). In the next step we \emph{select} only those columns needed and \emph{filter} incomplete observations out.
@@ -4570,7 +5171,6 @@ Finally, we re-arrange the data by stacking them in a three-column format.
 ##  9 9     THOMAS   4075
 ## 10 10    OSCAR    4066
 ## # ... with 104 more rows
-## # i Use `print(n = ...)` to see more rows
 \end{verbatim}
 
 \hypertarget{basic-econometrics-in-r}{%
@@ -4589,7 +5189,7 @@ The overarching goal of modern econometrics for such problems is to assess wheth
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.49\linewidth,height=0.49\textheight]{img/causal_diagram_endo} \includegraphics[width=0.49\linewidth,height=0.49\textheight]{img/causal_diagram_exo} 
+{\centering \includegraphics[width=0.6\linewidth]{img/causal_diagram} 
 
 }
 
@@ -4641,7 +5241,7 @@ We can illustrate how \(y\) changes when \(x\) increases by plotting the raw dat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-167-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-170-1.pdf}
 
 We see that while individual observations can be way off the true values (the red line), `on average' the observations seem to follow the true relationship between \(x\) and \(y\). We can look at this closely by computing the average observed \(y\)-values for different intervals along the \(x\)-axis.
 
@@ -4670,7 +5270,7 @@ We see that while individual observations can be way off the true values (the re
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-168-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-171-1.pdf}
 
 The average values are much closer to the real values. That is, we can `average out' the \(u\) to get a good estimate for the effect of \(x\) on \(y\) (to get an estimate of \(\beta\)). With this understanding, we can now formalize how to compute \(\beta\) (or, to be more precise, an estimate of it: \(\hat{\beta}\)). For simplicity, we take \(\alpha=30\) as given.
 
@@ -4697,7 +5297,7 @@ While the elements in \(\bar{u}\) are unobservable, we can use the rest to compu
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9076
+## [1] 0.9081
 \end{verbatim}
 
 \hypertarget{estimation-and-application}{%
@@ -4740,7 +5340,7 @@ First, look at how these two variables are jointly distributed with a scatter pl
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-172-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-175-1.pdf}
 There seems to be a positive relationship between the years of schooling and examination success. Considering the raw data, we can formulate the problem of estimating the parameters of interest (\(\alpha\) and \(\beta\)) as the question: What is the best way to draw a straight trend line through the cloud of dots? To further specify the problem, we need to specify a criterion to judge whether such a line `fits' the data well. A rather intuitive measure is the sum of the squared differences between the line and the actual data points on the \(y\)-axis. That is, we compare what \(y\)-value we would get for a given \(x\)-value according to our trend-line (i.e., the function defining this line) with the actual \(y\)-value in the data (for simplicity, we use the general formulation with \(y\) as the dependent and \(x\) as the explanatory variable).
 
 \hypertarget{derivation-and-implementation-of-ols-estimator}{%
@@ -4804,7 +5404,7 @@ Finally, we can visually inspect the estimated parameters (i.e., does the line f
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-174-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-177-1.pdf}
 
 The fit looks rather reasonable. There seems to be indeed a positive relationship between Education and Examination. In the next step, we would likely want to know whether we can say something meaningful about how precisely this relationship is measured statistically (i.e., how `significant' \(\hat{\beta}\) is). We will leave this issue for another class.
 
@@ -4852,8 +5452,7 @@ With one additional line of code, we can compute all the common statistics about
 ## (Intercept)  10.1275     1.2859    7.88  5.2e-10 ***
 ## Education     0.5795     0.0885    6.55  4.8e-08 ***
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 5.77 on 45 degrees of freedom
 ## Multiple R-squared:  0.488,  Adjusted R-squared:  0.476 
@@ -4986,11 +5585,11 @@ A few years back, statistician and computer scientist Leland Wilkinson wrote an 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{img/grammargraphics} 
+{\centering \includegraphics[width=0.4\linewidth]{img/gg} 
 
 }
 
-\caption{Illustration of the Grammar of Graphics concept.}\label{fig:gg}
+\caption{Illustration of the Grammar of Graphics concept.}\label{fig:gg2}
 \end{figure}
 
 
@@ -5043,20 +5642,20 @@ First, we load and inspect the data. Among other variables, it contains informat
 \end{Shaded}
 
 \begin{verbatim}
-##              Fertility Agriculture Examination
-## Courtelary        80.2        17.0          15
-## Delemont          83.1        45.1           6
-## Franches-Mnt      92.5        39.7           5
-## Moutier           85.8        36.5          12
-## Neuveville        76.9        43.5          17
-## Porrentruy        76.1        35.3           9
-##              Education Catholic Infant.Mortality
-## Courtelary          12     9.96             22.2
-## Delemont             9    84.84             22.2
-## Franches-Mnt         5    93.40             20.2
-## Moutier              7    33.77             20.3
-## Neuveville          15     5.16             20.6
-## Porrentruy           7    90.57             26.6
+##              Fertility Agriculture Examination Education
+## Courtelary        80.2        17.0          15        12
+## Delemont          83.1        45.1           6         9
+## Franches-Mnt      92.5        39.7           5         5
+## Moutier           85.8        36.5          12         7
+## Neuveville        76.9        43.5          17        15
+## Porrentruy        76.1        35.3           9         7
+##              Catholic Infant.Mortality
+## Courtelary       9.96             22.2
+## Delemont        84.84             22.2
+## Franches-Mnt    93.40             20.2
+## Moutier         33.77             20.3
+## Neuveville       5.16             20.6
+## Porrentruy      90.57             26.6
 \end{verbatim}
 
 As we do not only want to use this continuous measure in the data visualization, we generate an additional factor variable called \texttt{Religion} which has either the value \texttt{\textquotesingle{}Protestant\textquotesingle{}} or \texttt{\textquotesingle{}Catholic\textquotesingle{}} depending on whether more than 50 percent of the inhabitants of the province are Catholics.
@@ -5081,7 +5680,7 @@ We initiate the most basic plot with \texttt{ggplot()} by defining which data to
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-184-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-187-1}
 
 As we have not yet defined according to what rules the data shall be visualized, all we get is an empty `canvas' and the axes (with the respective label and ticks indicating the range of the values).
 
@@ -5097,7 +5696,7 @@ To actually plot the data, we have to define the `geometries', defined according
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-185-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-188-1}
 
 The result indicates a positive correlation between the level of education and how well draftees do in the examination. We want to understand this correlation better. Particularly what other factors could drive this picture?
 
@@ -5114,7 +5713,7 @@ According to a popular thesis, the protestant reformation and the spread of the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-186-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-189-1}
 
 Draftees from protestant districts tend to do generally better (which might indicate better primary schools or a generally stronger focus on the educational achievements of Protestant children). However, the relationship between education (beyond primary schools) and examination success seems to hold for either type of district.
 
@@ -5136,7 +5735,7 @@ Let's visualize this relationship more clearly by drawing trend lines through th
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-187-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-190-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5151,7 +5750,7 @@ Let's visualize this relationship more clearly by drawing trend lines through th
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-188-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-191-1}
 
 \hypertarget{additional-aesthetics}{%
 \subsubsection{Additional aesthetics}\label{additional-aesthetics}}
@@ -5171,7 +5770,7 @@ Knowing a little about Swiss history and geography, we realize that rural canton
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-189-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-192-1}
 
 The resulting picture is in line with what we have expected. Overall, the districts with a lower share of agricultural occupation tend to have higher levels of education and achievements in the examination.
 
@@ -5194,7 +5793,7 @@ Finally, there are countless options to refine the plot further. For example, we
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-190-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-193-1}
 
 In addition, the \texttt{theme()}-function allows changing almost every aspect of the plot (margins, font face, font size, etc.). For example, we might prefer to have the plot legend at the bottom and have larger axis labels.
 
@@ -5212,7 +5811,7 @@ In addition, the \texttt{theme()}-function allows changing almost every aspect o
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-191-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-194-1}
 
 Moreover, several theme templates offer ready-made designs for plots:
 
@@ -5230,7 +5829,7 @@ Moreover, several theme templates offer ready-made designs for plots:
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-192-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-195-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5246,7 +5845,7 @@ Moreover, several theme templates offer ready-made designs for plots:
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-193-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-196-1}
 
 \hypertarget{dynamic-documents}{%
 \section{Dynamic documents}\label{dynamic-documents}}
@@ -5312,22 +5911,21 @@ The original raw data is provided in a zip-file (compressed file). The code chun
 
 \begin{verbatim}
 ## # A tibble: 6 x 20
-##   measure     county  report_date cases deaths cases_~1
-##   <chr>       <chr>   <date>      <dbl>  <dbl>    <dbl>
-## 1 state_total Georgia 2020-02-01      0      0        0
-## 2 state_total Georgia 2020-02-02      0      0        0
-## 3 state_total Georgia 2020-02-03      0      0        0
-## 4 state_total Georgia 2020-02-04      0      0        0
-## 5 state_total Georgia 2020-02-05      0      0        0
-## 6 state_total Georgia 2020-02-06      0      0        0
-## # ... with 14 more variables: death_cum <dbl>,
-## #   moving_avg_cases <dbl>, moving_avg_deaths <dbl>,
-## #   antigen_cases <dbl>, probable_deaths <dbl>,
-## #   antigen_case_hospitalization <dbl>,
+##   measure     county report_date cases deaths cases_cum death_cum
+##   <chr>       <chr>  <date>      <dbl>  <dbl>     <dbl>     <dbl>
+## 1 state_total Georg~ 2020-02-01      0      0         0         0
+## 2 state_total Georg~ 2020-02-02      0      0         0         0
+## 3 state_total Georg~ 2020-02-03      0      0         0         0
+## 4 state_total Georg~ 2020-02-04      0      0         0         0
+## 5 state_total Georg~ 2020-02-05      0      0         0         0
+## 6 state_total Georg~ 2020-02-06      0      0         0         0
+## # ... with 13 more variables: moving_avg_cases <dbl>,
+## #   moving_avg_deaths <dbl>, antigen_cases <dbl>,
+## #   probable_deaths <dbl>, antigen_case_hospitalization <dbl>,
 ## #   confirmed_case_hospitalization <dbl>,
-## #   antigen_cases_cum <dbl>,
-## #   probable_deaths_cum <dbl>, total_cases <dbl>, ...
-## # i Use `colnames()` to see all variable names
+## #   antigen_cases_cum <dbl>, probable_deaths_cum <dbl>,
+## #   total_cases <dbl>, total_cases_cum <dbl>,
+## #   moving_avg_antigen_cases <dbl>, ...
 \end{verbatim}
 
 Once the data is imported, we select/filter the part of the dataset used in the original bar plot. Note the tidyverse-functions introduced in previous lectures to prepare an analytic dataset out of the raw data efficiently. At one point, we use the \texttt{order()}-function to order the observations according to the report date of covid cases. This is done when displaying the frequency of cases over time. This way, in the following plot, the x-axis serves as a time axis, displaying the date of the corresponding reported case numbers from the beginning of the observation period on the left to the end of the observation period on the right).
@@ -5358,7 +5956,7 @@ First, we show what the actual (honest) plot would essentially look like.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-197-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-200-1}
 
 There is no obvious downward trend visible. Now, let us look at what steps are involved in manipulating the visualization in order to give the wrong impression of a downward trend. Importantly, all the manipulation is purely done via the data plotting. We do not touch/manipulate the underlying data (such as removing observations or falsifying numbers).
 
@@ -5374,7 +5972,7 @@ Two things become apparent when comparing the original plot with what we have so
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-198-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-201-1}
 
 Note that the number of cases is not exactly the same as in the original. Quite the reason for this is that the numbers have been updated during May. Given that the overall pattern is very similar, there is no reason to believe that the actual numbers underlying the original figure had been manipulated too. Now, let us address the second aspect (ordering of bars per date). For this, we use the \texttt{group} aesthetic, indicating to \texttt{ggplot} that we want the number of cases to be used to order the bars within each point in time (date). Setting \texttt{position\_dodge2(reverse=TRUE)} simply means we want the bars per date to be ordered in decreasing order (per default, it would be increasing; try out the difference by changing it to \texttt{position\_dodge2(reverse=FALSE)} or simply \texttt{position\_dodge2()}).
 
@@ -5386,7 +5984,7 @@ Note that the number of cases is not exactly the same as in the original. Quite 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-199-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-202-1}
 
 This already looks much more like the original plot.
 
@@ -5422,7 +6020,7 @@ Finally, we tweaked the plot's theme to make it look more similar to the origina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-200-1}
+\includegraphics[width=0.85\linewidth]{datahandling_files/figure-latex/unnamed-chunk-203-1}
 
 \backmatter
 
@@ -5446,7 +6044,7 @@ Finally, we tweaked the plot's theme to make it look more similar to the origina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-201-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-1.pdf}
 
 \hypertarget{illustration-of-variability}{%
 \subsection{Illustration of variability}\label{illustration-of-variability}}
@@ -5465,7 +6063,7 @@ Finally, we tweaked the plot's theme to make it look more similar to the origina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-202-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-205-1.pdf}
 
 \textbf{Note:} the red curve illustrates the distribution of the sample with a large standard deviation (a lot of variability) whereas the blue curve illustrates the one with a rather small standard deviation.
 
@@ -5500,7 +6098,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-207-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5508,7 +6106,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-2.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-207-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5518,7 +6116,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -0.01866
+## [1] -0.04376
 \end{verbatim}
 
 \begin{Shaded}
@@ -5532,7 +6130,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-204-3.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-207-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5541,7 +6139,7 @@ Skewness refers to how symmetric the frequency distribution of a variable is. Fo
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.4765
+## [1] 0.5838
 \end{verbatim}
 
 \begin{Shaded}
@@ -5566,7 +6164,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-205-1.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-208-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5575,7 +6173,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.763
+## [1] 2.809
 \end{verbatim}
 
 \begin{Shaded}
@@ -5589,7 +6187,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{datahandling_files/figure-latex/unnamed-chunk-205-2.pdf}
+\includegraphics{datahandling_files/figure-latex/unnamed-chunk-208-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5599,7 +6197,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.888
+## [1] 1.832
 \end{verbatim}
 
 \begin{Shaded}
@@ -5621,7 +6219,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01567
+## [1] 0.02429
 \end{verbatim}
 
 \begin{Shaded}
@@ -5632,7 +6230,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01569
+## [1] 0.02432
 \end{verbatim}
 
 \textbf{Kurtosis}
@@ -5645,7 +6243,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.883
+## [1] 1.828
 \end{verbatim}
 
 \begin{Shaded}
@@ -5656,7 +6254,7 @@ Kurtosis refers to how much `mass' a distribution has in its `tails'. It thus te
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.888
+## [1] 1.832
 \end{verbatim}
 
 \hypertarget{the-law-of-large-numbers}{%
@@ -5693,7 +6291,7 @@ We can investigate this empirically: We roll a fair die once and record the resu
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.2
+## [1] 3.9
 \end{verbatim}
 
 As you can see we are relatively close to 3.5, but not quite there. So let's roll the die more often and calculate the mean of the resulting values again:
@@ -5709,7 +6307,7 @@ As you can see we are relatively close to 3.5, but not quite there. So let's rol
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.69
+## [1] 3.43
 \end{verbatim}
 
 We are already close to 3.5! Now let's scale up these comparisons and show how the sample means are getting even closer to 3.5 when increasing the number of times we roll the die up to 10'000.
@@ -5774,7 +6372,7 @@ The simplest way to interpret these measures is by means of a \emph{t-statistic}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.1671
+## [1] -1.349
 \end{verbatim}
 
 At this point you might wonder what the use of \texttt{t} is if the underlying data is not drawn from a normal distribution. In other words: what is the use of \texttt{t} if we cannot interpret it as a value that tells us how likely it is to observe this sample mean, given our null hypothesis? Well, actually we can. And here is where the magic of the CLT comes in: It turns out that there is a mathematical proof (i.e.~the CLT) which states that the t-statistic itself can arbitrarily well be approximated by the standard normal distribution. This is true independent of the distribution of the underlying data in our sample! That is, if we have a large enough sample, we can simply compute the t-statistic and look up how likely it is to observe a value at least as large as t, given the null hypothesis is true (-\textgreater{} the p-value):
@@ -5787,7 +6385,7 @@ At this point you might wonder what the use of \texttt{t} is if the underlying d
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.8673
+## [1] 0.1773
 \end{verbatim}
 
 In that case we could not reject the null hypothesis of a fair die. However, as pointed out above, the t-statistic is only asymptotically (meaning with very large samples) normally distributed. We might not want to trust this hypothesis test too much because we were using a sample of only 100 observations.
