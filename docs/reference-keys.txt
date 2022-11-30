@@ -29,6 +29,7 @@ fig:nlppipeline
 fig:corpus
 fig:rgb
 fig:widetolong
+fig:rowbinding
 fig:joins
 fig:causality
 fig:gg2
@@ -131,7 +132,9 @@ reshaping-datasets
 tidying-messy-datasets.
 pivoting-from-wide-to-long
 pivoting-from-long-to-wide-spreading
+stackingrow-binding-datasets
 tutorial-hotel-bookings-time-series
+background-and-aim
 set-up-and-import
 data-analysis-first-steps
 mergingjoining-datasets
@@ -164,7 +167,7 @@ additional-aesthetics
 coordinatesthemes-fine-tuning-the-plot
 dynamic-documents
 tutorial-how-to-give-the-wrong-impression-with-data-visualization
-background-and-aim
+background-and-aim-1
 data-import-and-preparation
 plot
 cosmetics-theme
