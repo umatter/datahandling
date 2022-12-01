@@ -549,7 +549,7 @@ div.csl-indent {
 <h3><span class="header-section-number">9.2.2</span> Pivoting from ‘wide to long’<a href="data-preparation.html#pivoting-from-wide-to-long" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the <code>tidyverse</code> context, we call the transformation of columns to rows ‘pivoting from wide to long’. That is, we pivot columns into keys (or names) and values. A typical situation where this has to be done in applied data analysis is when a dataset contains several observations over time for the same subjects. The following figure illustrates the basic concept. On the left, you see a wide data frame, which is not in line with the tidy data concept. Reshaping it to long format yields the new data frame on the right.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:widetolong"></span>
-<img src="img/reshape2.png" alt="Reshaping of a data frame from wide to long format." width="40%" />
+<img src="img/reshape2.jpg" alt="Reshaping of a data frame from wide to long format." width="40%" />
 <p class="caption">
 Figure 9.1: Reshaping of a data frame from wide to long format.
 </p>
@@ -640,7 +640,7 @@ Figure 9.1: Reshaping of a data frame from wide to long format.
 <p>Once all of the subsets are imported an cleaned, there is typically still one remaining inconsistency: some variables might be available in some subsets (e.g., for some years, some regions) but not for others. In addition, the column/variable-order might vary between subsets.</p>
 <p>Figure @refRow-binding/stacking three subsets into one combined dataset. illustrates the concept of stacking datasets (binding the rows of separate data frames) with some inconsistencies regarding the availability and order of columns.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:rowbinding"></span>
-<img src="img/rowbinding.png" alt="Row-binding/stacking three subsets into one combined dataset." width="40%" />
+<img src="img/rowbinding.jpg" alt="Row-binding/stacking three subsets into one combined dataset." width="40%" />
 <p class="caption">
 Figure 9.2: Row-binding/stacking three subsets into one combined dataset.
 </p>
