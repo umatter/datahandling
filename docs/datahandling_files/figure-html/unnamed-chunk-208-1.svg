@@ -21,29 +21,29 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<text x='266.40' y='34.70' text-anchor='middle' style='font-size: 14.40px; font-weight: bold; font-family: "Arial";' textLength='179.94px' lengthAdjust='spacingAndGlyphs'>Histogram of normal_distr</text>
-<text x='266.40' y='341.28' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='66.02px' lengthAdjust='spacingAndGlyphs'>normal_distr</text>
-<text transform='translate(12.96,172.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='56.69px' lengthAdjust='spacingAndGlyphs'>Frequency</text>
+<text x='266.40' y='34.77' text-anchor='middle' style='font-size: 14.40px; font-weight: bold; font-family: "Arimo";' textLength='212.46px' lengthAdjust='spacingAndGlyphs'>Histogram of normal_distr</text>
+<text x='266.40' y='341.28' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='74.92px' lengthAdjust='spacingAndGlyphs'>normal_distr</text>
+<text transform='translate(12.96,172.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='62.02px' lengthAdjust='spacingAndGlyphs'>Frequency</text>
 <line x1='74.40' y1='286.56' x2='458.40' y2='286.56' style='stroke-width: 0.75;' />
 <line x1='74.40' y1='286.56' x2='74.40' y2='293.76' style='stroke-width: 0.75;' />
 <line x1='170.40' y1='286.56' x2='170.40' y2='293.76' style='stroke-width: 0.75;' />
 <line x1='266.40' y1='286.56' x2='266.40' y2='293.76' style='stroke-width: 0.75;' />
 <line x1='362.40' y1='286.56' x2='362.40' y2='293.76' style='stroke-width: 0.75;' />
 <line x1='458.40' y1='286.56' x2='458.40' y2='293.76' style='stroke-width: 0.75;' />
-<text x='74.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='10.67px' lengthAdjust='spacingAndGlyphs'>-4</text>
-<text x='170.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='10.67px' lengthAdjust='spacingAndGlyphs'>-2</text>
-<text x='266.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='362.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='458.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='74.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-4</text>
+<text x='170.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-2</text>
+<text x='266.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='362.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='458.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>4</text>
 <line x1='59.04' y1='278.13' x2='59.04' y2='111.82' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='278.13' x2='51.84' y2='278.13' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='222.69' x2='51.84' y2='222.69' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='167.26' x2='51.84' y2='167.26' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='111.82' x2='51.84' y2='111.82' style='stroke-width: 0.75;' />
-<text transform='translate(41.76,278.13) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text transform='translate(41.76,222.69) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>50</text>
-<text transform='translate(41.76,167.26) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>100</text>
-<text transform='translate(41.76,111.82) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>150</text>
+<text transform='translate(41.76,278.13) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text transform='translate(41.76,222.69) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>50</text>
+<text transform='translate(41.76,167.26) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='22.92px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text transform='translate(41.76,111.82) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arimo";' textLength='22.92px' lengthAdjust='spacingAndGlyphs'>150</text>
 </g>
 <defs>
   <clipPath id='cpNTkuMDR8NDczLjc2fDU5LjA0fDI4Ni41Ng=='>

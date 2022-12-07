@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Data Analysis: First Steps | Data Handling Pocket Reference</title>
   <meta name="description" content="A guide to practical data handling with a focus on R and data analytics in economics and the social sciences." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Data Analysis: First Steps | Data Handling Pocket Reference" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-12-01" />
+<meta name="date" content="2022-12-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -384,15 +384,15 @@ div.csl-indent {
 <div id="mergingjoining-datasets" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Merging/joining datasets<a href="data-analysis-first-steps.html#mergingjoining-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The following two data sets contain data on persons’ characteristics and their consumption spending. Both are cleaned datasets. But, for analysis purposes, we have to combine the two datasets. There are several ways to do this in R, but most commonly (for <code>data.frames</code> as well as <code>tibbles</code>), we can use the <code>merge()</code>-function.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="data-analysis-first-steps.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb366-2"><a href="data-analysis-first-steps.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb366-3"><a href="data-analysis-first-steps.html#cb366-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-4"><a href="data-analysis-first-steps.html#cb366-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate data frame on persons&#39; spending</span></span>
-<span id="cb366-5"><a href="data-analysis-first-steps.html#cb366-5" aria-hidden="true" tabindex="-1"></a>df_c <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
-<span id="cb366-6"><a href="data-analysis-first-steps.html#cb366-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">money_spent=</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">6000</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">5500</span>),</span>
-<span id="cb366-7"><a href="data-analysis-first-steps.html#cb366-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">currency =</span> <span class="fu">c</span>(<span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;USD&quot;</span>, <span class="st">&quot;EUR&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;USD&quot;</span>),</span>
-<span id="cb366-8"><a href="data-analysis-first-steps.html#cb366-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">year=</span><span class="fu">c</span>(<span class="dv">2017</span>,<span class="dv">2017</span>,<span class="dv">2017</span>,<span class="dv">2018</span>,<span class="dv">2018</span>,<span class="dv">2018</span>))</span>
-<span id="cb366-9"><a href="data-analysis-first-steps.html#cb366-9" aria-hidden="true" tabindex="-1"></a>df_c</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="data-analysis-first-steps.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb367-2"><a href="data-analysis-first-steps.html#cb367-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb367-3"><a href="data-analysis-first-steps.html#cb367-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb367-4"><a href="data-analysis-first-steps.html#cb367-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate data frame on persons&#39; spending</span></span>
+<span id="cb367-5"><a href="data-analysis-first-steps.html#cb367-5" aria-hidden="true" tabindex="-1"></a>df_c <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
+<span id="cb367-6"><a href="data-analysis-first-steps.html#cb367-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">money_spent=</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">6000</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">5500</span>),</span>
+<span id="cb367-7"><a href="data-analysis-first-steps.html#cb367-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">currency =</span> <span class="fu">c</span>(<span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;USD&quot;</span>, <span class="st">&quot;EUR&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;USD&quot;</span>),</span>
+<span id="cb367-8"><a href="data-analysis-first-steps.html#cb367-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">year=</span><span class="fu">c</span>(<span class="dv">2017</span>,<span class="dv">2017</span>,<span class="dv">2017</span>,<span class="dv">2018</span>,<span class="dv">2018</span>,<span class="dv">2018</span>))</span>
+<span id="cb367-9"><a href="data-analysis-first-steps.html#cb367-9" aria-hidden="true" tabindex="-1"></a>df_c</span></code></pre></div>
 <pre><code>##   id money_spent currency year
 ## 1  1        1000      CHF 2017
 ## 2  2        2000      CHF 2017
@@ -400,20 +400,20 @@ div.csl-indent {
 ## 4  1        1500      EUR 2018
 ## 5  2        3000      CHF 2018
 ## 6  3        5500      USD 2018</code></pre>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="data-analysis-first-steps.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate data frame on persons&#39; characteristics</span></span>
-<span id="cb368-2"><a href="data-analysis-first-steps.html#cb368-2" aria-hidden="true" tabindex="-1"></a>df_p <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
-<span id="cb368-3"><a href="data-analysis-first-steps.html#cb368-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;Anna&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Diane&quot;</span>),</span>
-<span id="cb368-4"><a href="data-analysis-first-steps.html#cb368-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">profession =</span> <span class="fu">c</span>(<span class="st">&quot;Economist&quot;</span>, <span class="st">&quot;Data Scientist&quot;</span>,</span>
-<span id="cb368-5"><a href="data-analysis-first-steps.html#cb368-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">&quot;Data Scientist&quot;</span>, <span class="st">&quot;Economist&quot;</span>))</span>
-<span id="cb368-6"><a href="data-analysis-first-steps.html#cb368-6" aria-hidden="true" tabindex="-1"></a>df_p</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="data-analysis-first-steps.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate data frame on persons&#39; characteristics</span></span>
+<span id="cb369-2"><a href="data-analysis-first-steps.html#cb369-2" aria-hidden="true" tabindex="-1"></a>df_p <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb369-3"><a href="data-analysis-first-steps.html#cb369-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">first_name =</span> <span class="fu">c</span>(<span class="st">&quot;Anna&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Diane&quot;</span>),</span>
+<span id="cb369-4"><a href="data-analysis-first-steps.html#cb369-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">profession =</span> <span class="fu">c</span>(<span class="st">&quot;Economist&quot;</span>, <span class="st">&quot;Data Scientist&quot;</span>,</span>
+<span id="cb369-5"><a href="data-analysis-first-steps.html#cb369-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">&quot;Data Scientist&quot;</span>, <span class="st">&quot;Economist&quot;</span>))</span>
+<span id="cb369-6"><a href="data-analysis-first-steps.html#cb369-6" aria-hidden="true" tabindex="-1"></a>df_p</span></code></pre></div>
 <pre><code>##   id first_name     profession
 ## 1  1       Anna      Economist
 ## 2  2      Betty Data Scientist
 ## 3  3     Claire Data Scientist
 ## 4  4      Diane      Economist</code></pre>
 <p>Our aim is to compute the average spending by profession. Therefore, we want to link <code>money_spent</code> with <code>profession</code>. Both datasets contain a unique identifier <code>id</code>, which we can use to link the observations via <code>merge()</code>.</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="data-analysis-first-steps.html#cb370-1" aria-hidden="true" tabindex="-1"></a>df_merged <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>)</span>
-<span id="cb370-2"><a href="data-analysis-first-steps.html#cb370-2" aria-hidden="true" tabindex="-1"></a>df_merged</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="data-analysis-first-steps.html#cb371-1" aria-hidden="true" tabindex="-1"></a>df_merged <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>)</span>
+<span id="cb371-2"><a href="data-analysis-first-steps.html#cb371-2" aria-hidden="true" tabindex="-1"></a>df_merged</span></code></pre></div>
 <pre><code>##   id first_name     profession money_spent currency year
 ## 1  1       Anna      Economist        1000      CHF 2017
 ## 2  1       Anna      Economist        1500      EUR 2018
@@ -422,8 +422,8 @@ div.csl-indent {
 ## 5  3     Claire Data Scientist        6000      USD 2017
 ## 6  3     Claire Data Scientist        5500      USD 2018</code></pre>
 <p>Note how only the exact matches are merged. The observation of <code>"Diane"</code> is not part of the merged data frame because there is no corresponding row in <code>df_c</code> with her spending information. This approach to merging two data sets (only keeping the matched rows on both sides) is often referred to as an <em>inner join</em>. If for some reason, we would like to have all persons in the merged dataset, we can specify the <code>merge()</code>-call accordingly:</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="data-analysis-first-steps.html#cb372-1" aria-hidden="true" tabindex="-1"></a>df_merged2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb372-2"><a href="data-analysis-first-steps.html#cb372-2" aria-hidden="true" tabindex="-1"></a>df_merged2</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="data-analysis-first-steps.html#cb373-1" aria-hidden="true" tabindex="-1"></a>df_merged2 <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb373-2"><a href="data-analysis-first-steps.html#cb373-2" aria-hidden="true" tabindex="-1"></a>df_merged2</span></code></pre></div>
 <pre><code>##   id first_name     profession money_spent currency year
 ## 1  1       Anna      Economist        1000      CHF 2017
 ## 2  1       Anna      Economist        1500      EUR 2018
@@ -434,9 +434,9 @@ div.csl-indent {
 ## 7  4      Diane      Economist          NA     &lt;NA&gt;   NA</code></pre>
 <p>this version of merging two data sets is also often referred to as an <em>outer join</em>.</p>
 <p>Finally, you might be in a situation in which keeping all rows of the first (left) dataset or the ones of the second (right) dataset makes sense, but not both. You can do this by specifying <code>all.x=TRUE</code> (keep all rows of the first dataset) or <code>all.y=TRUE</code> (keep all of the second dataset). These types of merging datasets are often also referred to <em>left join</em> and <em>right join</em>, respectively.</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="data-analysis-first-steps.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="co"># left join</span></span>
-<span id="cb374-2"><a href="data-analysis-first-steps.html#cb374-2" aria-hidden="true" tabindex="-1"></a>df_merged3 <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb374-3"><a href="data-analysis-first-steps.html#cb374-3" aria-hidden="true" tabindex="-1"></a>df_merged3</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="data-analysis-first-steps.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="co"># left join</span></span>
+<span id="cb375-2"><a href="data-analysis-first-steps.html#cb375-2" aria-hidden="true" tabindex="-1"></a>df_merged3 <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb375-3"><a href="data-analysis-first-steps.html#cb375-3" aria-hidden="true" tabindex="-1"></a>df_merged3</span></code></pre></div>
 <pre><code>##   id first_name     profession money_spent currency year
 ## 1  1       Anna      Economist        1000      CHF 2017
 ## 2  1       Anna      Economist        1500      EUR 2018
@@ -445,9 +445,9 @@ div.csl-indent {
 ## 5  3     Claire Data Scientist        6000      USD 2017
 ## 6  3     Claire Data Scientist        5500      USD 2018
 ## 7  4      Diane      Economist          NA     &lt;NA&gt;   NA</code></pre>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="data-analysis-first-steps.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="co"># right join</span></span>
-<span id="cb376-2"><a href="data-analysis-first-steps.html#cb376-2" aria-hidden="true" tabindex="-1"></a>df_merged4 <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>, <span class="at">all.y =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb376-3"><a href="data-analysis-first-steps.html#cb376-3" aria-hidden="true" tabindex="-1"></a>df_merged4</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="data-analysis-first-steps.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="co"># right join</span></span>
+<span id="cb377-2"><a href="data-analysis-first-steps.html#cb377-2" aria-hidden="true" tabindex="-1"></a>df_merged4 <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_p, df_c, <span class="at">by=</span><span class="st">&quot;id&quot;</span>, <span class="at">all.y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb377-3"><a href="data-analysis-first-steps.html#cb377-3" aria-hidden="true" tabindex="-1"></a>df_merged4</span></code></pre></div>
 <pre><code>##   id first_name     profession money_spent currency year
 ## 1  1       Anna      Economist        1000      CHF 2017
 ## 2  1       Anna      Economist        1500      EUR 2018
@@ -467,8 +467,8 @@ Figure 10.1: Different approaches to merging two datasets: left join, right join
 <div id="selecting-subsets" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Selecting subsets<a href="data-analysis-first-steps.html#selecting-subsets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For our analysis’s next steps, we do not need to have all columns. Via the <code>select()</code>-function provided in <code>tidyverse</code> we can easily select the columns of interest:</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="data-analysis-first-steps.html#cb378-1" aria-hidden="true" tabindex="-1"></a>df_selection <span class="ot">&lt;-</span> <span class="fu">select</span>(df_merged, id, year, money_spent, currency)</span>
-<span id="cb378-2"><a href="data-analysis-first-steps.html#cb378-2" aria-hidden="true" tabindex="-1"></a>df_selection</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="data-analysis-first-steps.html#cb379-1" aria-hidden="true" tabindex="-1"></a>df_selection <span class="ot">&lt;-</span> <span class="fu">select</span>(df_merged, id, year, money_spent, currency)</span>
+<span id="cb379-2"><a href="data-analysis-first-steps.html#cb379-2" aria-hidden="true" tabindex="-1"></a>df_selection</span></code></pre></div>
 <pre><code>##   id year money_spent currency
 ## 1  1 2017        1000      CHF
 ## 2  1 2018        1500      EUR
@@ -480,13 +480,13 @@ Figure 10.1: Different approaches to merging two datasets: left join, right join
 <div id="filtering-datasets" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Filtering datasets<a href="data-analysis-first-steps.html#filtering-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the next step, we want to select only observations with specific characteristics. Say we want to select only observations from 2018. Again there are several ways to do this in R, but the most comfortable way is to use the <code>filter()</code> function provided in <code>tidyverse</code>.</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="data-analysis-first-steps.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_selection, year <span class="sc">==</span> <span class="dv">2018</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="data-analysis-first-steps.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_selection, year <span class="sc">==</span> <span class="dv">2018</span>)</span></code></pre></div>
 <pre><code>##   id year money_spent currency
 ## 1  1 2018        1500      EUR
 ## 2  2 2018        3000      CHF
 ## 3  3 2018        5500      USD</code></pre>
 <p>We can use several filtering conditions simultaneously:</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="data-analysis-first-steps.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_selection, year <span class="sc">==</span> <span class="dv">2018</span>, money_spent <span class="sc">&lt;</span> <span class="dv">5000</span>, currency<span class="sc">==</span><span class="st">&quot;EUR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="data-analysis-first-steps.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df_selection, year <span class="sc">==</span> <span class="dv">2018</span>, money_spent <span class="sc">&lt;</span> <span class="dv">5000</span>, currency<span class="sc">==</span><span class="st">&quot;EUR&quot;</span>)</span></code></pre></div>
 <pre><code>##   id year money_spent currency
 ## 1  1 2018        1500      EUR</code></pre>
 </div>
@@ -494,12 +494,12 @@ Figure 10.1: Different approaches to merging two datasets: left join, right join
 <h2><span class="header-section-number">10.4</span> Mutating datasets<a href="data-analysis-first-steps.html#mutating-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Before we compute aggregate statistics based on our selected dataset, we have to deal with the fact that the <code>money_spent</code>-variable is not tidy. It describes each observation’s characteristic, but it is measured in different units (here, different currencies) across some of these observations. If the aim was to have a perfectly tidy dataset, we could address the issue with <code>spread()</code>. However, in this context, it could be more helpful to add an additional variable/column with a normalized amount of money spent. That is, we want to have every value converted to one currency (given a certain exchange rate). In order to do so, we use the <code>mutate()</code> function (again provided in <code>tidyverse</code>).</p>
 <p>First, we look up the USD/CHF and EUR/CHF exchange rates and add those as a variable (CHF/CHF exchange rates are equal to 1, of course).</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="data-analysis-first-steps.html#cb384-1" aria-hidden="true" tabindex="-1"></a>exchange_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">exchange_rate=</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="dv">1</span>, <span class="fl">1.2</span>),</span>
-<span id="cb384-2"><a href="data-analysis-first-steps.html#cb384-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">currency=</span><span class="fu">c</span>(<span class="st">&quot;USD&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;EUR&quot;</span>), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb384-3"><a href="data-analysis-first-steps.html#cb384-3" aria-hidden="true" tabindex="-1"></a>df_selection <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_selection, exchange_rates, <span class="at">by=</span><span class="st">&quot;currency&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="data-analysis-first-steps.html#cb385-1" aria-hidden="true" tabindex="-1"></a>exchange_rates <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">exchange_rate=</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="dv">1</span>, <span class="fl">1.2</span>),</span>
+<span id="cb385-2"><a href="data-analysis-first-steps.html#cb385-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">currency=</span><span class="fu">c</span>(<span class="st">&quot;USD&quot;</span>, <span class="st">&quot;CHF&quot;</span>, <span class="st">&quot;EUR&quot;</span>), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb385-3"><a href="data-analysis-first-steps.html#cb385-3" aria-hidden="true" tabindex="-1"></a>df_selection <span class="ot">&lt;-</span> <span class="fu">merge</span>(df_selection, exchange_rates, <span class="at">by=</span><span class="st">&quot;currency&quot;</span>)</span></code></pre></div>
 <p>Now we can define an additional variable with the money spent in CHF via <code>mutate()</code>:</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="data-analysis-first-steps.html#cb385-1" aria-hidden="true" tabindex="-1"></a>df_mutated <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df_selection, <span class="at">money_spent_chf =</span> money_spent <span class="sc">*</span> exchange_rate)</span>
-<span id="cb385-2"><a href="data-analysis-first-steps.html#cb385-2" aria-hidden="true" tabindex="-1"></a>df_mutated</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="data-analysis-first-steps.html#cb386-1" aria-hidden="true" tabindex="-1"></a>df_mutated <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df_selection, <span class="at">money_spent_chf =</span> money_spent <span class="sc">*</span> exchange_rate)</span>
+<span id="cb386-2"><a href="data-analysis-first-steps.html#cb386-2" aria-hidden="true" tabindex="-1"></a>df_mutated</span></code></pre></div>
 <pre><code>##   currency id year money_spent exchange_rate money_spent_chf
 ## 1      CHF  1 2017        1000           1.0            1000
 ## 2      CHF  2 2017        2000           1.0            2000
@@ -513,61 +513,61 @@ Figure 10.1: Different approaches to merging two datasets: left join, right join
 <p>Now we can start analyzing the dataset. Typically, the first step of analyzing a dataset is to get an overview by computing some summary statistics. This helps to better understand the dataset at hand. Key summary statistics of the variables of interest are the mean, standard deviation, median, and a number of observations. Together, they give a first idea of how the variables of interest are distributed.</p>
 <p>As you know from previous chapters, R has several built-in functions that help us do this. In practice, these basic functions are often combined with functions implemented particularly for this step of the analysis, such as <code>summarise()</code> provided in <code>tidyverse</code>.</p>
 <p>As the first output in our report, we want to show the key characteristics of the spending data in one table.</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="data-analysis-first-steps.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df_mutated,</span>
-<span id="cb387-2"><a href="data-analysis-first-steps.html#cb387-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(money_spent_chf),</span>
-<span id="cb387-3"><a href="data-analysis-first-steps.html#cb387-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">standard_deviation =</span> <span class="fu">sd</span>(money_spent_chf),</span>
-<span id="cb387-4"><a href="data-analysis-first-steps.html#cb387-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">median =</span> <span class="fu">median</span>(money_spent_chf),</span>
-<span id="cb387-5"><a href="data-analysis-first-steps.html#cb387-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="data-analysis-first-steps.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df_mutated,</span>
+<span id="cb388-2"><a href="data-analysis-first-steps.html#cb388-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(money_spent_chf),</span>
+<span id="cb388-3"><a href="data-analysis-first-steps.html#cb388-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">standard_deviation =</span> <span class="fu">sd</span>(money_spent_chf),</span>
+<span id="cb388-4"><a href="data-analysis-first-steps.html#cb388-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">median =</span> <span class="fu">median</span>(money_spent_chf),</span>
+<span id="cb388-5"><a href="data-analysis-first-steps.html#cb388-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
 <pre><code>##   mean standard_deviation median N
 ## 1 3025               1789   2500 6</code></pre>
 <p>Moreover, we can compute the same statistics grouped by certain observation characteristics. For example, we can compute the same summary statistics per year of observation.</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="data-analysis-first-steps.html#cb389-1" aria-hidden="true" tabindex="-1"></a>by_year <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df_mutated, year)</span>
-<span id="cb389-2"><a href="data-analysis-first-steps.html#cb389-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_year,</span>
-<span id="cb389-3"><a href="data-analysis-first-steps.html#cb389-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(money_spent_chf),</span>
-<span id="cb389-4"><a href="data-analysis-first-steps.html#cb389-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">standard_deviation =</span> <span class="fu">sd</span>(money_spent_chf),</span>
-<span id="cb389-5"><a href="data-analysis-first-steps.html#cb389-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">median =</span> <span class="fu">median</span>(money_spent_chf),</span>
-<span id="cb389-6"><a href="data-analysis-first-steps.html#cb389-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="data-analysis-first-steps.html#cb390-1" aria-hidden="true" tabindex="-1"></a>by_year <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df_mutated, year)</span>
+<span id="cb390-2"><a href="data-analysis-first-steps.html#cb390-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_year,</span>
+<span id="cb390-3"><a href="data-analysis-first-steps.html#cb390-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(money_spent_chf),</span>
+<span id="cb390-4"><a href="data-analysis-first-steps.html#cb390-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">standard_deviation =</span> <span class="fu">sd</span>(money_spent_chf),</span>
+<span id="cb390-5"><a href="data-analysis-first-steps.html#cb390-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">median =</span> <span class="fu">median</span>(money_spent_chf),</span>
+<span id="cb390-6"><a href="data-analysis-first-steps.html#cb390-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##    year  mean standard_deviation median     N
 ##   &lt;dbl&gt; &lt;dbl&gt;              &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
 ## 1  2017  2800              2307.   2000     3
 ## 2  2018  3250              1590.   3000     3</code></pre>
 <p>Alternatively, to the more user-friendly (but less flexible) <code>summarise</code> function, we can use lower-level functions to compute aggregate statistics provided in the basic R distribution. A good example of such a function is <code>sapply()</code>. In simple terms, <code>sapply()</code> takes a list as input and applies a function to the content of each element in this list (here: compute a statistic for each column). To illustrate this point, we load the already familiar <code>swiss</code> dataset.</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="data-analysis-first-steps.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
-<span id="cb391-2"><a href="data-analysis-first-steps.html#cb391-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;swiss&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="data-analysis-first-steps.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb392-2"><a href="data-analysis-first-steps.html#cb392-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;swiss&quot;</span>)</span></code></pre></div>
 <p>Now we want to compute the mean for each variable in this dataset. Technically speaking, a data frame is a list, where each list element is a column of the same length. Thus, we can use <code>sapply()</code> to ‘apply’ the function <code>mean()</code> to each of the columns in <code>swiss</code>.</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="data-analysis-first-steps.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(swiss, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="data-analysis-first-steps.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(swiss, mean)</span></code></pre></div>
 <pre><code>##        Fertility      Agriculture      Examination 
 ##            70.14            50.66            16.49 
 ##        Education         Catholic Infant.Mortality 
 ##            10.98            41.14            19.94</code></pre>
 <p>By default, <code>sapply()</code> returns a vector or a matrix.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> We can get a similar result by using <code>summarise()</code>. However, we would have to explicitly mention which variables we want as input.</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="data-analysis-first-steps.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(swiss,</span>
-<span id="cb394-2"><a href="data-analysis-first-steps.html#cb394-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">Fertility =</span> <span class="fu">mean</span>(Fertility),</span>
-<span id="cb394-3"><a href="data-analysis-first-steps.html#cb394-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Agriculture =</span> <span class="fu">mean</span>(Agriculture)) <span class="co"># etc.</span></span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="data-analysis-first-steps.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(swiss,</span>
+<span id="cb395-2"><a href="data-analysis-first-steps.html#cb395-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">Fertility =</span> <span class="fu">mean</span>(Fertility),</span>
+<span id="cb395-3"><a href="data-analysis-first-steps.html#cb395-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Agriculture =</span> <span class="fu">mean</span>(Agriculture)) <span class="co"># etc.</span></span></code></pre></div>
 <pre><code>##   Fertility Agriculture
 ## 1     70.14       50.66</code></pre>
 </div>
 <div id="tutorial-analise-messy-excel-sheets" class="section level2 hasAnchor" number="10.6">
 <h2><span class="header-section-number">10.6</span> Tutorial: Analise messy Excel sheets<a href="data-analysis-first-steps.html#tutorial-analise-messy-excel-sheets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The following tutorial is a (substantially) shortened and simplified version of Ista Zahn and Daina Bouquin’s <a href="https://rawgit.com/izahn/R-data-cleaning/master/dataCleaning.html">“Cleaning up messy data tutorial” (Harvard Datafest 2017)</a>. The tutorial aims to clean up an Excel sheet provided by the UK Office of National Statistics that provides data on the most popular baby names in England and Wales in 2015. The dataset is stored in <code>data/2015boysnamesfinal.xlsx</code></p>
+<p>The following tutorial is a (substantially) shortened and simplified version of Ista Zahn and Daina Bouquin’s <a href="https://rawgit.com/izahn/R-data-cleaning/master/dataCleaning.html">“Cleaning up messy data tutorial” (Harvard Datafest 2017)</a>. The tutorial aims to clean up an Excel sheet provided by the UK Office of National Statistics that provides data on the most popular baby names in England and Wales in 2015. The dataset is stored in <code>data/2015boysnamesfinal.xlsx</code>.</p>
 <div id="preparatory-steps" class="section level3 hasAnchor" number="10.6.1">
 <h3><span class="header-section-number">10.6.1</span> Preparatory steps<a href="data-analysis-first-steps.html#preparatory-steps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="data-analysis-first-steps.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="do">## SET UP -------------------</span></span>
-<span id="cb396-2"><a href="data-analysis-first-steps.html#cb396-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb396-3"><a href="data-analysis-first-steps.html#cb396-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb396-4"><a href="data-analysis-first-steps.html#cb396-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb396-5"><a href="data-analysis-first-steps.html#cb396-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb396-6"><a href="data-analysis-first-steps.html#cb396-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
-<span id="cb396-7"><a href="data-analysis-first-steps.html#cb396-7" aria-hidden="true" tabindex="-1"></a>INPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/2015boysnamesfinal.xlsx&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="data-analysis-first-steps.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="do">## SET UP -------------------</span></span>
+<span id="cb397-2"><a href="data-analysis-first-steps.html#cb397-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb397-3"><a href="data-analysis-first-steps.html#cb397-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb397-4"><a href="data-analysis-first-steps.html#cb397-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb397-5"><a href="data-analysis-first-steps.html#cb397-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb397-6"><a href="data-analysis-first-steps.html#cb397-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb397-7"><a href="data-analysis-first-steps.html#cb397-7" aria-hidden="true" tabindex="-1"></a>INPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/2015boysnamesfinal.xlsx&quot;</span></span></code></pre></div>
 <p>Before diving into the data import and cleaning, it is helpful to first open the file in Excel. We notice a couple of things there: first, there are several sheets in this Excel file. For this exercise, we only rely on the sheet called “Table 1”. Second, in this sheet, we notice intuitively some potential problems with importing this dataset due to the way the spreadsheet is organized. The actual data entries only start on row 7. These two issues can be considered when importing the data with <code>read_excel()</code>.</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="data-analysis-first-steps.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="do">## LOAD/INSPECT DATA -----------------</span></span>
-<span id="cb397-2"><a href="data-analysis-first-steps.html#cb397-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb397-3"><a href="data-analysis-first-steps.html#cb397-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import the excel sheet</span></span>
-<span id="cb397-4"><a href="data-analysis-first-steps.html#cb397-4" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(INPUT_PATH, <span class="at">col_names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb397-5"><a href="data-analysis-first-steps.html#cb397-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;Table 1&quot;</span>, <span class="co"># the name of the sheet to be loaded into R</span></span>
-<span id="cb397-6"><a href="data-analysis-first-steps.html#cb397-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">skip =</span> <span class="dv">6</span> <span class="co"># skip the first 6 rows of the original sheet,</span></span>
-<span id="cb397-7"><a href="data-analysis-first-steps.html#cb397-7" aria-hidden="true" tabindex="-1"></a>                   )</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="data-analysis-first-steps.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="do">## LOAD/INSPECT DATA -----------------</span></span>
+<span id="cb398-2"><a href="data-analysis-first-steps.html#cb398-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb398-3"><a href="data-analysis-first-steps.html#cb398-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import the excel sheet</span></span>
+<span id="cb398-4"><a href="data-analysis-first-steps.html#cb398-4" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(INPUT_PATH, <span class="at">col_names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb398-5"><a href="data-analysis-first-steps.html#cb398-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;Table 1&quot;</span>, <span class="co"># the name of the sheet to be loaded into R</span></span>
+<span id="cb398-6"><a href="data-analysis-first-steps.html#cb398-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">skip =</span> <span class="dv">6</span> <span class="co"># skip the first 6 rows of the original sheet,</span></span>
+<span id="cb398-7"><a href="data-analysis-first-steps.html#cb398-7" aria-hidden="true" tabindex="-1"></a>                   )</span></code></pre></div>
 <pre><code>## New names:
 ## • `Rank` -&gt; `Rank...1`
 ## • `Name` -&gt; `Name...2`
@@ -580,41 +580,42 @@ Figure 10.1: Different approaches to merging two datasets: left join, right join
 ## • `Count` -&gt; `Count...9`
 ## • `since 2014` -&gt; `since 2014...10`
 ## • `since 2005` -&gt; `since 2005...11`</code></pre>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="data-analysis-first-steps.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
-<span id="cb399-2"><a href="data-analysis-first-steps.html#cb399-2" aria-hidden="true" tabindex="-1"></a>boys</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="data-analysis-first-steps.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
+<span id="cb400-2"><a href="data-analysis-first-steps.html#cb400-2" aria-hidden="true" tabindex="-1"></a>boys</span></code></pre></div>
 <pre><code>## # A tibble: 61 × 11
-##    Rank...1 Name...2 Count...3 `since 2014...4` `since 2005...5`
-##    &lt;chr&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;           
-##  1 &lt;NA&gt;     &lt;NA&gt;            NA &lt;NA&gt;             &lt;NA&gt;            
-##  2 1        OLIVER        6941 ­                 +4              
-##  3 2        JACK          5371 ­                 -1              
-##  4 3        HARRY         5308 ­                 +6              
-##  5 4        GEORGE        4869 +3               +13             
-##  6 5        JACOB         4850 -1               +16             
-##  7 6        CHARLIE       4831 -1               +6              
-##  8 7        NOAH          4148 +4               +44             
-##  9 8        WILLIAM       4083 +2               ­                
-## 10 9        THOMAS        4075 -3               -6              
-## # … with 51 more rows, and 6 more variables: ...6 &lt;lgl&gt;,
-## #   Rank...7 &lt;chr&gt;, Name...8 &lt;chr&gt;, Count...9 &lt;dbl&gt;,
-## #   `since 2014...10` &lt;chr&gt;, `since 2005...11` &lt;chr&gt;</code></pre>
+##    Rank...1 Name.…¹ Count…² since…³ since…⁴ ...6  Rank.…⁵ Name.…⁶
+##    &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt; &lt;chr&gt;   &lt;chr&gt;  
+##  1 &lt;NA&gt;     &lt;NA&gt;         NA &lt;NA&gt;    &lt;NA&gt;    NA    &lt;NA&gt;    &lt;NA&gt;   
+##  2 1        OLIVER     6941 ­        +4      NA    51      REUBEN 
+##  3 2        JACK       5371 ­        -1      NA    52      HARLEY 
+##  4 3        HARRY      5308 ­        +6      NA    53      LUCA   
+##  5 4        GEORGE     4869 +3      +13     NA    54      MICHAEL
+##  6 5        JACOB      4850 -1      +16     NA    55      HUGO   
+##  7 6        CHARLIE    4831 -1      +6      NA    56      LEWIS  
+##  8 7        NOAH       4148 +4      +44     NA    57      FRANKIE
+##  9 8        WILLIAM    4083 +2      ­        NA    58      LUKE   
+## 10 9        THOMAS     4075 -3      -6      NA    59      STANLEY
+## # … with 51 more rows, 3 more variables: Count...9 &lt;dbl&gt;,
+## #   `since 2014...10` &lt;chr&gt;, `since 2005...11` &lt;chr&gt;, and
+## #   abbreviated variable names ¹​Name...2, ²​Count...3,
+## #   ³​`since 2014...4`, ⁴​`since 2005...5`, ⁵​Rank...7, ⁶​Name...8</code></pre>
 <p>Note that by default, <code>read_excel()</code> “repairs” the column names of imported datasets to ensure all columns have unique names. We do not need to worry about the automatically assigned column names. However, some of the columns are not needed for analytics purposes. In addition, we note that some rows are empty (contain <code>NA</code> values). In the next step we <em>select</em> only those columns needed and <em>filter</em> incomplete observations out.</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="data-analysis-first-steps.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FILTER/CLEAN ---------------------------</span></span>
-<span id="cb401-2"><a href="data-analysis-first-steps.html#cb401-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb401-3"><a href="data-analysis-first-steps.html#cb401-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns</span></span>
-<span id="cb401-4"><a href="data-analysis-first-steps.html#cb401-4" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span> <span class="fu">select</span>(boys, Rank...<span class="dv">1</span>, Name...<span class="dv">2</span>, Count...<span class="dv">3</span>, Rank...<span class="dv">7</span>, Name...<span class="dv">8</span>, Count...<span class="dv">9</span>)</span>
-<span id="cb401-5"><a href="data-analysis-first-steps.html#cb401-5" aria-hidden="true" tabindex="-1"></a><span class="co"># filter rows</span></span>
-<span id="cb401-6"><a href="data-analysis-first-steps.html#cb401-6" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span>  <span class="fu">filter</span>(boys, <span class="sc">!</span><span class="fu">is.na</span>(Rank...<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="data-analysis-first-steps.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FILTER/CLEAN ---------------------------</span></span>
+<span id="cb402-2"><a href="data-analysis-first-steps.html#cb402-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb402-3"><a href="data-analysis-first-steps.html#cb402-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns</span></span>
+<span id="cb402-4"><a href="data-analysis-first-steps.html#cb402-4" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span> <span class="fu">select</span>(boys, Rank...<span class="dv">1</span>, Name...<span class="dv">2</span>, Count...<span class="dv">3</span>, Rank...<span class="dv">7</span>, Name...<span class="dv">8</span>, Count...<span class="dv">9</span>)</span>
+<span id="cb402-5"><a href="data-analysis-first-steps.html#cb402-5" aria-hidden="true" tabindex="-1"></a><span class="co"># filter rows</span></span>
+<span id="cb402-6"><a href="data-analysis-first-steps.html#cb402-6" aria-hidden="true" tabindex="-1"></a>boys <span class="ot">&lt;-</span>  <span class="fu">filter</span>(boys, <span class="sc">!</span><span class="fu">is.na</span>(Rank...<span class="dv">1</span>))</span></code></pre></div>
 <p>Finally, we re-arrange the data by stacking them in a three-column format.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="data-analysis-first-steps.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stack columns</span></span>
-<span id="cb402-2"><a href="data-analysis-first-steps.html#cb402-2" aria-hidden="true" tabindex="-1"></a>boys_long <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(boys[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], boys[,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="data-analysis-first-steps.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stack columns</span></span>
+<span id="cb403-2"><a href="data-analysis-first-steps.html#cb403-2" aria-hidden="true" tabindex="-1"></a>boys_long <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(boys[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], boys[,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>])</span></code></pre></div>
 <pre><code>## New names:
 ## New names:
 ## • `Rank...1` -&gt; `Rank`
 ## • `Name...2` -&gt; `Name`
 ## • `Count...3` -&gt; `Count`</code></pre>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="data-analysis-first-steps.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect result</span></span>
-<span id="cb404-2"><a href="data-analysis-first-steps.html#cb404-2" aria-hidden="true" tabindex="-1"></a>boys_long</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="data-analysis-first-steps.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect result</span></span>
+<span id="cb405-2"><a href="data-analysis-first-steps.html#cb405-2" aria-hidden="true" tabindex="-1"></a>boys_long</span></code></pre></div>
 <pre><code>## # A tibble: 114 × 3
 ##    Rank  Name    Count
 ##    &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
@@ -705,7 +706,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
