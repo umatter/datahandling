@@ -1,5 +1,7 @@
 \mainmatter
 
+# (PART) Foundations {-}
+
 # Introduction
 
 Lower computing costs, a stark decrease in storage costs for digital data, as well as the diffusion of the Internet, have led to the development of new products (e.g., smartphones) and services (e.g., web search engines, cloud computing) over the last few decades. A side product of these developments is a strong increase in the availability of digital data describing all kinds of everyday human activities [@einav_levin2014; @matter_stutzer2015]. As a consequence, new business models and economic structures are emerging with data as their core commodity (i.e., AI-related technological and economic change). For example, the current hype surrounding 'Artificial Intelligence' (AI) - largely fueled by the broad application of machine-learning techniques such as 'deep learning' (a form of artificial neural networks) - would not be conceivable without the increasing abundance of large amounts of digital data on all kind of socio-economic entities and activities. In short, without understanding and handling the underlying data streams properly, the AI-driven economy cannot function. The same rationale applies, of course, to other ways of making use of digital data. Be it traditional big data analytics or scientific research (e.g., applied econometrics).

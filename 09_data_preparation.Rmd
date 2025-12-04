@@ -1,6 +1,13 @@
-# Data Preparation
+# Data Preparation and Transformation
 
-Importing a dataset properly is just the first of several milestones until an analysis-ready dataset is generated. In some cases, cleaning the raw data is a necessary step to facilitate/enable proper parsing of the data set to import it. However, most of the cleaning/preparation ('wrangling') with the data follows after properly parsing structured data. Many aspects of data wrangling are specific to certain datasets and an entire curriculum could be filled with different approaches and tools to address specific problems. Moreover, proficiency in data wrangling is generally a matter of experience in working with data, gained over many years. Here, we focus on two quite general and broadly applicable techniques that are central to cleaning and preparing a dataset for analysis: Simple string operations (find/replace parts of text strings) and reshaping rectangular data (wide to long/long to wide). The former is focused on individual variables at a time, while the latter typically happens at the level of the entire dataset.
+Importing a dataset properly is just the first of several milestones until an analysis-ready dataset is generated. In some cases, cleaning the raw data is a necessary step to facilitate/enable proper parsing of the data set to import it. However, most of the cleaning/preparation ('wrangling') with the data follows after properly parsing structured data. Many aspects of data wrangling are specific to certain datasets and an entire curriculum could be filled with different approaches and tools to address specific problems. Moreover, proficiency in data wrangling is generally a matter of experience in working with data, gained over many years.
+
+This chapter covers the key techniques for transforming raw data into analysis-ready datasets:
+
+- **Cleaning**: String operations to fix inconsistent values
+- **Reshaping**: Converting between wide and long formats
+- **Combining**: Stacking datasets and merging/joining tables
+- **Transforming**: Selecting, filtering, and creating new variables
 
 ## Cleaning data with basic string operations
 Recall that most of the data we read into R for analytic purposes is a collection of raw text (structured with special characters). When parsing the data to read it into R with high-level functions such as the ones provided in the `readr`-package, both the structure and the data types are considered. The resulting `data.frame`/`tibble` might thus contain variables (different columns) of type `character`, `factor`, or `integer`, etc. At this stage, it often happens that the raw data is not clean enough for the parser to recognize the data types in each column correctly, and it resorts to just parsing it as `character`. Indeed, if we have to deal with a very messy dataset, it can make a lot of sense to constrain the parser such that it reads each column a as `character`.
@@ -125,7 +132,7 @@ str(messy_df)
 
 ## Reshaping datasets
 
-Besides cleaning and standardizing individual data columns, preparing a dataset for analysis often involves bringing the entire dataset in the right 'shape.' Typically, we mean this in a table-like (two-dimensional) format such as `data. frames` and `tibbles`, data with repeated observations for the same unit can be displayed/stored in either *long* or *wide* format. It is often seen as good practice to prepare data for analysis in *long* ('tidy') format. This way we ensure that we follow the ('tidy') paradigm of using the rows for individual observations and the columns to describe these observations.^[Depending on the dataset, however, an argument can be made that storing the data in wide format might be more efficient (using up less memory) than long format.] Tidying/reshaping a dataset in this way thus involves transforming columns into rows (i.e., *melting* the dataset). In the following, we first have a close look at what this means conceptually and then apply this technique in two examples.
+Besides cleaning and standardizing individual data columns, preparing a dataset for analysis often involves bringing the entire dataset in the right 'shape.' Typically, we mean this in a table-like (two-dimensional) format such as `data.frames` and `tibbles`, data with repeated observations for the same unit can be displayed/stored in either *long* or *wide* format. It is often seen as good practice to prepare data for analysis in *long* ('tidy') format. This way we ensure that we follow the ('tidy') paradigm of using the rows for individual observations and the columns to describe these observations.^[Depending on the dataset, however, an argument can be made that storing the data in wide format might be more efficient (using up less memory) than long format.] Tidying/reshaping a dataset in this way thus involves transforming columns into rows (i.e., *melting* the dataset). In the following, we first have a close look at what this means conceptually and then apply this technique in two examples.
 
 ### Tidying messy datasets.
 
@@ -169,8 +176,9 @@ In the `tidyverse` context, we call the transformation of columns to rows 'pivot
 
 
 ```{r widetolong, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "(ref:widetolong)", purl=FALSE}
-include_graphics("img/reshape.png")
+include_graphics("img/reshape2.jpg")
 ```
+
 (ref:widetolong) Reshaping of a data frame from wide to long format.
 
 
@@ -236,9 +244,183 @@ tidy_df <- pivot_wider(weird_df, names_from = "variable", values_from = "value")
 tidy_df
 ```
 
+
+## Stacking/row-binding datasets
+
+In practice, you will encounter situations in which the raw data is partitioned according to one of the variables into separate data files. Typically, in the economics research context, this is done by date (sales records of a firm stored in one CSV file per month) or by geographic entities (e.g., one file with GDP per capita figures per country). 
+
+Unless the combined dataset of all separate files would be very large in memory, you likely would prefer one file to run analytics scripts on. Therefore, data preparation often also involves the stacking/binding of sub-sets into a larger combined dataset. As each of the separate files might slightly differ in terms of variable names, variable availability, and tidiness. It is important to first standardize/clean all of the separate datasets after importing them (following the examples above).
+
+Once all of the subsets are imported an cleaned, there is typically still one remaining inconsistency: some variables might be available in some subsets (e.g., for some years, some regions) but not for others. In addition, the column/variable-order might vary between subsets. 
+
+Figure \@ref(ref:rowbinding) illustrates the concept of stacking datasets (binding the rows of separate data frames) with some inconsistencies regarding the availability and order of columns.
+
+
+```{r rowbinding, echo=FALSE, out.width = "40%", fig.align='center', fig.cap= "(ref:rowbinding)", purl=FALSE}
+include_graphics("img/rowbinding.jpg")
+```
+
+(ref:rowbinding) Row-binding/stacking three subsets into one combined dataset.
+
+The `dplyr`-package provides an easy-to-use framework to implement such a stacking of data frames in R. In the following code illustration, we build on the same exemplary data as shown in the conceptual illustration above. First, we initiate the thee subsets, and then bind their rows to generate the combined dataset via `bind_rows()`
+
+```{r}
+# initialize sample data
+subset1 <- data.frame(ID=c(1,2),
+                      X=c("a", "b"),
+                      Y=c(50,10))
+
+subset2 <- data.frame(ID=c(3,4),
+                      Z=c("M", "O"))
+
+subset3 <- data.frame(ID= c(5),
+                      X=c("c"),
+                      Z="P")
+```
+
+Note that, apart from the inconsistencies regarding the column availability and column order, the three subsets are consistent with each other in terms of basic data structure and data types (if that were not the case, binding their rows might be problematic).
+
+```{r}
+str(subset1)
+str(subset2)
+str(subset3)
+```
+To stack the three subsets together, we call `bind_rows()` as follows (`dplyr` needs to be installed and loaded for this).
+
+```{r}
+
+# install if needed
+# install.packages("dplyr")
+
+# load packages
+library(dplyr)
+
+# stack data frames
+combined_df <- bind_rows(subset1, subset2, subset3)
+
+# inspect the result
+combined_df
+```
+
+Note how `bind_rows()` automatically matches the column names (orders the columns before stacking), and fills missing values with `NA`s (not available).
+
+
+## Merging/joining datasets
+
+Beyond stacking datasets vertically (row-binding), we often need to combine datasets horizontally by matching observations based on a common identifier. The following two data sets contain data on persons' characteristics and their consumption spending. Both are cleaned datasets. But, for analysis purposes, we have to combine the two datasets. There are several ways to do this in R, but most commonly (for `data.frames` as well as `tibbles`), we can use the `merge()`-function.
+
+```{r message=FALSE, warning=FALSE}
+# load packages
+library(tidyverse)
+
+# initiate data frame on persons' spending
+df_c <- data.frame(id = c(1:3,1:3),
+                   money_spent= c(1000, 2000, 6000, 1500, 3000, 5500),
+                   currency = c("CHF", "CHF", "USD", "EUR", "CHF", "USD"),
+                   year=c(2017,2017,2017,2018,2018,2018))
+df_c
+
+# initiate data frame on persons' characteristics
+df_p <- data.frame(id = 1:4,
+                   first_name = c("Anna", "Betty", "Claire", "Diane"),
+                   profession = c("Economist", "Data Scientist",
+                                  "Data Scientist", "Economist"))
+df_p
+```
+
+Our aim is to compute the average spending by profession. Therefore, we want to link `money_spent` with `profession`. Both datasets contain a unique identifier `id`, which we can use to link the observations via `merge()`.
+
+```{r}
+df_merged <- merge(df_p, df_c, by="id")
+df_merged
+```
+
+Note how only the exact matches are merged. The observation of `"Diane"` is not part of the merged data frame because there is no corresponding row in `df_c` with her spending information. This approach to merging two data sets (only keeping the matched rows on both sides) is often referred to as an *inner join*. If for some reason, we would like to have all persons in the merged dataset, we can specify the `merge()`-call accordingly:
+
+
+```{r}
+df_merged2 <- merge(df_p, df_c, by="id", all = TRUE)
+df_merged2
+```
+
+this version of merging two data sets is also often referred to as an *outer join*.
+
+Finally, you might be in a situation in which keeping all rows of the first (left) dataset or the ones of the second (right) dataset makes sense, but not both. You can do this by specifying `all.x=TRUE` (keep all rows of the first dataset) or `all.y=TRUE` (keep all of the second dataset). These types of merging datasets are often also referred to *left join* and *right join*, respectively.
+
+```{r}
+# left join
+df_merged3 <- merge(df_p, df_c, by="id", all.x = TRUE)
+df_merged3
+```
+
+```{r}
+# right join
+df_merged4 <- merge(df_p, df_c, by="id", all.y = TRUE)
+df_merged4
+```
+
+
+The following figure illustrates the four types of joins.
+
+
+
+```{r joins, echo=FALSE, out.width = "99%", fig.align='center', fig.cap= "(ref:joins)", purl=FALSE}
+include_graphics("img/joins.jpg")
+```
+(ref:joins) Different approaches to merging two datasets: left join, right join, inner join, outer join.
+
+
+
+## Selecting columns
+
+For our analysis's next steps, we do not need to have all columns. Via the `select()`-function provided in `tidyverse` we can easily select the columns of interest:
+
+
+```{r}
+df_selection <- select(df_merged, id, year, money_spent, currency)
+df_selection
+```
+
+
+## Filtering rows
+
+In the next step, we want to select only observations with specific characteristics. Say we want to select only observations from 2018. Again there are several ways to do this in R, but the most comfortable way is to use the `filter()` function provided in `tidyverse`.
+
+```{r}
+filter(df_selection, year == 2018)
+```
+
+We can use several filtering conditions simultaneously:
+
+```{r}
+filter(df_selection, year == 2018, money_spent < 5000, currency=="EUR")
+```
+
+## Creating new variables (mutating)
+
+Before we compute aggregate statistics based on our selected dataset, we have to deal with the fact that the `money_spent`-variable is not tidy. It describes each observation's characteristic, but it is measured in different units (here, different currencies) across some of these observations. If the aim was to have a perfectly tidy dataset, we could address the issue with `spread()`. However, in this context, it could be more helpful to add an additional variable/column with a normalized amount of money spent. That is, we want to have every value converted to one currency (given a certain exchange rate). In order to do so, we use the `mutate()` function (again provided in `tidyverse`).
+
+First, we look up the USD/CHF and EUR/CHF exchange rates and add those as a variable (CHF/CHF exchange rates are equal to 1, of course).
+
+```{r}
+exchange_rates <- data.frame(exchange_rate= c(0.9, 1, 1.2),
+                             currency=c("USD", "CHF", "EUR"), stringsAsFactors = FALSE)
+df_selection <- merge(df_selection, exchange_rates, by="currency")
+```
+
+Now we can define an additional variable with the money spent in CHF via `mutate()`:
+
+```{r}
+df_mutated <- mutate(df_selection, money_spent_chf = money_spent * exchange_rate)
+df_mutated
+```
+
+
 ## Tutorial: Hotel Bookings Time Series
 
 This tutorial guides you step-by-step through the cleaning script (with a few adaptions) of [tidytuesday's Hotel Bookings repo](https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-02-11), dealing with the preparation and analysis of two datasets with *hotel demand data*. Along the way, you also get in touch with the [janitor package](https://github.com/sfirke/janitor). For details about the two datasets, see the [paper](https://www.sciencedirect.com/science/article/pii/S2352340918315191#f0010) by @nuno_etal2019, and for the original research contribution related to these datasets see the [paper](https://ieeexplore.ieee.org/document/8260781) by @nunes_etal2017.
+
+### Background and aim
 
 @nuno_etal2019 summarizes the content of the datasets as follows: "One of the hotels (H1) is a resort hotel, and the other is a city hotel (H2). Both datasets share the same structure, with 31 variables describing the 40,060 observations of H1 and 79,330 observations of H2. Each observation represents a hotel booking. Both datasets comprehend bookings due to arrive between the 1st of July 2015 and the 31st of August 2017, including bookings that effectively arrived and bookings that were canceled. Since this is real data, all data elements pertaining to hotel or customer identification were deleted. Due to the scarcity of real business data for scientific and educational purposes, these datasets can have an important role for research and education in revenue management, machine learning, or data mining, as well as in other fields."
 
@@ -290,7 +472,7 @@ head(hotel_df)
 ```
 
 
-## Set up and import
+### Set up and import
 All the tools we need for this tutorial are provided in `tidyverse` and `janitor`, and the data is directly available from the [tidytuesday GitHub repository](https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-02-11). The original data is provided in CSV format.
 
 ```{r message=FALSE, warning=FALSE}
@@ -335,6 +517,72 @@ head(hotel_df)
 ```
 
 
+
+## Tutorial: Cleaning messy Excel sheets
+
+The following tutorial is a (substantially) shortened and simplified version of Ista Zahn and Daina Bouquin's ["Cleaning up messy data tutorial" (Harvard Datafest 2017)](https://rawgit.com/izahn/R-data-cleaning/master/dataCleaning.html). The tutorial aims to clean up an Excel sheet provided by the UK Office of National Statistics that provides data on the most popular baby names in England and Wales in 2015. The dataset is stored in `data/2015boysnamesfinal.xlsx`.
+
+### Preparatory steps
+
+
+```{r echo=FALSE }
+## SET UP -------------------
+# load packages
+library(tidyverse)
+library(readxl)
+
+# fix variables
+INPUT_PATH <- "data/2015boysnamesfinal.xlsx"
+```
+
+
+
+```{r eval= FALSE }
+## SET UP -------------------
+# load packages
+library(tidyverse)
+library(readxl)
+
+# fix variables
+INPUT_PATH <- "data/2015boysnamesfinal.xlsx"
+```
+
+Before diving into the data import and cleaning, it is helpful to first open the file in Excel. We notice a couple of things there: first, there are several sheets in this Excel file. For this exercise, we only rely on the sheet called "Table 1". Second, in this sheet, we notice intuitively some potential problems with importing this dataset due to the way the spreadsheet is organized. The actual data entries only start on row 7. These two issues can be considered when importing the data with `read_excel()`.
+
+```{r}
+## LOAD/INSPECT DATA -----------------
+
+# import the excel sheet
+boys <- read_excel(INPUT_PATH, col_names = TRUE,
+                   sheet = "Table 1", # the name of the sheet to be loaded into R
+                   skip = 6 # skip the first 6 rows of the original sheet,
+                   )
+# inspect
+boys
+```
+
+
+Note that by default, `read_excel()` "repairs" the column names of imported datasets to ensure all columns have unique names. We do not need to worry about the automatically assigned column names. However, some of the columns are not needed for analytics purposes. In addition, we note that some rows are empty (contain `NA` values). In the next step we *select* only those columns needed and *filter* incomplete observations out.
+
+```{r}
+# FILTER/CLEAN ---------------------------
+
+# select columns
+boys <- select(boys, Rank...1, Name...2, Count...3, Rank...7, Name...8, Count...9)
+# filter rows
+boys <-  filter(boys, !is.na(Rank...1))
+```
+
+Finally, we re-arrange the data by stacking them in a three-column format.
+
+```{r}
+
+# stack columns
+boys_long <- bind_rows(boys[,1:3], boys[,4:6])
+
+# inspect result
+boys_long
+```
 
 
 

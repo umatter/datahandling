@@ -1,226 +1,165 @@
 
-# Basic Econometrics in R
+# Basic Statistical Modeling in R
 
-When we look at practical data analytics in an economics context, it becomes quickly apparent that the vast majority of applied econometric research builds in one way or the other on linear regression, specifically on *ordinary least squares (OLS)*. OLS is the bread-and-butter model in microeconometrics for several reasons: it is rather easy to understand, its results are straightforward to interpret, it comes with several very useful statistical properties, and it can easily be applied to a large variety of economic research questions. In this section, we get to know the very basic idea behind OLS by looking at it through the lens of formal math notation as well as through the lens of R code.
+When working with data in economics and social sciences, statistical modeling is often the final destination of the data pipeline. After importing, cleaning, transforming, and exploring your data, you typically want to understand relationships between variables or test specific hypotheses. This chapter introduces the most fundamental tool for this purpose: linear regression using ordinary least squares (OLS).
 
+This chapter covers:
 
+- The concept of statistical modeling
+- Using R's `lm()` function for linear regression
+- Interpreting regression output
+- Understanding statistical significance
 
-## Statistical modeling
+## The linear model
 
-Before we turn to a specific data example, let us introduce a general notation for this econometric problem.  Generally we denote the *dependent variable* as $y_i$ and the *explanatory variable* as $x_i$. All the rest that is not more specifically explained by explanatory variables ($u_{i}$) we call the *' residuals'* or the 'error term.' Hence we can rewrite the problem with a more general notation as
+Generally, we denote the *dependent variable* (what we want to explain) as $y_i$ and the *explanatory variable* (what we think explains it) as $x_i$. All factors not explicitly included in our model we call the *residuals* or *error term* ($u_{i}$). The basic linear model can be written as:
 
-$y_{i}= \alpha + \beta x_{i} + u_{i}$.
+$y_{i}= \alpha + \beta x_{i} + u_{i}$
 
-The overarching goal of modern econometrics for such problems is to assess whether $x$ has a *causal* effect on $y$. A key aspect of such an interpretation is that $u_{i}$ is unrelated to $x_i$. Other unobservable factors might also play a role for $y$, but they must not affect both $y$ and $x$. The great computer scientist [Judea Pearl](https://en.wikipedia.org/wiki/Judea_Pearl) has introduced an intuitive approach to illustrating such causality problems. In the left panel of the figure below, we illustrate the unfortunate case where we have a so-called *' endogeneity'* problem, a situation in which other factors affect both $x$ and $y$.
+where:
+- $\alpha$ is the intercept (the expected value of $y$ when $x=0$)
+- $\beta$ is the slope coefficient (how much $y$ changes when $x$ increases by one unit)
+- $u_{i}$ captures everything else affecting $y$ that we haven't measured
 
+The goal is to estimate $\alpha$ and $\beta$ from our data. The method of *ordinary least squares* finds the values that minimize the sum of squared differences between predicted and actual values of $y$.
 
+### Causality considerations
+
+A key question in applied research is whether we can interpret the estimated relationship as *causal*. The computer scientist [Judea Pearl](https://en.wikipedia.org/wiki/Judea_Pearl) introduced causal diagrams to think about this clearly.
 
 ```{r causality, warning=FALSE, message=FALSE, echo=FALSE, out.width="60%", fig.show='hold', fig.align='center', fig.cap= "(ref:causality)", purl=FALSE}
-include_graphics("img/causal_diagram.png")
+include_graphics("img/causal_diagram.svg")
 
 ```
 (ref:causality) Causal diagrams. On the left with an endogeneity issue (other factors affect both the dependent and the explanatory variable), and on the right without this endogeneity issue.
 
+For a causal interpretation of $\beta$, the error term $u_{i}$ must be unrelated to $x_i$. Other factors may affect $y$, but they must not simultaneously affect both $y$ and $x$. When this assumption is violated, we have an *endogeneity problem*.
 
-### Illustration with pseudo-data
+## Regression in R with `lm()`
 
-Let us now look at how we can estimate $\beta$ under the assumption that $u$ does not affect $x$. To make this more general and easily accessible, let us, for the moment, ignore the dataset above and generate simulated data for which this assumption certainly holds. The basic R installation provides a number of functions to easily generate vectors of pseudo-random numbers^[Computers cannot actually 'generate' true random numbers. However, there are functions that produce series of numbers which have the properties of randomly drawn numbers from a given distribution.] The great advantage of using simulated data and code to understand statistical models is that we have full control over what the *actual* relationship between variables is. We can then easily assess how well an estimation procedure for a parameter is by comparing the parameter estimate with its true value (something we never observe when working with real-life data).
+R provides the `lm()` function (for "linear model") to estimate regression models. Let's use the familiar `swiss` dataset to investigate whether education affects examination success.
 
-
-First, we define the key parameters for the simulation. We choose the actual values of $\alpha$ and $\beta$, and set the number of observations $N$.
-
-```{r}
-alpha <- 30
-beta <- 0.9
-N <- 1000
-```
-
-Now, we initiate a vector $x$ of length $N$ drawn from the uniform distribution (between 0 and 0.5). This will be our explanatory variable.
-
-```{r}
-x <- runif(N, 0, 50)
-```
-
-Next, we draw a vector of random errors (residuals) $u$ (from a normal distribution with mean=0 and SD=0.05) and compute the corresponding values of the dependent variable $y$. Since we impose that the actual relationship between the variables is exactly defined in our simple linear model, this computation is straightforward ($y_{i}= \alpha + \beta x_{i} + u_{i}$).
-
-
-```{r}
-# draw the random errors (all the other factors also affecting y)
-epsilon <- rnorm(N, sd=10)
-# compute the dependent variable values
-y <- alpha + beta*x + epsilon
-```
-
-We can illustrate how $y$ changes when $x$ increases by plotting the raw data as a scatter plot as well as the true relationship (function) as a line.
-
-```{r}
-plot(x,y)
-abline(a = alpha, b=beta, col="red")
-```
-
-We see that while individual observations can be way off the true values (the red line), 'on average' the observations seem to follow the true relationship between $x$ and $y$. We can look at this closely by computing the average observed $y$-values for different intervals along the $x$-axis.
-
-
-```{r}
-
-# compute average y per x intervals
-lower <- c(0,10,20,30,40)
-upper <- c(lower[-1], 50)
-n_intervals <- length(lower)
-y_bars <- list()
-length(y_bars) <- n_intervals
-x_bars <- list()
-length(x_bars) <- n_intervals
-for (i in 1:n_intervals){
-  y_bars[i] <- mean(y[lower[i] <= x & x < upper[i]])
-  x_bars[i] <- mean(x[lower[i] <= x & x < upper[i]])
-
-}
-y_bars <- unlist(y_bars)
-x_bars <- unlist(x_bars)
-
-# add to plot
-plot(x,y)
-abline(a = alpha, b=beta, col="red")
-points(x_bars, y_bars, col="blue", lwd=10)
-```
-
-
-
-The average values are much closer to the real values. That is, we can 'average out' the $u$ to get a good estimate for the effect of $x$ on $y$ (to get an estimate of $\beta$). With this understanding, we can now formalize how to compute $\beta$ (or, to be more precise, an estimate of it: $\hat{\beta}$). For simplicity, we take $\alpha=30$ as given.
-
-In a first step we take the averages of both sides of our initial regression equation:
-
-$\frac{1}{N}\sum{y_i}=\frac{1}{N}\sum{(30 + \beta x_{i} + u_{i})}$,
-
-rearranging and using the common 'bar'-notation for means, we get
-
-$\bar{y}=30+\beta\bar{x} + \bar{u}$,
-
-and solving for $\beta$ and some rearranging then yields
-
-$\beta=\frac{\bar{y}-30-\bar{u}}{\bar{x}}$.
-
-While the elements in $\bar{u}$ are unobservable, we can use the rest to compute an estimate of $\beta$:
-
-
-$\hat{\beta}=\frac{\bar{y}-30}{\bar{x}}$.
-
-```{r}
-(mean(y) -30)/mean(x)
-```
-
-
-## Estimation and Application
-
-Now that we have a basic understanding of the simple linear model, let us use this model to investigate an empirical research question based on real data. By doing so, we will take an alternative perspective to compute an estimation of the parameters of interest. The example builds on the `swiss' dataset encountered in previous chapters. First, get again familiar with the dataset:
-
-```{r eval=FALSE}
+```{r message=FALSE, warning=FALSE}
 # load the data
 data(swiss)
-# look at the description
-?swiss
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-# load the data
-data(swiss)
+The dataset contains information on Swiss provinces. We'll examine whether more years of schooling (`Education`: percentage of draftees with education beyond primary school) is associated with better examination outcomes (`Examination`: percentage receiving the highest mark on standardized tests).
 
-```
+### Visualizing the relationship
 
-Recall that observations in this dataset are at the province level. We use the simple linear model to better understand whether more years of schooling is improving educational outcomes. Thereby, we approximate educational attainment with the variable `Education` (the percentage of Swiss military draftees in a province that had education beyond primary school) and educational outcomes with the variable `Examination` (the percentage of draftees in a province that have received the highest mark on the standardized test as part of the army examination). We thus want to exploit that schooling systematically varies between provinces but that all military draftees need to take the same standardized examination during the military drafting process.
-
-### Model specification
-
-Formally, we can express the relationship between these variables as
-
-$Examination_{i}= \alpha + \beta Education_{i}$,
-
-where the parameters $\alpha$ and $\beta$ determine the percentage of draftees in a province that has received the highest mark, and the subscript $i$ indicates that we model this relationship for each province $i$ out of the $N$ provinces (note that this also presupposes that $\alpha$ and $\beta$ are the same in each province). The intuitive hypothesis is that in this equation, $\beta$ is positive, indicating that a higher share of draftees with more years of schooling results in a higher share of draftees who reach the highest examination mark.
-
-Yet, our model arguably has a couple of weaknesses. Most importantly, from an economic point of view, it seems rather unlikely that $Education$ is the only variable that matters for examination success. For example, it might matter a lot how students allocate their time when not in school, which might vary by province. In some provinces, children and young adults might have engaged in work activities that foster their reading and math skills outside school. In contrast, in other provinces, they might have engaged in hard manual labor in the agricultural sector. To formally acknowledge that other factors might also play a role, we extend our model with the term $u_{i}$. For the moment, we thus subsume all other potentially relevant factors in that term:
-
-
-$Examination_{i}= \alpha + \beta Education_{i} + u_{i}$.
-
-
-### Raw data
-
-First, look at how these two variables are jointly distributed with a scatter plot.
+Before running a regression, always visualize your data:
 
 ```{r}
-plot(swiss$Education, swiss$Examination)
+plot(swiss$Education, swiss$Examination,
+     xlab = "Education (% beyond primary)",
+     ylab = "Examination (% highest mark)",
+     main = "Education vs Examination in Swiss Provinces")
 ```
-There seems to be a positive relationship between the years of schooling and examination success. Considering the raw data, we can formulate the problem of estimating the parameters of interest ($\alpha$ and $\beta$) as the question: What is the best way to draw a straight trend line through the cloud of dots? To further specify the problem, we need to specify a criterion to judge whether such a line 'fits' the data well. A rather intuitive measure is the sum of the squared differences between the line and the actual data points on the $y$-axis. That is, we compare what $y$-value we would get for a given $x$-value according to our trend-line (i.e., the function defining this line) with the actual $y$-value in the data (for simplicity, we use the general formulation with $y$ as the dependent and $x$ as the explanatory variable).
 
-## Derivation and implementation of OLS estimator
+There appears to be a positive relationship between education and examination success.
 
-From the model equation, we easily see that these 'differences' between the predicted and the actual values of $y$ are the remaining unexplained component $u$:
+### Fitting a linear model
 
-$y_{i}-\hat{\alpha}-\hat{\beta} x_i=u_i$.
-
-Hence, we want to minimize the *sum of squared residuals (SSR)*: $\sum{u_i^2}=\sum{(y_{i}-\hat{\alpha}-\hat{\beta} x_i)^2}$. Using calculus, we define the two first-order conditions:
-
-$$\frac{\partial SSR}{\partial \hat{\alpha}}=\sum{-2(y_{i}-\hat{\alpha}-\hat{\beta} x_i)}=0$$
-
-$$\frac{\partial SSR}{\partial \hat{\beta}}=\sum{-2x_i(y_{i}-\hat{\alpha}-\hat{\beta} x_i)}=0$$
-
-
-The first condition is relatively easily solved by getting rid of the $-2$ and considering that  $\sum{y_i}=N\bar{y}$:
-
-$\hat{\alpha}=\bar{y}-\hat{\beta}\bar{x}$.
-
-By plugging the solution for $\hat{\alpha}$ into the first order condition regarding $\hat{\beta}$ and again considering that $\sum{y_i}=N\bar{y}$, we get the solution for the slope coefficient estimator:
-
-$\frac{\sum{x_{i}y_{i}}-N\bar{y}\bar{x}}{\sum{x_i^2}-N\bar{x}^2}$.
-
-To compute the actual estimates, we first compute $\hat{\beta}$ and then $\hat{\alpha}$. With all that, we can implement our OLS estimator for the simple linear regression model in R and apply it to the estimation problem at hand:
+The `lm()` function takes a formula and a dataset:
 
 ```{r}
-
-# implement the simple OLS estimator
-# verify implementation with simulated data from above
-# my_ols(y,x)
-# should be very close to alpha=30 and beta=0.9
-my_ols <-
-  function(y,x) {
-    N <- length(y)
-    betahat <- (sum(y*x) - N*mean(x)*mean(y)) / (sum(x^2)-N*mean(x)^2)
-    alphahat <- mean(y)-betahat*mean(x)
-    
-    return(list(alpha=alphahat,beta=betahat))
-  }
-
-# estimate the effect of Education on Examination
-estimates <- my_ols(swiss$Examination, swiss$Education)
-estimates
+# fit the model
+model <- lm(Examination ~ Education, data = swiss)
 ```
 
-Finally, we can visually inspect the estimated parameters (i.e., does the line fit well with the data?):
+The formula `Examination ~ Education` means "Examination as a function of Education."
+
+### Viewing the results
+
+The simplest way to see the estimated coefficients:
 
 ```{r}
-plot(swiss$Education, swiss$Examination)
-abline(estimates$alpha, estimates$beta, col="red")
+model
 ```
 
-
-The fit looks rather reasonable. There seems to be indeed a positive relationship between Education and Examination. In the next step, we would likely want to know whether we can say something meaningful about how precisely this relationship is measured statistically (i.e., how 'significant' $\hat{\beta}$ is). We will leave this issue for another class.
-
-### Regression toolbox in R
-
-When working on data analytics problems in R, there is usually no need to implement one's own estimator functions. For most data analytics problems, the basic R installation (or an additional R package) already provides easy-to-use functions with many more features than our very simple example above. For example, the work-horse function for linear regressions in R is `lm()`, which accepts regression equation expressions as `formulas` such as `Examination~Education` and a data-frame with the corresponding dataset as arguments. As a simple example, we use this function to compute the same regression estimates as before:
+For more detailed output including statistical tests:
 
 ```{r}
-estimates2 <- lm(Examination~Education, data=swiss)
-estimates2
+summary(model)
 ```
-With one additional line of code, we can compute all the common statistics about the regression estimation:
+
+### Interpreting the output
+
+The `summary()` output contains several important pieces of information:
+
+**Coefficients:**
+- `(Intercept)`: The estimated $\hat{\alpha}$. Here, about 5.8, meaning a province with 0% education beyond primary school would be predicted to have about 5.8% achieving the highest examination mark.
+- `Education`: The estimated $\hat{\beta}$. Here, about 0.58, meaning each additional percentage point of education beyond primary school is associated with about 0.58 percentage points more draftees achieving the highest mark.
+
+**Statistical significance:**
+- `Std. Error`: The uncertainty in our estimate
+- `t value`: The ratio of the estimate to its standard error
+- `Pr(>|t|)`: The p-value testing whether the true coefficient is zero. Small values (typically < 0.05) suggest the relationship is statistically significant.
+
+The stars (`***`, `**`, `*`) indicate significance levels.
+
+**Model fit:**
+- `R-squared`: The proportion of variance in $y$ explained by the model. Here, about 0.33, meaning education explains about 33% of the variation in examination success across provinces.
+
+### Visualizing the fitted model
+
+Add the regression line to your scatter plot:
 
 ```{r}
-summary(estimates2)
+plot(swiss$Education, swiss$Examination,
+     xlab = "Education (% beyond primary)",
+     ylab = "Examination (% highest mark)")
+abline(model, col = "red", lwd = 2)
 ```
 
-The t-tests displayed in this summary for the intercept ($\alpha$) and the slope-coefficient concerning `Education` ($\beta$) assess how probable it is to observe such parameter estimates if the true values of these parameters are 0 (this is one way of thinking about statistical 'significance'). Specifically for the research question in this example: How often would we observe a value of $\hat{\beta}=0.579..$ or larger if we were to draw a random sample from the same population repeatedly and if more schooling in the population does not increase the average high-success rate at the standardized examination ($\beta=0$)? The P-values (last column) suggests that this would hardly ever be the case. If we are confident that the factors not considered in this simple model do not affect `Education`, we could conclude that `Education` has a significant and positive effect on `Examination`.
+## Multiple regression
 
+Often we want to control for multiple factors. The `lm()` function handles this easily:
 
+```{r}
+# include Agriculture as a control variable
+model2 <- lm(Examination ~ Education + Agriculture, data = swiss)
+summary(model2)
+```
+
+The interpretation of `Education` now changes to: the effect of education *holding agriculture constant*.
+
+To include all variables in a dataset:
+
+```{r}
+model3 <- lm(Examination ~ ., data = swiss)
+summary(model3)
+```
+
+The `.` means "all other variables in the dataset."
+
+## Working with model objects
+
+The model object contains useful information you can extract:
+
+```{r}
+# get coefficients
+coef(model)
+
+# get fitted values (predicted y)
+head(fitted(model))
+
+# get residuals (y - predicted y)
+head(residuals(model))
+
+# get confidence intervals for coefficients
+confint(model)
+```
+
+## A word of caution
+
+Statistical significance does not automatically imply causality. In our education example, provinces with higher education levels might differ in other ways that also affect examination success (parental wealth, urbanization, etc.). The simple regression cannot distinguish the effect of education from these confounding factors.
+
+For causal conclusions, you need either:
+- A randomized experiment
+- A natural experiment or quasi-experimental design
+- Careful consideration of all potential confounders
+
+The mathematical details of how OLS estimates are computed, including the derivation of the estimators and a simple implementation, are provided in Appendix B for interested readers.
 

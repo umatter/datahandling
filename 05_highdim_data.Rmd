@@ -1,4 +1,6 @@
 
+# (PART) Data Types {-}
+
 # High-Dimensional Data
 
 So far, we have only looked at data structured in a flat/table-like representation (e.g. CSV files). In applied econometrics/statistics, it is common to only work with data sets stored in such format. Data manipulation, filtering, aggregation, etc. presupposes data in a table-like format. Hence, storing data in this format makes perfect sense.
@@ -260,7 +262,7 @@ xml_doc
 library(jsonlite)
 
 # parse the JSON-document shown in the example above
-json_doc <- from JSON("persons.json")
+json_doc <- fromJSON("persons.json")
 
 # check the structure
 str(json_doc)
