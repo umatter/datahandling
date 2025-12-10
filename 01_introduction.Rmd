@@ -4,19 +4,260 @@
 
 # Introduction
 
-Lower computing costs, a stark decrease in storage costs for digital data, as well as the diffusion of the Internet, have led to the development of new products (e.g., smartphones) and services (e.g., web search engines, cloud computing) over the last few decades. A side product of these developments is a strong increase in the availability of digital data describing all kinds of everyday human activities [@einav_levin2014; @matter_stutzer2015]. As a consequence, new business models and economic structures are emerging with data as their core commodity (i.e., AI-related technological and economic change). For example, the current hype surrounding 'Artificial Intelligence' (AI) - largely fueled by the broad application of machine-learning techniques such as 'deep learning' (a form of artificial neural networks) - would not be conceivable without the increasing abundance of large amounts of digital data on all kind of socio-economic entities and activities. In short, without understanding and handling the underlying data streams properly, the AI-driven economy cannot function. The same rationale applies, of course, to other ways of making use of digital data. Be it traditional big data analytics or scientific research (e.g., applied econometrics).
+You have just received data from an international study that combined multiple collection methods: an online survey platform exported responses as JSON, field researchers in some countries used tablet-based forms that generated XML files, and in regions with limited internet access, hand-written questionnaires were later digitized into Excel spreadsheets with inconsistent formatting. The combined dataset is 200MB with nested response structures, dates in three different formats, missing values coded inconsistently across sources, and text responses in multiple languages. Your statistical software will not even open the JSON file. Before you can test a single hypothesis, you need to handle all of this.
+
+This book teaches you how.
+
+## Why data handling matters
+
+Lower computing costs, a stark decrease in storage costs for digital data, as well as the diffusion of the Internet\index{Internet}, have led to the development of new products (e.g., smartphones) and services (e.g., web search engines, cloud computing\index{Cloud Computing}) over the last few decades. A side product of these developments is a strong increase in the availability of digital data\index{Digital Data} describing all kinds of everyday human activities [@einav_levin2014; @matter_stutzer2015; @lazer_etal2009]. As a consequence, new business models and economic structures are emerging with data as their core commodity. The current developments surrounding 'Artificial Intelligence' (AI)\index{Artificial Intelligence (AI)}—largely fueled by the broad application of machine-learning\index{Machine Learning} techniques such as 'deep learning'\index{Deep Learning}—would not be conceivable without the increasing abundance of large amounts of digital data on all kinds of socio-economic entities and activities.
+
+The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of 'Data Science'\index{Data Science} and increasing demand for 'Data Scientists'\index{Data Scientist} [@lazer_etal2009]. While nothing within Data Science is particularly new on its own, the combination of skills and insights from different fields (particularly Computer Science\index{Computer Science} and Statistics\index{Statistics}) has proven to be very productive in meeting new challenges posed by a data-driven economy. In that sense, Data Science is more of a craft than a scientific field. As such, it presupposes a more practical and broader understanding of the data than traditional Computer Science and Statistics from which Data Science borrows its methods.
+
+Here is a truth that statistics courses rarely mention: **data preparation consumes 50-80% of a typical data project** [@lohr2014janitor; @crowdflower2016]. Before you can run a single regression or train a machine learning model, you must gather, clean, reshape, and validate your data. This "messy middle" of data work is what separates successful projects from failed ones.
+
+Consider the challenges researchers and analysts face across the social sciences:
+
+- **Survey data** arrives with complex skip patterns, inconsistent coding schemes, and respondent errors that must be cleaned before analysis
+- **Administrative records** contain privacy redactions, changing variable definitions over time, and linkage problems across databases
+- **Web-scraped data** from social media or news sources has encoding issues, unstructured text, and requires extensive parsing
+- **Panel data** must be carefully merged across sources, with attention to changing identifiers and temporal alignment
+- **Government statistics** come in inconsistent formats across agencies and countries, requiring harmonization
+
+These are not edge cases—they are the norm. This book focuses on the skills necessary for *acquiring, cleaning, and manipulating* digital data for research and analytics purposes.
+
+> **In Practice:** What do data scientists actually do? In 2009, Google's Chief Economist Hal Varian predicted that "the ability to take data—to be able to understand it, to process it, to extract value from it, to visualize it, to communicate it—is going to be a hugely important skill in the next decades" [@varian2014bigdata]. Looking back from 2025, Varian was remarkably prescient: data science has become one of the most sought-after skill sets in both industry and academia. But how do data scientists actually spend their time? A widely cited *New York Times* investigation found that data scientists spend "from 50 percent to 80 percent of their time mired in... collecting and preparing unruly digital data, before it can be explored for useful nuggets" [@lohr2014janitor]. Industry surveys corroborate this: the CrowdFlower Data Science Reports found that 60% of data scientists report spending most of their time on cleaning and organizing data—and 57% say it is the least enjoyable part of their job [@crowdflower2016]. The skills covered in this book address exactly this foundational work that makes analysis possible.
+
+## What is data?
+
+Before diving into technical details, let us establish what we mean by "data." At its most basic, **data** consists of recorded observations about the world. These observations can take many forms:
+
+- **Structured data** fits neatly into rows and columns: survey responses, financial records, experimental measurements
+- **Unstructured data** lacks a predefined format: text documents, images, audio recordings, social media posts
+- **Semi-structured data** falls in between: JSON files from web APIs, XML documents, log files with some organization
+
+At the technical level, all digital data ultimately reduces to a hierarchy:
+
+- **Bits** (0s and 1s) combine into **bytes**
+- Bytes encode **values** (numbers, characters)
+- Values are organized into **observations** (rows) and **variables** (columns)
+- Observations and variables form **datasets** (tables, files)
+
+This book covers all major data types you will encounter: tabular data in spreadsheets and databases, hierarchical data in JSON and XML formats, unstructured text, and digital images. Understanding how each is represented and stored is fundamental to working with data effectively.
 
 
-The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of ['Data Science'](https://en.wikipedia.org/wiki/Data_science) and increasing demand for 'Data Scientists'. While nothing within Data Science is particularly new on its own, the combination of skills and insights from different fields (particularly Computer Science and Statistics) has proven to be very productive in meeting new challenges posed by a data-driven economy. In that sense, Data Science is rather a craft than a scientific field. As such, it presupposes a more practical and broader understanding of the data than traditional Computer Science and Statistics from which Data Science borrows its methods. This book focuses on the skills necessary for *acquiring, cleaning, and manipulating* digital data for research/analytics purposes.
+## The data science pipeline
 
-<!-- Maybe self-made figure on skills covered in this book  -->
+Figure \@ref(fig:pipeline) illustrates the complete workflow of a data science project. Data flows from raw sources through a series of transformations until it becomes a useful product—a research finding, a business insight, a visualization, or a predictive model.
+
+```{r pipeline, echo=FALSE, fig.align='center', fig.cap="The data science pipeline: from raw sources to data products.", out.width="95%", purl=FALSE}
+knitr::include_graphics("img/data_pipeline.png")
+```
+
+The pipeline has several stages:
+
+1. **Gather/Collect**: Acquire raw data from sources (files, databases, APIs, web scraping)
+2. **Clean**: Fix errors, handle missing values, standardize formats
+3. **Store**: Organize data for efficient retrieval and reproducibility
+4. **Retrieve**: Access stored data for analysis
+5. **Analyze**: Apply statistical or machine learning methods
+6. **Visualize**: Create graphical representations of findings
+7. **Communicate**: Present results to stakeholders
+
+**This book focuses on everything before "analyze"**—the stages that determine whether your analysis is even possible and whether its results are trustworthy. Most courses jump straight to statistical methods, assuming clean, well-formatted data. In practice, you will spend most of your time in the earlier stages.
 
 
+## When data handling goes wrong
+
+The importance of data handling becomes painfully clear when things go wrong. Small errors in the early stages of the pipeline can propagate invisibly until they corrupt your final results. Consider two cautionary tales that illustrate why these skills matter.
+
+### The comma catastrophe
+
+A researcher studying political attitudes receives survey data as a CSV file. The dataset includes respondents' party affiliations and an open-ended question: "What concerns you most about the economy?" One respondent answered: "Inflation, unemployment, and housing costs."
+
+The problem? CSV files use commas to separate columns. When the data was exported without proper quoting, that single comma-containing response corrupted everything that followed in that row. The response text "Inflation, unemployment, and housing costs" was split across multiple columns, pushing subsequent values into the wrong fields.
+
+Here is what the corrupted data looks like:
+
+| id | concern_text | party | age |
+|----|--------------|-------|-----|
+| 1  | Inflation | Democrat | 34 |
+| 2  | Inflation | unemployment | and housing costs |
+| 3  | Job security | Independent | 28 |
+
+Notice that respondent 2's party affiliation now reads "unemployment"—a fragment of their text response. The actual party value ("Republican") was pushed into the age column, and the age (45) disappeared entirely or caused further corruption.
+
+The researcher, unaware of this issue, proceeds to analyze partisan differences in economic concerns. The analysis includes observations where "unemployment" and "and housing costs" appear as party affiliations—meaningless values that should not exist. Any findings about partisan patterns are now artifacts of data corruption, not genuine relationships.
+
+The error was only discovered during peer review when a reviewer noticed impossible values in the descriptive statistics table. By then, the researcher had invested months in a flawed analysis. The fix—properly handling quoted text fields during CSV import—takes only seconds when you know how (Chapter 8 will show you).
+
+### The encoding trap
+
+A research team conducts a multi-country study linking survey responses to administrative records. The linkage variable is respondent name. Everything works smoothly for test cases—until they notice that their final dataset has suspiciously fewer German and Spanish respondents than expected.
+
+The culprit is character encoding\index{Character Encoding}. Names containing umlauts, accents, or other non-ASCII characters were stored differently across systems:
+
+| Original Name | Survey File | Admin Record | Match? |
+|---------------|-------------|--------------|--------|
+| Müller | M�ller | Müller | No |
+| García | GarcÃ­a | García | No |
+| O'Brien | O'Brien | O'Brien | Yes |
+| Smith | Smith | Smith | Yes |
+
+The survey system used one character encoding; the administrative database used another. When the data was imported without specifying the correct encoding, characters like "ü" and "í" were corrupted into meaningless symbols. The names no longer matched, and those respondents were silently dropped from the merged dataset.
+
+This is not a random loss. The excluded respondents are systematically those with non-English names—introducing bias that could invalidate the entire study. The researchers might publish findings about "international differences" that actually reflect nothing more than which names survived the encoding mismatch.
+
+Understanding character encoding (Chapter 3) and specifying it correctly during import (Chapter 8) prevents this entirely.
+
+### The lesson
+
+These examples share a common pattern: **data handling errors are often silent**. The computer does not warn you that your party affiliation variable now contains text fragments, or that you have systematically excluded non-English names. The data looks plausible enough at a glance. Only careful inspection—or embarrassing discovery during peer review—reveals the problem.
+
+This is precisely why data handling skills matter. The techniques covered in this book are not bureaucratic overhead before the "real" analysis begins. They are the foundation that determines whether your analysis means anything at all. Every hour invested in learning proper data handling will save you from disasters like these—and the earlier you catch problems, the easier they are to fix.
 
 
+## How this book is organized
+
+This book is organized into three parts that mirror the logical progression from foundations to practice.
+
+### Part I: Foundations (Chapters 1-4)
+
+These chapters establish the conceptual and technical groundwork:
+
+- **Chapter 1 (Introduction)**: Why data handling matters; the data pipeline; how to use this book
+- **Chapter 2 (Programming with Data)**: Setting up R and RStudio; core programming concepts including variables, functions, and control flow; why we use R (and how it relates to Python)
+- **Chapter 3 (Digital Data Fundamentals)**: How computers represent data; binary and hexadecimal systems; character encoding and why it causes problems
+- **Chapter 4 (Data Storage and Structures)**: Files versus memory; the anatomy of CSV files; R's core data structures (vectors, factors, matrices, data frames, lists)
+
+### Part II: Data Types (Chapters 5-7)
+
+These chapters address specialized data formats beyond simple tables:
+
+- **Chapter 5 (High-Dimensional Data)**: Hierarchical and nested data; XML and JSON formats; working with web data structures
+- **Chapter 6 (Text Data)**: Working with unstructured text; the NLP pipeline from acquisition to analysis; corpus structures and document-term matrices
+- **Chapter 7 (Image Data)**: Digital image representation; raster versus vector graphics; reading and manipulating images in R
+
+### Part III: The Data Pipeline (Chapters 8-12)
+
+These chapters walk through the practical workflow of a data project:
+
+- **Chapter 8 (Data Import)**: Reading data from CSV, Excel, JSON, XML; connecting to databases; accessing web APIs; ethical web scraping
+- **Chapter 9 (Data Preparation)**: Cleaning messy data; reshaping between wide and long formats; combining datasets; the tidyverse workflow
+- **Chapter 10 (Exploratory Data Analysis)**: Summary statistics and grouped analysis; detecting data quality issues; understanding your data before modeling
+- **Chapter 11 (Basic Statistical Modeling)**: Simple and multiple regression in R; interpreting output; the bridge from exploration to formal analysis
+- **Chapter 12 (Data Visualization)**: The grammar of graphics; creating publication-quality plots with ggplot2; principles of effective data communication
+
+### Appendices
+
+The appendices provide reference material:
+
+- **Appendix A (Statistical Foundations)**: Probability distributions, sampling, the Central Limit Theorem
+- **Appendix B (OLS Derivation)**: Mathematical foundations of linear regression
+- **Appendix C (Exercise Solutions)**: Complete solutions to all chapter exercises
+- **Appendix D (Glossary)**: Definitions of key terms
+- **Appendix E (Datasets)**: Documentation of datasets used in examples
 
 
+## Core principles
+
+Three principles run through this book:
+
+### Reproducibility
+
+Every step of your data work should be scripted and documented. Point-and-click workflows cannot be verified, shared, or corrected when errors are discovered. When you write code to clean and transform data, you create a record that your future self—and your collaborators, reviewers, and readers—can examine and reproduce.
+
+This is not just good practice; it is increasingly required. Major journals now mandate data and code availability. Funding agencies expect reproducible workflows. And practically speaking, you *will* need to redo your analysis when new data arrives or when you discover a problem months later.
+
+### Pragmatism
+
+Use the right tool for the job. We teach the tidyverse because its consistent syntax makes code readable and maintainable. But base R has its place too, especially for quick exploration or when working with legacy code. The goal is getting work done correctly, not ideological purity about tools.
+
+Similarly, we focus on R, but the concepts transfer to Python, SQL, and other languages. Once you understand data structures and the logic of data transformation, switching tools is straightforward.
+
+### Domain knowledge matters
+
+Data handling is not purely technical. Your understanding of your research domain—whether economics, political science, sociology, or another field—is essential for making good decisions about data.
+
+Which missing values can be safely ignored? Which outliers are errors versus genuine extreme cases? How should variables be coded? These questions require substantive knowledge, not just technical skills. The computer cannot tell you whether a recorded age of 150 is a data entry error or a coding scheme where 150 means "refused to answer."
 
 
+## What you will learn
+
+By the end of this book, you will be able to:
+
+- Set up a reproducible R workflow with RStudio projects and scripts
+- Understand how computers store and represent different types of data
+- Import data from CSV, Excel, JSON, XML, databases, and web APIs
+- Clean messy real-world datasets: handle missing values, fix encoding issues, parse dates and strings
+- Reshape data between wide and long formats
+- Merge and combine datasets from multiple sources
+- Work with text data: tokenization, cleaning, basic text analysis
+- Manipulate and analyze image data programmatically
+- Explore data systematically before formal analysis
+- Create publication-quality visualizations with ggplot2
+- Document your workflow so others (and you) can reproduce it
 
 
+## Prerequisites and how to use this book
+
+### What you need before starting
+
+This book assumes:
+
+- **Basic statistics**: You should be comfortable with means, standard deviations, correlation, and simple regression. You do not need advanced econometrics or machine learning knowledge.
+- **Familiarity with research**: Some exposure to research questions in social sciences helps motivate the examples, though the skills apply broadly.
+- **No programming experience required**: We start from scratch. If you have never written a line of code, you are in the right place.
+
+### How to use this book
+
+- **Work through chapters in order** on your first reading. Later chapters build on earlier concepts.
+- **Type the code yourself**. Reading code is not the same as writing it. You will learn more by typing examples and seeing what happens.
+- **Do the exercises**. They reinforce concepts and often introduce additional techniques. Solutions are in Appendix C.
+- **Pay attention to special boxes**: "In Practice" boxes connect concepts to real-world applications. "Common Error" boxes warn about frequent mistakes.
+- **Experiment**. Modify the examples. Break things. See what error messages mean. This is how you learn.
+
+
+## Key Takeaways
+
+- The explosion of digital data creates opportunities for research and business, but requires proper data handling skills.
+- Data Science combines Computer Science and Statistics, but domain knowledge is equally important for making good decisions about data.
+- Data preparation—gathering, cleaning, transforming—consumes 60-80% of a typical data project, yet is rarely taught in statistics courses.
+- This book focuses on practical skills for the "data pipeline" that precedes analysis: the work that determines whether your analysis is possible and trustworthy.
+- Reproducibility through scripted workflows is not optional—it is a core professional practice that enables verification, collaboration, and correction.
+
+> **AI Support Prompt:** To apply the concepts from this chapter to your own work, try asking an AI assistant:
+>
+> `I'm starting a research project about [your topic]. The data I plan to use comes from [your data sources, e.g., survey data, administrative records, web APIs]. Can you help me map out a data pipeline for this project? What data handling challenges should I anticipate, and what steps should I plan for cleaning and preparation?`
+>
+> This will help you think through the data handling challenges specific to your research before you encounter them.
+
+> **AI Support Prompt:** To better understand the "80/20 rule" of data work, try:
+>
+> `I've heard that data scientists spend 50-80% of their time on data preparation rather than analysis. Can you explain what specific tasks fall into 'data preparation'? What makes this work so time-consuming?`
+>
+> Understanding what data preparation entails will help you plan realistic timelines for your projects.
+
+
+## Further Reading
+
+- @wickham_cetinkaya_grolemund_2023: *R for Data Science* (2nd edition) is the definitive guide to modern data science with R. Freely available at https://r4ds.hadley.nz/.
+- @einav_levin2014: "Economics in the Age of Big Data" provides an excellent overview of how digital data is transforming economic research.
+- @lazer_etal2009: "Computational Social Science" is the foundational paper that announced the emergence of the field, outlining how digital data and computational methods are transforming social science research.
+- @christensen2018transparency: *Transparent and Reproducible Social Science Research* explains why reproducibility matters and how to achieve it in practice.
+
+
+## Exercises
+
+1. **Data in your field**: Think of a research question or business problem in your area of interest. What types of data would you need to address it? Where might this data come from? What challenges do you anticipate in obtaining and working with this data?
+
+2. **The data pipeline**: Consider a simple analysis you have done (or would like to do)—for example, analyzing survey responses or economic indicators. List all the steps you would need to take from obtaining the raw data to presenting your final results. Which steps do you think would take the most time?
+
+3. **Data Science skills**: The text mentions that Data Science combines skills from Computer Science and Statistics, plus domain knowledge. Based on your current background, which of these areas do you feel most comfortable with? Which skills do you think you most need to develop?
+
+4. **Mapping the pipeline**: Look at the data pipeline diagram (Figure \@ref(fig:pipeline)). For a research project you are familiar with, identify which stages would be most challenging and why. What could go wrong at each stage?
+
+5. **Data detective**: A colleague shares a dataset where the `region` variable contains unexpected values like "and more jobs" and "better schools" alongside legitimate region names like "Northeast" and "Midwest".
+   a) What might have gone wrong during data import?
+   b) What would you check first to diagnose the problem?
+   c) How could this error affect an analysis of regional differences?

@@ -1,6 +1,8 @@
 bookdown::gitbook:
   dev: svglite
   css: style/style.css
+  includes:
+    after_body: style/callout-boxes-script.html
   split_bib: no
   config:
     toc:
@@ -29,7 +31,9 @@ bookdown::pdf_book:
   latex_engine: xelatex
   citation_package: natbib
   template: null
-  pandoc_args: --top-level-division=chapter
+  pandoc_args:
+    - --top-level-division=chapter
+    - --lua-filter=latex/callout-boxes.lua
   toc_depth: 3
   toc_unnumbered: no
   toc_appendix: yes

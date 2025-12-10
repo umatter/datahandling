@@ -1,0 +1,41 @@
+{
+  "survey": {
+    "title": "Student Technology Usage Survey",
+    "date": "2024-03-15",
+    "responses": [
+      {
+        "id": 1,
+        "age": 22,
+        "major": "Economics",
+        "devices": ["laptop", "smartphone"],
+        "hours_online": 6.5,
+        "software": {
+          "statistics": ["R", "Stata"],
+          "productivity": ["Excel", "Word"]
+        }
+      },
+      {
+        "id": 2,
+        "age": 24,
+        "major": "Data Science",
+        "devices": ["laptop", "smartphone", "tablet"],
+        "hours_online": 8.0,
+        "software": {
+          "statistics": ["R", "Python"],
+          "productivity": ["Excel", "Google Docs"]
+        }
+      },
+      {
+        "id": 3,
+        "age": 21,
+        "major": "Economics",
+        "devices": ["laptop"],
+        "hours_online": 4.5,
+        "software": {
+          "statistics": ["Stata"],
+          "productivity": ["Excel", "Word", "PowerPoint"]
+        }
+      }
+    ]
+  }
+}

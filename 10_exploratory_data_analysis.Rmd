@@ -1,0 +1,242 @@
+
+
+# Exploratory Data Analysis
+
+After importing, cleaning, and transforming your data (Chapter 9), the next step is to explore and understand what you have. Exploratory Data Analysis (EDA)\index{Exploratory Data Analysis (EDA)} is the process of using summary statistics and visualizations to understand the structure, patterns, and peculiarities of your dataset before formal modeling or hypothesis testing.
+
+**Prerequisites:** Familiarity with data frames and basic R operations from Chapters 2 and 4. The data preparation techniques from Chapter 9 (filtering, selecting, mutating, merging) will be used throughout.
+
+**What you will learn:**
+
+- How to compute and interpret summary statistics (mean, median, standard deviation)
+- How to use `group_by()` and `summarise()` for aggregation
+- How to identify data quality issues (outliers, missing values, unexpected patterns)
+- How to create basic visualizations to explore distributions and relationships
+
+---
+
+> **In Practice:** Exploratory Data Analysis isn't just a preliminary step—it's essential for credible research and reliable business decisions. @tukey1977 pioneered the EDA approach, arguing that statisticians should look at their data before jumping to formal models. His insight remains central to modern practice. Across the social sciences and in industry, EDA reveals data quality issues (coding errors, outliers, implausible values) that could invalidate later analyses. @christensen2018transparency emphasize that many replication failures stem from researchers not carefully examining their data before modeling. EDA also generates hypotheses: unexpected patterns might reveal phenomena worth investigating formally. The correlation matrices, summary statistics, and distributions explored in this chapter form the foundation for every serious empirical project.
+
+## Aggregation and summary statistics\index{Summary Statistics}
+
+Typically, the first step of analyzing a dataset is to get an overview by computing some summary statistics. This helps to better understand the dataset at hand. Key summary statistics of the variables of interest are the mean, standard deviation, median, and number of observations. Together, they give a first idea of how the variables of interest are distributed.
+
+We will continue working with the data prepared in the previous chapter. Let's reload the necessary packages and recreate the dataset:
+
+```{r message=FALSE, warning=FALSE}
+# load packages
+library(tidyverse)
+
+# recreate the example dataset
+df_c <- data.frame(
+  id = c(1:3, 1:3),
+  money_spent = c(1000, 2000, 6000, 1500, 3000, 5500),
+  currency = c("CHF", "CHF", "USD", "EUR", "CHF", "USD"),
+  year = c(2017, 2017, 2017, 2018, 2018, 2018))
+
+df_p <- data.frame(
+  id = 1:4,
+  first_name = c("Anna", "Betty", "Claire", "Diane"),
+  profession = c("Economist", "Data Scientist",
+                 "Data Scientist", "Economist"))
+
+df_merged <- merge(df_p, df_c, by = "id")
+df_selection <- select(df_merged, id, year, money_spent, currency)
+
+exchange_rates <- data.frame(
+  exchange_rate = c(0.9, 1, 1.2),
+  currency = c("USD", "CHF", "EUR"),
+  stringsAsFactors = FALSE)
+df_selection <- merge(df_selection, exchange_rates, by = "currency")
+df_mutated <- mutate(df_selection,
+                     money_spent_chf = money_spent * exchange_rate)
+```
+
+R has several built-in functions that help compute summary statistics. In practice, these basic functions are often combined with functions implemented particularly for this step of the analysis, such as `summarise()`\index{summarise()} provided in `tidyverse`.
+
+As the first output in our report, we want to show the key characteristics of the spending data in one table.
+
+```{r}
+summarise(df_mutated,
+          mean = mean(money_spent_chf),
+          standard_deviation = sd(money_spent_chf),
+          median = median(money_spent_chf),
+          N = n())
+```
+
+> **Common Error:** Functions like `mean()`, `sd()`, and `sum()` return `NA` if any value is missing. This is R's way of saying "I can't compute this without making assumptions." Add `na.rm = TRUE` to ignore missing values: `mean(x, na.rm = TRUE)`. Always check for NAs first with `sum(is.na(x))` to understand your data.
+
+### Grouped summaries\index{group\_by()}
+
+Moreover, we can compute the same statistics grouped by certain observation characteristics. For example, we can compute the same summary statistics per year of observation.
+
+```{r message=FALSE, warning=FALSE}
+by_year <- group_by(df_mutated, year)
+summarise(by_year,
+          mean = mean(money_spent_chf),
+          standard_deviation = sd(money_spent_chf),
+          median = median(money_spent_chf),
+          N = n())
+```
+
+Grouping by multiple variables is also straightforward:
+
+```{r message=FALSE, warning=FALSE}
+by_year_currency <- group_by(df_mutated, year, currency)
+summarise(by_year_currency,
+          mean = mean(money_spent_chf),
+          N = n())
+```
+
+### Using apply functions\index{sapply()}\index{Apply Functions}
+
+Alternatively to the more user-friendly (but less flexible) `summarise` function, we can use lower-level functions to compute aggregate statistics provided in the basic R distribution. A good example of such a function is `sapply()`. In simple terms, `sapply()` takes a list as input and applies a function to the content of each element in this list (here: compute a statistic for each column). To illustrate this point, we load the already familiar `swiss` dataset.
+
+```{r}
+# load data
+data("swiss")
+```
+
+Now we want to compute the mean for each variable in this dataset. Technically speaking, a data frame is a list, where each list element is a column of the same length. Thus, we can use `sapply()` to 'apply' the function `mean()` to each of the columns in `swiss`.
+
+```{r}
+sapply(swiss, mean)
+```
+
+By default, `sapply()` returns a vector or a matrix.^[The related function `lapply()` returns a list (see `lapply(swiss, mean)`).] We can get a similar result by using `summarise()`. However, we would have to explicitly mention which variables we want as input.
+
+```{r}
+summarise(swiss,
+          Fertility = mean(Fertility),
+          Agriculture = mean(Agriculture)) # etc.
+```
+
+## What to look for in your data
+
+When exploring a new dataset, there are several key questions you should ask:
+
+### Check for missing values\index{Missing Values}\index{NA}
+
+Missing values (`NA`) can significantly affect your analysis. Always check how many missing values exist and in which variables:
+
+```{r}
+# Count NAs in each column
+sapply(df_mutated, function(x) sum(is.na(x)))
+```
+
+### Examine the distribution
+
+Look at the range of values to identify potential outliers or data entry errors:
+
+```{r}
+summary(swiss)
+```
+
+Key things to notice:
+- **Min/Max vs Mean/Median**: Large differences between mean and median suggest skewed distributions
+- **Extreme values**: Very high max or very low min might indicate outliers
+- **Zero or negative values**: In variables where these shouldn't exist (e.g., income, age)
+
+### Check for unexpected values
+
+For categorical variables, examine the unique values:
+
+```{r}
+unique(df_mutated$currency)
+```
+
+For numeric variables, look at the distribution:
+
+```{r}
+# Quick histogram
+hist(swiss$Fertility,
+     main = "Distribution of Fertility",
+     xlab = "Fertility")
+```
+
+### Identify relationships between variables\index{Correlation}
+
+A correlation matrix can reveal relationships between numeric variables:
+
+```{r}
+# Correlation matrix for swiss data
+round(cor(swiss), 2)
+```
+
+## From exploration to analysis
+
+The insights gained from EDA should guide your subsequent analysis:
+
+1. **Missing values**: Decide whether to remove observations, impute values, or adjust your analysis approach
+2. **Outliers**: Investigate whether they are errors or genuine extreme values
+3. **Distributions**: Consider transformations if variables are heavily skewed
+4. **Relationships**: Use discovered correlations to inform your modeling choices
+
+For example, in our spending dataset, we might investigate why Claire's spending is so much higher than others, or verify that our currency conversion didn't introduce unexpected values. In the `swiss` dataset, the strong negative correlation between Education and Catholic populations might prompt questions about historical context that inform how we interpret any subsequent regression analysis.
+
+The next chapters will cover formal statistical modeling (Chapter 11) and visualization techniques (Chapter 12) that build upon this exploratory foundation.
+
+## Key Takeaways
+
+- Exploratory Data Analysis (EDA) is an essential step between data preparation and formal modeling—it helps you understand your data before analyzing it.
+- Summary statistics (mean, median, standard deviation, counts) provide a first overview of your variables' distributions and central tendencies.
+- Grouped summaries using `group_by()` and `summarise()` reveal patterns across categories and are fundamental to understanding your data.
+- Always check for missing values, outliers, and unexpected values—they can indicate data quality issues or interesting phenomena.
+- Functions like `sapply()` and `lapply()` efficiently apply operations to each column of a data frame without explicit loops.
+- EDA findings should guide your subsequent analysis: how to handle missing data, whether to transform variables, and what relationships to model.
+
+> **AI Support Prompt:** To develop an EDA checklist for your specific data, try:
+>
+> `I have a dataset about [describe your data, e.g., 'household survey responses', 'financial transactions', 'clinical trial results'] with [number] observations and [number] variables. What should I check during exploratory data analysis? What patterns or problems should I look for?`
+>
+> Different types of data require different EDA approaches—AI can suggest domain-appropriate checks.
+
+> **AI Support Prompt:** To interpret summary statistics output, ask:
+>
+> `I calculated summary statistics for my variable and got: mean = [X], median = [Y], SD = [Z], min = [A], max = [B]. What does this tell me about the distribution? Should I be concerned about anything?`
+>
+> Understanding what summary statistics reveal about your data is a skill that improves with practice.
+
+> **AI Support Prompt:** When you find something unexpected in your data, investigate:
+>
+> `I'm doing EDA on my dataset and noticed [describe what you found, e.g., 'a strong negative correlation between X and Y', 'several extreme outliers', '20% missing values in one column']. What might cause this? How should I handle it in my analysis?`
+>
+> EDA often raises questions—AI can help you think through possible explanations and next steps.
+
+## Further Reading
+
+- @wickham_cetinkaya_grolemund_2023: The "Transform" and "Visualize" sections of *R for Data Science* (2nd ed.) cover exploratory data analysis in detail. Available at https://r4ds.hadley.nz/.
+- The `skimr` package: https://docs.ropensci.org/skimr/ provides a convenient function for quick data summaries.
+- @tukey1977: *Exploratory Data Analysis* is the classic text that introduced the EDA approach to statistics.
+
+## Exercises
+
+1. **Summary statistics**: Using the `mtcars` dataset:
+   a) Calculate the mean, median, and standard deviation of `mpg` (miles per gallon)
+   b) What does it tell you if the mean is much higher than the median?
+   c) Which car has the highest `mpg`? Which has the lowest?
+
+2. **Grouped analysis**: Using `mtcars`:
+   a) Calculate the average `mpg` for cars with 4, 6, and 8 cylinders (`cyl`)
+   b) For each number of cylinders, also calculate the average horsepower (`hp`) and weight (`wt`)
+   c) What pattern do you notice?
+
+3. **Missing data**: Create a data frame with some missing values:
+   ```r
+   df <- data.frame(
+     x = c(1, 2, NA, 4, 5),
+     y = c(NA, 2, 3, NA, 5),
+     z = c(1, 2, 3, 4, 5)
+   )
+   ```
+   a) How many missing values are in each column?
+   b) How many rows have at least one missing value?
+   c) What happens when you calculate `mean(df$x)`? How do you fix it?
+
+4. **Correlation exploration**: Using the `swiss` dataset:
+   a) Compute the correlation matrix for all numeric variables
+   b) Which two variables have the strongest positive correlation?
+   c) Which two have the strongest negative correlation?
+   d) What might explain these relationships?
+
+

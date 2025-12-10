@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <book id="1">
+    <title>Introduction to Econometrics</title>
+    <author>James Stock</author>
+    <author>Mark Watson</author>
+    <year>2019</year>
+    <publisher>Pearson</publisher>
+    <price currency="USD">89.99</price>
+  </book>
+  <book id="2">
+    <title>R for Data Science</title>
+    <author>Hadley Wickham</author>
+    <author>Garrett Grolemund</author>
+    <year>2023</year>
+    <publisher>O'Reilly</publisher>
+    <price currency="USD">59.99</price>
+  </book>
+  <book id="3">
+    <title>The Elements of Statistical Learning</title>
+    <author>Trevor Hastie</author>
+    <author>Robert Tibshirani</author>
+    <author>Jerome Friedman</author>
+    <year>2009</year>
+    <publisher>Springer</publisher>
+    <price currency="USD">74.99</price>
+  </book>
+</library>

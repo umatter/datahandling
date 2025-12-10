@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company name="TechCorp">
+  <department name="Research">
+    <employee id="101">
+      <name>Maria Schmidt</name>
+      <position>Senior Researcher</position>
+      <salary>95000</salary>
+    </employee>
+    <employee id="102">
+      <name>Hans Mueller</name>
+      <position>Research Assistant</position>
+      <salary>55000</salary>
+    </employee>
+  </department>
+  <department name="Marketing">
+    <employee id="201">
+      <name>Anna Weber</name>
+      <position>Marketing Director</position>
+      <salary>110000</salary>
+    </employee>
+    <employee id="202">
+      <name>Peter Keller</name>
+      <position>Marketing Analyst</position>
+      <salary>65000</salary>
+    </employee>
+    <employee id="203">
+      <name>Lisa Brunner</name>
+      <position>Marketing Analyst</position>
+      <salary>62000</salary>
+    </employee>
+  </department>
+  <department name="Engineering">
+    <employee id="301">
+      <name>Thomas Meier</name>
+      <position>Lead Engineer</position>
+      <salary>105000</salary>
+    </employee>
+  </department>
+</company>

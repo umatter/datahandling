@@ -1,128 +1,243 @@
-
-\backmatter
-
-
 # (APPENDIX) Appendix {-}
 
 # Statistical Foundations {#appendix-stats}
 
-This appendix provides background on key statistical concepts that underpin data analysis. Understanding these concepts helps interpret the results of statistical tests and modeling.
+This appendix provides background on key statistical concepts that underpin data analysis. Before running regressions or interpreting model output, you need to understand what distributions are, how samples relate to populations, and why certain statistical properties (like the Central Limit Theorem) make hypothesis testing possible.
 
-## Random draws and distributions
+**Prerequisites:** Basic arithmetic and comfort with R syntax from Chapter 2.
+
+**What you will learn:**
+
+- What probability distributions are and why they matter for data analysis
+- The difference between populations and samples
+- How to measure and interpret variability (standard deviation, variance)
+- What skewness and kurtosis tell you about your data
+- The Law of Large Numbers and why larger samples are better
+- The Central Limit Theorem and why it enables hypothesis testing
+
+---
+
+## Populations and samples
+
+Before diving into distributions, we need to distinguish between two fundamental concepts:
+
+- A **population** is the complete set of all units you want to study (all voters in a country, all firms in an industry, all possible rolls of a die).
+- A **sample** is a subset of the population that you actually observe.
+
+In practice, we almost never observe entire populations. Instead, we collect samples and use them to make inferences about the population. The key question in statistics is: *How reliable are conclusions drawn from samples?*
 
 ```{r}
-normal_distr <- rnorm(1000)
-hist(normal_distr)
+# The population: all possible die rolls have equal probability
+population_mean <- mean(1:6)  # 3.5
+population_mean
+
+# A sample: we roll the die 20 times
+set.seed(42)  # for reproducibility
+sample_rolls <- sample(1:6, size = 20, replace = TRUE)
+sample_mean <- mean(sample_rolls)
+sample_mean
 ```
 
+The sample mean differs from the population mean—this is **sampling variability**. The rest of this appendix explains how to quantify this variability and make reliable inferences despite it.
 
-## Variability
+## Probability distributions
 
-```{r, echo=TRUE}
-# draw a random sample from a normal distribution with a large standard deviation
-largevar <- rnorm(10000, mean = 5000, sd = 5)
-# draw a random sample from a normal distribution with a small standard deviation
-littlevar <- rnorm(10000, mean = 5000, sd = 1)
+A **probability distribution** describes how likely different outcomes are. When you roll a fair die, each outcome (1 through 6) has probability 1/6—this is a *uniform distribution*. When you measure heights in a population, values cluster around the average with fewer extreme values—this often follows a *normal distribution*.
 
-# visualize the distributions of both samples with a density plot
-plot(density(littlevar), col = "blue",
-     xlim=c(min(largevar), max(largevar)), main="Income Distribution")
-lines(density(largevar), col = "red")
+### The normal distribution
 
+The **normal distribution** (or "bell curve") is the most important distribution in statistics. It's defined by two parameters:
+
+- **Mean (μ)**: the center of the distribution
+- **Standard deviation (σ)**: how spread out values are
+
+```{r, out.width="70%", fig.align='center'}
+# Generate data from a normal distribution
+set.seed(123)
+normal_data <- rnorm(n = 10000, mean = 0, sd = 1)
+
+# Visualize
+hist(normal_data, breaks = 50, probability = TRUE,
+     main = "Standard Normal Distribution (μ=0, σ=1)",
+     xlab = "Value", col = "lightblue", border = "white")
+# Add theoretical density curve
+curve(dnorm(x, mean = 0, sd = 1),
+      add = TRUE, col = "darkblue", lwd = 2)
 ```
 
-**Note:** the red curve illustrates the distribution of the sample with a large standard deviation (a lot of variability) whereas the blue curve illustrates the one with a rather small standard deviation.
+The normal distribution has useful properties: approximately 68% of values fall within 1 standard deviation of the mean, approximately 95% within 2 standard deviations, and approximately 99.7% within 3 standard deviations (the "68-95-99.7 rule").
+
+> **In Practice:** Many variables in economics and social sciences are approximately normally distributed: test scores, measurement errors, and (after log transformation) incomes and firm sizes. More importantly, even when individual observations aren't normally distributed, *sample means* tend toward normality as sample size increases—this is the Central Limit Theorem, which we'll cover below.
+
+### Other common distributions
+
+R provides functions for many distributions. Each has four variants: `d` (density), `p` (cumulative probability), `q` (quantile), and `r` (random generation).
+
+```{r}
+# Uniform distribution: all values equally likely
+runif(n = 5, min = 0, max = 10)
+
+# Binomial: number of successes in n trials
+rbinom(n = 5, size = 10, prob = 0.5)  # flip 10 coins, count heads
+
+# Poisson: count of events in fixed interval
+rpois(n = 5, lambda = 3)  # events with average rate 3
+```
+
+## Variability: Standard deviation and variance
+
+**Variability** measures how spread out values are around the center. Two datasets can have the same mean but very different spreads:
+
+```{r, echo=TRUE, out.width="70%", fig.align='center'}
+set.seed(42)
+# Two distributions with the same mean but different spread
+low_variance <- rnorm(10000, mean = 100, sd = 5)
+high_variance <- rnorm(10000, mean = 100, sd = 20)
+
+# Visualize
+plot(density(low_variance), col = "blue", lwd = 2,
+     xlim = c(20, 180), ylim = c(0, 0.08),
+     main = "Same Mean, Different Variability",
+     xlab = "Value")
+lines(density(high_variance), col = "red", lwd = 2)
+legend("topright", legend = c("SD = 5", "SD = 20"),
+       col = c("blue", "red"), lwd = 2)
+```
+
+### Calculating variance and standard deviation
+
+The **variance** is the average squared deviation from the mean:
+
+$$\text{Variance} = s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2$$
+
+The **standard deviation** is the square root of the variance, returning to the original units:
+
+$$\text{Standard Deviation} = s = \sqrt{\text{Variance}}$$
+
+```{r}
+x <- c(2, 4, 4, 4, 5, 5, 7, 9)
+
+# Calculate step by step
+mean_x <- mean(x)
+deviations <- x - mean_x
+squared_deviations <- deviations^2
+variance <- sum(squared_deviations) / (length(x) - 1)
+std_dev <- sqrt(variance)
+
+c(mean = mean_x, variance = variance, sd = std_dev)
+
+# Or use built-in functions
+c(var = var(x), sd = sd(x))
+```
+
+### Interpreting standard deviation
+
+A standard deviation of 5 means different things depending on context:
+
+- For exam scores (0-100): small variability, students scored similarly
+- For annual income (in thousands): moderate variability
+- For height in centimeters: large variability
+
+Always interpret standard deviation relative to the mean and the variable's natural scale.
+
+> **Common Error:** **Standard deviation** and **standard error** are not the same thing. Standard deviation measures variability in your *data*. Standard error measures uncertainty in a *statistic* (like the sample mean). The standard error of the mean is $SE = \frac{SD}{\sqrt{n}}$—it shrinks as sample size increases, while standard deviation does not.
 
 
 ## Skewness and Kurtosis
 
-```{r, echo=TRUE}
-# Install the R-package called "moments" with the following command (if not installed yet):
-# install.packages("moments")
+Beyond mean and standard deviation, two additional measures help characterize distributions: **skewness** (asymmetry) and **kurtosis** (tail heaviness). These matter because many statistical methods assume symmetric distributions, and heavy tails can indicate outliers.
 
-# load the package
+```{r, echo=TRUE, message=FALSE}
 library(moments)
-
 ```
-
-
 
 ### Skewness
 
-Skewness refers to how symmetric the frequency distribution of a variable is. For example, a distribution can be 'positively skewed' meaning it has a long tail on the right and a lot of 'mass' (observations) on the left. We can see that when visualizing the distribution in a histogram or a density plot. In R this looks as follow (consider the comments in the code explaining what each line does):
+**Skewness** measures how asymmetric a distribution is:
 
-```{r, echo=TRUE}
-# draw a random sample of simulated data from a normal distribution
-# the sample is of size 1000 (hence, n = 1000)
-sample <- rnorm(n = 1000)
+- **Skewness ≈ 0**: Symmetric (like the normal distribution)
+- **Skewness > 0**: Right-skewed (long tail on the right, mass on the left)
+- **Skewness < 0**: Left-skewed (long tail on the left, mass on the right)
 
-# plot a histogram and a density plot of that sample
-# note that the distribution is neither strongly positively nor negatively skewed
-# (this is to be expected, as we have drawn a sample from a normal distribution)
-hist(sample)
-plot(density(sample))
+```{r, echo=TRUE, out.width="90%", fig.align='center'}
+set.seed(42)
+# Symmetric distribution
+symmetric <- rnorm(n = 5000)
 
-# now compute the skewness
-skewness(sample)
+# Right-skewed: add high-value outliers
+right_skewed <- c(rnorm(4000), rnorm(1000, mean = 3))
 
-# Now we intentionally change our sample to be strongly positively skewed
-# We do that by adding some outliers (observations with very high values) to the sample
-sample <- c(sample, (rnorm(200) + 2), (rnorm(200) + 3))
+# Left-skewed: add low-value outliers
+left_skewed <- c(rnorm(4000), rnorm(1000, mean = -3))
 
-# Have a look at the distribution and re-calculate the skewness
-plot(density(sample))
-skewness(sample)
-
-
-#
-
+# Visualize all three
+par(mfrow = c(1, 3))
+hist(symmetric, col = "lightblue", border = "white", xlab = "",
+     main = paste("Symmetric\nSkewness:",
+                  round(skewness(symmetric), 2)))
+hist(right_skewed, col = "lightcoral", border = "white", xlab = "",
+     main = paste("Right-skewed\nSkewness:",
+                  round(skewness(right_skewed), 2)))
+hist(left_skewed, col = "lightgreen", border = "white", xlab = "",
+     main = paste("Left-skewed\nSkewness:",
+                  round(skewness(left_skewed), 2)))
+par(mfrow = c(1, 1))
 ```
+
+> **In Practice:** Income distributions are typically right-skewed: most people earn moderate amounts, but a small number earn very high incomes, creating a long right tail. This is why median income is often more informative than mean income—the mean is pulled up by high earners. When you see the mean much larger than the median in your EDA (Chapter 10), suspect right skewness.
 
 ### Kurtosis
-Kurtosis refers to how much 'mass' a distribution has in its 'tails'. It thus tells us something about whether a distribution tends to have a lot of outliers. Again, plotting the data can help us understand this concept of kurtosis. Lets have a look at this in R (consider the comments in the code explaining what each line does):
 
-```{r}
-# draw a random sample of simulated data from a normal distribution
-# the sample is of size 1000 (hence, n = 1000)
-sample <- rnorm(n = 1000)
+**Kurtosis** measures how heavy the tails of a distribution are—essentially, how prone the distribution is to outliers:
 
-# plot the density & compute the kurtosis
-plot(density(sample))
-kurtosis(sample)
+- **Kurtosis ≈ 3**: Similar to a normal distribution (mesokurtic)
+- **Kurtosis > 3**: Heavier tails, more outliers (leptokurtic)
+- **Kurtosis < 3**: Lighter tails, fewer outliers (platykurtic)
 
-# now lets remove observations from the extremes in this distribution
-# we thus intentionally alter the distribution to have less mass in its tails
-sample <- sample[ sample > -0.6 & sample < 0.6]
+```{r, out.width="90%", fig.align='center'}
+set.seed(42)
+# Normal distribution (kurtosis ≈ 3)
+normal_tails <- rnorm(5000)
 
-# plot the distribution again and see how the tails of it (and thus the kurtosis) has changed
-plot(density(sample))
+# Heavy tails (t-distribution with few degrees of freedom)
+heavy_tails <- rt(5000, df = 3)
 
-# re-calculate the kurtosis
-kurtosis(sample)
-# as expected, the kurtosis has now a lower value
+# Light tails (uniform-like, truncated normal)
+light_tails <- rnorm(5000)
+light_tails <- light_tails[abs(light_tails) < 1.5]
 
+par(mfrow = c(1, 3))
+hist(normal_tails, col = "lightblue", border = "white",
+     xlab = "", xlim = c(-6, 6), breaks = 30,
+     main = paste("Normal tails\nKurtosis:",
+                  round(kurtosis(normal_tails), 2)))
+hist(heavy_tails, col = "lightcoral", border = "white",
+     xlab = "", xlim = c(-6, 6), breaks = 30,
+     main = paste("Heavy tails\nKurtosis:",
+                  round(kurtosis(heavy_tails), 2)))
+hist(light_tails, col = "lightgreen", border = "white",
+     xlab = "", xlim = c(-6, 6), breaks = 30,
+     main = paste("Light tails\nKurtosis:",
+                  round(kurtosis(light_tails), 2)))
+par(mfrow = c(1, 1))
 ```
 
-### Implement the formulas for skewness and kurtosis in R
+### The formulas
 
+For reference, skewness and kurtosis are calculated as:
 
-**Skewness**
+$$\text{Skewness} = \frac{1}{n-1}\sum_{i=1}^{n}\left(\frac{x_i - \bar{x}}{s}\right)^3$$
+
+$$\text{Kurtosis} = \frac{1}{n-1}\sum_{i=1}^{n}\left(\frac{x_i - \bar{x}}{s}\right)^4$$
+
 ```{r, echo=TRUE}
-# own implementation
-sum((sample-mean(sample))^3) / ((length(sample)-1) * sd(sample)^3)
-
-# implementation in moments package
-skewness(sample)
+# Manual calculation for skewness
+x <- rnorm(1000)
+manual_skewness <- sum((x - mean(x))^3) / ((length(x) - 1) * sd(x)^3)
+c(manual = manual_skewness, package = skewness(x))
 ```
 
-**Kurtosis**
-```{r, echo=TRUE}
-# own implementation
-sum((sample-mean(sample))^4) / ((length(sample)-1) * sd(sample)^4)
-
-# implementation in moments package
-kurtosis(sample)
-```
+> **Common Error:** Don't over-interpret small deviations from skewness = 0 or kurtosis = 3. Sample skewness and kurtosis are noisy estimates, especially with small samples. A skewness of 0.2 in a sample of 50 observations doesn't necessarily indicate a skewed population.
 
 
 
@@ -133,15 +248,22 @@ kurtosis(sample)
 
 ## The Law of Large Numbers
 
-The Law of Large Numbers (LLN) is an important statistical property which essentially describes how the behavior of sample averages is related to sample size. Particularly, it states that the sample mean can come as close as we like to the mean of the population from which it is drawn by simply increasing the sample size. That is, the larger our randomly selected sample from a population, the closer is that sample's mean to the mean of the population.
+We've established that sample statistics differ from population parameters due to sampling variability. But how much can we trust our sample? The **Law of Large Numbers (LLN)** provides the answer: as sample size increases, the sample mean converges to the population mean.
 
-Think of playing dice. Each time we roll a fair die, the result is either 1, 2, 3, 4, 5, or 6, whereby each possible outcome can occur with the same probability (1/6). In other words we randomly draw die-values. Thus we can expect that the average of the resulting die values is (1 + 2 + 3 + 4 + 5 + 6)/6 = 3.5.
+More formally: the sample mean can come arbitrarily close to the population mean by simply increasing the sample size. This is why larger samples are better—they give more reliable estimates.
 
-We can investigate this empirically: We roll a fair die once and record the result. We roll it again, and again we record the result. We keep rolling the die and recording results until we get 100 recorded results. Intuitively, we would expect to observe each possible die-value about equally often (given that the die is fair) because each time we roll the die, each possible value (1,2,..,6) is equally likely to be the result. And we would thus expect the average of the resulting die values to be around 3.5. However, just by chance it can obviously be the case that one value (say 5) occurs slightly more often than another value (say 1), leading to a sample mean slightly larger than 3.5. In this context, the LLN states that by increasing the number of times we are rolling the die, we will get closer and closer to 3.5. Now, let's implement this experiment in R:
+### The dice experiment
+
+Consider rolling a fair die. Each outcome (1 through 6) has probability 1/6, so the population mean is:
+
+$$\mu = \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = 3.5$$
+
+If we roll the die 10 times, the sample mean might be 3.2 or 4.1—we're unlikely to get exactly 3.5. But as we roll more times, the sample mean gets closer to 3.5. Let's see this in R:
 
 ```{r dice10, echo=TRUE}
 # first we define the potential values a die can take
-dvalues <- 1:6 # the : operator generates a regular sequence of numbers (from:to)
+# the : operator generates a sequence of numbers (from:to)
+dvalues <- 1:6
 dvalues
 # define the size of the sample n (how often do we roll the die...)
 # for a start, we only roll the die ten times
@@ -161,20 +283,18 @@ results <- sample( x = dvalues, size = n, replace = TRUE)
 mean(results)
 ```
 
-We are already close to 3.5! Now let's scale up these comparisons and show how the sample means are getting even closer to 3.5 when increasing the number of times we roll the die up to 10'000.
+We are already close to 3.5! Now let's scale up these comparisons and show how the sample means are getting even closer to 3.5 when increasing the number of times we roll the die up to 10,000.
 
 ```{r lln, echo=TRUE}
-# Essentially, what we are doing here is repeating the experiment above many times,
-# each time increasing n.
+# Repeat the experiment many times, each time with larger n.
 # define the set of sample sizes
 ns <- seq(from = 10, to = 10000, by = 10)
 # initiate an empty list to record the results
 means <- list()
 length(means) <- length(ns)
-# iterate through each sample size: 'repeat the die experiment for each sample size'
+# iterate: repeat die experiment for each sample size
 for (i in 1:length(ns)) {
-
-     means[[i]] <- mean(sample( x = dvalues,
+     means[[i]] <- mean(sample(x = dvalues,
                                 size = ns[i],
                                 replace = TRUE))
 }
@@ -188,14 +308,18 @@ plot(ns, unlist(means),
 abline(h = 3.5, col = "red")
 ```
 
-We observe that with smaller sample sizes the sample means are broadly spread around the population mean of 3.5. However, the more we go to the right extreme of the x-axis (and thus the larger the sample size), the narrower the sample means are spread around the population mean.
+We observe that with smaller sample sizes, the sample means are broadly spread around the population mean of 3.5. However, the more we go to the right extreme of the x-axis (and thus the larger the sample size), the narrower the sample means are spread around the population mean.
+
+> **In Practice:** The LLN explains why polling organizations survey thousands of people rather than dozens—larger samples yield more reliable estimates. It also justifies practices like collecting multiple measurements in experiments and averaging them. However, the LLN assumes *random* sampling. A large biased sample (e.g., surveying only people who answer their phones during the day) won't converge to the true population mean no matter how large it gets.
 
 
 ## The Central Limit Theorem
 
-The Central Limit Theorem (CLT) is an almost miraculous statistical property enabling us to test the statistical significance of a statistic such as the mean. In essence, the CLT states that as long as we have a large enough sample, the t-statistic (applied, e.g., to test whether the mean is equal to a particular value) is approximately standard normal distributed. This holds independently of how the underlying data is distributed.
+The LLN tells us that larger samples give better estimates. But how do we quantify *how good* our estimate is? The **Central Limit Theorem (CLT)** provides the answer—and it's arguably the most important result in statistics.
 
-Consider the dice-play-example above. We might want to statistically test whether we are indeed playing with a fair die. In order to test that we would roll the die 100 times and record each resulting value. We would then compute the sample mean and standard deviation in order to assess how likely it was to observe the mean we observe if the population mean actually is 3.5 (thus our H0 would be pop_mean = 3.5, or in plain English 'the die is fair'). However, the distribution of the resulting die values are not standard normal distributed. So how can we interpret the sample standard deviation and the sample mean in the context of our hypothesis?
+The CLT states: regardless of how the underlying data is distributed, the *sampling distribution of the mean* approaches a normal distribution as sample size increases. This means we can use normal distribution properties to calculate confidence intervals and p-values, even when our original data isn't normal.
+
+Consider the die-rolling example above, where the outcome follows a discrete uniform distribution on {1, 2, 3, 4, 5, 6}. We might want to statistically test whether we are indeed playing with a fair die. In order to test that we would roll the die 100 times and record each resulting value. We would then compute the sample mean and standard deviation in order to assess how likely it was to observe the mean we observe if the population mean actually is 3.5 (thus our H0 would be pop_mean = 3.5, or in plain English 'the die is fair'). However, the distribution of the resulting die values are not standard normal distributed. So how can we interpret the sample standard deviation and the sample mean in the context of our hypothesis?
 
 The simplest way to interpret these measures is by means of a *t-statistic*. A t-statistic for the sample mean under our working hypothesis that pop_mean = 3.5 is constructed as `t(3.5) = (sample_mean - 3.5) / (sample_sd/sqrt(n))`. Let's illustrate this in R:
 
@@ -218,13 +342,13 @@ t
 
 ```
 
-At this point you might wonder what the use of `t` is if the underlying data is not drawn from a normal distribution. In other words: what is the use of `t` if we cannot interpret it as a value that tells us how likely it is to observe this sample mean, given our null hypothesis? Well, actually we can. And here is where the magic of the CLT comes in: It turns out that there is a mathematical proof (i.e. the CLT) which states that the t-statistic itself can arbitrarily well be approximated by the standard normal distribution. This is true independent of the distribution of the underlying data in our sample! That is, if we have a large enough sample, we can simply compute the t-statistic and look up how likely it is to observe a value at least as large as t, given the null hypothesis is true (-> the p-value):
+At this point, you might wonder what the use of `t` is if the underlying data is not drawn from a normal distribution. In other words: what is the use of `t` if we cannot interpret it as a value that tells us how likely it is to observe this sample mean, given our null hypothesis? Well, actually we can. And here is where the magic of the CLT comes in: It turns out that there is a mathematical proof (i.e. the CLT) which states that the t-statistic itself can arbitrarily well be approximated by the standard normal distribution. This is true independent of the distribution of the underlying data in our sample! That is, if we have a large enough sample, we can simply compute the t-statistic and look up how likely it is to observe a value at least as large as t, given the null hypothesis is true (-> the p-value):
 
 ```{r p-value}
 # calculate the p-value associated with the t-value calculated above
 2*pnorm(-abs(t))
 ```
-In that case we could not reject the null hypothesis of a fair die. However, as pointed out above, the t-statistic is only asymptotically (meaning with very large samples) normally distributed. We might not want to trust this hypothesis test too much because we were using a sample of only 100 observations.
+In that case, we could not reject the null hypothesis of a fair die. However, as pointed out above, the t-statistic is only asymptotically (meaning with very large samples) normally distributed. We might not want to trust this hypothesis test too much because we were using a sample of only 100 observations.
 
 Let's turn back to R in order to illustrate the CLT at work. Similar to the illustration of the LLN above, we will repeatedly compute the t-statistic of our dice play experiment and for each trial increase the number of observations.
 
@@ -234,13 +358,13 @@ ns <- c(10, 40, 100)
 # initiate an empty list to record the results
 ts <- list()
 length(ts) <- length(ns)
-# iterate through each sample size: 'repeat the die experiment for each sample size'
+# iterate: repeat die experiment for each sample size
 for (i in 1:length(ns)) {
-
-     samples.i <- sapply(1:100000, function(j) sample( x = dvalues,
-                                                       size = ns[i],
-                                                       replace = TRUE))
-     ts[[i]] <- apply(samples.i, function(x) (mean(x) - 3.5) / sd(x), MARGIN = 2)
+     samples.i <- sapply(1:100000, function(j) {
+         sample(x = dvalues, size = ns[i], replace = TRUE)
+     })
+     ts[[i]] <- apply(samples.i, MARGIN = 2,
+                      function(x) (mean(x) - 3.5) / sd(x))
 }
 
 # visualize the result: plot the density for each sample size
@@ -250,12 +374,42 @@ hist(ts[[1]], main = "Sample size: 10", xlab = "T-value")
 hist(ts[[2]], main = "Sample size: 40", xlab = "T-value")
 hist(ts[[3]], main = "Sample size: 100", xlab = "T-value")
 
-# finally have a look at the actual standard normal distribution as a reference point
+# the standard normal distribution as a reference point
 plot(function(t)dnorm(t), -4, 4, main = "Normal density")
 ```
 
 Note how the histogram is getting closer to a normal distribution with increasing sample size.
 
+> **In Practice:** The CLT is why hypothesis testing works. When researchers report that a coefficient is "statistically significant at the 5% level," they're relying on the CLT to justify using the normal distribution for p-value calculations. The CLT also underlies confidence intervals: a 95% CI of $\bar{x} \pm 1.96 \times SE$ works because the sampling distribution is approximately normal. However, the approximation requires "large enough" samples—typically n > 30 for reasonably symmetric data, but much larger for highly skewed distributions.
+
+## Key Takeaways
+
+- **Populations vs. samples**: We observe samples but want to learn about populations. Sampling variability means sample statistics differ from population parameters.
+- **Distributions** describe the probability of different outcomes. The normal distribution is central to statistics because of the CLT.
+- **Standard deviation** measures spread in your data; **standard error** measures uncertainty in a statistic. Don't confuse them.
+- **Skewness** measures asymmetry (right-skewed means long right tail); **kurtosis** measures tail heaviness (higher = more outliers).
+- **Law of Large Numbers**: Larger samples yield sample means closer to the population mean. This is why bigger samples are better.
+- **Central Limit Theorem**: Regardless of the original distribution, sample means are approximately normally distributed for large samples. This enables hypothesis testing.
+
+## Further Reading
+
+- @diez_barr_cetinkaya-rundel_2019: *OpenIntro Statistics* (free online) provides accessible coverage of these concepts with more examples.
+- @freedman_pisani_purves_2007: *Statistics* is a classic textbook emphasizing conceptual understanding over formulas.
+- @wasserstein_lazar_2016: "The ASA Statement on p-Values" provides important context on interpreting statistical significance.
+
+## Exercises
+
+1. **Sampling variability**: Generate 100 samples of size n=50 from a normal distribution with mean 10 and sd 3. Calculate the mean of each sample. What is the standard deviation of these 100 means? How does this relate to the standard error formula?
+
+2. **Visualizing distributions**: Create histograms of the following and calculate skewness for each:
+   a) `rexp(1000, rate = 1)` (exponential distribution)
+   b) `rbeta(1000, 2, 5)` (beta distribution)
+   c) `rbeta(1000, 5, 2)` (another beta distribution)
+   Which are right-skewed? Left-skewed?
+
+3. **Law of Large Numbers**: Modify the dice experiment to use a biased die where 6 has probability 0.3 and all other values have probability 0.14 each. What is the true population mean? Verify that the LLN still holds.
+
+4. **Central Limit Theorem**: The exponential distribution is highly right-skewed. Using `rexp()`, demonstrate that even though individual draws are skewed, the distribution of sample means becomes approximately normal as n increases. Try n = 5, 30, and 100.
 
 
 # OLS Derivation and Implementation {#appendix-ols}
@@ -274,11 +428,11 @@ The goal is to find values of $\hat{\alpha}$ and $\hat{\beta}$ that best fit the
 
 From the model equation, the difference between the predicted and actual values of $y$ (the residuals) is:
 
-$y_{i}-\hat{\alpha}-\hat{\beta} x_i=u_i$
+$y_{i}-\hat{\alpha}-\hat{\beta} x_i=\hat{u}_i$
 
 We want to minimize the *sum of squared residuals (SSR)*:
 
-$$SSR = \sum{u_i^2}=\sum{(y_{i}-\hat{\alpha}-\hat{\beta} x_i)^2}$$
+$$SSR = \sum{\hat{u}_i^2}=\sum{(y_{i}-\hat{\alpha}-\hat{\beta} x_i)^2}$$
 
 Using calculus, we define the two first-order conditions by taking partial derivatives and setting them to zero:
 
@@ -287,7 +441,7 @@ $$\frac{\partial SSR}{\partial \hat{\alpha}}=\sum{-2(y_{i}-\hat{\alpha}-\hat{\be
 $$\frac{\partial SSR}{\partial \hat{\beta}}=\sum{-2x_i(y_{i}-\hat{\alpha}-\hat{\beta} x_i)}=0$$
 
 
-The first condition is relatively easily solved by getting rid of the $-2$ and considering that  $\sum{y_i}=N\bar{y}$:
+The first condition is solved relatively easily by getting rid of the $-2$ and considering that  $\sum{y_i}=N\bar{y}$:
 
 $$\hat{\alpha}=\bar{y}-\hat{\beta}\bar{x}$$
 
@@ -341,9 +495,13 @@ We can visualize the fit:
 
 ```{r}
 plot(x, y, pch = 16, cex = 0.5, col = "gray")
-abline(a = alpha, b = beta, col = "blue", lwd = 2)  # true line
-abline(a = estimates$alpha, b = estimates$beta, col = "red", lwd = 2, lty = 2)  # estimated line
-legend("topleft", legend = c("True", "Estimated"), col = c("blue", "red"), lty = c(1, 2), lwd = 2)
+# true line
+abline(a = alpha, b = beta, col = "blue", lwd = 2)
+# estimated line
+abline(a = estimates$alpha, b = estimates$beta,
+       col = "red", lwd = 2, lty = 2)
+legend("topleft", legend = c("True", "Estimated"),
+       col = c("blue", "red"), lty = c(1, 2), lwd = 2)
 ```
 
 ## Application to real data
@@ -364,6 +522,1238 @@ coef(lm(Examination ~ Education, data = swiss))
 
 The results are identical, confirming our implementation is correct.
 
+
+## Matrix formulation of OLS
+
+The scalar approach above works for simple regression (one predictor), but becomes unwieldy with multiple predictors. The **matrix formulation** provides a compact, general solution that extends to any number of variables.
+
+### Matrix notation
+
+In matrix form, the linear model is:
+
+$$\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$$
+
+where:
+
+- $\mathbf{y}$ is an $n \times 1$ vector of outcomes
+- $\mathbf{X}$ is an $n \times k$ matrix of predictors (including a column of 1s for the intercept)
+- $\boldsymbol{\beta}$ is a $k \times 1$ vector of coefficients
+- $\boldsymbol{\varepsilon}$ is an $n \times 1$ vector of errors
+
+For our simple regression example with an intercept and one predictor:
+
+$$\mathbf{y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}, \quad
+\mathbf{X} = \begin{bmatrix} 1 & x_1 \\ 1 & x_2 \\ \vdots & \vdots \\ 1 & x_n \end{bmatrix}, \quad
+\boldsymbol{\beta} = \begin{bmatrix} \alpha \\ \beta \end{bmatrix}$$
+
+### Matrix derivation
+
+We minimize the sum of squared residuals:
+
+$$SSR = \boldsymbol{\varepsilon}'\boldsymbol{\varepsilon} = (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})$$
+
+Taking the derivative with respect to $\boldsymbol{\beta}$ and setting it to zero:
+
+$$\frac{\partial SSR}{\partial \boldsymbol{\beta}} = -2\mathbf{X}'(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) = 0$$
+
+This yields the **normal equations**:
+
+$$\mathbf{X}'\mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{X}'\mathbf{y}$$
+
+Solving for $\hat{\boldsymbol{\beta}}$:
+
+$$\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}$$
+
+This elegant formula is the foundation of regression analysis.
+
+### Matrix implementation in R
+
+R's matrix operations make this straightforward to implement:
+
+```{r}
+my_ols_matrix <- function(y, X) {
+    # X should already include the intercept column
+    # Formula: beta_hat = (X'X)^(-1) X'y
+    beta_hat <- solve(t(X) %*% X) %*% t(X) %*% y
+    return(beta_hat)
+}
+```
+
+Let's verify this gives the same results as our scalar implementation:
+
+```{r}
+# Create design matrix (add column of 1s for intercept)
+X <- cbind(1, x)  # x from our earlier simulation
+head(X)
+
+# Estimate using matrix formula
+estimates_matrix <- my_ols_matrix(y, X)
+estimates_matrix
+
+# Compare with scalar implementation
+c(alpha = estimates$alpha, beta = estimates$beta)
+```
+
+The results are identical (within numerical precision).
+
+### Extending to multiple regression
+
+The power of the matrix formulation is that it handles multiple predictors without any change to the formula. Here's an example with the `swiss` dataset using two predictors:
+
+```{r}
+# Multiple regression: Examination ~ Education + Agriculture
+y_swiss <- swiss$Examination
+X_swiss <- cbind(1, swiss$Education, swiss$Agriculture)
+
+# Our matrix implementation
+beta_matrix <- my_ols_matrix(y_swiss, X_swiss)
+rownames(beta_matrix) <- c("(Intercept)", "Education", "Agriculture")
+beta_matrix
+
+# Compare with lm()
+coef(lm(Examination ~ Education + Agriculture, data = swiss))
+```
+
+> **In Practice:** While implementing OLS from scratch is educational, R's `lm()` function uses more numerically stable algorithms (QR decomposition rather than directly inverting $\mathbf{X}'\mathbf{X}$). For real analysis, always use `lm()`. The matrix formula $(\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{y}$ can be numerically unstable when predictors are highly correlated (multicollinearity), which is why professional implementations avoid direct matrix inversion.
+
+### Computing standard errors
+
+The matrix formulation also provides the variance-covariance matrix of the estimates:
+
+$$\text{Var}(\hat{\boldsymbol{\beta}}) = \hat{\sigma}^2 (\mathbf{X}'\mathbf{X})^{-1}$$
+
+where $\hat{\sigma}^2 = \frac{SSR}{n-k}$ is the estimated error variance. Standard errors are the square roots of the diagonal elements:
+
+```{r}
+# Compute residuals and error variance
+residuals <- y - X %*% estimates_matrix
+sigma2_hat <- sum(residuals^2) / (length(y) - ncol(X))
+
+# Variance-covariance matrix
+vcov_matrix <- sigma2_hat * solve(t(X) %*% X)
+
+# Standard errors (square root of diagonal)
+se <- sqrt(diag(vcov_matrix))
+names(se) <- c("(Intercept)", "x")
+se
+
+# Compare with lm()
+summary(lm(y ~ x))$coefficients[, "Std. Error"]
+```
+
+
+# Exercise Solutions {#appendix-solutions}
+
+This appendix provides solutions to the exercises from each chapter. Working through problems yourself before checking solutions is the most effective way to learn.
+
+## Chapter 1: Introduction
+
+The exercises in Chapter 1 are conceptual and reflective—there is no single "correct" answer. However, here is guidance for Exercise 5:
+
+**Exercise 5 (Data detective):**
+
+a) **What might have gone wrong?** This is almost certainly a CSV parsing error where commas in text fields (e.g., open-ended survey responses like "We need better schools, and more jobs") were not properly quoted. The commas inside the text response split it across multiple columns, pushing fragments like "and more jobs" and "better schools" into the `region` variable.
+
+b) **What would you check first?** Look at the raw CSV file in a text editor (not Excel, which might hide the problem). Check whether text fields containing commas are properly enclosed in quotation marks. Also examine the rows with corrupted `region` values—do the other columns in those rows look correct, or is everything shifted?
+
+c) **How could this affect analysis?** If you analyze regional differences, some observations will have meaningless `region` values. Depending on how you handle these, you might: (1) drop them, losing legitimate data; (2) include them, creating spurious "regions" that add noise; or (3) have your analysis crash when trying to plot or compute statistics for non-existent regions. Any findings about regional patterns would be unreliable.
+
+## Chapter 2: Programming with Data
+
+**Exercise 1 (Vector operations):**
+
+```{r eval=FALSE}
+# Create the vector
+x <- c(10, 20, 30, 40, 50)
+
+# a) Sum and mean
+sum(x)   # 150
+mean(x)  # 30
+
+# b) Multiply each element by 2
+x * 2  # 20 40 60 80 100
+
+# c) Extract elements greater than 25
+x[x > 25]  # 30 40 50
+```
+
+**Exercise 2 (Writing functions):**
+
+```{r eval=FALSE}
+my_sd <- function(x) {
+    n <- length(x)
+    mean_x <- mean(x)
+    sqrt(sum((x - mean_x)^2) / (n - 1))
+}
+
+# Test
+test_vec <- c(2, 4, 4, 4, 5, 5, 7, 9)
+my_sd(test_vec)  # 2.138
+sd(test_vec)     # Compare: 2.138
+```
+
+**Exercise 3 (Control flow):**
+
+```{r eval=FALSE}
+grade_letter <- function(score) {
+    if (score >= 90) {
+        return("A")
+    } else if (score >= 80) {
+        return("B")
+    } else if (score >= 70) {
+        return("C")
+    } else if (score >= 60) {
+        return("D")
+    } else {
+        return("F")
+    }
+}
+
+# Test
+grade_letter(85)  # "B"
+grade_letter(72)  # "C"
+grade_letter(55)  # "F"
+```
+
+**Exercise 4 (Loops):**
+
+```{r eval=FALSE}
+fib <- numeric(20)
+fib[1] <- 1
+fib[2] <- 1
+for (i in 3:20) {
+    fib[i] <- fib[i-1] + fib[i-2]
+}
+fib
+# 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 ...
+```
+
+**Exercise 5 (Debug the code):**
+
+a) **Problem**: There is a missing closing square bracket `]`. The subsetting operation `numbers[numbers > 0]` requires both an opening `[` and closing `]` bracket, but only the opening bracket is present.
+
+b) **Fix**: Add the missing closing bracket:
+
+```{r eval=FALSE}
+numbers <- c(-3, 5, -1, 8, 2, -4, 7)
+positive_mean <- mean(numbers[numbers > 0])  # Added ]
+positive_mean  # 5.5
+```
+
+**Exercise 6 (Debug the code):**
+
+a) **Problem**: Inside the `if` condition, the code uses `=` (assignment operator) instead of `==` (equality comparison operator). This causes a syntax error because R interprets `x %% 2 = 0` as an attempt to assign `0` to the result of `x %% 2`, which is not allowed inside a condition.
+
+b) **Fix**: Replace `=` with `==` for comparison:
+
+```{r eval=FALSE}
+check_even <- function(x) {
+    if (x %% 2 == 0) {  # Use == for comparison
+        return("even")
+    } else {
+        return("odd")
+    }
+}
+check_even(4)  # "even"
+check_even(7)  # "odd"
+```
+
+**Exercise 7 (Debug the code):**
+
+a) **Problem**: The prices are stored as character strings (note the quotes around the numbers), not as numeric values. The `sum()` function cannot perform arithmetic on character data and will produce an error.
+
+b) **Fix**: Convert the character vector to numeric using `as.numeric()`:
+
+```{r eval=FALSE}
+prices <- c("10.50", "25.00", "8.75")
+total <- sum(as.numeric(prices))  # Convert to numeric first
+total  # 44.25
+```
+
+Alternatively, define the vector without quotes from the start:
+```{r eval=FALSE}
+prices <- c(10.50, 25.00, 8.75)  # Numeric, not character
+total <- sum(prices)
+```
+
+**Exercise 8 (Debug the code):**
+
+a) **Problem**: The loop variable `i` is never incremented inside the while loop. Since `i` stays at 1 forever, the condition `i <= 5` is always true, creating an infinite loop.
+
+b) **Fix**: Add `i <- i + 1` inside the loop to increment the counter:
+
+```{r eval=FALSE}
+i <- 1
+while (i <= 5) {
+    print(i)
+    i <- i + 1  # Increment i to eventually exit the loop
+}
+# Prints: 1 2 3 4 5
+```
+
+## Chapter 3: Data
+
+**Exercise 1 (Binary and text encoding):**
+
+```{r eval=FALSE}
+# ASCII code for "B" is 66 (one more than "A" = 65)
+
+# Convert "Hello" to ASCII codes
+utf8ToInt("Hello")  # 72 101 108 108 111
+
+# Convert back
+intToUtf8(c(72, 101, 108, 108, 111))  # "Hello"
+```
+
+**Exercise 2 (CSV variations):**
+
+Using commas as delimiters would split "St. Gallen, Switzerland" into two columns. Solutions:
+
+1. Use a different delimiter (semicolon, tab)
+2. Enclose fields containing commas in quotes
+
+**Exercise 3 (Character encoding issues):**
+
+The file likely uses a different encoding (e.g., Latin-1/ISO-8859-1) than your system expects (UTF-8). Fix by specifying the encoding:
+
+```{r eval=FALSE}
+read_csv("file.csv", locale = locale(encoding = "latin1"))
+# or
+read.csv("file.csv", fileEncoding = "latin1")
+```
+
+**Exercise 4 (Data storage concepts):**
+
+Data must be in RAM because the CPU can only directly access RAM—it cannot process data directly from disk. If data exceeds RAM, the system uses "virtual memory" (swapping to disk), which is much slower. Alternatives include processing data in chunks or using specialized big-data tools.
+
+## Chapter 4: Data Storage and Data Structures
+
+**Exercise 1 (Vectors and types):**
+
+```{r eval=FALSE}
+mixed <- c(1, 2, "three", 4)
+typeof(mixed)  # "character"
+# All coerced to character because vectors must be homogeneous
+sum(mixed)     # Error: invalid 'type' (character)
+```
+
+**Exercise 2 (Matrix operations):**
+
+```{r eval=FALSE}
+m <- matrix(1:9, nrow = 3, ncol = 3)
+m[2, 3]        # 8 (row 2, col 3)
+m[2, ]         # 2 5 8 (entire second row)
+colSums(m)     # 6 15 24
+```
+
+**Exercise 3 (Building data frames):**
+
+```{r eval=FALSE}
+students <- data.frame(
+    name = c("Alice", "Bob", "Carol"),
+    age = c(22, 25, 23),
+    major = c("Economics", "Statistics", "Economics")
+)
+
+# Add graduated column
+students$graduated <- c(FALSE, TRUE, FALSE)
+students
+```
+
+**Exercise 4 (Working with lists):**
+
+```{r eval=FALSE}
+my_list <- list(
+    numbers = c(1, 2, 3, 4, 5),
+    words = c("a", "b", "c"),
+    mat = matrix(1:4, nrow = 2)
+)
+
+# Access using [[]]
+my_list[[1]]        # numeric vector
+my_list[["words"]]  # character vector
+
+# Access using $
+my_list$mat         # the matrix
+my_list$numbers[3]  # third element of numbers: 3
+```
+
+**Exercise 5 (File formats):**
+
+- For Python colleague: CSV (universal) or Parquet (efficient)
+- For Stata colleague: CSV or .dta (Stata format via `haven`)
+- For own future use: RDS (preserves all R object properties)
+
+## Chapter 5: High-Dimensional Data
+
+**Exercise 1 (JSON structure):**
+
+```{r eval=FALSE}
+library(jsonlite)
+json_str <- '{"name": "Alice", "age": 30,
+              "cities": ["Zurich", "Geneva"]}'
+person <- fromJSON(json_str)
+person$name        # "Alice"
+person$age         # 30
+person$cities[2]   # "Geneva"
+```
+
+**Exercise 2 (XML vs JSON):**
+
+```xml
+<!-- XML format -->
+<book>
+  <title>Data Science</title>
+  <author>Jane Doe</author>
+  <year>2024</year>
+  <chapters>
+    <chapter>Introduction</chapter>
+    <chapter>Methods</chapter>
+  </chapters>
+</book>
+```
+
+```json
+{"title": "Data Science", "author": "Jane Doe",
+ "year": 2024, "chapters": ["Introduction", "Methods"]}
+```
+
+JSON is more compact (smaller file size); XML is more verbose but self-documenting with closing tags.
+
+**Exercise 3 (HTML tables):**
+
+```{r eval=FALSE}
+library(rvest)
+
+# Read Wikipedia page
+url <- "https://en.wikipedia.org/wiki/..."
+page <- read_html(url)
+
+# Extract tables
+tables <- html_table(page)
+
+# Get first table as data frame
+df <- tables[[1]]
+head(df)
+```
+
+**Exercise 4 (Web scraping ethics):**
+
+Before scraping, check:
+
+1. The website's `robots.txt` file (e.g., example.com/robots.txt)
+2. The Terms of Service
+3. Whether an API is available (preferred over scraping)
+
+**Exercise 5 (XML parsing with R):**
+
+```{r eval=FALSE}
+library(xml2)
+
+# a) Read and display structure
+library_xml <- read_xml("data/library.xml")
+xml_structure(library_xml)
+
+# b) Extract all book titles
+titles <- xml_text(xml_find_all(library_xml, "//title"))
+titles
+# "Introduction to Econometrics" "R for Data Science"
+# "The Elements of Statistical Learning"
+
+# c) Books published after 2015
+books <- xml_find_all(library_xml, "//book")
+years <- as.numeric(xml_text(xml_find_all(library_xml, "//year")))
+titles[years > 2015]
+# "Introduction to Econometrics" "R for Data Science"
+
+# d) All unique author names
+authors <- xml_text(xml_find_all(library_xml, "//author"))
+unique(authors)
+```
+
+**Exercise 6 (XPath practice):**
+
+```{r eval=FALSE}
+library(xml2)
+company <- read_xml("data/company.xml")
+
+# a) All employee names
+xml_text(xml_find_all(company, "//employee/name"))
+
+# b) Marketing department employees
+xml_text(xml_find_all(company,
+         "//department[@name='Marketing']/employee/name"))
+
+# c) Employees with salary > 80000
+xml_text(xml_find_all(company,
+         "//employee[salary > 80000]/name"))
+
+# d) All department names
+xml_attr(xml_find_all(company, "//department"), "name")
+```
+
+**Exercise 7 (Nested JSON):**
+
+```{r eval=FALSE}
+library(jsonlite)
+
+# a) Read and explore
+survey <- fromJSON("data/survey_responses.json")
+str(survey)
+
+# b) Extract ages
+survey$survey$responses$age
+# 22 24 21
+
+# c) Create data frame
+responses <- survey$survey$responses
+df <- data.frame(
+  id = responses$id,
+  age = responses$age,
+  major = responses$major,
+  hours_online = responses$hours_online
+)
+
+# d) All statistical software used
+all_stats_software <- unlist(
+  lapply(responses$software, function(x) x$statistics)
+)
+unique(all_stats_software)
+# "R" "Stata" "Python"
+```
+
+**Exercise 8 (Format conversion):**
+
+```{r eval=FALSE}
+library(jsonlite)
+
+# a) Read CSV
+gdp <- read.csv("data/gdp_data.csv")
+
+# b) Convert to nested list
+gdp_list <- list(
+  metadata = list(
+    source = "World Bank",
+    unit = "Billions USD",
+    year = 2023
+  ),
+  data = gdp
+)
+
+# c) Write as JSON
+write_json(gdp_list, "data/gdp_data_converted.json",
+           pretty = TRUE)
+
+# d) Compare file sizes
+file.size("data/gdp_data.csv")      # ~100 bytes
+file.size("data/gdp_data_converted.json")  # ~400 bytes
+# JSON is larger due to repeated keys and formatting
+```
+
+**Exercise 9 (Designing hierarchical data):**
+
+```xml
+<!-- XML format -->
+<university>
+  <course code="ECON101">
+    <name>Introduction to Economics</name>
+    <department>Economics</department>
+    <instructors>
+      <instructor>Prof. Smith</instructor>
+      <instructor>Dr. Jones</instructor>
+    </instructors>
+    <schedule>
+      <session day="Monday" time="10:00" room="A101"/>
+      <session day="Wednesday" time="10:00" room="A101"/>
+    </schedule>
+    <students>
+      <student id="S001" name="Alice" major="Economics"/>
+      <student id="S002" name="Bob" major="Finance"/>
+    </students>
+  </course>
+</university>
+```
+
+```json
+{
+  "courses": [{
+    "code": "ECON101",
+    "name": "Introduction to Economics",
+    "department": "Economics",
+    "instructors": ["Prof. Smith", "Dr. Jones"],
+    "schedule": [
+      {"day": "Monday", "time": "10:00", "room": "A101"},
+      {"day": "Wednesday", "time": "10:00", "room": "A101"}
+    ],
+    "students": [
+      {"id": "S001", "name": "Alice", "major": "Economics"},
+      {"id": "S002", "name": "Bob", "major": "Finance"}
+    ]
+  }]
+}
+```
+
+JSON arrays naturally handle multiple instructors/students. To query Monday courses in XPath: `//course[schedule/session[@day='Monday']]`. In JSON, you would filter programmatically.
+
+## Chapter 6: Text Data
+
+**Exercise 1 (Regular expressions):**
+
+```{r eval=FALSE}
+library(stringr)
+
+# a) Words starting with capital letter
+text <- "The University of St. Gallen is in Switzerland."
+str_extract_all(text, "\\b[A-Z][a-z]*\\b")
+# "The" "University" "St" "Gallen" "Switzerland"
+
+# b) Extract all numbers
+text2 <- "In 2023, GDP was $25.5 trillion, up from $23.0"
+str_extract_all(text2, "[0-9.]+")
+# "2023" "25.5" "23.0"
+
+# c) Replace email addresses
+text3 <- "Contact john@example.com or jane@test.org"
+str_replace_all(text3,
+                "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+",
+                "[EMAIL REMOVED]")
+```
+
+**Exercise 2 (Building a corpus):**
+
+```{r eval=FALSE}
+library(quanteda)
+
+texts <- c("Breaking: Market hits record high",
+           "New policy announced by government",
+           "Tech stocks rally amid optimism")
+
+corp <- corpus(texts,
+               docvars = data.frame(
+                   source = c("Reuters", "AP", "Bloomberg"),
+                   date = c("2024-01-01", "2024-01-02", "2024-01-03")
+               ))
+summary(corp)
+```
+
+**Exercise 3 (Text preprocessing decisions):**
+
+For customer reviews:
+
+- a) Lowercase: Yes—"Great" and "great" should match
+- b) Stopwords: Usually yes, but "not" is important for sentiment
+- c) Numbers: Context-dependent—ratings ("5 stars") may matter
+- d) Stemming: Careful—"loving" vs "love" may have different intensities
+
+**Exercise 4 (Document-term matrix):**
+
+```{r eval=FALSE}
+library(quanteda)
+texts <- c("I love R programming",
+           "R is great for data",
+           "Data science uses R")
+
+corp <- corpus(texts)
+dtm <- dfm(tokens(corp))
+dtm
+
+# Rows = documents, columns = unique terms
+# Sparse because most documents don't contain most words
+# Calculate sparsity
+sum(dtm == 0) / length(dtm)  # proportion of zeros
+```
+
+## Chapter 7: Image Data
+
+**Exercise 1 (RGB colors):**
+
+- a) White: (255, 255, 255) — all colors at maximum
+- b) Black: (0, 0, 0) — no light
+- c) Yellow: (255, 255, 0) — red + green
+- d) Gray (50%): (128, 128, 128) — half intensity
+
+**Exercise 2 (Creating images):**
+
+```{r eval=FALSE}
+library(png)
+
+# Create 200x200 purple image
+purple <- array(0, dim = c(200, 200, 3))
+purple[,,1] <- 0.5  # Red channel
+purple[,,2] <- 0    # Green channel
+purple[,,3] <- 0.5  # Blue channel
+
+writePNG(purple, "purple.png")
+```
+
+**Exercise 3 (Image dimensions):**
+
+- a) 4000 × 3000 × 3 = 36,000,000 values
+- b) 36,000,000 bytes = 36 MB
+- c) JPEG uses lossy compression—removes information the human eye doesn't easily perceive
+
+**Exercise 4 (Raster vs. vector):**
+
+- a) Company logo: **Vector**—scales perfectly to any size
+- b) Satellite photo: **Raster**—photographs are inherently pixel-based
+- c) Country borders map: **Vector**—clean lines at any zoom
+- d) Product photo: **Raster**—photographs must be raster
+
+## Chapter 8: Data Sources and Import
+
+**Exercise 1 (Importing CSV files):**
+
+```{r eval=FALSE}
+library(readr)
+
+# a) Import data
+df <- read_csv("data.csv")
+
+# b) Check dimensions and structure
+dim(df)
+str(df)
+
+# c) Specify column types if needed
+df <- read_csv("data.csv",
+               col_types = cols(
+                   id = col_integer(),
+                   date = col_date(),
+                   value = col_double()
+               ))
+```
+
+**Exercise 2 (Excel files):**
+
+```{r eval=FALSE}
+library(readxl)
+
+# a) List sheet names
+excel_sheets("data.xlsx")
+
+# b) Import each sheet
+sheet1 <- read_excel("data.xlsx", sheet = 1)
+sheet2 <- read_excel("data.xlsx", sheet = "Products")
+
+# c) Skip title row
+df <- read_excel("data.xlsx", skip = 1)
+```
+
+**Exercise 3 (Comparing import functions):**
+
+```{r eval=FALSE}
+# Time comparison
+system.time(df1 <- read.csv("large.csv"))
+system.time(df2 <- read_csv("large.csv"))
+# read_csv is typically faster
+
+# Column types
+# read.csv: may convert strings to factors
+# read_csv: keeps strings as character
+
+# String handling
+# read.csv: stringsAsFactors = TRUE (older R)
+# read_csv: always keeps as character
+```
+
+**Exercise 4 (Data from the web):**
+
+```{r eval=FALSE}
+library(jsonlite)
+
+# Download and parse JSON from API
+url <- "https://api.example.com/data"
+data <- fromJSON(url)
+
+# Extract information
+data$temperature
+data$humidity
+data$timestamp
+```
+
+## Chapter 9: Data Preparation
+
+**Exercise 1 (String cleaning):**
+
+```{r eval=FALSE}
+prices <- c("$1,234.56", "  €987.00  ", "£456", "$2,000")
+# Remove currency symbols, commas, and whitespace
+cleaned <- gsub("[€£$,]", "", trimws(prices))
+as.numeric(cleaned)  # 1234.56 987.00 456.00 2000.00
+```
+
+**Exercise 2 (Reshaping data):**
+
+```{r eval=FALSE}
+library(tidyverse)
+data(economics, package = "ggplot2")
+
+economics_long <- economics %>%
+    pivot_longer(
+        cols = c(pce, pop, psavert, uempmed, unemploy),
+        names_to = "indicator",
+        values_to = "value"
+    )
+head(economics_long)
+```
+
+**Exercise 3 (Joins):**
+
+```{r eval=FALSE}
+customers <- data.frame(
+    id = c(1, 2, 3),
+    name = c("Alice", "Bob", "Carol"))
+orders <- data.frame(
+    customer_id = c(1, 1, 3, 4),
+    amount = c(100, 150, 200, 50))
+
+# a) Left join
+left_join(customers, orders,
+          by = c("id" = "customer_id"))
+
+# b) Inner join
+inner_join(customers, orders,
+           by = c("id" = "customer_id"))
+
+# c) Customer 4 in orders but not customers
+anti_join(orders, customers,
+          by = c("customer_id" = "id"))
+```
+
+**Exercise 4 (Data transformation pipeline):**
+
+```{r eval=FALSE}
+library(tidyverse)
+
+swiss %>%
+    filter(Catholic > 50) %>%
+    select(Fertility, Education, Catholic) %>%
+    mutate(edu_category = ifelse(Education > 10,
+                                  "High", "Low")) %>%
+    arrange(desc(Fertility))
+```
+
+## Chapter 10: Exploratory Data Analysis
+
+**Exercise 1 (Summary statistics):**
+
+```{r eval=FALSE}
+mean(mtcars$mpg)    # 20.09
+median(mtcars$mpg)  # 19.2
+sd(mtcars$mpg)      # 6.03
+
+# Mean > median: slight right skew
+
+# Highest/lowest mpg
+rownames(mtcars)[which.max(mtcars$mpg)]  # Toyota Corolla
+rownames(mtcars)[which.min(mtcars$mpg)]  # Cadillac Fleetwood
+```
+
+**Exercise 2 (Grouped analysis):**
+
+```{r eval=FALSE}
+library(tidyverse)
+
+mtcars %>%
+    group_by(cyl) %>%
+    summarise(
+        avg_mpg = mean(mpg),
+        avg_hp = mean(hp),
+        avg_wt = mean(wt)
+    )
+
+# Pattern: More cylinders = lower mpg, higher hp, higher wt
+```
+
+**Exercise 3 (Missing data):**
+
+```{r eval=FALSE}
+df <- data.frame(
+    x = c(1, 2, NA, 4, 5),
+    y = c(NA, 2, 3, NA, 5),
+    z = c(1, 2, 3, 4, 5)
+)
+
+# a) Count NAs per column
+sapply(df, function(col) sum(is.na(col)))
+# x: 1, y: 2, z: 0
+
+# b) Rows with at least one NA
+sum(!complete.cases(df))  # 3
+
+# c) mean(df$x) returns NA
+mean(df$x)               # NA
+mean(df$x, na.rm = TRUE) # 3
+```
+
+**Exercise 4 (Correlation exploration):**
+
+```{r eval=FALSE}
+cor_matrix <- cor(swiss)
+round(cor_matrix, 2)
+
+# Strongest positive: Examination & Education (0.70)
+# Strongest negative: Education & Fertility (-0.66)
+# Explanation: Higher education associated with lower
+# fertility and better exam performance
+```
+
+## Chapter 11: Basic Statistical Modeling
+
+**Exercise 1 (Simple regression):**
+
+```{r eval=FALSE}
+model <- lm(mpg ~ wt, data = mtcars)
+summary(model)
+
+# a) mpg = 37.29 - 5.34 * wt
+# b) Each 1000 lb increase reduces mpg by 5.34
+# c) R-squared = 0.75: 75% of mpg variation explained
+```
+
+**Exercise 2 (Multiple regression):**
+
+```{r eval=FALSE}
+model2 <- lm(mpg ~ wt + hp, data = mtcars)
+summary(model2)
+
+# a) wt coefficient decreases slightly (less negative)
+# b) hp is significant (p < 0.05)
+# c) R-squared increases: adding hp improves fit
+```
+
+**Exercise 3 (Model diagnostics):**
+
+```{r eval=FALSE}
+# a) Histogram of residuals
+hist(residuals(model2), breaks = 10)
+# Approximately normal
+
+# b) Residuals vs fitted
+plot(fitted(model2), residuals(model2))
+abline(h = 0)
+# Look for patterns (should be random scatter)
+
+# c) Largest residuals
+resid <- residuals(model2)
+names(sort(abs(resid), decreasing = TRUE)[1:3])
+```
+
+**Exercise 4 (Causality challenge):**
+
+a) Correlation ≠ causation—TV ownership doesn't cause health
+
+b) Confounding variables:
+   - GDP per capita (richer countries have more TVs AND better healthcare)
+   - Education levels
+   - Urbanization
+
+c) To establish causation, you would need a randomized controlled experiment (impractical here), or methods like instrumental variables, difference-in-differences, or other causal inference techniques
+
+## Chapter 12: Data Visualization
+
+**Exercise 1 (Basic ggplot2):**
+
+```{r eval=FALSE}
+library(ggplot2)
+
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+    geom_point() +
+    geom_smooth() +
+    labs(x = "Engine Displacement (L)",
+         y = "Highway MPG",
+         title = "Fuel Efficiency vs Engine Size")
+```
+
+**Exercise 2 (Choosing the right chart):**
+
+- a) Income distribution: **Histogram** — shows shape of distribution
+- b) Sales by category: **Bar chart** — compares discrete groups
+- c) Stock prices over time: **Line chart** — shows trends
+- d) Two continuous variables: **Scatter plot** — shows relationships
+
+**Exercise 3 (Customizing plots):**
+
+```{r eval=FALSE}
+library(ggplot2)
+
+p <- ggplot(mpg, aes(x = displ, y = hwy)) +
+    geom_point(size = 2, alpha = 0.6) +
+    labs(x = "Engine Displacement (liters)",
+         y = "Highway Fuel Efficiency (mpg)",
+         title = "Larger Engines Are Less Efficient") +
+    theme_minimal()
+
+ggsave("my_plot.png", p, width = 8, height = 6)
+```
+
+**Exercise 4 (Misleading visualizations):**
+
+Common misleading techniques:
+
+1. **Truncated y-axis**: Starting y-axis above zero exaggerates differences. Detect: check if axis starts at zero.
+
+2. **Cherry-picked time periods**: Selecting dates that support a narrative. Detect: ask what the full time series shows.
+
+3. **Misleading scales**: Using different scales for compared items. Detect: carefully read axis labels and units.
+
+Additional: 3D effects that distort proportions, unlabeled axes, manipulated aspect ratios.
+
+
+# Common Errors Quick Reference {#appendix-errors}
+
+This appendix compiles all "Common Error" boxes from throughout the book into a single quick reference. Use this when debugging problems or as a checklist before submitting work.
+
+## Programming Basics (Chapter 2)
+
+**Variable naming**: Variable names cannot start with numbers or contain spaces. `2nd_result` and `my result` will cause errors. Use `result_2` or `my_result` instead.
+
+**Assignment vs. comparison**: Don't confuse `=` with `==` (comparison). In R, `<-` is the preferred assignment operator. Writing `if (x = 5)` assigns 5 to x instead of comparing. Always use `==` for comparisons: `if (x == 5)`.
+
+## Character Encoding (Chapter 3)
+
+**Encoding mismatches**: When strange characters appear in your data (like `Ã©` instead of `é`, or `?` in unexpected places), you likely have an encoding mismatch. In R, specify the correct encoding when reading files: `read.csv("file.csv", fileEncoding = "Latin1")`. When in doubt, UTF-8 is the safest modern default.
+
+## Data Types (Chapter 4)
+
+**Numbers as text**: Numbers stored as text (e.g., `"42"` instead of `42`) cause silent failures in calculations. Check types with `typeof()` or `class()`. Convert with `as.numeric()`: `as.numeric("42")` returns `42`. Watch for "NA introduced by coercion" warnings—these indicate conversion failures.
+
+## JSON Parsing (Chapter 5)
+
+**Malformed JSON**: JSON parsing fails silently or with cryptic errors when the input is malformed. Common issues include: trailing commas after the last element (valid in JavaScript but not JSON), single quotes instead of double quotes for strings, and unquoted keys. Use `jsonlite::validate()` to check JSON syntax before parsing.
+
+## Regular Expressions (Chapter 6)
+
+**Escaping backslashes**: In R, backslashes in regular expressions must be doubled: use `"\\d"` to match a digit, not `"\d"`. This is because R first interprets the string (consuming one backslash), then the regex engine interprets what remains. A common symptom is "unrecognized escape" errors.
+
+## Image Data (Chapter 7)
+
+**Pixel value ranges**: For standard 8-bit RGB images, values must be integers between 0 and 255 (some functions also accept normalized values between 0 and 1). Values outside the expected range will cause errors or unexpected colors. Clip values to valid range with `pmax(0, pmin(255, values))`.
+
+## File Paths (Chapter 8)
+
+**Case sensitivity**: File paths are case-sensitive on Mac/Linux. `"Data/Swiss.csv"` will fail if the actual path is `"data/swiss.csv"`. Also, use forward slashes (`/`) even on Windows—R handles them correctly.
+
+## Type Conversion (Chapter 9)
+
+**Coercion warnings**: The warning "NAs introduced by coercion" means some values couldn't be converted. Common culprits: currency symbols (`$`, `€`), thousands separators (`,`), percentage signs (`%`), or extra whitespace. Always clean strings with `str_replace()` or `gsub()` *before* converting to numeric.
+
+**Join surprises**: Joins that produce more rows than expected usually indicate duplicate keys. If `id` appears twice in one table, each match creates multiple rows. Always check for duplicates before joining: `any(duplicated(df$id))`. Also ensure key columns have matching types.
+
+## Missing Values (Chapter 10)
+
+**NA propagation**: Functions like `mean()`, `sd()`, and `sum()` return `NA` if any value is missing. Add `na.rm = TRUE` to ignore missing values: `mean(x, na.rm = TRUE)`. Always check for NAs first with `sum(is.na(x))`.
+
+## Linear Models (Chapter 11)
+
+**Formula syntax**: The formula uses a tilde (`~`), not an equals sign or minus. Also, variable names must match exactly—`lm(examination ~ education, data = swiss)` will fail because R is case-sensitive (should be `Examination` and `Education`).
+
+## ggplot2 (Chapter 12)
+
+**Line continuation**: The `+` in ggplot2 must come at the *end* of a line, not the beginning of the next line. `ggplot(data) + geom_point()` works, but `ggplot(data)` followed by `+ geom_point()` on a new line fails. Don't confuse `+` (adding layers) with `%>%` (piping).
+
+## Statistics (Appendix A)
+
+**SD vs. SE**: Standard deviation and standard error are not the same thing. Standard deviation measures variability in your *data*. Standard error measures uncertainty in a *statistic* (like the sample mean). The standard error of the mean is $SE = \frac{SD}{\sqrt{n}}$.
+
+**Sample statistics**: Don't over-interpret small deviations from theoretical values. Sample skewness and kurtosis are noisy estimates, especially with small samples. A skewness of 0.2 in a sample of 50 observations doesn't necessarily indicate a skewed population.
+
+
+# Glossary {#appendix-glossary}
+
+This glossary provides definitions of key terms used throughout the book, organized by category.
+
+## R and Programming Terms
+
+**Assignment operator (`<-` or `=`)**: Assigns a value to a variable name. `x <- 5` stores the value 5 in a variable called x.
+
+**Base R**: The core R functions that come with any R installation, without additional packages.
+
+**CRAN**: Comprehensive R Archive Network—the main repository for R packages.
+
+**Data frame**: R's primary data structure for tabular data, where columns can be different types (numeric, character, etc.) but must have the same length.
+
+**Factor**: A data type in R for categorical variables, storing both the values and the set of possible levels.
+
+**Function**: A reusable piece of code that takes inputs (arguments), performs operations, and returns an output.
+
+**IDE (Integrated Development Environment)**: Software that provides tools for writing and running code, like RStudio.
+
+**List**: An R data structure that can contain elements of different types and lengths, including other lists.
+
+**Matrix**: A two-dimensional array where all elements must be the same type.
+
+**Package**: A collection of R functions, data, and documentation bundled together for distribution.
+
+**Pipe operator (`%>%` or `|>`)**: Passes the output of one function as the input to another, enabling readable chains of operations.
+
+**tibble**: A modern version of a data frame (from the tidyverse) with improved printing and stricter behavior.
+
+**tidyverse**: A collection of R packages (including dplyr, ggplot2, tidyr) designed to work together with consistent syntax.
+
+**Vector**: R's basic data structure—a sequence of elements of the same type.
+
+## Data Concepts
+
+**Categorical variable**: A variable that takes on a limited number of distinct values (e.g., "yes"/"no", country names).
+
+**Continuous variable**: A numeric variable that can take any value within a range (e.g., temperature, income).
+
+**CSV (Comma-Separated Values)**: A plain text file format where values are separated by commas, commonly used for tabular data.
+
+**ETL (Extract, Transform, Load)**: The process of extracting data from sources, transforming it into usable format, and loading it into a destination system.
+
+**JSON (JavaScript Object Notation)**: A text-based data format using key-value pairs and nested structures, common in web APIs.
+
+**Long format (tidy data)**: Data arrangement where each observation is a row and each variable is a column—preferred for most analyses.
+
+**Metadata**: Data about data—information describing the structure, contents, or context of a dataset.
+
+**Missing value (NA)**: A placeholder indicating absent or unknown data in R.
+
+**Tidy data**: A standardized way of organizing data: each variable forms a column, each observation forms a row, each type of observational unit forms a table.
+
+**Wide format**: Data arrangement where repeated observations are spread across columns rather than rows.
+
+**XML (Extensible Markup Language)**: A text-based format for structured data using nested tags, common in web services and configuration files.
+
+## Statistical Concepts
+
+**Central Limit Theorem (CLT)**: The theorem stating that the sampling distribution of the mean approaches a normal distribution as sample size increases, regardless of the population's distribution.
+
+**Coefficient**: In regression, the estimated effect of a predictor variable on the outcome variable.
+
+**Confidence interval**: A range of values that is likely to contain the true population parameter, typically at 95% confidence.
+
+**Correlation**: A measure of the linear relationship between two variables, ranging from -1 to +1.
+
+**Distribution**: The pattern of values a variable takes, often visualized as a histogram or density plot.
+
+**Hypothesis test**: A statistical procedure for making inferences about population parameters based on sample data.
+
+**Intercept**: In regression, the predicted value of the outcome when all predictors equal zero.
+
+**Law of Large Numbers (LLN)**: The principle that sample means converge to the population mean as sample size increases.
+
+**Mean**: The arithmetic average—sum of values divided by count.
+
+**Median**: The middle value when data is sorted—less sensitive to outliers than the mean.
+
+**OLS (Ordinary Least Squares)**: A method for estimating regression coefficients by minimizing the sum of squared residuals.
+
+**p-value**: The probability of observing results at least as extreme as the sample results, assuming the null hypothesis is true.
+
+**R-squared**: The proportion of variance in the outcome variable explained by the predictors in a regression model.
+
+**Residual**: The difference between an observed value and the value predicted by a model.
+
+**Standard deviation**: A measure of spread—the square root of the variance.
+
+**Standard error**: The estimated standard deviation of a sample statistic.
+
+**t-statistic**: A test statistic calculated as the coefficient divided by its standard error, used to assess statistical significance.
+
+**Variance**: A measure of spread—the average squared deviation from the mean.
+
+## Data Visualization Terms
+
+**Aesthetics**: In ggplot2, the visual properties of a plot (position, color, size, shape) that can be mapped to data variables.
+
+**Chartjunk**: Unnecessary visual elements that don't convey data—should be minimized for effective visualizations.
+
+**Data-ink ratio**: The proportion of a graphic's ink devoted to displaying data versus decoration—should be maximized.
+
+**Faceting**: Splitting a plot into multiple panels based on a categorical variable.
+
+**Geometry (geom)**: In ggplot2, the type of plot element (point, line, bar, etc.).
+
+**Grammar of Graphics**: A framework for describing and building visualizations as combinations of data, aesthetics, geometries, and other components.
+
+**Small multiples**: The same chart repeated for different subsets of data, arranged for comparison.
+
+## Text Analysis Terms
+
+**Corpus**: A structured collection of text documents with associated metadata.
+
+**Document-term matrix (DTM)**: A matrix where rows are documents, columns are terms, and values are term frequencies.
+
+**NLP (Natural Language Processing)**: The field of computing concerned with analyzing and generating human language.
+
+**Regular expression (regex)**: A pattern-matching syntax for finding and manipulating text.
+
+**Sentiment analysis**: Determining whether text expresses positive, negative, or neutral sentiment.
+
+**Stopwords**: Common words (like "the", "and", "is") often removed before text analysis because they carry little meaning.
+
+**Tokenization**: Breaking text into individual units (words, sentences, or other meaningful segments).
+
+**TF-IDF (Term Frequency-Inverse Document Frequency)**: A weighting scheme that balances how often a term appears in a document against how common it is across all documents.
+
+
+# Datasets Used in This Book {#appendix-datasets}
+
+This appendix lists all datasets used throughout the book, organized by source.
+
+## Built-in R Datasets
+
+These datasets come with base R or standard packages and can be loaded with `data()`:
+
+| Dataset | Package | Description | Used In |
+|---------|---------|-------------|---------|
+| `swiss` | datasets | Swiss fertility and socioeconomic indicators (1888) | Ch 10, 11, 12 |
+| `mtcars` | datasets | Motor vehicle road test data (1974) | Ch 10, 11 exercises |
+| `mpg` | ggplot2 | Fuel economy data (1999-2008) | Ch 12 exercises |
+| `iris` | datasets | Edgar Anderson's iris flower measurements | Ch 4 |
+
+## Package-Specific Datasets
+
+These datasets require installing and loading specific packages:
+
+| Dataset | Package | Description | Used In |
+|---------|---------|-------------|---------|
+| `data_corpus_inaugural` | quanteda | US presidential inaugural addresses | Ch 6 |
+
+## External Data Sources
+
+These datasets are loaded from external files or web sources:
+
+| Source | Description | Used In |
+|--------|-------------|---------|
+| World Bank API | Population and development statistics | Ch 8 |
+| Georgia COVID data | COVID-19 case data (April-May 2020) | Ch 12 tutorial |
+| Hotel bookings | Hotel booking demand data | Ch 9 tutorial |
+| Wikipedia tables | HTML tables for web scraping examples | Ch 5, 8 |
+
+## Loading Datasets
+
+**Built-in datasets:**
+```{r eval=FALSE}
+# Load a built-in dataset
+data(swiss)
+data(mtcars)
+
+# From a specific package
+data(mpg, package = "ggplot2")
+```
+
+**External data:**
+```{r eval=FALSE}
+# CSV from local file
+df <- read_csv("path/to/file.csv")
+
+# Data from a URL
+df <- read_csv("https://example.com/data.csv")
+
+# From a package's external data
+path <- system.file("extdata/", package = "packagename")
+```
+
+## Dataset Documentation
+
+For built-in datasets, access documentation with:
+```{r eval=FALSE}
+?swiss     # Help page for swiss dataset
+?mtcars    # Help page for mtcars dataset
+```
 
 
 `r if (knitr::is_html_output()) '

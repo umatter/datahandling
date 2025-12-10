@@ -1,4 +1,8 @@
 year,president,senate,house
+1857,Buchanan,D,D
+1858,Buchanan,D,D
+1859,Buchanan,D,R
+1860,Buchanan,D,R
 1861,Lincoln,R,R
 1862,Lincoln,R,R
 1863,Lincoln,R,R
@@ -19,8 +23,8 @@ year,president,senate,house
 1878,Hayes,R,D
 1879,Hayes,D,D
 1880,Hayes,D,D
-1881,Garfield / Arthur,R,R
-1882,Garfield / Arthur,R,R
+1881,Garfield / Arthur,R[a],R
+1882,Garfield / Arthur,R[a],R
 1883,Arthur,R,D
 1884,Arthur,R,D
 1885,Cleveland,R,D
@@ -55,8 +59,8 @@ year,president,senate,house
 1914,Wilson,D,D
 1915,Wilson,D,D
 1916,Wilson,D,D
-1917,Wilson,D,D
-1918,Wilson,D,D
+1917,Wilson,D,D[b]
+1918,Wilson,D,D[b]
 1919,Wilson,R,R
 1920,Wilson,R,R
 1921,Harding,R,R
@@ -91,8 +95,8 @@ year,president,senate,house
 1950,Truman,D,D
 1951,Truman,D,D
 1952,Truman,D,D
-1953,Eisenhower,R,R
-1954,Eisenhower,R,R
+1953,Eisenhower,R[c],R
+1954,Eisenhower,R[c],R
 1955,Eisenhower,D,D
 1956,Eisenhower,D,D
 1957,Eisenhower,D,D
@@ -139,8 +143,8 @@ year,president,senate,house
 1998,Clinton,R,R
 1999,Clinton,R,R
 2000,Clinton,R,R
-2001,G.W. Bush,D*,R
-2002,G.W. Bush,D*,R
+2001,G.W. Bush,D[d],R
+2002,G.W. Bush,D[d],R
 2003,G.W. Bush,R,R
 2004,G.W. Bush,R,R
 2005,G.W. Bush,R,R
@@ -159,5 +163,9 @@ year,president,senate,house
 2018,Trump,R,R
 2019,Trump,R,D
 2020,Trump,R,D
-2021,Biden,D**,D
-2022,Biden,D**,D
+2021,Biden,D[e],D
+2022,Biden,D[e],D
+2023,Biden,D,R
+2024,Biden,D,R
+2025,Trump,R,R
+2026,Trump,R,R

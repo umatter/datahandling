@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<gdp_data>
+  <dataset>World Bank GDP Indicators</dataset>
+  <unit>Billions USD</unit>
+  <year>2023</year>
+  <country name="Switzerland" gdp="885.1" population="8.8" />
+  <country name="Germany" gdp="4456.1" population="84.5" />
+  <country name="United States" gdp="27357.8" population="334.9" />
+  <country name="Japan" gdp="4212.9" population="124.5" />
+</gdp_data>
